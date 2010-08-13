@@ -328,7 +328,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>54C1DD841215310300EBD811</string>
+										<string>54C1DE01121543C400EBD811</string>
 										<key>history</key>
 										<array>
 											<string>54C1DC771214115F00EBD811</string>
@@ -541,10 +541,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>54C1DE02121543C400EBD811</string>
+		<string>54C1DDE5121542E300EBD811</string>
+		<string>54C1DDE6121542E300EBD811</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
-		<string>54C1DC1E1213B28F00EBD811</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>54C1DC1E1213B28F00EBD811</string>
 	</array>
 	<key>WindowString</key>
 	<string>496 153 1028 795 0 0 1680 1028 </string>
@@ -568,7 +571,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>NowPlayingViewController.m</string>
+								<string>TwitterClient.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>

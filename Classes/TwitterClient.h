@@ -10,13 +10,20 @@
 #import "TwitterClient+ConsumerKey.h"
 #import "OAuthConsumer/OAServiceTicket.h"
 
+#define kHomeTimelineURL @"http://twitter.com/statuses/home_timeline/%@.json"
 #define kUserTimelineURL @"http://twitter.com/statuses/user_timeline/%@.json"
+#define kSearchURL @"http://search.twitter.com/search.json?q=%@"
 
 @interface TwitterClient : NSObject {
 
 }
 
-- (NSArray *)getTimeLine:(NSString *)username;
+- (NSArray *)getHomeTimeLine:(NSString *)username;
+- (NSArray *)getUserTimeLine:(NSString *)username;
+- (NSArray *)getSearchTimeLine:(NSString *)searchString;
+
+- (NSArray *)arrayOfRemoteJson:(NSString *)urlString;
+- (void)logJsonData:(NSArray *)jsonArray;
 
 - (void)getAccessTokenWithUsername:(NSString *)username 
 			  password:(NSString *)password;

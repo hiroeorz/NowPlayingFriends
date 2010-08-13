@@ -18,20 +18,65 @@
 #pragma mark -
 #pragma Twitter Get TimeLine Methods
 
-- (NSArray *)getTimeLine:(NSString *)username {
+/**
+ * @brief 指定されたユーザのタイムラインを取得します。
+ */
+- (NSArray *)getHomeTimeLine:(NSString *)username {
+
+  NSString *urlString = [[NSString alloc] 
+			  initWithFormat:kHomeTimelineURL, username];
+
+  return [self arrayOfRemoteJson:urlString];
+}
+
+- (NSArray *)getUserTimeLine:(NSString *)username {
 
   NSString *urlString = [[NSString alloc] 
 			  initWithFormat:kUserTimelineURL, username];
 
+  return [self arrayOfRemoteJson:urlString];
+}
+
+- (NSArray *)getSearchTimeLine:(NSString *)searchString {
+
+  NSString *urlString = [[NSString alloc] 
+			  initWithFormat:kSearchURL, searchString];
 
   NSURL *url = [NSURL URLWithString:urlString];
-  NSString *jsonString = [NSString stringWithContentsOfURL:url
-				   encoding:NSUTF8StringEncoding
-				   error:nil];
+  [urlString release];
+
+  NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url
+					   encoding:NSUTF8StringEncoding
+					   error:nil];
+
+  NSDictionary *jsonDictionary = [jsonString JSONValue];
+  NSArray *jsonArray = [jsonDictionary objectForKey:@"results"];
+  [jsonString release];
+
+  return jsonArray;
+}
+
+/**
+ * @brief 渡されたURL文字列からJSONデータを取得しArrayにパースして返します。
+ */
+- (NSArray *)arrayOfRemoteJson:(NSString *)urlString {
+
+  NSURL *url = [NSURL URLWithString:urlString];
+  [urlString release];
+
+  NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url
+					   encoding:NSUTF8StringEncoding
+					   error:nil];
 
   NSArray *jsonArray = [jsonString JSONValue];
+  [jsonString release];
 
-  NSLog(@"getTimeLine");
+  //[self logJsonData:jsonArray];
+
+  return [jsonArray autorelease];
+}
+
+- (void)logJsonData:(NSArray *)jsonArray {
 
   for (NSDictionary *dic in jsonArray) {
     NSDictionary *user = [dic valueForKey:@"user"];
@@ -40,10 +85,7 @@
     NSLog(@"image: %@", [user objectForKey:@"profile_image_url"]);
     NSLog(@"text: %@", [dic objectForKey:@"text"]);
     NSLog(@"created_at: %@", [dic objectForKey:@"created_at"]);
-    NSLog(@"rel: %@", [dic objectForKey:@"rel"]);
   }
-
-  return jsonArray;
 }
 
 #pragma mark -
@@ -60,16 +102,15 @@
   NSURL *url = 
     [NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"];
 
-  OAConsumer *consumer =
-    [[[OAConsumer alloc] initWithKey:@"kConsumerKey"
-			 secret:@"kConsumerSecret"] autorelease];
+  OAConsumer *consumer = [[OAConsumer alloc] initWithKey:@"kConsumerKey"
+					     secret:@"kConsumerSecret"];
   OAMutableURLRequest 
     *request = [[OAMutableURLRequest alloc] initWithURL:url
 					    consumer:consumer
 					    token:nil
 					    realm:nil
-					    signatureProvider:nil]; 
-  [request autorelease];
+					    signatureProvider:nil];
+  [consumer release];
 
   // 新たに付加するパラメータ
   NSMutableArray *xAuthParameters = [NSMutableArray arrayWithCapacity:3];
@@ -94,6 +135,8 @@
 	   delegate:self
 	   didFinishSelector:@selector(ticket:didFinishWithData:)
 	   didFailSelector:@selector(ticket:didFailWithError:)];
+
+  [request release];
 }
 
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {

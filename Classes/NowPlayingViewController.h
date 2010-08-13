@@ -20,5 +20,6 @@
 @property (nonatomic, retain) NSMutableDictionary *profileImages;
 
 - (UIImage *)profileImage:(NSDictionary *)user;
+- (NSString *)username:(NSDictionary *)data;
 
 @end

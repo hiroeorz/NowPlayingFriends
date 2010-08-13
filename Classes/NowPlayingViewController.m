@@ -47,7 +47,7 @@
   [newProfileImages release];
 
   TwitterClient *client = [[TwitterClient alloc] init];
-  self.timeline = [client getTimeLine:@"hiroe_orz17"];
+  self.timeline = [client getSearchTimeLine:@"%23nowplaying"];
   [client release];
 
   [super viewDidLoad];
@@ -115,19 +115,35 @@
   
   NSInteger row = [indexPath row];
   NSDictionary *data = [timeline objectAtIndex:row];
-  NSDictionary *user = [data objectForKey:@"user"];
 
   cell.bodyTextView.text = [data objectForKey:@"text"];
-  cell.accountLabel.text = [user objectForKey:@"name"];
-  cell.userImageView.image = [self profileImage:user];
+  cell.accountLabel.text = [self username:data];
+  cell.userImageView.image = [self profileImage:data];
 
   return cell;
 }
 
+- (NSString *)username:(NSDictionary *)data {
+
+  NSDictionary *user = [data objectForKey:@"user"];
+  NSString *username = [data objectForKey:@"name"];
+
+  if (user == nil) {
+    username = [data objectForKey:@"from_user"];
+  }
+  
+  return username;
+}
+
 /**
  * @brief ユーザのプロフィール画像を返します。
+ *        キャッシュにあればそれを、なければリモートから取得して返します。
  */
-- (UIImage *)profileImage:(NSDictionary *)user {
+- (UIImage *)profileImage:(NSDictionary *)data {
+
+  NSDictionary *user = [data objectForKey:@"user"];
+
+  if (user == nil) { user = data; }
 
   NSString *imageURLString = [user objectForKey:@"profile_image_url"];
   UIImage *profileImage = [profileImages objectForKey:imageURLString];
