@@ -13,18 +13,27 @@
 @implementation NowPlayingViewController
 
 @synthesize timeline;
+@synthesize profileImages;
 
 #pragma mark -
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning {
+  NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
+  self.profileImages = newProfileImages;
+  [newProfileImages release];
+
   [super didReceiveMemoryWarning];
 }
 
 - (void)viewDidUnload {
+  self.timeline = nil;
+  self.profileImages = nil;
 }
 
 - (void)dealloc {
+  [timeline release];
+  [profileImages release];
   [super dealloc];
 }
 
@@ -33,10 +42,14 @@
 
 - (void)viewDidLoad {
   
+  NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
+  self.profileImages = newProfileImages;
+  [newProfileImages release];
+
   TwitterClient *client = [[TwitterClient alloc] init];
   self.timeline = [client getTimeLine:@"hiroe_orz17"];
-  
   [client release];
+
   [super viewDidLoad];
 }
 
@@ -104,18 +117,32 @@
   NSDictionary *data = [timeline objectAtIndex:row];
   NSDictionary *user = [data objectForKey:@"user"];
 
-  NSString *profileImageURLString = [user objectForKey:@"profile_image_url"];
-  NSURL *profileImageURL = [NSURL URLWithString:profileImageURLString];
-  NSData *profileImageData = [NSData dataWithContentsOfURL:profileImageURL];
-  UIImage *profileImage = [[UIImage alloc] initWithData:profileImageData];
-
   cell.bodyTextView.text = [data objectForKey:@"text"];
   cell.accountLabel.text = [user objectForKey:@"name"];
-  cell.userImageView.image = profileImage;
+  cell.userImageView.image = [self profileImage:user];
 
   return cell;
 }
 
+/**
+ * @brief ユーザのプロフィール画像を返します。
+ */
+- (UIImage *)profileImage:(NSDictionary *)user {
+
+  NSString *imageURLString = [user objectForKey:@"profile_image_url"];
+  UIImage *profileImage = [profileImages objectForKey:imageURLString];
+
+  if (profileImage == nil) {
+    NSLog(@"new image getting...");
+    NSURL *imageURL = [NSURL URLWithString:imageURLString];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    profileImage = [[UIImage alloc] initWithData:imageData];
+
+    [profileImages setObject:profileImage forKey:imageURLString];
+  }
+
+  return profileImage;
+}
 
 /*
 // Override to support conditional editing of the table view.

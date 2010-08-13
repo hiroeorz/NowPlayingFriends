@@ -10,6 +10,8 @@
 #import "TwitterClient+ConsumerKey.h"
 #import "OAuthConsumer/OAServiceTicket.h"
 
+#define kUserTimelineURL @"http://twitter.com/statuses/user_timeline/%@.json"
+
 @interface TwitterClient : NSObject {
 
 }

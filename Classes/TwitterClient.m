@@ -20,8 +20,9 @@
 
 - (NSArray *)getTimeLine:(NSString *)username {
 
-  NSString *urlString = 
-    @"http://twitter.com/statuses/user_timeline/hiroe_orz17.json";
+  NSString *urlString = [[NSString alloc] 
+			  initWithFormat:kUserTimelineURL, username];
+
 
   NSURL *url = [NSURL URLWithString:urlString];
   NSString *jsonString = [NSString stringWithContentsOfURL:url
