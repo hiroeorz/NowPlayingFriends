@@ -199,6 +199,7 @@
 			54C1DEB8121576CB00EBD811 /* PBXTextBookmark */ = 54C1DEB8121576CB00EBD811 /* PBXTextBookmark */;
 			54C1DEBF1215E21300EBD811 /* PBXTextBookmark */ = 54C1DEBF1215E21300EBD811 /* PBXTextBookmark */;
 			54C1DEC61215E2E900EBD811 /* PBXTextBookmark */ = 54C1DEC61215E2E900EBD811 /* PBXTextBookmark */;
+			54C1DECD1215E4A700EBD811 /* PBXTextBookmark */ = 54C1DECD1215E4A700EBD811 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 54C1DC271213B28F00EBD811 /* Source Control */;
 		userBuildSettings = {
@@ -225,7 +226,7 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 1;
+		breakpointsEnabled = 0;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;
@@ -305,10 +306,10 @@
 	};
 	54C1DC3B1213F3ED00EBD811 /* NowPlayingViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{2842, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{6946, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{6997, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{7047, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 7279}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {439, 3783}}";
-			sepNavSelRange = "{7201, 0}";
-			sepNavVisRange = "{6250, 443}";
+			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{2855, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{6959, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{7010, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{7060, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 7292}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {439, 3796}}";
+			sepNavSelRange = "{7214, 0}";
+			sepNavVisRange = "{6263, 443}";
 		};
 	};
 	54C1DC401213F3FD00EBD811 /* PBXTextBookmark */ = {
@@ -1782,6 +1783,16 @@
 		vrLoc = 0;
 	};
 	54C1DEC61215E2E900EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
+		name = "TwitterClient.m: 13";
+		rLen = 0;
+		rLoc = 322;
+		rType = 0;
+		vrLen = 938;
+		vrLoc = 0;
+	};
+	54C1DECD1215E4A700EBD811 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
 		name = "TwitterClient.m: 13";

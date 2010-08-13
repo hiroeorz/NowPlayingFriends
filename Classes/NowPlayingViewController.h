@@ -14,12 +14,10 @@
 @interface NowPlayingViewController : UITableViewController {
   NSArray *timeline;
   NSMutableDictionary *profileImages;
-  UITableView *timelineTableView;
 }
 
 @property (nonatomic, retain) NSArray *timeline;
 @property (nonatomic, retain) NSMutableDictionary *profileImages;
-@property (nonatomic, retain) IBOutlet UITableView *timelineTableView;
 
 - (void)refreshTimeline;
 - (void)tableRefreshLoop;

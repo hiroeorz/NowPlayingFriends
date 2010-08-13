@@ -14,10 +14,20 @@
 
 @synthesize timeline;
 @synthesize profileImages;
-@synthesize timelineTableView;
 
 #pragma mark -
 #pragma mark Memory management
+
+- (void)viewDidUnload {
+  self.timeline = nil;
+  self.profileImages = nil;
+}
+
+- (void)dealloc {
+  [timeline release];
+  [profileImages release];
+  [super dealloc];
+}
 
 - (void)didReceiveMemoryWarning {
   NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
@@ -25,19 +35,6 @@
   [newProfileImages release];
 
   [super didReceiveMemoryWarning];
-}
-
-- (void)viewDidUnload {
-  self.timeline = nil;
-  self.profileImages = nil;
-  self.timelineTableView = nil;
-}
-
-- (void)dealloc {
-  [timeline release];
-  [profileImages release];
-  [timelineTableView release];
-  [super dealloc];
 }
 
 #pragma mark -
