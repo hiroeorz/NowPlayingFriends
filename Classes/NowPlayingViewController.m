@@ -8,8 +8,11 @@
 
 #import "NowPlayingViewController.h"
 #import "FriendCell.h"
+#import "TwitterClient.h"
 
 @implementation NowPlayingViewController
+
+@synthesize timeline;
 
 #pragma mark -
 #pragma mark Memory management
@@ -29,9 +32,12 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
+  
+  TwitterClient *client = [[TwitterClient alloc] init];
+  self.timeline = [client getTimeLine:@"hiroe_orz17"];
+  
+  [client release];
   [super viewDidLoad];
-
-  //self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,7 +73,7 @@
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section {
   
-  return 10;
+  return [timeline count];
 }
 
 
@@ -94,6 +100,19 @@
     }
   }
   
+  NSInteger row = [indexPath row];
+  NSDictionary *data = [timeline objectAtIndex:row];
+  NSDictionary *user = [data objectForKey:@"user"];
+
+  NSString *profileImageURLString = [user objectForKey:@"profile_image_url"];
+  NSURL *profileImageURL = [NSURL URLWithString:profileImageURLString];
+  NSData *profileImageData = [NSData dataWithContentsOfURL:profileImageURL];
+  UIImage *profileImage = [[UIImage alloc] initWithData:profileImageData];
+
+  cell.bodyTextView.text = [data objectForKey:@"text"];
+  cell.accountLabel.text = [user objectForKey:@"name"];
+  cell.userImageView.image = profileImage;
+
   return cell;
 }
 

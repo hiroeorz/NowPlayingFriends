@@ -39,6 +39,11 @@
 		54C1DCE31214ED2B00EBD811 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DCDE1214ED2B00EBD811 /* hmac.c */; };
 		54C1DCE41214ED2B00EBD811 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DCE01214ED2B00EBD811 /* sha1.c */; };
 		54C1DCED1214F8A900EBD811 /* TwitterClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */; };
+		54C1DD061215103000EBD811 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DCFD1215103000EBD811 /* NSObject+SBJSON.m */; };
+		54C1DD071215103000EBD811 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DCFF1215103000EBD811 /* NSString+SBJSON.m */; };
+		54C1DD081215103000EBD811 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DD011215103000EBD811 /* SBJsonBase.m */; };
+		54C1DD091215103000EBD811 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DD031215103000EBD811 /* SBJsonParser.m */; };
+		54C1DD0A1215103000EBD811 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DD051215103000EBD811 /* SBJsonWriter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +104,18 @@
 		54C1DCE11214ED2B00EBD811 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha1.h; path = OAuthConsumer/Crytpo/sha1.h; sourceTree = "<group>"; };
 		54C1DCEB1214F8A900EBD811 /* TwitterClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterClient.h; sourceTree = "<group>"; };
 		54C1DCEC1214F8A900EBD811 /* TwitterClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterClient.m; sourceTree = "<group>"; };
+		54C1DCF712150D1000EBD811 /* TwitterClient+ConsumerKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TwitterClient+ConsumerKey.h"; sourceTree = "<group>"; };
+		54C1DCFB1215103000EBD811 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		54C1DCFC1215103000EBD811 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		54C1DCFD1215103000EBD811 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		54C1DCFE1215103000EBD811 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		54C1DCFF1215103000EBD811 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		54C1DD001215103000EBD811 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		54C1DD011215103000EBD811 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		54C1DD021215103000EBD811 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		54C1DD031215103000EBD811 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		54C1DD041215103000EBD811 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		54C1DD051215103000EBD811 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NowPlayingFriends-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +137,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				54C1DCFA1215103000EBD811 /* JSON */,
+				54C1DCF712150D1000EBD811 /* TwitterClient+ConsumerKey.h */,
 				54C1DCA61214EC6A00EBD811 /* OAuthConsumer */,
 				1D3623240D0F684500981E51 /* NowPlayingFriendsAppDelegate.h */,
 				1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */,
@@ -246,6 +265,24 @@
 			name = Crytpo;
 			sourceTree = "<group>";
 		};
+		54C1DCFA1215103000EBD811 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				54C1DCFB1215103000EBD811 /* JSON.h */,
+				54C1DCFC1215103000EBD811 /* NSObject+SBJSON.h */,
+				54C1DCFD1215103000EBD811 /* NSObject+SBJSON.m */,
+				54C1DCFE1215103000EBD811 /* NSString+SBJSON.h */,
+				54C1DCFF1215103000EBD811 /* NSString+SBJSON.m */,
+				54C1DD001215103000EBD811 /* SBJsonBase.h */,
+				54C1DD011215103000EBD811 /* SBJsonBase.m */,
+				54C1DD021215103000EBD811 /* SBJsonParser.h */,
+				54C1DD031215103000EBD811 /* SBJsonParser.m */,
+				54C1DD041215103000EBD811 /* SBJsonWriter.h */,
+				54C1DD051215103000EBD811 /* SBJsonWriter.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -326,6 +363,11 @@
 				54C1DCE31214ED2B00EBD811 /* hmac.c in Sources */,
 				54C1DCE41214ED2B00EBD811 /* sha1.c in Sources */,
 				54C1DCED1214F8A900EBD811 /* TwitterClient.m in Sources */,
+				54C1DD061215103000EBD811 /* NSObject+SBJSON.m in Sources */,
+				54C1DD071215103000EBD811 /* NSString+SBJSON.m in Sources */,
+				54C1DD081215103000EBD811 /* SBJsonBase.m in Sources */,
+				54C1DD091215103000EBD811 /* SBJsonParser.m in Sources */,
+				54C1DD0A1215103000EBD811 /* SBJsonWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

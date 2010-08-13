@@ -7,16 +7,43 @@
 //
 
 #import "TwitterClient.h"
+#import "JSON/JSON.h"
 #import "OAuthConsumer/OAConsumer.h"
 #import "OAuthConsumer/OAMutableURLRequest.h"
 #import "OAuthConsumer/OARequestParameter.h"
 #import "OAuthConsumer/OADataFetcher.h"
-#import "OAuthConsumer/OAServiceTicket.h"
 
 @implementation TwitterClient
 
 #pragma mark -
 #pragma Twitter Get TimeLine Methods
+
+- (NSArray *)getTimeLine:(NSString *)username {
+
+  NSString *urlString = 
+    @"http://twitter.com/statuses/user_timeline/hiroe_orz17.json";
+
+  NSURL *url = [NSURL URLWithString:urlString];
+  NSString *jsonString = [NSString stringWithContentsOfURL:url
+				   encoding:NSUTF8StringEncoding
+				   error:nil];
+
+  NSArray *jsonArray = [jsonString JSONValue];
+
+  NSLog(@"getTimeLine");
+
+  for (NSDictionary *dic in jsonArray) {
+    NSDictionary *user = [dic valueForKey:@"user"];
+
+    NSLog(@"user: %@", [user objectForKey:@"name"]);
+    NSLog(@"image: %@", [user objectForKey:@"profile_image_url"]);
+    NSLog(@"text: %@", [dic objectForKey:@"text"]);
+    NSLog(@"created_at: %@", [dic objectForKey:@"created_at"]);
+    NSLog(@"rel: %@", [dic objectForKey:@"rel"]);
+  }
+
+  return jsonArray;
+}
 
 #pragma mark -
 #pragma Twitter Post Methods
@@ -33,8 +60,8 @@
     [NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"];
 
   OAConsumer *consumer =
-    [[[OAConsumer alloc] initWithKey:@"YOUR-CONSUMER-KEY"
-			 secret:@"YOUR-CONSUMER-SECRET"] autorelease];
+    [[[OAConsumer alloc] initWithKey:@"kConsumerKey"
+			 secret:@"kConsumerSecret"] autorelease];
   OAMutableURLRequest 
     *request = [[OAMutableURLRequest alloc] initWithURL:url
 					    consumer:consumer

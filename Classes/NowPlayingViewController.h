@@ -12,7 +12,9 @@
 
 
 @interface NowPlayingViewController : UITableViewController {
-
+  NSArray *timeline;
 }
+
+@property (nonatomic, retain) NSArray *timeline;
 
 @end
