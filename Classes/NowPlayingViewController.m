@@ -133,7 +133,6 @@
   UIImage *profileImage = [profileImages objectForKey:imageURLString];
 
   if (profileImage == nil) {
-    NSLog(@"new image getting...");
     NSURL *imageURL = [NSURL URLWithString:imageURLString];
     NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
     profileImage = [[UIImage alloc] initWithData:imageData];
