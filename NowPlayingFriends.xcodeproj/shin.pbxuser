@@ -79,9 +79,19 @@
 			54C1DC83121413B300EBD811 /* PBXTextBookmark */ = 54C1DC83121413B300EBD811 /* PBXTextBookmark */;
 			54C1DC8F121416F600EBD811 /* PBXTextBookmark */ = 54C1DC8F121416F600EBD811 /* PBXTextBookmark */;
 			54C1DC90121416F600EBD811 /* PBXTextBookmark */ = 54C1DC90121416F600EBD811 /* PBXTextBookmark */;
+			54C1DCCF1214ECCC00EBD811 /* PBXTextBookmark */ = 54C1DCCF1214ECCC00EBD811 /* PBXTextBookmark */;
+			54C1DCD01214ECCC00EBD811 /* PBXTextBookmark */ = 54C1DCD01214ECCC00EBD811 /* PBXTextBookmark */;
+			54C1DCD11214ECCC00EBD811 /* PBXTextBookmark */ = 54C1DCD11214ECCC00EBD811 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 54C1DC271213B28F00EBD811 /* Source Control */;
 		userBuildSettings = {
+		};
+	};
+	29B97316FDCFA39411CA2CEA /* main.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {673, 523}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 370}";
 		};
 	};
 	32CA4F630368D1EE00C91783 /* NowPlayingFriends_Prefix.pch */ = {
@@ -169,17 +179,17 @@
 	};
 	54C1DC3A1213F3ED00EBD811 /* NowPlayingViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {439, 247}}";
-			sepNavSelRange = "{294, 0}";
-			sepNavVisRange = "{0, 288}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 523}}";
+			sepNavSelRange = "{260, 0}";
+			sepNavVisRange = "{0, 294}";
 		};
 	};
 	54C1DC3B1213F3ED00EBD811 /* NowPlayingViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{1254, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{3463, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{3514, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{3564, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 3796}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {673, 2106}}";
+			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{1276, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{3344, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{3395, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{3445, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 3677}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 2093}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 706}";
+			sepNavVisRange = "{0, 728}";
 		};
 	};
 	54C1DC401213F3FD00EBD811 /* PBXTextBookmark */ = {
@@ -400,9 +410,9 @@
 	};
 	54C1DC86121415DB00EBD811 /* FriendCell.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {673, 523}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 224}";
+			sepNavIntBoundsRect = "{{0, 0}, {439, 390}}";
+			sepNavSelRange = "{668, 0}";
+			sepNavVisRange = "{215, 447}";
 		};
 	};
 	54C1DC8F121416F600EBD811 /* PBXTextBookmark */ = {
@@ -424,5 +434,63 @@
 		rType = 0;
 		vrLen = 224;
 		vrLoc = 0;
+	};
+	54C1DCA81214EC9F00EBD811 /* OACall.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {673, 2275}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 827}";
+		};
+	};
+	54C1DCAA1214EC9F00EBD811 /* OAConsumer.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {673, 650}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1522}";
+		};
+	};
+	54C1DCCF1214ECCC00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DC3B1213F3ED00EBD811 /* NowPlayingViewController.m */;
+		name = "NowPlayingViewController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 728;
+		vrLoc = 0;
+	};
+	54C1DCD01214ECCC00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCA81214EC9F00EBD811 /* OACall.m */;
+		name = "OACall.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 827;
+		vrLoc = 0;
+	};
+	54C1DCD11214ECCC00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCA81214EC9F00EBD811 /* OACall.m */;
+		name = "OACall.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 827;
+		vrLoc = 0;
+	};
+	54C1DCD31214ED0100EBD811 /* NSMutableURLRequest+Parameters.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {673, 523}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1609}";
+		};
+	};
+	54C1DCDF1214ED2B00EBD811 /* hmac.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {673, 523}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1425}";
+		};
 	};
 }

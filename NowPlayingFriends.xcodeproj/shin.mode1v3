@@ -267,6 +267,7 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
+								<string>54C1DCA61214EC6A00EBD811</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
@@ -276,8 +277,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>16</integer>
-									<integer>11</integer>
+									<integer>5</integer>
+									<integer>2</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -317,20 +319,27 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>&lt;エディタがありません&gt;</string>
+								<string>OACall.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
+										<key>PBXProjectModuleLabel</key>
+										<string>OACall.m</string>
+										<key>_historyCapacity</key>
+										<integer>0</integer>
+										<key>bookmark</key>
+										<string>54C1DCD11214ECCC00EBD811</string>
 										<key>history</key>
 										<array>
 											<string>54C1DC541213F7B600EBD811</string>
 											<string>54C1DC771214115F00EBD811</string>
-											<string>54C1DC781214115F00EBD811</string>
 											<string>54C1DC8F121416F600EBD811</string>
 											<string>54C1DC90121416F600EBD811</string>
+											<string>54C1DCCF1214ECCC00EBD811</string>
+											<string>54C1DCD01214ECCC00EBD811</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -530,8 +539,8 @@
 	<array>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1C78EAAD065D492600B07095</string>
-		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
 		<string>54C1DC1E1213B28F00EBD811</string>
+		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>496 153 1028 795 0 0 1680 1028 </string>
