@@ -174,6 +174,17 @@
 			54C1DE4D1215612000EBD811 /* PBXTextBookmark */ = 54C1DE4D1215612000EBD811 /* PBXTextBookmark */;
 			54C1DE501215615700EBD811 /* PBXTextBookmark */ = 54C1DE501215615700EBD811 /* PBXTextBookmark */;
 			54C1DE53121561C900EBD811 /* PBXTextBookmark */ = 54C1DE53121561C900EBD811 /* PBXTextBookmark */;
+			54C1DE5612156A3200EBD811 /* PBXTextBookmark */ = 54C1DE5612156A3200EBD811 /* PBXTextBookmark */;
+			54C1DE5A12156C9000EBD811 /* PBXTextBookmark */ = 54C1DE5A12156C9000EBD811 /* PBXTextBookmark */;
+			54C1DE5D12156CA600EBD811 /* PBXTextBookmark */ = 54C1DE5D12156CA600EBD811 /* PBXTextBookmark */;
+			54C1DE6012156D6500EBD811 /* PBXTextBookmark */ = 54C1DE6012156D6500EBD811 /* PBXTextBookmark */;
+			54C1DE6612156DBD00EBD811 /* PBXTextBookmark */ = 54C1DE6612156DBD00EBD811 /* PBXTextBookmark */;
+			54C1DE6A12156E2100EBD811 /* PBXTextBookmark */ = 54C1DE6A12156E2100EBD811 /* PBXTextBookmark */;
+			54C1DE6E12156E8F00EBD811 /* PBXTextBookmark */ = 54C1DE6E12156E8F00EBD811 /* PBXTextBookmark */;
+			54C1DE7612156F1500EBD811 /* PBXTextBookmark */ = 54C1DE7612156F1500EBD811 /* PBXTextBookmark */;
+			54C1DE7D12156FB500EBD811 /* PBXTextBookmark */ = 54C1DE7D12156FB500EBD811 /* PBXTextBookmark */;
+			54C1DE871215700F00EBD811 /* PBXTextBookmark */ = 54C1DE871215700F00EBD811 /* PBXTextBookmark */;
+			54C1DE8C1215705200EBD811 /* PBXTextBookmark */ = 54C1DE8C1215705200EBD811 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 54C1DC271213B28F00EBD811 /* Source Control */;
 		userBuildSettings = {
@@ -200,7 +211,7 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 0;
+		breakpointsEnabled = 1;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;
@@ -280,10 +291,10 @@
 	};
 	54C1DC3B1213F3ED00EBD811 /* NowPlayingViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{1828, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{5086, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{5137, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{5187, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 5419}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {439, 2743}}";
-			sepNavSelRange = "{5341, 0}";
-			sepNavVisRange = "{2719, 427}";
+			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{2682, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{6821, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{6872, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{6922, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 7154}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {439, 3744}}";
+			sepNavSelRange = "{7076, 0}";
+			sepNavVisRange = "{6798, 278}";
 		};
 	};
 	54C1DC401213F3FD00EBD811 /* PBXTextBookmark */ = {
@@ -1507,6 +1518,116 @@
 		vrLoc = 0;
 	};
 	54C1DE53121561C900EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
+		name = "TwitterClient.m: 13";
+		rLen = 0;
+		rLoc = 322;
+		rType = 0;
+		vrLen = 938;
+		vrLoc = 0;
+	};
+	54C1DE5612156A3200EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
+		name = "TwitterClient.m: 13";
+		rLen = 0;
+		rLoc = 322;
+		rType = 0;
+		vrLen = 938;
+		vrLoc = 0;
+	};
+	54C1DE5A12156C9000EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
+		name = "TwitterClient.m: 13";
+		rLen = 0;
+		rLoc = 322;
+		rType = 0;
+		vrLen = 982;
+		vrLoc = 0;
+	};
+	54C1DE5D12156CA600EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
+		name = "TwitterClient.m: 13";
+		rLen = 0;
+		rLoc = 322;
+		rType = 0;
+		vrLen = 938;
+		vrLoc = 0;
+	};
+	54C1DE6012156D6500EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
+		name = "TwitterClient.m: 13";
+		rLen = 0;
+		rLoc = 322;
+		rType = 0;
+		vrLen = 938;
+		vrLoc = 0;
+	};
+	54C1DE6612156DBD00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
+		name = "TwitterClient.m: 13";
+		rLen = 0;
+		rLoc = 322;
+		rType = 0;
+		vrLen = 938;
+		vrLoc = 0;
+	};
+	54C1DE6A12156E2100EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
+		name = "TwitterClient.m: 13";
+		rLen = 0;
+		rLoc = 322;
+		rType = 0;
+		vrLen = 938;
+		vrLoc = 0;
+	};
+	54C1DE6E12156E8F00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
+		name = "TwitterClient.m: 13";
+		rLen = 0;
+		rLoc = 322;
+		rType = 0;
+		vrLen = 938;
+		vrLoc = 0;
+	};
+	54C1DE7612156F1500EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
+		name = "TwitterClient.m: 13";
+		rLen = 0;
+		rLoc = 322;
+		rType = 0;
+		vrLen = 938;
+		vrLoc = 0;
+	};
+	54C1DE7D12156FB500EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
+		name = "TwitterClient.m: 13";
+		rLen = 0;
+		rLoc = 322;
+		rType = 0;
+		vrLen = 938;
+		vrLoc = 0;
+	};
+	54C1DE871215700F00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
+		name = "TwitterClient.m: 13";
+		rLen = 0;
+		rLoc = 322;
+		rType = 0;
+		vrLen = 938;
+		vrLoc = 0;
+	};
+	54C1DE8C1215705200EBD811 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
 		name = "TwitterClient.m: 13";

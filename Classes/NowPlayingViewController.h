@@ -14,14 +14,20 @@
 @interface NowPlayingViewController : UITableViewController {
   NSArray *timeline;
   NSMutableDictionary *profileImages;
-  UITableView *tableView;
+  UITableView *timelineTableView;
 }
 
 @property (nonatomic, retain) NSArray *timeline;
 @property (nonatomic, retain) NSMutableDictionary *profileImages;
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) IBOutlet UITableView *timelineTableView;
 
-- (UIImage *)profileImage:(NSDictionary *)user;
+- (void)refreshTimeline;
+- (void)tableRefreshLoop;
+
 - (NSString *)username:(NSDictionary *)data;
+- (void)setProfileImageWithObjects:(NSDictionary *)objects;
+- (UIImage *)profileImage:(NSDictionary *)data 
+		getRemote:(BOOL) getRemoteFlag;
+- (void) cacheAllProfileImage;
 
 @end

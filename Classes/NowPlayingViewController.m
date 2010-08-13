@@ -14,7 +14,7 @@
 
 @synthesize timeline;
 @synthesize profileImages;
-@synthesize tableView;
+@synthesize timelineTableView;
 
 #pragma mark -
 #pragma mark Memory management
@@ -30,13 +30,13 @@
 - (void)viewDidUnload {
   self.timeline = nil;
   self.profileImages = nil;
-  self.tableView = nil;
+  self.timelineTableView = nil;
 }
 
 - (void)dealloc {
   [timeline release];
   [profileImages release];
-  [tableView release];
+  [timelineTableView release];
   [super dealloc];
 }
 
@@ -49,6 +49,13 @@
   self.profileImages = newProfileImages;
   [newProfileImages release];
 
+  [self refreshTimeline];
+
+  [super viewDidLoad];
+}
+
+- (void)refreshTimeline {
+
   TwitterClient *client = [[TwitterClient alloc] init];
   self.timeline = [client getSearchTimeLine:@"%23nowplaying"];
   [client release];
@@ -56,17 +63,18 @@
   [self performSelectorInBackground:@selector(cacheAllProfileImage)
 	withObject:nil];
 
-  //[self cacheAllProfileImage];
-
-  [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+  [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+
+    [self performSelectorInBackground:@selector(tableRefreshLoop)
+	  withObject:nil];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -80,6 +88,30 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   // Return YES for supported orientations
   return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)tableRefreshLoop {
+  
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+  NSDate *date;
+  NSDate *nextStartDate;
+
+  while (true) {
+    date = [[NSDate alloc] init];
+    nextStartDate = [[NSDate alloc] initWithTimeInterval:10 sinceDate:date];
+
+    NSLog(@"sleeping...");
+    [NSThread sleepUntilDate: nextStartDate];
+    NSLog(@"waik up...");
+    [self refreshTimeline];
+    [timelineTableView reloadData];
+    NSLog(@"refreshed...");
+
+    [date release];
+    [nextStartDate release];
+  }
+
+  [pool release];
 }
 
 #pragma mark -
@@ -199,10 +231,11 @@
     [self profileImage:data getRemote:YES];
   }
 
-  [tableView reloadData];
+  [timelineTableView reloadData];
 
   [pool release];
 }
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -226,8 +259,6 @@
     }   
 }
 */
-
-
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath {
