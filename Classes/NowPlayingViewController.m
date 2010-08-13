@@ -56,12 +56,11 @@
 
 - (void)refreshTimeline {
 
+  NSLog(@"updating timeline data...");
   TwitterClient *client = [[TwitterClient alloc] init];
   self.timeline = [client getSearchTimeLine:@"%23nowplaying"];
   [client release];
-
-  [self performSelectorInBackground:@selector(cacheAllProfileImage)
-	withObject:nil];
+  NSLog(@"timeline data updated.");
 
 }
 
@@ -74,7 +73,6 @@
 
     [self performSelectorInBackground:@selector(tableRefreshLoop)
 	  withObject:nil];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -98,13 +96,19 @@
 
   while (true) {
     date = [[NSDate alloc] init];
-    nextStartDate = [[NSDate alloc] initWithTimeInterval:10 sinceDate:date];
+    nextStartDate = [[NSDate alloc] initWithTimeInterval:60 * 1 
+				    sinceDate:date];
 
     NSLog(@"sleeping...");
     [NSThread sleepUntilDate: nextStartDate];
     NSLog(@"waik up...");
+
     [self refreshTimeline];
-    [timelineTableView reloadData];
+    [self performSelectorOnMainThread:@selector(reloadTableDataOnMainThread)
+	  withObject:nil
+	  waitUntilDone:YES];
+
+
     NSLog(@"refreshed...");
 
     [date release];
@@ -112,6 +116,12 @@
   }
 
   [pool release];
+}
+
+- (void)reloadTableDataOnMainThread {
+
+  NSLog(@"come");
+  [self.view reloadData];  
 }
 
 #pragma mark -
@@ -230,8 +240,6 @@
   for (NSDictionary *data in timeline) {
     [self profileImage:data getRemote:YES];
   }
-
-  [timelineTableView reloadData];
 
   [pool release];
 }

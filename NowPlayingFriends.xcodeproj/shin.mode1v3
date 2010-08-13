@@ -328,7 +328,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>54C1DE8C1215705200EBD811</string>
+										<string>54C1DEC61215E2E900EBD811</string>
 										<key>history</key>
 										<array>
 											<string>54C1DC771214115F00EBD811</string>
@@ -541,12 +541,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>54C1DE8D1215705200EBD811</string>
+		<string>54C1DEC71215E2E900EBD811</string>
 		<string>54C1DDE5121542E300EBD811</string>
 		<string>54C1DDE6121542E300EBD811</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
-		<string>54C1DC1E1213B28F00EBD811</string>
 		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
