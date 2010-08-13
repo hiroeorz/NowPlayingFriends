@@ -14,10 +14,12 @@
 @interface NowPlayingViewController : UITableViewController {
   NSArray *timeline;
   NSMutableDictionary *profileImages;
+  UITableView *tableView;
 }
 
 @property (nonatomic, retain) NSArray *timeline;
 @property (nonatomic, retain) NSMutableDictionary *profileImages;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 
 - (UIImage *)profileImage:(NSDictionary *)user;
 - (NSString *)username:(NSDictionary *)data;

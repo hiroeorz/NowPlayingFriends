@@ -14,6 +14,7 @@
 
 @synthesize timeline;
 @synthesize profileImages;
+@synthesize tableView;
 
 #pragma mark -
 #pragma mark Memory management
@@ -29,11 +30,13 @@
 - (void)viewDidUnload {
   self.timeline = nil;
   self.profileImages = nil;
+  self.tableView = nil;
 }
 
 - (void)dealloc {
   [timeline release];
   [profileImages release];
+  [tableView release];
   [super dealloc];
 }
 
@@ -49,6 +52,11 @@
   TwitterClient *client = [[TwitterClient alloc] init];
   self.timeline = [client getSearchTimeLine:@"%23nowplaying"];
   [client release];
+
+  [self performSelectorInBackground:@selector(cacheAllProfileImage)
+	withObject:nil];
+
+  //[self cacheAllProfileImage];
 
   [super viewDidLoad];
 }
@@ -118,11 +126,20 @@
 
   cell.bodyTextView.text = [data objectForKey:@"text"];
   cell.accountLabel.text = [self username:data];
-  cell.userImageView.image = [self profileImage:data];
+
+  NSDictionary *objects = [[NSDictionary alloc] initWithObjectsAndKeys:
+						  data, @"data",
+						cell, @"cell", nil];
+  [self performSelectorInBackground:@selector(setProfileImageWithObjects:)
+	withObject:objects];
+  [objects release];
 
   return cell;
 }
 
+/**
+ * @brief データからユーザ名を返します。
+ */
 - (NSString *)username:(NSDictionary *)data {
 
   NSDictionary *user = [data objectForKey:@"user"];
@@ -135,11 +152,23 @@
   return username;
 }
 
+- (void)setProfileImageWithObjects:(NSDictionary *)objects {
+
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+  NSDictionary *data = [objects objectForKey:@"data"];
+  FriendCell *cell = [objects objectForKey:@"cell"];
+  cell.userImageView.image = [self profileImage:data getRemote:YES];
+
+  [pool release];
+}
+
 /**
  * @brief ユーザのプロフィール画像を返します。
  *        キャッシュにあればそれを、なければリモートから取得して返します。
  */
-- (UIImage *)profileImage:(NSDictionary *)data {
+- (UIImage *)profileImage:(NSDictionary *)data 
+		getRemote:(BOOL) getRemoteFlag {
 
   NSDictionary *user = [data objectForKey:@"user"];
 
@@ -148,7 +177,7 @@
   NSString *imageURLString = [user objectForKey:@"profile_image_url"];
   UIImage *profileImage = [profileImages objectForKey:imageURLString];
 
-  if (profileImage == nil) {
+  if (profileImage == nil && getRemoteFlag) {
     NSURL *imageURL = [NSURL URLWithString:imageURLString];
     NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
     profileImage = [[UIImage alloc] initWithData:imageData];
@@ -157,6 +186,22 @@
   }
 
   return profileImage;
+}
+
+/**
+ * @brief ユーザのプロフィール画像のキャッシュをとります。
+ */
+- (void) cacheAllProfileImage {
+  
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+  for (NSDictionary *data in timeline) {
+    [self profileImage:data getRemote:YES];
+  }
+
+  [tableView reloadData];
+
+  [pool release];
 }
 
 /*
