@@ -45,6 +45,8 @@
 		54C1DD091215103000EBD811 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DD031215103000EBD811 /* SBJsonParser.m */; };
 		54C1DD0A1215103000EBD811 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DD051215103000EBD811 /* SBJsonWriter.m */; };
 		54C1DFEA1216C77F00EBD811 /* NowPlayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DFE91216C77F00EBD811 /* NowPlayingViewController.m */; };
+		54C1E00D1216CA7E00EBD811 /* ArtistFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1E00C1216CA7E00EBD811 /* ArtistFriendsViewController.m */; };
+		54C1E0131216CB0700EBD811 /* SongFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1E0121216CB0700EBD811 /* SongFriendsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +121,10 @@
 		54C1DD051215103000EBD811 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		54C1DFE81216C77F00EBD811 /* NowPlayingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingViewController.h; sourceTree = "<group>"; };
 		54C1DFE91216C77F00EBD811 /* NowPlayingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingViewController.m; sourceTree = "<group>"; };
+		54C1E00B1216CA7E00EBD811 /* ArtistFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistFriendsViewController.h; sourceTree = "<group>"; };
+		54C1E00C1216CA7E00EBD811 /* ArtistFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistFriendsViewController.m; sourceTree = "<group>"; };
+		54C1E0111216CB0700EBD811 /* SongFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongFriendsViewController.h; sourceTree = "<group>"; };
+		54C1E0121216CB0700EBD811 /* SongFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongFriendsViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NowPlayingFriends-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +159,10 @@
 				54C1DCEC1214F8A900EBD811 /* TwitterClient.m */,
 				54C1DFE81216C77F00EBD811 /* NowPlayingViewController.h */,
 				54C1DFE91216C77F00EBD811 /* NowPlayingViewController.m */,
+				54C1E00B1216CA7E00EBD811 /* ArtistFriendsViewController.h */,
+				54C1E00C1216CA7E00EBD811 /* ArtistFriendsViewController.m */,
+				54C1E0111216CB0700EBD811 /* SongFriendsViewController.h */,
+				54C1E0121216CB0700EBD811 /* SongFriendsViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -374,6 +384,8 @@
 				54C1DD091215103000EBD811 /* SBJsonParser.m in Sources */,
 				54C1DD0A1215103000EBD811 /* SBJsonWriter.m in Sources */,
 				54C1DFEA1216C77F00EBD811 /* NowPlayingViewController.m in Sources */,
+				54C1E00D1216CA7E00EBD811 /* ArtistFriendsViewController.m in Sources */,
+				54C1E0131216CB0700EBD811 /* SongFriendsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

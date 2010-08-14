@@ -9,6 +9,7 @@
 #import "NowPlayingViewController.h"
 #import "TwitterClient.h"
 
+
 @implementation NowPlayingViewController
 
 - (void)refreshTimeline {
@@ -19,8 +20,7 @@
   NSString *songTitle = [self.appDelegate nowPlayingTitle];
   NSString *artistName = [self.appDelegate nowPlayingArtistName];
 
-  NSArray *newTimeline = [client getSearchTimeLine:@"#nowplaying", 
-				 songTitle, artistName, nil];
+  NSArray *newTimeline = [client getSearchTimeLine:@"#nowplaying", nil];
 
   @synchronized(timeline) {
     self.timeline = newTimeline;

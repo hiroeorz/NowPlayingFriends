@@ -267,6 +267,15 @@
 			54C1DFFE1216C8DA00EBD811 /* PBXTextBookmark */ = 54C1DFFE1216C8DA00EBD811 /* PBXTextBookmark */;
 			54C1E0051216C95000EBD811 /* PBXTextBookmark */ = 54C1E0051216C95000EBD811 /* PBXTextBookmark */;
 			54C1E0081216C96B00EBD811 /* PBXTextBookmark */ = 54C1E0081216C96B00EBD811 /* PBXTextBookmark */;
+			54C1E0291216CE0B00EBD811 /* PBXTextBookmark */ = 54C1E0291216CE0B00EBD811 /* PBXTextBookmark */;
+			54C1E02A1216CE0B00EBD811 /* PBXTextBookmark */ = 54C1E02A1216CE0B00EBD811 /* PBXTextBookmark */;
+			54C1E02B1216CE0B00EBD811 /* PBXTextBookmark */ = 54C1E02B1216CE0B00EBD811 /* PBXTextBookmark */;
+			54C1E02C1216CE0B00EBD811 /* PBXTextBookmark */ = 54C1E02C1216CE0B00EBD811 /* PBXTextBookmark */;
+			54C1E02D1216CE0B00EBD811 /* PBXTextBookmark */ = 54C1E02D1216CE0B00EBD811 /* PBXTextBookmark */;
+			54C1E02E1216CE0B00EBD811 /* PBXTextBookmark */ = 54C1E02E1216CE0B00EBD811 /* PBXTextBookmark */;
+			54C1E0311216CEE700EBD811 /* PBXTextBookmark */ = 54C1E0311216CEE700EBD811 /* PBXTextBookmark */;
+			54C1E0341216CF4F00EBD811 /* PBXTextBookmark */ = 54C1E0341216CF4F00EBD811 /* PBXTextBookmark */;
+			54C1E0391216D00900EBD811 /* PBXTextBookmark */ = 54C1E0391216D00900EBD811 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 54C1DC271213B28F00EBD811 /* Source Control */;
 		userBuildSettings = {
@@ -373,10 +382,10 @@
 	};
 	54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{2965, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{7595, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{7646, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{7696, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 8077}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {673, 4290}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 813}";
+			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{2624, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{7254, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{7305, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{7355, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 7736}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {439, 4238}}";
+			sepNavSelRange = "{7658, 0}";
+			sepNavVisRange = "{1159, 348}";
 		};
 	};
 	54C1DC401213F3FD00EBD811 /* PBXTextBookmark */ = {
@@ -696,9 +705,9 @@
 	};
 	54C1DCEC1214F8A900EBD811 /* TwitterClient.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {439, 2660}}";
-			sepNavSelRange = "{5186, 0}";
-			sepNavVisRange = "{2439, 394}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 2589}}";
+			sepNavSelRange = "{4918, 0}";
+			sepNavVisRange = "{23, 945}";
 		};
 	};
 	54C1DD14121512AD00EBD811 /* PBXTextBookmark */ = {
@@ -2550,6 +2559,117 @@
 		rLoc = 301;
 		rType = 0;
 		vrLen = 301;
+		vrLoc = 0;
+	};
+	54C1E00B1216CA7E00EBD811 /* ArtistFriendsViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {673, 523}}";
+			sepNavSelRange = "{308, 0}";
+			sepNavVisRange = "{0, 308}";
+		};
+	};
+	54C1E0111216CB0700EBD811 /* SongFriendsViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {673, 523}}";
+			sepNavSelRange = "{304, 0}";
+			sepNavVisRange = "{0, 304}";
+		};
+	};
+	54C1E0121216CB0700EBD811 /* SongFriendsViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {673, 523}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 250}";
+		};
+	};
+	54C1E0291216CE0B00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DFE81216C77F00EBD811 /* NowPlayingViewController.h */;
+		name = "NowPlayingViewController.h: 17";
+		rLen = 0;
+		rLoc = 301;
+		rType = 0;
+		vrLen = 301;
+		vrLoc = 0;
+	};
+	54C1E02A1216CE0B00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E00B1216CA7E00EBD811 /* ArtistFriendsViewController.h */;
+		name = "ArtistFriendsViewController.h: 18";
+		rLen = 0;
+		rLoc = 308;
+		rType = 0;
+		vrLen = 308;
+		vrLoc = 0;
+	};
+	54C1E02B1216CE0B00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DCEC1214F8A900EBD811 /* TwitterClient.m */;
+		name = "TwitterClient.m: 183";
+		rLen = 0;
+		rLoc = 4918;
+		rType = 0;
+		vrLen = 945;
+		vrLoc = 23;
+	};
+	54C1E02C1216CE0B00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0121216CB0700EBD811 /* SongFriendsViewController.m */;
+		name = "SongFriendsViewController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 250;
+		vrLoc = 0;
+	};
+	54C1E02D1216CE0B00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0111216CB0700EBD811 /* SongFriendsViewController.h */;
+		name = "SongFriendsViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 257;
+		vrLoc = 0;
+	};
+	54C1E02E1216CE0B00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0111216CB0700EBD811 /* SongFriendsViewController.h */;
+		name = "SongFriendsViewController.h: 18";
+		rLen = 0;
+		rLoc = 304;
+		rType = 0;
+		vrLen = 304;
+		vrLoc = 0;
+	};
+	54C1E0311216CEE700EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0111216CB0700EBD811 /* SongFriendsViewController.h */;
+		name = "SongFriendsViewController.h: 18";
+		rLen = 0;
+		rLoc = 304;
+		rType = 0;
+		vrLen = 304;
+		vrLoc = 0;
+	};
+	54C1E0341216CF4F00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0111216CB0700EBD811 /* SongFriendsViewController.h */;
+		name = "SongFriendsViewController.h: 18";
+		rLen = 0;
+		rLoc = 304;
+		rType = 0;
+		vrLen = 304;
+		vrLoc = 0;
+	};
+	54C1E0391216D00900EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0111216CB0700EBD811 /* SongFriendsViewController.h */;
+		name = "SongFriendsViewController.h: 18";
+		rLen = 0;
+		rLoc = 304;
+		rType = 0;
+		vrLen = 304;
 		vrLoc = 0;
 	};
 }

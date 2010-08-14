@@ -8,6 +8,9 @@
 
 #import "NowPlayingFriendsAppDelegate.h"
 #import "NowPlayingViewController.h"
+#import "SongFriendsViewController.h"
+#import "ArtistFriendsViewController.h"
+
 
 @implementation NowPlayingFriendsAppDelegate
 
@@ -64,9 +67,33 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   UIViewController *viewController;
   UINavigationController *navController;
 
-  viewController = [[NowPlayingViewController alloc] init];
+  /* Song */
+  viewController = [[SongFriendsViewController alloc] 
+		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];
+
   navController = [self navigationWithViewController:viewController
-			title:@"タイムライン"];
+			title:@"曲名"];
+
+  [controllers addObject:navController];
+  [viewController release];
+
+  /* Artist */
+  viewController = [[ArtistFriendsViewController alloc] 
+		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];
+
+  navController = [self navigationWithViewController:viewController
+			title:@"アーティスト"];
+
+  [controllers addObject:navController];
+  [viewController release];
+
+  /* Now */
+  viewController = [[NowPlayingViewController alloc] 
+		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];
+
+  navController = [self navigationWithViewController:viewController
+			title:@"Now Playing"];
+
   [controllers addObject:navController];
   [viewController release];
 

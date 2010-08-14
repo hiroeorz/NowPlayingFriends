@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FriendsViewController.h"
 
+
 @interface NowPlayingViewController : FriendsViewController {
 
 }
