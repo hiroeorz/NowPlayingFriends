@@ -14,6 +14,7 @@
 
 @synthesize timeline;
 @synthesize profileImages;
+@dynamic appDelegate;
 
 #pragma mark -
 #pragma mark Memory management
@@ -54,11 +55,17 @@
 - (void)refreshTimeline {
 
   NSLog(@"updating timeline data...");
-  TwitterClient *client = [[TwitterClient alloc] init];
-  self.timeline = [client getSearchTimeLine:@"%23nowplaying"];
-  [client release];
-  NSLog(@"timeline data updated.");
 
+  TwitterClient *client = [[TwitterClient alloc] init];
+  NSString *songTitle = [self.appDelegate nowPlayingTitle];
+  NSString *artistName = [self.appDelegate nowPlayingArtistName];
+
+  self.timeline = [client getSearchTimeLine:@"#nowplaying", 
+			  songTitle, artistName, nil];
+
+  [client release];
+
+  NSLog(@"timeline data updated.");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -117,8 +124,7 @@
 
 - (void)reloadTableDataOnMainThread {
 
-  NSLog(@"come");
-  [self.view reloadData];  
+  [(UITableView *)self.view reloadData];  
 }
 
 #pragma mark -
@@ -284,6 +290,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 [detailViewController release];
 	 */
+}
+
+#pragma mark -
+#pragma mark Local Methods
+
+- (NowPlayingFriendsAppDelegate *)appDelegate {
+  return [[UIApplication sharedApplication] delegate];
 }
 
 @end

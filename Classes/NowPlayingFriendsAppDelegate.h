@@ -18,6 +18,8 @@
   NSManagedObjectModel *managedObjectModel_;
   NSPersistentStoreCoordinator *persistentStoreCoordinator_;
   UITabBarController *tabBarController;
+  
+  
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -31,6 +33,11 @@
 - (NSString *)applicationDocumentsDirectory;
 - (UINavigationController *)navigationWithViewController:(id)viewController
 						   title:(NSString *)title;
+
+- (NSString *)nowPlayingTitle;
+- (NSString *)nowPlayingAlbumTitle;
+- (NSString *)nowPlayingArtistName;
+
 
 @end
 

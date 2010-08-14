@@ -20,8 +20,9 @@
 
 - (NSArray *)getHomeTimeLine:(NSString *)username;
 - (NSArray *)getUserTimeLine:(NSString *)username;
-- (NSArray *)getSearchTimeLine:(NSString *)searchString;
+- (NSArray *)getSearchTimeLine:(NSString *)searchString, ...;
 
+- (NSString *)urlEncodedString:(NSString *)str;
 - (NSArray *)arrayOfRemoteJson:(NSString *)urlString;
 - (void)logJsonData:(NSArray *)jsonArray;
 

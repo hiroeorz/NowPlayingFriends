@@ -37,10 +37,27 @@
   return [self arrayOfRemoteJson:urlString];
 }
 
-- (NSArray *)getSearchTimeLine:(NSString *)searchString {
+- (NSArray *)getSearchTimeLine:(NSString *)searchString, ... {
 
-  NSString *urlString = [[NSString alloc] 
-			  initWithFormat:kSearchURL, searchString];
+  NSString *eachObject;
+  va_list argumentList;
+  NSMutableString *urlString;
+  NSString *encodedString;
+
+  if (searchString) {
+    encodedString = [self urlEncodedString:searchString];
+    urlString = [[NSMutableString alloc] 
+		  initWithFormat:kSearchURL, encodedString];
+    
+    va_start(argumentList, searchString);
+    
+    while(eachObject = va_arg(argumentList, id)) {
+      encodedString = [self urlEncodedString:eachObject];
+      [urlString appendString:@"+"];
+      [urlString appendString:encodedString];
+    }    
+    va_end(argumentList);
+  }
 
   NSURL *url = [NSURL URLWithString:urlString];
   [urlString release];
@@ -54,6 +71,20 @@
   [jsonString release];
 
   return jsonArray;
+}
+
+/**
+ * @brief URLエンコードされた文字列を返します。
+ */
+- (NSString *)urlEncodedString:(NSString *)str {
+
+  NSString *encodedString = 
+    (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,  
+							str,
+							NULL,  
+							CFSTR(";,/?:@&=+$#"),
+							kCFStringEncodingUTF8);
+  return [encodedString autorelease];
 }
 
 /**

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NowPlayingFriendsAppDelegate.h"
 
 #define kTimelineTableRowHeight 90
 
@@ -18,6 +19,7 @@
 
 @property (nonatomic, retain) NSArray *timeline;
 @property (nonatomic, retain) NSMutableDictionary *profileImages;
+@property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 
 - (void)refreshTimeline;
 - (void)tableRefreshLoop;
@@ -27,5 +29,7 @@
 - (UIImage *)profileImage:(NSDictionary *)data 
 		getRemote:(BOOL) getRemoteFlag;
 - (void) cacheAllProfileImage;
+
+- (NowPlayingFriendsAppDelegate *)appDelegate;
 
 @end

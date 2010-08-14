@@ -109,6 +109,21 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   }
 }
 
+#pragma mark -
+#pragma iPod Information Methods
+
+- (NSString *)nowPlayingTitle {
+  return @"天体観測";
+}
+
+- (NSString *)nowPlayingAlbumTitle {
+  return @"Jupitar";
+}
+
+- (NSString *)nowPlayingArtistName {
+  return @"BUMP OF CHICKEN";
+}
+
 
 #pragma mark -
 #pragma mark Core Data stack
