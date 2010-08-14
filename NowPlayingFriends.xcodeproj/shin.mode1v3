@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -274,6 +276,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>13</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -298,7 +301,7 @@
 							<real>272</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>693 94 1028 795 0 0 1680 1028 </string>
+						<string>598 129 1028 795 0 0 1680 1028 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -309,8 +312,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -328,22 +329,24 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>54C1DF921216BA5C00EBD811</string>
+										<string>54C1E0081216C96B00EBD811</string>
 										<key>history</key>
 										<array>
 											<string>54C1DC771214115F00EBD811</string>
 											<string>54C1DC8F121416F600EBD811</string>
-											<string>54C1DC90121416F600EBD811</string>
-											<string>54C1DCCF1214ECCC00EBD811</string>
 											<string>54C1DD14121512AD00EBD811</string>
 											<string>54C1DD15121512AD00EBD811</string>
 											<string>54C1DD16121512AD00EBD811</string>
 											<string>54C1DD17121512AD00EBD811</string>
 											<string>54C1DD18121512AD00EBD811</string>
 											<string>54C1DD1A121512AD00EBD811</string>
-											<string>54C1DD1B121512AD00EBD811</string>
 											<string>54C1DF0F1216AEC600EBD811</string>
-											<string>54C1DF101216AEC600EBD811</string>
+											<string>54C1DFF11216C85F00EBD811</string>
+											<string>54C1DFF21216C85F00EBD811</string>
+											<string>54C1DFF31216C85F00EBD811</string>
+											<string>54C1DFF41216C85F00EBD811</string>
+											<string>54C1DFF51216C85F00EBD811</string>
+											<string>54C1DFF61216C85F00EBD811</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -357,7 +360,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {734, 563}}</string>
 								<key>RubberWindowFrame</key>
-								<string>693 94 1028 795 0 0 1680 1028 </string>
+								<string>598 129 1028 795 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -377,7 +380,7 @@
 								<key>Frame</key>
 								<string>{{0, 568}, {734, 186}}</string>
 								<key>RubberWindowFrame</key>
-								<string>693 94 1028 795 0 0 1680 1028 </string>
+								<string>598 129 1028 795 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -544,12 +547,12 @@
 		<string>54C1DDE5121542E300EBD811</string>
 		<string>54C1DDE6121542E300EBD811</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
 		<string>54C1DC1E1213B28F00EBD811</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>693 94 1028 795 0 0 1680 1028 </string>
+	<string>598 129 1028 795 0 0 1680 1028 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -570,7 +573,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TwitterClient.m</string>
+								<string>FriendsViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
