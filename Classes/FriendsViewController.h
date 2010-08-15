@@ -15,6 +15,7 @@
 @interface FriendsViewController : UITableViewController {
   NSArray *timeline;
   NSMutableDictionary *profileImages;
+  BOOL activateFlag;
 }
 
 @property (nonatomic, retain) NSArray *timeline;

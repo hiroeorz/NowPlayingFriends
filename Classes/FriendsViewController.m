@@ -60,18 +60,21 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
-    [self performSelectorInBackground:@selector(tableRefreshLoop)
-	  withObject:nil];
+  
+  [super viewDidAppear:animated];
+  
+  activateFlag = YES;
+  [self performSelectorInBackground:@selector(tableRefreshLoop)
+	withObject:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+  [super viewWillDisappear:animated];
+  activateFlag = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+  [super viewDidDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -98,9 +101,10 @@
 				    sinceDate:date];
 
     [NSThread sleepUntilDate: nextStartDate];
-
     [date release];
     [nextStartDate release];
+
+    if (activateFlag == NO) { break; }
   }
 
   [pool release];
