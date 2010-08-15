@@ -19,15 +19,15 @@
 #pragma mark -
 #pragma mark Memory management
 
-- (void)viewDidUnload {
-  self.timeline = nil;
-  self.profileImages = nil;
-}
-
 - (void)dealloc {
   [timeline release];
   [profileImages release];
   [super dealloc];
+}
+
+- (void)viewDidUnload {
+  self.timeline = nil;
+  self.profileImages = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -193,7 +193,9 @@
 
   NSDictionary *data = [objects objectForKey:@"data"];
   FriendCell *cell = [objects objectForKey:@"cell"];
-  UIImage *newImage = [self profileImage:data getRemote:YES];
+  UIImage *newImage = [self.appDelegate profileImage:data
+			   profileImages:profileImages
+			   getRemote:YES];
 
   NSDictionary *setObjects = [[NSDictionary alloc] initWithObjectsAndKeys:
 						     newImage, @"image",
@@ -219,31 +221,6 @@
 }
 
 /**
- * @brief ユーザのプロフィール画像を返します。
- *        キャッシュにあればそれを、なければリモートから取得して返します。
- */
-- (UIImage *)profileImage:(NSDictionary *)data 
-		getRemote:(BOOL) getRemoteFlag {
-
-  NSDictionary *user = [data objectForKey:@"user"];
-
-  if (user == nil) { user = data; }
-
-  NSString *imageURLString = [user objectForKey:@"profile_image_url"];
-  UIImage *profileImage = [profileImages objectForKey:imageURLString];
-
-  if (profileImage == nil && getRemoteFlag) {
-    NSURL *imageURL = [NSURL URLWithString:imageURLString];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    profileImage = [[UIImage alloc] initWithData:imageData];
-
-    [profileImages setObject:profileImage forKey:imageURLString];
-  }
-
-  return profileImage;
-}
-
-/**
  * @brief ユーザのプロフィール画像のキャッシュをとります。
  */
 - (void) cacheAllProfileImage {
@@ -251,7 +228,9 @@
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
   for (NSDictionary *data in timeline) {
-    [self profileImage:data getRemote:YES];
+    [self.appDelegate profileImage:data 
+	 profileImages:profileImages 
+	 getRemote:YES];
   }
 
   [pool release];

@@ -1,33 +1,33 @@
 //
-//  NowPlayingViewController.h
+//  MusicPlayerViewController.h
 //  NowPlayingFriends
 //
-//  Created by Hiroe Shin on 10/08/12.
+//  Created by Hiroe Shin on 10/08/15.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "NowPlayingFriendsAppDelegate.h"
 
-#define kTimelineTableRowHeight 90
-
-
-@interface FriendsViewController : UITableViewController {
+@interface MusicPlayerViewController : UIViewController {
   NSArray *timeline;
   NSMutableDictionary *profileImages;
   BOOL activateFlag;
+  UIImageView *albumImageView;
+  UIButton *button;
+  NSMutableArray *profileImageButtons;
 }
 
 @property (nonatomic, retain) NSArray *timeline;
 @property (nonatomic, retain) NSMutableDictionary *profileImages;
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
+@property (nonatomic, retain) IBOutlet UIImageView *albumImageView;
+@property (nonatomic, retain) IBOutlet UIButton *button;
+@property (nonatomic, retain) NSMutableArray *profileImageButtons;
 
+- (void)friendImageRefreshLoop;
 - (void)refreshTimeline;
-- (void)tableRefreshLoop;
-
-- (NSString *)username:(NSDictionary *)data;
-- (void)setProfileImageWithObjects:(NSDictionary *)objects;
-- (void) cacheAllProfileImage;
+- (void)setFriendImageView;
 
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 

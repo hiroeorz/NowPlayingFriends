@@ -38,6 +38,10 @@
 - (NSString *)nowPlayingAlbumTitle;
 - (NSString *)nowPlayingArtistName;
 
+- (UIImage *)profileImage:(NSDictionary *)data 
+	    profileImages:(NSMutableDictionary *)profileImages
+		getRemote:(BOOL) getRemoteFlag;
+
 
 @end
 

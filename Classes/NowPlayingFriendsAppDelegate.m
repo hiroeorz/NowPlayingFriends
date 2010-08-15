@@ -10,7 +10,7 @@
 #import "NowPlayingViewController.h"
 #import "SongFriendsViewController.h"
 #import "ArtistFriendsViewController.h"
-
+#import "MusicPlayerViewController.h"
 
 @implementation NowPlayingFriendsAppDelegate
 
@@ -66,6 +66,16 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSMutableArray *controllers = [[NSMutableArray alloc] init];
   UIViewController *viewController;
   UINavigationController *navController;
+
+  /* Music Player */
+  viewController = [[MusicPlayerViewController alloc] 
+		     initWithNibName:@"MusicPlayerViewController" bundle:nil];
+
+  navController = [self navigationWithViewController:viewController
+			title:@"再生"];
+
+  [controllers addObject:navController];
+  [viewController release];
 
   /* Song */
   viewController = [[SongFriendsViewController alloc] 
@@ -151,6 +161,34 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return @"BUMP OF CHICKEN";
 }
 
+#pragma mark -
+#pragma mark Util Methods
+
+/**
+ * @brief ユーザのプロフィール画像を返します。
+ *        キャッシュにあればそれを、なければリモートから取得して返します。
+ */
+- (UIImage *)profileImage:(NSDictionary *)data
+	    profileImages:(NSMutableDictionary *)profileImages
+		getRemote:(BOOL) getRemoteFlag {
+
+  NSDictionary *user = [data objectForKey:@"user"];
+
+  if (user == nil) { user = data; }
+
+  NSString *imageURLString = [user objectForKey:@"profile_image_url"];
+  UIImage *profileImage = [profileImages objectForKey:imageURLString];
+
+  if (profileImage == nil && getRemoteFlag) {
+    NSURL *imageURL = [NSURL URLWithString:imageURLString];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    profileImage = [[UIImage alloc] initWithData:imageData];
+
+    [profileImages setObject:profileImage forKey:imageURLString];
+  }
+
+  return profileImage;
+}
 
 #pragma mark -
 #pragma mark Core Data stack
