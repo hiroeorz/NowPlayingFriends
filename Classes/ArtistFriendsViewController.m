@@ -17,11 +17,9 @@
   NSLog(@"updating timeline data...");
 
   TwitterClient *client = [[TwitterClient alloc] init];
-  NSString *songTitle = [self.appDelegate nowPlayingTitle];
   NSString *artistName = [self.appDelegate nowPlayingArtistName];
 
-  NSArray *newTimeline = [client getSearchTimeLine:@"#nowplaying", 
-				 artistName, nil];
+  NSArray *newTimeline = [client getSearchTimeLine:artistName, nil];
 
   @synchronized(timeline) {
     self.timeline = newTimeline;

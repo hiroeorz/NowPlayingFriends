@@ -20,8 +20,7 @@
   NSString *songTitle = [self.appDelegate nowPlayingTitle];
   NSString *artistName = [self.appDelegate nowPlayingArtistName];
 
-  NSArray *newTimeline = [client getSearchTimeLine:@"#nowplaying", 
-				 songTitle, artistName, nil];
+  NSArray *newTimeline = [client getSearchTimeLine: songTitle, artistName, nil];
 
   @synchronized(timeline) {
     self.timeline = newTimeline;

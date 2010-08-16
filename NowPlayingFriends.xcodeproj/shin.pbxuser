@@ -314,6 +314,45 @@
 			54C1E1121218D35D00EBD811 /* PBXTextBookmark */ = 54C1E1121218D35D00EBD811 /* PBXTextBookmark */;
 			54C1E1151218D3D500EBD811 /* PBXTextBookmark */ = 54C1E1151218D3D500EBD811 /* PBXTextBookmark */;
 			54C1E1181218D42600EBD811 /* PBXTextBookmark */ = 54C1E1181218D42600EBD811 /* PBXTextBookmark */;
+			54C1E11D1218D6C500EBD811 /* PBXTextBookmark */ = 54C1E11D1218D6C500EBD811 /* PBXTextBookmark */;
+			54C1E1201218D72100EBD811 /* PBXTextBookmark */ = 54C1E1201218D72100EBD811 /* PBXTextBookmark */;
+			54C1E1251218D7FF00EBD811 /* PBXTextBookmark */ = 54C1E1251218D7FF00EBD811 /* PBXTextBookmark */;
+			54C1E1281218DC5200EBD811 /* PBXTextBookmark */ = 54C1E1281218DC5200EBD811 /* PBXTextBookmark */;
+			54C1E12B1218DCCE00EBD811 /* PBXTextBookmark */ = 54C1E12B1218DCCE00EBD811 /* PBXTextBookmark */;
+			54C1E12E1218DD5A00EBD811 /* PBXTextBookmark */ = 54C1E12E1218DD5A00EBD811 /* PBXTextBookmark */;
+			54C1E1311218DE3A00EBD811 /* PBXTextBookmark */ = 54C1E1311218DE3A00EBD811 /* PBXTextBookmark */;
+			54C1E1341218DF4200EBD811 /* PBXTextBookmark */ = 54C1E1341218DF4200EBD811 /* PBXTextBookmark */;
+			54C1E1371218DF5900EBD811 /* PBXTextBookmark */ = 54C1E1371218DF5900EBD811 /* PBXTextBookmark */;
+			54C1E13A1218DFD100EBD811 /* PBXTextBookmark */ = 54C1E13A1218DFD100EBD811 /* PBXTextBookmark */;
+			54C1E13D1218DFE500EBD811 /* PBXTextBookmark */ = 54C1E13D1218DFE500EBD811 /* PBXTextBookmark */;
+			54C1E1401218E18D00EBD811 /* PBXTextBookmark */ = 54C1E1401218E18D00EBD811 /* PBXTextBookmark */;
+			54C1E1431218E1BC00EBD811 /* PBXTextBookmark */ = 54C1E1431218E1BC00EBD811 /* PBXTextBookmark */;
+			54C1E1461218E1E200EBD811 /* PBXTextBookmark */ = 54C1E1461218E1E200EBD811 /* PBXTextBookmark */;
+			54C1E14B1218E27700EBD811 /* PBXTextBookmark */ = 54C1E14B1218E27700EBD811 /* PBXTextBookmark */;
+			54C1E14E1218E2D900EBD811 /* PBXTextBookmark */ = 54C1E14E1218E2D900EBD811 /* PBXTextBookmark */;
+			54C1E1511218E31800EBD811 /* PBXTextBookmark */ = 54C1E1511218E31800EBD811 /* PBXTextBookmark */;
+			54C1E1541218E36800EBD811 /* PBXTextBookmark */ = 54C1E1541218E36800EBD811 /* PBXTextBookmark */;
+			54C1E1571218E6D100EBD811 /* PBXTextBookmark */ = 54C1E1571218E6D100EBD811 /* PBXTextBookmark */;
+			54C1E15E1218E7C100EBD811 /* PBXTextBookmark */ = 54C1E15E1218E7C100EBD811 /* PBXTextBookmark */;
+			54C1E1611218E81600EBD811 /* PBXTextBookmark */ = 54C1E1611218E81600EBD811 /* PBXTextBookmark */;
+			54C1E1651218E8F400EBD811 /* PBXTextBookmark */ = 54C1E1651218E8F400EBD811 /* PBXTextBookmark */;
+			54C1E1681218E90300EBD811 /* PBXTextBookmark */ = 54C1E1681218E90300EBD811 /* PBXTextBookmark */;
+			54C1E16B1218E9A500EBD811 /* PBXTextBookmark */ = 54C1E16B1218E9A500EBD811 /* PBXTextBookmark */;
+			54C1E16E1218EA2800EBD811 /* PBXTextBookmark */ = 54C1E16E1218EA2800EBD811 /* PBXTextBookmark */;
+			54C1E1711218EA4800EBD811 /* PBXTextBookmark */ = 54C1E1711218EA4800EBD811 /* PBXTextBookmark */;
+			54C1E1741218EA5900EBD811 /* PBXTextBookmark */ = 54C1E1741218EA5900EBD811 /* PBXTextBookmark */;
+			54C1E1771218EABF00EBD811 /* PBXTextBookmark */ = 54C1E1771218EABF00EBD811 /* PBXTextBookmark */;
+			54C1E17A1218EB1500EBD811 /* PBXTextBookmark */ = 54C1E17A1218EB1500EBD811 /* PBXTextBookmark */;
+			54C1E17D1218EB9400EBD811 /* PBXTextBookmark */ = 54C1E17D1218EB9400EBD811 /* PBXTextBookmark */;
+			54C1E1801218EBC900EBD811 /* PBXTextBookmark */ = 54C1E1801218EBC900EBD811 /* PBXTextBookmark */;
+			54C1E1831218EC1600EBD811 /* PBXTextBookmark */ = 54C1E1831218EC1600EBD811 /* PBXTextBookmark */;
+			54C1E1941218FF3000EBD811 /* PBXTextBookmark */ = 54C1E1941218FF3000EBD811 /* PBXTextBookmark */;
+			54C1E1971218FF6200EBD811 /* PBXTextBookmark */ = 54C1E1971218FF6200EBD811 /* PBXTextBookmark */;
+			54C1E19A1218FF7500EBD811 /* PBXTextBookmark */ = 54C1E19A1218FF7500EBD811 /* PBXTextBookmark */;
+			54C1E1A31219009700EBD811 /* PBXTextBookmark */ = 54C1E1A31219009700EBD811 /* PBXTextBookmark */;
+			54C1E1AA1219312500EBD811 /* PBXTextBookmark */ = 54C1E1AA1219312500EBD811 /* PBXTextBookmark */;
+			54C1E1AD1219314300EBD811 /* PBXTextBookmark */ = 54C1E1AD1219314300EBD811 /* PBXTextBookmark */;
+			54C1E1B0121931B200EBD811 /* PBXTextBookmark */ = 54C1E1B0121931B200EBD811 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 54C1DC271213B28F00EBD811 /* Source Control */;
 		userBuildSettings = {
@@ -2713,8 +2752,8 @@
 	54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {673, 523}}";
-			sepNavSelRange = "{946, 0}";
-			sepNavVisRange = "{0, 946}";
+			sepNavSelRange = "{1027, 0}";
+			sepNavVisRange = "{0, 1027}";
 		};
 	};
 	54C1E0521217B48C00EBD811 /* MusicPlayerViewController.m */ = {
@@ -3100,6 +3139,396 @@
 		rLoc = 946;
 		rType = 0;
 		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E11D1218D6C500EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1201218D72100EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1251218D7FF00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1281218DC5200EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E12B1218DCCE00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E12E1218DD5A00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1311218DE3A00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1341218DF4200EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1371218DF5900EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E13A1218DFD100EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E13D1218DFE500EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1401218E18D00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1431218E1BC00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1461218E1E200EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E14B1218E27700EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E14E1218E2D900EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1511218E31800EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1541218E36800EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1571218E6D100EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E15E1218E7C100EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1611218E81600EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1651218E8F400EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1681218E90300EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E16B1218E9A500EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E16E1218EA2800EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 946;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 0;
+	};
+	54C1E1711218EA4800EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 945;
+		rType = 0;
+		vrLen = 945;
+		vrLoc = 0;
+	};
+	54C1E1741218EA5900EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 945;
+		rType = 0;
+		vrLen = 945;
+		vrLoc = 0;
+	};
+	54C1E1771218EABF00EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 945;
+		rType = 0;
+		vrLen = 945;
+		vrLoc = 0;
+	};
+	54C1E17A1218EB1500EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 945;
+		rType = 0;
+		vrLen = 945;
+		vrLoc = 0;
+	};
+	54C1E17D1218EB9400EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 945;
+		rType = 0;
+		vrLen = 945;
+		vrLoc = 0;
+	};
+	54C1E1801218EBC900EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 945;
+		rType = 0;
+		vrLen = 945;
+		vrLoc = 0;
+	};
+	54C1E1831218EC1600EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 945;
+		rType = 0;
+		vrLen = 945;
+		vrLoc = 0;
+	};
+	54C1E1941218FF3000EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 945;
+		rType = 0;
+		vrLen = 945;
+		vrLoc = 0;
+	};
+	54C1E1971218FF6200EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 945;
+		rType = 0;
+		vrLen = 945;
+		vrLoc = 0;
+	};
+	54C1E19A1218FF7500EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 945;
+		rType = 0;
+		vrLen = 945;
+		vrLoc = 0;
+	};
+	54C1E1A31219009700EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 36";
+		rLen = 0;
+		rLoc = 945;
+		rType = 0;
+		vrLen = 945;
+		vrLoc = 0;
+	};
+	54C1E1AA1219312500EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 38";
+		rLen = 0;
+		rLoc = 1027;
+		rType = 0;
+		vrLen = 1027;
+		vrLoc = 0;
+	};
+	54C1E1AD1219314300EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 38";
+		rLen = 0;
+		rLoc = 1027;
+		rType = 0;
+		vrLen = 1027;
+		vrLoc = 0;
+	};
+	54C1E1B0121931B200EBD811 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
+		name = "MusicPlayerViewController.h: 38";
+		rLen = 0;
+		rLoc = 1027;
+		rType = 0;
+		vrLen = 1027;
 		vrLoc = 0;
 	};
 }

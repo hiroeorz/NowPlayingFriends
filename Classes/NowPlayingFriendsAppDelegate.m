@@ -158,15 +158,15 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 #pragma iPod Information Methods
 
 - (NSString *)nowPlayingTitle {
-  return @"天体観測";
+  return @"閃光少女";
 }
 
 - (NSString *)nowPlayingAlbumTitle {
-  return @"Jupitar";
+  return @"教育";
 }
 
 - (NSString *)nowPlayingArtistName {
-  return @"BUMP OF CHICKEN";
+  return @"東京事変";
 }
 
 #pragma mark -

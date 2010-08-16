@@ -13,6 +13,7 @@
 @implementation MusicPlayerViewController
 
 @synthesize timeline;
+@synthesize beforeTimeline;
 @synthesize albumImageView;
 @synthesize button;
 @synthesize profileImageButtons;
@@ -23,18 +24,22 @@
 
 - (void)dealloc {
   [timeline release];
+  [beforeTimeline release];
   [albumImageView release];
+  [profileImageButtons release];
   [super dealloc];
 }
 
 - (void)viewDidUnload {
   self.timeline = nil;
+  self.beforeTimeline = nil;
   self.albumImageView = nil;
+  self.profileImageButtons = nil;
   [super viewDidUnload];
 }
 
 - (void)didReceiveMemoryWarning {
-
+  
   [super didReceiveMemoryWarning];
 }
 
@@ -48,6 +53,10 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
+
+  NSMutableArray *newProfileImageButtons = [[NSMutableArray alloc] init];
+  self.profileImageButtons = newProfileImageButtons;
+  [newProfileImageButtons release];
 
   [super viewDidLoad];
 }
@@ -85,10 +94,13 @@
   NSDate *nextStartDate;
 
   while (true) {
+    self.beforeTimeline = timeline;
     [self refreshTimeline];
-    [self setFriendImageView];
 
-    NSLog(@"refreshed...");
+    if (activateFlag && ![timeline isEqualToArray:beforeTimeline]) {
+      [self setFriendImageView];
+      NSLog(@"refreshed.");
+    }
 
     date = [[NSDate alloc] init];
     nextStartDate = [[NSDate alloc] initWithTimeInterval:60 * 1 
@@ -112,8 +124,7 @@
   NSString *songTitle = [self.appDelegate nowPlayingTitle];
   NSString *artistName = [self.appDelegate nowPlayingArtistName];
 
-  NSArray *newTimeline = [client getSearchTimeLine:@"#nowplaying", 
-				 songTitle, artistName, nil];
+  NSArray *newTimeline = [client getSearchTimeLine:songTitle, artistName, nil];
 
   @synchronized(timeline) {
     self.timeline = newTimeline;
@@ -127,40 +138,49 @@
 - (void)setFriendImageView {
 
   NSInteger i = 0;
-  NSInteger startX = 0;
+  NSInteger x = 0;
+  NSInteger y = 230;
   NSInteger xRange = kProfileImageSize;
 
-  for (UIButton *profileImageButton in profileImageButtons) {
-    [profileImageButton removeFromSuperview];
-  }
-
-  NSMutableArray *newArray = [[NSMutableArray alloc] init];
-  self.profileImageButtons = newArray;
-  [newArray release];
-
   for (NSDictionary *data in timeline) {
-    NSInteger x = startX + (xRange * i);
-    UIButton *profileImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *profileImageButton;
+    BOOL newButtonFlag = NO;
 
-    NSLog(@"x:%d", x);
-    profileImageButton.frame = CGRectMake(x, 0, 
-					  kProfileImageSize, 
-					  kProfileImageSize);
+    if ([profileImageButtons count] < (i + 1)) {
+      newButtonFlag = YES;
+      profileImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+      profileImageButton.frame = CGRectMake(x, y, 
+					    kProfileImageSize, 
+					    kProfileImageSize);
+    } else {
+      newButtonFlag = NO;
+      profileImageButton = [profileImageButtons objectAtIndex:i];
+    }
 
     UIImage *newImage = [self.appDelegate profileImage:data
 			     getRemote:YES];
-
+    
     NSDictionary *objects = 
       [[NSDictionary alloc] initWithObjectsAndKeys:
 			      profileImageButton, @"profileImageButton",
 			    newImage, @"newImage", nil];
+    
+    if (newButtonFlag == YES) {
+      [self performSelectorOnMainThread:@selector(addProfileImageButton:)
+	    withObject:objects
+	    waitUntilDone:YES];
+    } else {
+      [self performSelectorOnMainThread:@selector(setBackgroundImage:)
+	    withObject:objects
+	    waitUntilDone:YES];
+    }
 
-    [self performSelectorOnMainThread:@selector(addProfileImageButton:)
-	  withObject:objects
-	  waitUntilDone:YES];
+    x = x + xRange;
 
-    [profileImageButton release];
-    if ((i % 5) == 0) {}
+    if (((i + 1) % 5) == 0) {
+      y = y - kProfileImageSize;
+      x = 0;
+    }
     i++;
   }
 }
@@ -171,11 +191,25 @@
   UIImage *newImage = [objects objectForKey:@"newImage"];
 
   [self.albumImageView addSubview:profileImageButton];
-  [profileImageButtons addObject:profileImageButton];
+
   [profileImageButton setBackgroundImage:newImage 
 		      forState:UIControlStateNormal];
 
+  @synchronized(profileImageButtons) {
+    [profileImageButtons addObject:profileImageButton];
+    NSLog(@"buttons count:%d", [profileImageButtons count]);
+  }
+   
   profileImageButton.alpha = kProfileImageButtonAlpha;
+}
+
+- (void)setBackgroundImage:(NSDictionary *)objects {
+
+  UIButton *profileImageButton = [objects objectForKey:@"profileImageButton"];
+  UIImage *newImage = [objects objectForKey:@"newImage"];
+
+  [profileImageButton setBackgroundImage:newImage 
+		      forState:UIControlStateNormal];
 }
 
 #pragma mark -

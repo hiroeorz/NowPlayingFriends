@@ -13,6 +13,7 @@
 @implementation FriendsViewController
 
 @synthesize timeline;
+@synthesize beforeTimeline;
 @dynamic appDelegate;
 
 #pragma mark -
@@ -20,11 +21,13 @@
 
 - (void)dealloc {
   [timeline release];
+  [beforeTimeline release];
   [super dealloc];
 }
 
 - (void)viewDidUnload {
   self.timeline = nil;
+  self.beforeTimeline = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +40,10 @@
 
 - (void)viewDidLoad {
   
+  NSArray *array = [[NSArray alloc] init];
+  self.beforeTimeline = array;
+  [array release];
+
   [super viewDidLoad];
 }
 
@@ -72,6 +79,9 @@
   return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+/**
+ * @brief 一定時間おきに検索結果を取得するループメソッド。別スレッドで実行する。
+ */
 - (void)tableRefreshLoop {
   
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -79,12 +89,16 @@
   NSDate *nextStartDate;
 
   while (true) {
+    self.beforeTimeline = timeline;
     [self refreshTimeline];
-    [self performSelectorOnMainThread:@selector(reloadTableDataOnMainThread)
-	  withObject:nil
-	  waitUntilDone:YES];
 
-    NSLog(@"refreshed...");
+    if (activateFlag && ![timeline isEqualToArray:beforeTimeline]) {
+      [self performSelectorOnMainThread:@selector(reloadTableDataOnMainThread)
+	    withObject:nil
+	    waitUntilDone:YES];
+
+      NSLog(@"refreshed.");
+    }
 
     date = [[NSDate alloc] init];
     nextStartDate = [[NSDate alloc] initWithTimeInterval:60 * 1 

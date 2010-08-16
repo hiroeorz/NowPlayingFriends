@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "NowPlayingFriendsAppDelegate.h"
 
-#define kProfileImageButtonAlpha 0.75f
+#define kProfileImageButtonAlpha 0.8f
 #define kProfileImageSize 64
 
 @interface MusicPlayerViewController : UIViewController {
   NSArray *timeline;
+  NSArray *beforeTimeline;
   BOOL activateFlag;
   UIImageView *albumImageView;
   UIButton *button;
@@ -21,6 +22,7 @@
 }
 
 @property (nonatomic, retain) NSArray *timeline;
+@property (nonatomic, retain) NSArray *beforeTimeline;
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) IBOutlet UIImageView *albumImageView;
 @property (nonatomic, retain) IBOutlet UIButton *button;
