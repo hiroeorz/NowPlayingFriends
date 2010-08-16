@@ -19,7 +19,7 @@
   NSPersistentStoreCoordinator *persistentStoreCoordinator_;
   UITabBarController *tabBarController;
   
-  
+  NSMutableDictionary *profileImages;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -29,6 +29,7 @@
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @property (nonatomic, retain) UITabBarController *tabBarController;
+@property (nonatomic, retain) NSMutableDictionary *profileImages;
 
 - (NSString *)applicationDocumentsDirectory;
 - (UINavigationController *)navigationWithViewController:(id)viewController

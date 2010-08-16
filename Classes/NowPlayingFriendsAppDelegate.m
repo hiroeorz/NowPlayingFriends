@@ -16,11 +16,16 @@
 
 @synthesize window;
 @synthesize tabBarController;
+@synthesize profileImages;
 
 #pragma mark -
 #pragma mark Memory management
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+
+  NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
+  self.profileImages = newProfileImages;
+  [newProfileImages release];
 }
 
 
@@ -30,6 +35,9 @@
   [managedObjectModel_ release];
   [persistentStoreCoordinator_ release];
   
+  [tabBarController release];
+  [profileImages release];
+
   [window release];
   [super dealloc];
 }
@@ -169,7 +177,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
  *        キャッシュにあればそれを、なければリモートから取得して返します。
  */
 - (UIImage *)profileImage:(NSDictionary *)data
-	    profileImages:(NSMutableDictionary *)profileImages
 		getRemote:(BOOL) getRemoteFlag {
 
   NSDictionary *user = [data objectForKey:@"user"];

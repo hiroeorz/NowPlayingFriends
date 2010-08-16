@@ -13,7 +13,6 @@
 @implementation MusicPlayerViewController
 
 @synthesize timeline;
-@synthesize profileImages;
 @synthesize albumImageView;
 @synthesize button;
 @synthesize profileImageButtons;
@@ -24,22 +23,17 @@
 
 - (void)dealloc {
   [timeline release];
-  [profileImages release];
   [albumImageView release];
   [super dealloc];
 }
 
 - (void)viewDidUnload {
   self.timeline = nil;
-  self.profileImages = nil;
   self.albumImageView = nil;
   [super viewDidUnload];
 }
 
 - (void)didReceiveMemoryWarning {
-  NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
-  self.profileImages = newProfileImages;
-  [newProfileImages release];
 
   [super didReceiveMemoryWarning];
 }
@@ -54,9 +48,6 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
-  NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
-  self.profileImages = newProfileImages;
-  [newProfileImages release];
 
   [super viewDidLoad];
 }
@@ -137,7 +128,7 @@
 
   NSInteger i = 0;
   NSInteger startX = 0;
-  NSInteger xRange = 64;
+  NSInteger xRange = kProfileImageSize;
 
   for (UIButton *profileImageButton in profileImageButtons) {
     [profileImageButton removeFromSuperview];
@@ -152,16 +143,12 @@
     UIButton *profileImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
 
     NSLog(@"x:%d", x);
-    profileImageButton.frame = CGRectMake(x, 0, 64, 64);
+    profileImageButton.frame = CGRectMake(x, 0, 
+					  kProfileImageSize, 
+					  kProfileImageSize);
 
     UIImage *newImage = [self.appDelegate profileImage:data
-			     profileImages:profileImages
 			     getRemote:YES];
-
-    NSLog(@"newImage:%@", newImage);
-
-
-    profileImageButton.backgroundColor = [UIColor grayColor];
 
     NSDictionary *objects = 
       [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -187,6 +174,8 @@
   [profileImageButtons addObject:profileImageButton];
   [profileImageButton setBackgroundImage:newImage 
 		      forState:UIControlStateNormal];
+
+  profileImageButton.alpha = kProfileImageButtonAlpha;
 }
 
 #pragma mark -

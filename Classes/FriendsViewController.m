@@ -13,7 +13,6 @@
 @implementation FriendsViewController
 
 @synthesize timeline;
-@synthesize profileImages;
 @dynamic appDelegate;
 
 #pragma mark -
@@ -21,19 +20,14 @@
 
 - (void)dealloc {
   [timeline release];
-  [profileImages release];
   [super dealloc];
 }
 
 - (void)viewDidUnload {
   self.timeline = nil;
-  self.profileImages = nil;
 }
 
 - (void)didReceiveMemoryWarning {
-  NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
-  self.profileImages = newProfileImages;
-  [newProfileImages release];
 
   [super didReceiveMemoryWarning];
 }
@@ -43,10 +37,6 @@
 
 - (void)viewDidLoad {
   
-  NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
-  self.profileImages = newProfileImages;
-  [newProfileImages release];
-
   [super viewDidLoad];
 }
 
@@ -194,9 +184,8 @@
   NSDictionary *data = [objects objectForKey:@"data"];
   FriendCell *cell = [objects objectForKey:@"cell"];
   UIImage *newImage = [self.appDelegate profileImage:data
-			   profileImages:profileImages
 			   getRemote:YES];
-
+  
   NSDictionary *setObjects = [[NSDictionary alloc] initWithObjectsAndKeys:
 						     newImage, @"image",
 						   cell, @"cell",
@@ -229,7 +218,6 @@
 
   for (NSDictionary *data in timeline) {
     [self.appDelegate profileImage:data 
-	 profileImages:profileImages 
 	 getRemote:YES];
   }
 
