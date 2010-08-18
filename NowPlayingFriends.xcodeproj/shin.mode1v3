@@ -329,7 +329,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>54C1E1B0121931B200EBD811</string>
+										<string>54C1E221121BDD0500EBD811</string>
 										<key>history</key>
 										<array>
 											<string>54C1DC771214115F00EBD811</string>
@@ -551,9 +551,9 @@
 		<string>54C1DDE5121542E300EBD811</string>
 		<string>54C1DDE6121542E300EBD811</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>54C1DC1E1213B28F00EBD811</string>
-		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
+		<string>54C1DC1E1213B28F00EBD811</string>
 	</array>
 	<key>WindowString</key>
 	<string>598 129 1028 795 0 0 1680 1028 </string>
@@ -577,7 +577,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MusicPlayerViewController.m</string>
+								<string>FriendsViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -904,7 +904,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {876, 722}}</string>
 								<key>RubberWindowFrame</key>
-								<string>180 237 876 763 0 0 1680 1028 </string>
+								<string>220 132 876 763 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
@@ -933,7 +933,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.consoleV3</string>
 			<key>WindowString</key>
-			<string>180 237 876 763 0 0 1680 1028 </string>
+			<string>220 132 876 763 0 0 1680 1028 </string>
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>

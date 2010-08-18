@@ -72,7 +72,7 @@
   activateFlag = YES;
 
   [self performSelectorInBackground:@selector(friendImageRefreshLoop)
-	withObject:nil];
+  	withObject:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -157,13 +157,13 @@
       profileImageButton = [profileImageButtons objectAtIndex:i];
     }
 
-    UIImage *newImage = [self.appDelegate profileImage:data
+    NSData *imageData = [self.appDelegate profileImage:data
 			     getRemote:YES];
-    
+
     NSDictionary *objects = 
       [[NSDictionary alloc] initWithObjectsAndKeys:
 			      profileImageButton, @"profileImageButton",
-			    newImage, @"newImage", nil];
+			    imageData, @"newImage", nil];
     
     if (newButtonFlag == YES) {
       [self performSelectorOnMainThread:@selector(addProfileImageButton:)
@@ -188,7 +188,8 @@
 - (void)addProfileImageButton:(NSDictionary *)objects {
 
   UIButton *profileImageButton = [objects objectForKey:@"profileImageButton"];
-  UIImage *newImage = [objects objectForKey:@"newImage"];
+  UIImage *imageData = [objects objectForKey:@"newImage"];
+  UIImage *newImage = [[UIImage alloc] initWithData:imageData];
 
   [self.albumImageView addSubview:profileImageButton];
 
@@ -206,7 +207,9 @@
 - (void)setBackgroundImage:(NSDictionary *)objects {
 
   UIButton *profileImageButton = [objects objectForKey:@"profileImageButton"];
-  UIImage *newImage = [objects objectForKey:@"newImage"];
+  //  UIImage *newImage = [objects objectForKey:@"newImage"];
+  UIImage *imageData = [objects objectForKey:@"newImage"];
+  UIImage *newImage = [[UIImage alloc] initWithData:imageData];
 
   [profileImageButton setBackgroundImage:newImage 
 		      forState:UIControlStateNormal];

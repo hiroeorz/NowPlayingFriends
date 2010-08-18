@@ -171,8 +171,8 @@
 						cell, @"cell", nil];
   [self performSelectorInBackground:@selector(setProfileImageWithObjects:)
 	withObject:objects];
-  [objects release];
 
+  [objects release];
   return cell;
 }
 
@@ -194,14 +194,14 @@
 - (void)setProfileImageWithObjects:(NSDictionary *)objects {
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
-  NSDictionary *data = [objects objectForKey:@"data"];
-  FriendCell *cell = [objects objectForKey:@"cell"];
-  UIImage *newImage = [self.appDelegate profileImage:data
-			   getRemote:YES];
   
+  NSDictionary *data = [objects objectForKey:@"data"];
+  FriendCell *cell = [[objects objectForKey:@"cell"] retain];
+  NSData *imageData = [self.appDelegate profileImage:data
+			   getRemote:YES];
+
   NSDictionary *setObjects = [[NSDictionary alloc] initWithObjectsAndKeys:
-						     newImage, @"image",
+						     imageData, @"image",
 						   cell, @"cell",
 						   nil];
 
@@ -215,11 +215,15 @@
 
 - (void)setProfileImageWithImage:(NSDictionary *)objects {
 
-  UIImage *newImage = [objects objectForKey:@"image"];
+  NSData *imageData =  [objects objectForKey:@"image"];
+  UIImage *newImage = [[UIImage alloc] initWithData:imageData];
+
   FriendCell *cell = [objects objectForKey:@"cell"];
 
   @synchronized(timeline) {
-    cell.userImageView.image = newImage;
+    if (cell != nil && cell.superview != nil) {
+      cell.userImageView.image = newImage;
+    }
   }
 }
 

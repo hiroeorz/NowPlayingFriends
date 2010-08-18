@@ -158,7 +158,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 #pragma iPod Information Methods
 
 - (NSString *)nowPlayingTitle {
-  return @"閃光少女";
+  return @"白波トップウォーター";
 }
 
 - (NSString *)nowPlayingAlbumTitle {
@@ -166,7 +166,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 }
 
 - (NSString *)nowPlayingArtistName {
-  return @"東京事変";
+  return @"サカナクション";
 }
 
 #pragma mark -
@@ -176,25 +176,28 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
  * @brief ユーザのプロフィール画像を返します。
  *        キャッシュにあればそれを、なければリモートから取得して返します。
  */
-- (UIImage *)profileImage:(NSDictionary *)data
-		getRemote:(BOOL) getRemoteFlag {
+- (NSData *)profileImage:(NSDictionary *)data
+	       getRemote:(BOOL) getRemoteFlag {
 
   NSDictionary *user = [data objectForKey:@"user"];
 
   if (user == nil) { user = data; }
 
   NSString *imageURLString = [user objectForKey:@"profile_image_url"];
-  UIImage *profileImage = [profileImages objectForKey:imageURLString];
 
-  if (profileImage == nil && getRemoteFlag) {
+  NSData *imageData = [profileImages objectForKey:imageURLString];
+
+  if (imageData == nil && getRemoteFlag) {
     NSURL *imageURL = [NSURL URLWithString:imageURLString];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    profileImage = [[UIImage alloc] initWithData:imageData];
-
-    [profileImages setObject:profileImage forKey:imageURLString];
+    imageData = [NSData dataWithContentsOfURL:imageURL];
+    
+    @synchronized(profileImages) {
+      [profileImages setObject:imageData forKey:imageURLString];
+    }
+    
   }
 
-  return profileImage;
+  return imageData;
 }
 
 #pragma mark -
