@@ -311,8 +311,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -330,7 +328,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5480C308121EAB4000F6E1C6</string>
+										<string>5480C31B121EB05B00F6E1C6</string>
 										<key>history</key>
 										<array>
 											<string>54C1DC8F121416F600EBD811</string>
@@ -373,6 +371,8 @@
 							<string>548pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -549,13 +549,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>5480C309121EAB4000F6E1C6</string>
+		<string>5480C31C121EB05B00F6E1C6</string>
 		<string>5480C286121E571900F6E1C6</string>
 		<string>5480C287121E571900F6E1C6</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
 		<string>54C1DC1E1213B28F00EBD811</string>
+		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>41 217 1028 795 0 0 1680 1028 </string>

@@ -170,18 +170,20 @@
   NSInteger xRange = kProfileImageSize;
 
   for (NSDictionary *data in timeline) {
-    UIButton *profileImageButton;
+    UIButton *profileImageButton = nil;
     BOOL newButtonFlag = NO;
 
-    if ([profileImageButtons count] < (i + 1)) {
+    if ([profileImageButtons count] >= (i + 1)) {
+      newButtonFlag = NO;
+      profileImageButton = [profileImageButtons objectAtIndex:i];
+    }
+
+    if (profileImageButton == nil) {
       newButtonFlag = YES;
       profileImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
       profileImageButton.frame = CGRectMake(x, y, 
 					    kProfileImageSize, 
 					    kProfileImageSize);
-    } else {
-      newButtonFlag = NO;
-      profileImageButton = [profileImageButtons objectAtIndex:i];
     }
 
     NSData *imageData = [self.appDelegate profileImage:data

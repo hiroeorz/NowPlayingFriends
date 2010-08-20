@@ -2,7 +2,7 @@
 {
 	1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {673, 4627}}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 4631}}";
 			sepNavSelRange = "{3413, 1}";
 			sepNavVisRange = "{2554, 1149}";
 		};
@@ -96,6 +96,8 @@
 			5480C2FD121EA9F000F6E1C6 /* PBXTextBookmark */ = 5480C2FD121EA9F000F6E1C6 /* PBXTextBookmark */;
 			5480C303121EAA9500F6E1C6 /* PBXTextBookmark */ = 5480C303121EAA9500F6E1C6 /* PBXTextBookmark */;
 			5480C308121EAB4000F6E1C6 /* PBXTextBookmark */ = 5480C308121EAB4000F6E1C6 /* PBXTextBookmark */;
+			5480C30C121EAE9600F6E1C6 /* PBXTextBookmark */ = 5480C30C121EAE9600F6E1C6 /* PBXTextBookmark */;
+			5480C31B121EB05B00F6E1C6 /* PBXTextBookmark */ = 5480C31B121EB05B00F6E1C6 /* PBXTextBookmark */;
 			548CFD8F121E19FA00DFBF93 = 548CFD8F121E19FA00DFBF93 /* PBXTextBookmark */;
 			54C1DC771214115F00EBD811 = 54C1DC771214115F00EBD811 /* PBXTextBookmark */;
 			54C1DC8F121416F600EBD811 = 54C1DC8F121416F600EBD811 /* PBXTextBookmark */;
@@ -354,6 +356,26 @@
 		vrLoc = 2554;
 	};
 	5480C308121EAB4000F6E1C6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
+		name = "NowPlayingFriendsAppDelegate.m: 133";
+		rLen = 1;
+		rLoc = 3413;
+		rType = 0;
+		vrLen = 1149;
+		vrLoc = 2554;
+	};
+	5480C30C121EAE9600F6E1C6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
+		name = "NowPlayingFriendsAppDelegate.m: 133";
+		rLen = 1;
+		rLoc = 3413;
+		rType = 0;
+		vrLen = 1149;
+		vrLoc = 2554;
+	};
+	5480C31B121EB05B00F6E1C6 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
 		name = "NowPlayingFriendsAppDelegate.m: 133";
@@ -692,9 +714,9 @@
 	};
 	54C1E0521217B48C00EBD811 /* MusicPlayerViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {439, 3640}}";
-			sepNavSelRange = "{6553, 0}";
-			sepNavVisRange = "{1619, 351}";
+			sepNavIntBoundsRect = "{{0, 0}, {439, 3497}}";
+			sepNavSelRange = "{6432, 0}";
+			sepNavVisRange = "{4728, 281}";
 		};
 	};
 	54C1E0571217B49500EBD811 /* PBXTextBookmark */ = {
