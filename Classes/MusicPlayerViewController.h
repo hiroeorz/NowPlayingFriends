@@ -13,13 +13,12 @@
 
 #import "NowPlayingFriendsAppDelegate.h"
 
-#define kProfileImageButtonAlpha 0.5f
+#define kProfileImageButtonAlpha 0.9f
 #define kProfileImageSize 64
 
 @interface MusicPlayerViewController : UIViewController {
   NSArray *timeline;
   NSArray *beforeTimeline;
-  BOOL activateFlag;
   UIImageView *albumImageView;
   UIButton *button;
   NSMutableArray *profileImageButtons;
@@ -36,7 +35,6 @@
 
 - (void)setMusicArtwork;
 
-- (void)friendImageRefreshLoop;
 - (void)refreshTimeline;
 - (void)setFriendImageView;
 

@@ -75,15 +75,10 @@
 
   self.title = [self.appDelegate nowPlayingTitle];
   [self setMusicArtwork];
-
-  activateFlag = YES;
-  [self performSelectorInBackground:@selector(friendImageRefreshLoop)
-  	withObject:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
-  activateFlag = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -93,25 +88,37 @@
 #pragma mark -
 #pragma mark Timeline Refresh Methods
 
+/**
+ * @brief 再生中の曲が変わったときに呼ばれる。
+ */
 - (void)handle_NowPlayingItemChanged:(id)notification {
 
+  NSLog(@"music changed!");
   self.title = [self.appDelegate nowPlayingTitle];
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
+
+  [self setMusicArtwork];
 
   NSString *nowPlayingTitle = 
     [currentItem valueForProperty: MPMediaItemPropertyTitle];
 
   self.title = nowPlayingTitle;
   NSLog(@"title: %@", nowPlayingTitle);
+
+  [self performSelectorInBackground:@selector(refreshProfileImages)
+  	withObject:nil];
 }
 
+/**
+ * @brief 再生中の曲のイメージをUIImageViewにセットする。
+ */
 - (void)setMusicArtwork {
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
   MPMediaItemArtwork *artwork = 
     [currentItem valueForProperty:MPMediaItemPropertyArtwork];
 
-  UIImage *artworkImage;// = noArtworkImage;
+  UIImage *artworkImage; // = noArtworkImage;
 
   if (artwork) {
     artworkImage = [artwork imageWithSize:CGSizeMake(320, 291)];
@@ -121,30 +128,16 @@
 
 }
 
-- (void)friendImageRefreshLoop {
-  
+- (void)refreshProfileImages {
+
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  NSDate *date;
-  NSDate *nextStartDate;
 
-  while (true) {
-    self.beforeTimeline = timeline;
-    [self refreshTimeline];
-
-    if (activateFlag && ![timeline isEqualToArray:beforeTimeline]) {
-      [self setFriendImageView];
-      NSLog(@"refreshed.");
-    }
-
-    date = [[NSDate alloc] init];
-    nextStartDate = [[NSDate alloc] initWithTimeInterval:20 * 1 
-				    sinceDate:date];
-
-    [NSThread sleepUntilDate: nextStartDate];
-    [date release];
-    [nextStartDate release];
-
-    if (activateFlag == NO) { break; }
+  self.beforeTimeline = timeline;
+  [self refreshTimeline];
+  
+  if (![timeline isEqualToArray:beforeTimeline]) {
+    [self setFriendImageView];
+    NSLog(@"refreshed.");
   }
 
   [pool release];
@@ -216,6 +209,13 @@
       x = 0;
     }
     i++;
+  }
+
+  if ([timeline count] < [profileImageButtons count]) {
+    for (i; i < [profileImageButtons count]; i++) {
+      UIButton *profileImageButton = [profileImageButtons objectAtIndex:i];
+      [profileImageButton removeFromSuperview];
+    }
   }
 }
 
