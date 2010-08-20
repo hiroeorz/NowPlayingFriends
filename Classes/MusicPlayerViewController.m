@@ -15,6 +15,8 @@
 @synthesize timeline;
 @synthesize beforeTimeline;
 @synthesize albumImageView;
+@synthesize volumeSlider;
+@synthesize playButton;
 @synthesize button;
 @synthesize profileImageButtons;
 @dynamic appDelegate;
@@ -27,6 +29,7 @@
   [timeline release];
   [beforeTimeline release];
   [albumImageView release];
+  [volumeSlider release];
   [profileImageButtons release];
   [super dealloc];
 }
@@ -35,6 +38,7 @@
   self.timeline = nil;
   self.beforeTimeline = nil;
   self.albumImageView = nil;
+  self.volumeSlider = nil;
   self.profileImageButtons = nil;
   [super viewDidUnload];
 }
@@ -70,7 +74,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-  
+
+  volumeSlider.value = musicPlayer.volume;
   [super viewDidAppear:animated];
 
   self.title = [self.appDelegate nowPlayingTitle];
@@ -83,6 +88,46 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
+}
+
+#pragma mark -
+#pragma mark IBAction Methods
+
+- (IBAction)changeVolume:(id)sender {
+  musicPlayer.volume = volumeSlider.value;
+}
+
+/*
+   MPMusicPlaybackStateStopped,
+   MPMusicPlaybackStatePlaying,
+   MPMusicPlaybackStatePaused,
+   MPMusicPlaybackStateInterrupted,
+   MPMusicPlaybackStateSeekingForward,
+   MPMusicPlaybackStateSeekingBackward
+ */
+- (IBAction)togglePlayStop:(id)sender {
+
+  NSLog(@"come toggle");
+  if (musicPlayer.playbackState == MPMusicPlaybackStatePlaying) {
+    [musicPlayer pause];
+  } else {
+    [musicPlayer play];
+  }
+}
+
+- (IBAction)skipToNextItem:(id)sender {
+
+  [musicPlayer skipToNextItem];
+}
+
+- (IBAction)skipToBeginningOrPreviousItem:(id)sender {
+
+  [musicPlayer skipToBeginning];
+}
+
+- (IBAction)skipToPreviousItem:(id)sender {
+
+  [musicPlayer skipToPreviousItem];
 }
 
 #pragma mark -

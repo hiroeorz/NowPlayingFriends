@@ -98,6 +98,10 @@
 			5480C308121EAB4000F6E1C6 /* PBXTextBookmark */ = 5480C308121EAB4000F6E1C6 /* PBXTextBookmark */;
 			5480C30C121EAE9600F6E1C6 /* PBXTextBookmark */ = 5480C30C121EAE9600F6E1C6 /* PBXTextBookmark */;
 			5480C31B121EB05B00F6E1C6 /* PBXTextBookmark */ = 5480C31B121EB05B00F6E1C6 /* PBXTextBookmark */;
+			5480C31F121EB1EA00F6E1C6 /* PBXTextBookmark */ = 5480C31F121EB1EA00F6E1C6 /* PBXTextBookmark */;
+			5480C323121EB39000F6E1C6 /* PBXTextBookmark */ = 5480C323121EB39000F6E1C6 /* PBXTextBookmark */;
+			5480C32C121EB66600F6E1C6 /* PBXTextBookmark */ = 5480C32C121EB66600F6E1C6 /* PBXTextBookmark */;
+			5480C335121EB73700F6E1C6 /* PBXTextBookmark */ = 5480C335121EB73700F6E1C6 /* PBXTextBookmark */;
 			548CFD8F121E19FA00DFBF93 = 548CFD8F121E19FA00DFBF93 /* PBXTextBookmark */;
 			54C1DC771214115F00EBD811 = 54C1DC771214115F00EBD811 /* PBXTextBookmark */;
 			54C1DC8F121416F600EBD811 = 54C1DC8F121416F600EBD811 /* PBXTextBookmark */;
@@ -376,6 +380,46 @@
 		vrLoc = 2554;
 	};
 	5480C31B121EB05B00F6E1C6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
+		name = "NowPlayingFriendsAppDelegate.m: 133";
+		rLen = 1;
+		rLoc = 3413;
+		rType = 0;
+		vrLen = 1149;
+		vrLoc = 2554;
+	};
+	5480C31F121EB1EA00F6E1C6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
+		name = "NowPlayingFriendsAppDelegate.m: 133";
+		rLen = 1;
+		rLoc = 3413;
+		rType = 0;
+		vrLen = 1149;
+		vrLoc = 2554;
+	};
+	5480C323121EB39000F6E1C6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
+		name = "NowPlayingFriendsAppDelegate.m: 133";
+		rLen = 1;
+		rLoc = 3413;
+		rType = 0;
+		vrLen = 1149;
+		vrLoc = 2554;
+	};
+	5480C32C121EB66600F6E1C6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
+		name = "NowPlayingFriendsAppDelegate.m: 133";
+		rLen = 1;
+		rLoc = 3413;
+		rType = 0;
+		vrLen = 1149;
+		vrLoc = 2554;
+	};
+	5480C335121EB73700F6E1C6 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
 		name = "NowPlayingFriendsAppDelegate.m: 133";
