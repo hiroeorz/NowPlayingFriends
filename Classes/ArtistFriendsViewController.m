@@ -30,4 +30,10 @@
   NSLog(@"timeline data updated.");
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+  
+  [super viewDidAppear:animated];
+  self.title = [self.appDelegate nowPlayingArtistName];
+}
+
 @end

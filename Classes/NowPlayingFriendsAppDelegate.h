@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface NowPlayingFriendsAppDelegate : NSObject <UIApplicationDelegate> {
   
@@ -20,6 +23,9 @@
   UITabBarController *tabBarController;
   
   NSMutableDictionary *profileImages;
+  MPMusicPlayerController *musicPlayer;
+  
+  NSInteger testFlag;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -30,14 +36,22 @@
 
 @property (nonatomic, retain) UITabBarController *tabBarController;
 @property (nonatomic, retain) NSMutableDictionary *profileImages;
+@property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 
 - (NSString *)applicationDocumentsDirectory;
 - (UINavigationController *)navigationWithViewController:(id)viewController
 						   title:(NSString *)title;
 
+- (void)addMusicPlayerNotification:(id)object;
+- (void)setupMusicPlayer;
+- (void)handle_NowPlayingItemChanged:(id)notification;
+
 - (NSString *)nowPlayingTitle;
 - (NSString *)nowPlayingAlbumTitle;
 - (NSString *)nowPlayingArtistName;
+
+- (void)setAnimationWithView:(id)targetView 
+	       animationType:(UIViewAnimationTransition)transition;
 
 - (NSData *)profileImage:(NSDictionary *)data 
 	       getRemote:(BOOL) getRemoteFlag;

@@ -17,6 +17,7 @@
 @synthesize window;
 @synthesize tabBarController;
 @synthesize profileImages;
+@synthesize musicPlayer;
 
 #pragma mark -
 #pragma mark Memory management
@@ -63,9 +64,44 @@
   return [navController autorelease];
 }
 
+- (void)addMusicPlayerNotification:(id)object {
+
+  NSNotificationCenter *notificationCenter = 
+    [NSNotificationCenter defaultCenter];
+
+  [notificationCenter 
+    addObserver:object
+    selector:@selector(handle_NowPlayingItemChanged:)
+    name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+    object:musicPlayer];
+}
+
+- (void)setupMusicPlayer {
+
+  [self setMusicPlayer:[MPMusicPlayerController iPodMusicPlayer]];
+  [self addMusicPlayerNotification:self];
+
+  if ([musicPlayer nowPlayingItem]) {
+    
+  }
+}
+
+- (void)handle_NowPlayingItemChanged:(id)notification {
+
+  MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
+
+  NSString *nowPlayingTitle = 
+    [currentItem valueForProperty: MPMediaItemPropertyTitle];
+  NSLog(@"title: %@", nowPlayingTitle);
+}
+
 - (BOOL)application:(UIApplication *)application 
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
   
+  testFlag = 0;
+
+  [self setupMusicPlayer];
+
   [UIApplication sharedApplication].statusBarStyle = 
     UIStatusBarStyleBlackOpaque;
   
@@ -158,19 +194,38 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 #pragma iPod Information Methods
 
 - (NSString *)nowPlayingTitle {
-  return @"白波トップウォーター";
+
+  MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
+  return [currentItem valueForProperty:MPMediaItemPropertyTitle];
 }
 
 - (NSString *)nowPlayingAlbumTitle {
-  return @"教育";
+
+  MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
+  return [currentItem valueForProperty:MPMediaItemPropertyAlbumTitle];
 }
 
 - (NSString *)nowPlayingArtistName {
-  return @"サカナクション";
+
+  MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
+  return [currentItem valueForProperty:MPMediaItemPropertyArtist];
 }
 
 #pragma mark -
 #pragma mark Util Methods
+
+/**
+ * @brief 画面切り替えのアニメーション処理
+ */
+- (void)setAnimationWithView:(id)targetView 
+	       animationType:(UIViewAnimationTransition)transition {
+  
+  [UIView beginAnimations:nil context:NULL];
+  [UIView setAnimationDuration:0.75];
+
+  [UIView setAnimationTransition:transition 
+	  forView:targetView cache:YES];
+}
 
 /**
  * @brief ユーザのプロフィール画像を返します。

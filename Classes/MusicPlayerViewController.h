@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
+
 #import "NowPlayingFriendsAppDelegate.h"
 
-#define kProfileImageButtonAlpha 0.8f
+#define kProfileImageButtonAlpha 0.5f
 #define kProfileImageSize 64
 
 @interface MusicPlayerViewController : UIViewController {
@@ -19,6 +23,7 @@
   UIImageView *albumImageView;
   UIButton *button;
   NSMutableArray *profileImageButtons;
+  MPMusicPlayerController *musicPlayer;
 }
 
 @property (nonatomic, retain) NSArray *timeline;
@@ -27,6 +32,9 @@
 @property (nonatomic, retain) IBOutlet UIImageView *albumImageView;
 @property (nonatomic, retain) IBOutlet UIButton *button;
 @property (nonatomic, retain) NSMutableArray *profileImageButtons;
+@property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
+
+- (void)setMusicArtwork;
 
 - (void)friendImageRefreshLoop;
 - (void)refreshTimeline;

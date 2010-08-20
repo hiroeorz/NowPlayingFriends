@@ -18,6 +18,7 @@
 @synthesize button;
 @synthesize profileImageButtons;
 @dynamic appDelegate;
+@synthesize musicPlayer;
 
 #pragma mark -
 #pragma mark Memory management
@@ -54,6 +55,9 @@
 
 - (void)viewDidLoad {
 
+  [self setMusicPlayer:[MPMusicPlayerController iPodMusicPlayer]];
+  [self.appDelegate addMusicPlayerNotification:self];
+
   NSMutableArray *newProfileImageButtons = [[NSMutableArray alloc] init];
   self.profileImageButtons = newProfileImageButtons;
   [newProfileImageButtons release];
@@ -68,9 +72,11 @@
 - (void)viewDidAppear:(BOOL)animated {
   
   [super viewDidAppear:animated];
-  
-  activateFlag = YES;
 
+  self.title = [self.appDelegate nowPlayingTitle];
+  [self setMusicArtwork];
+
+  activateFlag = YES;
   [self performSelectorInBackground:@selector(friendImageRefreshLoop)
   	withObject:nil];
 }
@@ -86,6 +92,34 @@
 
 #pragma mark -
 #pragma mark Timeline Refresh Methods
+
+- (void)handle_NowPlayingItemChanged:(id)notification {
+
+  self.title = [self.appDelegate nowPlayingTitle];
+  MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
+
+  NSString *nowPlayingTitle = 
+    [currentItem valueForProperty: MPMediaItemPropertyTitle];
+
+  self.title = nowPlayingTitle;
+  NSLog(@"title: %@", nowPlayingTitle);
+}
+
+- (void)setMusicArtwork {
+
+  MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
+  MPMediaItemArtwork *artwork = 
+    [currentItem valueForProperty:MPMediaItemPropertyArtwork];
+
+  UIImage *artworkImage;// = noArtworkImage;
+
+  if (artwork) {
+    artworkImage = [artwork imageWithSize:CGSizeMake(320, 291)];
+  }
+
+  self.albumImageView.image = artworkImage;
+
+}
 
 - (void)friendImageRefreshLoop {
   
@@ -103,7 +137,7 @@
     }
 
     date = [[NSDate alloc] init];
-    nextStartDate = [[NSDate alloc] initWithTimeInterval:60 * 1 
+    nextStartDate = [[NSDate alloc] initWithTimeInterval:20 * 1 
 				    sinceDate:date];
 
     [NSThread sleepUntilDate: nextStartDate];
@@ -188,7 +222,7 @@
 - (void)addProfileImageButton:(NSDictionary *)objects {
 
   UIButton *profileImageButton = [objects objectForKey:@"profileImageButton"];
-  UIImage *imageData = [objects objectForKey:@"newImage"];
+  NSData *imageData = [objects objectForKey:@"newImage"];
   UIImage *newImage = [[UIImage alloc] initWithData:imageData];
 
   [self.albumImageView addSubview:profileImageButton];
@@ -207,12 +241,17 @@
 - (void)setBackgroundImage:(NSDictionary *)objects {
 
   UIButton *profileImageButton = [objects objectForKey:@"profileImageButton"];
-  //  UIImage *newImage = [objects objectForKey:@"newImage"];
-  UIImage *imageData = [objects objectForKey:@"newImage"];
+  NSData *imageData = [objects objectForKey:@"newImage"];
   UIImage *newImage = [[UIImage alloc] initWithData:imageData];
+
+
+  [self.appDelegate setAnimationWithView:profileImageButton
+       animationType:UIViewAnimationTransitionFlipFromLeft];
 
   [profileImageButton setBackgroundImage:newImage 
 		      forState:UIControlStateNormal];
+
+  [UIView commitAnimations];
 }
 
 #pragma mark -
