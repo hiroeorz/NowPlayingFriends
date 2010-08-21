@@ -13,7 +13,7 @@
 
 #import "NowPlayingFriendsAppDelegate.h"
 
-#define kProfileImageButtonAlpha 0.9f
+#define kProfileImageButtonAlpha 0.6f
 #define kProfileImageSize 64
 
 @interface MusicPlayerViewController : UIViewController {

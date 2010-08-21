@@ -50,7 +50,8 @@
  * @brief 与えられたviewControllerを含むナビゲーションビューをタブのタイトルと画像を設定して返す。
  */
 - (UINavigationController *)navigationWithViewController:(id)viewController
-						   title:(NSString *)title {
+						   title:(NSString *)title 
+					       imageName:(NSString *)imageName {
 
   [viewController setTitle:title];
 
@@ -58,8 +59,7 @@
     [[UINavigationController alloc] initWithRootViewController:viewController];
   
   navController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-  //  navController.tabBarItem.image = 
-  // [UIImage imageNamed:[viewController tabImageFileName]];
+  navController.tabBarItem.image = [UIImage imageNamed:imageName];
 
   return [navController autorelease];
 }
@@ -126,7 +126,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 		     initWithNibName:@"MusicPlayerViewController" bundle:nil];
 
   navController = [self navigationWithViewController:viewController
-			title:@"再生"];
+			title:@"再生" imageName:@"65-note.png"];
 
   [controllers addObject:navController];
   [viewController release];
@@ -136,7 +136,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];
 
   navController = [self navigationWithViewController:viewController
-			title:@"曲名"];
+			title:@"曲名"  imageName:@"120-headphones.png"];
 
   [controllers addObject:navController];
   [viewController release];
@@ -146,7 +146,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];
 
   navController = [self navigationWithViewController:viewController
-			title:@"アーティスト"];
+			title:@"アーティスト"  imageName:@"112-group.png"];
 
   [controllers addObject:navController];
   [viewController release];
@@ -156,7 +156,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];
 
   navController = [self navigationWithViewController:viewController
-			title:@"Now Playing"];
+			title:@"Now Playing"  imageName:@"09-chat2.png"];
 
   [controllers addObject:navController];
   [viewController release];

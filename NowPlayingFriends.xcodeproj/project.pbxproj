@@ -18,6 +18,10 @@
 		5480C258121E4E5D00F6E1C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5480C257121E4E5D00F6E1C6 /* AVFoundation.framework */; };
 		5480C25C121E4E7900F6E1C6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5480C25B121E4E7900F6E1C6 /* AudioToolbox.framework */; };
 		5480C260121E4E8700F6E1C6 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5480C25F121E4E8700F6E1C6 /* MediaPlayer.framework */; };
+		5480C3B6121FA14D00F6E1C6 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C3B5121FA14D00F6E1C6 /* 112-group.png */; };
+		5480C3C2121FA2BC00F6E1C6 /* 65-note.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C3C1121FA2BC00F6E1C6 /* 65-note.png */; };
+		5480C3C5121FA33900F6E1C6 /* 09-chat2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C3C4121FA33900F6E1C6 /* 09-chat2.png */; };
+		5480C3C8121FA3A400F6E1C6 /* 120-headphones.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */; };
 		54C1DC3D1213F3ED00EBD811 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */; };
 		54C1DC3E1213F3ED00EBD811 /* NowPlayingViewControllers.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C1DC3C1213F3ED00EBD811 /* NowPlayingViewControllers.xib */; };
 		54C1DC88121415DB00EBD811 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DC87121415DB00EBD811 /* FriendCell.m */; };
@@ -69,6 +73,10 @@
 		5480C257121E4E5D00F6E1C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5480C25B121E4E7900F6E1C6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5480C25F121E4E8700F6E1C6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		5480C3B5121FA14D00F6E1C6 /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group.png"; sourceTree = "<group>"; };
+		5480C3C1121FA2BC00F6E1C6 /* 65-note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "65-note.png"; sourceTree = "<group>"; };
+		5480C3C4121FA33900F6E1C6 /* 09-chat2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "09-chat2.png"; sourceTree = "<group>"; };
+		5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "120-headphones.png"; sourceTree = "<group>"; };
 		54C1DC3A1213F3ED00EBD811 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		54C1DC3C1213F3ED00EBD811 /* NowPlayingViewControllers.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NowPlayingViewControllers.xib; path = Classes/NowPlayingViewControllers.xib; sourceTree = "<group>"; };
@@ -160,6 +168,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				29B97317FDCFA39411CA2CEA /* Resources */,
 				54C1DCFA1215103000EBD811 /* JSON */,
 				54C1DCF712150D1000EBD811 /* TwitterClient+ConsumerKey.h */,
 				54C1DCA61214EC6A00EBD811 /* OAuthConsumer */,
@@ -196,7 +205,6 @@
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -215,6 +223,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5480C3B4121FA0CA00F6E1C6 /* tabBarIcons */,
 				54C1E0531217B48C00EBD811 /* MusicPlayerViewController.xib */,
 				54C1DC3C1213F3ED00EBD811 /* NowPlayingViewControllers.xib */,
 				2819305F112F816700ECF9B4 /* NowPlayingFriends.xcdatamodeld */,
@@ -223,6 +232,7 @@
 				54C1DC891214162600EBD811 /* FriendCell.xib */,
 			);
 			name = Resources;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -237,6 +247,17 @@
 				5480C25F121E4E8700F6E1C6 /* MediaPlayer.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5480C3B4121FA0CA00F6E1C6 /* tabBarIcons */ = {
+			isa = PBXGroup;
+			children = (
+				5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */,
+				5480C3C4121FA33900F6E1C6 /* 09-chat2.png */,
+				5480C3C1121FA2BC00F6E1C6 /* 65-note.png */,
+				5480C3B5121FA14D00F6E1C6 /* 112-group.png */,
+			);
+			name = tabBarIcons;
 			sourceTree = "<group>";
 		};
 		54C1DCA61214EC6A00EBD811 /* OAuthConsumer */ = {
@@ -366,6 +387,10 @@
 				54C1DCCA1214EC9F00EBD811 /* OATestServer.rb in Resources */,
 				54C1DCCD1214EC9F00EBD811 /* README in Resources */,
 				54C1E0551217B48C00EBD811 /* MusicPlayerViewController.xib in Resources */,
+				5480C3B6121FA14D00F6E1C6 /* 112-group.png in Resources */,
+				5480C3C2121FA2BC00F6E1C6 /* 65-note.png in Resources */,
+				5480C3C5121FA33900F6E1C6 /* 09-chat2.png in Resources */,
+				5480C3C8121FA3A400F6E1C6 /* 120-headphones.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

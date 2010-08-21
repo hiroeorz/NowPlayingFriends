@@ -31,4 +31,11 @@
   NSLog(@"timeline data updated.");
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+  
+  [super viewDidAppear:animated];
+  self.navigationController.title = [self.appDelegate nowPlayingTitle];
+  self.navigationController.tabBarItem.title = @"曲名";
+}
+
 @end

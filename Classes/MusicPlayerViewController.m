@@ -75,10 +75,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 
-  volumeSlider.value = musicPlayer.volume;
   [super viewDidAppear:animated];
-
-  self.title = [self.appDelegate nowPlayingTitle];
+  volumeSlider.value = musicPlayer.volume;
   [self setMusicArtwork];
 }
 
@@ -147,7 +145,9 @@
   NSString *nowPlayingTitle = 
     [currentItem valueForProperty: MPMediaItemPropertyTitle];
 
-  self.title = nowPlayingTitle;
+  self.navigationController.title = nowPlayingTitle;
+  self.navigationController.tabBarItem.title = @"再生";
+
   NSLog(@"title: %@", nowPlayingTitle);
 
   [self performSelectorInBackground:@selector(refreshProfileImages)
@@ -211,7 +211,7 @@
 
   NSInteger i = 0;
   NSInteger x = 0;
-  NSInteger y = 230;
+  NSInteger y = 227;
   NSInteger xRange = kProfileImageSize;
 
   for (NSDictionary *data in timeline) {
@@ -226,10 +226,11 @@
     if (profileImageButton == nil) {
       newButtonFlag = YES;
       profileImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-      profileImageButton.frame = CGRectMake(x, y, 
-					    kProfileImageSize, 
-					    kProfileImageSize);
     }
+
+    profileImageButton.frame = CGRectMake(x, y, 
+					  kProfileImageSize, 
+					  kProfileImageSize);
 
     NSData *imageData = [self.appDelegate profileImage:data
 			     getRemote:YES];

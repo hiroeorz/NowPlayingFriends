@@ -40,7 +40,8 @@
 
 - (NSString *)applicationDocumentsDirectory;
 - (UINavigationController *)navigationWithViewController:(id)viewController
-						   title:(NSString *)title;
+						   title:(NSString *)title
+					       imageName:(NSString *)imageName;
 
 - (void)addMusicPlayerNotification:(id)object;
 - (void)setupMusicPlayer;

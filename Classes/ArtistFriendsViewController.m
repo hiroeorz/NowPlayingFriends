@@ -33,7 +33,8 @@
 - (void)viewDidAppear:(BOOL)animated {
   
   [super viewDidAppear:animated];
-  self.title = [self.appDelegate nowPlayingArtistName];
+  self.navigationController.title = [self.appDelegate nowPlayingArtistName];
+  self.navigationController.tabBarItem.title = @"アーティスト";
 }
 
 @end
