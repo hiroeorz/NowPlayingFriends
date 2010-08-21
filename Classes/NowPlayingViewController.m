@@ -19,7 +19,7 @@
   TwitterClient *client = [[TwitterClient alloc] init];
   NSArray *newTimeline = [client getSearchTimeLine:@"#nowplaying", nil];
 
-  @synchronized(timeline) {
+  @synchronized(self.timeline) {
     self.timeline = newTimeline;
   }
 

@@ -96,6 +96,34 @@
   }
 }
 
+/**
+ * @brief アルバム情報を持つMPMediaItemCollectionの配列を返します。
+ */
+- (NSArray *)albums {
+  
+  MPMediaQuery *query = [[MPMediaQuery alloc] init];
+  [query setGroupingType: MPMediaGroupingAlbum];
+
+  NSArray *albums = [query collections];
+  [query release];
+
+  return albums;
+}
+
+/**
+ * @brief プレイリスト情報を持つMPMediaPlaylistの配列を返します。
+ */
+- (NSArray *)playLists {
+  
+  MPMediaQuery *query = [[MPMediaQuery alloc] init];
+  [query setGroupingType: MPMediaGroupingPlaylist];
+
+  NSArray *albums = [query collections];
+  [query release];
+
+  return albums;
+}
+
 - (void)handle_NowPlayingItemChanged:(id)notification {
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
@@ -263,6 +291,27 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   }
 
   return imageData;
+}
+
+- (UIBarButtonItem *)listButton:(SEL)selector
+			 target:(id)target {
+  UIBarButtonItem *button = 
+    [[UIBarButtonItem alloc] initWithTitle:@"リスト"
+			     style:UIBarButtonItemStyleBordered
+			     target:target
+			     action:selector];
+  return [button autorelease];
+}
+
+- (UIBarButtonItem *)completeButton:(SEL)selector
+			     target:(id)target {
+  UIBarButtonItem *button = 
+    [[UIBarButtonItem alloc] initWithTitle:@"完了"
+			     style:UIBarButtonItemStyleBordered
+			     target: self
+			     action: selector];
+
+  return [button autorelease];
 }
 
 #pragma mark -

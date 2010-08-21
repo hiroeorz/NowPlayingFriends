@@ -50,12 +50,19 @@
 - (NSString *)nowPlayingTitle;
 - (NSString *)nowPlayingAlbumTitle;
 - (NSString *)nowPlayingArtistName;
+- (NSArray *)albums;
+- (NSArray *)playLists;
 
 - (void)setAnimationWithView:(id)targetView 
 	       animationType:(UIViewAnimationTransition)transition;
 
 - (NSData *)profileImage:(NSDictionary *)data 
 	       getRemote:(BOOL) getRemoteFlag;
+
+- (UIBarButtonItem *)listButton:(SEL)selector
+			 target:(id)target;
+- (UIBarButtonItem *)completeButton:(SEL)selector
+			     target:(id)target;
 
 
 @end

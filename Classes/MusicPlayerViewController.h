@@ -15,8 +15,16 @@
 
 #define kProfileImageButtonAlpha 0.6f
 #define kProfileImageSize 64
+#define kPlayListTableRowHeight 55
 
-@interface MusicPlayerViewController : UIViewController {
+#define kListModePlayList 1
+#define kListModeAlbum 2
+
+
+@interface MusicPlayerViewController : UIViewController 
+<UITableViewDataSource, UITableViewDelegate> {
+
+@private
   NSArray *timeline;
   NSArray *beforeTimeline;
   UIImageView *albumImageView;
@@ -25,6 +33,11 @@
   UIButton *button;
   NSMutableArray *profileImageButtons;
   MPMusicPlayerController *musicPlayer;
+  UIView *songView;
+  UITableView *listView;
+  NSArray *playLists;
+  NSArray *albumLists;
+  NSInteger listmode;
 }
 
 @property (nonatomic, retain) NSArray *timeline;
@@ -36,6 +49,10 @@
 @property (nonatomic, retain) IBOutlet UIButton *button;
 @property (nonatomic, retain) NSMutableArray *profileImageButtons;
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
+@property (nonatomic, retain) IBOutlet UIView *songView;
+@property (nonatomic, retain) IBOutlet UITableView *listView;
+@property (nonatomic, retain) NSArray *playLists;
+@property (nonatomic, retain) NSArray *albumLists;
 
 - (void)setMusicArtwork;
 

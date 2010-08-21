@@ -21,7 +21,7 @@
 
   NSArray *newTimeline = [client getSearchTimeLine:artistName, nil];
 
-  @synchronized(timeline) {
+  @synchronized(self.timeline) {
     self.timeline = newTimeline;
   }
 

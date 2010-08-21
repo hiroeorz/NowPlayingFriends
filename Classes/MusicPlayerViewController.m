@@ -21,6 +21,10 @@
 @synthesize profileImageButtons;
 @dynamic appDelegate;
 @synthesize musicPlayer;
+@synthesize songView;
+@synthesize listView;
+@synthesize playLists;
+@synthesize albumLists;
 
 #pragma mark -
 #pragma mark Memory management
@@ -31,6 +35,10 @@
   [albumImageView release];
   [volumeSlider release];
   [profileImageButtons release];
+  [songView release];
+  [listView release];
+  [playLists release];
+  [albumLists release];
   [super dealloc];
 }
 
@@ -40,6 +48,10 @@
   self.albumImageView = nil;
   self.volumeSlider = nil;
   self.profileImageButtons = nil;
+  self.songView = nil;
+  self.listView = nil;
+  self.playLists = nil;
+  self.albumLists = nil;
   [super viewDidUnload];
 }
 
@@ -59,8 +71,15 @@
 
 - (void)viewDidLoad {
 
+  self.albumLists = [self.appDelegate albums];
+  self.playLists = [self.appDelegate playLists];
+  listmode = kListModeAlbum;
+
   [self setMusicPlayer:[MPMusicPlayerController iPodMusicPlayer]];
   [self.appDelegate addMusicPlayerNotification:self];
+
+  self.navigationItem.rightBarButtonItem = 
+    [self.appDelegate listButton:@selector(changeToListview) target:self];
 
   NSMutableArray *newProfileImageButtons = [[NSMutableArray alloc] init];
   self.profileImageButtons = newProfileImageButtons;
@@ -143,7 +162,7 @@
   [self setMusicArtwork];
 
   NSString *nowPlayingTitle = 
-    [currentItem valueForProperty: MPMediaItemPropertyTitle];
+    [currentItem valueForProperty:MPMediaItemPropertyTitle];
 
   self.navigationController.title = nowPlayingTitle;
   self.navigationController.tabBarItem.title = @"再生";
@@ -301,6 +320,119 @@
 
   [UIView commitAnimations];
 }
+
+#pragma mark -
+#pragma mark PlayList Methods
+
+- (void)changeToListview {
+
+  [self.appDelegate setAnimationWithView:self.view
+       animationType:UIViewAnimationTransitionFlipFromLeft];
+
+  if (songView.superview != nil) {
+    [songView removeFromSuperview];
+  }
+  
+
+  [self.view addSubview:listView];
+  [UIView commitAnimations];
+
+
+  self.navigationItem.rightBarButtonItem = 
+    [self.appDelegate listButton:@selector(changeToSongview) target:self];
+    
+}
+
+- (void)changeToSongview {
+
+  [self.appDelegate setAnimationWithView:self.view
+       animationType:UIViewAnimationTransitionFlipFromRight];
+
+  if (listView.superview != nil) {
+    [listView removeFromSuperview];
+  }
+
+  
+  [self.view addSubview:songView];
+  [UIView commitAnimations];
+
+  self.navigationItem.rightBarButtonItem = 
+    [self.appDelegate listButton:@selector(changeToListview) target:self];
+}
+
+#pragma mark -
+#pragma mark Table view data source
+
+- (NSInteger)tableView:(UITableView *)tableView 
+ numberOfRowsInSection:(NSInteger)section {
+  
+  return [playLists count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView 
+	 cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+  static NSString *PlayListCellIdentifier = @"PlayListCellIdentifier";
+
+  UITableViewCell *cell = 
+    [tableView dequeueReusableCellWithIdentifier:PlayListCellIdentifier];
+
+  if (cell == nil) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+				    reuseIdentifier:PlayListCellIdentifier];
+    [cell autorelease];
+  }
+
+  if (listmode == kListModePlayList) {
+    MPMediaPlaylist *playlist = [playLists objectAtIndex:[indexPath row]];
+    cell.textLabel.text = 
+      [playlist valueForProperty:MPMediaPlaylistPropertyName];
+  } else {
+    MPMediaItemCollection *album = [albumLists objectAtIndex:[indexPath row]];
+    MPMediaItem *representativeItem = [album representativeItem];
+    cell.textLabel.text = 
+      [representativeItem valueForProperty:MPMediaItemPropertyAlbumTitle];
+
+    cell.textLabel.text = 
+      [representativeItem valueForProperty:MPMediaItemPropertyAlbumTitle];
+    cell.detailTextLabel.text = 
+      [representativeItem valueForProperty:MPMediaItemPropertyArtist];
+
+    MPMediaItemArtwork *artwork = 
+      [representativeItem valueForProperty:MPMediaItemPropertyArtwork];
+
+    if (artwork) {
+      cell.imageView.image = [artwork imageWithSize:CGSizeMake(50, 50)];
+    }
+  }
+
+  return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return kPlayListTableRowHeight;
+}
+
+#pragma mark -
+#pragma mark Table view delegate
+
+- (void)tableView:(UITableView *)tableView 
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+  
+  if (listmode == kListModePlayList) {
+    MPMediaPlaylist *playlist = [playLists objectAtIndex:[indexPath row]];
+    [musicPlayer setQueueWithItemCollection:playlist];
+  } else {
+    MPMediaItemCollection *album = [albumLists objectAtIndex:[indexPath row]];
+    [musicPlayer setQueueWithItemCollection:album];
+  }
+
+  [musicPlayer play];
+  [self changeToSongview];
+}
+
 
 #pragma mark -
 #pragma mark Local Methods

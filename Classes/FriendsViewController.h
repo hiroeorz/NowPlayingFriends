@@ -13,6 +13,7 @@
 
 
 @interface FriendsViewController : UITableViewController {
+@private
   NSArray *timeline;
   NSArray *beforeTimeline;
   BOOL activateFlag;
