@@ -9,6 +9,7 @@
 #import "MusicPlayerViewController.h"
 #import "TwitterClient.h"
 #import "AlbumSongsViewController.h"
+#import "PlayListSongsViewController.h"
 
 @implementation MusicPlayerViewController
 
@@ -517,12 +518,23 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 
   NSInteger listRow = [indexPath row] - 1;
-  MPMediaItemCollection *album = [albumLists objectAtIndex:listRow];
+  id viewController;
 
-  AlbumSongsViewController *viewController = 
-    [[AlbumSongsViewController alloc] initWithAlbum:album];
-  viewController.musicPlayer = musicPlayer;
+  if (listmode == kListModeAlbum) {
+    MPMediaItemCollection *album = [albumLists objectAtIndex:listRow];
 
+     viewController = 
+       (AlbumSongsViewController *)[[AlbumSongsViewController alloc] 
+				     initWithAlbum:album];
+  } else {
+    MPMediaItemCollection *playlist = [playLists objectAtIndex:listRow];
+
+     viewController = 
+       (PlayListSongsViewController *)[[PlayListSongsViewController alloc] 
+					initWithPlaylist:playlist];
+  }
+
+  [viewController setMusicPlayer:musicPlayer];
   [self.navigationController pushViewController:viewController animated:YES];
 }
 

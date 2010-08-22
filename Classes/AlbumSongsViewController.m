@@ -126,8 +126,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [musicPlayer skipToNextItem];
   }
 
-  [musicPlayer beginGeneratingPlaybackNotifications];
   [musicPlayer play];
+  [musicPlayer beginGeneratingPlaybackNotifications];
 }
 
 
