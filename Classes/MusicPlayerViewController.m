@@ -8,7 +8,7 @@
 
 #import "MusicPlayerViewController.h"
 #import "TwitterClient.h"
-
+#import "AlbumSongsViewController.h"
 
 @implementation MusicPlayerViewController
 
@@ -477,6 +477,8 @@
     }
   }
 
+  cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+
   return cell;
 }
 
@@ -510,6 +512,19 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [self changeToSongview];
 }
 
+
+- (void)tableView:(UITableView *)tableView 
+accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+
+  NSInteger listRow = [indexPath row] - 1;
+  MPMediaItemCollection *album = [albumLists objectAtIndex:listRow];
+
+  AlbumSongsViewController *viewController = 
+    [[AlbumSongsViewController alloc] initWithAlbum:album];
+  viewController.musicPlayer = musicPlayer;
+
+  [self.navigationController pushViewController:viewController animated:YES];
+}
 
 #pragma mark -
 #pragma mark Local Methods
