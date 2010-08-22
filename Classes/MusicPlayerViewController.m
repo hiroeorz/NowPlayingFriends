@@ -267,9 +267,9 @@
 			      imageData, @"newImage", nil];
       
       if (newButtonFlag == YES) {
-      [self performSelectorOnMainThread:@selector(addProfileImageButton:)
-	    withObject:objects
-	    waitUntilDone:YES];
+	[self performSelectorOnMainThread:@selector(addProfileImageButton:)
+	      withObject:objects
+	      waitUntilDone:YES];
       } else {
 	[self performSelectorOnMainThread:@selector(setBackgroundImage:)
 	      withObject:objects
