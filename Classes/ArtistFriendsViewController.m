@@ -34,7 +34,7 @@
   
   [super viewDidAppear:animated];
   self.navigationController.title = [self.appDelegate nowPlayingArtistName];
-  self.navigationController.tabBarItem.title = @"アーティスト";
+  self.navigationController.tabBarItem.title = @"Artist";
 }
 
 @end

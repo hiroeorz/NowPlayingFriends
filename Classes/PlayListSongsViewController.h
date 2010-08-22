@@ -1,5 +1,5 @@
 //
-//  AlbumSongsViewController.h
+//  PlayListSongsViewController.h
 //  NowPlayingFriends
 //
 //  Created by Hiroe Shin on 10/08/22.
@@ -11,19 +11,19 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-#import "MusicPlayerViewController.h"
+@class MusicPlayerViewController;
 
-@interface AlbumSongsViewController : UITableViewController {
+@interface PlayListSongsViewController : UITableViewController {
 
-  MPMediaItemCollection *album;
+  MPMediaItemCollection *playlist;
   MPMusicPlayerController *musicPlayer;
   MusicPlayerViewController *musicPlayerViewController;
 }
 
-@property (nonatomic, retain) MPMediaItemCollection *album;
+@property (nonatomic, retain) MPMediaItemCollection *playlist;
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 @property (nonatomic, retain)  MusicPlayerViewController *musicPlayerViewController;
 
-- (id)initWithAlbum:(MPMediaItemCollection *)newAlbum;
+- (id)initWithPlaylist:(MPMediaItemCollection *)newPlaylist;
 
 @end

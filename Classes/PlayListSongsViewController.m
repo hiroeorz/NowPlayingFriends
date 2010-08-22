@@ -1,18 +1,17 @@
 //
-//  AlbumSongsViewController.m
+//  PlayListSongsViewController.m
 //  NowPlayingFriends
 //
 //  Created by Hiroe Shin on 10/08/22.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "AlbumSongsViewController.h"
+#import "PlayListSongsViewController.h"
 #import "NowPlayingFriendsAppDelegate.h"
 
+@implementation PlayListSongsViewController
 
-@implementation AlbumSongsViewController
-
-@synthesize album;
+@synthesize playlist;
 @synthesize musicPlayer;
 @synthesize musicPlayerViewController;
 
@@ -21,7 +20,7 @@
 
 - (void)dealloc {
   
-  [album release];
+  [playlist release];
   [musicPlayer release];
   [musicPlayerViewController release];
   [super dealloc];
@@ -29,7 +28,7 @@
 
 - (void)viewDidUnload {
 
-  self.album = nil;
+  self.playlist = nil;
   self.musicPlayer = nil;
   self.musicPlayerViewController = nil;
   [super viewDidUnload];
@@ -43,12 +42,12 @@
 #pragma mark -
 #pragma mark Initializer
 
-- (id)initWithAlbum:(MPMediaItemCollection *)newAlbum {
-  
+- (id)initWithPlaylist:(MPMediaItemCollection *)newPlaylist {
+
   self = [super init];
 
   if (self != nil) {
-    self.album = newAlbum;
+    self.playlist = newPlaylist;
   }
 
   return self;
@@ -88,24 +87,24 @@
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section {
 
-  return [album count];
+  return [playlist count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView 
 	 cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-  static NSString *SongOfAlbumCellIdentifier = @"SongOfAlbumCellIdentifier";
+  static NSString *SongOfPlaylistCellIdentifier = @"SongOfPlaylistCellIdentifier";
     
   UITableViewCell *cell = 
-    [tableView dequeueReusableCellWithIdentifier:SongOfAlbumCellIdentifier];
+    [tableView dequeueReusableCellWithIdentifier:SongOfPlaylistCellIdentifier];
 
   if (cell == nil) {
     cell = [[[UITableViewCell alloc] 
 	      initWithStyle:UITableViewCellStyleDefault 
-	      reuseIdentifier:SongOfAlbumCellIdentifier] autorelease];
+	      reuseIdentifier:SongOfPlaylistCellIdentifier] autorelease];
   }
 
-  NSArray *songs = [album items];
+  NSArray *songs = [playlist items];
   MPMediaItem *song = [songs objectAtIndex:[indexPath row]];
 
   cell.textLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
@@ -125,7 +124,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [musicPlayer endGeneratingPlaybackNotifications];
 
   [musicPlayer stop];
-  [musicPlayer setQueueWithItemCollection:album];
+  [musicPlayer setQueueWithItemCollection:playlist];
   [musicPlayer play]; [musicPlayer pause];
 
   for (int i = 0; i < row; i++) {
@@ -138,4 +137,3 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 
 @end
-

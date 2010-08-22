@@ -154,7 +154,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 		     initWithNibName:@"MusicPlayerViewController" bundle:nil];
 
   navController = [self navigationWithViewController:viewController
-			title:@"再生" imageName:@"65-note.png"];
+			title:@"Player" imageName:@"65-note.png"];
 
   [controllers addObject:navController];
   [viewController release];
@@ -164,7 +164,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];
 
   navController = [self navigationWithViewController:viewController
-			title:@"曲名"  imageName:@"120-headphones.png"];
+			title:@"Song"  imageName:@"120-headphones.png"];
 
   [controllers addObject:navController];
   [viewController release];
@@ -174,7 +174,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];
 
   navController = [self navigationWithViewController:viewController
-			title:@"アーティスト"  imageName:@"112-group.png"];
+			title:@"Artist"  imageName:@"112-group.png"];
 
   [controllers addObject:navController];
   [viewController release];
@@ -234,18 +234,35 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (NSString *)nowPlayingTitle {
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
+
+  NSLog(@"currentItem:%@", currentItem);
+
+  if (currentItem == nil) {
+    return @"";
+  }
+
   return [currentItem valueForProperty:MPMediaItemPropertyTitle];
 }
 
 - (NSString *)nowPlayingAlbumTitle {
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
+
+  if (currentItem == nil) {
+    return @"";
+  }
+
   return [currentItem valueForProperty:MPMediaItemPropertyAlbumTitle];
 }
 
 - (NSString *)nowPlayingArtistName {
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
+
+  if (currentItem == nil) {
+    return @"";
+  }
+
   return [currentItem valueForProperty:MPMediaItemPropertyArtist];
 }
 
@@ -296,7 +313,17 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (UIBarButtonItem *)listButton:(SEL)selector
 			 target:(id)target {
   UIBarButtonItem *button = 
-    [[UIBarButtonItem alloc] initWithTitle:@"リスト"
+    [[UIBarButtonItem alloc] initWithTitle:@"Play list"
+			     style:UIBarButtonItemStyleBordered
+			     target:target
+			     action:selector];
+  return [button autorelease];
+}
+
+- (UIBarButtonItem *)playerButton:(SEL)selector
+			 target:(id)target {
+  UIBarButtonItem *button = 
+    [[UIBarButtonItem alloc] initWithTitle:@"Player"
 			     style:UIBarButtonItemStyleBordered
 			     target:target
 			     action:selector];

@@ -61,6 +61,8 @@
 
 - (UIBarButtonItem *)listButton:(SEL)selector
 			 target:(id)target;
+- (UIBarButtonItem *)playerButton:(SEL)selector
+			   target:(id)target;
 - (UIBarButtonItem *)completeButton:(SEL)selector
 			     target:(id)target;
 

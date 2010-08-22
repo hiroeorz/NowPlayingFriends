@@ -165,18 +165,20 @@
   self.title = [self.appDelegate nowPlayingTitle];
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
 
-  [self setMusicArtwork];
 
-  NSString *nowPlayingTitle = 
-    [currentItem valueForProperty:MPMediaItemPropertyTitle];
-
-  self.navigationController.title = nowPlayingTitle;
-  self.navigationController.tabBarItem.title = @"再生";
-
-  NSLog(@"title: %@", nowPlayingTitle);
-
-  [self performSelectorInBackground:@selector(refreshProfileImages)
-  	withObject:nil];
+  if (currentItem != nil) {
+    [self setMusicArtwork];
+    NSString *nowPlayingTitle = 
+      [currentItem valueForProperty:MPMediaItemPropertyTitle];
+    
+    self.navigationController.title = nowPlayingTitle;
+    self.navigationController.tabBarItem.title = @"Player";
+    
+    NSLog(@"title: %@", nowPlayingTitle);
+    
+    [self performSelectorInBackground:@selector(refreshProfileImages)
+	  withObject:nil];
+  }
 }
 
 /**
@@ -185,17 +187,19 @@
 - (void)setMusicArtwork {
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
-  MPMediaItemArtwork *artwork = 
-    [currentItem valueForProperty:MPMediaItemPropertyArtwork];
 
-  UIImage *artworkImage; // = noArtworkImage;
+  if (currentItem != nil) {
+    MPMediaItemArtwork *artwork = 
+      [currentItem valueForProperty:MPMediaItemPropertyArtwork];
+    
+    UIImage *artworkImage; // = noArtworkImage;
 
-  if (artwork) {
-    artworkImage = [artwork imageWithSize:CGSizeMake(320, 291)];
+    if (artwork) {
+      artworkImage = [artwork imageWithSize:CGSizeMake(320, 291)];
+    }
+
+    self.albumImageView.image = artworkImage;
   }
-
-  self.albumImageView.image = artworkImage;
-
 }
 
 - (void)refreshProfileImages {
@@ -348,7 +352,7 @@
 
 
   self.navigationItem.rightBarButtonItem = 
-    [self.appDelegate listButton:@selector(changeToSongview) target:self];
+    [self.appDelegate playerButton:@selector(changeToSongview) target:self];
     
 }
 
@@ -535,6 +539,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
   }
 
   [viewController setMusicPlayer:musicPlayer];
+  [viewController setMusicPlayerViewController:self];
   [self.navigationController pushViewController:viewController animated:YES];
 }
 
