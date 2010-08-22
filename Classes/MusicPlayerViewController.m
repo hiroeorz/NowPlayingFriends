@@ -25,6 +25,7 @@
 @synthesize listView;
 @synthesize playLists;
 @synthesize albumLists;
+@synthesize setFriendImageViewMutex;
 
 #pragma mark -
 #pragma mark Memory management
@@ -39,6 +40,7 @@
   [listView release];
   [playLists release];
   [albumLists release];
+  [setFriendImageViewMutex release];
   [super dealloc];
 }
 
@@ -52,6 +54,7 @@
   self.listView = nil;
   self.playLists = nil;
   self.albumLists = nil;
+  self.setFriendImageViewMutex = nil;
   [super viewDidUnload];
 }
 
@@ -70,6 +73,8 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
+
+  self.setFriendImageViewMutex = @"setFriendImageViewMutex";
 
   self.albumLists = [self.appDelegate albums];
   self.playLists = [self.appDelegate playLists];
@@ -228,60 +233,63 @@
 
 - (void)setFriendImageView {
 
-  NSInteger i = 0;
-  NSInteger x = 0;
-  NSInteger y = 227;
-  NSInteger xRange = kProfileImageSize;
+  @synchronized(setFriendImageViewMutex) {
 
-  for (NSDictionary *data in timeline) {
-    UIButton *profileImageButton = nil;
-    BOOL newButtonFlag = NO;
-
-    if ([profileImageButtons count] >= (i + 1)) {
-      newButtonFlag = NO;
-      profileImageButton = [profileImageButtons objectAtIndex:i];
-    }
-
-    if (profileImageButton == nil) {
-      newButtonFlag = YES;
-      profileImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    }
-
-    profileImageButton.frame = CGRectMake(x, y, 
-					  kProfileImageSize, 
-					  kProfileImageSize);
-
-    NSData *imageData = [self.appDelegate profileImage:data
-			     getRemote:YES];
-
-    NSDictionary *objects = 
-      [[NSDictionary alloc] initWithObjectsAndKeys:
-			      profileImageButton, @"profileImageButton",
-			    imageData, @"newImage", nil];
+    NSInteger i = 0;
+    NSInteger x = 0;
+    NSInteger y = 227;
+    NSInteger xRange = kProfileImageSize;
     
-    if (newButtonFlag == YES) {
+    for (NSDictionary *data in timeline) {
+      UIButton *profileImageButton = nil;
+      BOOL newButtonFlag = NO;
+      
+      if ([profileImageButtons count] >= (i + 1)) {
+	newButtonFlag = NO;
+	profileImageButton = [profileImageButtons objectAtIndex:i];
+      }
+      
+      if (profileImageButton == nil) {
+	newButtonFlag = YES;
+	profileImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+      }
+      
+      profileImageButton.frame = CGRectMake(x, y, 
+					    kProfileImageSize, 
+					    kProfileImageSize);
+      
+      NSData *imageData = [self.appDelegate profileImage:data
+			       getRemote:YES];
+      
+      NSDictionary *objects = 
+	[[NSDictionary alloc] initWithObjectsAndKeys:
+				profileImageButton, @"profileImageButton",
+			      imageData, @"newImage", nil];
+      
+      if (newButtonFlag == YES) {
       [self performSelectorOnMainThread:@selector(addProfileImageButton:)
 	    withObject:objects
 	    waitUntilDone:YES];
-    } else {
-      [self performSelectorOnMainThread:@selector(setBackgroundImage:)
-	    withObject:objects
-	    waitUntilDone:YES];
+      } else {
+	[self performSelectorOnMainThread:@selector(setBackgroundImage:)
+	      withObject:objects
+	      waitUntilDone:YES];
+      }
+      
+      x = x + xRange;
+      
+      if (((i + 1) % 5) == 0) {
+	y = y - kProfileImageSize;
+	x = 0;
+      }
+      i++;
     }
-
-    x = x + xRange;
-
-    if (((i + 1) % 5) == 0) {
-      y = y - kProfileImageSize;
-      x = 0;
-    }
-    i++;
-  }
-
-  if ([timeline count] < [profileImageButtons count]) {
-    for (i; i < [profileImageButtons count]; i++) {
-      UIButton *profileImageButton = [profileImageButtons objectAtIndex:i];
-      [profileImageButton removeFromSuperview];
+    
+    if ([timeline count] < [profileImageButtons count]) {
+      for (i; i < [profileImageButtons count]; i++) {
+	UIButton *profileImageButton = [profileImageButtons objectAtIndex:i];
+	[profileImageButton removeFromSuperview];
+      }
     }
   }
 }
@@ -448,6 +456,8 @@
     MPMediaPlaylist *playlist = [playLists objectAtIndex:listRow];
     cell.textLabel.text = 
       [playlist valueForProperty:MPMediaPlaylistPropertyName];
+    cell.imageView.image = nil;
+
   } else {
     MPMediaItemCollection *album = [albumLists objectAtIndex:listRow];
     MPMediaItem *representativeItem = [album representativeItem];
