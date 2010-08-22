@@ -360,18 +360,77 @@
     [self.appDelegate listButton:@selector(changeToListview) target:self];
 }
 
+/**
+ * @brief リストモード変更処理を行うメソッド。
+ */
+- (void)listModeChanged:(id)sender {
+
+  listmode = [sender selectedSegmentIndex];
+  [listView reloadData];
+}
+
 #pragma mark -
 #pragma mark Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section {
   
-  return [playLists count];
+  if (listmode == kListModePlayList) {
+    return [playLists count] + 1;
+  } else {
+    return [albumLists count] + 1;
+  }
+}
+
+/**
+ * @brief リスト画面先頭のアルバム／プレリスト切り替えボタン用のセルを返す。
+ */
+
+- (UITableViewCell *)cellForModeButtonWithTableView:(UITableView *)tableView {
+    
+  static NSString *PlayListModeButtonCellIdentifier = 
+    @"PlayListModeButtonCellIdentifier";
+
+  UITableViewCell *cell = 
+    [tableView 
+      dequeueReusableCellWithIdentifier:PlayListModeButtonCellIdentifier];
+
+  if (cell == nil) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+			     reuseIdentifier:PlayListModeButtonCellIdentifier];
+    [cell autorelease];
+    
+    NSArray *modeArray = [[NSArray alloc] initWithObjects:@"Album",
+					  @"Play list", nil];
+
+    UISegmentedControl *segmentedControl = 
+      [[UISegmentedControl alloc] initWithItems:modeArray];
+    [modeArray release];
+
+    segmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment;
+    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    segmentedControl.frame = CGRectMake(5, 5, 310, 
+					kModeSelectTableRowHeight - 10);
+    segmentedControl.momentary = NO;
+    segmentedControl.selectedSegmentIndex = kListModeAlbum;
+
+    [segmentedControl addTarget:self action:@selector(listModeChanged:)
+		      forControlEvents:UIControlEventValueChanged];
+
+    [cell addSubview:segmentedControl];
+    [segmentedControl release];
+  }
+
+  return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView 
 	 cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+  if ([indexPath row] == 0) {
+    return [self cellForModeButtonWithTableView:tableView];
+  }
+
   static NSString *PlayListCellIdentifier = @"PlayListCellIdentifier";
 
   UITableViewCell *cell = 
@@ -383,12 +442,14 @@
     [cell autorelease];
   }
 
+  NSInteger listRow = [indexPath row] - 1;
+
   if (listmode == kListModePlayList) {
-    MPMediaPlaylist *playlist = [playLists objectAtIndex:[indexPath row]];
+    MPMediaPlaylist *playlist = [playLists objectAtIndex:listRow];
     cell.textLabel.text = 
       [playlist valueForProperty:MPMediaPlaylistPropertyName];
   } else {
-    MPMediaItemCollection *album = [albumLists objectAtIndex:[indexPath row]];
+    MPMediaItemCollection *album = [albumLists objectAtIndex:listRow];
     MPMediaItem *representativeItem = [album representativeItem];
     cell.textLabel.text = 
       [representativeItem valueForProperty:MPMediaItemPropertyAlbumTitle];
@@ -411,7 +472,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return kPlayListTableRowHeight;
+
+  if ([indexPath row] == 0) {
+    return kModeSelectTableRowHeight;
+  } else {
+    return kPlayListTableRowHeight;
+  }
 }
 
 #pragma mark -
@@ -420,12 +486,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)tableView:(UITableView *)tableView 
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+  NSInteger listRow = [indexPath row] - 1;
   
   if (listmode == kListModePlayList) {
-    MPMediaPlaylist *playlist = [playLists objectAtIndex:[indexPath row]];
+    MPMediaPlaylist *playlist = [playLists objectAtIndex:listRow];
     [musicPlayer setQueueWithItemCollection:playlist];
   } else {
-    MPMediaItemCollection *album = [albumLists objectAtIndex:[indexPath row]];
+    MPMediaItemCollection *album = [albumLists objectAtIndex:listRow];
     [musicPlayer setQueueWithItemCollection:album];
   }
 

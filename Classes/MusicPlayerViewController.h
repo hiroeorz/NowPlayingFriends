@@ -16,9 +16,10 @@
 #define kProfileImageButtonAlpha 0.6f
 #define kProfileImageSize 64
 #define kPlayListTableRowHeight 55
+#define kModeSelectTableRowHeight 65
 
+#define kListModeAlbum 0
 #define kListModePlayList 1
-#define kListModeAlbum 2
 
 
 @interface MusicPlayerViewController : UIViewController 

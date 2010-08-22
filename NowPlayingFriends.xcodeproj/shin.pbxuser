@@ -140,6 +140,15 @@
 			5480C4591220049800F6E1C6 /* PBXBookmark */ = 5480C4591220049800F6E1C6 /* PBXBookmark */;
 			5480C45D122004A500F6E1C6 /* PBXBookmark */ = 5480C45D122004A500F6E1C6 /* PBXBookmark */;
 			5480C4671220079600F6E1C6 /* PBXBookmark */ = 5480C4671220079600F6E1C6 /* PBXBookmark */;
+			5480C46C12209B9900F6E1C6 /* PBXBookmark */ = 5480C46C12209B9900F6E1C6 /* PBXBookmark */;
+			5480C4721220B3CA00F6E1C6 /* PBXBookmark */ = 5480C4721220B3CA00F6E1C6 /* PBXBookmark */;
+			5480C4761220B40E00F6E1C6 /* PBXBookmark */ = 5480C4761220B40E00F6E1C6 /* PBXBookmark */;
+			5480C4791220B41F00F6E1C6 /* PBXBookmark */ = 5480C4791220B41F00F6E1C6 /* PBXBookmark */;
+			5480C4881220B5BE00F6E1C6 /* PBXBookmark */ = 5480C4881220B5BE00F6E1C6 /* PBXBookmark */;
+			5480C48C1220B71100F6E1C6 /* PBXBookmark */ = 5480C48C1220B71100F6E1C6 /* PBXBookmark */;
+			5480C4901220B76F00F6E1C6 /* PBXBookmark */ = 5480C4901220B76F00F6E1C6 /* PBXBookmark */;
+			5480C4941220B9A400F6E1C6 /* PBXBookmark */ = 5480C4941220B9A400F6E1C6 /* PBXBookmark */;
+			5480C4991220B9F300F6E1C6 /* PBXBookmark */ = 5480C4991220B9F300F6E1C6 /* PBXBookmark */;
 			548CFD8F121E19FA00DFBF93 = 548CFD8F121E19FA00DFBF93 /* PBXTextBookmark */;
 			54C1DC771214115F00EBD811 = 54C1DC771214115F00EBD811 /* PBXTextBookmark */;
 			54C1DC8F121416F600EBD811 = 54C1DC8F121416F600EBD811 /* PBXTextBookmark */;
@@ -725,6 +734,42 @@
 		isa = PBXBookmark;
 		fRef = 5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */;
 	};
+	5480C46C12209B9900F6E1C6 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */;
+	};
+	5480C4721220B3CA00F6E1C6 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */;
+	};
+	5480C4761220B40E00F6E1C6 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */;
+	};
+	5480C4791220B41F00F6E1C6 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */;
+	};
+	5480C4881220B5BE00F6E1C6 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */;
+	};
+	5480C48C1220B71100F6E1C6 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */;
+	};
+	5480C4901220B76F00F6E1C6 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */;
+	};
+	5480C4941220B9A400F6E1C6 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */;
+	};
+	5480C4991220B9F300F6E1C6 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */;
+	};
 	548CFD8F121E19FA00DFBF93 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
@@ -1063,9 +1108,9 @@
 	};
 	54C1E0521217B48C00EBD811 /* MusicPlayerViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {439, 5291}}";
-			sepNavSelRange = "{9730, 0}";
-			sepNavVisRange = "{9039, 383}";
+			sepNavIntBoundsRect = "{{0, 0}, {439, 6656}}";
+			sepNavSelRange = "{12300, 0}";
+			sepNavVisRange = "{9082, 402}";
 		};
 	};
 	54C1E0571217B49500EBD811 /* PBXTextBookmark */ = {
