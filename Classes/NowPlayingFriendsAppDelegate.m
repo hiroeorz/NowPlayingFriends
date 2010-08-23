@@ -89,11 +89,6 @@
 - (void)setupMusicPlayer {
 
   [self setMusicPlayer:[MPMusicPlayerController iPodMusicPlayer]];
-  [self addMusicPlayerNotification:self];
-
-  if ([musicPlayer nowPlayingItem]) {
-    
-  }
 }
 
 /**

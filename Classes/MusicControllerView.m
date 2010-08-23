@@ -26,7 +26,6 @@
 
 - (void)drawRect:(CGRect)rect {
 
-  // CGContextを用意する
   CGContextRef context = UIGraphicsGetCurrentContext();
   
   CGGradientRef gradient;

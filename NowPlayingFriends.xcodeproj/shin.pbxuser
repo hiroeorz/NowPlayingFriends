@@ -1360,9 +1360,9 @@
 	};
 	5480C61912221FF700F6E1C6 /* MusicControllerView.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {439, 663}}";
-			sepNavSelRange = "{924, 0}";
-			sepNavVisRange = "{587, 332}";
+			sepNavIntBoundsRect = "{{0, 0}, {439, 851}}";
+			sepNavSelRange = "{1358, 0}";
+			sepNavVisRange = "{684, 409}";
 		};
 	};
 	5480C61F122221CA00F6E1C6 /* PBXTextBookmark */ = {
