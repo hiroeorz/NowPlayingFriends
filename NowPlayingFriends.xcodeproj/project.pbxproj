@@ -26,6 +26,7 @@
 		5480C4CD1220E4C700F6E1C6 /* AlbumSongsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5480C4CB1220E4C700F6E1C6 /* AlbumSongsViewController.xib */; };
 		5480C58512212FF600F6E1C6 /* PlayListSongsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5480C58312212FF600F6E1C6 /* PlayListSongsViewController.m */; };
 		5480C58612212FF600F6E1C6 /* PlayListSongsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5480C58412212FF600F6E1C6 /* PlayListSongsViewController.xib */; };
+		5480C61A12221FF700F6E1C6 /* MusicControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5480C61912221FF700F6E1C6 /* MusicControllerView.m */; };
 		54C1DC3D1213F3ED00EBD811 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */; };
 		54C1DC3E1213F3ED00EBD811 /* NowPlayingViewControllers.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C1DC3C1213F3ED00EBD811 /* NowPlayingViewControllers.xib */; };
 		54C1DC88121415DB00EBD811 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DC87121415DB00EBD811 /* FriendCell.m */; };
@@ -87,6 +88,8 @@
 		5480C58212212FF600F6E1C6 /* PlayListSongsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayListSongsViewController.h; sourceTree = "<group>"; };
 		5480C58312212FF600F6E1C6 /* PlayListSongsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayListSongsViewController.m; sourceTree = "<group>"; };
 		5480C58412212FF600F6E1C6 /* PlayListSongsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlayListSongsViewController.xib; path = Classes/PlayListSongsViewController.xib; sourceTree = "<group>"; };
+		5480C61812221FF700F6E1C6 /* MusicControllerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicControllerView.h; sourceTree = "<group>"; };
+		5480C61912221FF700F6E1C6 /* MusicControllerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicControllerView.m; sourceTree = "<group>"; };
 		54C1DC3A1213F3ED00EBD811 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		54C1DC3C1213F3ED00EBD811 /* NowPlayingViewControllers.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NowPlayingViewControllers.xib; path = Classes/NowPlayingViewControllers.xib; sourceTree = "<group>"; };
@@ -201,6 +204,8 @@
 				5480C4CA1220E4C700F6E1C6 /* AlbumSongsViewController.m */,
 				5480C58212212FF600F6E1C6 /* PlayListSongsViewController.h */,
 				5480C58312212FF600F6E1C6 /* PlayListSongsViewController.m */,
+				5480C61812221FF700F6E1C6 /* MusicControllerView.h */,
+				5480C61912221FF700F6E1C6 /* MusicControllerView.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -452,6 +457,7 @@
 				54C1E0541217B48C00EBD811 /* MusicPlayerViewController.m in Sources */,
 				5480C4CC1220E4C700F6E1C6 /* AlbumSongsViewController.m in Sources */,
 				5480C58512212FF600F6E1C6 /* PlayListSongsViewController.m in Sources */,
+				5480C61A12221FF700F6E1C6 /* MusicControllerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

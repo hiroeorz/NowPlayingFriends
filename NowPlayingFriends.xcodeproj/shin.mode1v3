@@ -277,13 +277,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>33</integer>
+									<integer>35</integer>
 									<integer>11</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {272, 736}}</string>
+							<string>{{0, 46}, {272, 736}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -318,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>PlayListSongsViewController.h</string>
+								<string>MusicControllerView.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>PlayListSongsViewController.h</string>
+										<string>MusicControllerView.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5480C5CD122149C900F6E1C6</string>
+										<string>5480C675122234AE00F6E1C6</string>
 										<key>history</key>
 										<array>
 											<string>54C1DC8F121416F600EBD811</string>
@@ -348,7 +348,6 @@
 											<string>54C1E02B1216CE0B00EBD811</string>
 											<string>54C1E02C1216CE0B00EBD811</string>
 											<string>54C1E0571217B49500EBD811</string>
-											<string>54C1E0581217B49500EBD811</string>
 											<string>5480C27C121E571900F6E1C6</string>
 											<string>5480C3DC121FD21500F6E1C6</string>
 											<string>5480C3DD121FD21500F6E1C6</string>
@@ -356,7 +355,10 @@
 											<string>5480C3DF121FD21500F6E1C6</string>
 											<string>5480C4CF1220E4D900F6E1C6</string>
 											<string>5480C5881221300200F6E1C6</string>
-											<string>5480C58F1221357000F6E1C6</string>
+											<string>5480C61F122221CA00F6E1C6</string>
+											<string>5480C620122221CA00F6E1C6</string>
+											<string>5480C621122221CA00F6E1C6</string>
+											<string>5480C622122221CA00F6E1C6</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -554,12 +556,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>5480C676122234AE00F6E1C6</string>
 		<string>5480C286121E571900F6E1C6</string>
 		<string>5480C287121E571900F6E1C6</string>
 		<string>1CD10A99069EF8BA00B06720</string>
+		<string>54C1DC1E1213B28F00EBD811</string>
 		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
-		<string>54C1DC1E1213B28F00EBD811</string>
 	</array>
 	<key>WindowString</key>
 	<string>76 198 1028 795 0 0 1680 1028 </string>
@@ -583,7 +586,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>AlbumSongsViewController.h</string>
+								<string>MusicControllerView.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>

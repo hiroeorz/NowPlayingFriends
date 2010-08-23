@@ -64,6 +64,9 @@
   [super didReceiveMemoryWarning];
 }
 
+#pragma mark -
+#pragma mark initializer
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
   }
@@ -195,7 +198,9 @@
     UIImage *artworkImage; // = noArtworkImage;
 
     if (artwork) {
-      artworkImage = [artwork imageWithSize:CGSizeMake(320, 291)];
+      artworkImage = 
+	[artwork imageWithSize:CGSizeMake(albumImageView.frame.size.height, 
+					  albumImageView.frame.size.height)];
     }
 
     self.albumImageView.image = artworkImage;
@@ -242,7 +247,7 @@
 
     NSInteger i = 0;
     NSInteger x = 0;
-    NSInteger y = 227;
+    NSInteger y = albumImageView.frame.size.height - kProfileImageSize;
     NSInteger xRange = kProfileImageSize;
     
     for (NSDictionary *data in timeline) {
