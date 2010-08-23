@@ -29,9 +29,6 @@
   // CGContextを用意する
   CGContextRef context = UIGraphicsGetCurrentContext();
   
-  // CGGradientを生成する
-  // 生成するためにCGColorSpaceと色データの配列が必要になるので
-  // 適当に用意する
   CGGradientRef gradient;
   CGColorSpaceRef colorSpace;
   size_t num_locations = 2;
@@ -42,14 +39,10 @@
   gradient = CGGradientCreateWithColorComponents(colorSpace, components,
 						 locations, num_locations);
   
-  // 生成したCGGradientを描画する
-  // 始点と終点を指定してやると、その間に直線的なグラデーションが描画される。
-  // （横幅は無限大）
   CGPoint startPoint = CGPointMake(self.frame.size.width/2, 0.0);
   CGPoint endPoint = CGPointMake(self.frame.size.width/2, self.frame.size.height);
   CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
   
-  // GradientとColorSpaceを開放する
   CGColorSpaceRelease(colorSpace);
   CGGradientRelease(gradient);
 }
