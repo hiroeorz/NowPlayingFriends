@@ -75,13 +75,12 @@
     name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
     object:musicPlayer];
 
-  /*
+  
   [notificationCenter 
     addObserver: object
-    selector: @selector (handle_NowPlayingItemChanged:)
+    selector: @selector (handle_PlayBackStateDidChanged:)
     name: MPMusicPlayerControllerPlaybackStateDidChangeNotification
     object: musicPlayer];
-  */
 
   [musicPlayer beginGeneratingPlaybackNotifications];
 }

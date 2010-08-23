@@ -160,6 +160,42 @@
 #pragma mark Timeline Refresh Methods
 
 /**
+ * @brief プレイヤーの制御状況が変化したときに呼ばれる。
+ */
+- (void)handle_PlayBackStateDidChanged:(id)notification {
+  
+  UIImage *image;
+
+  if ([musicPlayer playbackState] == MPMusicPlaybackStateStopped) {
+    NSLog(@"playbackStateChanged:%@", @"stop");
+
+    image = [UIImage imageNamed:@"Play.png"];
+    [playButton setImage:image 
+		forState:UIControlStateNormal];    
+  }
+
+  if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
+    NSLog(@"playbackStateChanged:%@", @"play");
+
+    image = [UIImage imageNamed:@"Pause.png"];
+    [playButton setImage:image 
+		forState:UIControlStateNormal];
+  }
+
+  if ([musicPlayer playbackState] == MPMusicPlaybackStatePaused) {
+    NSLog(@"playbackStateChanged:%@", @"pause");
+
+    image = [UIImage imageNamed:@"Play.png"];
+    [playButton setImage:image 
+		forState:UIControlStateNormal];    
+  }
+
+  if ([musicPlayer playbackState] == MPMusicPlaybackStateInterrupted) {
+
+  }
+}
+
+/**
  * @brief 再生中の曲が変わったときに呼ばれる。
  */
 - (void)handle_NowPlayingItemChanged:(id)notification {

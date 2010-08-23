@@ -229,8 +229,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -267,6 +265,8 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>5480C6A3122296A200F6E1C6</string>
+								<string>5480C6A41222972000F6E1C6</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
@@ -277,13 +277,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>35</integer>
-									<integer>11</integer>
+									<integer>3</integer>
+									<integer>2</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 46}, {272, 736}}</string>
+							<string>{{0, 0}, {272, 736}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -302,7 +303,7 @@
 							<real>272</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>76 198 1028 795 0 0 1680 1028 </string>
+						<string>614 143 1028 795 0 0 1680 1028 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -330,7 +331,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5480C675122234AE00F6E1C6</string>
+										<string>5480C6C612229C2F00F6E1C6</string>
 										<key>history</key>
 										<array>
 											<string>54C1DC8F121416F600EBD811</string>
@@ -372,7 +373,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {734, 548}}</string>
 								<key>RubberWindowFrame</key>
-								<string>76 198 1028 795 0 0 1680 1028 </string>
+								<string>614 143 1028 795 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -380,6 +381,8 @@
 							<string>548pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -392,7 +395,7 @@
 								<key>Frame</key>
 								<string>{{0, 553}, {734, 201}}</string>
 								<key>RubberWindowFrame</key>
-								<string>76 198 1028 795 0 0 1680 1028 </string>
+								<string>614 143 1028 795 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -556,7 +559,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>5480C676122234AE00F6E1C6</string>
+		<string>5480C6C712229C2F00F6E1C6</string>
 		<string>5480C286121E571900F6E1C6</string>
 		<string>5480C287121E571900F6E1C6</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -565,7 +568,7 @@
 		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
-	<string>76 198 1028 795 0 0 1680 1028 </string>
+	<string>614 143 1028 795 0 0 1680 1028 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -586,7 +589,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MusicControllerView.m</string>
+								<string>MusicPlayerViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
