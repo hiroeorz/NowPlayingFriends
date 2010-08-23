@@ -181,14 +181,7 @@
  */
 - (NSString *)username:(NSDictionary *)data {
 
-  NSDictionary *user = [data objectForKey:@"user"];
-  NSString *username = [data objectForKey:@"name"];
-
-  if (user == nil) {
-    username = [data objectForKey:@"from_user"];
-  }
-  
-  return username;
+  return [self.appDelegate username:data];
 }
 
 - (void)setProfileImageWithObjects:(NSDictionary *)objects {

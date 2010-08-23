@@ -56,6 +56,8 @@
 - (void)setAnimationWithView:(id)targetView 
 	       animationType:(UIViewAnimationTransition)transition;
 
+- (NSString *)username:(NSDictionary *)data;
+
 - (NSData *)profileImage:(NSDictionary *)data 
 	       getRemote:(BOOL) getRemoteFlag;
 

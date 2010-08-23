@@ -232,11 +232,25 @@
 
   NSArray *newTimeline = [client getSearchTimeLine:songTitle, artistName, nil];
 
+  NSMutableArray *uniqArray = [[NSMutableArray alloc] init];
+  NSMutableArray *checkArray = [[NSMutableArray alloc] init];
+
+  for (NSDictionary *data in newTimeline) {
+    NSString *username = [self.appDelegate username:data];
+
+    if ([checkArray indexOfObject:username] == NSNotFound) {
+      [uniqArray addObject:data];
+      [checkArray addObject:username];
+    }
+  }
+
   @synchronized(timeline) {
-    self.timeline = newTimeline;
+    self.timeline = uniqArray;
   }
 
   [client release];
+  [uniqArray release];
+  [checkArray release];
 
   NSLog(@"timeline data updated.");
 }
@@ -276,7 +290,7 @@
 				profileImageButton, @"profileImageButton",
 			      imageData, @"newImage", nil];
       
-      if (newButtonFlag == YES) {
+      if (newButtonFlag == YES || profileImageButton.superview == nil) {
 	[self performSelectorOnMainThread:@selector(addProfileImageButton:)
 	      withObject:objects
 	      waitUntilDone:YES];
