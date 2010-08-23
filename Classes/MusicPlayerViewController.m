@@ -211,12 +211,18 @@
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-  self.beforeTimeline = timeline;
-  [self refreshTimeline];
-  
-  if (![timeline isEqualToArray:beforeTimeline]) {
-    [self setFriendImageView];
-    NSLog(@"refreshed.");
+  NSLog(@"waiting for mutex...");
+
+  @synchronized(setFriendImageViewMutex) {
+    NSLog(@"starting refresh timeline");
+
+    self.beforeTimeline = timeline;
+    [self refreshTimeline];
+    
+    if (![timeline isEqualToArray:beforeTimeline]) {
+      [self setFriendImageView];
+      NSLog(@"refreshed.");
+    } 
   }
 
   [pool release];
@@ -257,63 +263,74 @@
 
 - (void)setFriendImageView {
 
-  @synchronized(setFriendImageViewMutex) {
-
-    NSInteger i = 0;
-    NSInteger x = 0;
-    NSInteger y = albumImageView.frame.size.height - kProfileImageSize;
-    NSInteger xRange = kProfileImageSize;
+  NSInteger i = 0;
+  NSInteger x = 0;
+  NSInteger y = albumImageView.frame.size.height - kProfileImageSize;
+  NSInteger xRange = kProfileImageSize;
+  
+  for (NSDictionary *data in timeline) {
+    UIButton *profileImageButton = nil;
+    BOOL newButtonFlag = NO;
     
-    for (NSDictionary *data in timeline) {
-      UIButton *profileImageButton = nil;
-      BOOL newButtonFlag = NO;
-      
-      if ([profileImageButtons count] >= (i + 1)) {
-	newButtonFlag = NO;
-	profileImageButton = [profileImageButtons objectAtIndex:i];
-      }
-      
-      if (profileImageButton == nil) {
-	newButtonFlag = YES;
-	profileImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-      }
-      
-      profileImageButton.frame = CGRectMake(x, y, 
-					    kProfileImageSize, 
-					    kProfileImageSize);
-      
-      NSData *imageData = [self.appDelegate profileImage:data
-			       getRemote:YES];
-      
-      NSDictionary *objects = 
-	[[NSDictionary alloc] initWithObjectsAndKeys:
-				profileImageButton, @"profileImageButton",
-			      imageData, @"newImage", nil];
-      
-      if (newButtonFlag == YES || profileImageButton.superview == nil) {
-	[self performSelectorOnMainThread:@selector(addProfileImageButton:)
-	      withObject:objects
-	      waitUntilDone:YES];
-      } else {
-	[self performSelectorOnMainThread:@selector(setBackgroundImage:)
-	      withObject:objects
-	      waitUntilDone:YES];
-      }
-      
-      x = x + xRange;
-      
-      if (((i + 1) % 5) == 0) {
-	y = y - kProfileImageSize;
-	x = 0;
-      }
-      i++;
+    if ([profileImageButtons count] >= (i + 1)) {
+      newButtonFlag = NO;
+      profileImageButton = [profileImageButtons objectAtIndex:i];
     }
     
-    if ([timeline count] < [profileImageButtons count]) {
-      for (i; i < [profileImageButtons count]; i++) {
-	UIButton *profileImageButton = [profileImageButtons objectAtIndex:i];
-	[profileImageButton removeFromSuperview];
+    if (profileImageButton == nil) {
+      newButtonFlag = YES;
+      profileImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    }
+    
+    profileImageButton.frame = CGRectMake(x, y, 
+					  kProfileImageSize, 
+					  kProfileImageSize);
+    
+    NSData *imageData = [self.appDelegate profileImage:data
+			     getRemote:YES];
+    
+    NSDictionary *objects = 
+      [[NSDictionary alloc] initWithObjectsAndKeys:
+			      profileImageButton, @"profileImageButton",
+			    imageData, @"newImage", nil];
+    
+    if (newButtonFlag == YES) {
+
+      @synchronized(profileImageButtons) {
+	[profileImageButtons addObject:profileImageButton];
+	NSLog(@"buttons count:%d", [profileImageButtons count]);
       }
+
+      [self performSelectorOnMainThread:@selector(addProfileImageButton:)
+	    withObject:objects
+	    waitUntilDone:YES];
+
+    }else if (newButtonFlag == NO && profileImageButton.superview == nil) {
+
+      [self performSelectorOnMainThread:@selector(addProfileImageButton:)
+	    withObject:objects
+	    waitUntilDone:YES];
+
+    } else {
+
+      [self performSelectorOnMainThread:@selector(setBackgroundImage:)
+	    withObject:objects
+	    waitUntilDone:YES];
+    }
+    
+    x = x + xRange;
+    
+    if (((i + 1) % 5) == 0) {
+      y = y - kProfileImageSize;
+      x = 0;
+    }
+    i++;
+  }
+  
+  if ([timeline count] < [profileImageButtons count]) {
+    for (int x = i; x < [profileImageButtons count]; x++) {
+      UIButton *profileImageButton = [profileImageButtons objectAtIndex:x];
+      [profileImageButton removeFromSuperview];
     }
   }
 }
@@ -328,11 +345,6 @@
 
   [profileImageButton setBackgroundImage:newImage 
 		      forState:UIControlStateNormal];
-
-  @synchronized(profileImageButtons) {
-    [profileImageButtons addObject:profileImageButton];
-    NSLog(@"buttons count:%d", [profileImageButtons count]);
-  }
    
   profileImageButton.alpha = kProfileImageButtonAlpha;
 }
