@@ -39,7 +39,7 @@
   NSArray *playLists;
   NSArray *albumLists;
   NSInteger listmode;
-  NSString *setFriendImageViewMutex;
+  NSString *refreshProfileImagesMutex;
 }
 
 @property (nonatomic, retain) NSArray *timeline;
@@ -55,7 +55,7 @@
 @property (nonatomic, retain) IBOutlet UITableView *listView;
 @property (nonatomic, retain) NSArray *playLists;
 @property (nonatomic, retain) NSArray *albumLists;
-@property (nonatomic, retain) NSString *setFriendImageViewMutex;
+@property (nonatomic, retain) NSString *refreshProfileImagesMutex;
 
 - (void)setMusicArtwork;
 

@@ -26,7 +26,7 @@
 @synthesize listView;
 @synthesize playLists;
 @synthesize albumLists;
-@synthesize setFriendImageViewMutex;
+@synthesize refreshProfileImagesMutex;
 
 #pragma mark -
 #pragma mark Memory management
@@ -41,7 +41,7 @@
   [listView release];
   [playLists release];
   [albumLists release];
-  [setFriendImageViewMutex release];
+  [refreshProfileImagesMutex release];
   [super dealloc];
 }
 
@@ -55,7 +55,7 @@
   self.listView = nil;
   self.playLists = nil;
   self.albumLists = nil;
-  self.setFriendImageViewMutex = nil;
+  self.refreshProfileImagesMutex = nil;
   [super viewDidUnload];
 }
 
@@ -78,7 +78,7 @@
 
 - (void)viewDidLoad {
 
-  self.setFriendImageViewMutex = @"setFriendImageViewMutex";
+  self.refreshProfileImagesMutex = @"refreshProfileImagesMutex";
 
   self.albumLists = [self.appDelegate albums];
   self.playLists = [self.appDelegate playLists];
@@ -213,7 +213,7 @@
 
   NSLog(@"waiting for mutex...");
 
-  @synchronized(setFriendImageViewMutex) {
+  @synchronized(refreshProfileImagesMutex) {
     NSLog(@"starting refresh timeline");
 
     self.beforeTimeline = timeline;
