@@ -267,8 +267,6 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
-								<string>5480C6A3122296A200F6E1C6</string>
-								<string>5480C6A41222972000F6E1C6</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
@@ -279,9 +277,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>3</integer>
-									<integer>2</integer>
-									<integer>1</integer>
+									<integer>39</integer>
+									<integer>13</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -321,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MusicControllerView.h</string>
+								<string>UserInformationViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -329,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MusicControllerView.h</string>
+										<string>UserInformationViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5480C73012236DDA00F6E1C6</string>
+										<string>5480C7841223855B00F6E1C6</string>
 										<key>history</key>
 										<array>
 											<string>54C1DC8F121416F600EBD811</string>
@@ -358,10 +355,12 @@
 											<string>5480C3DF121FD21500F6E1C6</string>
 											<string>5480C4CF1220E4D900F6E1C6</string>
 											<string>5480C5881221300200F6E1C6</string>
-											<string>5480C61F122221CA00F6E1C6</string>
 											<string>5480C620122221CA00F6E1C6</string>
 											<string>5480C621122221CA00F6E1C6</string>
-											<string>5480C6E41223643200F6E1C6</string>
+											<string>5480C74212236F1D00F6E1C6</string>
+											<string>5480C74312236F1D00F6E1C6</string>
+											<string>5480C7491223714900F6E1C6</string>
+											<string>5480C74A1223714900F6E1C6</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -559,7 +558,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>5480C73112236DDA00F6E1C6</string>
+		<string>5480C7851223855B00F6E1C6</string>
 		<string>5480C286121E571900F6E1C6</string>
 		<string>5480C287121E571900F6E1C6</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -589,7 +588,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MusicPlayerViewController.m</string>
+								<string>UserInformationViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>

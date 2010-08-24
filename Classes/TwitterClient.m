@@ -81,7 +81,10 @@
   NSString *urlString = [[NSString alloc] 
 			  initWithFormat:kUserInformationURL, username];
 
-  return [self dictionaryOfRemoteJson:urlString];
+  NSDictionary *user = [self dictionaryOfRemoteJson:urlString];
+  [urlString release];
+
+  return user;
 }
 
 /**
@@ -104,7 +107,6 @@
 - (NSArray *)arrayOfRemoteJson:(NSString *)urlString {
 
   NSURL *url = [NSURL URLWithString:urlString];
-  [urlString release];
 
   NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url
 					   encoding:NSUTF8StringEncoding
@@ -113,7 +115,7 @@
   NSArray *jsonArray = [jsonString JSONValue];
   [jsonString release];
 
-  return [jsonArray autorelease];
+  return jsonArray;
 }
 
 /**
@@ -122,16 +124,14 @@
 - (NSDictionary *)dictionaryOfRemoteJson:(NSString *)urlString {
 
   NSURL *url = [NSURL URLWithString:urlString];
-  [urlString release];
 
   NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url
 					   encoding:NSUTF8StringEncoding
 					   error:nil];
-
-  NSArray *jsonDictionary = [jsonString JSONValue];
+  NSDictionary *jsonDictionary = [jsonString JSONValue];
   [jsonString release];
 
-  return [jsonDictionary autorelease];
+  return jsonDictionary;
 }
 
 - (void)logJsonData:(NSArray *)jsonArray {

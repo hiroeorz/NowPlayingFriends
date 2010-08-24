@@ -32,6 +32,8 @@
 		5480C6DD1222A21600F6E1C6 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C6D81222A21600F6E1C6 /* Play.png */; };
 		5480C6DE1222A21600F6E1C6 /* Previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C6D91222A21600F6E1C6 /* Previous.png */; };
 		5480C6DF1222A21600F6E1C6 /* Stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C6DA1222A21600F6E1C6 /* Stop.png */; };
+		5480C73F12236F0D00F6E1C6 /* UserInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5480C73D12236F0D00F6E1C6 /* UserInformationViewController.m */; };
+		5480C74012236F0D00F6E1C6 /* UserInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5480C73E12236F0D00F6E1C6 /* UserInformationViewController.xib */; };
 		54C1DC3D1213F3ED00EBD811 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */; };
 		54C1DC3E1213F3ED00EBD811 /* NowPlayingViewControllers.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C1DC3C1213F3ED00EBD811 /* NowPlayingViewControllers.xib */; };
 		54C1DC88121415DB00EBD811 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DC87121415DB00EBD811 /* FriendCell.m */; };
@@ -100,6 +102,9 @@
 		5480C6D81222A21600F6E1C6 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Play.png; path = icons/mediaIcons003/Play.png; sourceTree = "<group>"; };
 		5480C6D91222A21600F6E1C6 /* Previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Previous.png; path = icons/mediaIcons003/Previous.png; sourceTree = "<group>"; };
 		5480C6DA1222A21600F6E1C6 /* Stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop.png; path = icons/mediaIcons003/Stop.png; sourceTree = "<group>"; };
+		5480C73C12236F0D00F6E1C6 /* UserInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInformationViewController.h; sourceTree = "<group>"; };
+		5480C73D12236F0D00F6E1C6 /* UserInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInformationViewController.m; sourceTree = "<group>"; };
+		5480C73E12236F0D00F6E1C6 /* UserInformationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UserInformationViewController.xib; path = Classes/UserInformationViewController.xib; sourceTree = "<group>"; };
 		54C1DC3A1213F3ED00EBD811 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		54C1DC3C1213F3ED00EBD811 /* NowPlayingViewControllers.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NowPlayingViewControllers.xib; path = Classes/NowPlayingViewControllers.xib; sourceTree = "<group>"; };
@@ -216,6 +221,8 @@
 				5480C58312212FF600F6E1C6 /* PlayListSongsViewController.m */,
 				5480C61812221FF700F6E1C6 /* MusicControllerView.h */,
 				5480C61912221FF700F6E1C6 /* MusicControllerView.m */,
+				5480C73C12236F0D00F6E1C6 /* UserInformationViewController.h */,
+				5480C73D12236F0D00F6E1C6 /* UserInformationViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -252,6 +259,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5480C73E12236F0D00F6E1C6 /* UserInformationViewController.xib */,
 				5480C6A3122296A200F6E1C6 /* icons */,
 				5480C58412212FF600F6E1C6 /* PlayListSongsViewController.xib */,
 				5480C4CB1220E4C700F6E1C6 /* AlbumSongsViewController.xib */,
@@ -449,6 +457,7 @@
 				5480C6DD1222A21600F6E1C6 /* Play.png in Resources */,
 				5480C6DE1222A21600F6E1C6 /* Previous.png in Resources */,
 				5480C6DF1222A21600F6E1C6 /* Stop.png in Resources */,
+				5480C74012236F0D00F6E1C6 /* UserInformationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +503,7 @@
 				5480C4CC1220E4C700F6E1C6 /* AlbumSongsViewController.m in Sources */,
 				5480C58512212FF600F6E1C6 /* PlayListSongsViewController.m in Sources */,
 				5480C61A12221FF700F6E1C6 /* MusicControllerView.m in Sources */,
+				5480C73F12236F0D00F6E1C6 /* UserInformationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

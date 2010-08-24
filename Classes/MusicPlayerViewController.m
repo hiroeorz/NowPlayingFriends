@@ -10,6 +10,7 @@
 #import "TwitterClient.h"
 #import "AlbumSongsViewController.h"
 #import "PlayListSongsViewController.h"
+#import "UserInformationViewController.h"
 
 @implementation MusicPlayerViewController
 
@@ -127,6 +128,11 @@
   NSDictionary *timelineData = [timeline objectAtIndex:tagIndex];
   NSString *username = [self.appDelegate username:timelineData];
   NSLog(@"tupped user:%@", username);
+
+  UserInformationViewController *viewController = 
+    [[UserInformationViewController alloc] initWithUserName:username];
+
+  [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (IBAction)changeVolume:(id)sender {
