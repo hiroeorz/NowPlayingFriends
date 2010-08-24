@@ -60,6 +60,7 @@
 
 - (NSData *)profileImage:(NSDictionary *)data 
 	       getRemote:(BOOL) getRemoteFlag;
+- (NSData *)originalProfileImage:(NSDictionary *)data;
 
 - (UIBarButtonItem *)listButton:(SEL)selector
 			 target:(id)target;

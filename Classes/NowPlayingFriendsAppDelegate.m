@@ -316,6 +316,25 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return imageData;
 }
 
+- (NSData *)originalProfileImage:(NSDictionary *)data {
+
+  NSDictionary *user = [data objectForKey:@"user"];
+
+  if (user == nil) { user = data; }
+
+  NSString *normalImageURLString = [user objectForKey:@"profile_image_url"];
+  NSString *imageURLString = 
+    [normalImageURLString stringByReplacingOccurrencesOfString:@"_normal.jpg"
+			  withString:@".jpg"];
+
+
+  NSURL *imageURL = [NSURL URLWithString:imageURLString];
+  NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+
+  return imageData;
+}
+  
+
 - (UIBarButtonItem *)listButton:(SEL)selector
 			 target:(id)target {
   UIBarButtonItem *button = 
