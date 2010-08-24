@@ -34,6 +34,8 @@
 
 - (void)setUserInformations:(NSDictionary *)user;
 - (void)getUserInformation;
+- (void)getUserProfileImage:(NSDictionary *)user;
+- (void)setUserProfileImage:(NSData *)imageData;
 
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 

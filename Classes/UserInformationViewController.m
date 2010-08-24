@@ -106,6 +106,9 @@
   NSDictionary *user = [client userInformation:username];
   NSLog(@"user: %@", user);
 
+  [self performSelectorInBackground:@selector(getUserProfileImage:)
+	withObject:user];
+
   [self performSelectorOnMainThread:@selector(setUserInformations:)
 	withObject:user
 	waitUntilDone:YES];
@@ -113,8 +116,6 @@
   [client release];
   [pool release];
 }
-
-#pragma mark -
 
 - (void)setUserInformations:(NSDictionary *)user {
 
@@ -129,7 +130,22 @@
   friendsLabel.text = [NSString stringWithFormat:@"Friends    :  %@",
 				[user objectForKey:@"friends_count"]];
 
+}
+
+- (void)getUserProfileImage:(NSDictionary *)user {
+
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
   NSData *imageData = [self.appDelegate originalProfileImage:user];
+
+  [self performSelectorOnMainThread:@selector(setUserProfileImage:)
+	withObject:imageData
+	waitUntilDone:YES];
+
+  [pool release];
+}
+
+- (void)setUserProfileImage:(NSData *)imageData {
+
   UIImage *newImage = [[UIImage alloc] initWithData:imageData];
   [profileImageButton setBackgroundImage:newImage 
 		      forState:UIControlStateNormal];
