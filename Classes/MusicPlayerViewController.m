@@ -119,6 +119,16 @@
 #pragma mark -
 #pragma mark IBAction Methods
 
+- (void)openUserInformationView:(id)sender {
+
+  NSLog(@"touched: %d", [sender tag]);
+
+  NSInteger tagIndex = [sender tag];
+  NSDictionary *timelineData = [timeline objectAtIndex:tagIndex];
+  NSString *username = [self.appDelegate username:timelineData];
+  NSLog(@"tupped user:%@", username);
+}
+
 - (IBAction)changeVolume:(id)sender {
   musicPlayer.volume = volumeSlider.value;
 }
@@ -301,8 +311,8 @@
 
   NSInteger i = 0;
   NSInteger x = 0;
-  NSInteger y = albumImageView.frame.size.height - kProfileImageSize;
   NSInteger xRange = kProfileImageSize;
+  NSInteger y = albumImageView.frame.size.height - xRange + 32;
   
   for (NSDictionary *data in timeline) {
     UIButton *profileImageButton = nil;
@@ -316,8 +326,14 @@
     if (profileImageButton == nil) {
       newButtonFlag = YES;
       profileImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+
+      [profileImageButton addTarget:self 
+			  action:@selector(openUserInformationView:)
+			  forControlEvents:UIControlEventTouchUpInside];
     }
-    
+
+    profileImageButton.tag = i;
+
     profileImageButton.frame = CGRectMake(x, y, 
 					  kProfileImageSize, 
 					  kProfileImageSize);
@@ -377,7 +393,7 @@
   NSData *imageData = [objects objectForKey:@"newImage"];
   UIImage *newImage = [[UIImage alloc] initWithData:imageData];
 
-  [self.albumImageView addSubview:profileImageButton];
+  [self.songView addSubview:profileImageButton];
 
   [profileImageButton setBackgroundImage:newImage 
 		      forState:UIControlStateNormal];
@@ -397,7 +413,7 @@
 
   [profileImageButton setBackgroundImage:newImage 
 		      forState:UIControlStateNormal];
-
+    
   [UIView commitAnimations];
 }
 
@@ -412,7 +428,6 @@
   if (songView.superview != nil) {
     [songView removeFromSuperview];
   }
-  
 
   [self.view addSubview:listView];
   [UIView commitAnimations];

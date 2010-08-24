@@ -74,6 +74,17 @@
 }
 
 /**
+ * @brief ツイッターユーザの情報を返します。
+ */
+- (NSDictionary *)userInformation:(NSString *)username {
+
+  NSString *urlString = [[NSString alloc] 
+			  initWithFormat:kUserInformationURL, username];
+
+  return [self dictionaryOfRemoteJson:urlString];
+}
+
+/**
  * @brief URLエンコードされた文字列を返します。
  */
 - (NSString *)urlEncodedString:(NSString *)str {
@@ -102,9 +113,25 @@
   NSArray *jsonArray = [jsonString JSONValue];
   [jsonString release];
 
-  //[self logJsonData:jsonArray];
-
   return [jsonArray autorelease];
+}
+
+/**
+ * @brief 渡されたURL文字列からJSONデータを取得しNSDictionaryにパースして返します。
+ */
+- (NSDictionary *)dictionaryOfRemoteJson:(NSString *)urlString {
+
+  NSURL *url = [NSURL URLWithString:urlString];
+  [urlString release];
+
+  NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url
+					   encoding:NSUTF8StringEncoding
+					   error:nil];
+
+  NSArray *jsonDictionary = [jsonString JSONValue];
+  [jsonString release];
+
+  return [jsonDictionary autorelease];
 }
 
 - (void)logJsonData:(NSArray *)jsonArray {

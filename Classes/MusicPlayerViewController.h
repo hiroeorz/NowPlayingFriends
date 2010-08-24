@@ -25,8 +25,9 @@
 @interface MusicPlayerViewController : UIViewController 
 <UITableViewDataSource, UITableViewDelegate> {
 
-@private
   NSArray *timeline;
+
+@private
   NSArray *beforeTimeline;
   UIImageView *albumImageView;
   UISlider *volumeSlider;
@@ -67,6 +68,7 @@
 - (IBAction)skipToNextItem:(id)sender;
 - (IBAction)skipToBeginningOrPreviousItem:(id)sender;
 - (IBAction)skipToPreviousItem:(id)sender;
+- (void)openUserInformationView:(id)sender;
 
 - (void)handle_PlayBackStateDidChanged:(id)notification;
 - (void)handle_NowPlayingItemChanged:(id)notification;

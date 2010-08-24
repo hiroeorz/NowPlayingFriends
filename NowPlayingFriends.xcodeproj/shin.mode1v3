@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -331,7 +333,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5480C6C612229C2F00F6E1C6</string>
+										<string>5480C73012236DDA00F6E1C6</string>
 										<key>history</key>
 										<array>
 											<string>54C1DC8F121416F600EBD811</string>
@@ -359,7 +361,7 @@
 											<string>5480C61F122221CA00F6E1C6</string>
 											<string>5480C620122221CA00F6E1C6</string>
 											<string>5480C621122221CA00F6E1C6</string>
-											<string>5480C622122221CA00F6E1C6</string>
+											<string>5480C6E41223643200F6E1C6</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -381,8 +383,6 @@
 							<string>548pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -559,12 +559,12 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>5480C6C712229C2F00F6E1C6</string>
+		<string>5480C73112236DDA00F6E1C6</string>
 		<string>5480C286121E571900F6E1C6</string>
 		<string>5480C287121E571900F6E1C6</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>54C1DC1E1213B28F00EBD811</string>
 		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
+		<string>54C1DC1E1213B28F00EBD811</string>
 		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>

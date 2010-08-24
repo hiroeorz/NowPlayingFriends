@@ -13,6 +13,7 @@
 #define kHomeTimelineURL @"http://twitter.com/statuses/home_timeline/%@.json"
 #define kUserTimelineURL @"http://twitter.com/statuses/user_timeline/%@.json"
 #define kSearchURL @"http://search.twitter.com/search.json?q=%@"
+#define kUserInformationURL @"http://api.twitter.com/1/users/show/%@.json"
 
 @interface TwitterClient : NSObject {
 
@@ -24,6 +25,7 @@
 
 - (NSString *)urlEncodedString:(NSString *)str;
 - (NSArray *)arrayOfRemoteJson:(NSString *)urlString;
+- (NSDictionary *)dictionaryOfRemoteJson:(NSString *)urlString;
 - (void)logJsonData:(NSArray *)jsonArray;
 
 - (void)getAccessTokenWithUsername:(NSString *)username 
