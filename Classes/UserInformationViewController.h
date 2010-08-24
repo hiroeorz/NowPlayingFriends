@@ -18,6 +18,8 @@
   UILabel *nameLabel;
   UILabel *locationLabel;
   UITextView *descriptionView;
+  UILabel *followersLabel;
+  UILabel *friendsLabel;
 }
 
 @property (nonatomic, retain) NSString *username;
@@ -25,6 +27,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *nameLabel;
 @property (nonatomic, retain) IBOutlet UILabel *locationLabel;
 @property (nonatomic, retain) IBOutlet UITextView *descriptionView;
+@property (nonatomic, retain) IBOutlet UILabel *followersLabel;
+@property (nonatomic, retain) IBOutlet UILabel *friendsLabel;
 
 - (id)initWithUserName:(NSString *)newUsername;
 

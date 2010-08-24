@@ -17,6 +17,8 @@
 @synthesize nameLabel;
 @synthesize locationLabel;
 @synthesize descriptionView;
+@synthesize followersLabel;
+@synthesize friendsLabel;
 
 #pragma mark -
 #pragma mark Memory management
@@ -28,6 +30,8 @@
   [nameLabel release];
   [locationLabel release];
   [descriptionView release];
+  [followersLabel release];
+  [friendsLabel release];
   [super dealloc];
 }
 
@@ -38,6 +42,8 @@
   self.nameLabel = nil;
   self.locationLabel = nil;
   self.descriptionView = nil;
+  self.followersLabel = nil;
+  self.friendsLabel = nil;
   [super viewDidUnload];
 }
 
@@ -116,6 +122,12 @@
   locationLabel.text = [user objectForKey:@"location"];
   descriptionView.font = [UIFont systemFontOfSize:13];
   descriptionView.text = [user objectForKey:@"description"];
+
+  followersLabel.text = [NSString stringWithFormat:@"Followers :  %@",
+				  [user objectForKey:@"followers_count"]];
+
+  friendsLabel.text = [NSString stringWithFormat:@"Friends    :  %@",
+				[user objectForKey:@"friends_count"]];
 
   NSData *imageData = [self.appDelegate originalProfileImage:user];
   UIImage *newImage = [[UIImage alloc] initWithData:imageData];
