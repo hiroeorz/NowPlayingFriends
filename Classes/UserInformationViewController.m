@@ -8,7 +8,7 @@
 
 #import "UserInformationViewController.h"
 #import "TwitterClient.h"
-
+#import "UserTimelineViewController.h"
 
 @implementation UserInformationViewController
 
@@ -150,6 +150,17 @@
   [profileImageButton setBackgroundImage:newImage 
 		      forState:UIControlStateNormal];
   [newImage release];
+}
+
+#pragma mark -
+#pragma mark IBAction Methods
+
+- (IBAction)openUserTimeline {
+  
+  UserTimelineViewController *viewController = 
+    [[UserTimelineViewController alloc] initWithUserName:username];
+
+  [self.navigationController pushViewController:viewController animated:YES];
 }
 
 #pragma mark -

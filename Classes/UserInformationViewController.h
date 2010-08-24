@@ -37,6 +37,8 @@
 - (void)getUserProfileImage:(NSDictionary *)user;
 - (void)setUserProfileImage:(NSData *)imageData;
 
+- (IBAction)openUserTimeline;
+
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 
 @end

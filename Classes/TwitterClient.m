@@ -113,6 +113,7 @@
 					   error:nil];
 
   NSArray *jsonArray = [jsonString JSONValue];
+  NSLog(@"%@", jsonArray);
   [jsonString release];
 
   return jsonArray;
