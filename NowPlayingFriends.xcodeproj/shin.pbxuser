@@ -2261,7 +2261,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {439, 676}}";
 			sepNavSelRange = "{987, 0}";
-			sepNavVisRange = "{100, 271}";
+			sepNavVisRange = "{100, 325}";
 		};
 	};
 	548CFD8F121E19FA00DFBF93 /* PBXTextBookmark */ = {
@@ -2322,9 +2322,9 @@
 	};
 	54C1DC3A1213F3ED00EBD811 /* FriendsViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {673, 523}}";
-			sepNavSelRange = "{900, 0}";
-			sepNavVisRange = "{0, 900}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 508}}";
+			sepNavSelRange = "{828, 0}";
+			sepNavVisRange = "{0, 828}";
 		};
 	};
 	54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */ = {
@@ -2520,9 +2520,9 @@
 		fRef = 54C1DC3A1213F3ED00EBD811 /* FriendsViewController.h */;
 		name = "FriendsViewController.h: 36";
 		rLen = 0;
-		rLoc = 900;
+		rLoc = 828;
 		rType = 0;
-		vrLen = 900;
+		vrLen = 828;
 		vrLoc = 0;
 	};
 	54C1E00B1216CA7E00EBD811 /* ArtistFriendsViewController.h */ = {

@@ -246,6 +246,9 @@
     
     [self performSelectorInBackground:@selector(refreshProfileImages)
 	  withObject:nil];
+  } else {
+    self.title = @"Player";
+    [self changeToListview];
   }
 }
 
