@@ -13,7 +13,7 @@
 
 #import "NowPlayingFriendsAppDelegate.h"
 
-#define kProfileImageButtonAlpha 0.7f
+#define kProfileImageButtonAlpha 0.4f
 #define kProfileImageSize 64
 #define kPlayListTableRowHeight 55
 #define kModeSelectTableRowHeight 65
