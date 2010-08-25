@@ -11,14 +11,14 @@
 
 @interface FriendCell : UITableViewCell {
 
-  UIImageView *userImageView;
+  UIButton *userImageView;
   UILabel *accountLabel;
   UILabel *clientLabel;
   UILabel *timeLabel;
   UITextView *bodyTextView;
 }
 
-@property (nonatomic, retain) IBOutlet UIImageView *userImageView;
+@property (nonatomic, retain) IBOutlet UIButton *userImageView;
 @property (nonatomic, retain) IBOutlet UILabel *accountLabel;
 @property (nonatomic, retain) IBOutlet UILabel *clientLabel;
 @property (nonatomic, retain) IBOutlet UILabel *timeLabel;

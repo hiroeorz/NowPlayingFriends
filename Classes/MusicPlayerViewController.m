@@ -88,7 +88,7 @@
   [self setMusicPlayer:[MPMusicPlayerController iPodMusicPlayer]];
   [self.appDelegate addMusicPlayerNotification:self];
 
-  self.navigationItem.rightBarButtonItem = 
+  self.navigationItem.leftBarButtonItem = 
     [self.appDelegate listButton:@selector(changeToListview) target:self];
 
   NSMutableArray *newProfileImageButtons = [[NSMutableArray alloc] init];
@@ -455,7 +455,7 @@
   [UIView commitAnimations];
 
 
-  self.navigationItem.rightBarButtonItem = 
+  self.navigationItem.leftBarButtonItem = 
     [self.appDelegate playerButton:@selector(changeToSongview) target:self];
     
 }
@@ -473,7 +473,7 @@
   [self.view addSubview:songView];
   [UIView commitAnimations];
 
-  self.navigationItem.rightBarButtonItem = 
+  self.navigationItem.leftBarButtonItem = 
     [self.appDelegate listButton:@selector(changeToListview) target:self];
 }
 

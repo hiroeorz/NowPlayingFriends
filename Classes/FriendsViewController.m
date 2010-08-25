@@ -9,6 +9,8 @@
 #import "FriendsViewController.h"
 #import "FriendCell.h"
 #import "TwitterClient.h"
+#import "UserInformationViewController.h"
+
 
 @implementation FriendsViewController
 
@@ -156,6 +158,11 @@
       if ([oneObject isKindOfClass:[FriendCell class]]) {
 	cell = (FriendCell *)oneObject;
 	cell.bodyTextView.font = [UIFont systemFontOfSize:13];
+
+	[cell.userImageView addTarget:self 
+	     action:@selector(openUserInformationView:)
+	     forControlEvents:UIControlEventTouchUpInside];
+
       }
     }
   }
@@ -165,6 +172,7 @@
 
   cell.bodyTextView.text = [data objectForKey:@"text"];
   cell.accountLabel.text = [self username:data];
+  cell.userImageView.tag = row;
 
   NSDictionary *objects = [[NSDictionary alloc] initWithObjectsAndKeys:
 						  data, @"data",
@@ -215,7 +223,8 @@
 
   @synchronized(timeline) {
     if (cell != nil && cell.superview != nil) {
-      cell.userImageView.image = newImage;
+      [cell.userImageView setBackgroundImage:newImage
+	   forState:UIControlStateNormal];
     }
   }
 }
@@ -235,33 +244,27 @@
   [pool release];
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   return kTimelineTableRowHeight;
+}
+
+#pragma mark -
+#pragma mark IBAction Methods
+
+- (void)openUserInformationView:(id)sender {
+
+  NSLog(@"touched: %d", [sender tag]);
+
+  NSInteger tagIndex = [sender tag];
+  NSDictionary *timelineData = [timeline objectAtIndex:tagIndex];
+  NSString *username = [self username:timelineData];
+  NSLog(@"tupped user:%@", username);
+
+  UserInformationViewController *viewController = 
+    [[UserInformationViewController alloc] initWithUserName:username];
+
+  [self.navigationController pushViewController:viewController animated:YES];
 }
 
 #pragma mark -

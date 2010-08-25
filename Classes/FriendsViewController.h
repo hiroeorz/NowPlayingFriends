@@ -32,6 +32,8 @@
 - (void)setProfileImageWithObjects:(NSDictionary *)objects;
 - (void) cacheAllProfileImage;
 
+- (void)openUserInformationView:(id)sender;
+
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 
 @end
