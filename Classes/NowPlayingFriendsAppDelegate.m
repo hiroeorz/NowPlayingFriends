@@ -82,6 +82,12 @@
     name: MPMusicPlayerControllerPlaybackStateDidChangeNotification
     object: musicPlayer];
 
+  [notificationCenter
+    addObserver:object
+    selector:@selector(handle_VolumeChanged:)
+    name:MPMusicPlayerControllerVolumeDidChangeNotification
+    object:musicPlayer];
+
   [musicPlayer beginGeneratingPlaybackNotifications];
 }
 

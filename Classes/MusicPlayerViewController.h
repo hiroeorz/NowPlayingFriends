@@ -71,6 +71,7 @@
 - (void)openUserInformationView:(id)sender;
 
 - (void)handle_PlayBackStateDidChanged:(id)notification;
+- (void)handle_VolumeChanged:(id)notification;
 - (void)handle_NowPlayingItemChanged:(id)notification;
 
 - (NowPlayingFriendsAppDelegate *)appDelegate;

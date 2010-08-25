@@ -1899,9 +1899,9 @@
 	};
 	5480C73C12236F0D00F6E1C6 /* UserInformationViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {439, 598}}";
-			sepNavSelRange = "{1160, 0}";
-			sepNavVisRange = "{671, 483}";
+			sepNavIntBoundsRect = "{{0, 0}, {439, 611}}";
+			sepNavSelRange = "{1209, 0}";
+			sepNavVisRange = "{671, 532}";
 		};
 	};
 	5480C73D12236F0D00F6E1C6 /* UserInformationViewController.m */ = {
@@ -2250,6 +2250,20 @@
 		vrLen = 845;
 		vrLoc = 64;
 	};
+	5480C81C1223F09D00F6E1C6 /* UserTimelineViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {673, 508}}";
+			sepNavSelRange = "{381, 0}";
+			sepNavVisRange = "{0, 381}";
+		};
+	};
+	5480C81D1223F09D00F6E1C6 /* UserTimelineViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {439, 676}}";
+			sepNavSelRange = "{987, 0}";
+			sepNavVisRange = "{100, 271}";
+		};
+	};
 	548CFD8F121E19FA00DFBF93 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
@@ -2534,9 +2548,9 @@
 	};
 	54C1E0121216CB0700EBD811 /* SongFriendsViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {673, 523}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 250}";
+			sepNavIntBoundsRect = "{{0, 0}, {439, 572}}";
+			sepNavSelRange = "{603, 0}";
+			sepNavVisRange = "{454, 317}";
 		};
 	};
 	54C1E0291216CE0B00EBD811 /* PBXTextBookmark */ = {

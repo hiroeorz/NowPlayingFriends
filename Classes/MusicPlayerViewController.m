@@ -136,7 +136,10 @@
 }
 
 - (IBAction)changeVolume:(id)sender {
-  musicPlayer.volume = volumeSlider.value;
+
+  if (musicPlayer.volume != volumeSlider.value) {
+    musicPlayer.volume = volumeSlider.value;
+  }
 }
 
 /*
@@ -186,7 +189,7 @@
     NSLog(@"playbackStateChanged:%@", @"stop");
 
     image = [UIImage imageNamed:@"Play.png"];
-    [playButton setImage:image 
+    [playButton setBackgroundImage:image 
 		forState:UIControlStateNormal];    
   }
 
@@ -194,7 +197,7 @@
     NSLog(@"playbackStateChanged:%@", @"play");
 
     image = [UIImage imageNamed:@"Pause.png"];
-    [playButton setImage:image 
+    [playButton setBackgroundImage:image 
 		forState:UIControlStateNormal];
   }
 
@@ -202,12 +205,22 @@
     NSLog(@"playbackStateChanged:%@", @"pause");
 
     image = [UIImage imageNamed:@"Play.png"];
-    [playButton setImage:image 
+    [playButton setBackgroundImage:image 
 		forState:UIControlStateNormal];    
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStateInterrupted) {
 
+  }
+}
+
+/**
+ * @brief プレイヤーの音量が変化したときに呼ばれる。
+ */
+- (void)handle_VolumeChanged:(id)notification {
+  
+  if (volumeSlider.value != musicPlayer.volume) {
+    volumeSlider.value = musicPlayer.volume;
   }
 }
 

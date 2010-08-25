@@ -27,15 +27,14 @@
 		5480C58512212FF600F6E1C6 /* PlayListSongsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5480C58312212FF600F6E1C6 /* PlayListSongsViewController.m */; };
 		5480C58612212FF600F6E1C6 /* PlayListSongsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5480C58412212FF600F6E1C6 /* PlayListSongsViewController.xib */; };
 		5480C61A12221FF700F6E1C6 /* MusicControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5480C61912221FF700F6E1C6 /* MusicControllerView.m */; };
-		5480C6DB1222A21600F6E1C6 /* Next.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C6D61222A21600F6E1C6 /* Next.png */; };
-		5480C6DC1222A21600F6E1C6 /* Pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C6D71222A21600F6E1C6 /* Pause.png */; };
-		5480C6DD1222A21600F6E1C6 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C6D81222A21600F6E1C6 /* Play.png */; };
-		5480C6DE1222A21600F6E1C6 /* Previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C6D91222A21600F6E1C6 /* Previous.png */; };
-		5480C6DF1222A21600F6E1C6 /* Stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C6DA1222A21600F6E1C6 /* Stop.png */; };
 		5480C73F12236F0D00F6E1C6 /* UserInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5480C73D12236F0D00F6E1C6 /* UserInformationViewController.m */; };
 		5480C74012236F0D00F6E1C6 /* UserInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5480C73E12236F0D00F6E1C6 /* UserInformationViewController.xib */; };
 		5480C8041223D82F00F6E1C6 /* 09-chat2-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C8031223D82F00F6E1C6 /* 09-chat2-white.png */; };
 		5480C81E1223F09D00F6E1C6 /* UserTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5480C81D1223F09D00F6E1C6 /* UserTimelineViewController.m */; };
+		5480C8481224EA4900F6E1C6 /* Next.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C8441224EA4900F6E1C6 /* Next.png */; };
+		5480C8491224EA4900F6E1C6 /* Pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C8451224EA4900F6E1C6 /* Pause.png */; };
+		5480C84A1224EA4900F6E1C6 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C8461224EA4900F6E1C6 /* Play.png */; };
+		5480C84B1224EA4900F6E1C6 /* Previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C8471224EA4900F6E1C6 /* Previous.png */; };
 		54C1DC3D1213F3ED00EBD811 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */; };
 		54C1DC3E1213F3ED00EBD811 /* NowPlayingViewControllers.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C1DC3C1213F3ED00EBD811 /* NowPlayingViewControllers.xib */; };
 		54C1DC88121415DB00EBD811 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DC87121415DB00EBD811 /* FriendCell.m */; };
@@ -99,17 +98,16 @@
 		5480C58412212FF600F6E1C6 /* PlayListSongsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlayListSongsViewController.xib; path = Classes/PlayListSongsViewController.xib; sourceTree = "<group>"; };
 		5480C61812221FF700F6E1C6 /* MusicControllerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicControllerView.h; sourceTree = "<group>"; };
 		5480C61912221FF700F6E1C6 /* MusicControllerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicControllerView.m; sourceTree = "<group>"; };
-		5480C6D61222A21600F6E1C6 /* Next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Next.png; path = icons/mediaIcons003/Next.png; sourceTree = "<group>"; };
-		5480C6D71222A21600F6E1C6 /* Pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Pause.png; path = icons/mediaIcons003/Pause.png; sourceTree = "<group>"; };
-		5480C6D81222A21600F6E1C6 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Play.png; path = icons/mediaIcons003/Play.png; sourceTree = "<group>"; };
-		5480C6D91222A21600F6E1C6 /* Previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Previous.png; path = icons/mediaIcons003/Previous.png; sourceTree = "<group>"; };
-		5480C6DA1222A21600F6E1C6 /* Stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop.png; path = icons/mediaIcons003/Stop.png; sourceTree = "<group>"; };
 		5480C73C12236F0D00F6E1C6 /* UserInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInformationViewController.h; sourceTree = "<group>"; };
 		5480C73D12236F0D00F6E1C6 /* UserInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInformationViewController.m; sourceTree = "<group>"; };
 		5480C73E12236F0D00F6E1C6 /* UserInformationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UserInformationViewController.xib; path = Classes/UserInformationViewController.xib; sourceTree = "<group>"; };
 		5480C8031223D82F00F6E1C6 /* 09-chat2-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "09-chat2-white.png"; path = "icons/09-chat2-white.png"; sourceTree = "<group>"; };
 		5480C81C1223F09D00F6E1C6 /* UserTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTimelineViewController.h; sourceTree = "<group>"; };
 		5480C81D1223F09D00F6E1C6 /* UserTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTimelineViewController.m; sourceTree = "<group>"; };
+		5480C8441224EA4900F6E1C6 /* Next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Next.png; path = icons/mediaIcons005/Next.png; sourceTree = "<group>"; };
+		5480C8451224EA4900F6E1C6 /* Pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Pause.png; path = icons/mediaIcons005/Pause.png; sourceTree = "<group>"; };
+		5480C8461224EA4900F6E1C6 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Play.png; path = icons/mediaIcons005/Play.png; sourceTree = "<group>"; };
+		5480C8471224EA4900F6E1C6 /* Previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Previous.png; path = icons/mediaIcons005/Previous.png; sourceTree = "<group>"; };
 		54C1DC3A1213F3ED00EBD811 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		54C1DC3C1213F3ED00EBD811 /* NowPlayingViewControllers.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NowPlayingViewControllers.xib; path = Classes/NowPlayingViewControllers.xib; sourceTree = "<group>"; };
@@ -318,11 +316,10 @@
 		5480C6A41222972000F6E1C6 /* mediaIcons */ = {
 			isa = PBXGroup;
 			children = (
-				5480C6D61222A21600F6E1C6 /* Next.png */,
-				5480C6D71222A21600F6E1C6 /* Pause.png */,
-				5480C6D81222A21600F6E1C6 /* Play.png */,
-				5480C6D91222A21600F6E1C6 /* Previous.png */,
-				5480C6DA1222A21600F6E1C6 /* Stop.png */,
+				5480C8441224EA4900F6E1C6 /* Next.png */,
+				5480C8451224EA4900F6E1C6 /* Pause.png */,
+				5480C8461224EA4900F6E1C6 /* Play.png */,
+				5480C8471224EA4900F6E1C6 /* Previous.png */,
 			);
 			name = mediaIcons;
 			sourceTree = "<group>";
@@ -460,13 +457,12 @@
 				5480C3C8121FA3A400F6E1C6 /* 120-headphones.png in Resources */,
 				5480C4CD1220E4C700F6E1C6 /* AlbumSongsViewController.xib in Resources */,
 				5480C58612212FF600F6E1C6 /* PlayListSongsViewController.xib in Resources */,
-				5480C6DB1222A21600F6E1C6 /* Next.png in Resources */,
-				5480C6DC1222A21600F6E1C6 /* Pause.png in Resources */,
-				5480C6DD1222A21600F6E1C6 /* Play.png in Resources */,
-				5480C6DE1222A21600F6E1C6 /* Previous.png in Resources */,
-				5480C6DF1222A21600F6E1C6 /* Stop.png in Resources */,
 				5480C74012236F0D00F6E1C6 /* UserInformationViewController.xib in Resources */,
 				5480C8041223D82F00F6E1C6 /* 09-chat2-white.png in Resources */,
+				5480C8481224EA4900F6E1C6 /* Next.png in Resources */,
+				5480C8491224EA4900F6E1C6 /* Pause.png in Resources */,
+				5480C84A1224EA4900F6E1C6 /* Play.png in Resources */,
+				5480C84B1224EA4900F6E1C6 /* Previous.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
