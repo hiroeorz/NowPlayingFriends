@@ -329,6 +329,7 @@
 			5480C92312265A4300F6E1C6 /* PBXTextBookmark */ = 5480C92312265A4300F6E1C6 /* PBXTextBookmark */;
 			5480C92712265A9400F6E1C6 /* PBXTextBookmark */ = 5480C92712265A9400F6E1C6 /* PBXTextBookmark */;
 			5480C92C12265B0800F6E1C6 /* PBXTextBookmark */ = 5480C92C12265B0800F6E1C6 /* PBXTextBookmark */;
+			5480C94012266A6200F6E1C6 /* PBXTextBookmark */ = 5480C94012266A6200F6E1C6 /* PBXTextBookmark */;
 			548CFD8F121E19FA00DFBF93 = 548CFD8F121E19FA00DFBF93 /* PBXTextBookmark */;
 			54C1DC771214115F00EBD811 = 54C1DC771214115F00EBD811 /* PBXTextBookmark */;
 			54C1DC8F121416F600EBD811 = 54C1DC8F121416F600EBD811 /* PBXTextBookmark */;
@@ -1952,9 +1953,9 @@
 	};
 	5480C73D12236F0D00F6E1C6 /* UserInformationViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {673, 2717}}";
-			sepNavSelRange = "{3557, 0}";
-			sepNavVisRange = "{64, 845}";
+			sepNavIntBoundsRect = "{{0, 0}, {439, 2899}}";
+			sepNavSelRange = "{5050, 0}";
+			sepNavVisRange = "{3365, 341}";
 		};
 	};
 	5480C74212236F1D00F6E1C6 /* PBXTextBookmark */ = {
@@ -2596,6 +2597,16 @@
 		vrLen = 753;
 		vrLoc = 98;
 	};
+	5480C94012266A6200F6E1C6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */;
+		name = "FriendsViewController.m: 335";
+		rLen = 0;
+		rLoc = 8106;
+		rType = 0;
+		vrLen = 703;
+		vrLoc = 98;
+	};
 	548CFD8F121E19FA00DFBF93 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
@@ -2661,10 +2672,10 @@
 	};
 	54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{2714, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{8142, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{8193, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{8243, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 8624}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {673, 4810}}";
-			sepNavSelRange = "{8546, 0}";
-			sepNavVisRange = "{98, 753}";
+			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{2714, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{7624, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{7675, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{7725, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 8106}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 4524}}";
+			sepNavSelRange = "{8028, 0}";
+			sepNavVisRange = "{98, 703}";
 		};
 	};
 	54C1DC771214115F00EBD811 /* PBXTextBookmark */ = {

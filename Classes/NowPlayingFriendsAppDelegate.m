@@ -372,6 +372,46 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return [button autorelease];
 }
 
+/**
+ * @brief 渡されたイメージを渡されたボタンに縦横比を保ったままリサイズしてセットします。
+ */
+- (void)setResizedImage:(UIImage *)image 
+	       toButton:(UIButton *)imageButton {
+
+  CGRect bounds = [imageButton 
+		    contentRectForBounds:imageButton.bounds];
+
+  double wide = bounds.size.height * 0.95;	
+  CGSize size = image.size;
+  CGFloat ratio = 0;
+
+  if (size.width > size.height) { //	横長なので、横幅で比率計算。
+    ratio = wide / size.width;
+  } else {			  //	縦長。
+    ratio = wide / size.height;
+  }
+
+  CGRect rect = CGRectMake(0.0, 0.0, 
+			   ratio * size.width, ratio * size.height);
+
+  //	計算した描画領域を指定して描画準備。
+  UIGraphicsBeginImageContext(rect.size);	
+
+  //	UIGraphicsGetImageFromCurrentImageContextが呼ばれるまで
+  //	描画はすべて新しい描画領域が対象となる。
+  [image drawInRect:rect];	//	イメージ描画。
+	
+  //	新しい描画領域からUIImageを作成。
+  image = UIGraphicsGetImageFromCurrentImageContext();	
+  UIGraphicsEndImageContext();			//	解除。
+	
+  //	スケーリングされたUIImageを設定。
+  [imageButton setImage:image forState:UIControlStateNormal];
+	
+  //	説明文は消す。
+  [imageButton setTitle:nil forState:UIControlStateNormal];
+}
+
 #pragma mark -
 #pragma mark Core Data stack
 

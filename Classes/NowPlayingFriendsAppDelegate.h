@@ -62,6 +62,9 @@
 	       getRemote:(BOOL) getRemoteFlag;
 - (NSData *)originalProfileImage:(NSDictionary *)data;
 
+- (void)setResizedImage:(UIImage *)image 
+	       toButton:(UIButton *)imageButton;
+
 - (UIBarButtonItem *)listButton:(SEL)selector
 			 target:(id)target;
 - (UIBarButtonItem *)playerButton:(SEL)selector

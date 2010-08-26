@@ -147,8 +147,8 @@
 - (void)setUserProfileImage:(NSData *)imageData {
 
   UIImage *newImage = [[UIImage alloc] initWithData:imageData];
-  [profileImageButton setBackgroundImage:newImage 
-		      forState:UIControlStateNormal];
+  [self.appDelegate setResizedImage:newImage toButton:profileImageButton];
+
   [newImage release];
 }
 

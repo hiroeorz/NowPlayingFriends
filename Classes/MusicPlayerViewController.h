@@ -70,6 +70,9 @@
 - (IBAction)skipToPreviousItem:(id)sender;
 - (void)openUserInformationView:(id)sender;
 
+- (void)changeToListview;
+- (void)changeToSongview;
+
 - (void)handle_PlayBackStateDidChanged:(id)notification;
 - (void)handle_VolumeChanged:(id)notification;
 - (void)handle_NowPlayingItemChanged:(id)notification;
