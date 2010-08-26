@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "NowPlayingFriendsAppDelegate.h"
 
-#define kTimelineTableRowHeight 90
+#define kTimelineTableRowHeight 70.0f
+#define kDefaultBodyTextHeight 27.0f
 
 
 @interface FriendsViewController : UITableViewController {
@@ -33,6 +34,8 @@
 - (void) cacheAllProfileImage;
 
 - (void)openUserInformationView:(id)sender;
+- (CGFloat)lineHeightValue:(NSIndexPath *)indexPath;
+- (CGFloat)lineOverFlowSize:(NSIndexPath *)indexPath;
 
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 

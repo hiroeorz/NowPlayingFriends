@@ -16,6 +16,7 @@
 @synthesize clientLabel;
 @synthesize timeLabel;
 @synthesize bodyTextView;
+@synthesize baseView;
 
 - (void)dealloc {
 
@@ -24,6 +25,7 @@
   [clientLabel release];
   [timeLabel release];
   [bodyTextView release];
+  [baseView release];
   [super dealloc];
 }
 

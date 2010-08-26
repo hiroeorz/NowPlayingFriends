@@ -174,9 +174,20 @@
   cell.accountLabel.text = [self username:data];
   cell.userImageView.tag = row;
 
+  CGFloat overflow = [self lineOverFlowSize:indexPath];
+
+  CGRect viewFrame = cell.baseView.frame;
+  viewFrame.size.height = viewFrame.size.height + overflow;
+  cell.baseView.frame = viewFrame;
+
+  CGRect textFrame = cell.bodyTextView.frame;
+  textFrame.size.height = textFrame.size.height + overflow;
+  cell.bodyTextView.frame = textFrame;
+
   NSDictionary *objects = [[NSDictionary alloc] initWithObjectsAndKeys:
 						  data, @"data",
 						cell, @"cell", nil];
+
   [self performSelectorInBackground:@selector(setProfileImageWithObjects:)
 	withObject:objects];
 
@@ -244,9 +255,38 @@
   [pool release];
 }
 
+- (CGFloat)lineHeightValue:(NSIndexPath *)indexPath {
+
+  NSInteger row = [indexPath row];
+  NSDictionary *data = [timeline objectAtIndex:row];
+  NSString *bodyText = [data objectForKey:@"text"];
+   
+  CGSize bounds = CGSizeMake(320, 1000);
+  UIFont *font = [UIFont systemFontOfSize:13];
+  CGSize size = [bodyText sizeWithFont:font
+			  constrainedToSize:bounds
+			  lineBreakMode:UILineBreakModeTailTruncation];
+
+  return size.height + 11;
+}
+
+- (CGFloat)lineOverFlowSize:(NSIndexPath *)indexPath {
+
+  CGFloat lineHeight = [self lineHeightValue:indexPath];
+
+  if (lineHeight <= kDefaultBodyTextHeight) {
+    return 0.0f;
+  }
+
+  CGFloat overFlowSize = lineHeight - kDefaultBodyTextHeight;
+  return overFlowSize;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return kTimelineTableRowHeight;
+
+  CGFloat overflow = [self lineOverFlowSize:indexPath];
+  return kTimelineTableRowHeight + overflow;
 }
 
 #pragma mark -

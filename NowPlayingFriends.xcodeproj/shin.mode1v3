@@ -279,15 +279,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>6</integer>
-									<integer>5</integer>
-									<integer>3</integer>
-									<integer>1</integer>
+									<integer>26</integer>
+									<integer>19</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {272, 736}}</string>
+							<string>{{0, 17}, {272, 736}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -322,7 +320,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Next.png</string>
+								<string>FriendsViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -330,11 +328,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Next.png</string>
+										<string>FriendsViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5480C87F122516C800F6E1C6</string>
+										<string>5480C92C12265B0800F6E1C6</string>
 										<key>history</key>
 										<array>
 											<string>54C1DC8F121416F600EBD811</string>
@@ -345,7 +343,6 @@
 											<string>54C1DD18121512AD00EBD811</string>
 											<string>54C1DD1A121512AD00EBD811</string>
 											<string>54C1DFF11216C85F00EBD811</string>
-											<string>54C1DFF31216C85F00EBD811</string>
 											<string>54C1E0291216CE0B00EBD811</string>
 											<string>54C1E02A1216CE0B00EBD811</string>
 											<string>54C1E02B1216CE0B00EBD811</string>
@@ -369,7 +366,8 @@
 											<string>5480C87B122516C800F6E1C6</string>
 											<string>5480C87C122516C800F6E1C6</string>
 											<string>5480C87D122516C800F6E1C6</string>
-											<string>5480C87E122516C800F6E1C6</string>
+											<string>5480C8EE1226501500F6E1C6</string>
+											<string>5480C8EF1226501500F6E1C6</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -567,13 +565,12 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>5480C880122516C800F6E1C6</string>
 		<string>5480C286121E571900F6E1C6</string>
 		<string>5480C287121E571900F6E1C6</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>54C1DC1E1213B28F00EBD811</string>
 		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>54C1DC1E1213B28F00EBD811</string>
 	</array>
 	<key>WindowString</key>
 	<string>614 143 1028 795 0 0 1680 1028 </string>
