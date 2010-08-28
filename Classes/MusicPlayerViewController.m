@@ -11,6 +11,8 @@
 #import "AlbumSongsViewController.h"
 #import "PlayListSongsViewController.h"
 #import "UserInformationViewController.h"
+#import "UserAuthenticationViewController.h"
+#import "SendTweetViewController.h"
 
 @implementation MusicPlayerViewController
 
@@ -81,8 +83,6 @@
 
   self.refreshProfileImagesMutex = @"refreshProfileImagesMutex";
 
-  self.albumLists = [self.appDelegate albums];
-  self.playLists = [self.appDelegate playLists];
   listmode = kListModeAlbum;
 
   [self setMusicPlayer:[MPMusicPlayerController iPodMusicPlayer]];
@@ -91,14 +91,21 @@
   self.navigationItem.leftBarButtonItem = 
     [self.appDelegate listButton:@selector(changeToListview) target:self];
 
+  self.navigationItem.rightBarButtonItem = 
+    [self.appDelegate editButton:@selector(openEditView) target:self];
+
   NSMutableArray *newProfileImageButtons = [[NSMutableArray alloc] init];
   self.profileImageButtons = newProfileImageButtons;
   [newProfileImageButtons release];
 
+  [self.appDelegate checkAuthenticateWithController:self];
   [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+
+  self.albumLists = [self.appDelegate albums];
+  self.playLists = [self.appDelegate playLists];
   [super viewWillAppear:animated];
 }
 
@@ -441,6 +448,20 @@
 
 #pragma mark -
 #pragma mark PlayList Methods
+
+
+- (void)openEditView {
+
+  SendTweetViewController *viewController = 
+    [[SendTweetViewController alloc] initWithNibName:@"SendTweetViewController"
+				     bundle:nil];
+
+  UINavigationController *navController = 
+    [self.appDelegate navigationWithViewController:viewController
+	 title:@"Tweet"  imageName:nil];
+
+  [self presentModalViewController:navController animated:YES];
+}
 
 - (void)changeToListview {
 

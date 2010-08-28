@@ -14,6 +14,8 @@
 #define kUserTimelineURL @"http://twitter.com/statuses/user_timeline/%@.json"
 #define kSearchURL @"http://search.twitter.com/search.json?q=%@"
 #define kUserInformationURL @"http://api.twitter.com/1/users/show/%@.json"
+#define kUpdateStatusURL @"http://twitter.com/statuses/update.json"
+#define kOAuthAccetokenFileName @"access_token.plist"
 
 @interface TwitterClient : NSObject {
 
@@ -23,17 +25,25 @@
 - (NSArray *)getUserTimeLine:(NSString *)username;
 - (NSArray *)getSearchTimeLine:(NSString *)searchString, ...;
 - (NSDictionary *)userInformation:(NSString *)username;
+- (void)updateStatus:(NSString *)message delegate:(id)aDelegate;
 
 - (NSString *)urlEncodedString:(NSString *)str;
 - (NSArray *)arrayOfRemoteJson:(NSString *)urlString;
 - (NSDictionary *)dictionaryOfRemoteJson:(NSString *)urlString;
 - (void)logJsonData:(NSArray *)jsonArray;
 
+- (NSDictionary *)oAuthToken;
+- (BOOL)oAuthTokenExist;
+- (NSString *)oAuthAccessTokenFileName;
+
+- (OAMutableURLRequest *)authenticatedRequest:(NSURL *)url;
+- (NSURL*)authenticatedURL:(NSURL *)url;
+
 - (void)getAccessTokenWithUsername:(NSString *)username 
-			  password:(NSString *)password;
+			  password:(NSString *)password
+			  delegate:(id)delegate;
+
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
-
-
 
 @end

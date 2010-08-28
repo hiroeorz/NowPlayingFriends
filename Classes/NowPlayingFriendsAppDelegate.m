@@ -11,6 +11,8 @@
 #import "SongFriendsViewController.h"
 #import "ArtistFriendsViewController.h"
 #import "MusicPlayerViewController.h"
+#import "TwitterClient.h"
+#import "UserAuthenticationViewController.h"
 
 @implementation NowPlayingFriendsAppDelegate
 
@@ -231,6 +233,20 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 #pragma mark -
 #pragma iPod Information Methods
 
+- (NSString *)tweetString {
+
+  NSString *template = kTweetTemplate;
+  NSString *tweet;
+
+  tweet = [template stringByReplacingOccurrencesOfString:@"[st]"
+		    withString:[self nowPlayingTitle]];
+
+  tweet = [tweet stringByReplacingOccurrencesOfString:@"[ar]"
+		 withString:[self nowPlayingArtistName]];
+
+  return tweet;
+}
+
 - (NSString *)nowPlayingTitle {
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
@@ -268,6 +284,25 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 #pragma mark -
 #pragma mark Util Methods
+
+/**
+ * @brief 認証がすんでいるか確認して、すんでいない場合は認証画面を表示する。
+ */
+- (void)checkAuthenticateWithController:(id)viewController {
+
+  TwitterClient *client = [[TwitterClient alloc] init];
+
+  if ([client oAuthTokenExist] == NO) {
+    UserAuthenticationViewController *authenticateViewController = 
+      [[UserAuthenticationViewController alloc] 
+	initWithNibName:@"UserAuthenticationViewController" bundle:nil];
+    
+    [viewController presentModalViewController:authenticateViewController 
+		    animated:YES];
+  }
+
+  [client release];
+}
 
 - (NSString *)username:(NSDictionary *)data {
 
@@ -351,6 +386,26 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return [button autorelease];
 }
 
+- (UIBarButtonItem *)editButton:(SEL)selector
+			 target:(id)target {
+  UIBarButtonItem *button = 
+    [[UIBarButtonItem alloc] initWithTitle:@"Edit"
+			     style:UIBarButtonItemStyleBordered
+			     target:target
+			     action:selector];
+  return [button autorelease];
+}
+
+- (UIBarButtonItem *)cancelButton:(SEL)selector
+			 target:(id)target {
+  UIBarButtonItem *button = 
+    [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+			     style:UIBarButtonItemStyleBordered
+			     target:target
+			     action:selector];
+  return [button autorelease];
+}
+
 - (UIBarButtonItem *)playerButton:(SEL)selector
 			 target:(id)target {
   UIBarButtonItem *button = 
@@ -364,9 +419,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (UIBarButtonItem *)completeButton:(SEL)selector
 			     target:(id)target {
   UIBarButtonItem *button = 
-    [[UIBarButtonItem alloc] initWithTitle:@"完了"
+    [[UIBarButtonItem alloc] initWithTitle:@"Complete"
 			     style:UIBarButtonItemStyleBordered
-			     target: self
+			     target: target
 			     action: selector];
 
   return [button autorelease];

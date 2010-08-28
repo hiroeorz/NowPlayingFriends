@@ -45,12 +45,15 @@
 
 /* Protocol for async URL loading */
 - (void)connection:(NSURLConnection *)aConnection didReceiveResponse:(NSURLResponse *)aResponse {
+  NSLog(@"didReceiveResponse");
+
 	[response release];
 	response = [aResponse retain];
 	[responseData setLength:0];
 }
 	
 - (void)connection:(NSURLConnection *)aConnection didFailWithError:(NSError *)error {
+  NSLog(@"didFail");
 	OAServiceTicket *ticket = [[OAServiceTicket alloc] initWithRequest:request
 															  response:response
 																  data:responseData
@@ -60,10 +63,13 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+  NSLog(@"didReciebved");
 	[responseData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+  NSLog(@"didFinishLoading");
+
 	OAServiceTicket *ticket = [[OAServiceTicket alloc] initWithRequest:request
 															  response:response
 																  data:responseData
@@ -72,15 +78,20 @@
 	[delegate performSelector:didFinishSelector withObject:ticket withObject:responseData];
 }
 
-- (void)fetchDataWithRequest:(OAMutableURLRequest *)aRequest delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector {
-	request = [aRequest retain];
-    delegate = aDelegate;
-    didFinishSelector = finishSelector;
-    didFailSelector = failSelector;
-    
-    [request prepare];
+- (void)fetchDataWithRequest:(OAMutableURLRequest *)aRequest 
+		    delegate:(id)aDelegate 
+	   didFinishSelector:(SEL)finishSelector 
+	     didFailSelector:(SEL)failSelector {
 
-	connection = [[NSURLConnection alloc] initWithRequest:aRequest delegate:self];
+  request = [aRequest retain];
+  delegate = aDelegate;
+  didFinishSelector = finishSelector;
+  didFailSelector = failSelector;
+  
+  [request prepare];
+
+  connection = [[NSURLConnection alloc] initWithRequest:aRequest delegate:self];
+  NSLog(@"connection:%@", connection);
 }
 
 @end

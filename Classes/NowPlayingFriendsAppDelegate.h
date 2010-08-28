@@ -12,6 +12,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
+#define kTweetTemplate @"♪ Now Playing \"[st]\" by \"[ar]\" ♬ #nowplaying"
+
 @interface NowPlayingFriendsAppDelegate : NSObject <UIApplicationDelegate> {
   
   UIWindow *window;
@@ -52,10 +54,12 @@
 - (NSString *)nowPlayingArtistName;
 - (NSArray *)albums;
 - (NSArray *)playLists;
+- (NSString *)tweetString;
 
 - (void)setAnimationWithView:(id)targetView 
 	       animationType:(UIViewAnimationTransition)transition;
 
+- (void)checkAuthenticateWithController:(id)viewController;
 - (NSString *)username:(NSDictionary *)data;
 
 - (NSData *)profileImage:(NSDictionary *)data 
@@ -67,11 +71,14 @@
 
 - (UIBarButtonItem *)listButton:(SEL)selector
 			 target:(id)target;
+- (UIBarButtonItem *)editButton:(SEL)selector
+			 target:(id)target;
+- (UIBarButtonItem *)cancelButton:(SEL)selector
+			   target:(id)target;
 - (UIBarButtonItem *)playerButton:(SEL)selector
 			   target:(id)target;
 - (UIBarButtonItem *)completeButton:(SEL)selector
 			     target:(id)target;
-
 
 @end
 

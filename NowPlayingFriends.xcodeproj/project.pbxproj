@@ -35,6 +35,10 @@
 		5480C8491224EA4900F6E1C6 /* Pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C8451224EA4900F6E1C6 /* Pause.png */; };
 		5480C84A1224EA4900F6E1C6 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C8461224EA4900F6E1C6 /* Play.png */; };
 		5480C84B1224EA4900F6E1C6 /* Previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480C8471224EA4900F6E1C6 /* Previous.png */; };
+		5480CA2F1227EF3100F6E1C6 /* UserAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5480CA2D1227EF3100F6E1C6 /* UserAuthenticationViewController.m */; };
+		5480CA301227EF3100F6E1C6 /* UserAuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5480CA2E1227EF3100F6E1C6 /* UserAuthenticationViewController.xib */; };
+		5480CA9A12289CB700F6E1C6 /* SendTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5480CA9812289CB700F6E1C6 /* SendTweetViewController.m */; };
+		5480CA9B12289CB700F6E1C6 /* SendTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5480CA9912289CB700F6E1C6 /* SendTweetViewController.xib */; };
 		54C1DC3D1213F3ED00EBD811 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */; };
 		54C1DC3E1213F3ED00EBD811 /* NowPlayingViewControllers.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C1DC3C1213F3ED00EBD811 /* NowPlayingViewControllers.xib */; };
 		54C1DC88121415DB00EBD811 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DC87121415DB00EBD811 /* FriendCell.m */; };
@@ -108,6 +112,12 @@
 		5480C8451224EA4900F6E1C6 /* Pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Pause.png; path = icons/mediaIcons005/Pause.png; sourceTree = "<group>"; };
 		5480C8461224EA4900F6E1C6 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Play.png; path = icons/mediaIcons005/Play.png; sourceTree = "<group>"; };
 		5480C8471224EA4900F6E1C6 /* Previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Previous.png; path = icons/mediaIcons005/Previous.png; sourceTree = "<group>"; };
+		5480CA2C1227EF3100F6E1C6 /* UserAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAuthenticationViewController.h; sourceTree = "<group>"; };
+		5480CA2D1227EF3100F6E1C6 /* UserAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAuthenticationViewController.m; sourceTree = "<group>"; };
+		5480CA2E1227EF3100F6E1C6 /* UserAuthenticationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UserAuthenticationViewController.xib; path = Classes/UserAuthenticationViewController.xib; sourceTree = "<group>"; };
+		5480CA9712289CB700F6E1C6 /* SendTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendTweetViewController.h; sourceTree = "<group>"; };
+		5480CA9812289CB700F6E1C6 /* SendTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendTweetViewController.m; sourceTree = "<group>"; };
+		5480CA9912289CB700F6E1C6 /* SendTweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SendTweetViewController.xib; path = Classes/SendTweetViewController.xib; sourceTree = "<group>"; };
 		54C1DC3A1213F3ED00EBD811 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		54C1DC3C1213F3ED00EBD811 /* NowPlayingViewControllers.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NowPlayingViewControllers.xib; path = Classes/NowPlayingViewControllers.xib; sourceTree = "<group>"; };
@@ -228,6 +238,10 @@
 				5480C73D12236F0D00F6E1C6 /* UserInformationViewController.m */,
 				5480C81C1223F09D00F6E1C6 /* UserTimelineViewController.h */,
 				5480C81D1223F09D00F6E1C6 /* UserTimelineViewController.m */,
+				5480CA2C1227EF3100F6E1C6 /* UserAuthenticationViewController.h */,
+				5480CA2D1227EF3100F6E1C6 /* UserAuthenticationViewController.m */,
+				5480CA9712289CB700F6E1C6 /* SendTweetViewController.h */,
+				5480CA9812289CB700F6E1C6 /* SendTweetViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -264,6 +278,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5480CA9912289CB700F6E1C6 /* SendTweetViewController.xib */,
+				5480CA2E1227EF3100F6E1C6 /* UserAuthenticationViewController.xib */,
 				5480C73E12236F0D00F6E1C6 /* UserInformationViewController.xib */,
 				5480C6A3122296A200F6E1C6 /* icons */,
 				5480C58412212FF600F6E1C6 /* PlayListSongsViewController.xib */,
@@ -463,6 +479,8 @@
 				5480C8491224EA4900F6E1C6 /* Pause.png in Resources */,
 				5480C84A1224EA4900F6E1C6 /* Play.png in Resources */,
 				5480C84B1224EA4900F6E1C6 /* Previous.png in Resources */,
+				5480CA301227EF3100F6E1C6 /* UserAuthenticationViewController.xib in Resources */,
+				5480CA9B12289CB700F6E1C6 /* SendTweetViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +528,8 @@
 				5480C61A12221FF700F6E1C6 /* MusicControllerView.m in Sources */,
 				5480C73F12236F0D00F6E1C6 /* UserInformationViewController.m in Sources */,
 				5480C81E1223F09D00F6E1C6 /* UserTimelineViewController.m in Sources */,
+				5480CA2F1227EF3100F6E1C6 /* UserAuthenticationViewController.m in Sources */,
+				5480CA9A12289CB700F6E1C6 /* SendTweetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

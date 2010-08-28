@@ -37,6 +37,29 @@
   return [self arrayOfRemoteJson:urlString];
 }
 
+- (void)updateStatus:(NSString *)message delegate:(id)aDelegate {
+
+  NSURL *baseUrl = [NSURL URLWithString:kUpdateStatusURL];
+  OAMutableURLRequest *request = [self authenticatedRequest:baseUrl];
+
+  NSString *bodyString = 
+    [NSString stringWithFormat:@"status=%@",
+	      (NSString *)CFURLCreateStringByAddingPercentEscapes(  
+					 kCFAllocatorDefault,
+                                         (CFStringRef)message,
+                                         NULL,
+                                         NULL,
+                                         kCFStringEncodingUTF8)];
+
+  [request setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
+
+  OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+  [fetcher fetchDataWithRequest:request
+	   delegate:aDelegate
+	   didFinishSelector:@selector(ticket:didFinishWithData:)
+	   didFailSelector:@selector(ticket:didFailWithError:)];
+}
+
 - (NSArray *)getSearchTimeLine:(NSString *)searchString, ... {
 
   NSString *eachObject;
@@ -102,11 +125,52 @@
 }
 
 /**
+ * @brief 認証情報を埋めこんだRequestオブジェクトを生成する。
+ */
+- (OAMutableURLRequest *)authenticatedRequest:(NSURL *)url {
+
+  OAConsumer *consumer =
+    [[[OAConsumer alloc] initWithKey:kConsumerKey
+			 secret:kConsumerSecret] autorelease];
+
+  NSDictionary *token = [self oAuthToken];
+
+  OAToken *accessToken =
+    [[[OAToken alloc] initWithKey:[token objectForKey:@"oauth_token"]
+		      secret:[token objectForKey:@"oauth_token_secret"]] 
+      autorelease];
+
+  OAMutableURLRequest *request = 
+    [[[OAMutableURLRequest alloc] initWithURL:url
+				  consumer:consumer
+				  token:accessToken
+				  realm:nil
+				  signatureProvider:nil] autorelease];
+
+  [request setHTTPMethod:@"POST"];
+  return request;
+}
+
+/**
+ * @brief 認証がすんでいる場合は認証情報を埋めこんだURLオブジェクトを生成する。
+ *        すんでいない場合は引数で与えられたURLをそのまま返す。
+ */
+- (NSURL*)authenticatedURL:(NSURL *)url {
+
+  if (![self oAuthTokenExist]) {
+    return url;
+  }
+
+  OAMutableURLRequest *request = [self authenticatedRequest:url];
+  return [request URL];
+}
+
+/**
  * @brief 渡されたURL文字列からJSONデータを取得しArrayにパースして返します。
  */
 - (NSArray *)arrayOfRemoteJson:(NSString *)urlString {
 
-  NSURL *url = [NSURL URLWithString:urlString];
+  NSURL *url = [self authenticatedURL:[NSURL URLWithString:urlString]];
 
   NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url
 					   encoding:NSUTF8StringEncoding
@@ -124,7 +188,7 @@
  */
 - (NSDictionary *)dictionaryOfRemoteJson:(NSString *)urlString {
 
-  NSURL *url = [NSURL URLWithString:urlString];
+  NSURL *url = [self authenticatedURL:[NSURL URLWithString:urlString]];
 
   NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url
 					   encoding:NSUTF8StringEncoding
@@ -157,12 +221,13 @@
  * @brief ユーザ名とパスワードからユーザのアクセストークンを取得する。
  */
 - (void)getAccessTokenWithUsername:(NSString *)username 
-			  password:(NSString *)password {
+			  password:(NSString *)password
+			  delegate:(id)delegate {
   NSURL *url = 
     [NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"];
 
-  OAConsumer *consumer = [[OAConsumer alloc] initWithKey:@"kConsumerKey"
-					     secret:@"kConsumerSecret"];
+  OAConsumer *consumer = [[OAConsumer alloc] initWithKey:kConsumerKey
+					     secret:kConsumerSecret];
   OAMutableURLRequest 
     *request = [[OAMutableURLRequest alloc] initWithURL:url
 					    consumer:consumer
@@ -190,8 +255,9 @@
   [request setParameters:xAuthParameters];
 
   OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+  
   [fetcher fetchDataWithRequest:request
-	   delegate:self
+	   delegate:delegate
 	   didFinishSelector:@selector(ticket:didFinishWithData:)
 	   didFailSelector:@selector(ticket:didFailWithError:)];
 
@@ -200,24 +266,48 @@
 
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {
 
-    NSString *dataString = [[NSString alloc] initWithData:data 
-					     encoding:NSUTF8StringEncoding];
-    [dataString autorelease];
+  NSLog(@"didFinishWithData");
+  NSString *dataString = [[NSString alloc] 
+			   initWithData:data encoding:NSUTF8StringEncoding];
 
-    // レスポンスの解析
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-
-    for (NSString *pair in [dataString componentsSeparatedByString:@"&"]) {
-      NSArray *keyValue = [pair componentsSeparatedByString:@"="];
-      [dict setObject:[keyValue objectAtIndex:1] 
-	    forKey:[keyValue objectAtIndex:0]];
-    }
-
-    NSLog(@"result: %@", dict);
+  NSLog(@"data: %@", dataString);
+  [dataString release];
 }
 
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
   NSLog(@"didFailWithError");
+}
+
+- (NSDictionary *)oAuthToken {
+
+  NSString *filename = [self oAuthAccessTokenFileName];
+  NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:filename];
+  return [dic autorelease];
+}
+
+- (BOOL)oAuthTokenExist {
+
+  BOOL result;
+
+  if ([self oAuthToken] == nil) {
+    result = NO;
+  } else {
+    result = YES;
+  }
+
+  return result;
+}
+
+- (NSString *)oAuthAccessTokenFileName {
+
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+						       NSUserDomainMask, YES);
+
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSString *filename = 
+    [documentsDirectory stringByAppendingPathComponent:kOAuthAccetokenFileName];
+
+  return filename;
 }
 
 @end

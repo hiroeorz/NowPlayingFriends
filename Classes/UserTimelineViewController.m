@@ -16,7 +16,7 @@
 
 - (id)initWithUserName:(NSString *)newUserName {
 
-  self = [super init];
+  self = [super initWithNibName:@"NowPlayingViewControllers" bundle:nil];
 
   if (self != nil) {
     self.username = newUserName;
@@ -30,7 +30,7 @@
   NSLog(@"updating user timeline data...");
 
   TwitterClient *client = [[TwitterClient alloc] init];
-  NSArray *newTimeline = [client getHomeTimeLine: @"hiroe_orz17"];
+  NSArray *newTimeline = [client getUserTimeLine:username];
 
   @synchronized(timeline) {
     self.timeline = newTimeline;
