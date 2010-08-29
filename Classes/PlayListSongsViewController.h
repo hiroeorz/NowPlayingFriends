@@ -6,23 +6,13 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <MediaPlayer/MediaPlayer.h>
-#import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
+#import "SongsListViewController.h"
 
 @class MusicPlayerViewController;
 
-@interface PlayListSongsViewController : UITableViewController {
+@interface PlayListSongsViewController : SongsListViewController {
 
-  MPMediaItemCollection *playlist;
-  MPMusicPlayerController *musicPlayer;
-  MusicPlayerViewController *musicPlayerViewController;
 }
-
-@property (nonatomic, retain) MPMediaItemCollection *playlist;
-@property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
-@property (nonatomic, retain)  MusicPlayerViewController *musicPlayerViewController;
 
 - (id)initWithPlaylist:(MPMediaItemCollection *)newPlaylist;
 

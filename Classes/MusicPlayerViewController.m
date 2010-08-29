@@ -30,6 +30,7 @@
 @synthesize playLists;
 @synthesize albumLists;
 @synthesize refreshProfileImagesMutex;
+@synthesize songListController;
 
 #pragma mark -
 #pragma mark Memory management
@@ -45,6 +46,7 @@
   [playLists release];
   [albumLists release];
   [refreshProfileImagesMutex release];
+  [songListController release];
   [super dealloc];
 }
 
@@ -59,6 +61,7 @@
   self.playLists = nil;
   self.albumLists = nil;
   self.refreshProfileImagesMutex = nil;
+  self.songListController = nil;
   [super viewDidUnload];
 }
 
@@ -88,10 +91,10 @@
   [self setMusicPlayer:[MPMusicPlayerController iPodMusicPlayer]];
   [self.appDelegate addMusicPlayerNotification:self];
 
-  self.navigationItem.leftBarButtonItem = 
+  self.navigationItem.rightBarButtonItem = 
     [self.appDelegate listButton:@selector(changeToListview) target:self];
 
-  self.navigationItem.rightBarButtonItem = 
+  self.navigationItem.leftBarButtonItem = 
     [self.appDelegate editButton:@selector(openEditView) target:self];
 
   NSMutableArray *newProfileImageButtons = [[NSMutableArray alloc] init];
@@ -241,7 +244,12 @@
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
 
 
-  if (currentItem != nil) {
+  if (currentItem == nil && listView.superview == nil) {
+    self.title = @"Player";
+    [self changeToListview];
+
+  } else {
+
     [self setMusicArtwork];
     NSString *nowPlayingTitle = 
       [currentItem valueForProperty:MPMediaItemPropertyTitle];
@@ -253,9 +261,6 @@
     
     [self performSelectorInBackground:@selector(refreshProfileImages)
 	  withObject:nil];
-  } else {
-    self.title = @"Player";
-    [self changeToListview];
   }
 }
 
@@ -475,10 +480,28 @@
   [self.view addSubview:listView];
   [UIView commitAnimations];
 
+  self.navigationItem.rightBarButtonItem = 
+    [self.appDelegate playerButton:@selector(changeToSongview) target:self];    
+}
 
-  self.navigationItem.leftBarButtonItem = 
-    [self.appDelegate playerButton:@selector(changeToSongview) target:self];
-    
+- (void)changeToSongsListview {
+
+  [self.appDelegate setAnimationWithView:songListController.view
+       animationType:UIViewAnimationTransitionFlipFromLeft];
+
+  if (songView.superview != nil) {
+    [songView removeFromSuperview];
+  }
+
+  [self.view addSubview:listView];
+  [UIView commitAnimations];
+
+
+  songListController.navigationItem.rightBarButtonItem = 
+    [self.appDelegate playerButton:@selector(changeToSongview) 
+	 target:songListController];
+
+  songListController.navigationItem.leftBarButtonItem = nil;
 }
 
 - (void)changeToSongview {
@@ -494,7 +517,7 @@
   [self.view addSubview:songView];
   [UIView commitAnimations];
 
-  self.navigationItem.leftBarButtonItem = 
+  self.navigationItem.rightBarButtonItem = 
     [self.appDelegate listButton:@selector(changeToListview) target:self];
 }
 

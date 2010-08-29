@@ -41,6 +41,7 @@
   NSArray *albumLists;
   NSInteger listmode;
   NSString *refreshProfileImagesMutex;
+  UIViewController *songListController;
 }
 
 @property (nonatomic, retain) NSArray *timeline;
@@ -57,6 +58,7 @@
 @property (nonatomic, retain) NSArray *playLists;
 @property (nonatomic, retain) NSArray *albumLists;
 @property (nonatomic, retain) NSString *refreshProfileImagesMutex;
+@property (nonatomic, retain) UIViewController *songListController;
 
 - (void)setMusicArtwork;
 

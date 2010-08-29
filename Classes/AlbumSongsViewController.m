@@ -12,26 +12,31 @@
 
 @implementation AlbumSongsViewController
 
+/*
 @synthesize album;
 @synthesize musicPlayer;
 @synthesize musicPlayerViewController;
+*/
 
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc {
-  
+  /*  
   [album release];
   [musicPlayer release];
   [musicPlayerViewController release];
+  */
   [super dealloc];
 }
 
 - (void)viewDidUnload {
 
+  /*
   self.album = nil;
   self.musicPlayer = nil;
   self.musicPlayerViewController = nil;
+  */
   [super viewDidUnload];
 }
 
@@ -48,7 +53,7 @@
   self = [super init];
 
   if (self != nil) {
-    self.album = newAlbum;
+    self.playlist = newAlbum;
   }
 
   return self;
@@ -88,7 +93,7 @@
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section {
 
-  return [album count];
+  return [playlist count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView 
@@ -105,7 +110,7 @@
 	      reuseIdentifier:SongOfAlbumCellIdentifier] autorelease];
   }
 
-  NSArray *songs = [album items];
+  NSArray *songs = [playlist items];
   MPMediaItem *song = [songs objectAtIndex:[indexPath row]];
 
   cell.textLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
@@ -113,7 +118,7 @@
   return cell;
 }
 
-
+/*
 #pragma mark -
 #pragma mark Table view delegate
 
@@ -125,7 +130,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [musicPlayer endGeneratingPlaybackNotifications];
 
   [musicPlayer stop];
-  [musicPlayer setQueueWithItemCollection:album];
+  [musicPlayer setQueueWithItemCollection:playlist];
   [musicPlayer play]; [musicPlayer pause];
 
   for (int i = 0; i < row; i++) {
@@ -135,7 +140,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [musicPlayer play];
   [musicPlayer beginGeneratingPlaybackNotifications];
 }
-
-
+*/
 @end
 

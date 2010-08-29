@@ -12,17 +12,12 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 #import "MusicPlayerViewController.h"
+#import "SongsListViewController.h"
 
-@interface AlbumSongsViewController : UITableViewController {
+@interface AlbumSongsViewController : SongsListViewController {
 
-  MPMediaItemCollection *album;
-  MPMusicPlayerController *musicPlayer;
-  MusicPlayerViewController *musicPlayerViewController;
 }
 
-@property (nonatomic, retain) MPMediaItemCollection *album;
-@property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
-@property (nonatomic, retain)  MusicPlayerViewController *musicPlayerViewController;
 
 - (id)initWithAlbum:(MPMediaItemCollection *)newAlbum;
 
