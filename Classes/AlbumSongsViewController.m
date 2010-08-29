@@ -12,31 +12,16 @@
 
 @implementation AlbumSongsViewController
 
-/*
-@synthesize album;
-@synthesize musicPlayer;
-@synthesize musicPlayerViewController;
-*/
-
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc {
-  /*  
-  [album release];
-  [musicPlayer release];
-  [musicPlayerViewController release];
-  */
+
   [super dealloc];
 }
 
 - (void)viewDidUnload {
 
-  /*
-  self.album = nil;
-  self.musicPlayer = nil;
-  self.musicPlayerViewController = nil;
-  */
   [super viewDidUnload];
 }
 
@@ -118,28 +103,5 @@
   return cell;
 }
 
-/*
-#pragma mark -
-#pragma mark Table view delegate
-
-- (void)tableView:(UITableView *)tableView 
-didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-  NSInteger row = [indexPath row];
-
-  [musicPlayer endGeneratingPlaybackNotifications];
-
-  [musicPlayer stop];
-  [musicPlayer setQueueWithItemCollection:playlist];
-  [musicPlayer play]; [musicPlayer pause];
-
-  for (int i = 0; i < row; i++) {
-    [musicPlayer skipToNextItem];
-  }
-
-  [musicPlayer play];
-  [musicPlayer beginGeneratingPlaybackNotifications];
-}
-*/
 @end
 
