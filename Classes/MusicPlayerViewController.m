@@ -7,7 +7,6 @@
 //
 
 #import "MusicPlayerViewController.h"
-#import "TwitterClient.h"
 #import "AlbumSongsViewController.h"
 #import "PlayListSongsViewController.h"
 #import "UserInformationViewController.h"
@@ -33,6 +32,7 @@
 @synthesize songListController;
 @synthesize settingView;
 @synthesize repeatModeControll;
+@synthesize autoTweetSwitch;
 
 #pragma mark -
 #pragma mark Memory management
@@ -51,6 +51,7 @@
   [songListController release];
   [settingView release];
   [repeatModeControll release];
+  [autoTweetSwitch release];
   [super dealloc];
 }
 
@@ -70,6 +71,7 @@
   self.songListController = nil;
   self.settingView = nil;
   self.repeatModeControll = nil;
+  self.autoTweetSwitch = nil;
   [super viewDidUnload];
 }
 
@@ -83,6 +85,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+    autoTweetMode = NO;
   }
   return self;
 }
@@ -117,6 +120,7 @@
 
   self.albumLists = [self.appDelegate albums];
   self.playLists = [self.appDelegate playLists];
+  [autoTweetSwitch setOn:autoTweetMode animated:NO];
   [super viewWillAppear:animated];
 }
 
@@ -152,6 +156,11 @@
     [[UserInformationViewController alloc] initWithUserName:username];
 
   [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (IBAction)changeAutoTweetMode:(id)sender {
+
+  autoTweetMode = [sender isOn];
 }
 
 - (IBAction)changeVolume:(id)sender {
@@ -270,7 +279,65 @@
     
     [self performSelectorInBackground:@selector(refreshProfileImages)
 	  withObject:nil];
+
+    if (autoTweetMode) {
+      [self performSelectorInBackground:@selector(sendAutoTweetAfterTimeLag)
+	    withObject:nil];
+    }
   }
+}
+
+/**
+ * @brief 一定時間、再生曲が変わらなかったら自動ツイートする。
+ */
+- (void)sendAutoTweetAfterTimeLag {
+
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
+  NSInteger second = kAutoTweetTimeLag;
+
+  NSString *title = [self.appDelegate nowPlayingTitle];
+  NSDate *date = [[NSDate alloc] init];
+  NSDate *nextStartDate = [[NSDate alloc] initWithTimeInterval:second 
+					  sinceDate:date];
+
+  [NSThread sleepUntilDate: nextStartDate];
+  [date release];
+  [nextStartDate release];
+
+  NSString *nowSongTitle = [self.appDelegate nowPlayingTitle];
+
+  if ([nowSongTitle isEqualToString:title]) {
+    [self performSelectorOnMainThread:@selector(sendAutoTweet)
+	  withObject:nil
+	  waitUntilDone:YES];
+  }
+
+  [pool release];
+}
+
+/**
+ * @brief 自動ツイートを実行する。
+ */
+- (void)sendAutoTweet {
+  
+  TwitterClient *client = [[TwitterClient alloc] init];
+  NSString *message = [self.appDelegate tweetString];
+  [client updateStatus:message delegate:self];
+  [client release];
+}
+
+- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {
+
+  NSLog(@"didFinishWithData");
+  NSString *dataString = [[NSString alloc] 
+			   initWithData:data encoding:NSUTF8StringEncoding];
+
+  NSLog(@"tweet sended. result:: %@", dataString);
+  [dataString release];
+}
+
+- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
+  NSLog(@"didFailWithError");
 }
 
 /**

@@ -11,7 +11,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
+
 #import "NowPlayingFriendsAppDelegate.h"
+#import "TwitterClient.h"
 
 #define kProfileImageButtonAlpha 0.4f
 #define kProfileImageSize 64
@@ -25,6 +27,7 @@
 #define kRepeatModeOne 1
 #define kRepeatModeAll 2
 
+#define kAutoTweetTimeLag 10
 
 @interface MusicPlayerViewController : UIViewController 
 <UITableViewDataSource, UITableViewDelegate> {
@@ -49,6 +52,8 @@
   UIView *settingView;
 
   UISegmentedControl *repeatModeControll;
+  BOOL autoTweetMode;
+  UISwitch *autoTweetSwitch;
 }
 
 @property (nonatomic, retain) NSArray *timeline;
@@ -68,12 +73,14 @@
 @property (nonatomic, retain) NSString *refreshProfileImagesMutex;
 @property (nonatomic, retain) UIViewController *songListController;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *repeatModeControll;
+@property (nonatomic, retain) IBOutlet UISwitch *autoTweetSwitch;
 
 - (void)setMusicArtwork;
 
 - (void)refreshTimeline;
 - (void)setFriendImageView;
 
+- (IBAction)changeAutoTweetMode:(id)sender;
 - (IBAction)changeVolume:(id)sender;
 - (IBAction)togglePlayStop:(id)sender;
 - (IBAction)skipToNextItem:(id)sender;
@@ -88,6 +95,12 @@
 - (void)openEditView;
 - (void)changeToListview;
 - (void)changeToSongview;
+
+- (void)sendAutoTweetAfterTimeLag;
+- (void)sendAutoTweet;
+- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+
 
 - (void)handle_PlayBackStateDidChanged:(id)notification;
 - (void)handle_VolumeChanged:(id)notification;
