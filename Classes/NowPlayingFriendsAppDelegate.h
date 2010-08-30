@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define kTweetTemplate @"♪ Now Playing \"[st]\" by \"[ar]\" ♬ #nowplaying"
+#define kMaxTweetLength 140
 
 @interface NowPlayingFriendsAppDelegate : NSObject <UIApplicationDelegate> {
   

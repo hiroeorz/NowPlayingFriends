@@ -13,14 +13,17 @@
 @interface SendTweetViewController : UIViewController {
   TwitterClient *twitterClient;
   UITextView *editView;
+  UILabel *letterCountLabel;
 }
 
 @property (nonatomic, retain, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) TwitterClient *twitterClient;
 @property (nonatomic, retain) IBOutlet UITextView *editView;
+@property (nonatomic, retain) IBOutlet UILabel *letterCountLabel;
 
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)countAndWriteTweetLength:(NSInteger)textcount;
 
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 
