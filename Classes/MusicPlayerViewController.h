@@ -21,6 +21,10 @@
 #define kListModeAlbum 0
 #define kListModePlayList 1
 
+#define kRepeatModeNone 0
+#define kRepeatModeOne 1
+#define kRepeatModeAll 2
+
 
 @interface MusicPlayerViewController : UIViewController 
 <UITableViewDataSource, UITableViewDelegate> {
@@ -42,6 +46,9 @@
   NSInteger listmode;
   NSString *refreshProfileImagesMutex;
   UIViewController *songListController;
+  UIView *settingView;
+
+  UISegmentedControl *repeatModeControll;
 }
 
 @property (nonatomic, retain) NSArray *timeline;
@@ -55,10 +62,12 @@
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 @property (nonatomic, retain) IBOutlet UIView *songView;
 @property (nonatomic, retain) IBOutlet UITableView *listView;
+@property (nonatomic, retain) IBOutlet UIView *settingView;
 @property (nonatomic, retain) NSArray *playLists;
 @property (nonatomic, retain) NSArray *albumLists;
 @property (nonatomic, retain) NSString *refreshProfileImagesMutex;
 @property (nonatomic, retain) UIViewController *songListController;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *repeatModeControll;
 
 - (void)setMusicArtwork;
 
@@ -72,6 +81,11 @@
 - (IBAction)skipToPreviousItem:(id)sender;
 - (void)openUserInformationView:(id)sender;
 
+- (IBAction)changeRepeatMode:(id)sender;
+- (IBAction)openSettingView:(id)sender;
+- (void)closeSettingView;
+- (IBAction)closeSettingView:(id)sender;
+- (void)openEditView;
 - (void)changeToListview;
 - (void)changeToSongview;
 

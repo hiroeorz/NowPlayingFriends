@@ -11,6 +11,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import <QuartzCore/QuartzCore.h>
 
 #define kTweetTemplate @"♪ Now Playing \"[st]\" by \"[ar]\" ♬ #nowplaying"
 
@@ -56,6 +57,9 @@
 - (NSArray *)playLists;
 - (NSString *)tweetString;
 
+- (void)setHalfCurlAnimationWithController:(id)targetViewController
+				 frontView:(UIView *)frontView
+				    curlUp:(BOOL)curlUp;
 - (void)setAnimationWithView:(id)targetView 
 	       animationType:(UIViewAnimationTransition)transition;
 

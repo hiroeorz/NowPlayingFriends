@@ -317,6 +317,47 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 }
 
 /**
+ * @brief 画面が半分だけめくり上がるアニメーション
+ */
+- (void)setHalfCurlAnimationWithController:(id)targetViewController
+				 frontView:(UIView *)frontView
+				    curlUp:(BOOL)curlUp {
+  
+  CATransition *animation = [CATransition animation];
+  [animation setDelegate:targetViewController];
+  [animation setDuration:0.35];
+  [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
+
+  if (curlUp) {
+    animation.type = @"pageCurl";
+    animation.fillMode = kCAFillModeForwards;
+    animation.endProgress = 0.70;
+  } else {
+    animation.type = @"pageUnCurl";
+    animation.fillMode = kCAFillModeBackwards;
+    animation.startProgress = 0.70;
+  }
+
+  [animation setRemovedOnCompletion:NO];
+
+  UIView *aView = [targetViewController view];
+  //[aView exchangeSubviewAtIndex:0 withSubviewAtIndex:2];
+  [[aView layer] addAnimation:animation forKey:@"pageCurlAnimation"];
+
+  /*
+  if (!curlUp) {
+    [[[targetViewController navigationController] navigationBar] 
+      setUserInteractionEnabled:NO];
+    [frontView setUserInteractioonEnabled:NO];
+  } else {
+    [[[targetViewController navigationController] navigationBar] 
+      setUserInteractionEnabled:YES];
+    [frontView setUserInteractioonEnabled:YES];
+  }
+  */
+}
+
+/**
  * @brief 画面切り替えのアニメーション処理
  */
 - (void)setAnimationWithView:(id)targetView 

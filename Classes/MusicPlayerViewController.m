@@ -31,6 +31,8 @@
 @synthesize albumLists;
 @synthesize refreshProfileImagesMutex;
 @synthesize songListController;
+@synthesize settingView;
+@synthesize repeatModeControll;
 
 #pragma mark -
 #pragma mark Memory management
@@ -47,10 +49,14 @@
   [albumLists release];
   [refreshProfileImagesMutex release];
   [songListController release];
+  [settingView release];
+  [repeatModeControll release];
   [super dealloc];
 }
 
 - (void)viewDidUnload {
+  NSLog(@"viewDidUnload");
+
   self.timeline = nil;
   self.beforeTimeline = nil;
   self.albumImageView = nil;
@@ -62,6 +68,8 @@
   self.albumLists = nil;
   self.refreshProfileImagesMutex = nil;
   self.songListController = nil;
+  self.settingView = nil;
+  self.repeatModeControll = nil;
   [super viewDidUnload];
 }
 
@@ -120,6 +128,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+  NSLog(@"viewWillDisappear");
   [super viewWillDisappear:animated];
 }
 
@@ -220,8 +229,8 @@
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStateInterrupted) {
-
   }
+
 }
 
 /**
@@ -441,7 +450,6 @@
   NSData *imageData = [objects objectForKey:@"newImage"];
   UIImage *newImage = [[UIImage alloc] initWithData:imageData];
 
-
   [self.appDelegate setAnimationWithView:profileImageButton
        animationType:UIViewAnimationTransitionFlipFromLeft];
 
@@ -454,6 +462,67 @@
 #pragma mark -
 #pragma mark PlayList Methods
 
+- (IBAction)changeRepeatMode:(id)sender {
+
+  NSLog(@"changeRepeatMode:%d", [sender selectedSegmentIndex]);
+
+ switch ([sender selectedSegmentIndex]) {
+ case kRepeatModeNone:
+   musicPlayer.repeatMode = MPMusicRepeatModeNone;
+   break;
+ case kRepeatModeOne:
+   musicPlayer.repeatMode = MPMusicRepeatModeOne;
+   break;
+ case kRepeatModeAll:
+   musicPlayer.repeatMode = MPMusicRepeatModeAll;
+   break;
+ }
+}
+
+- (IBAction)openSettingView:(id)sender {
+
+  if (musicPlayer.repeatMode == MPMusicRepeatModeNone) {
+    repeatModeControll.selectedSegmentIndex = kRepeatModeNone;    
+  }
+
+  if (musicPlayer.repeatMode == MPMusicRepeatModeOne) {
+    repeatModeControll.selectedSegmentIndex = kRepeatModeOne;
+  }
+
+  if (musicPlayer.repeatMode == MPMusicRepeatModeAll) {
+    repeatModeControll.selectedSegmentIndex = kRepeatModeAll;
+  }
+
+  [self.appDelegate setHalfCurlAnimationWithController:self
+       frontView:songView
+       curlUp:YES];
+  
+  if (songView.superview != nil) {
+    [songView removeFromSuperview];
+  }
+
+  [self.view addSubview:settingView];
+  [UIView commitAnimations];
+}
+
+- (IBAction)closeSettingView:(id)sender {
+
+  [self closeSettingView];
+}
+
+- (void)closeSettingView {
+
+  [self.appDelegate setHalfCurlAnimationWithController:self
+       frontView:songView
+       curlUp:NO];
+  
+  if (settingView.superview != nil) {
+    [settingView removeFromSuperview];
+  }
+  
+  [self.view addSubview:songView];
+  [UIView commitAnimations];
+}
 
 - (void)openEditView {
 
