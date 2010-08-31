@@ -14,6 +14,9 @@
 #define kViewFrameHeight 66.0f
 #define kTextFrameHeight 27.0f
 
+#define kMaxTableCellRow 100
+#define kTableUpdateMaxScrollRow 80
+
 @interface FriendsViewController : UIViewController 
 <UITableViewDataSource, UITableViewDelegate> {
 
@@ -23,6 +26,7 @@
 @private
   NSArray *beforeTimeline;
   BOOL activateFlag;
+  NSInteger cellRow;
 }
 
 @property (nonatomic, retain) NSArray *timeline;
@@ -33,6 +37,7 @@
 - (NSInteger)refreshTimeline;
 - (NSInteger)createNewTimeline:(NSArray *)newTimeline;
 - (void)tableRefreshLoop;
+- (void)shurinkTimeline;
 
 - (NSString *)username:(NSDictionary *)data;
 - (void)setProfileImageWithObjects:(NSDictionary *)objects;

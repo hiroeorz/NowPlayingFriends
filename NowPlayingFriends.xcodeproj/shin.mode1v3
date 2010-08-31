@@ -330,7 +330,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>546514A2122C9922003DE639</string>
+										<string>546514AB122CA462003DE639</string>
 										<key>history</key>
 										<array>
 											<string>54C1DD14121512AD00EBD811</string>
@@ -568,7 +568,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>546514A3122C9922003DE639</string>
+		<string>546514AC122CA462003DE639</string>
 		<string>546511FC122A021F003DE639</string>
 		<string>546511FE122A021F003DE639</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -598,7 +598,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>FriendsViewController.m</string>
+								<string>UserTimelineViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>

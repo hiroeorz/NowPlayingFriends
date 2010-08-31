@@ -25,20 +25,18 @@
   return self;
 }
 
-- (void)refreshTimeline {
+- (NSInteger)refreshTimeline {
 
   NSLog(@"updating user timeline data...");
 
   TwitterClient *client = [[TwitterClient alloc] init];
   NSArray *newTimeline = [client getUserTimeLine:username];
-
-  @synchronized(timeline) {
-    self.timeline = newTimeline;
-  }
-
   [client release];
 
+  NSInteger addCount = [super createNewTimeline:newTimeline];
   NSLog(@"user timeline data updated.");
+
+  return addCount;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

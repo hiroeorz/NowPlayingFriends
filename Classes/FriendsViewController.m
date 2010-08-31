@@ -59,6 +59,22 @@
   return 0;
 }
 
+/**
+ * @brief テーブルに表示するセルの個数を限定します。
+ */
+- (void)shurinkTimeline {
+
+  if ([timeline count] > kMaxTableCellRow) {
+    NSArray *newTimeline = 
+      [timeline subarrayWithRange:NSMakeRange(0, kMaxTableCellRow)];
+    
+    self.timeline = newTimeline;
+  }
+}
+
+/**
+ * @brief 与えられた配列から新しいテーブル用配列を生成します。
+ */
 - (NSInteger)createNewTimeline:(NSArray *)newTimeline {
 
   NSInteger addRowCount = 0;
@@ -138,17 +154,24 @@
   NSDate *date;
   NSDate *nextStartDate;
 
+
   while (true) {
-    self.beforeTimeline = timeline;
-    NSInteger addCount = [self refreshTimeline];
-    NSInteger newOffset = [self newOffset:addCount];
+    NSLog(@"now cellRow: %d", cellRow);
 
-    if (activateFlag && ![timeline isEqualToArray:beforeTimeline]) {
-      [self performSelectorOnMainThread:@selector(reloadTableDataOnMainThread:)
-	    withObject:[NSNumber numberWithInteger:newOffset]
-	    waitUntilDone:YES];
+    if (cellRow <= kTableUpdateMaxScrollRow) {
+      self.beforeTimeline = timeline;
+      NSInteger addCount = [self refreshTimeline];
+      NSInteger newOffset = [self newOffset:addCount];
+      
+      [self shurinkTimeline];
 
-      NSLog(@"refreshed.");
+      if (activateFlag && ![timeline isEqualToArray:beforeTimeline]) {
+	[self performSelectorOnMainThread:@selector(reloadTableDataOnMainThread:)
+	      withObject:[NSNumber numberWithInteger:newOffset]
+	      waitUntilDone:YES];
+	
+	NSLog(@"refreshed.");
+      }
     }
 
     date = [[NSDate alloc] init];
@@ -202,6 +225,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView 
 	 cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+  cellRow = [indexPath row];
   static NSString *FriendsCellIdentifier = @"Cell";
     
   FriendCell *cell = 

@@ -163,6 +163,8 @@
 			54651493122C96DC003DE639 /* PlistBookmark */ = 54651493122C96DC003DE639 /* PlistBookmark */;
 			54651498122C97A8003DE639 /* PlistBookmark */ = 54651498122C97A8003DE639 /* PlistBookmark */;
 			546514A2122C9922003DE639 /* PlistBookmark */ = 546514A2122C9922003DE639 /* PlistBookmark */;
+			546514A7122CA382003DE639 /* PlistBookmark */ = 546514A7122CA382003DE639 /* PlistBookmark */;
+			546514AB122CA462003DE639 /* PlistBookmark */ = 546514AB122CA462003DE639 /* PlistBookmark */;
 			5480C27C121E571900F6E1C6 = 5480C27C121E571900F6E1C6 /* PBXTextBookmark */;
 			5480C3DC121FD21500F6E1C6 = 5480C3DC121FD21500F6E1C6 /* PBXTextBookmark */;
 			5480C3DD121FD21500F6E1C6 = 5480C3DD121FD21500F6E1C6 /* PBXTextBookmark */;
@@ -1082,6 +1084,28 @@
 		rLen = 0;
 		rLoc = 9223372036854775807;
 	};
+	546514A7122CA382003DE639 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/shin/src/NowPlayingFriends/NowPlayingFriends-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	546514AB122CA462003DE639 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/shin/src/NowPlayingFriends/NowPlayingFriends-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
 	5480C27C121E571900F6E1C6 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
@@ -1441,10 +1465,10 @@
 	};
 	54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{4034, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{9493, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{9544, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{9594, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 9975}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {651, 5343}}";
-			sepNavSelRange = "{9897, 0}";
-			sepNavVisRange = "{3478, 324}";
+			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{4474, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{9962, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{10013, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{10063, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 10444}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {651, 5594}}";
+			sepNavSelRange = "{10366, 0}";
+			sepNavVisRange = "{3332, 462}";
 		};
 	};
 	54C1DC86121415DB00EBD811 /* FriendCell.h */ = {
