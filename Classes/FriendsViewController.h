@@ -13,7 +13,7 @@
 #define kDefaultBodyTextHeight 27.0f
 #define kViewFrameHeight 66.0f
 #define kTextFrameHeight 27.0f
-
+#define kTimelineUpdateInterval 60 * 5
 #define kMaxTableCellRow 100
 #define kTableUpdateMaxScrollRow 80
 

@@ -175,8 +175,9 @@
     }
 
     date = [[NSDate alloc] init];
-    nextStartDate = [[NSDate alloc] initWithTimeInterval:60 * 1 
-				    sinceDate:date];
+    nextStartDate = [[NSDate alloc] 
+		      initWithTimeInterval:kTimelineUpdateInterval 
+		      sinceDate:date];
 
     [NSThread sleepUntilDate: nextStartDate];
     [date release];
