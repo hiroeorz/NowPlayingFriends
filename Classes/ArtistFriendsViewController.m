@@ -12,22 +12,20 @@
 
 @implementation ArtistFriendsViewController
 
-- (void)refreshTimeline {
+- (NSInteger)refreshTimeline {
 
   NSLog(@"updating timeline data...");
 
   TwitterClient *client = [[TwitterClient alloc] init];
   NSString *artistName = [self.appDelegate nowPlayingArtistName];
-
   NSArray *newTimeline = [client getSearchTimeLine:artistName, nil];
 
-  @synchronized(self.timeline) {
-    self.timeline = newTimeline;
-  }
-
   [client release];
+  NSInteger addCount = [super createNewTimeline:newTimeline];
 
   NSLog(@"timeline data updated.");
+
+  return addCount;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

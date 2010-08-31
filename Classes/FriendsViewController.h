@@ -9,13 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "NowPlayingFriendsAppDelegate.h"
 
-#define kTimelineTableRowHeight 70.0f
+#define kTimelineTableRowHeight 76.0f
 #define kDefaultBodyTextHeight 27.0f
+#define kViewFrameHeight 66.0f
+#define kTextFrameHeight 27.0f
 
-
-@interface FriendsViewController : UITableViewController {
+@interface FriendsViewController : UIViewController 
+<UITableViewDataSource, UITableViewDelegate> {
 
   NSArray *timeline;
+  UITableView *friendsTableView;
 
 @private
   NSArray *beforeTimeline;
@@ -25,8 +28,10 @@
 @property (nonatomic, retain) NSArray *timeline;
 @property (nonatomic, retain) NSArray *beforeTimeline;
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
+@property (nonatomic, retain) IBOutlet UITableView *friendsTableView;
 
-- (void)refreshTimeline;
+- (NSInteger)refreshTimeline;
+- (NSInteger)createNewTimeline:(NSArray *)newTimeline;
 - (void)tableRefreshLoop;
 
 - (NSString *)username:(NSDictionary *)data;
@@ -36,6 +41,7 @@
 - (void)openUserInformationView:(id)sender;
 - (CGFloat)lineHeightValue:(NSIndexPath *)indexPath;
 - (CGFloat)lineOverFlowSize:(NSIndexPath *)indexPath;
+- (NSInteger)newOffset:(NSInteger)addCount;
 
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 

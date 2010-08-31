@@ -277,12 +277,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>15</integer>
+									<integer>10</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 465}, {272, 736}}</string>
+							<string>{{0, 0}, {272, 736}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -317,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>UserTimelineViewController.h</string>
+								<string>NowPlayingFriends-Info.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>UserTimelineViewController.h</string>
+										<string>NowPlayingFriends-Info.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>546513E9122BABB2003DE639</string>
+										<string>546514A2122C9922003DE639</string>
 										<key>history</key>
 										<array>
 											<string>54C1DD14121512AD00EBD811</string>
@@ -363,13 +364,13 @@
 											<string>5480C8EE1226501500F6E1C6</string>
 											<string>5480C9741227ABA200F6E1C6</string>
 											<string>5480C9ED1227CE4B00F6E1C6</string>
-											<string>5480CA321227EF4800F6E1C6</string>
 											<string>5480CA9D12289CC600F6E1C6</string>
 											<string>54651206122A049B003DE639</string>
 											<string>54651364122B69AC003DE639</string>
 											<string>54651377122B8AB0003DE639</string>
 											<string>546513BC122B9D02003DE639</string>
-											<string>5480C8611225135800F6E1C6</string>
+											<string>5465141B122BD76B003DE639</string>
+											<string>5465145C122BE94A003DE639</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -567,6 +568,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>546514A3122C9922003DE639</string>
 		<string>546511FC122A021F003DE639</string>
 		<string>546511FE122A021F003DE639</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -596,7 +598,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MusicPlayerViewController.m</string>
+								<string>FriendsViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>

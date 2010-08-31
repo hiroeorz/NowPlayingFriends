@@ -17,6 +17,7 @@
 @synthesize timeline;
 @synthesize beforeTimeline;
 @dynamic appDelegate;
+@synthesize friendsTableView;
 
 #pragma mark -
 #pragma mark Memory management
@@ -24,12 +25,15 @@
 - (void)dealloc {
   [timeline release];
   [beforeTimeline release];
+  [friendsTableView release];
   [super dealloc];
 }
 
 - (void)viewDidUnload {
   self.timeline = nil;
   self.beforeTimeline = nil;
+  self.friendsTableView = nil;
+  [super viewDidUnload];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,10 +53,54 @@
   [super viewDidLoad];
 }
 
-- (void)refreshTimeline {
+- (NSInteger)refreshTimeline {
   [NSException raise:@"called base class method"
 	       format:@"you must override this method:refreshTimeline"];
+  return 0;
 }
+
+- (NSInteger)createNewTimeline:(NSArray *)newTimeline {
+
+  NSInteger addRowCount = 0;
+
+  @synchronized(timeline) {
+    NSDictionary *firstItem = [timeline objectAtIndex:0];
+    NSLog(@"item:%@", firstItem);
+
+    if (firstItem == nil) {
+      self.timeline = newTimeline;
+
+    } else {
+      NSNumber *firstId = [firstItem objectForKey:@"id"];
+      NSMutableArray *array = [[NSMutableArray alloc] init];
+
+      for (NSDictionary *newItem in newTimeline) {
+	NSNumber *itemId = [newItem objectForKey:@"id"];
+
+	if ([firstId isEqualToNumber:itemId]) {
+	  NSLog(@"found duplicate id:%@", itemId);
+	  break;
+	}
+
+	[array addObject:newItem];
+	addRowCount++;
+      }
+
+
+      for (NSDictionary *oldItem in timeline) {
+	[array addObject:oldItem];
+      }
+
+      self.timeline = array;
+      [array release];
+    }
+
+  }
+
+  NSLog(@"timeline count: %d", [timeline count]);
+  return addRowCount;
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
@@ -92,11 +140,12 @@
 
   while (true) {
     self.beforeTimeline = timeline;
-    [self refreshTimeline];
+    NSInteger addCount = [self refreshTimeline];
+    NSInteger newOffset = [self newOffset:addCount];
 
     if (activateFlag && ![timeline isEqualToArray:beforeTimeline]) {
-      [self performSelectorOnMainThread:@selector(reloadTableDataOnMainThread)
-	    withObject:nil
+      [self performSelectorOnMainThread:@selector(reloadTableDataOnMainThread:)
+	    withObject:[NSNumber numberWithInteger:newOffset]
 	    waitUntilDone:YES];
 
       NSLog(@"refreshed.");
@@ -116,10 +165,16 @@
   [pool release];
 }
 
-- (void)reloadTableDataOnMainThread {
+- (void)reloadTableDataOnMainThread:(NSNumber *)newOffsetNumber {
 
   @synchronized(timeline) {
-    [(UITableView *)self.view reloadData];
+    friendsTableView.dataSource = self;
+    friendsTableView.delegate = self;
+
+    [friendsTableView reloadData];
+
+    friendsTableView.contentOffset = 
+      CGPointMake(0.0f, [newOffsetNumber floatValue]);
   }
 }
 
@@ -135,6 +190,7 @@
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section {
   
+  NSLog(@"numberOfRowsInSection:%d", [timeline count]);
   return [timeline count];
 }
 
@@ -177,11 +233,11 @@
   CGFloat overflow = [self lineOverFlowSize:indexPath];
 
   CGRect viewFrame = cell.baseView.frame;
-  viewFrame.size.height = viewFrame.size.height + overflow;
+  viewFrame.size.height = kViewFrameHeight + overflow;
   cell.baseView.frame = viewFrame;
 
   CGRect textFrame = cell.bodyTextView.frame;
-  textFrame.size.height = textFrame.size.height + overflow;
+  textFrame.size.height = kTextFrameHeight + overflow;
   cell.bodyTextView.frame = textFrame;
 
   NSDictionary *objects = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -255,6 +311,23 @@
   [pool release];
 }
 
+- (NSInteger)newOffset:(NSInteger)addCount {
+
+  CGPoint offset = friendsTableView.contentOffset;
+  NSInteger totalOffset = offset.y;
+
+  for (NSInteger i = 0; i < addCount; i++) {
+    NSInteger cellViewHeight = kTimelineTableRowHeight;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+
+    cellViewHeight = cellViewHeight + [self lineOverFlowSize:indexPath];
+    totalOffset = totalOffset + cellViewHeight;
+  }
+
+  NSLog(@"totalOffset: %d", totalOffset);
+  return totalOffset;
+}
+
 - (CGFloat)lineHeightValue:(NSIndexPath *)indexPath {
 
   NSInteger row = [indexPath row];
@@ -262,7 +335,7 @@
   NSString *bodyText = [data objectForKey:@"text"];
    
   CGSize bounds = CGSizeMake(320, 1000);
-  UIFont *font = [UIFont systemFontOfSize:13];
+  UIFont *font = [UIFont systemFontOfSize:14];
   CGSize size = [bodyText sizeWithFont:font
 			  constrainedToSize:bounds
 			  lineBreakMode:UILineBreakModeTailTruncation];

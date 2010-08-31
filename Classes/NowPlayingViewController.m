@@ -12,20 +12,18 @@
 
 @implementation NowPlayingViewController
 
-- (void)refreshTimeline {
+- (NSInteger)refreshTimeline {
 
   NSLog(@"updating timeline data...");
 
   TwitterClient *client = [[TwitterClient alloc] init];
   NSArray *newTimeline = [client getSearchTimeLine:@"#nowplaying", nil];
-
-  @synchronized(self.timeline) {
-    self.timeline = newTimeline;
-  }
-
   [client release];
 
+  NSInteger addCount = [super createNewTimeline:newTimeline];
   NSLog(@"timeline data updated.");
+
+  return addCount;
 }
 
 @end

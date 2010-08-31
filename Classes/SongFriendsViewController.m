@@ -12,7 +12,7 @@
 
 @implementation SongFriendsViewController
 
-- (void)refreshTimeline {
+- (NSInteger)refreshTimeline {
 
   NSLog(@"updating timeline data...");
 
@@ -20,15 +20,14 @@
   NSString *songTitle = [self.appDelegate nowPlayingTitle];
   NSString *artistName = [self.appDelegate nowPlayingArtistName];
 
-  NSArray *newTimeline = [client getSearchTimeLine: songTitle, artistName, nil];
-
-  @synchronized(timeline) {
-    self.timeline = newTimeline;
-  }
-
+  NSArray *newTimeline = [client getSearchTimeLine: songTitle, 
+				 artistName, nil];
   [client release];
 
+  NSInteger addCount = [super createNewTimeline:newTimeline];
   NSLog(@"timeline data updated.");
+
+  return addCount;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
