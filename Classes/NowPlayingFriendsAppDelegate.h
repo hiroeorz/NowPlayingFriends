@@ -15,6 +15,8 @@
 
 #define kTweetTemplate @"♪ Now Playing \"[st]\" by \"[ar]\" ♬ #nowplaying"
 #define kMaxTweetLength 140
+#define kProfileImageDirectory @"profileImages"
+#define kProfileImageMaxFileCacheCount 512
 
 @interface NowPlayingFriendsAppDelegate : NSObject <UIApplicationDelegate> {
   
@@ -72,6 +74,12 @@
 - (UIImage *)profileImage:(NSDictionary *)data 
 		getRemote:(BOOL) getRemoteFlag;
 - (UIImage *)originalProfileImage:(NSDictionary *)data;
+- (NSString *)profileImageFileName:(NSString *)urlString;
+- (void)saveProfileImageData:(NSData *)imageData
+		   urlString:(NSString *) urlString;
+- (NSData *)profileImageDataWithURLString:(NSString *)urlString;
+- (NSString *)createDirectory:(NSString *)dirname;
+- (void)cleanupProfileImageFileCache;
 
 - (void)setResizedImage:(UIImage *)image 
 	       toButton:(UIButton *)imageButton;

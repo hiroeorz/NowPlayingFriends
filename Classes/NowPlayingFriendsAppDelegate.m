@@ -140,10 +140,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
   testFlag = 0;
 
+  [self cleanupProfileImageFileCache];
+
   NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
   self.profileImages = newProfileImages;
   [newProfileImages release];
 
+  [self createDirectory:kProfileImageDirectory];
   [self setupMusicPlayer];
 
   [UIApplication sharedApplication].statusBarStyle = 
@@ -406,16 +409,32 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   NSString *imageURLString = [user objectForKey:@"profile_image_url"];
   UIImage *newImage = [profileImages objectForKey:imageURLString];
+  NSData *imageData;
+
+  if (newImage != nil) {
+    NSLog(@"get from memory: %@", newImage);
+  }
+
+  if (newImage == nil) {
+    imageData = [self profileImageDataWithURLString:imageURLString];
+    
+    if (imageData != nil) {
+      newImage = [[UIImage alloc] initWithData:imageData];
+      NSLog(@"get from file: %@", newImage);
+    }
+  }
 
   if (newImage == nil && getRemoteFlag) {
     NSURL *imageURL = [NSURL URLWithString:imageURLString];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    imageData = [NSData dataWithContentsOfURL:imageURL];
     newImage = [[UIImage alloc] initWithData:imageData];
     
+    [self saveProfileImageData:imageData urlString:imageURLString];
+    NSLog(@"get from remote: %@", newImage);
+
     @synchronized(profileImages) {
       [profileImages setObject:newImage forKey:imageURLString];
-    }
-    
+    }    
   }
 
   return newImage;
@@ -440,6 +459,83 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return newImage;
 }
   
+- (void)saveProfileImageData:(NSData *)imageData 
+	       urlString:(NSString *) urlString {
+
+  NSString *path = [self profileImageFileName:urlString];
+  [imageData writeToFile:path atomically:YES];
+}
+
+- (NSData *)profileImageDataWithURLString:(NSString *)urlString {
+
+  NSString *path = [self profileImageFileName:urlString];
+  NSData *imageData = [[NSData alloc] initWithContentsOfFile:path];
+
+  return imageData;
+}
+
+- (NSString *)profileImageFileName:(NSString *)urlString {
+
+  NSString *replaced = [urlString 
+			 stringByReplacingOccurrencesOfString:@"http://"
+			 withString:@""];
+
+  replaced = [replaced 
+	       stringByReplacingOccurrencesOfString:@"/"
+	       withString:@"_"];
+
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+						       NSUserDomainMask, YES);
+  
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSString *dirname = 
+    [documentsDirectory stringByAppendingPathComponent:kProfileImageDirectory];
+
+  NSString *filename = [dirname stringByAppendingPathComponent:replaced];
+  
+  return filename;
+}
+
+/**
+ * @brief アプリケーション用のディレクトリを渡された名前でDeocuments以下に作る。
+ */
+- (NSString *)createDirectory:(NSString *)dirname {
+
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+						       NSUserDomainMask, YES);  
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSString *dirpath = 
+    [documentsDirectory stringByAppendingPathComponent:dirname];
+
+  if (![[NSFileManager defaultManager] fileExistsAtPath:dirpath]) {
+    [[NSFileManager defaultManager] 
+      createDirectoryAtPath:dirpath attributes:nil];
+  }
+
+  return dirpath;
+}
+
+- (void)cleanupProfileImageFileCache {
+
+  NSString *dirpath = [self createDirectory:kProfileImageDirectory]; 
+  NSArray *filesArray = [[NSFileManager defaultManager] 
+			  directoryContentsAtPath:dirpath];
+  NSInteger filecount = [filesArray count];
+
+  if (filecount > kProfileImageMaxFileCacheCount) {
+    NSDirectoryEnumerator *dirEnum = [[NSFileManager defaultManager]
+				       enumeratorAtPath:dirpath];
+
+    NSString *filename;
+    NSString *filepath;
+
+    while (filename = [dirEnum nextObject]) {
+      filepath = [dirpath stringByAppendingPathComponent:filename];
+      [[NSFileManager defaultManager] removeFileAtPath:filepath handler:self];
+      NSLog(@"deleted filename: %@", filepath);
+    }
+  }
+}
 
 - (UIBarButtonItem *)listButton:(SEL)selector
 			 target:(id)target {

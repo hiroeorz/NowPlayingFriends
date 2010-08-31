@@ -2,16 +2,16 @@
 {
 	1D3623240D0F684500981E51 /* NowPlayingFriendsAppDelegate.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {439, 1209}}";
-			sepNavSelRange = "{2700, 0}";
-			sepNavVisRange = "{102, 440}";
+			sepNavIntBoundsRect = "{{0, 0}, {651, 1300}}";
+			sepNavSelRange = "{3299, 0}";
+			sepNavVisRange = "{2356, 646}";
 		};
 	};
 	1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {651, 8073}}";
-			sepNavSelRange = "{16086, 0}";
-			sepNavVisRange = "{11295, 500}";
+			sepNavIntBoundsRect = "{{0, 0}, {651, 8723}}";
+			sepNavSelRange = "{18170, 0}";
+			sepNavVisRange = "{12201, 451}";
 		};
 	};
 	1D6058900D05DD3D006BFB54 /* NowPlayingFriends */ = {
@@ -190,6 +190,18 @@
 			54651567122D0E68003DE639 /* PBXBookmark */ = 54651567122D0E68003DE639 /* PBXBookmark */;
 			5465156B122D0F3E003DE639 /* PBXBookmark */ = 5465156B122D0F3E003DE639 /* PBXBookmark */;
 			5465156E122D1068003DE639 /* PBXBookmark */ = 5465156E122D1068003DE639 /* PBXBookmark */;
+			54651572122D1689003DE639 /* PBXBookmark */ = 54651572122D1689003DE639 /* PBXBookmark */;
+			54651576122D16A1003DE639 /* PBXBookmark */ = 54651576122D16A1003DE639 /* PBXBookmark */;
+			5465157A122D16B4003DE639 /* PBXBookmark */ = 5465157A122D16B4003DE639 /* PBXBookmark */;
+			5465157E122D16C8003DE639 /* PBXBookmark */ = 5465157E122D16C8003DE639 /* PBXBookmark */;
+			54651580122D16D0003DE639 /* PBXBookmark */ = 54651580122D16D0003DE639 /* PBXBookmark */;
+			54651590122D1972003DE639 /* PBXBookmark */ = 54651590122D1972003DE639 /* PBXBookmark */;
+			54651594122D19CA003DE639 /* PBXBookmark */ = 54651594122D19CA003DE639 /* PBXBookmark */;
+			5465159E122D2173003DE639 /* PBXBookmark */ = 5465159E122D2173003DE639 /* PBXBookmark */;
+			546515A1122D2192003DE639 /* PBXBookmark */ = 546515A1122D2192003DE639 /* PBXBookmark */;
+			546515A5122D254B003DE639 /* PBXBookmark */ = 546515A5122D254B003DE639 /* PBXBookmark */;
+			546515A9122D258B003DE639 /* PBXBookmark */ = 546515A9122D258B003DE639 /* PBXBookmark */;
+			546515B8122D2A67003DE639 /* PBXBookmark */ = 546515B8122D2A67003DE639 /* PBXBookmark */;
 			5480C27C121E571900F6E1C6 = 5480C27C121E571900F6E1C6 /* PBXTextBookmark */;
 			5480C3DC121FD21500F6E1C6 = 5480C3DC121FD21500F6E1C6 /* PBXTextBookmark */;
 			5480C3DD121FD21500F6E1C6 = 5480C3DD121FD21500F6E1C6 /* PBXTextBookmark */;
@@ -1324,6 +1336,54 @@
 		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
 	};
 	5465156E122D1068003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	54651572122D1689003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	54651576122D16A1003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	5465157A122D16B4003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	5465157E122D16C8003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	54651580122D16D0003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	54651590122D1972003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	54651594122D19CA003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	5465159E122D2173003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	546515A1122D2192003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	546515A5122D254B003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	546515A9122D258B003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	546515B8122D2A67003DE639 /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
 	};
