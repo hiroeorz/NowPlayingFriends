@@ -140,6 +140,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
   testFlag = 0;
 
+  NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
+  self.profileImages = newProfileImages;
+  [newProfileImages release];
+
   [self setupMusicPlayer];
 
   [UIApplication sharedApplication].statusBarStyle = 
@@ -282,6 +286,25 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return [currentItem valueForProperty:MPMediaItemPropertyArtist];
 }
 
+- (UIImage *)currentMusicArtWorkWithWidth:(NSInteger)width
+				   height:(NSInteger)height {
+
+  MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
+  UIImage *artworkImage = nil; // = noArtworkImage;
+
+  if (currentItem != nil) {
+    MPMediaItemArtwork *artwork = 
+      [currentItem valueForProperty:MPMediaItemPropertyArtwork];
+
+    if (artwork) {
+      artworkImage = 
+	[artwork imageWithSize:CGSizeMake(width, height)];
+    }  
+  }
+
+  return artworkImage;
+}
+
 #pragma mark -
 #pragma mark Util Methods
 
@@ -374,31 +397,31 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
  * @brief ユーザのプロフィール画像を返します。
  *        キャッシュにあればそれを、なければリモートから取得して返します。
  */
-- (NSData *)profileImage:(NSDictionary *)data
-	       getRemote:(BOOL) getRemoteFlag {
+- (UIImage *)profileImage:(NSDictionary *)data
+		getRemote:(BOOL) getRemoteFlag {
 
   NSDictionary *user = [data objectForKey:@"user"];
 
   if (user == nil) { user = data; }
 
   NSString *imageURLString = [user objectForKey:@"profile_image_url"];
+  UIImage *newImage = [profileImages objectForKey:imageURLString];
 
-  NSData *imageData = [profileImages objectForKey:imageURLString];
-
-  if (imageData == nil && getRemoteFlag) {
+  if (newImage == nil && getRemoteFlag) {
     NSURL *imageURL = [NSURL URLWithString:imageURLString];
-    imageData = [NSData dataWithContentsOfURL:imageURL];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    newImage = [[UIImage alloc] initWithData:imageData];
     
     @synchronized(profileImages) {
-      [profileImages setObject:imageData forKey:imageURLString];
+      [profileImages setObject:newImage forKey:imageURLString];
     }
     
   }
 
-  return imageData;
+  return newImage;
 }
 
-- (NSData *)originalProfileImage:(NSDictionary *)data {
+- (UIImage *)originalProfileImage:(NSDictionary *)data {
 
   NSDictionary *user = [data objectForKey:@"user"];
 
@@ -412,15 +435,18 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   NSURL *imageURL = [NSURL URLWithString:imageURLString];
   NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+  UIImage *newImage = [[UIImage alloc] initWithData:imageData];
 
-  return imageData;
+  return newImage;
 }
   
 
 - (UIBarButtonItem *)listButton:(SEL)selector
 			 target:(id)target {
+
+  UIImage *image = [UIImage imageNamed:@"list-white.png"];
   UIBarButtonItem *button = 
-    [[UIBarButtonItem alloc] initWithTitle:@"Play list"
+    [[UIBarButtonItem alloc] initWithImage:image
 			     style:UIBarButtonItemStyleBordered
 			     target:target
 			     action:selector];
@@ -430,40 +456,65 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (UIBarButtonItem *)editButton:(SEL)selector
 			 target:(id)target {
   UIBarButtonItem *button = 
-    [[UIBarButtonItem alloc] initWithTitle:@"Edit"
-			     style:UIBarButtonItemStyleBordered
-			     target:target
-			     action:selector];
+    [[UIBarButtonItem alloc] 
+      initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+      target:target
+      action:selector];
   return [button autorelease];
 }
 
 - (UIBarButtonItem *)cancelButton:(SEL)selector
 			 target:(id)target {
   UIBarButtonItem *button = 
-    [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
-			     style:UIBarButtonItemStyleBordered
-			     target:target
-			     action:selector];
+    [[UIBarButtonItem alloc] 
+      initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+      target:target
+      action:selector];
   return [button autorelease];
 }
 
 - (UIBarButtonItem *)playerButton:(SEL)selector
 			 target:(id)target {
+
+  UIImage *artworkImage = 
+    [self currentMusicArtWorkWithWidth:20 height:20];
+
   UIBarButtonItem *button = 
-    [[UIBarButtonItem alloc] initWithTitle:@"Player"
-			     style:UIBarButtonItemStyleBordered
+    [[UIBarButtonItem alloc] initWithImage:artworkImage
+			     style:UIBarButtonItemStylePlain
 			     target:target
 			     action:selector];
+
+  return [button autorelease];
+}
+
+- (UIBarButtonItem *)pauseButton:(SEL)selector
+			 target:(id)target {
+  UIBarButtonItem *button = 
+    [[UIBarButtonItem alloc] 
+      initWithBarButtonSystemItem:UIBarButtonSystemItemPause
+      target:target
+      action:selector];
+  return [button autorelease];
+}
+
+- (UIBarButtonItem *)stopButton:(SEL)selector
+			 target:(id)target {
+  UIBarButtonItem *button = 
+    [[UIBarButtonItem alloc] 
+      initWithBarButtonSystemItem:UIBarButtonSystemItemStop
+      target:target
+      action:selector];
   return [button autorelease];
 }
 
 - (UIBarButtonItem *)completeButton:(SEL)selector
 			     target:(id)target {
   UIBarButtonItem *button = 
-    [[UIBarButtonItem alloc] initWithTitle:@"Complete"
-			     style:UIBarButtonItemStyleBordered
-			     target: target
-			     action: selector];
+    [[UIBarButtonItem alloc] 
+      initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+      target: target
+      action: selector];
 
   return [button autorelease];
 }

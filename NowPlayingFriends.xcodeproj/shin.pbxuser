@@ -9,9 +9,9 @@
 	};
 	1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {439, 7956}}";
-			sepNavSelRange = "{15932, 0}";
-			sepNavVisRange = "{9044, 510}";
+			sepNavIntBoundsRect = "{{0, 0}, {651, 8073}}";
+			sepNavSelRange = "{16086, 0}";
+			sepNavVisRange = "{11295, 500}";
 		};
 	};
 	1D6058900D05DD3D006BFB54 /* NowPlayingFriends */ = {
@@ -165,6 +165,31 @@
 			546514A2122C9922003DE639 /* PlistBookmark */ = 546514A2122C9922003DE639 /* PlistBookmark */;
 			546514A7122CA382003DE639 /* PlistBookmark */ = 546514A7122CA382003DE639 /* PlistBookmark */;
 			546514AB122CA462003DE639 /* PlistBookmark */ = 546514AB122CA462003DE639 /* PlistBookmark */;
+			546514D4122CDA4E003DE639 /* PlistBookmark */ = 546514D4122CDA4E003DE639 /* PlistBookmark */;
+			546514D5122CDA4E003DE639 /* PBXBookmark */ = 546514D5122CDA4E003DE639 /* PBXBookmark */;
+			546514D6122CDA4E003DE639 /* PlistBookmark */ = 546514D6122CDA4E003DE639 /* PlistBookmark */;
+			546514F2122CDF04003DE639 /* PlistBookmark */ = 546514F2122CDF04003DE639 /* PlistBookmark */;
+			546514F4122CDF04003DE639 /* PlistBookmark */ = 546514F4122CDF04003DE639 /* PlistBookmark */;
+			546514F8122CDF3E003DE639 /* PlistBookmark */ = 546514F8122CDF3E003DE639 /* PlistBookmark */;
+			54651501122CE27F003DE639 /* PlistBookmark */ = 54651501122CE27F003DE639 /* PlistBookmark */;
+			54651507122CE4B7003DE639 /* PlistBookmark */ = 54651507122CE4B7003DE639 /* PlistBookmark */;
+			54651527122CF7EB003DE639 /* PlistBookmark */ = 54651527122CF7EB003DE639 /* PlistBookmark */;
+			54651528122CF7EB003DE639 /* PBXBookmark */ = 54651528122CF7EB003DE639 /* PBXBookmark */;
+			54651529122CF7EB003DE639 /* PBXBookmark */ = 54651529122CF7EB003DE639 /* PBXBookmark */;
+			5465152A122CF7EB003DE639 /* PBXBookmark */ = 5465152A122CF7EB003DE639 /* PBXBookmark */;
+			5465152B122CF7EB003DE639 /* PBXBookmark */ = 5465152B122CF7EB003DE639 /* PBXBookmark */;
+			5465152C122CF7EB003DE639 /* PBXBookmark */ = 5465152C122CF7EB003DE639 /* PBXBookmark */;
+			54651532122CF81F003DE639 /* PBXBookmark */ = 54651532122CF81F003DE639 /* PBXBookmark */;
+			54651535122CF87C003DE639 /* PBXBookmark */ = 54651535122CF87C003DE639 /* PBXBookmark */;
+			54651539122CF8C7003DE639 /* PBXBookmark */ = 54651539122CF8C7003DE639 /* PBXBookmark */;
+			5465153D122CF971003DE639 /* PBXBookmark */ = 5465153D122CF971003DE639 /* PBXBookmark */;
+			54651554122D0CF2003DE639 /* PBXBookmark */ = 54651554122D0CF2003DE639 /* PBXBookmark */;
+			54651557122D0D11003DE639 /* PBXBookmark */ = 54651557122D0D11003DE639 /* PBXBookmark */;
+			5465155F122D0E2C003DE639 /* PBXBookmark */ = 5465155F122D0E2C003DE639 /* PBXBookmark */;
+			54651564122D0E57003DE639 /* PBXBookmark */ = 54651564122D0E57003DE639 /* PBXBookmark */;
+			54651567122D0E68003DE639 /* PBXBookmark */ = 54651567122D0E68003DE639 /* PBXBookmark */;
+			5465156B122D0F3E003DE639 /* PBXBookmark */ = 5465156B122D0F3E003DE639 /* PBXBookmark */;
+			5465156E122D1068003DE639 /* PBXBookmark */ = 5465156E122D1068003DE639 /* PBXBookmark */;
 			5480C27C121E571900F6E1C6 = 5480C27C121E571900F6E1C6 /* PBXTextBookmark */;
 			5480C3DC121FD21500F6E1C6 = 5480C3DC121FD21500F6E1C6 /* PBXTextBookmark */;
 			5480C3DD121FD21500F6E1C6 = 5480C3DD121FD21500F6E1C6 /* PBXTextBookmark */;
@@ -1106,6 +1131,202 @@
 		rLen = 0;
 		rLoc = 9223372036854775807;
 	};
+	546514B4122CCDD5003DE639 /* Root.plist */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text.plist.xml;
+		path = Root.plist;
+		sourceTree = "<group>";
+	};
+	546514D4122CDA4E003DE639 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/shin/src/NowPlayingFriends/NowPlayingFriends-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	546514D5122CDA4E003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 546514B4122CCDD5003DE639 /* Root.plist */;
+	};
+	546514D6122CDA4E003DE639 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 546514D7122CDA4E003DE639 /* Root.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	546514D7122CDA4E003DE639 /* Root.plist */ = {
+		isa = PBXFileReference;
+		name = Root.plist;
+		path = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		sourceTree = "<absolute>";
+	};
+	546514F2122CDF04003DE639 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	546514F3122CDF04003DE639 /* Root.plist */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text.plist.xml;
+		name = Root.plist;
+		path = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		sourceTree = "<absolute>";
+	};
+	546514F4122CDF04003DE639 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 546514F5122CDF04003DE639 /* Root.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			PreferenceSpecifiers,
+			2,
+			DefaultValue,
+		);
+		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	546514F5122CDF04003DE639 /* Root.plist */ = {
+		isa = PBXFileReference;
+		name = Root.plist;
+		path = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		sourceTree = "<absolute>";
+	};
+	546514F8122CDF3E003DE639 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			PreferenceSpecifiers,
+			2,
+			DefaultValue,
+		);
+		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	54651501122CE27F003DE639 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			PreferenceSpecifiers,
+			2,
+			DefaultValue,
+		);
+		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	54651507122CE4B7003DE639 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			PreferenceSpecifiers,
+			2,
+			DefaultValue,
+		);
+		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	54651527122CF7EB003DE639 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			PreferenceSpecifiers,
+			2,
+			DefaultValue,
+		);
+		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	54651528122CF7EB003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465150B122CE6D6003DE639 /* list-white.png */;
+	};
+	54651529122CF7EB003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 54651515122CEEAD003DE639 /* music-note-white.png */;
+	};
+	5465152A122CF7EB003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5480C8031223D82F00F6E1C6 /* 09-chat2-white.png */;
+	};
+	5465152B122CF7EB003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	5465152C122CF7EB003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	54651532122CF81F003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	54651535122CF87C003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	54651539122CF8C7003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	5465153D122CF971003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	54651554122D0CF2003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	54651557122D0D11003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	5465155F122D0E2C003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	54651564122D0E57003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	54651567122D0E68003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	5465156B122D0F3E003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	5465156E122D1068003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
 	5480C27C121E571900F6E1C6 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */;
@@ -1263,9 +1484,9 @@
 	};
 	5480C81D1223F09D00F6E1C6 /* UserTimelineViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {439, 689}}";
-			sepNavSelRange = "{1031, 0}";
-			sepNavVisRange = "{100, 308}";
+			sepNavIntBoundsRect = "{{0, 0}, {651, 663}}";
+			sepNavSelRange = "{1051, 0}";
+			sepNavVisRange = "{347, 366}";
 		};
 	};
 	5480C85F1225135800F6E1C6 /* PBXTextBookmark */ = {
@@ -1705,9 +1926,9 @@
 	};
 	54C1E0521217B48C00EBD811 /* MusicPlayerViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {651, 10807}}";
-			sepNavSelRange = "{21637, 0}";
-			sepNavVisRange = "{7124, 577}";
+			sepNavIntBoundsRect = "{{0, 0}, {651, 10673}}";
+			sepNavSelRange = "{21260, 0}";
+			sepNavVisRange = "{9489, 419}";
 		};
 	};
 	54C1E0571217B49500EBD811 /* PBXTextBookmark */ = {

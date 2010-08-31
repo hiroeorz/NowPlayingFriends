@@ -293,11 +293,11 @@
   
   NSDictionary *data = [objects objectForKey:@"data"];
   FriendCell *cell = [[objects objectForKey:@"cell"] retain];
-  NSData *imageData = [self.appDelegate profileImage:data
-			   getRemote:YES];
+  UIImage *newImage = [self.appDelegate profileImage:data
+			    getRemote:YES];
 
   NSDictionary *setObjects = [[NSDictionary alloc] initWithObjectsAndKeys:
-						     imageData, @"image",
+						     newImage, @"image",
 						   cell, @"cell",
 						   nil];
 
@@ -311,9 +311,7 @@
 
 - (void)setProfileImageWithImage:(NSDictionary *)objects {
 
-  NSData *imageData =  [objects objectForKey:@"image"];
-  UIImage *newImage = [[UIImage alloc] initWithData:imageData];
-
+  UIImage *newImage =  [objects objectForKey:@"image"];
   FriendCell *cell = [objects objectForKey:@"cell"];
 
   @synchronized(timeline) {

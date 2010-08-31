@@ -135,20 +135,18 @@
 - (void)getUserProfileImage:(NSDictionary *)user {
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  NSData *imageData = [self.appDelegate originalProfileImage:user];
+  UIImage *newImage = [self.appDelegate originalProfileImage:user];
 
   [self performSelectorOnMainThread:@selector(setUserProfileImage:)
-	withObject:imageData
+	withObject:newImage
 	waitUntilDone:YES];
 
   [pool release];
 }
 
-- (void)setUserProfileImage:(NSData *)imageData {
+- (void)setUserProfileImage:(UIImage *)newImage {
 
-  UIImage *newImage = [[UIImage alloc] initWithData:imageData];
   [self.appDelegate setResizedImage:newImage toButton:profileImageButton];
-
   [newImage release];
 }
 

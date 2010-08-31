@@ -35,7 +35,7 @@
 - (void)setUserInformations:(NSDictionary *)user;
 - (void)getUserInformation;
 - (void)getUserProfileImage:(NSDictionary *)user;
-- (void)setUserProfileImage:(NSData *)imageData;
+- (void)setUserProfileImage:(UIImage *)imageData;
 
 - (IBAction)openUserTimeline;
 

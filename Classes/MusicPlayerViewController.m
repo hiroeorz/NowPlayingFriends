@@ -218,7 +218,7 @@
 
     image = [UIImage imageNamed:@"Play.png"];
     [playButton setBackgroundImage:image 
-		forState:UIControlStateNormal];    
+		forState:UIControlStateNormal];
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
@@ -345,23 +345,15 @@
  */
 - (void)setMusicArtwork {
 
-  MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
+  UIImage *artworkImage = 
+    [self.appDelegate 
+	 currentMusicArtWorkWithWidth:albumImageView.frame.size.height
+	 height:albumImageView.frame.size.height];
 
-  if (currentItem != nil) {
-    MPMediaItemArtwork *artwork = 
-      [currentItem valueForProperty:MPMediaItemPropertyArtwork];
-    
-    UIImage *artworkImage; // = noArtworkImage;
+  self.albumImageView.image = artworkImage;
 
-    if (artwork) {
-      artworkImage = 
-	[artwork imageWithSize:CGSizeMake(albumImageView.frame.size.height, 
-					  albumImageView.frame.size.height)];
-    }
-
-    self.albumImageView.image = artworkImage;
-  }
 }
+
 
 - (void)refreshProfileImages {
 
@@ -448,13 +440,13 @@
 					  kProfileImageSize, 
 					  kProfileImageSize);
     
-    NSData *imageData = [self.appDelegate profileImage:data
+    UIImage *newImage = [self.appDelegate profileImage:data
 			     getRemote:YES];
     
     NSDictionary *objects = 
       [[NSDictionary alloc] initWithObjectsAndKeys:
 			      profileImageButton, @"profileImageButton",
-			    imageData, @"newImage", nil];
+			    newImage, @"newImage", nil];
     
     if (newButtonFlag == YES) {
 
@@ -500,8 +492,7 @@
 - (void)addProfileImageButton:(NSDictionary *)objects {
 
   UIButton *profileImageButton = [objects objectForKey:@"profileImageButton"];
-  NSData *imageData = [objects objectForKey:@"newImage"];
-  UIImage *newImage = [[UIImage alloc] initWithData:imageData];
+  UIImage *newImage = [objects objectForKey:@"newImage"];
 
   [self.songView addSubview:profileImageButton];
 
@@ -514,8 +505,7 @@
 - (void)setBackgroundImage:(NSDictionary *)objects {
 
   UIButton *profileImageButton = [objects objectForKey:@"profileImageButton"];
-  NSData *imageData = [objects objectForKey:@"newImage"];
-  UIImage *newImage = [[UIImage alloc] initWithData:imageData];
+  UIImage *newImage = [objects objectForKey:@"newImage"];
 
   [self.appDelegate setAnimationWithView:profileImageButton
        animationType:UIViewAnimationTransitionFlipFromLeft];
@@ -616,8 +606,10 @@
   [self.view addSubview:listView];
   [UIView commitAnimations];
 
+
   self.navigationItem.rightBarButtonItem = 
-    [self.appDelegate playerButton:@selector(changeToSongview) target:self];    
+    [self.appDelegate playerButton:@selector(changeToSongview) 
+	 target:self];    
 }
 
 - (void)changeToSongsListview {

@@ -17,6 +17,10 @@
 		54651253122A3321003DE639 /* SongsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54651252122A3321003DE639 /* SongsListViewController.m */; };
 		546512A5122B50E1003DE639 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546512A4122B50E1003DE639 /* QuartzCore.framework */; };
 		5465131D122B510A003DE639 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5465131C122B510A003DE639 /* CoreGraphics.framework */; };
+		546514B2122CCDD5003DE639 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 546514B1122CCDD5003DE639 /* Settings.bundle */; };
+		5465150C122CE6D6003DE639 /* list-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 5465150B122CE6D6003DE639 /* list-white.png */; };
+		54651516122CEEAD003DE639 /* music-note-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 54651515122CEEAD003DE639 /* music-note-white.png */; };
+		54651520122CF4AF003DE639 /* music-note.png in Resources */ = {isa = PBXBuildFile; fileRef = 5465151F122CF4AF003DE639 /* music-note.png */; };
 		5480C258121E4E5D00F6E1C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5480C257121E4E5D00F6E1C6 /* AVFoundation.framework */; };
 		5480C25C121E4E7900F6E1C6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5480C25B121E4E7900F6E1C6 /* AudioToolbox.framework */; };
 		5480C260121E4E8700F6E1C6 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5480C25F121E4E8700F6E1C6 /* MediaPlayer.framework */; };
@@ -92,6 +96,10 @@
 		54651252122A3321003DE639 /* SongsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongsListViewController.m; sourceTree = "<group>"; };
 		546512A4122B50E1003DE639 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5465131C122B510A003DE639 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		546514B1122CCDD5003DE639 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		5465150B122CE6D6003DE639 /* list-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-white.png"; sourceTree = "<group>"; };
+		54651515122CEEAD003DE639 /* music-note-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "music-note-white.png"; sourceTree = "<group>"; };
+		5465151F122CF4AF003DE639 /* music-note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "music-note.png"; sourceTree = "<group>"; };
 		5480C257121E4E5D00F6E1C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5480C25B121E4E7900F6E1C6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5480C25F121E4E8700F6E1C6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -270,6 +278,7 @@
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				546514B1122CCDD5003DE639 /* Settings.bundle */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -332,6 +341,9 @@
 		5480C6A3122296A200F6E1C6 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				5465151F122CF4AF003DE639 /* music-note.png */,
+				54651515122CEEAD003DE639 /* music-note-white.png */,
+				5465150B122CE6D6003DE639 /* list-white.png */,
 				5480C8031223D82F00F6E1C6 /* 09-chat2-white.png */,
 				5480C6A41222972000F6E1C6 /* mediaIcons */,
 			);
@@ -490,6 +502,10 @@
 				5480C84B1224EA4900F6E1C6 /* Previous.png in Resources */,
 				5480CA301227EF3100F6E1C6 /* UserAuthenticationViewController.xib in Resources */,
 				5480CA9B12289CB700F6E1C6 /* SendTweetViewController.xib in Resources */,
+				546514B2122CCDD5003DE639 /* Settings.bundle in Resources */,
+				5465150C122CE6D6003DE639 /* list-white.png in Resources */,
+				54651516122CEEAD003DE639 /* music-note-white.png in Resources */,
+				54651520122CF4AF003DE639 /* music-note.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

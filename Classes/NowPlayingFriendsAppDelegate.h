@@ -54,6 +54,8 @@
 - (NSString *)nowPlayingTitle;
 - (NSString *)nowPlayingAlbumTitle;
 - (NSString *)nowPlayingArtistName;
+- (UIImage *)currentMusicArtWorkWithWidth:(NSInteger)width
+				   height:(NSInteger)height;
 - (NSArray *)albums;
 - (NSArray *)playLists;
 - (NSString *)tweetString;
@@ -67,9 +69,9 @@
 - (void)checkAuthenticateWithController:(id)viewController;
 - (NSString *)username:(NSDictionary *)data;
 
-- (NSData *)profileImage:(NSDictionary *)data 
-	       getRemote:(BOOL) getRemoteFlag;
-- (NSData *)originalProfileImage:(NSDictionary *)data;
+- (UIImage *)profileImage:(NSDictionary *)data 
+		getRemote:(BOOL) getRemoteFlag;
+- (UIImage *)originalProfileImage:(NSDictionary *)data;
 
 - (void)setResizedImage:(UIImage *)image 
 	       toButton:(UIButton *)imageButton;
@@ -82,6 +84,10 @@
 			   target:(id)target;
 - (UIBarButtonItem *)playerButton:(SEL)selector
 			   target:(id)target;
+- (UIBarButtonItem *)pauseButton:(SEL)selector
+			  target:(id)target;
+- (UIBarButtonItem *)stopButton:(SEL)selector
+			 target:(id)target;
 - (UIBarButtonItem *)completeButton:(SEL)selector
 			     target:(id)target;
 
