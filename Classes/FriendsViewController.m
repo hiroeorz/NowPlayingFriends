@@ -165,6 +165,9 @@
   [pool release];
 }
 
+/**
+ * @brief テーブルを更新する。更新後も更新前に表示していた位置を表示する。
+ */
 - (void)reloadTableDataOnMainThread:(NSNumber *)newOffsetNumber {
 
   @synchronized(timeline) {
