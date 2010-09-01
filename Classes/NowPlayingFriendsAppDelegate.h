@@ -57,7 +57,8 @@
 - (NSString *)nowPlayingAlbumTitle;
 - (NSString *)nowPlayingArtistName;
 - (UIImage *)currentMusicArtWorkWithWidth:(NSInteger)width
-				   height:(NSInteger)height;
+				   height:(NSInteger)height
+			       useDefault:(BOOL)useDefault;
 - (NSArray *)albums;
 - (NSArray *)playLists;
 - (NSString *)tweetString;
@@ -94,6 +95,8 @@
 			   target:(id)target;
 - (UIBarButtonItem *)pauseButton:(SEL)selector
 			  target:(id)target;
+- (UIBarButtonItem *)refreshButton:(SEL)selector
+			    target:(id)target;
 - (UIBarButtonItem *)stopButton:(SEL)selector
 			 target:(id)target;
 - (UIBarButtonItem *)completeButton:(SEL)selector

@@ -105,6 +105,7 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {
 
   NSLog(@"didFinishWithData");
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   NSString *dataString = [[NSString alloc] 
 			   initWithData:data encoding:NSUTF8StringEncoding];
 
@@ -115,6 +116,7 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
   NSLog(@"didFailWithError");
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   [self dismissModalViewControllerAnimated:YES];
 }
 

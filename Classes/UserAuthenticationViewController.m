@@ -62,6 +62,8 @@
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {
 
   NSLog(@"didFinishWithData");
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
   NSString *dataString = [[NSString alloc] initWithData:data 
 					   encoding:NSUTF8StringEncoding];
   [dataString autorelease];
@@ -85,6 +87,7 @@
 
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
   NSLog(@"didFailWithError");
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 @end

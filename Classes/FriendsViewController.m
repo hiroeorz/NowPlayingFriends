@@ -50,6 +50,10 @@
   self.beforeTimeline = array;
   [array release];
 
+  self.navigationItem.rightBarButtonItem = 
+    [self.appDelegate refreshButton:@selector(refreshTableOnThread) 
+	 target:self];
+
   [super viewDidLoad];
 }
 
@@ -159,19 +163,7 @@
     NSLog(@"now cellRow: %d", cellRow);
 
     if (cellRow <= kTableUpdateMaxScrollRow) {
-      self.beforeTimeline = timeline;
-      NSInteger addCount = [self refreshTimeline];
-      NSInteger newOffset = [self newOffset:addCount];
-      
-      [self shurinkTimeline];
-
-      if (activateFlag && ![timeline isEqualToArray:beforeTimeline]) {
-	[self performSelectorOnMainThread:@selector(reloadTableDataOnMainThread:)
-	      withObject:[NSNumber numberWithInteger:newOffset]
-	      waitUntilDone:YES];
-	
-	NSLog(@"refreshed.");
-      }
+      [self refreshTable];
     }
 
     date = [[NSDate alloc] init];
@@ -184,6 +176,39 @@
     [nextStartDate release];
 
     if (activateFlag == NO) { break; }
+  }
+
+  [pool release];
+}
+
+/**
+ * @brief 新たなデータを取得してテーブルの内容を更新します。
+ */
+- (IBAction)refreshTableOnThread {
+
+  [self performSelectorInBackground:@selector(refreshTable)
+	withObject:nil];
+}
+
+/**
+ * @brief 新たなデータを取得してテーブルの内容を更新します。
+ */
+- (void)refreshTable {
+
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+  self.beforeTimeline = timeline;
+  NSInteger addCount = [self refreshTimeline];
+  NSInteger newOffset = [self newOffset:addCount];
+  
+  [self shurinkTimeline];
+  
+  if (activateFlag && ![timeline isEqualToArray:beforeTimeline]) {
+    [self performSelectorOnMainThread:@selector(reloadTableDataOnMainThread:)
+	  withObject:[NSNumber numberWithInteger:newOffset]
+	  waitUntilDone:YES];
+    
+    NSLog(@"refreshed.");
   }
 
   [pool release];

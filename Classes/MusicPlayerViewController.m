@@ -348,7 +348,8 @@
   UIImage *artworkImage = 
     [self.appDelegate 
 	 currentMusicArtWorkWithWidth:albumImageView.frame.size.height
-	 height:albumImageView.frame.size.height];
+	 height:albumImageView.frame.size.height
+	 useDefault:YES];
 
   self.albumImageView.image = artworkImage;
 

@@ -9,9 +9,9 @@
 	};
 	1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {651, 8723}}";
-			sepNavSelRange = "{18170, 0}";
-			sepNavVisRange = "{12201, 451}";
+			sepNavIntBoundsRect = "{{0, 0}, {651, 9806}}";
+			sepNavSelRange = "{13758, 0}";
+			sepNavVisRange = "{13390, 486}";
 		};
 	};
 	1D6058900D05DD3D006BFB54 /* NowPlayingFriends */ = {
@@ -202,6 +202,18 @@
 			546515A5122D254B003DE639 /* PBXBookmark */ = 546515A5122D254B003DE639 /* PBXBookmark */;
 			546515A9122D258B003DE639 /* PBXBookmark */ = 546515A9122D258B003DE639 /* PBXBookmark */;
 			546515B8122D2A67003DE639 /* PBXBookmark */ = 546515B8122D2A67003DE639 /* PBXBookmark */;
+			546515C0122DE29E003DE639 /* PBXBookmark */ = 546515C0122DE29E003DE639 /* PBXBookmark */;
+			546515C4122DE385003DE639 /* PBXBookmark */ = 546515C4122DE385003DE639 /* PBXBookmark */;
+			546515CA122DE42D003DE639 /* PBXBookmark */ = 546515CA122DE42D003DE639 /* PBXBookmark */;
+			546515D2122E1E58003DE639 /* PBXBookmark */ = 546515D2122E1E58003DE639 /* PBXBookmark */;
+			546515D6122E2251003DE639 /* PBXBookmark */ = 546515D6122E2251003DE639 /* PBXBookmark */;
+			546515D7122E2626003DE639 /* PBXBookmark */ = 546515D7122E2626003DE639 /* PBXBookmark */;
+			546515E3122E29D1003DE639 /* PBXBookmark */ = 546515E3122E29D1003DE639 /* PBXBookmark */;
+			546515E4122E29D1003DE639 /* PBXBookmark */ = 546515E4122E29D1003DE639 /* PBXBookmark */;
+			546515E5122E29D1003DE639 /* PBXBookmark */ = 546515E5122E29D1003DE639 /* PBXBookmark */;
+			546515E9122E2EFC003DE639 /* PBXBookmark */ = 546515E9122E2EFC003DE639 /* PBXBookmark */;
+			546515ED122E3FAA003DE639 /* PBXBookmark */ = 546515ED122E3FAA003DE639 /* PBXBookmark */;
+			546515F1122E3FC2003DE639 /* PBXBookmark */ = 546515F1122E3FC2003DE639 /* PBXBookmark */;
 			5480C27C121E571900F6E1C6 = 5480C27C121E571900F6E1C6 /* PBXTextBookmark */;
 			5480C3DC121FD21500F6E1C6 = 5480C3DC121FD21500F6E1C6 /* PBXTextBookmark */;
 			5480C3DD121FD21500F6E1C6 = 5480C3DD121FD21500F6E1C6 /* PBXTextBookmark */;
@@ -1261,6 +1273,13 @@
 		rLen = 0;
 		rLoc = 9223372036854775807;
 	};
+	54651515122CEEAD003DE639 /* music-note-white.png */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = image.png;
+		name = "music-note-white.png";
+		path = "/Users/shin/src/NowPlayingFriends/music-note-white.png";
+		sourceTree = "<absolute>";
+	};
 	54651527122CF7EB003DE639 /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
@@ -1386,6 +1405,54 @@
 	546515B8122D2A67003DE639 /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	546515C0122DE29E003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	546515C4122DE385003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	546515CA122DE42D003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	546515D2122E1E58003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	546515D6122E2251003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	546515D7122E2626003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	546515E3122E29D1003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5465151F122CF4AF003DE639 /* music-note.png */;
+	};
+	546515E4122E29D1003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 546515D9122E2667003DE639 /* no_artwork_image.jpg */;
+	};
+	546515E5122E29D1003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 546515D9122E2667003DE639 /* no_artwork_image.jpg */;
+	};
+	546515E9122E2EFC003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 546515D9122E2667003DE639 /* no_artwork_image.jpg */;
+	};
+	546515ED122E3FAA003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 546515D9122E2667003DE639 /* no_artwork_image.jpg */;
+	};
+	546515F1122E3FC2003DE639 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 546515D9122E2667003DE639 /* no_artwork_image.jpg */;
 	};
 	5480C27C121E571900F6E1C6 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1746,10 +1813,10 @@
 	};
 	54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{4474, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{9962, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{10013, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{10063, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 10444}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {651, 5594}}";
-			sepNavSelRange = "{10366, 0}";
-			sepNavVisRange = "{3332, 462}";
+			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{4994, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{10417, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{10468, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{10518, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 10899}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 6019}}";
+			sepNavSelRange = "{10821, 0}";
+			sepNavVisRange = "{34, 786}";
 		};
 	};
 	54C1DC86121415DB00EBD811 /* FriendCell.h */ = {

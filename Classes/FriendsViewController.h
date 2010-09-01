@@ -39,6 +39,9 @@
 - (void)tableRefreshLoop;
 - (void)shurinkTimeline;
 
+- (IBAction)refreshTableOnThread;
+- (void)refreshTable;
+
 - (NSString *)username:(NSDictionary *)data;
 - (void)setProfileImageWithObjects:(NSDictionary *)objects;
 - (void) cacheAllProfileImage;

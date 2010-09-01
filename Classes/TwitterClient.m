@@ -39,6 +39,8 @@
 
 - (void)updateStatus:(NSString *)message delegate:(id)aDelegate {
 
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
   NSURL *baseUrl = [NSURL URLWithString:kUpdateStatusURL];
   OAMutableURLRequest *request = [self authenticatedRequest:baseUrl];
 
@@ -58,9 +60,12 @@
 	   delegate:aDelegate
 	   didFinishSelector:@selector(ticket:didFinishWithData:)
 	   didFailSelector:@selector(ticket:didFailWithError:)];
+
 }
 
 - (NSArray *)getSearchTimeLine:(NSString *)searchString, ... {
+
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
   NSString *eachObject;
   va_list argumentList;
@@ -92,6 +97,8 @@
   NSDictionary *jsonDictionary = [jsonString JSONValue];
   NSArray *jsonArray = [jsonDictionary objectForKey:@"results"];
   [jsonString release];
+
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
   return jsonArray;
 }
@@ -170,6 +177,8 @@
  */
 - (NSArray *)arrayOfRemoteJson:(NSString *)urlString {
 
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
   NSURL *url = [self authenticatedURL:[NSURL URLWithString:urlString]];
 
   NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url
@@ -180,6 +189,8 @@
   NSLog(@"%@", jsonArray);
   [jsonString release];
 
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
   return jsonArray;
 }
 
@@ -188,6 +199,8 @@
  */
 - (NSDictionary *)dictionaryOfRemoteJson:(NSString *)urlString {
 
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
   NSURL *url = [self authenticatedURL:[NSURL URLWithString:urlString]];
 
   NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url
@@ -195,6 +208,8 @@
 					   error:nil];
   NSDictionary *jsonDictionary = [jsonString JSONValue];
   [jsonString release];
+
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
   return jsonDictionary;
 }
@@ -256,6 +271,7 @@
 
   OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
   
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
   [fetcher fetchDataWithRequest:request
 	   delegate:delegate
 	   didFinishSelector:@selector(ticket:didFinishWithData:)
@@ -267,6 +283,8 @@
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {
 
   NSLog(@"didFinishWithData");
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
   NSString *dataString = [[NSString alloc] 
 			   initWithData:data encoding:NSUTF8StringEncoding];
 
@@ -276,6 +294,7 @@
 
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
   NSLog(@"didFailWithError");
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 - (NSDictionary *)oAuthToken {

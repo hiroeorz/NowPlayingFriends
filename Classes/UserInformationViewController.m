@@ -136,11 +136,13 @@
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
   UIImage *newImage = [self.appDelegate originalProfileImage:user];
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
   [self performSelectorOnMainThread:@selector(setUserProfileImage:)
 	withObject:newImage
 	waitUntilDone:YES];
 
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   [pool release];
 }
 

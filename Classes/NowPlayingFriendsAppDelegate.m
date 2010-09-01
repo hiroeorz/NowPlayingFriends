@@ -290,7 +290,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 }
 
 - (UIImage *)currentMusicArtWorkWithWidth:(NSInteger)width
-				   height:(NSInteger)height {
+				   height:(NSInteger)height
+			       useDefault:(BOOL)useDefault {
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
   UIImage *artworkImage = nil; // = noArtworkImage;
@@ -302,7 +303,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     if (artwork) {
       artworkImage = 
 	[artwork imageWithSize:CGSizeMake(width, height)];
-    }  
+    }
+  }
+
+  if (useDefault && artworkImage == nil) {
+    UIImage *orgImage = [UIImage imageNamed:@"no_artwork_image.jpg"];
+    artworkImage = [orgImage stretchableImageWithLeftCapWidth:width 
+			     topCapHeight:height];
   }
 
   return artworkImage;
@@ -409,7 +416,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   NSString *imageURLString = [user objectForKey:@"profile_image_url"];
   UIImage *newImage = [profileImages objectForKey:imageURLString];
-  NSData *imageData;
+  NSData *imageData = nil;
 
   if (newImage != nil) {
     NSLog(@"get from memory: %@", newImage);
@@ -430,11 +437,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     newImage = [[UIImage alloc] initWithData:imageData];
     
     [self saveProfileImageData:imageData urlString:imageURLString];
-    NSLog(@"get from remote: %@", newImage);
 
     @synchronized(profileImages) {
-      [profileImages setObject:newImage forKey:imageURLString];
-    }    
+      if (newImage != nil) {
+	NSLog(@"get from remote: %@", newImage);
+	[profileImages setObject:newImage forKey:imageURLString];
+      }    
+    }
   }
 
   return newImage;
@@ -461,6 +470,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
 - (void)saveProfileImageData:(NSData *)imageData 
 	       urlString:(NSString *) urlString {
+
+  if (imageData == nil) { return; }
 
   NSString *path = [self profileImageFileName:urlString];
   [imageData writeToFile:path atomically:YES];
@@ -573,7 +584,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 			 target:(id)target {
 
   UIImage *artworkImage = 
-    [self currentMusicArtWorkWithWidth:20 height:20];
+    [self currentMusicArtWorkWithWidth:20 height:20 useDefault:NO];
+
+  if (artworkImage == nil) {
+    artworkImage = [UIImage imageNamed:@"no_artwork.png"];
+  }
 
   UIBarButtonItem *button = 
     [[UIBarButtonItem alloc] initWithImage:artworkImage
@@ -581,6 +596,16 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 			     target:target
 			     action:selector];
 
+  return [button autorelease];
+}
+
+- (UIBarButtonItem *)refreshButton:(SEL)selector
+			 target:(id)target {
+  UIBarButtonItem *button = 
+    [[UIBarButtonItem alloc] 
+      initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+      target:target
+      action:selector];
   return [button autorelease];
 }
 
