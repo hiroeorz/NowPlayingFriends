@@ -162,6 +162,9 @@
 			54A968EB122FBDAA004CF186 /* PBXTextBookmark */ = 54A968EB122FBDAA004CF186 /* PBXTextBookmark */;
 			54A968EF122FBE2F004CF186 /* PBXTextBookmark */ = 54A968EF122FBE2F004CF186 /* PBXTextBookmark */;
 			54A968F2122FBF96004CF186 /* PBXTextBookmark */ = 54A968F2122FBF96004CF186 /* PBXTextBookmark */;
+			54A96910122FDE84004CF186 /* PBXTextBookmark */ = 54A96910122FDE84004CF186 /* PBXTextBookmark */;
+			54A9691A122FE09E004CF186 /* PBXTextBookmark */ = 54A9691A122FE09E004CF186 /* PBXTextBookmark */;
+			54A9691C122FE0A3004CF186 /* PBXTextBookmark */ = 54A9691C122FE0A3004CF186 /* PBXTextBookmark */;
 			54C1DD14121512AD00EBD811 = 54C1DD14121512AD00EBD811 /* PBXTextBookmark */;
 			54C1DD15121512AD00EBD811 = 54C1DD15121512AD00EBD811 /* PBXTextBookmark */;
 			54C1DD16121512AD00EBD811 = 54C1DD16121512AD00EBD811 /* PBXTextBookmark */;
@@ -782,7 +785,7 @@
 	};
 	54A96873122FA316004CF186 /* MentionsTimelineViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {673, 496}}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 519}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 313}";
 		};
@@ -1041,6 +1044,36 @@
 		vrLen = 313;
 		vrLoc = 0;
 	};
+	54A96910122FDE84004CF186 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54A96873122FA316004CF186 /* MentionsTimelineViewController.h */;
+		name = "MentionsTimelineViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 313;
+		vrLoc = 0;
+	};
+	54A9691A122FE09E004CF186 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54A96873122FA316004CF186 /* MentionsTimelineViewController.h */;
+		name = "MentionsTimelineViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 313;
+		vrLoc = 0;
+	};
+	54A9691C122FE0A3004CF186 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54A96873122FA316004CF186 /* MentionsTimelineViewController.h */;
+		name = "MentionsTimelineViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 313;
+		vrLoc = 0;
+	};
 	54C1DC051213B28400EBD811 /* NowPlayingFriends */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
@@ -1096,10 +1129,10 @@
 	};
 	54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{5071, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{10494, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{10545, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{10595, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 10976}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {651, 6032}}";
-			sepNavSelRange = "{10898, 0}";
-			sepNavVisRange = "{2586, 329}";
+			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{5607, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{11030, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{11081, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{11131, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 11512}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {651, 6616}}";
+			sepNavSelRange = "{11434, 0}";
+			sepNavVisRange = "{1836, 351}";
 		};
 	};
 	54C1DC86121415DB00EBD811 /* FriendCell.h */ = {
@@ -1160,9 +1193,9 @@
 	};
 	54C1DCEC1214F8A900EBD811 /* TwitterClient.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {651, 4658}}";
+			sepNavIntBoundsRect = "{{0, 0}, {651, 4671}}";
 			sepNavSelRange = "{9669, 0}";
-			sepNavVisRange = "{6147, 519}";
+			sepNavVisRange = "{6147, 522}";
 		};
 	};
 	54C1DCF712150D1000EBD811 /* TwitterClient+ConsumerKey.h */ = {

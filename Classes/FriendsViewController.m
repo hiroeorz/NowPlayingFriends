@@ -45,7 +45,8 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
-  
+
+  changed = YES;
   NSArray *array = [[NSArray alloc] init];
   self.beforeTimeline = array;
   [array release];
@@ -56,6 +57,39 @@
 
   [super viewDidLoad];
 }
+
+#pragma mark -
+#pragma MusicPlayer Delegate Methods
+
+/**
+ * @brief プレイヤーの制御状況が変化したときに呼ばれる。
+ */
+- (void)handle_PlayBackStateDidChanged:(id)notification {
+
+}
+
+/**
+ * @brief プレイヤーの音量が変化したときに呼ばれる。
+ */
+- (void)handle_VolumeChanged:(id)notification {
+
+}
+
+/**
+ * @brief 再生中の曲が変わったときに呼ばれる。
+ */
+- (void)handle_NowPlayingItemChanged:(id)notification {
+  
+  changed = YES;
+  NSArray *array = [[NSArray alloc] init];
+  self.timeline = array;
+  [array release];
+
+  [self refreshTableOnThread];
+}
+
+#pragma mark -
+#pragma Timeline Update Methods
 
 - (NSInteger)refreshTimeline {
   [NSException raise:@"called base class method"
@@ -84,13 +118,12 @@
   NSInteger addRowCount = 0;
 
   @synchronized(timeline) {
-    NSDictionary *firstItem = [timeline objectAtIndex:0];
-    NSLog(@"item:%@", firstItem);
 
-    if (firstItem == nil) {
+    if ([timeline count] == 0) {
       self.timeline = newTimeline;
 
     } else {
+      NSDictionary *firstItem = [timeline objectAtIndex:0];
       NSNumber *firstId = [firstItem objectForKey:@"id"];
       NSMutableArray *array = [[NSMutableArray alloc] init];
 
@@ -117,6 +150,7 @@
 
   }
 
+  changed = NO;
   NSLog(@"timeline count: %d", [timeline count]);
   return addRowCount;
 }

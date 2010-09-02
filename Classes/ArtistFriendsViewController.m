@@ -12,6 +12,32 @@
 
 @implementation ArtistFriendsViewController
 
+- (void)viewDidLoad {
+
+  [self.appDelegate addMusicPlayerNotification:self];
+  [super viewDidLoad];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+
+  if (changed) {
+    NSArray *array = [[NSArray alloc] init];
+    self.timeline = array;
+    [array release];
+  }
+  
+  [super viewDidAppear:animated];
+  self.title = [self.appDelegate nowPlayingArtistName];
+  self.navigationController.tabBarItem.title = @"Artist";
+}
+
+- (void)handle_NowPlayingItemChanged:(id)notification {
+
+  self.title = [self.appDelegate nowPlayingArtistName];
+  self.navigationController.tabBarItem.title = @"Artist";
+  [super handle_NowPlayingItemChanged:notification];
+}
+
 - (NSInteger)refreshTimeline {
 
   NSLog(@"updating timeline data...");
@@ -28,11 +54,5 @@
   return addCount;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  
-  [super viewDidAppear:animated];
-  self.navigationController.title = [self.appDelegate nowPlayingArtistName];
-  self.navigationController.tabBarItem.title = @"Artist";
-}
 
 @end

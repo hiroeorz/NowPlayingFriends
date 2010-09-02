@@ -22,6 +22,7 @@
 
   NSArray *timeline;
   UITableView *friendsTableView;
+  BOOL changed;
 
 @private
   NSArray *beforeTimeline;
@@ -33,6 +34,10 @@
 @property (nonatomic, retain) NSArray *beforeTimeline;
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) IBOutlet UITableView *friendsTableView;
+
+- (void)handle_PlayBackStateDidChanged:(id)notification;
+- (void)handle_VolumeChanged:(id)notification;
+- (void)handle_NowPlayingItemChanged:(id)notification;
 
 - (NSInteger)refreshTimeline;
 - (NSInteger)createNewTimeline:(NSArray *)newTimeline;
