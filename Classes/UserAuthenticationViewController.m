@@ -45,7 +45,13 @@
 }
 
 - (void)viewDidLoad {
+
   [super viewDidLoad];
+
+  self.navigationItem.rightBarButtonItem = 
+    [self.appDelegate completeButton:@selector(authenticate:) target:self];
+
+  self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 }
 
 - (IBAction)authenticate:(id)sender {
@@ -53,8 +59,15 @@
   NSString *username = nameField.text;
   NSString *password = passwordField.text;
 
-  [twitterClient getAccessTokenWithUsername:username password:password
-		 delegate:self];
+  if ([username length] >= 0 && [password length] >= 0) {
+    [twitterClient getAccessTokenWithUsername:username password:password
+		   delegate:self];
+  }
+}
+
+- (IBAction)nameFieldDoneEditing:(id)sender {
+  
+  [passwordField becomeFirstResponder];
 }
 
 #pragma mark -
@@ -67,20 +80,47 @@
   NSString *dataString = [[NSString alloc] initWithData:data 
 					   encoding:NSUTF8StringEncoding];
   [dataString autorelease];
+  NSLog(@"dataString: %@", dataString);
   
-  // レスポンスの解析
-  NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-  
-  for (NSString *pair in [dataString componentsSeparatedByString:@"&"]) {
-    NSArray *keyValue = [pair componentsSeparatedByString:@"="];
-    [dict setObject:[keyValue objectAtIndex:1] 
-	  forKey:[keyValue objectAtIndex:0]];
-  }
-  
-  NSLog(@"result: %@", dict);
+  NSRange rangeOfInvalid = [dataString rangeOfString:@"Invalid"];
 
-  [dict writeToFile:[twitterClient oAuthAccessTokenFileName] 
-	atomically:YES];
+  if (rangeOfInvalid.location == NSNotFound) {
+    // レスポンスの解析
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    for (NSString *pair in [dataString componentsSeparatedByString:@"&"]) {
+      NSArray *keyValue = [pair componentsSeparatedByString:@"="];
+      NSLog(@"pair:%@", pair);
+      
+      [dict setObject:[keyValue objectAtIndex:1] 
+	    forKey:[keyValue objectAtIndex:0]];
+    }
+    
+    NSLog(@"result: %@", dict);
+    
+    [dict writeToFile:[twitterClient oAuthAccessTokenFileName] 
+	  atomically:YES];
+
+    UIAlertView *alert = [[UIAlertView alloc] 
+			   initWithTitle:@"Authentication success"
+			   message:@"authentication seccess, enjoy!"
+			   delegate:nil
+			   cancelButtonTitle:@"OK"
+			   otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+    [passwordField resignFirstResponder];
+
+  } else {
+    UIAlertView *alert = [[UIAlertView alloc] 
+			   initWithTitle:@"Authentication failed"
+			   message:dataString
+			   delegate:nil
+			   cancelButtonTitle:@"OK"
+			   otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+  }
 
   [self dismissModalViewControllerAnimated:YES];
 }
@@ -88,6 +128,13 @@
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
   NSLog(@"didFailWithError");
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+#pragma mark -
+#pragma mark Local Methods
+
+- (NowPlayingFriendsAppDelegate *)appDelegate {
+  return [[UIApplication sharedApplication] delegate];
 }
 
 @end

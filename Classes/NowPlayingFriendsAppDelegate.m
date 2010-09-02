@@ -13,6 +13,8 @@
 #import "MusicPlayerViewController.h"
 #import "TwitterClient.h"
 #import "UserAuthenticationViewController.h"
+#import "UserTimelineViewController.h"
+#import "MentionsTimelineViewController.h"
 
 @implementation NowPlayingFriendsAppDelegate
 
@@ -140,6 +142,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
   testFlag = 0;
 
+  TwitterClient *client = [[TwitterClient alloc] init];
   [self cleanupProfileImageFileCache];
 
   NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
@@ -198,8 +201,49 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [controllers addObject:navController];
   [viewController release];
 
+  /* MentionsTimeline */
+  viewController = [[MentionsTimelineViewController alloc] 
+		     initWithNibName:@"NowPlayingViewControllers"
+		     bundle:nil];
+  
+  navController = [self navigationWithViewController:viewController
+			title:@"Mentions"  
+			imageName:@"30-key.png"];
+  
+  [controllers addObject:navController];
+  [viewController release];
+
+  /* SelfTimeline */
+  NSString *username = [client username];
+
+  if (username != nil) {
+    viewController = [[UserTimelineViewController alloc] 
+		       initWithUserName:username];
+
+    navController = [self navigationWithViewController:viewController
+			  title:@"tweet"  
+			  imageName:@"30-key.png"];
+    
+    [controllers addObject:navController];
+    [viewController release];
+  }
+
+  /* UserAuth */
+  viewController = [[UserAuthenticationViewController alloc] 
+		     initWithNibName:@"UserAuthenticationViewController" 
+		     bundle:nil];
+
+  navController = [self navigationWithViewController:viewController
+			title:@"Authentication"  
+			imageName:@"30-key.png"];
+
+  [controllers addObject:navController];
+  [viewController release];
+
+  /* create tabBar */
   [tabBarController setViewControllers:controllers];
   [controllers release];
+  [client release];
 
   [window makeKeyAndVisible];
   [window addSubview:tabBarController.view];

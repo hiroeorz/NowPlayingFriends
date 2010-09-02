@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "TwitterClient.h"
-
+#import "NowPlayingFriendsAppDelegate.h"
 
 @interface UserAuthenticationViewController : UIViewController {
 
@@ -23,8 +23,11 @@
 @property (nonatomic, retain) TwitterClient *twitterClient;
 
 - (IBAction)authenticate:(id)sender;
+- (IBAction)nameFieldDoneEditing:(id)sender;
 
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+
+- (NowPlayingFriendsAppDelegate *)appDelegate;
 
 @end

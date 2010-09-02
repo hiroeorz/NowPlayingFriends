@@ -10,14 +10,9 @@
 #import "FriendsViewController.h"
 
 
-@interface UserTimelineViewController : FriendsViewController {
+@interface MentionsTimelineViewController : FriendsViewController {
   
-  NSString *username;
 }
 
-@property (nonatomic, retain) NSString *username;
-
-- (id)initWithUserName:(NSString *)newUserName;
 
 @end
-

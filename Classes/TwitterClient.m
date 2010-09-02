@@ -37,6 +37,15 @@
   return [self arrayOfRemoteJson:urlString];
 }
 
+- (NSArray *)getMentionsTimeLine {
+
+  NSString *urlString = [[NSString alloc] initWithFormat:kMenthonsTimelineURL];
+
+  NSArray *array = [self arrayOfRemoteJson:urlString];
+  NSLog(@"array: %@",array);
+  return array;
+}
+
 - (void)updateStatus:(NSString *)message delegate:(id)aDelegate {
 
   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -315,6 +324,18 @@
   }
 
   return result;
+}
+
+- (NSString *)username {
+  
+  NSDictionary *token = [self oAuthToken];
+  NSString *username = nil;
+
+  if (token != nil) {
+    username = [token objectForKey:@"screen_name"];
+  }
+
+  return username;
 }
 
 - (NSString *)oAuthAccessTokenFileName {

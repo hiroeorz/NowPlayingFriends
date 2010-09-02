@@ -12,6 +12,7 @@
 
 #define kHomeTimelineURL @"http://twitter.com/statuses/home_timeline/%@.json"
 #define kUserTimelineURL @"http://twitter.com/statuses/user_timeline/%@.json"
+#define kMenthonsTimelineURL @"http://api.twitter.com/1/statuses/mentions.json"
 #define kSearchURL @"http://search.twitter.com/search.json?q=%@"
 #define kUserInformationURL @"http://api.twitter.com/1/users/show/%@.json"
 #define kUpdateStatusURL @"http://twitter.com/statuses/update.json"
@@ -23,6 +24,7 @@
 
 - (NSArray *)getHomeTimeLine:(NSString *)username;
 - (NSArray *)getUserTimeLine:(NSString *)username;
+- (NSArray *)getMentionsTimeLine;
 - (NSArray *)getSearchTimeLine:(NSString *)searchString, ...;
 - (NSDictionary *)userInformation:(NSString *)username;
 - (void)updateStatus:(NSString *)message delegate:(id)aDelegate;
@@ -35,6 +37,7 @@
 - (NSDictionary *)oAuthToken;
 - (BOOL)oAuthTokenExist;
 - (NSString *)oAuthAccessTokenFileName;
+- (NSString *)username;
 
 - (OAMutableURLRequest *)authenticatedRequest:(NSURL *)url;
 - (NSURL*)authenticatedURL:(NSURL *)url;
