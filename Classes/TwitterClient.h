@@ -32,6 +32,7 @@
 - (NSString *)urlEncodedString:(NSString *)str;
 - (NSArray *)arrayOfRemoteJson:(NSString *)urlString;
 - (NSDictionary *)dictionaryOfRemoteJson:(NSString *)urlString;
+- (NSDictionary *)dictionaryOfRemoteJson:(NSString *)urlString;
 - (void)logJsonData:(NSArray *)jsonArray;
 
 - (NSDictionary *)oAuthToken;

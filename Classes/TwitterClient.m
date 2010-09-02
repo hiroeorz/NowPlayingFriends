@@ -42,7 +42,6 @@
   NSString *urlString = [[NSString alloc] initWithFormat:kMenthonsTimelineURL];
 
   NSArray *array = [self arrayOfRemoteJson:urlString];
-  NSLog(@"array: %@",array);
   return array;
 }
 
@@ -145,6 +144,13 @@
  */
 - (OAMutableURLRequest *)authenticatedRequest:(NSURL *)url {
 
+  if (![self oAuthTokenExist]) {
+    NSMutableURLRequest *notAuthencticatedRequest = 
+      [NSMutableURLRequest requestWithURL:url];
+
+    return notAuthencticatedRequest;
+  }
+
   OAConsumer *consumer =
     [[[OAConsumer alloc] initWithKey:kConsumerKey
 			 secret:kConsumerSecret] autorelease];
@@ -186,20 +192,10 @@
  */
 - (NSArray *)arrayOfRemoteJson:(NSString *)urlString {
 
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
-  NSURL *url = [self authenticatedURL:[NSURL URLWithString:urlString]];
-
-  NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url
-					   encoding:NSUTF8StringEncoding
-					   error:nil];
-
+  NSString *jsonString = [self stringOfRemoteJson:urlString];
   NSArray *jsonArray = [jsonString JSONValue];
-  NSLog(@"%@", jsonArray);
-  [jsonString release];
-
+  
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
   return jsonArray;
 }
 
@@ -208,19 +204,34 @@
  */
 - (NSDictionary *)dictionaryOfRemoteJson:(NSString *)urlString {
 
+  NSString *jsonString = [self stringOfRemoteJson:urlString];
+  NSDictionary *jsonDictionary = [jsonString JSONValue];
+  
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+  return jsonDictionary;
+}
+
+/**
+ * @brief 渡されたURLから得られたJSON文字列を返します。
+ */
+- (NSString *)stringOfRemoteJson:(NSString *)urlString {
+
   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
-  NSURL *url = [self authenticatedURL:[NSURL URLWithString:urlString]];
+  OAMutableURLRequest *request = 
+    [self authenticatedRequest:[NSURL URLWithString:urlString]];
+  [request setHTTPMethod:@"GET"];
+  [request prepare];
 
-  NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url
-					   encoding:NSUTF8StringEncoding
-					   error:nil];
-  NSDictionary *jsonDictionary = [jsonString JSONValue];
-  [jsonString release];
+  NSURLResponse *response;
+  NSError *error;
+  NSData *data = [NSURLConnection sendSynchronousRequest:request
+				  returningResponse:&response
+				  error:&error];
 
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
-  return jsonDictionary;
+  NSString *jsonString = [[NSString alloc] initWithData:data
+					   encoding:NSUTF8StringEncoding];  
+  return [jsonString autorelease];
 }
 
 - (void)logJsonData:(NSArray *)jsonArray {
