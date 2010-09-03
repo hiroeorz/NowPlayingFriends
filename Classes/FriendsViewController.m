@@ -83,11 +83,15 @@
   NSLog(@"called handle_NowPlayingItemChanged");
 
   changed = YES;
-  NSArray *array = [[NSArray alloc] init];
-  self.timeline = array;
-  [array release];
+  MPMediaItem *currentItem = [self.appDelegate.musicPlayer nowPlayingItem];
+  
+  if (currentItem != nil) {
+    NSArray *array = [[NSArray alloc] init];
+    self.timeline = array;
+    [array release];
 
-  [self refreshTableOnThread];
+    [self refreshTableOnThread];
+  }
 }
 
 #pragma mark -
@@ -309,7 +313,7 @@
     for (id oneObject in nib) {
       if ([oneObject isKindOfClass:[FriendCell class]]) {
 	cell = (FriendCell *)oneObject;
-	cell.bodyTextView.font = [UIFont systemFontOfSize:13];
+	cell.bodyTextView.font = [UIFont systemFontOfSize:15];
 
 	[cell.userImageView addTarget:self 
 	     action:@selector(openUserInformationView:)
@@ -433,12 +437,12 @@
   NSString *bodyText= [self.appDelegate stringByUnescapedString:rowText];
    
   CGSize bounds = CGSizeMake(320, 1000);
-  UIFont *font = [UIFont systemFontOfSize:14];
+  UIFont *font = [UIFont systemFontOfSize:17];
   CGSize size = [bodyText sizeWithFont:font
 			  constrainedToSize:bounds
 			  lineBreakMode:UILineBreakModeTailTruncation];
 
-  return size.height + 11;
+  return size.height + 9;
 }
 
 - (CGFloat)lineOverFlowSize:(NSIndexPath *)indexPath {

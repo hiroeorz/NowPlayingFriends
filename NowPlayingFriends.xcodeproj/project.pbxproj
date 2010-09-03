@@ -48,6 +48,7 @@
 		5480CA9B12289CB700F6E1C6 /* SendTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5480CA9912289CB700F6E1C6 /* SendTweetViewController.xib */; };
 		54A96850122F97B1004CF186 /* 30-key.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A9684F122F97B1004CF186 /* 30-key.png */; };
 		54A96875122FA322004CF186 /* MentionsTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A96874122FA322004CF186 /* MentionsTimelineViewController.m */; };
+		54A9698B1230C743004CF186 /* HomeTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A9698A1230C743004CF186 /* HomeTimelineViewController.m */; };
 		54C1DC3D1213F3ED00EBD811 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */; };
 		54C1DC3E1213F3ED00EBD811 /* NowPlayingViewControllers.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C1DC3C1213F3ED00EBD811 /* NowPlayingViewControllers.xib */; };
 		54C1DC88121415DB00EBD811 /* FriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DC87121415DB00EBD811 /* FriendCell.m */; };
@@ -138,6 +139,8 @@
 		54A9684F122F97B1004CF186 /* 30-key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "30-key.png"; path = "../../Downloads/iPhoneタブバー用アイコン/glyphish-icons/icons/30-key.png"; sourceTree = SOURCE_ROOT; };
 		54A96873122FA316004CF186 /* MentionsTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MentionsTimelineViewController.h; sourceTree = "<group>"; };
 		54A96874122FA322004CF186 /* MentionsTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MentionsTimelineViewController.m; sourceTree = "<group>"; };
+		54A9698A1230C743004CF186 /* HomeTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTimelineViewController.m; sourceTree = "<group>"; };
+		54A9698C1230C752004CF186 /* HomeTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTimelineViewController.h; sourceTree = "<group>"; };
 		54C1DC3A1213F3ED00EBD811 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		54C1DC3C1213F3ED00EBD811 /* NowPlayingViewControllers.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NowPlayingViewControllers.xib; path = Classes/NowPlayingViewControllers.xib; sourceTree = "<group>"; };
@@ -230,6 +233,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				54A9698C1230C752004CF186 /* HomeTimelineViewController.h */,
+				54A9698A1230C743004CF186 /* HomeTimelineViewController.m */,
 				54A96874122FA322004CF186 /* MentionsTimelineViewController.m */,
 				54A96873122FA316004CF186 /* MentionsTimelineViewController.h */,
 				54651251122A3321003DE639 /* SongsListViewController.h */,
@@ -570,6 +575,7 @@
 				5480CA9A12289CB700F6E1C6 /* SendTweetViewController.m in Sources */,
 				54651253122A3321003DE639 /* SongsListViewController.m in Sources */,
 				54A96875122FA322004CF186 /* MentionsTimelineViewController.m in Sources */,
+				54A9698B1230C743004CF186 /* HomeTimelineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

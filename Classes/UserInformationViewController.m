@@ -121,7 +121,7 @@
 
   nameLabel.text = [user objectForKey:@"name"];
   locationLabel.text = [user objectForKey:@"location"];
-  descriptionView.font = [UIFont systemFontOfSize:13];
+  descriptionView.font = [UIFont systemFontOfSize:15];
   descriptionView.text = [user objectForKey:@"description"];
 
   followersLabel.text = [NSString stringWithFormat:@"Followers :  %@",

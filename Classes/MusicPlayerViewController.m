@@ -86,6 +86,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     autoTweetMode = NO;
+    autoTweetModeDefault = NO;
   }
   return self;
 }
@@ -120,7 +121,7 @@
 
   self.albumLists = [self.appDelegate albums];
   self.playLists = [self.appDelegate playLists];
-  [autoTweetSwitch setOn:autoTweetMode animated:NO];
+  [autoTweetSwitch setOn:autoTweetModeDefault animated:NO];
   [super viewWillAppear:animated];
 }
 
@@ -161,6 +162,7 @@
 - (IBAction)changeAutoTweetMode:(id)sender {
 
   autoTweetMode = [sender isOn];
+  autoTweetModeDefault = [sender isOn];
 }
 
 - (IBAction)changeVolume:(id)sender {
@@ -211,7 +213,7 @@
  */
 - (void)handle_PlayBackStateDidChanged:(id)notification {
   
-  UIImage *image;
+  UIImage *image;  
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStateStopped) {
     NSLog(@"playbackStateChanged:%@", @"stop");
@@ -258,9 +260,10 @@
 - (void)handle_NowPlayingItemChanged:(id)notification {
 
   NSLog(@"music changed!");
+  autoTweetMode = autoTweetModeDefault;
+
   self.title = [self.appDelegate nowPlayingTitle];
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
-
 
   if (currentItem == nil && listView.superview == nil) {
     self.title = @"Player";
@@ -306,7 +309,7 @@
 
   NSString *nowSongTitle = [self.appDelegate nowPlayingTitle];
 
-  if ([nowSongTitle isEqualToString:title]) {
+  if (autoTweetMode && [nowSongTitle isEqualToString:title]) {
     [self performSelectorOnMainThread:@selector(sendAutoTweet)
 	  withObject:nil
 	  waitUntilDone:YES];
@@ -587,6 +590,7 @@
 
 - (void)openEditView {
 
+  autoTweetMode = NO;
   SendTweetViewController *viewController = 
     [[SendTweetViewController alloc] initWithNibName:@"SendTweetViewController"
 				     bundle:nil];

@@ -53,6 +53,7 @@
 
   UISegmentedControl *repeatModeControll;
   BOOL autoTweetMode;
+  BOOL autoTweetModeDefault;
   UISwitch *autoTweetSwitch;
 }
 
