@@ -153,7 +153,6 @@
 
   }
 
-  changed = NO;
   NSLog(@"timeline count: %d", [timeline count]);
   return addRowCount;
 }
@@ -231,6 +230,7 @@
  */
 - (IBAction)refreshTableOnThread {
 
+  changed = NO;
   [self performSelectorInBackground:@selector(refreshTable)
 	withObject:nil];
 }
