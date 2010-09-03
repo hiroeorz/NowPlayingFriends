@@ -15,6 +15,7 @@
 #import "UserAuthenticationViewController.h"
 #import "UserTimelineViewController.h"
 #import "MentionsTimelineViewController.h"
+#import "HomeTimelineViewController.h"
 
 @implementation NowPlayingFriendsAppDelegate
 
@@ -198,6 +199,18 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   navController = [self navigationWithViewController:viewController
 			title:@"Now Playing"  imageName:@"09-chat2.png"];
 
+  [controllers addObject:navController];
+  [viewController release];
+
+  /* Homeimeline */
+  viewController = [[HomeTimelineViewController alloc] 
+		     initWithNibName:@"NowPlayingViewControllers"
+		     bundle:nil];
+  
+  navController = [self navigationWithViewController:viewController
+			title:@"Home"  
+			imageName:@"30-key.png"];
+  
   [controllers addObject:navController];
   [viewController release];
 
