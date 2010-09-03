@@ -181,6 +181,13 @@
 			54A969881230C486004CF186 /* PBXTextBookmark */ = 54A969881230C486004CF186 /* PBXTextBookmark */;
 			54A969A81230DBC5004CF186 /* PBXTextBookmark */ = 54A969A81230DBC5004CF186 /* PBXTextBookmark */;
 			54A969AE1230DC76004CF186 /* PBXTextBookmark */ = 54A969AE1230DC76004CF186 /* PBXTextBookmark */;
+			54A969B31230F331004CF186 /* PBXTextBookmark */ = 54A969B31230F331004CF186 /* PBXTextBookmark */;
+			54A969BA1230F5CB004CF186 /* PBXTextBookmark */ = 54A969BA1230F5CB004CF186 /* PBXTextBookmark */;
+			54A969C11230F727004CF186 /* PBXTextBookmark */ = 54A969C11230F727004CF186 /* PBXTextBookmark */;
+			54A969C51230F736004CF186 /* PBXTextBookmark */ = 54A969C51230F736004CF186 /* PBXTextBookmark */;
+			54A969C91230F772004CF186 /* PBXTextBookmark */ = 54A969C91230F772004CF186 /* PBXTextBookmark */;
+			54A969CE1230F872004CF186 /* PBXTextBookmark */ = 54A969CE1230F872004CF186 /* PBXTextBookmark */;
+			54A969D21230F8FA004CF186 /* PBXTextBookmark */ = 54A969D21230F8FA004CF186 /* PBXTextBookmark */;
 			54C1DD14121512AD00EBD811 = 54C1DD14121512AD00EBD811 /* PBXTextBookmark */;
 			54C1DD15121512AD00EBD811 = 54C1DD15121512AD00EBD811 /* PBXTextBookmark */;
 			54C1DD16121512AD00EBD811 = 54C1DD16121512AD00EBD811 /* PBXTextBookmark */;
@@ -801,7 +808,7 @@
 	};
 	54A96873122FA316004CF186 /* MentionsTimelineViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {673, 519}}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 496}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 313}";
 		};
@@ -1250,6 +1257,76 @@
 		vrLen = 313;
 		vrLoc = 0;
 	};
+	54A969B31230F331004CF186 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54A96873122FA316004CF186 /* MentionsTimelineViewController.h */;
+		name = "MentionsTimelineViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 313;
+		vrLoc = 0;
+	};
+	54A969BA1230F5CB004CF186 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54A96873122FA316004CF186 /* MentionsTimelineViewController.h */;
+		name = "MentionsTimelineViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 313;
+		vrLoc = 0;
+	};
+	54A969C11230F727004CF186 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54A96873122FA316004CF186 /* MentionsTimelineViewController.h */;
+		name = "MentionsTimelineViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 313;
+		vrLoc = 0;
+	};
+	54A969C51230F736004CF186 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54A96873122FA316004CF186 /* MentionsTimelineViewController.h */;
+		name = "MentionsTimelineViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 313;
+		vrLoc = 0;
+	};
+	54A969C91230F772004CF186 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54A96873122FA316004CF186 /* MentionsTimelineViewController.h */;
+		name = "MentionsTimelineViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 313;
+		vrLoc = 0;
+	};
+	54A969CE1230F872004CF186 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54A96873122FA316004CF186 /* MentionsTimelineViewController.h */;
+		name = "MentionsTimelineViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 313;
+		vrLoc = 0;
+	};
+	54A969D21230F8FA004CF186 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54A96873122FA316004CF186 /* MentionsTimelineViewController.h */;
+		name = "MentionsTimelineViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 313;
+		vrLoc = 0;
+	};
 	54C1DC051213B28400EBD811 /* NowPlayingFriends */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
@@ -1305,10 +1382,10 @@
 	};
 	54C1DC3B1213F3ED00EBD811 /* FriendsViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{5912, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{11491, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{11542, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{11592, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 11973}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {651, 6893}}";
-			sepNavSelRange = "{11895, 0}";
-			sepNavVisRange = "{1630, 356}";
+			sepNavFolds = "{\n    c =     (\n                {\n            l = \"number of sections\";\n            r = \"{5912, 22}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{11685, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{11736, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{11786, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 12167}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {651, 6941}}";
+			sepNavSelRange = "{12089, 0}";
+			sepNavVisRange = "{1840, 375}";
 		};
 	};
 	54C1DC86121415DB00EBD811 /* FriendCell.h */ = {

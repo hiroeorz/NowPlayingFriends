@@ -202,37 +202,38 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [controllers addObject:navController];
   [viewController release];
 
-  /* Homeimeline */
-  viewController = [[HomeTimelineViewController alloc] 
-		     initWithNibName:@"NowPlayingViewControllers"
-		     bundle:nil];
-  
-  navController = [self navigationWithViewController:viewController
-			title:@"Home"  
-			imageName:@"30-key.png"];
-  
-  [controllers addObject:navController];
-  [viewController release];
-
-  /* MentionsTimeline */
-  viewController = [[MentionsTimelineViewController alloc] 
-		     initWithNibName:@"NowPlayingViewControllers"
-		     bundle:nil];
-  
-  navController = [self navigationWithViewController:viewController
-			title:@"Mentions"  
-			imageName:@"30-key.png"];
-  
-  [controllers addObject:navController];
-  [viewController release];
-
-  /* SelfTimeline */
   NSString *username = [client username];
 
   if (username != nil) {
+
+    /* Homeimeline */
+    viewController = [[HomeTimelineViewController alloc] 
+		       initWithNibName:@"NowPlayingViewControllers"
+		       bundle:nil];
+    
+    navController = [self navigationWithViewController:viewController
+			  title:@"Home"  
+			  imageName:@"30-key.png"];
+    
+    [controllers addObject:navController];
+    [viewController release];
+    
+    /* MentionsTimeline */
+    viewController = [[MentionsTimelineViewController alloc] 
+		       initWithNibName:@"NowPlayingViewControllers"
+		       bundle:nil];
+    
+    navController = [self navigationWithViewController:viewController
+			  title:@"Mentions"  
+			  imageName:@"30-key.png"];
+    
+    [controllers addObject:navController];
+    [viewController release];
+    
+    /* SelfTimeline */
     viewController = [[UserTimelineViewController alloc] 
 		       initWithUserName:username];
-
+    
     navController = [self navigationWithViewController:viewController
 			  title:@"tweet"  
 			  imageName:@"30-key.png"];
@@ -375,6 +376,27 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 #pragma mark -
 #pragma mark Util Methods
 
+/**
+ * @brief 渡された文字列からタグを取り除いた文字列を返します。
+ */
+- (NSString *)stringByUntaggedString:(NSString *)str {
+
+  NSString *sourceString = [self stringByUnescapedString:str];
+  NSArray *separatedArray = [sourceString componentsSeparatedByString:@">"];
+
+  if ([separatedArray count] < 2) {
+    return str;
+  }
+  
+  NSString *str2 = [separatedArray objectAtIndex:1];
+  separatedArray = [str2 componentsSeparatedByString:@"<"];
+
+  return [separatedArray objectAtIndex:0];
+}
+
+/**
+ * @brief HTMLエスケープされた文字列を通常の文字列に戻した文字列を返す。
+ */
 - (NSString *)stringByUnescapedString:(NSString *)str {
 
   NSDictionary *escapeDictionary = 
@@ -421,10 +443,22 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [client release];
 }
 
+- (NSDictionary *)clientname:(NSDictionary *)data {
+
+  NSString *clientString = [data objectForKey:@"source"];
+  NSString *untaggedString = [self stringByUntaggedString:clientString];
+  return untaggedString;
+}
+
 - (NSString *)username:(NSDictionary *)data {
 
+  NSLog(@"data: %@", data);
   NSDictionary *user = [data objectForKey:@"user"];
   NSString *username = [data objectForKey:@"name"];
+
+  if (user != nil && username == nil) {
+    username = [user objectForKey:@"screen_name"];
+  }
 
   if (user == nil) {
     username = [data objectForKey:@"from_user"];

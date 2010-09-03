@@ -69,8 +69,11 @@
 - (void)setAnimationWithView:(id)targetView 
 	       animationType:(UIViewAnimationTransition)transition;
 
+- (NSString *)stringByUntaggedString:(NSString *)str;
 - (NSString *)stringByUnescapedString:(NSString *)str;
 - (void)checkAuthenticateWithController:(id)viewController;
+
+- (NSDictionary *)clientname:(NSDictionary *)data;
 - (NSString *)username:(NSDictionary *)data;
 
 - (UIImage *)profileImage:(NSDictionary *)data 

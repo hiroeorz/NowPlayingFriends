@@ -329,6 +329,7 @@
   cell.bodyTextView.text = [self.appDelegate stringByUnescapedString:rowText];
   cell.accountLabel.text = [self username:data];
   cell.userImageView.tag = row;
+  cell.clientLabel.text = [self clientname:data];
 
   CGFloat overflow = [self lineOverFlowSize:indexPath];
 
@@ -349,6 +350,14 @@
 
   [objects release];
   return cell;
+}
+
+/**
+ * @brief データからユーザが使用しているクライアント名を返します。
+ */
+- (NSString *)clientname:(NSDictionary *)data {
+
+  return [self.appDelegate clientname:data];
 }
 
 /**
