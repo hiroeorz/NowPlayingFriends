@@ -20,12 +20,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 
-  if (changed) {
-    NSArray *array = [[NSArray alloc] init];
-    self.timeline = array;
-    [array release];
-  }
-  
   [super viewDidAppear:animated];
   self.title = [self.appDelegate nowPlayingArtistName];
   self.navigationController.tabBarItem.title = @"Artist";

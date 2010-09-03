@@ -80,6 +80,8 @@
  */
 - (void)handle_NowPlayingItemChanged:(id)notification {
   
+  NSLog(@"called handle_NowPlayingItemChanged");
+
   changed = YES;
   NSArray *array = [[NSArray alloc] init];
   self.timeline = array;
@@ -121,6 +123,7 @@
 
     if ([timeline count] == 0) {
       self.timeline = newTimeline;
+      addRowCount = [newTimeline count];
 
     } else {
       NSDictionary *firstItem = [timeline objectAtIndex:0];
@@ -158,6 +161,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 
+  [friendsTableView reloadData];
+
   self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
   [super viewWillAppear:animated];
 }
@@ -165,10 +170,14 @@
 - (void)viewDidAppear:(BOOL)animated {
   
   [super viewDidAppear:animated];
-  
+  /*
   activateFlag = YES;
   [self performSelectorInBackground:@selector(tableRefreshLoop)
 	withObject:nil];
+  */
+
+  activateFlag = YES;
+  [self refreshTableOnThread];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -282,8 +291,6 @@
   return [timeline count];
 }
 
-
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView 
 	 cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -307,15 +314,15 @@
 	[cell.userImageView addTarget:self 
 	     action:@selector(openUserInformationView:)
 	     forControlEvents:UIControlEventTouchUpInside];
-
       }
     }
   }
   
   NSInteger row = [indexPath row];
   NSDictionary *data = [timeline objectAtIndex:row];
+  NSString *rowText = [data objectForKey:@"text"];
 
-  cell.bodyTextView.text = [data objectForKey:@"text"];
+  cell.bodyTextView.text = [self.appDelegate stringByUnescapedString:rowText];
   cell.accountLabel.text = [self username:data];
   cell.userImageView.tag = row;
 
@@ -403,12 +410,14 @@
   CGPoint offset = friendsTableView.contentOffset;
   NSInteger totalOffset = offset.y;
 
-  for (NSInteger i = 0; i < addCount; i++) {
-    NSInteger cellViewHeight = kTimelineTableRowHeight;
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-
-    cellViewHeight = cellViewHeight + [self lineOverFlowSize:indexPath];
-    totalOffset = totalOffset + cellViewHeight;
+  if ([timeline count] != addCount) {
+    for (NSInteger i = 0; i < addCount; i++) {
+      NSInteger cellViewHeight = kTimelineTableRowHeight;
+      NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+      
+      cellViewHeight = cellViewHeight + [self lineOverFlowSize:indexPath];
+      totalOffset = totalOffset + cellViewHeight;
+    }
   }
 
   NSLog(@"totalOffset: %d", totalOffset);
@@ -419,7 +428,9 @@
 
   NSInteger row = [indexPath row];
   NSDictionary *data = [timeline objectAtIndex:row];
-  NSString *bodyText = [data objectForKey:@"text"];
+
+  NSString *rowText = [data objectForKey:@"text"];
+  NSString *bodyText= [self.appDelegate stringByUnescapedString:rowText];
    
   CGSize bounds = CGSizeMake(320, 1000);
   UIFont *font = [UIFont systemFontOfSize:14];

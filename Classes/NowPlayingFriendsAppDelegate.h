@@ -69,6 +69,7 @@
 - (void)setAnimationWithView:(id)targetView 
 	       animationType:(UIViewAnimationTransition)transition;
 
+- (NSString *)stringByUnescapedString:(NSString *)str;
 - (void)checkAuthenticateWithController:(id)viewController;
 - (NSString *)username:(NSDictionary *)data;
 

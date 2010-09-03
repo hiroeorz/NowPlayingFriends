@@ -362,6 +362,33 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 #pragma mark -
 #pragma mark Util Methods
 
+- (NSString *)stringByUnescapedString:(NSString *)str {
+
+  NSDictionary *escapeDictionary = 
+    [[NSDictionary alloc] initWithObjectsAndKeys:
+			    @"\"", @"&quot;",
+			    @">", @"&gt;",
+			    @"<", @"&lt;",
+			    @"&", @"&amp;",
+			  nil];
+
+  NSMutableString *newString = [[NSMutableString alloc] initWithString:str];
+
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+  for (NSString *key in [escapeDictionary keyEnumerator]) {
+    NSString *value = [escapeDictionary objectForKey:key];
+    newString = [newString stringByReplacingOccurrencesOfString:key
+			   withString:value];
+  }
+
+  NSString *replaced = [[NSString alloc] initWithString:newString];
+  [pool release];
+
+  [escapeDictionary release];
+  return [replaced autorelease];
+}
+
 /**
  * @brief 認証がすんでいるか確認して、すんでいない場合は認証画面を表示する。
  */
