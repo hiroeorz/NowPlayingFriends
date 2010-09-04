@@ -129,10 +129,7 @@
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
   TwitterClient *client = [[TwitterClient alloc] init];
-
   NSDictionary *user = [client userInformation:username];
-  NSLog(@"user: %@", user);
-
 
   [self performSelectorInBackground:@selector(getUserProfileImage:)
 	withObject:user];
@@ -210,9 +207,7 @@
   NSString *dataString = [[NSString alloc] 
 			   initWithData:data encoding:NSUTF8StringEncoding];
 
-  NSLog(@"data: %@", dataString);
   NSDictionary *result = [dataString JSONValue];
-  NSLog(@"result: %@", result);
 
   if ([result objectForKey:@"error"] != nil) {
     UIAlertView *alert = [[UIAlertView alloc] 

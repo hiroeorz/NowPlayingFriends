@@ -80,8 +80,6 @@
  */
 - (void)handle_NowPlayingItemChanged:(id)notification {
   
-  NSLog(@"called handle_NowPlayingItemChanged");
-
   changed = YES;
   MPMediaItem *currentItem = [self.appDelegate.musicPlayer nowPlayingItem];
   
@@ -259,9 +257,7 @@
   if (activateFlag && ![timeline isEqualToArray:beforeTimeline]) {
     [self performSelectorOnMainThread:@selector(reloadTableDataOnMainThread:)
 	  withObject:[NSNumber numberWithInteger:newOffset]
-	  waitUntilDone:YES];
-    
-    NSLog(@"refreshed.");
+	  waitUntilDone:YES];    
   }
 
   [self.appDelegate cleanupProfileImageFileCache];
@@ -296,7 +292,6 @@
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section {
   
-  NSLog(@"numberOfRowsInSection:%d", [timeline count]);
   return [timeline count];
 }
 
@@ -440,7 +435,6 @@
     }
   }
 
-  NSLog(@"totalOffset: %d", totalOffset);
   return totalOffset;
 }
 
@@ -485,12 +479,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (void)openUserInformationView:(id)sender {
 
-  NSLog(@"touched: %d", [sender tag]);
-
   NSInteger tagIndex = [sender tag];
   NSDictionary *timelineData = [timeline objectAtIndex:tagIndex];
   NSString *username = [self username:timelineData];
-  NSLog(@"tupped user:%@", username);
 
   UserInformationViewController *viewController = 
     [[UserInformationViewController alloc] initWithUserName:username];

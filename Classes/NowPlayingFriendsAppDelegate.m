@@ -532,16 +532,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   UIImage *newImage = [profileImages objectForKey:imageURLString];
   NSData *imageData = nil;
 
-  if (newImage != nil) {
-    NSLog(@"get from memory");
-  }
-
   if (newImage == nil) { // ファイルから取得
     imageData = [self profileImageDataWithURLString:imageURLString];
     
     if (imageData != nil) {
       newImage = [[[UIImage alloc] initWithData:imageData] autorelease];
-      NSLog(@"get from file");
     }
   }
 
@@ -551,9 +546,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     newImage = [[[UIImage alloc] initWithData:imageData] autorelease];
     
     [self saveProfileImageData:imageData urlString:imageURLString];
-    NSLog(@"get from remote");
   }
-
   
   if (newImage != nil && [profileImages objectForKey:imageURLString] == nil) {
     @synchronized(profileImages) {

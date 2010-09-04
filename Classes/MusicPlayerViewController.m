@@ -133,7 +133,6 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-  NSLog(@"viewWillDisappear");
   [super viewWillDisappear:animated];
 }
 
@@ -145,8 +144,6 @@
 #pragma mark IBAction Methods
 
 - (void)openUserInformationView:(id)sender {
-
-  NSLog(@"touched: %d", [sender tag]);
 
   NSInteger tagIndex = [sender tag];
   NSDictionary *timelineData = [timeline objectAtIndex:tagIndex];
@@ -182,7 +179,6 @@
  */
 - (IBAction)togglePlayStop:(id)sender {
 
-  NSLog(@"come toggle");
   if (musicPlayer.playbackState == MPMusicPlaybackStatePlaying) {
     [musicPlayer pause];
   } else {
