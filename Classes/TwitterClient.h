@@ -17,11 +17,14 @@
 #define kUserInformationURL @"http://api.twitter.com/1/users/show/%@.json"
 #define kUpdateStatusURL @"http://twitter.com/statuses/update.json"
 #define kOAuthAccetokenFileName @"access_token.plist"
+#define kCreateFriendURL @"http://twitter.com/friendships/create/%@.json"
+#define kCheckFriendShipURL @"http://api.twitter.com/1/friendships/show.json?target_screen_name=%@"
 
 @interface TwitterClient : NSObject {
 
 }
 
+- (void)followUser:(NSString *)usernameOrId delegate:(id)aDelegate;
 - (NSArray *)getHomeTimeLine:(NSString *)username;
 - (NSArray *)getUserTimeLine:(NSString *)username;
 - (NSArray *)getMentionsTimeLine;

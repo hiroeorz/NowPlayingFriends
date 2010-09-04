@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 #import "NowPlayingFriendsAppDelegate.h"
+#import "OAuthConsumer/OAConsumer.h"
+#import "OAuthConsumer/OAMutableURLRequest.h"
+#import "OAuthConsumer/OARequestParameter.h"
+#import "OAuthConsumer/OADataFetcher.h"
 
 @interface UserInformationViewController : UIViewController {
 
@@ -20,6 +24,7 @@
   UITextView *descriptionView;
   UILabel *followersLabel;
   UILabel *friendsLabel;
+  UIButton *followButton;
 }
 
 @property (nonatomic, retain) NSString *username;
@@ -29,15 +34,21 @@
 @property (nonatomic, retain) IBOutlet UITextView *descriptionView;
 @property (nonatomic, retain) IBOutlet UILabel *followersLabel;
 @property (nonatomic, retain) IBOutlet UILabel *friendsLabel;
+@property (nonatomic, retain) IBOutlet UIButton *followButton;
 
 - (id)initWithUserName:(NSString *)newUsername;
 
+- (void)setFollowButtonEnabled;
 - (void)setUserInformations:(NSDictionary *)user;
 - (void)getUserInformation;
 - (void)getUserProfileImage:(NSDictionary *)user;
 - (void)setUserProfileImage:(UIImage *)imageData;
 
 - (IBAction)openUserTimeline;
+- (IBAction)followUser;
+
+- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 

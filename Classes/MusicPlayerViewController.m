@@ -242,6 +242,7 @@
   if ([musicPlayer playbackState] == MPMusicPlaybackStateInterrupted) {
   }
 
+  [self.appDelegate clearProfileImageCache];
 }
 
 /**
@@ -377,9 +378,10 @@
     if (![timeline isEqualToArray:beforeTimeline]) {
       [self setFriendImageView];
       NSLog(@"refreshed.");
-    } 
+    }
   }
 
+  [self.appDelegate cleanupProfileImageFileCache];
   [pool release];
 }
 

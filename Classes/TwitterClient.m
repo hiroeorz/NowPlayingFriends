@@ -19,6 +19,47 @@
 #pragma Twitter Get TimeLine Methods
 
 /**
+ * @brief 指定されたユーザをフォローします。
+ */
+- (void)followUser:(NSString *)usernameOrId delegate:(id)aDelegate {
+
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
+  NSString *urlString = [[NSString alloc] 
+			  initWithFormat:kCreateFriendURL, usernameOrId];
+
+  NSURL *baseUrl = [NSURL URLWithString:urlString];
+  OAMutableURLRequest *request = [self authenticatedRequest:baseUrl];
+
+  OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+  [fetcher fetchDataWithRequest:request
+	   delegate:aDelegate
+	   didFinishSelector:@selector(ticket:didFinishWithData:)
+	   didFailSelector:@selector(ticket:didFailWithError:)];
+}
+
+/**
+ * @brief 指定されたユーザを既にフォローしている場合はYESを返します。
+ */
+- (BOOL)checkFollowing:(NSString *)username {
+
+  NSString *urlString = [[NSString alloc] 
+			  initWithFormat:kCheckFriendShipURL, username];
+
+  NSDictionary *response = [self dictionaryOfRemoteJson:urlString];
+  NSLog(@"response: %@", response);
+  NSDictionary *relationship = [response objectForKey:@"relationship"];
+  NSDictionary *target = [relationship objectForKey:@"target"];
+  NSInteger result = [[target objectForKey:@"following"] integerValue];
+
+  NSLog(@"target: %@", target);
+  NSLog(@"result: %d", result);
+
+  return (result == 1);
+}
+
+
+/**
  * @brief 指定されたユーザのタイムラインを取得します。
  */
 - (NSArray *)getHomeTimeLine:(NSString *)username {
@@ -195,6 +236,11 @@
   NSString *jsonString = [self stringOfRemoteJson:urlString];
   NSArray *jsonArray = [jsonString JSONValue];
   
+  if ([jsonArray isKindOfClass:[NSDictionary class]]) {
+    NSLog(@"invalid data received: &@", jsonArray);
+    return [NSArray array];
+  }
+
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   return jsonArray;
 }

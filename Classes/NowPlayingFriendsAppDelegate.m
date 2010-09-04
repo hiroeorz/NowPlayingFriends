@@ -144,8 +144,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   testFlag = 0;
 
   TwitterClient *client = [[TwitterClient alloc] init];
-  [self cleanupProfileImageFileCache];
-
   NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
   self.profileImages = newProfileImages;
   [newProfileImages release];
@@ -204,43 +202,41 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   NSString *username = [client username];
 
-  if (username != nil) {
 
-    /* Homeimeline */
-    viewController = [[HomeTimelineViewController alloc] 
-		       initWithNibName:@"NowPlayingViewControllers"
-		       bundle:nil];
+  /* Homeimeline */
+  viewController = [[HomeTimelineViewController alloc] 
+		     initWithNibName:@"NowPlayingViewControllers"
+		     bundle:nil];
+  
+  navController = [self navigationWithViewController:viewController
+			title:@"Home"  
+			imageName:@"30-key.png"];
+  
+  [controllers addObject:navController];
+  [viewController release];
+  
+  /* MentionsTimeline */
+  viewController = [[MentionsTimelineViewController alloc] 
+		     initWithNibName:@"NowPlayingViewControllers"
+		     bundle:nil];
+  
+  navController = [self navigationWithViewController:viewController
+			title:@"Mentions"  
+			imageName:@"30-key.png"];
+  
+  [controllers addObject:navController];
+  [viewController release];
+  
+  /* SelfTimeline */
+  viewController = [[UserTimelineViewController alloc] 
+		     initWithUserName:username];
+  
+  navController = [self navigationWithViewController:viewController
+			title:@"Tweet"  
+			imageName:@"30-key.png"];
     
-    navController = [self navigationWithViewController:viewController
-			  title:@"Home"  
-			  imageName:@"30-key.png"];
-    
-    [controllers addObject:navController];
-    [viewController release];
-    
-    /* MentionsTimeline */
-    viewController = [[MentionsTimelineViewController alloc] 
-		       initWithNibName:@"NowPlayingViewControllers"
-		       bundle:nil];
-    
-    navController = [self navigationWithViewController:viewController
-			  title:@"Mentions"  
-			  imageName:@"30-key.png"];
-    
-    [controllers addObject:navController];
-    [viewController release];
-    
-    /* SelfTimeline */
-    viewController = [[UserTimelineViewController alloc] 
-		       initWithUserName:username];
-    
-    navController = [self navigationWithViewController:viewController
-			  title:@"tweet"  
-			  imageName:@"30-key.png"];
-    
-    [controllers addObject:navController];
-    [viewController release];
-  }
+  [controllers addObject:navController];
+  [viewController release];
 
   /* UserAuth */
   viewController = [[UserAuthenticationViewController alloc] 
@@ -452,7 +448,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 - (NSString *)username:(NSDictionary *)data {
 
-  NSLog(@"data: %@", data);
   NSDictionary *user = [data objectForKey:@"user"];
   NSString *username = [data objectForKey:@"name"];
 
@@ -532,6 +527,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   if (user == nil) { user = data; }
 
+  // メモリから取得
   NSString *imageURLString = [user objectForKey:@"profile_image_url"];
   UIImage *newImage = [profileImages objectForKey:imageURLString];
   NSData *imageData = nil;
@@ -540,7 +536,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"get from memory: %@", newImage);
   }
 
-  if (newImage == nil) {
+  if (newImage == nil) { // ファイルから取得
     imageData = [self profileImageDataWithURLString:imageURLString];
     
     if (imageData != nil) {
@@ -549,22 +545,39 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     }
   }
 
-  if (newImage == nil && getRemoteFlag) {
+  if (newImage == nil && getRemoteFlag) { //リモートから取得
     NSURL *imageURL = [NSURL URLWithString:imageURLString];
     imageData = [NSData dataWithContentsOfURL:imageURL];
     newImage = [[UIImage alloc] initWithData:imageData];
     
     [self saveProfileImageData:imageData urlString:imageURLString];
+    NSLog(@"get from remote: %@", newImage);
+  }
 
+  if (newImage != nil && [profileImages objectForKey:imageURLString] == nil) {
     @synchronized(profileImages) {
-      if (newImage != nil) {
-	NSLog(@"get from remote: %@", newImage);
-	[profileImages setObject:newImage forKey:imageURLString];
-      }    
-    }
+      [profileImages setObject:newImage forKey:imageURLString];
+    }    
   }
 
   return newImage;
+}
+
+/**
+ * @brief アカウントの画像キャッシュが一定数になったらクリアする。
+ */
+- (void)clearProfileImageCache {
+
+  if ([profileImages count] < kProfileImageMaxMemoryCacheCount) {
+    return;
+  }
+
+  @synchronized(profileImages) {
+    NSMutableDictionary *newDictionary = [[NSMutableDictionary alloc] init];
+    [profileImages release];
+    profileImages = newDictionary;
+    NSLog(@"profile image cache (on memory) cleared.");
+  }
 }
 
 - (UIImage *)originalProfileImage:(NSDictionary *)data {
@@ -586,6 +599,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return newImage;
 }
   
+/**
+ * @brief プロフィール画像をファイルに保存
+ */
 - (void)saveProfileImageData:(NSData *)imageData 
 	       urlString:(NSString *) urlString {
 
@@ -595,6 +611,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [imageData writeToFile:path atomically:YES];
 }
 
+/**
+ * @brief ファイルとして保存されているプロフィール画像を取得
+ */
 - (NSData *)profileImageDataWithURLString:(NSString *)urlString {
 
   NSString *path = [self profileImageFileName:urlString];

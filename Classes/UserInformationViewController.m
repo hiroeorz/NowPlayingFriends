@@ -8,6 +8,7 @@
 
 #import "UserInformationViewController.h"
 #import "TwitterClient.h"
+#import "JSON/JSON.h"
 #import "UserTimelineViewController.h"
 
 @implementation UserInformationViewController
@@ -19,6 +20,7 @@
 @synthesize descriptionView;
 @synthesize followersLabel;
 @synthesize friendsLabel;
+@synthesize followButton;
 
 #pragma mark -
 #pragma mark Memory management
@@ -32,6 +34,7 @@
   [descriptionView release];
   [followersLabel release];
   [friendsLabel release];
+  [followButton release];
   [super dealloc];
 }
 
@@ -44,6 +47,7 @@
   self.descriptionView = nil;
   self.followersLabel = nil;
   self.friendsLabel = nil;
+  self.followButton = nil;
   [super viewDidUnload];
 }
 
@@ -85,6 +89,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 
+  [followButton setEnabled:NO];
   [super viewWillAppear:animated];
 }
 
@@ -93,10 +98,32 @@
   [self performSelectorInBackground:@selector(getUserInformation)
 	withObject:nil];
 
+  [self performSelectorInBackground:@selector(setFollowButtonEnabled)
+	withObject:nil];
+
   [super viewDidAppear:animated];
 }
 
 #pragma mark -
+
+- (void)setFollowButtonEnabled {
+  
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+  TwitterClient *client = [[TwitterClient alloc] init];
+  BOOL following = [client checkFollowing:username];
+
+  if (following == YES) {
+    [followButton setEnabled:NO];
+    followButton.titleLabel.text = @"Following";
+  } else {
+    [followButton setEnabled:YES];
+    followButton.titleLabel.text = @"  Follow";
+  }
+
+  [client release];
+  [pool release];
+}
 
 - (void)getUserInformation {
 
@@ -106,6 +133,7 @@
   NSDictionary *user = [client userInformation:username];
   NSLog(@"user: %@", user);
 
+
   [self performSelectorInBackground:@selector(getUserProfileImage:)
 	withObject:user];
 
@@ -113,6 +141,7 @@
 	withObject:user
 	waitUntilDone:YES];
 
+  
   [client release];
   [pool release];
 }
@@ -162,6 +191,52 @@
 
   [self.navigationController pushViewController:viewController animated:YES];
 }
+
+- (IBAction)followUser {
+
+  TwitterClient *client = [[TwitterClient alloc] init];
+  [client followUser:username delegate:self];
+
+  [client release];
+}
+
+#pragma mark -
+#pragma mark URLConnection Delegate Methods
+
+- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {
+
+  NSLog(@"didFinishWithData");
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+  NSString *dataString = [[NSString alloc] 
+			   initWithData:data encoding:NSUTF8StringEncoding];
+
+  NSLog(@"data: %@", dataString);
+  NSDictionary *result = [dataString JSONValue];
+  NSLog(@"result: %@", result);
+
+  if ([result objectForKey:@"error"] != nil) {
+    UIAlertView *alert = [[UIAlertView alloc] 
+			   initWithTitle:@"Could not follow"
+			   message:[result objectForKey:@"error"]
+			   delegate:nil
+			   cancelButtonTitle:@"OK"
+			   otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+  } else {
+
+    [followButton setEnabled:NO];
+    followButton.titleLabel.text = @"Following";
+  }
+  
+  [dataString release];
+}
+
+- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
+  NSLog(@"didFailWithError");
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
 
 #pragma mark -
 #pragma mark Local Methods

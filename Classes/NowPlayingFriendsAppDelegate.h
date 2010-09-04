@@ -17,6 +17,7 @@
 #define kMaxTweetLength 140
 #define kProfileImageDirectory @"profileImages"
 #define kProfileImageMaxFileCacheCount 512
+#define kProfileImageMaxMemoryCacheCount 100
 
 @interface NowPlayingFriendsAppDelegate : NSObject <UIApplicationDelegate> {
   
@@ -78,6 +79,8 @@
 
 - (UIImage *)profileImage:(NSDictionary *)data 
 		getRemote:(BOOL) getRemoteFlag;
+- (void)clearProfileImageCache;
+
 - (UIImage *)originalProfileImage:(NSDictionary *)data;
 - (NSString *)profileImageFileName:(NSString *)urlString;
 - (void)saveProfileImageData:(NSData *)imageData

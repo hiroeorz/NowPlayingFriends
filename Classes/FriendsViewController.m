@@ -112,6 +112,7 @@
     NSArray *newTimeline = 
       [timeline subarrayWithRange:NSMakeRange(0, kMaxTableCellRow)];
     
+    NSLog(@"table data shulinked because too big:%d", [timeline count]);
     self.timeline = newTimeline;
   }
 }
@@ -260,6 +261,7 @@
     NSLog(@"refreshed.");
   }
 
+  [self.appDelegate cleanupProfileImageFileCache];
   [pool release];
 }
 
@@ -371,7 +373,8 @@
 - (void)setProfileImageWithObjects:(NSDictionary *)objects {
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  
+
+  [self.appDelegate clearProfileImageCache];
   NSDictionary *data = [objects objectForKey:@"data"];
   FriendCell *cell = [[objects objectForKey:@"cell"] retain];
   UIImage *newImage = [self.appDelegate profileImage:data
@@ -420,10 +423,12 @@
 
 - (NSInteger)newOffset:(NSInteger)addCount {
 
-  CGPoint offset = friendsTableView.contentOffset;
-  NSInteger totalOffset = offset.y;
+  NSInteger totalOffset = 0;
 
   if ([timeline count] != addCount) {
+    CGPoint offset = friendsTableView.contentOffset;
+    totalOffset = offset.y;
+
     for (NSInteger i = 0; i < addCount; i++) {
       NSInteger cellViewHeight = kTimelineTableRowHeight;
       NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];

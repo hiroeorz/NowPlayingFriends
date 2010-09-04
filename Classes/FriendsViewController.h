@@ -47,6 +47,7 @@
 - (IBAction)refreshTableOnThread;
 - (void)refreshTable;
 
+- (NSString *)clientname:(NSDictionary *)data;
 - (NSString *)username:(NSDictionary *)data;
 - (void)setProfileImageWithObjects:(NSDictionary *)objects;
 - (void) cacheAllProfileImage;
