@@ -534,25 +534,25 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSData *imageData = nil;
 
   if (newImage != nil) {
-    NSLog(@"get from memory: %@", newImage);
+    NSLog(@"get from memory");
   }
 
   if (newImage == nil) { // ファイルから取得
     imageData = [self profileImageDataWithURLString:imageURLString];
     
     if (imageData != nil) {
-      newImage = [[UIImage alloc] initWithData:imageData];
-      NSLog(@"get from file: %@", newImage);
+      newImage = [[[UIImage alloc] initWithData:imageData] autorelease];
+      NSLog(@"get from file");
     }
   }
 
   if (newImage == nil && getRemoteFlag) { //リモートから取得
     NSURL *imageURL = [NSURL URLWithString:imageURLString];
     imageData = [NSData dataWithContentsOfURL:imageURL];
-    newImage = [[UIImage alloc] initWithData:imageData];
+    newImage = [[[UIImage alloc] initWithData:imageData] autorelease];
     
     [self saveProfileImageData:imageData urlString:imageURLString];
-    NSLog(@"get from remote: %@", newImage);
+    NSLog(@"get from remote");
   }
 
   /*

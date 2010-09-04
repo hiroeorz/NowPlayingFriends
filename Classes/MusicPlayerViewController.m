@@ -488,6 +488,8 @@
       x = 0;
     }
     i++;
+
+    [objects release];
   }
   
   if ([timeline count] < [profileImageButtons count]) {

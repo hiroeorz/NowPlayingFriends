@@ -192,9 +192,9 @@
     return notAuthencticatedRequest;
   }
 
-  OAConsumer *consumer =
-    [[[OAConsumer alloc] initWithKey:kConsumerKey
-			 secret:kConsumerSecret] autorelease];
+  OAConsumer *consumer = [[OAConsumer alloc] initWithKey:kConsumerKey
+					     secret:kConsumerSecret];
+  [consumer autorelease];
 
   NSDictionary *token = [self oAuthToken];
 
@@ -204,13 +204,14 @@
       autorelease];
 
   OAMutableURLRequest *request = 
-    [[[OAMutableURLRequest alloc] initWithURL:url
-				  consumer:consumer
-				  token:accessToken
-				  realm:nil
-				  signatureProvider:nil] autorelease];
-
+    [[OAMutableURLRequest alloc] initWithURL:url
+				 consumer:consumer
+				 token:accessToken
+				 realm:nil
+				 signatureProvider:nil];
+  [request autorelease];
   [request setHTTPMethod:@"POST"];
+
   return request;
 }
 
