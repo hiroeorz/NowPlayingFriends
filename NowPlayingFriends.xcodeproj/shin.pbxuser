@@ -21,7 +21,7 @@
 		);
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeExecutable = 54C1DC051213B28400EBD811 /* NowPlayingFriends */;
 		activeSDKPreference = iphoneos4.0;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* NowPlayingFriends */;
@@ -199,6 +199,7 @@
 			54A96A1E1231F47D004CF186 /* PBXTextBookmark */ = 54A96A1E1231F47D004CF186 /* PBXTextBookmark */;
 			54A96A291231FB23004CF186 /* PBXTextBookmark */ = 54A96A291231FB23004CF186 /* PBXTextBookmark */;
 			54A96A371231FE24004CF186 /* PBXTextBookmark */ = 54A96A371231FE24004CF186 /* PBXTextBookmark */;
+			54A96A5012322D67004CF186 /* PBXTextBookmark */ = 54A96A5012322D67004CF186 /* PBXTextBookmark */;
 			54C1DD14121512AD00EBD811 = 54C1DD14121512AD00EBD811 /* PBXTextBookmark */;
 			54C1DD15121512AD00EBD811 = 54C1DD15121512AD00EBD811 /* PBXTextBookmark */;
 			54C1DD16121512AD00EBD811 = 54C1DD16121512AD00EBD811 /* PBXTextBookmark */;
@@ -485,9 +486,9 @@
 	};
 	5480C73D12236F0D00F6E1C6 /* UserInformationViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {439, 2249}}";
-			sepNavSelRange = "{3858, 0}";
-			sepNavVisRange = "{3441, 306}";
+			sepNavIntBoundsRect = "{{0, 0}, {651, 3341}}";
+			sepNavSelRange = "{5847, 0}";
+			sepNavVisRange = "{2343, 398}";
 		};
 	};
 	5480C74212236F1D00F6E1C6 /* PBXTextBookmark */ = {
@@ -819,7 +820,7 @@
 	};
 	54A96873122FA316004CF186 /* MentionsTimelineViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {673, 496}}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 519}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 313}";
 		};
@@ -1439,6 +1440,16 @@
 		vrLoc = 0;
 	};
 	54A96A371231FE24004CF186 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 54A96873122FA316004CF186 /* MentionsTimelineViewController.h */;
+		name = "MentionsTimelineViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 313;
+		vrLoc = 0;
+	};
+	54A96A5012322D67004CF186 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 54A96873122FA316004CF186 /* MentionsTimelineViewController.h */;
 		name = "MentionsTimelineViewController.h: 1";

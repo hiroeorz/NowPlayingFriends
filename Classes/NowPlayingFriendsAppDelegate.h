@@ -17,7 +17,7 @@
 #define kMaxTweetLength 140
 #define kProfileImageDirectory @"profileImages"
 #define kProfileImageMaxFileCacheCount 512
-#define kProfileImageMaxMemoryCacheCount 100
+#define kProfileImageMaxMemoryCacheCount 30
 
 @interface NowPlayingFriendsAppDelegate : NSObject <UIApplicationDelegate> {
   

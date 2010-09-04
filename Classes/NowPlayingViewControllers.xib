@@ -48,8 +48,8 @@
 						<string key="NSFrameSize">{320, 387}</string>
 						<reference key="NSSuperview" ref="423901775"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
 						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -156,7 +156,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>FriendsViewController</string>
 					<string>UIResponder</string>
-					<string>{{42, 469}, {320, 480}}</string>
+					<string>{{37, 175}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{329, 504}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

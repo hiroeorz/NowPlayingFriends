@@ -529,8 +529,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   // メモリから取得
   NSString *imageURLString = [user objectForKey:@"profile_image_url"];
-  //UIImage *newImage = [profileImages objectForKey:imageURLString];
-  UIImage *newImage = nil;
+  UIImage *newImage = [profileImages objectForKey:imageURLString];
   NSData *imageData = nil;
 
   if (newImage != nil) {
@@ -555,13 +554,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"get from remote");
   }
 
-  /*
+  
   if (newImage != nil && [profileImages objectForKey:imageURLString] == nil) {
     @synchronized(profileImages) {
       [profileImages setObject:newImage forKey:imageURLString];
     }    
   }
-  */
+
   return newImage;
 }
 
