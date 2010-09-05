@@ -341,7 +341,6 @@
   NSString *passedString;
   NSInteger intervalSec = [self.appDelegate secondSinceNow:data];
 
-  //if (intervalSec >= 60 * 15) {
   if ([self checkSpecialCell:data]) {
     cell.baseView.backgroundColor = [UIColor colorWithHue:0.0f
 					       saturation:0.72f
@@ -442,6 +441,8 @@
 	   forState:UIControlStateNormal];
     }
   }
+
+  [cell autorelease];
 }
 
 /**
