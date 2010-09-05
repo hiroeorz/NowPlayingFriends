@@ -56,7 +56,6 @@
 }
 
 - (void)viewDidUnload {
-  NSLog(@"viewDidUnload");
 
   self.timeline = nil;
   self.beforeTimeline = nil;
@@ -447,17 +446,25 @@
     
     UIImage *newImage = [self.appDelegate profileImage:data
 			     getRemote:YES];
+
+    BOOL nowPlayer = [self checkNowPlayingUser:data];
+    float alpha = kProfileImageButtonAlpha;
+      
+    if (nowPlayer) { alpha = 1.0f; }
+
+    NSNumber *alphaNumber = [NSNumber numberWithFloat:alpha];
     
     NSDictionary *objects = 
       [[NSDictionary alloc] initWithObjectsAndKeys:
 			      profileImageButton, @"profileImageButton",
-			    newImage, @"newImage", nil];
+			    newImage, @"newImage", 
+			    alphaNumber, @"alpha",
+			    nil];
     
     if (newButtonFlag == YES) {
 
       @synchronized(profileImageButtons) {
 	[profileImageButtons addObject:profileImageButton];
-	NSLog(@"buttons count:%d", [profileImageButtons count]);
       }
 
       [self performSelectorOnMainThread:@selector(addProfileImageButton:)
@@ -474,9 +481,19 @@
 
       [self performSelectorOnMainThread:@selector(setBackgroundImage:)
 	    withObject:objects
-	    waitUntilDone:YES];
+	    waitUntilDone:NO];
     }
-    
+
+    [self performSelectorOnMainThread:@selector(setBackgroundApha:)
+	  withObject:objects
+	  waitUntilDone:NO];
+
+    if (nowPlayer) {
+      [self performSelectorOnMainThread:@selector(addNowButton:)
+	    withObject:objects
+	    waitUntilDone:NO];
+    }
+
     x = x + xRange;
     
     if (((i + 1) % 5) == 0) {
@@ -505,8 +522,6 @@
 
   [profileImageButton setBackgroundImage:newImage 
 		      forState:UIControlStateNormal];
-   
-  profileImageButton.alpha = kProfileImageButtonAlpha;
 }
 
 - (void)setBackgroundImage:(NSDictionary *)objects {
@@ -521,6 +536,52 @@
 		      forState:UIControlStateNormal];
     
   [UIView commitAnimations];
+}
+
+- (void)setBackgroundApha:(NSDictionary *)objects {
+
+  UIButton *profileImageButton = [objects objectForKey:@"profileImageButton"];
+  float alpha = [[objects objectForKey:@"alpha"] floatValue];
+  profileImageButton.alpha = alpha;
+}
+
+- (void)addNowButton:(NSDictionary *)objects {
+
+  UIButton *profileImageButton = [objects objectForKey:@"profileImageButton"];
+  UIButton *nowButton = [self nowButton:@selector(openUserInformationView:) 
+			      frame:kNowButtonFrame];
+
+  nowButton.tag = profileImageButton.tag;
+  [profileImageButton addSubview:nowButton];
+}
+
+/**
+ * @brief 一定時間内のポストデータかどうかを判断する。
+ */
+- (BOOL)checkNowPlayingUser:(NSDictionary *)data {
+
+  NSInteger intervalSec = [self.appDelegate secondSinceNow:data];
+  return (intervalSec < kMusicPlayerDefaultNowInterval);
+}
+
+- (UIButton *)nowButton:(SEL)selector
+		  frame:(CGRect)frame{
+
+  UIButton *nowButton = [UIButton buttonWithType:111];
+  nowButton.frame = frame;
+  
+  [nowButton setTitle:@"♬" 
+	     forState:UIControlStateNormal];
+  
+  [nowButton setTintColor:[UIColor redColor]];
+  
+  [nowButton addTarget:self action:selector
+	     forControlEvents:UIControlEventTouchUpInside];
+  
+  nowButton.font = [UIFont boldSystemFontOfSize:16];
+  nowButton.alpha = kNowButtonAlpha;
+  
+  return nowButton;
 }
 
 #pragma mark -

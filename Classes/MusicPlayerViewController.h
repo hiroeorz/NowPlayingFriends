@@ -28,6 +28,9 @@
 #define kRepeatModeAll 2
 
 #define kAutoTweetTimeLag 10
+#define kMusicPlayerDefaultNowInterval 60 * 15
+#define kNowButtonFrame (CGRectMake(35.0f, 40.0f, 30.0f, 25.0f))
+#define kNowButtonAlpha 0.7f
 
 @interface MusicPlayerViewController : UIViewController 
 <UITableViewDataSource, UITableViewDelegate> {
@@ -88,6 +91,12 @@
 - (IBAction)skipToBeginningOrPreviousItem:(id)sender;
 - (IBAction)skipToPreviousItem:(id)sender;
 - (void)openUserInformationView:(id)sender;
+
+- (void)addProfileImageButton:(NSDictionary *)objects;
+- (void)setBackgroundImage:(NSDictionary *)objects;
+- (void)setBackgroundApha:(NSDictionary *)objects;
+- (BOOL)checkNowPlayingUser:(NSDictionary *)data;
+- (void)addNowButton:(NSDictionary *)objects;
 
 - (IBAction)changeRepeatMode:(id)sender;
 - (IBAction)openSettingView:(id)sender;

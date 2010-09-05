@@ -54,7 +54,7 @@
 - (BOOL)checkSpecialCell:(NSDictionary *)data {
 
   NSInteger intervalSec = [self.appDelegate secondSinceNow:data];
-  return (intervalSec < kDefaultNowInterval);
+  return (intervalSec < kArtistDefaultNowInterval);
 }
 
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FriendsViewController.h"
 
-#define kDefaultNowInterval 60 * 5
+#define kNowPlayingDefaultNowInterval 60 * 1
 
 @interface NowPlayingViewController : FriendsViewController {
 

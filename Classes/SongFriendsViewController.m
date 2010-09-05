@@ -51,12 +51,12 @@
 }
 
 /**
- * @brief 特別な色のセルにするかどうかを判断する。このメソッドは継承先でオーバーライドされます。
+ * @brief 特別な色のセルにするかどうかを判断する。
  */
 - (BOOL)checkSpecialCell:(NSDictionary *)data {
 
   NSInteger intervalSec = [self.appDelegate secondSinceNow:data];
-  return (intervalSec < kDefaultNowInterval);
+  return (intervalSec < kSongDefaultNowInterval);
 }
 
 @end
