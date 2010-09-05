@@ -25,6 +25,7 @@
 }
 
 - (void)followUser:(NSString *)usernameOrId delegate:(id)aDelegate;
+- (BOOL)checkFollowing:(NSString *)username;
 - (NSArray *)getHomeTimeLine:(NSString *)username;
 - (NSArray *)getUserTimeLine:(NSString *)username;
 - (NSArray *)getMentionsTimeLine;
@@ -35,7 +36,7 @@
 - (NSString *)urlEncodedString:(NSString *)str;
 - (NSArray *)arrayOfRemoteJson:(NSString *)urlString;
 - (NSDictionary *)dictionaryOfRemoteJson:(NSString *)urlString;
-- (NSDictionary *)dictionaryOfRemoteJson:(NSString *)urlString;
+- (NSString *)stringOfRemoteJson:(NSString *)urlString;
 - (void)logJsonData:(NSArray *)jsonArray;
 
 - (NSDictionary *)oAuthToken;

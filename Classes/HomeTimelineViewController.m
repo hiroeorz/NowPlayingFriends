@@ -34,4 +34,19 @@
   self.navigationController.tabBarItem.title = @"Mentions";
 }
 
+/**
+ * @brief 特別な色のセルにするかどうかを判断する。
+ */
+- (BOOL)checkSpecialCell:(NSDictionary *)data {
+
+  BOOL result = NO;
+  NSString *text = [data objectForKey:@"text"];
+
+  if ([text rangeOfString:myUserName].location != NSNotFound) {
+    result = YES;
+  }
+
+  return result;
+}
+
 @end

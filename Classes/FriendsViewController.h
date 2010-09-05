@@ -11,7 +11,7 @@
 
 #define kTimelineTableRowHeight 76.0f
 #define kDefaultBodyTextHeight 27.0f
-#define kViewFrameHeight 66.0f
+#define kViewFrameHeight 75.0f
 #define kTextFrameHeight 32.0f
 #define kTimelineUpdateInterval 60 * 5
 #define kMaxTableCellRow 100
@@ -23,6 +23,7 @@
   NSArray *timeline;
   UITableView *friendsTableView;
   BOOL changed;
+  NSString *myUserName;
 
 @private
   NSArray *beforeTimeline;
@@ -34,6 +35,7 @@
 @property (nonatomic, retain) NSArray *beforeTimeline;
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) IBOutlet UITableView *friendsTableView;
+@property (nonatomic, retain) NSString *myUserName;
 
 - (void)handle_PlayBackStateDidChanged:(id)notification;
 - (void)handle_VolumeChanged:(id)notification;
@@ -47,6 +49,7 @@
 - (IBAction)refreshTableOnThread;
 - (void)refreshTable;
 
+- (BOOL)checkSpecialCell:(NSDictionary *)data;
 - (NSString *)clientname:(NSDictionary *)data;
 - (NSString *)username:(NSDictionary *)data;
 - (void)setProfileImageWithObjects:(NSDictionary *)objects;

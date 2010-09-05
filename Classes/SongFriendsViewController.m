@@ -50,4 +50,13 @@
   return addCount;
 }
 
+/**
+ * @brief 特別な色のセルにするかどうかを判断する。このメソッドは継承先でオーバーライドされます。
+ */
+- (BOOL)checkSpecialCell:(NSDictionary *)data {
+
+  NSInteger intervalSec = [self.appDelegate secondSinceNow:data];
+  return (intervalSec < kDefaultNowInterval);
+}
+
 @end

@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -277,13 +279,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>25</integer>
-									<integer>1</integer>
+									<integer>43</integer>
+									<integer>26</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {272, 736}}</string>
+							<string>{{0, 298}, {272, 736}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -318,7 +320,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MentionsTimelineViewController.h</string>
+								<string>TwitterClient.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +328,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MentionsTimelineViewController.h</string>
+										<string>TwitterClient.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>54A96A6212325403004CF186</string>
+										<string>54A96AF1123352DC004CF186</string>
 										<key>history</key>
 										<array>
 											<string>54C1DD14121512AD00EBD811</string>
@@ -341,7 +343,6 @@
 											<string>54C1DD1A121512AD00EBD811</string>
 											<string>54C1E0291216CE0B00EBD811</string>
 											<string>54C1E02A1216CE0B00EBD811</string>
-											<string>54C1E02B1216CE0B00EBD811</string>
 											<string>54C1E02C1216CE0B00EBD811</string>
 											<string>54C1E0571217B49500EBD811</string>
 											<string>5480C27C121E571900F6E1C6</string>
@@ -381,7 +382,8 @@
 											<string>54A9687F122FA3EA004CF186</string>
 											<string>54A96895122FA4E4004CF186</string>
 											<string>54A96896122FA4E4004CF186</string>
-											<string>54A96897122FA4E4004CF186</string>
+											<string>54A96AAF12334255004CF186</string>
+											<string>54A96AB012334255004CF186</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -403,8 +405,6 @@
 							<string>536pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -581,14 +581,14 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>54A96A6312325403004CF186</string>
+		<string>54A96AF2123352DC004CF186</string>
 		<string>54A96A3D1232194C004CF186</string>
 		<string>54A9682D122F8F54004CF186</string>
 		<string>54A9682E122F8F54004CF186</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>54C1DC1E1213B28F00EBD811</string>
 		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>54C1DC1E1213B28F00EBD811</string>
 	</array>
 	<key>WindowString</key>
 	<string>614 143 1028 795 0 0 1680 1028 </string>
@@ -612,7 +612,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>NowPlayingFriendsAppDelegate.m</string>
+								<string>HomeTimelineViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -939,7 +939,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {876, 722}}</string>
 								<key>RubberWindowFrame</key>
-								<string>143 216 876 763 0 0 1680 1028 </string>
+								<string>80 142 876 763 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
@@ -968,7 +968,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.consoleV3</string>
 			<key>WindowString</key>
-			<string>143 216 876 763 0 0 1680 1028 </string>
+			<string>80 142 876 763 0 0 1680 1028 </string>
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>

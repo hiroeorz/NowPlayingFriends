@@ -18,6 +18,7 @@
 @synthesize beforeTimeline;
 @dynamic appDelegate;
 @synthesize friendsTableView;
+@synthesize myUserName;
 
 #pragma mark -
 #pragma mark Memory management
@@ -26,6 +27,7 @@
   [timeline release];
   [beforeTimeline release];
   [friendsTableView release];
+  [myUserName release];
   [super dealloc];
 }
 
@@ -33,6 +35,7 @@
   self.timeline = nil;
   self.beforeTimeline = nil;
   self.friendsTableView = nil;
+  self.myUserName = nil;
   [super viewDidUnload];
 }
 
@@ -54,6 +57,10 @@
   self.navigationItem.rightBarButtonItem = 
     [self.appDelegate refreshButton:@selector(refreshTableOnThread) 
 	 target:self];
+
+  TwitterClient *client = [[TwitterClient alloc] init];
+  self.myUserName = [client username];
+  [client release];
 
   [super viewDidLoad];
 }
@@ -331,6 +338,32 @@
   cell.userImageView.tag = row;
   cell.clientLabel.text = [self clientname:data];
 
+  NSString *passedString;
+  NSInteger intervalSec = [self.appDelegate secondSinceNow:data];
+
+  //if (intervalSec >= 60 * 15) {
+  if ([self checkSpecialCell:data]) {
+    cell.baseView.backgroundColor = [UIColor colorWithHue:0.0f
+					       saturation:0.72f
+					       brightness:0.22f
+					       alpha:1.0f];
+  } else {
+    cell.baseView.backgroundColor = [UIColor blackColor];
+  }
+
+  if (intervalSec < 60) {
+    passedString = [[NSString alloc] initWithFormat:@"%dsec", intervalSec];
+  } else if (intervalSec >= 60 && intervalSec < (60 * 60)) {
+    passedString = [[NSString alloc] initWithFormat:@"%dmin", (intervalSec / 60)];
+  } else if (intervalSec >= (60 * 60) && intervalSec < (60 * 60 * 24)) {
+    passedString = [[NSString alloc] initWithFormat:@"%dhour", (intervalSec / (60 * 60))];
+  } else {
+    passedString = [[NSString alloc] initWithFormat:@"%dday", (intervalSec / (60 * 60 * 24))];    
+  }
+
+  cell.timeLabel.text = passedString;
+  [passedString release];
+  
   CGFloat overflow = [self lineOverFlowSize:indexPath];
 
   CGRect viewFrame = cell.baseView.frame;
@@ -350,6 +383,14 @@
 
   [objects release];
   return cell;
+}
+
+/**
+ * @brief 特別な色のセルにするかどうかを判断する。このメソッドは継承先でオーバーライドされます。
+ */
+- (BOOL)checkSpecialCell:(NSDictionary *)data {
+
+  return NO;
 }
 
 /**

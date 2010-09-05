@@ -403,7 +403,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 			    @"&", @"&amp;",
 			  nil];
 
-  NSMutableString *newString = [[NSMutableString alloc] initWithString:str];
+  NSString *newString = [[NSString alloc] initWithString:str];
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
@@ -439,7 +439,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [client release];
 }
 
-- (NSDictionary *)clientname:(NSDictionary *)data {
+- (NSString *)clientname:(NSDictionary *)data {
 
   NSString *clientString = [data objectForKey:@"source"];
   NSString *untaggedString = [self stringByUntaggedString:clientString];
@@ -460,6 +460,28 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   }
   
   return username;
+}
+
+/**
+ * @brief Tweetデータからポストされた日付を返す。
+ */
+- (NSDate *)tweetDate:(NSDictionary *)data {
+
+  NSString *dateString = [data objectForKey:@"created_at"];
+  NSDate *date = [NSDate dateWithNaturalLanguageString:dateString];
+
+  return date;
+}
+
+/**
+ * @brief Tweetデータから現在までの経過時間を返す。
+ */
+- (NSInteger)secondSinceNow:(NSDictionary *)data {
+
+  NSDate *tweetDate = [self tweetDate:data];
+  NSInteger intervalSec = abs([tweetDate timeIntervalSinceNow]);
+
+  return intervalSec;
 }
 
 /**

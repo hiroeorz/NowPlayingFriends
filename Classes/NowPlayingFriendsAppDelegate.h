@@ -74,8 +74,11 @@
 - (NSString *)stringByUnescapedString:(NSString *)str;
 - (void)checkAuthenticateWithController:(id)viewController;
 
-- (NSDictionary *)clientname:(NSDictionary *)data;
+- (NSString *)clientname:(NSDictionary *)data;
 - (NSString *)username:(NSDictionary *)data;
+- (NSDate *)tweetDate:(NSDictionary *)data;
+- (NSInteger)secondSinceNow:(NSDictionary *)data;
+
 
 - (UIImage *)profileImage:(NSDictionary *)data 
 		getRemote:(BOOL) getRemoteFlag;

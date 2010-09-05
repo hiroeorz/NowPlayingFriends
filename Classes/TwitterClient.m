@@ -47,13 +47,9 @@
 			  initWithFormat:kCheckFriendShipURL, username];
 
   NSDictionary *response = [self dictionaryOfRemoteJson:urlString];
-  NSLog(@"response: %@", response);
   NSDictionary *relationship = [response objectForKey:@"relationship"];
   NSDictionary *target = [relationship objectForKey:@"target"];
   NSInteger result = [[target objectForKey:@"following"] integerValue];
-
-  NSLog(@"target: %@", target);
-  NSLog(@"result: %d", result);
 
   return (result == 1);
 }

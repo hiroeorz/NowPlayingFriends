@@ -26,4 +26,13 @@
   return addCount;
 }
 
+/**
+ * @brief 特別な色のセルにするかどうかを判断する。
+ */
+- (BOOL)checkSpecialCell:(NSDictionary *)data {
+
+  NSInteger intervalSec = [self.appDelegate secondSinceNow:data];
+  return (intervalSec < kDefaultNowInterval);
+}
+
 @end
