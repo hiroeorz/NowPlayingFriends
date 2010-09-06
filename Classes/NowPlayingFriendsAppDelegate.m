@@ -96,6 +96,33 @@
   [musicPlayer beginGeneratingPlaybackNotifications];
 }
 
+- (void)removeMusicPlayerNotification:(id)object {
+
+  NSNotificationCenter *notificationCenter = 
+    [NSNotificationCenter defaultCenter];
+
+  [notificationCenter 
+    removeObserver:object
+    selector:@selector(handle_NowPlayingItemChanged:)
+    name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+    object:musicPlayer];
+
+  
+  [notificationCenter 
+    removeObserver: object
+    selector: @selector (handle_PlayBackStateDidChanged:)
+    name: MPMusicPlayerControllerPlaybackStateDidChangeNotification
+    object: musicPlayer];
+
+  [notificationCenter
+    removeObserver:object
+    selector:@selector(handle_VolumeChanged:)
+    name:MPMusicPlayerControllerVolumeDidChangeNotification
+    object:musicPlayer];
+
+  [musicPlayer endGeneratingPlaybackNotifications];
+}
+
 - (void)setupMusicPlayer {
 
   [self setMusicPlayer:[MPMusicPlayerController iPodMusicPlayer]];

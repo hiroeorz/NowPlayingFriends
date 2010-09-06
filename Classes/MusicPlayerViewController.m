@@ -102,7 +102,7 @@
 
   listmode = kListModeAlbum;
 
-  [self setMusicPlayer:[MPMusicPlayerController iPodMusicPlayer]];
+  self.musicPlayer = self.appDelegate.musicPlayer;
   [self.appDelegate addMusicPlayerNotification:self];
 
   self.navigationItem.rightBarButtonItem = 
