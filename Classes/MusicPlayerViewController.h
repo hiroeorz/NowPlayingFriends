@@ -28,7 +28,7 @@
 #define kRepeatModeAll 2
 
 #define kAutoTweetTimeLag 10
-#define kMusicPlayerDefaultNowInterval 60 * 15
+#define kMusicPlayerDefaultNowInterval 60 * 60 * 5
 #define kNowButtonFrame (CGRectMake(35.0f, 40.0f, 30.0f, 25.0f))
 #define kNowButtonAlpha 0.7f
 
@@ -44,6 +44,7 @@
   UIButton *playButton;
   UIButton *button;
   NSMutableArray *profileImageButtons;
+  NSMutableArray *nowButtons;
   MPMusicPlayerController *musicPlayer;
   UIView *songView;
   UITableView *listView;
@@ -53,7 +54,6 @@
   NSString *refreshProfileImagesMutex;
   UIViewController *songListController;
   UIView *settingView;
-
   UISegmentedControl *repeatModeControll;
   BOOL autoTweetMode;
   BOOL autoTweetModeDefault;
@@ -68,6 +68,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *playButton;
 @property (nonatomic, retain) IBOutlet UIButton *button;
 @property (nonatomic, retain) NSMutableArray *profileImageButtons;
+@property (nonatomic, retain) NSMutableArray *nowButtons;
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 @property (nonatomic, retain) IBOutlet UIView *songView;
 @property (nonatomic, retain) IBOutlet UITableView *listView;
@@ -92,6 +93,7 @@
 - (IBAction)skipToPreviousItem:(id)sender;
 - (void)openUserInformationView:(id)sender;
 
+- (void)releaseNowButtons;
 - (void)addProfileImageButton:(NSDictionary *)objects;
 - (void)setBackgroundImage:(NSDictionary *)objects;
 - (void)setBackgroundApha:(NSDictionary *)objects;

@@ -22,6 +22,7 @@
 @synthesize playButton;
 @synthesize button;
 @synthesize profileImageButtons;
+@synthesize nowButtons;
 @dynamic appDelegate;
 @synthesize musicPlayer;
 @synthesize songView;
@@ -43,6 +44,7 @@
   [albumImageView release];
   [volumeSlider release];
   [profileImageButtons release];
+  [nowButtons release];
   [songView release];
   [listView release];
   [playLists release];
@@ -62,6 +64,7 @@
   self.albumImageView = nil;
   self.volumeSlider = nil;
   self.profileImageButtons = nil;
+  self.nowButtons = nil;
   self.songView = nil;
   self.listView = nil;
   self.playLists = nil;
@@ -413,7 +416,22 @@
   NSLog(@"timeline data updated.");
 }
 
+/**
+ * @brief nowButtonをプロフィール画像ボタンから外してリリースする。
+ */
+- (void)releaseNowButtons {
+
+  for (UIButton *nowButton in nowButtons) {
+    if (nowButton.superview != nil) { [nowButton removeFromSuperview]; }
+  }
+
+  [nowButtons release];
+  nowButtons = [[NSMutableArray alloc] init];
+}
+
 - (void)setFriendImageView {
+
+  [self releaseNowButtons];
 
   NSInteger i = 0;
   NSInteger x = 0;
@@ -553,6 +571,7 @@
 
   nowButton.tag = profileImageButton.tag;
   [profileImageButton addSubview:nowButton];
+  [nowButtons addObject:nowButton];
 }
 
 /**
