@@ -123,6 +123,11 @@
   [self setMusicPlayer:[MPMusicPlayerController iPodMusicPlayer]];
 }
 
+- (NSString *)nowPlayingTagsString {
+
+  return KNowPlayingTags;
+}
+
 /**
  * @brief アルバム情報を持つMPMediaItemCollectionの配列を返します。
  */

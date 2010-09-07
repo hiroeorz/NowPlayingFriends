@@ -18,6 +18,8 @@
 #define kProfileImageDirectory @"profileImages"
 #define kProfileImageMaxFileCacheCount 512
 #define kProfileImageMaxMemoryCacheCount 30
+#define KNowPlayingTags @"@youtube OR #Playing OR #nowplaying OR #listening OR #nowlistening OR #playing OR #twitmusic";
+
 
 @interface NowPlayingFriendsAppDelegate : NSObject <UIApplicationDelegate> {
   
@@ -61,6 +63,8 @@
 - (UIImage *)currentMusicArtWorkWithWidth:(NSInteger)width
 				   height:(NSInteger)height
 			       useDefault:(BOOL)useDefault;
+- (void)setupMusicPlayer;
+- (NSString *)nowPlayingTagsString;
 - (NSArray *)albums;
 - (NSArray *)playLists;
 - (NSString *)tweetString;

@@ -17,7 +17,9 @@
   NSLog(@"updating timeline data...");
 
   TwitterClient *client = [[TwitterClient alloc] init];
-  NSArray *newTimeline = [client getSearchTimeLine:@"#nowplaying", nil];
+  NSString *tags = [self.appDelegate nowPlayingTagsString];
+
+  NSArray *newTimeline = [client getSearchTimeLine:tags, nil];
   [client release];
 
   NSInteger addCount = [super createNewTimeline:newTimeline];

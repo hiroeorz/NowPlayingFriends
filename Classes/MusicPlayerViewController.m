@@ -390,8 +390,10 @@
   TwitterClient *client = [[TwitterClient alloc] init];
   NSString *songTitle = [self.appDelegate nowPlayingTitle];
   NSString *artistName = [self.appDelegate nowPlayingArtistName];
+  NSString *tags = [self.appDelegate nowPlayingTagsString];
 
-  NSArray *newTimeline = [client getSearchTimeLine:songTitle, artistName, nil];
+  NSArray *newTimeline = [client getSearchTimeLine:tags, 
+				 songTitle, artistName, nil];
 
   NSMutableArray *uniqArray = [[NSMutableArray alloc] init];
   NSMutableArray *checkArray = [[NSMutableArray alloc] init];
