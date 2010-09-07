@@ -267,8 +267,6 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
-								<string>5480C6A3122296A200F6E1C6</string>
-								<string>5480C3B4121FA0CA00F6E1C6</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
@@ -279,13 +277,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>51</integer>
-									<integer>26</integer>
+									<integer>7</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 269}, {272, 736}}</string>
+							<string>{{0, 3}, {272, 736}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -332,7 +330,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5416CCA812362FB600943DCF</string>
+										<string>5416CCC6123649A400943DCF</string>
 										<key>history</key>
 										<array>
 											<string>54C1DD14121512AD00EBD811</string>
@@ -583,6 +581,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>5416CCC51236470000943DCF</string>
 		<string>5416CC7C123620BB00943DCF</string>
 		<string>5416CC7D123620BB00943DCF</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -612,7 +611,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MusicPlayerViewController.m</string>
+								<string>SongsListViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>

@@ -57,6 +57,7 @@
   BOOL autoTweetMode;
   BOOL autoTweetModeDefault;
   UISwitch *autoTweetSwitch;
+  UIView *baseView;
 }
 
 @property (nonatomic, retain) NSArray *timeline;
@@ -78,6 +79,7 @@
 @property (nonatomic, retain) UIViewController *songListController;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *repeatModeControll;
 @property (nonatomic, retain) IBOutlet UISwitch *autoTweetSwitch;
+@property (nonatomic, retain) UIView *baseView;
 
 - (void)setMusicArtwork;
 

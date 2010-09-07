@@ -34,6 +34,7 @@
 @synthesize settingView;
 @synthesize repeatModeControll;
 @synthesize autoTweetSwitch;
+@synthesize baseView;
 
 #pragma mark -
 #pragma mark Memory management
@@ -54,6 +55,7 @@
   [settingView release];
   [repeatModeControll release];
   [autoTweetSwitch release];
+  [baseView release];
   [super dealloc];
 }
 
@@ -74,6 +76,7 @@
   self.settingView = nil;
   self.repeatModeControll = nil;
   self.autoTweetSwitch = nil;
+  self.baseView = nil;
   [super viewDidUnload];
 }
 
@@ -98,6 +101,7 @@
 
 - (void)viewDidLoad {
 
+  self.baseView = self.view;
   self.refreshProfileImagesMutex = @"refreshProfileImagesMutex";
 
   listmode = kListModeAlbum;
@@ -105,10 +109,10 @@
   self.musicPlayer = self.appDelegate.musicPlayer;
   [self.appDelegate addMusicPlayerNotification:self];
 
-  self.navigationItem.rightBarButtonItem = 
+  self.navigationItem.leftBarButtonItem = 
     [self.appDelegate listButton:@selector(changeToListview) target:self];
 
-  self.navigationItem.leftBarButtonItem = 
+  self.navigationItem.rightBarButtonItem = 
     [self.appDelegate editButton:@selector(openEditView) target:self];
 
   NSMutableArray *newProfileImageButtons = [[NSMutableArray alloc] init];
@@ -647,7 +651,8 @@
     [songView removeFromSuperview];
   }
 
-  [self.view addSubview:settingView];
+  //[self.view addSubview:settingView];
+  [self.baseView addSubview:settingView];
   [UIView commitAnimations];
 }
 
@@ -697,7 +702,7 @@
   [UIView commitAnimations];
 
 
-  self.navigationItem.rightBarButtonItem = 
+  self.navigationItem.leftBarButtonItem = 
     [self.appDelegate playerButton:@selector(changeToSongview) 
 	 target:self];    
 }
@@ -735,7 +740,7 @@
   [self.view addSubview:songView];
   [UIView commitAnimations];
 
-  self.navigationItem.rightBarButtonItem = 
+  self.navigationItem.leftBarButtonItem = 
     [self.appDelegate listButton:@selector(changeToListview) target:self];
 }
 

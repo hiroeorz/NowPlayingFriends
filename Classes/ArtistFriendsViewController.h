@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FriendsViewController.h"
 
-#define kArtistDefaultNowInterval 60 * 15
+#define kArtistDefaultNowInterval 60 * 5
 
 @interface ArtistFriendsViewController : FriendsViewController {
 

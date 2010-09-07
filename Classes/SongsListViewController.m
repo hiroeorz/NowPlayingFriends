@@ -45,9 +45,6 @@
 
 - (void)viewDidLoad {
 
-  self.navigationItem.rightBarButtonItem = 
-    [self.appDelegate playerButton:@selector(changeToSongview) target:self];
-
   [super viewDidLoad];
 }
 
