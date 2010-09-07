@@ -80,7 +80,6 @@
     name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
     object:musicPlayer];
 
-  
   [notificationCenter 
     addObserver: object
     selector: @selector (handle_PlayBackStateDidChanged:)
@@ -103,20 +102,16 @@
 
   [notificationCenter 
     removeObserver:object
-    selector:@selector(handle_NowPlayingItemChanged:)
     name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
     object:musicPlayer];
-
   
   [notificationCenter 
     removeObserver: object
-    selector: @selector (handle_PlayBackStateDidChanged:)
     name: MPMusicPlayerControllerPlaybackStateDidChangeNotification
     object: musicPlayer];
 
   [notificationCenter
     removeObserver:object
-    selector:@selector(handle_VolumeChanged:)
     name:MPMusicPlayerControllerVolumeDidChangeNotification
     object:musicPlayer];
 

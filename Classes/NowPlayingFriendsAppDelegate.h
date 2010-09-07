@@ -51,6 +51,7 @@
 					       imageName:(NSString *)imageName;
 
 - (void)addMusicPlayerNotification:(id)object;
+- (void)removeMusicPlayerNotification:(id)object;
 - (void)setupMusicPlayer;
 - (void)handle_NowPlayingItemChanged:(id)notification;
 

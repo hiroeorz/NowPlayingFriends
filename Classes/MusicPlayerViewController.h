@@ -11,7 +11,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-
 #import "NowPlayingFriendsAppDelegate.h"
 #import "TwitterClient.h"
 
@@ -28,7 +27,7 @@
 #define kRepeatModeAll 2
 
 #define kAutoTweetTimeLag 10
-#define kMusicPlayerDefaultNowInterval 60 * 60 * 5
+#define kMusicPlayerDefaultNowInterval 60 * 5
 #define kNowButtonFrame (CGRectMake(35.0f, 40.0f, 30.0f, 25.0f))
 #define kNowButtonAlpha 0.7f
 
@@ -98,6 +97,8 @@
 - (void)setBackgroundImage:(NSDictionary *)objects;
 - (void)setBackgroundApha:(NSDictionary *)objects;
 - (BOOL)checkNowPlayingUser:(NSDictionary *)data;
+- (UIButton *)nowButton:(SEL)selector
+		  frame:(CGRect)frame;
 - (void)addNowButton:(NSDictionary *)objects;
 
 - (IBAction)changeRepeatMode:(id)sender;

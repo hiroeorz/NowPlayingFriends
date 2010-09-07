@@ -15,6 +15,7 @@
   MPMusicPlayerController *musicPlayer;
   MusicPlayerViewController *musicPlayerViewController;
   UITableView *songListView;
+  NSString *playListTitle;
 }
 
 @property (nonatomic, retain) MPMediaItemCollection *playlist;
@@ -22,6 +23,7 @@
 @property (nonatomic, retain) MusicPlayerViewController *musicPlayerViewController;
 @property (nonatomic, retain) UITableView *songListView;
 @property (nonatomic, retain, readonly) NowPlayingFriendsAppDelegate *appDelegate;
+@property (nonatomic, retain) NSString *playListTitle;
 
 - (id)initWithPlaylist:(MPMediaItemCollection *)newPlaylist;
 

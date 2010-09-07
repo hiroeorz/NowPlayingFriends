@@ -10,6 +10,7 @@
 @synthesize musicPlayerViewController;
 @synthesize songListView;
 @dynamic appDelegate;
+@synthesize playListTitle;
 
 #pragma mark -
 #pragma mark Memory management
@@ -20,6 +21,7 @@
   [musicPlayer release];
   [musicPlayerViewController release];
   [songListView release];
+  [playListTitle release];
   [super dealloc];
 }
 
@@ -29,6 +31,7 @@
   self.musicPlayer = nil;
   self.musicPlayerViewController = nil;
   self.songListView = nil;
+  self.playListTitle = nil;
   [super viewDidUnload];
 }
 
@@ -48,28 +51,29 @@
   [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+
+  self.title = playListTitle;
+  [super viewWillAppear:animated];
+}
+
+
 #pragma mark -
 #pragma mark Table view delegate
 
+/**
+ * @brief タップされた曲を選択して再生する。
+ */
 - (void)tableView:(UITableView *)tableView 
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
   NSInteger row = [indexPath row];
-
-  [musicPlayer endGeneratingPlaybackNotifications];
-
-  [musicPlayer stop];
+  MPMediaItem *selectedItem = [[playlist items] objectAtIndex:row];
+  
   [musicPlayer setQueueWithItemCollection:playlist];
-  [musicPlayer play]; [musicPlayer pause];
-
-  for (int i = 0; i < row; i++) {
-    [musicPlayer skipToNextItem];
-  }
-
+  [musicPlayer setNowPlayingItem:selectedItem];
   [musicPlayer play];
-  [musicPlayer beginGeneratingPlaybackNotifications];
 }
-
 
 #pragma mark -
 

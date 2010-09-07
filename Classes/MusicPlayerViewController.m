@@ -887,23 +887,32 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 
   NSInteger listRow = [indexPath row] - 1;
   id viewController;
+  NSString *listTitle;
 
   if (listmode == kListModeAlbum) {
     MPMediaItemCollection *album = [albumLists objectAtIndex:listRow];
+    
+    viewController = 
+      (AlbumSongsViewController *)[[AlbumSongsViewController alloc] 
+				    initWithAlbum:album];
 
-     viewController = 
-       (AlbumSongsViewController *)[[AlbumSongsViewController alloc] 
-				     initWithAlbum:album];
+    MPMediaItem *representativeItem = [album representativeItem];
+    listTitle = 
+      [representativeItem valueForProperty:MPMediaItemPropertyAlbumTitle];    
+
   } else {
     MPMediaItemCollection *playlist = [playLists objectAtIndex:listRow];
 
-     viewController = 
-       (PlayListSongsViewController *)[[PlayListSongsViewController alloc] 
-					initWithPlaylist:playlist];
+    viewController = 
+      (PlayListSongsViewController *)[[PlayListSongsViewController alloc] 
+				       initWithPlaylist:playlist];
+
+    listTitle = [playlist valueForProperty:MPMediaPlaylistPropertyName];
   }
 
   [viewController setMusicPlayer:musicPlayer];
   [viewController setMusicPlayerViewController:self];
+  [viewController setPlayListTitle:listTitle];
   [self.navigationController pushViewController:viewController animated:YES];
 }
 
