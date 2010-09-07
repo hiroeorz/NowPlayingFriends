@@ -113,6 +113,16 @@
   TwitterClient *client = [[TwitterClient alloc] init];
   BOOL following = [client checkFollowing:username];
 
+  [self performSelectorOnMainThread:@selector(setFollowingButtonFollowing:)
+	withObject:following
+	waitUntilDone:NO];
+
+  [client release];
+  [pool release];
+}
+
+- (void)setFollowingButtonFollowing:(BOOL)following {
+
   if (following == YES) {
     [followButton setEnabled:NO];
     followButton.titleLabel.text = @"Following";
@@ -120,9 +130,6 @@
     [followButton setEnabled:YES];
     followButton.titleLabel.text = @"  Follow";
   }
-
-  [client release];
-  [pool release];
 }
 
 - (void)getUserInformation {
