@@ -40,8 +40,11 @@
   NSString *songTitle = [self.appDelegate nowPlayingTitle];
   NSString *artistName = [self.appDelegate nowPlayingArtistName];
 
+  NSString *tags = [self.appDelegate nowPlayingTagsString];
+
   NSArray *newTimeline = [client getSearchTimeLine: songTitle, 
-				 artistName, nil];
+				 artistName, tags, nil];
+
   [client release];
 
   NSInteger addCount = [super createNewTimeline:newTimeline];

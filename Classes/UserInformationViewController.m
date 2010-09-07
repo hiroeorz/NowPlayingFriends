@@ -115,7 +115,7 @@
 
   [self performSelectorOnMainThread:@selector(setFollowingButtonFollowing:)
 	withObject:following
-	waitUntilDone:NO];
+	waitUntilDone:YES];
 
   [client release];
   [pool release];

@@ -38,7 +38,9 @@
 
   TwitterClient *client = [[TwitterClient alloc] init];
   NSString *artistName = [self.appDelegate nowPlayingArtistName];
-  NSArray *newTimeline = [client getSearchTimeLine:artistName, nil];
+  NSString *tags = [self.appDelegate nowPlayingTagsString];
+
+  NSArray *newTimeline = [client getSearchTimeLine:artistName, tags, nil];
 
   [client release];
   NSInteger addCount = [super createNewTimeline:newTimeline];

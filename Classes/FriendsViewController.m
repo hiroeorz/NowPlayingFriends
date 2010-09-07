@@ -351,13 +351,17 @@
   }
 
   if (intervalSec < 60) {
-    passedString = [[NSString alloc] initWithFormat:@"%dsec", intervalSec];
+    passedString = [[NSString alloc] initWithFormat:@"%ds", intervalSec];
   } else if (intervalSec >= 60 && intervalSec < (60 * 60)) {
-    passedString = [[NSString alloc] initWithFormat:@"%dmin", (intervalSec / 60)];
+    passedString = [[NSString alloc] initWithFormat:@"%dm", (intervalSec / 60)];
   } else if (intervalSec >= (60 * 60) && intervalSec < (60 * 60 * 24)) {
-    passedString = [[NSString alloc] initWithFormat:@"%dhour", (intervalSec / (60 * 60))];
+    passedString = [[NSString alloc] initWithFormat:@"%dh", (intervalSec / (60 * 60))];
+  } else if (intervalSec >= (60 * 60 * 24) && 
+	     intervalSec < (60 * 60 * 24 * 30)){
+    passedString = [[NSString alloc] initWithFormat:@"%dd", (intervalSec / (60 * 60 * 24))];    
   } else {
-    passedString = [[NSString alloc] initWithFormat:@"%dday", (intervalSec / (60 * 60 * 24))];    
+    passedString = [[NSString alloc] initWithFormat:@"%dmo", (intervalSec / (60 * 60 * 24 * 30))];    
+
   }
 
   cell.timeLabel.text = passedString;

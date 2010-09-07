@@ -18,7 +18,7 @@
 #define kProfileImageDirectory @"profileImages"
 #define kProfileImageMaxFileCacheCount 512
 #define kProfileImageMaxMemoryCacheCount 30
-#define KNowPlayingTags @"@youtube OR #Playing OR #nowplaying OR #listening OR #nowlistening OR #playing OR #twitmusic";
+#define KNowPlayingTags @"Playing OR nowplaying OR listening OR nowlistening OR playing OR twitmusic OR BGM";
 
 
 @interface NowPlayingFriendsAppDelegate : NSObject <UIApplicationDelegate> {
