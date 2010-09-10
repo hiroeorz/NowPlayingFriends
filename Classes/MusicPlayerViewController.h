@@ -58,6 +58,7 @@
   BOOL autoTweetModeDefault;
   UISwitch *autoTweetSwitch;
   UIView *baseView;
+  UISegmentedControl *musicSegmentedControl;
 }
 
 @property (nonatomic, retain) NSArray *timeline;
@@ -80,12 +81,14 @@
 @property (nonatomic, retain) IBOutlet UISegmentedControl *repeatModeControll;
 @property (nonatomic, retain) IBOutlet UISwitch *autoTweetSwitch;
 @property (nonatomic, retain) UIView *baseView;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *musicSegmentedControl;
 
 - (void)setMusicArtwork;
 
 - (void)refreshTimeline;
 - (void)setFriendImageView;
 
+- (IBAction)changeMusicSegmentedControl:(id)sender;
 - (IBAction)changeAutoTweetMode:(id)sender;
 - (IBAction)changeVolume:(id)sender;
 - (IBAction)togglePlayStop:(id)sender;

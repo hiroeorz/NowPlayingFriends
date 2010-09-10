@@ -46,6 +46,7 @@
 		5480CA301227EF3100F6E1C6 /* UserAuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5480CA2E1227EF3100F6E1C6 /* UserAuthenticationViewController.xib */; };
 		5480CA9A12289CB700F6E1C6 /* SendTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5480CA9812289CB700F6E1C6 /* SendTweetViewController.m */; };
 		5480CA9B12289CB700F6E1C6 /* SendTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5480CA9912289CB700F6E1C6 /* SendTweetViewController.xib */; };
+		5480E3831238EB1900FF2271 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480E3821238EB1800FF2271 /* icon.png */; };
 		54A96850122F97B1004CF186 /* 30-key.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A9684F122F97B1004CF186 /* 30-key.png */; };
 		54A96875122FA322004CF186 /* MentionsTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A96874122FA322004CF186 /* MentionsTimelineViewController.m */; };
 		54A9698B1230C743004CF186 /* HomeTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A9698A1230C743004CF186 /* HomeTimelineViewController.m */; };
@@ -83,6 +84,10 @@
 		54C1E0131216CB0700EBD811 /* SongFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1E0121216CB0700EBD811 /* SongFriendsViewController.m */; };
 		54C1E0541217B48C00EBD811 /* MusicPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1E0521217B48C00EBD811 /* MusicPlayerViewController.m */; };
 		54C1E0551217B48C00EBD811 /* MusicPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C1E0531217B48C00EBD811 /* MusicPlayerViewController.xib */; };
+		54D260A7123A38AC004023A6 /* Pause_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260A5123A38AC004023A6 /* Pause_mini.png */; };
+		54D260A8123A38AC004023A6 /* Play_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260A6123A38AC004023A6 /* Play_mini.png */; };
+		54D260AB123A3989004023A6 /* Next_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260A9123A3989004023A6 /* Next_mini.png */; };
+		54D260AC123A3989004023A6 /* Previous_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260AA123A3989004023A6 /* Previous_mini.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +141,7 @@
 		5480CA9712289CB700F6E1C6 /* SendTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendTweetViewController.h; sourceTree = "<group>"; };
 		5480CA9812289CB700F6E1C6 /* SendTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendTweetViewController.m; sourceTree = "<group>"; };
 		5480CA9912289CB700F6E1C6 /* SendTweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SendTweetViewController.xib; path = Classes/SendTweetViewController.xib; sourceTree = "<group>"; };
+		5480E3821238EB1800FF2271 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		54A9684F122F97B1004CF186 /* 30-key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "30-key.png"; path = "../../Downloads/iPhoneタブバー用アイコン/glyphish-icons/icons/30-key.png"; sourceTree = SOURCE_ROOT; };
 		54A96873122FA316004CF186 /* MentionsTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MentionsTimelineViewController.h; sourceTree = "<group>"; };
 		54A96874122FA322004CF186 /* MentionsTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MentionsTimelineViewController.m; sourceTree = "<group>"; };
@@ -208,6 +214,10 @@
 		54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicPlayerViewController.h; sourceTree = "<group>"; };
 		54C1E0521217B48C00EBD811 /* MusicPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerViewController.m; sourceTree = "<group>"; };
 		54C1E0531217B48C00EBD811 /* MusicPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MusicPlayerViewController.xib; path = Classes/MusicPlayerViewController.xib; sourceTree = "<group>"; };
+		54D260A5123A38AC004023A6 /* Pause_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Pause_mini.png; path = icons/mediaIcons005/Pause_mini.png; sourceTree = "<group>"; };
+		54D260A6123A38AC004023A6 /* Play_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Play_mini.png; path = icons/mediaIcons005/Play_mini.png; sourceTree = "<group>"; };
+		54D260A9123A3989004023A6 /* Next_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Next_mini.png; path = icons/mediaIcons005/Next_mini.png; sourceTree = "<group>"; };
+		54D260AA123A3989004023A6 /* Previous_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Previous_mini.png; path = icons/mediaIcons005/Previous_mini.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NowPlayingFriends-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -309,6 +319,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5480E3821238EB1800FF2271 /* icon.png */,
 				546515D9122E2667003DE639 /* no_artwork_image.jpg */,
 				5480CA9912289CB700F6E1C6 /* SendTweetViewController.xib */,
 				5480CA2E1227EF3100F6E1C6 /* UserAuthenticationViewController.xib */,
@@ -369,6 +380,10 @@
 		5480C6A41222972000F6E1C6 /* mediaIcons */ = {
 			isa = PBXGroup;
 			children = (
+				54D260A9123A3989004023A6 /* Next_mini.png */,
+				54D260AA123A3989004023A6 /* Previous_mini.png */,
+				54D260A5123A38AC004023A6 /* Pause_mini.png */,
+				54D260A6123A38AC004023A6 /* Play_mini.png */,
 				5480C8441224EA4900F6E1C6 /* Next.png */,
 				5480C8451224EA4900F6E1C6 /* Pause.png */,
 				5480C8461224EA4900F6E1C6 /* Play.png */,
@@ -483,7 +498,14 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NowPlayingFriends" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -524,6 +546,11 @@
 				546515CF122E1E18003DE639 /* no_artwork.png in Resources */,
 				546515DA122E2667003DE639 /* no_artwork_image.jpg in Resources */,
 				54A96850122F97B1004CF186 /* 30-key.png in Resources */,
+				5480E3831238EB1900FF2271 /* icon.png in Resources */,
+				54D260A7123A38AC004023A6 /* Pause_mini.png in Resources */,
+				54D260A8123A38AC004023A6 /* Play_mini.png in Resources */,
+				54D260AB123A3989004023A6 /* Next_mini.png in Resources */,
+				54D260AC123A3989004023A6 /* Previous_mini.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,7 +647,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
 		};

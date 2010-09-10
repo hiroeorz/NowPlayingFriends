@@ -35,6 +35,7 @@
 @synthesize repeatModeControll;
 @synthesize autoTweetSwitch;
 @synthesize baseView;
+@synthesize musicSegmentedControl;
 
 #pragma mark -
 #pragma mark Memory management
@@ -56,6 +57,7 @@
   [repeatModeControll release];
   [autoTweetSwitch release];
   [baseView release];
+  [musicSegmentedControl release];
   [super dealloc];
 }
 
@@ -77,6 +79,7 @@
   self.repeatModeControll = nil;
   self.autoTweetSwitch = nil;
   self.baseView = nil;
+  self.musicSegmentedControl = nil;
   [super viewDidUnload];
 }
 
@@ -149,6 +152,21 @@
 #pragma mark -
 #pragma mark IBAction Methods
 
+- (IBAction)changeMusicSegmentedControl:(id)sender {
+
+ switch ([sender selectedSegmentIndex]) {
+ case 0:
+   [self skipToBeginningOrPreviousItem:sender];
+   break;
+ case 1:
+   [self togglePlayStop:sender];
+   break;
+ case 2:
+   [self skipToNextItem:sender];
+   break;
+ }
+}
+
 - (void)openUserInformationView:(id)sender {
 
   NSInteger tagIndex = [sender tag];
@@ -216,29 +234,39 @@
 - (void)handle_PlayBackStateDidChanged:(id)notification {
   
   UIImage *image;  
+  UIImage *miniImage;
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStateStopped) {
     NSLog(@"playbackStateChanged:%@", @"stop");
 
     image = [UIImage imageNamed:@"Play.png"];
+    miniImage = [UIImage imageNamed:@"Play_mini.png"];
     [playButton setBackgroundImage:image 
 		forState:UIControlStateNormal];
+    [musicSegmentedControl setImage:miniImage
+			   forSegmentAtIndex:1];
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
     NSLog(@"playbackStateChanged:%@", @"play");
 
     image = [UIImage imageNamed:@"Pause.png"];
+    miniImage = [UIImage imageNamed:@"Pause_mini.png"];
     [playButton setBackgroundImage:image 
 		forState:UIControlStateNormal];
+    [musicSegmentedControl setImage:miniImage
+			   forSegmentAtIndex:1];
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePaused) {
     NSLog(@"playbackStateChanged:%@", @"pause");
 
     image = [UIImage imageNamed:@"Play.png"];
+    miniImage = [UIImage imageNamed:@"Play_mini.png"];
     [playButton setBackgroundImage:image 
 		forState:UIControlStateNormal];    
+    [musicSegmentedControl setImage:miniImage
+			   forSegmentAtIndex:1];
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStateInterrupted) {
