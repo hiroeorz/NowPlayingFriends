@@ -55,7 +55,6 @@
   UIView *settingView;
   UISegmentedControl *repeatModeControll;
   BOOL autoTweetMode;
-  BOOL autoTweetModeDefault;
   UISwitch *autoTweetSwitch;
   UIView *baseView;
   UISegmentedControl *musicSegmentedControl;

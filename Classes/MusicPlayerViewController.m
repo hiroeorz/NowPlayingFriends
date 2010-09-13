@@ -94,7 +94,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     autoTweetMode = NO;
-    autoTweetModeDefault = NO;
   }
   return self;
 }
@@ -130,7 +129,7 @@
 
   self.albumLists = [self.appDelegate albums];
   self.playLists = [self.appDelegate playLists];
-  [autoTweetSwitch setOn:autoTweetModeDefault animated:NO];
+  [autoTweetSwitch setOn:self.appDelegate.autotweet_preference animated:NO];
   [super viewWillAppear:animated];
 }
 
@@ -183,7 +182,7 @@
 - (IBAction)changeAutoTweetMode:(id)sender {
 
   autoTweetMode = [sender isOn];
-  autoTweetModeDefault = [sender isOn];
+  self.appDelegate.autotweet_preference = [sender isOn];
 }
 
 - (IBAction)changeVolume:(id)sender {
@@ -291,7 +290,7 @@
 - (void)handle_NowPlayingItemChanged:(id)notification {
 
   NSLog(@"music changed!");
-  autoTweetMode = autoTweetModeDefault;
+  autoTweetMode = self.appDelegate.autotweet_preference;
 
   self.title = [self.appDelegate nowPlayingTitle];
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
@@ -311,8 +310,10 @@
     
     NSLog(@"title: %@", nowPlayingTitle);
     
-    [self performSelectorInBackground:@selector(refreshProfileImages)
-	  withObject:nil];
+    if (self.appDelegate.get_twitterusers_preference) {
+      [self performSelectorInBackground:@selector(refreshProfileImages)
+	    withObject:nil];
+    }
 
     if (autoTweetMode) {
       [self performSelectorInBackground:@selector(sendAutoTweetAfterTimeLag)

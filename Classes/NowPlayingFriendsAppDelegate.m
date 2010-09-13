@@ -23,6 +23,10 @@
 @synthesize tabBarController;
 @synthesize profileImages;
 @synthesize musicPlayer;
+@dynamic template_preference;
+@dynamic userDefaults;
+@dynamic get_twitterusers_preference;
+@dynamic autotweet_preference;
 
 #pragma mark -
 #pragma mark Memory management
@@ -323,7 +327,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 - (NSString *)tweetString {
 
-  NSString *template = kTweetTemplate;
+  NSString *template = self.template_preference;
   NSString *tweet;
 
   tweet = [template stringByReplacingOccurrencesOfString:@"[st]"
@@ -394,6 +398,88 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   }
 
   return artworkImage;
+}
+
+#pragma mark -
+#pragma mark SettingBundle Methods
+
+/**
+ * @brief ユーザデフォルトオブジェクトを返します。
+ */
+- (NSUserDefaults *)userDefaults {
+
+  return [NSUserDefaults standardUserDefaults];
+}
+
+/**
+ * @brief ツイッターへのポストのテンプレート文字列を返す。
+ */
+- (NSString *)template_preference {
+
+  NSString *template = [self.userDefaults valueForKey:@"template_preference"];
+
+  if (template == nil) {
+    template = kTweetTemplate;
+  }
+
+  return template;
+}
+
+- (void)setTemplate_preference:(NSString *)template {
+
+  [self.userDefaults setObject:template forKey:@"template_preference"];
+}
+
+/**
+ * @brief 同じ曲を聴いているツイッターユーザを取得するかどうかの設定を返す。
+ */
+- (BOOL)get_twitterusers_preference {
+
+  NSNumber *autorefresh = 
+    [self.userDefaults valueForKey:@"get_twitterusers_preference"];
+  
+  if (autorefresh == nil) {autorefresh = [NSNumber numberWithInteger:1];}
+  
+  BOOL flag;
+  if ([autorefresh integerValue] == 1) {
+    flag = YES;
+  } else {
+    flag = NO;
+  }
+
+  return flag;
+}
+
+
+/**
+ * @brief 曲が変わった際に自動ツイートするかどうかの設定。
+ */
+- (BOOL)autotweet_preference {
+
+  NSNumber *autorefresh = 
+    [self.userDefaults valueForKey:@"autotweet_preference"];
+  
+  if (autorefresh == nil) {autorefresh = [NSNumber numberWithInteger:1];}
+  
+  BOOL flag;
+  if ([autorefresh integerValue] == 1) {
+    flag = YES;
+  } else {
+    flag = NO;
+  }
+
+  return flag;
+}
+
+- (void)setAutotweet_preference:(BOOL)flag {
+
+  NSNumber *autorefresh = [NSNumber numberWithInteger:0];
+
+  if (flag) {
+    autorefresh = [NSNumber numberWithInteger:1];
+  }
+
+  [self.userDefaults setValue:autorefresh forKey:@"autotweet_preference"];
 }
 
 #pragma mark -

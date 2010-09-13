@@ -46,6 +46,11 @@
 @property (nonatomic, retain) UITabBarController *tabBarController;
 @property (nonatomic, retain) NSMutableDictionary *profileImages;
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
+@property (nonatomic, retain) NSUserDefaults *userDefaults;
+
+@property (nonatomic, retain) NSString *template_preference;
+@property (nonatomic) BOOL get_twitterusers_preference;
+@property (nonatomic) BOOL autotweet_preference;
 
 - (NSString *)applicationDocumentsDirectory;
 - (UINavigationController *)navigationWithViewController:(id)viewController
@@ -74,6 +79,8 @@
 				    curlUp:(BOOL)curlUp;
 - (void)setAnimationWithView:(id)targetView 
 	       animationType:(UIViewAnimationTransition)transition;
+
+- (NSUserDefaults *)userDefaults;
 
 - (NSString *)stringByUntaggedString:(NSString *)str;
 - (NSString *)stringByUnescapedString:(NSString *)str;
