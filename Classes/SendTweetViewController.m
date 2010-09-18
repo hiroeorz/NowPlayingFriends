@@ -60,8 +60,12 @@
   editView.text = [self.appDelegate tweetString];
   [self countAndWriteTweetLength:[editView.text length]];
 
-  [editView becomeFirstResponder];
   [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+
+  [editView becomeFirstResponder];
 }
 
 #pragma mark

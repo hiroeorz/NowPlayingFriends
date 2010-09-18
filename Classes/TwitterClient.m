@@ -84,6 +84,10 @@
 
 - (void)updateStatus:(NSString *)message delegate:(id)aDelegate {
 
+  if (![self oAuthTokenExist]) {
+    return;
+  }
+
   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
   NSURL *baseUrl = [NSURL URLWithString:kUpdateStatusURL];

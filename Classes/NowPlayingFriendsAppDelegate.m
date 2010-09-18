@@ -459,7 +459,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSNumber *autorefresh = 
     [self.userDefaults valueForKey:@"autotweet_preference"];
   
-  if (autorefresh == nil) {autorefresh = [NSNumber numberWithInteger:1];}
+  if (autorefresh == nil) {autorefresh = [NSNumber numberWithInteger:0];}
   
   BOOL flag;
   if ([autorefresh integerValue] == 1) {

@@ -2,9 +2,9 @@
 {
 	1D3623240D0F684500981E51 /* NowPlayingFriendsAppDelegate.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {651, 1794}}";
-			sepNavSelRange = "{4591, 0}";
-			sepNavVisRange = "{4146, 445}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 1703}}";
+			sepNavSelRange = "{3299, 0}";
+			sepNavVisRange = "{2008, 1162}";
 		};
 	};
 	1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */ = {
@@ -115,6 +115,13 @@
 			5416CC6C123620BB00943DCF = 5416CC6C123620BB00943DCF /* PBXTextBookmark */;
 			5416CC6D123620BB00943DCF = 5416CC6D123620BB00943DCF /* PBXTextBookmark */;
 			544FA51C12447A48003BFB95 /* PlistBookmark */ = 544FA51C12447A48003BFB95 /* PlistBookmark */;
+			544FA53212448537003BFB95 /* PlistBookmark */ = 544FA53212448537003BFB95 /* PlistBookmark */;
+			544FA53312448537003BFB95 /* PBXTextBookmark */ = 544FA53312448537003BFB95 /* PBXTextBookmark */;
+			544FA53412448537003BFB95 /* PlistBookmark */ = 544FA53412448537003BFB95 /* PlistBookmark */;
+			544FA572124491A7003BFB95 /* PlistBookmark */ = 544FA572124491A7003BFB95 /* PlistBookmark */;
+			544FA573124491A7003BFB95 /* PBXTextBookmark */ = 544FA573124491A7003BFB95 /* PBXTextBookmark */;
+			544FA574124491A7003BFB95 /* XCBuildMessageTextBookmark */ = 544FA574124491A7003BFB95 /* XCBuildMessageTextBookmark */;
+			544FA575124491A7003BFB95 /* PBXTextBookmark */ = 544FA575124491A7003BFB95 /* PBXTextBookmark */;
 			54651206122A049B003DE639 = 54651206122A049B003DE639 /* PBXTextBookmark */;
 			54651364122B69AC003DE639 = 54651364122B69AC003DE639 /* PBXTextBookmark */;
 			546513BC122B9D02003DE639 = 546513BC122B9D02003DE639 /* PBXTextBookmark */;
@@ -180,7 +187,7 @@
 	};
 	32CA4F630368D1EE00C91783 /* NowPlayingFriends_Prefix.pch */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {673, 502}}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 437}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 374}";
 		};
@@ -215,6 +222,78 @@
 		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
 		rLen = 0;
 		rLoc = 9223372036854775807;
+	};
+	544FA53212448537003BFB95 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 54E488C91243335500D5317B /* Root.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	544FA53312448537003BFB95 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 32CA4F630368D1EE00C91783 /* NowPlayingFriends_Prefix.pch */;
+		name = "NowPlayingFriends_Prefix.pch: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 374;
+		vrLoc = 0;
+	};
+	544FA53412448537003BFB95 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/shin/src/NowPlayingFriends/NowPlayingFriends-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	544FA572124491A7003BFB95 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/shin/src/NowPlayingFriends/NowPlayingFriends-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	544FA573124491A7003BFB95 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* NowPlayingFriendsAppDelegate.h */;
+		name = "NowPlayingFriendsAppDelegate.h: 95";
+		rLen = 0;
+		rLoc = 3299;
+		rType = 0;
+		vrLen = 1162;
+		vrLoc = 2008;
+	};
+	544FA574124491A7003BFB95 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "'NSRnage' undeclared (first use in this function)";
+		fRef = 5480CA2D1227EF3100F6E1C6 /* UserAuthenticationViewController.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 85;
+		rType = 1;
+	};
+	544FA575124491A7003BFB95 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5480CA2D1227EF3100F6E1C6 /* UserAuthenticationViewController.m */;
+		name = "UserAuthenticationViewController.m: 146";
+		rLen = 0;
+		rLoc = 3637;
+		rType = 0;
+		vrLen = 1180;
+		vrLoc = 1607;
 	};
 	54651206122A049B003DE639 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -486,9 +565,9 @@
 	};
 	5480CA2D1227EF3100F6E1C6 /* UserAuthenticationViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {651, 1924}}";
-			sepNavSelRange = "{3371, 0}";
-			sepNavVisRange = "{931, 473}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 1898}}";
+			sepNavSelRange = "{3637, 0}";
+			sepNavVisRange = "{1607, 1180}";
 		};
 	};
 	5480CA9712289CB700F6E1C6 /* SendTweetViewController.h */ = {

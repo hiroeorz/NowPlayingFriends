@@ -277,12 +277,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>67</integer>
-									<integer>66</integer>
+									<integer>55</integer>
+									<integer>18</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 518}, {272, 736}}</string>
+							<string>{{0, 377}, {272, 736}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -317,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Root.plist</string>
+								<string>UserAuthenticationViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Root.plist</string>
+										<string>UserAuthenticationViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>544FA51C12447A48003BFB95</string>
+										<string>544FA575124491A7003BFB95</string>
 										<key>history</key>
 										<array>
 											<string>54C1DD14121512AD00EBD811</string>
@@ -357,7 +358,6 @@
 											<string>5480C8EE1226501500F6E1C6</string>
 											<string>5480C9ED1227CE4B00F6E1C6</string>
 											<string>54651206122A049B003DE639</string>
-											<string>54651364122B69AC003DE639</string>
 											<string>546513BC122B9D02003DE639</string>
 											<string>5465141B122BD76B003DE639</string>
 											<string>54651528122CF7EB003DE639</string>
@@ -365,13 +365,11 @@
 											<string>546515E3122E29D1003DE639</string>
 											<string>5465160A122E75E8003DE639</string>
 											<string>54A9681E122F8F54004CF186</string>
-											<string>54A96820122F8F54004CF186</string>
 											<string>54A96822122F8F54004CF186</string>
 											<string>54A96824122F8F54004CF186</string>
 											<string>54A96856122F98D6004CF186</string>
 											<string>54A96857122F98D6004CF186</string>
 											<string>54A96879122FA39D004CF186</string>
-											<string>54A9687F122FA3EA004CF186</string>
 											<string>54A96895122FA4E4004CF186</string>
 											<string>54A96896122FA4E4004CF186</string>
 											<string>54A96AAF12334255004CF186</string>
@@ -380,10 +378,13 @@
 											<string>54D260BF123A4004004023A6</string>
 											<string>54D260C0123A4004004023A6</string>
 											<string>548808E4123E6076008C4AA8</string>
-											<string>548808E5123E6076008C4AA8</string>
 											<string>54E48890124308D300D5317B</string>
 											<string>54E488A012430C4800D5317B</string>
-											<string>54E488C81243335500D5317B</string>
+											<string>544FA53212448537003BFB95</string>
+											<string>544FA53312448537003BFB95</string>
+											<string>544FA572124491A7003BFB95</string>
+											<string>544FA573124491A7003BFB95</string>
+											<string>544FA574124491A7003BFB95</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -581,13 +582,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>544FA576124491A7003BFB95</string>
 		<string>544FA52712447A48003BFB95</string>
-		<string>544FA52812447A48003BFB95</string>
 		<string>544FA52912447A48003BFB95</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>54C1DC1E1213B28F00EBD811</string>
 		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
+		<string>54C1DC1E1213B28F00EBD811</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>652 141 1028 795 0 0 1680 1028 </string>
@@ -611,7 +612,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>UserAuthenticationViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -628,6 +629,8 @@
 							<string>225pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -680,7 +683,7 @@
 			<key>WindowToolGUID</key>
 			<string>54C1DC1E1213B28F00EBD811</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -922,6 +925,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -967,7 +972,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

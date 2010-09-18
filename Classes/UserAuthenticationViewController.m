@@ -54,6 +54,11 @@
   self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+
+  [nameField becomeFirstResponder];
+}
+
 - (IBAction)authenticate:(id)sender {
 
   NSString *username = nameField.text;
@@ -83,9 +88,11 @@
   NSLog(@"dataString: %@", dataString);
   
   NSRange rangeOfInvalid = [dataString rangeOfString:@"Invalid"];
+  NSRange rangeOfOauthToken = [dataString rangeOfString:@"oauth_token"];
 
-  if (rangeOfInvalid.location == NSNotFound) {
-    // レスポンスの解析
+  if (rangeOfInvalid.location == NSNotFound && 
+      rangeOfOauthToken.location != NSNotFound) {
+
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     for (NSString *pair in [dataString componentsSeparatedByString:@"&"]) {
@@ -110,7 +117,7 @@
     [alert show];
     [alert release];
     [passwordField resignFirstResponder];
-
+    [self dismissModalViewControllerAnimated:YES];
   } else {
     UIAlertView *alert = [[UIAlertView alloc] 
 			   initWithTitle:@"Authentication failed"
@@ -121,8 +128,6 @@
     [alert show];
     [alert release];
   }
-
-  [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
