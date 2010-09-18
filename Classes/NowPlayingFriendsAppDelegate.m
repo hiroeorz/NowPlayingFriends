@@ -263,7 +263,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 		     initWithUserName:username];
   
   navController = [self navigationWithViewController:viewController
-			title:@"Tweet"  
+			title:@"Sent Tweet"  
 			imageName:@"30-key.png"];
     
   [controllers addObject:navController];

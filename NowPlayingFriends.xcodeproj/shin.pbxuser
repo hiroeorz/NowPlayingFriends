@@ -9,9 +9,9 @@
 	};
 	1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {673, 13454}}";
-			sepNavSelRange = "{26834, 0}";
-			sepNavVisRange = "{13286, 980}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 13467}}";
+			sepNavSelRange = "{26839, 0}";
+			sepNavVisRange = "{13296, 996}";
 		};
 	};
 	1D6058900D05DD3D006BFB54 /* NowPlayingFriends */ = {
@@ -21,7 +21,7 @@
 		);
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeArchitecturePreference = armv6;
+		activeArchitecturePreference = armv7;
 		activeBuildConfigurationName = Debug;
 		activeExecutable = 54C1DC051213B28400EBD811 /* NowPlayingFriends */;
 		activeSDKPreference = iphoneos4.1;
@@ -34,6 +34,20 @@
 			54C1DC051213B28400EBD811 /* NowPlayingFriends */,
 		);
 		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXBookmarksDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXBookmarksDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					200,
+					200,
+					305,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXBookmarksDataSource_LocationID,
+					PBXBookmarksDataSource_NameID,
+					PBXBookmarksDataSource_CommentsID,
+				);
+			};
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
@@ -56,6 +70,22 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXSymbolsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXSymbolsDataSource_SymbolNameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					16,
+					200,
+					50,
+					435,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXSymbolsDataSource_SymbolTypeIconID,
+					PBXSymbolsDataSource_SymbolNameID,
+					PBXSymbolsDataSource_SymbolTypeID,
+					PBXSymbolsDataSource_ReferenceNameID,
+				);
+			};
 			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
@@ -64,7 +94,7 @@
 					455,
 					60,
 					20,
-					48.16259765625,
+					48,
 					43,
 					43,
 				);
@@ -78,17 +108,17 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 306063917;
-			PBXWorkspaceStateSaveDate = 306063917;
+			PBXPerProjectTemplateStateSaveDate = 306477580;
+			PBXWorkspaceStateSaveDate = 306477580;
 		};
 		perUserProjectItems = {
 			5416CC6C123620BB00943DCF = 5416CC6C123620BB00943DCF /* PBXTextBookmark */;
 			5416CC6D123620BB00943DCF = 5416CC6D123620BB00943DCF /* PBXTextBookmark */;
+			544FA51C12447A48003BFB95 /* PlistBookmark */ = 544FA51C12447A48003BFB95 /* PlistBookmark */;
 			54651206122A049B003DE639 = 54651206122A049B003DE639 /* PBXTextBookmark */;
 			54651364122B69AC003DE639 = 54651364122B69AC003DE639 /* PBXTextBookmark */;
 			546513BC122B9D02003DE639 = 546513BC122B9D02003DE639 /* PBXTextBookmark */;
 			5465141B122BD76B003DE639 = 5465141B122BD76B003DE639 /* PBXTextBookmark */;
-			54651527122CF7EB003DE639 = 54651527122CF7EB003DE639 /* PlistBookmark */;
 			54651528122CF7EB003DE639 = 54651528122CF7EB003DE639 /* PBXBookmark */;
 			5465152A122CF7EB003DE639 = 5465152A122CF7EB003DE639 /* PBXBookmark */;
 			546515E3122E29D1003DE639 = 546515E3122E29D1003DE639 /* PBXBookmark */;
@@ -107,44 +137,11 @@
 			5480C87D122516C800F6E1C6 = 5480C87D122516C800F6E1C6 /* PBXBookmark */;
 			5480C8EE1226501500F6E1C6 = 5480C8EE1226501500F6E1C6 /* PBXBookmark */;
 			5480C9ED1227CE4B00F6E1C6 = 5480C9ED1227CE4B00F6E1C6 /* PBXTextBookmark */;
-			5488085C123E2A36008C4AA8 /* PBXTextBookmark */ = 5488085C123E2A36008C4AA8 /* PBXTextBookmark */;
-			54880865123E2CEF008C4AA8 /* PBXBookmark */ = 54880865123E2CEF008C4AA8 /* PBXBookmark */;
-			54880887123E3019008C4AA8 /* PBXBookmark */ = 54880887123E3019008C4AA8 /* PBXBookmark */;
-			548808E4123E6076008C4AA8 /* PBXTextBookmark */ = 548808E4123E6076008C4AA8 /* PBXTextBookmark */;
-			548808E5123E6076008C4AA8 /* PBXTextBookmark */ = 548808E5123E6076008C4AA8 /* PBXTextBookmark */;
-			548808E6123E6076008C4AA8 /* XCBuildMessageTextBookmark */ = 548808E6123E6076008C4AA8 /* XCBuildMessageTextBookmark */;
-			548808E7123E6076008C4AA8 /* PBXTextBookmark */ = 548808E7123E6076008C4AA8 /* PBXTextBookmark */;
-			548808EA123E6076008C4AA8 /* PlistBookmark */ = 548808EA123E6076008C4AA8 /* PlistBookmark */;
-			548808ED123E6076008C4AA8 /* PlistBookmark */ = 548808ED123E6076008C4AA8 /* PlistBookmark */;
-			548808FB123E67C8008C4AA8 /* PBXTextBookmark */ = 548808FB123E67C8008C4AA8 /* PBXTextBookmark */;
-			548808FC123E67C8008C4AA8 /* PlistBookmark */ = 548808FC123E67C8008C4AA8 /* PlistBookmark */;
-			548808FD123E67C8008C4AA8 /* PlistBookmark */ = 548808FD123E67C8008C4AA8 /* PlistBookmark */;
-			54880902123E67F2008C4AA8 /* PBXTextBookmark */ = 54880902123E67F2008C4AA8 /* PBXTextBookmark */;
-			54880903123E67F2008C4AA8 /* PlistBookmark */ = 54880903123E67F2008C4AA8 /* PlistBookmark */;
-			54880904123E67F2008C4AA8 /* PlistBookmark */ = 54880904123E67F2008C4AA8 /* PlistBookmark */;
-			54880909123E6832008C4AA8 /* PBXTextBookmark */ = 54880909123E6832008C4AA8 /* PBXTextBookmark */;
-			5488090A123E6832008C4AA8 /* PlistBookmark */ = 5488090A123E6832008C4AA8 /* PlistBookmark */;
-			5488090B123E6832008C4AA8 /* PlistBookmark */ = 5488090B123E6832008C4AA8 /* PlistBookmark */;
-			54880912123E6B12008C4AA8 /* PBXTextBookmark */ = 54880912123E6B12008C4AA8 /* PBXTextBookmark */;
-			54880913123E6B12008C4AA8 /* PlistBookmark */ = 54880913123E6B12008C4AA8 /* PlistBookmark */;
-			54880914123E6B12008C4AA8 /* PlistBookmark */ = 54880914123E6B12008C4AA8 /* PlistBookmark */;
-			54880919123E6B1F008C4AA8 /* PBXTextBookmark */ = 54880919123E6B1F008C4AA8 /* PBXTextBookmark */;
-			5488091A123E6B1F008C4AA8 /* PlistBookmark */ = 5488091A123E6B1F008C4AA8 /* PlistBookmark */;
-			5488091B123E6B1F008C4AA8 /* PlistBookmark */ = 5488091B123E6B1F008C4AA8 /* PlistBookmark */;
-			5488091E123E6DA4008C4AA8 /* PBXTextBookmark */ = 5488091E123E6DA4008C4AA8 /* PBXTextBookmark */;
-			5488091F123E6DA4008C4AA8 /* PlistBookmark */ = 5488091F123E6DA4008C4AA8 /* PlistBookmark */;
-			54880920123E6DA4008C4AA8 /* PlistBookmark */ = 54880920123E6DA4008C4AA8 /* PlistBookmark */;
-			54880925123E6E06008C4AA8 /* PBXTextBookmark */ = 54880925123E6E06008C4AA8 /* PBXTextBookmark */;
-			54880926123E6E06008C4AA8 /* PlistBookmark */ = 54880926123E6E06008C4AA8 /* PlistBookmark */;
-			54880927123E6E06008C4AA8 /* PlistBookmark */ = 54880927123E6E06008C4AA8 /* PlistBookmark */;
-			5488092B123E6E1B008C4AA8 /* PBXTextBookmark */ = 5488092B123E6E1B008C4AA8 /* PBXTextBookmark */;
-			5488092C123E6E1B008C4AA8 /* PlistBookmark */ = 5488092C123E6E1B008C4AA8 /* PlistBookmark */;
-			5488092D123E6E1B008C4AA8 /* PlistBookmark */ = 5488092D123E6E1B008C4AA8 /* PlistBookmark */;
+			548808E4123E6076008C4AA8 = 548808E4123E6076008C4AA8 /* PBXTextBookmark */;
+			548808E5123E6076008C4AA8 = 548808E5123E6076008C4AA8 /* PBXTextBookmark */;
 			54A9681E122F8F54004CF186 = 54A9681E122F8F54004CF186 /* PBXTextBookmark */;
 			54A96820122F8F54004CF186 = 54A96820122F8F54004CF186 /* PBXTextBookmark */;
-			54A96821122F8F54004CF186 = 54A96821122F8F54004CF186 /* PBXTextBookmark */;
 			54A96822122F8F54004CF186 = 54A96822122F8F54004CF186 /* PBXTextBookmark */;
-			54A96823122F8F54004CF186 = 54A96823122F8F54004CF186 /* PBXTextBookmark */;
 			54A96824122F8F54004CF186 = 54A96824122F8F54004CF186 /* PBXTextBookmark */;
 			54A96856122F98D6004CF186 = 54A96856122F98D6004CF186 /* PBXTextBookmark */;
 			54A96857122F98D6004CF186 = 54A96857122F98D6004CF186 /* PBXBookmark */;
@@ -165,8 +162,10 @@
 			54C1E0571217B49500EBD811 = 54C1E0571217B49500EBD811 /* PBXTextBookmark */;
 			54D260BF123A4004004023A6 = 54D260BF123A4004004023A6 /* PBXTextBookmark */;
 			54D260C0123A4004004023A6 = 54D260C0123A4004004023A6 /* PBXTextBookmark */;
-			54F8A163123DE7E400563867 = 54F8A163123DE7E400563867 /* PBXTextBookmark */;
-			54F8A164123DE7E400563867 = 54F8A164123DE7E400563867 /* PBXTextBookmark */;
+			54E48890124308D300D5317B = 54E48890124308D300D5317B /* PBXTextBookmark */;
+			54E488A012430C4800D5317B = 54E488A012430C4800D5317B /* PBXTextBookmark */;
+			54E488A112430C4800D5317B = 54E488A112430C4800D5317B /* PlistBookmark */;
+			54E488C81243335500D5317B = 54E488C81243335500D5317B /* PlistBookmark */;
 		};
 		sourceControlManager = 54C1DC271213B28F00EBD811 /* Source Control */;
 		userBuildSettings = {
@@ -205,6 +204,17 @@
 		rType = 0;
 		vrLen = 840;
 		vrLoc = 273;
+	};
+	544FA51C12447A48003BFB95 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 54E488C91243335500D5317B /* Root.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
 	};
 	54651206122A049B003DE639 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -266,20 +276,6 @@
 		name = Root.plist;
 		path = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
 		sourceTree = "<absolute>";
-	};
-	54651527122CF7EB003DE639 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			2,
-			DefaultValue,
-		);
-		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775808;
 	};
 	54651528122CF7EB003DE639 /* PBXBookmark */ = {
 		isa = PBXBookmark;
@@ -509,36 +505,6 @@
 			sepNavVisRange = "{1524, 403}";
 		};
 	};
-	54880858123E2A2D008C4AA8 /* Root.plist */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = text.plist.xml;
-		path = Root.plist;
-		sourceTree = "<group>";
-	};
-	5488085C123E2A36008C4AA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 54C1E0521217B48C00EBD811 /* MusicPlayerViewController.m */;
-		name = "MusicPlayerViewController.m: 141";
-		rLen = 0;
-		rLoc = 3602;
-		rType = 0;
-		vrLen = 822;
-		vrLoc = 3267;
-	};
-	54880865123E2CEF008C4AA8 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 54880858123E2A2D008C4AA8 /* Root.plist */;
-	};
-	54880883123E3014008C4AA8 /* Root.plist */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = text.plist.xml;
-		path = Root.plist;
-		sourceTree = "<group>";
-	};
-	54880887123E3019008C4AA8 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 54880883123E3014008C4AA8 /* Root.plist */;
-	};
 	548808E4123E6076008C4AA8 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 54C1E0521217B48C00EBD811 /* MusicPlayerViewController.m */;
@@ -558,408 +524,6 @@
 		rType = 0;
 		vrLen = 1283;
 		vrLoc = 2038;
-	};
-	548808E6123E6076008C4AA8 /* XCBuildMessageTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "Invalid initializer";
-		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
-		fallbackIsa = XCBuildMessageTextBookmark;
-		rLen = 1;
-		rLoc = 430;
-		rType = 1;
-	};
-	548808E7123E6076008C4AA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
-		name = "NowPlayingFriendsAppDelegate.m: 990";
-		rLen = 0;
-		rLoc = 26118;
-		rType = 0;
-		vrLen = 713;
-		vrLoc = 10558;
-	};
-	548808EA123E6076008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	548808ED123E6076008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 548808EE123E6076008C4AA8 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			2,
-			Type,
-		);
-		name = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	548808EE123E6076008C4AA8 /* Root.plist */ = {
-		isa = PBXFileReference;
-		name = Root.plist;
-		path = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		sourceTree = "<absolute>";
-	};
-	548808FB123E67C8008C4AA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
-		name = "NowPlayingFriendsAppDelegate.m: 1002";
-		rLen = 0;
-		rLoc = 26429;
-		rType = 0;
-		vrLen = 724;
-		vrLoc = 10775;
-	};
-	548808FC123E67C8008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			4,
-			Title,
-		);
-		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	548808FD123E67C8008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 548808FE123E67C8008C4AA8 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			2,
-			Type,
-		);
-		name = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	548808FE123E67C8008C4AA8 /* Root.plist */ = {
-		isa = PBXFileReference;
-		name = Root.plist;
-		path = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		sourceTree = "<absolute>";
-	};
-	54880902123E67F2008C4AA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
-		name = "NowPlayingFriendsAppDelegate.m: 1002";
-		rLen = 0;
-		rLoc = 26429;
-		rType = 0;
-		vrLen = 805;
-		vrLoc = 10775;
-	};
-	54880903123E67F2008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			4,
-			Title,
-		);
-		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	54880904123E67F2008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 54880905123E67F2008C4AA8 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			2,
-			Type,
-		);
-		name = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	54880905123E67F2008C4AA8 /* Root.plist */ = {
-		isa = PBXFileReference;
-		name = Root.plist;
-		path = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		sourceTree = "<absolute>";
-	};
-	54880909123E6832008C4AA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
-		name = "NowPlayingFriendsAppDelegate.m: 1002";
-		rLen = 0;
-		rLoc = 26423;
-		rType = 0;
-		vrLen = 852;
-		vrLoc = 11045;
-	};
-	5488090A123E6832008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			4,
-			Title,
-		);
-		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	5488090B123E6832008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 5488090C123E6832008C4AA8 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			2,
-			Type,
-		);
-		name = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	5488090C123E6832008C4AA8 /* Root.plist */ = {
-		isa = PBXFileReference;
-		name = Root.plist;
-		path = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		sourceTree = "<absolute>";
-	};
-	54880912123E6B12008C4AA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
-		name = "NowPlayingFriendsAppDelegate.m: 1032";
-		rLen = 0;
-		rLoc = 26993;
-		rType = 0;
-		vrLen = 731;
-		vrLoc = 11759;
-	};
-	54880913123E6B12008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			3,
-			DefaultValue,
-		);
-		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	54880914123E6B12008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 54880915123E6B12008C4AA8 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			2,
-			Type,
-		);
-		name = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	54880915123E6B12008C4AA8 /* Root.plist */ = {
-		isa = PBXFileReference;
-		name = Root.plist;
-		path = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		sourceTree = "<absolute>";
-	};
-	54880919123E6B1F008C4AA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
-		name = "NowPlayingFriendsAppDelegate.m: 1030";
-		rLen = 0;
-		rLoc = 26963;
-		rType = 0;
-		vrLen = 1071;
-		vrLoc = 12260;
-	};
-	5488091A123E6B1F008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			3,
-			DefaultValue,
-		);
-		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	5488091B123E6B1F008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 5488091C123E6B1F008C4AA8 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			2,
-			Type,
-		);
-		name = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	5488091C123E6B1F008C4AA8 /* Root.plist */ = {
-		isa = PBXFileReference;
-		name = Root.plist;
-		path = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		sourceTree = "<absolute>";
-	};
-	5488091E123E6DA4008C4AA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
-		name = "NowPlayingFriendsAppDelegate.m: 1026";
-		rLen = 0;
-		rLoc = 26834;
-		rType = 0;
-		vrLen = 1146;
-		vrLoc = 12636;
-	};
-	5488091F123E6DA4008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			3,
-			DefaultValue,
-		);
-		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	54880920123E6DA4008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 54880921123E6DA4008C4AA8 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			2,
-			Type,
-		);
-		name = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	54880921123E6DA4008C4AA8 /* Root.plist */ = {
-		isa = PBXFileReference;
-		name = Root.plist;
-		path = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		sourceTree = "<absolute>";
-	};
-	54880925123E6E06008C4AA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
-		name = "NowPlayingFriendsAppDelegate.m: 1027";
-		rLen = 0;
-		rLoc = 26864;
-		rType = 0;
-		vrLen = 1041;
-		vrLoc = 13007;
-	};
-	54880926123E6E06008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			3,
-			DefaultValue,
-		);
-		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	54880927123E6E06008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 54880928123E6E06008C4AA8 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			2,
-			Type,
-		);
-		name = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	54880928123E6E06008C4AA8 /* Root.plist */ = {
-		isa = PBXFileReference;
-		name = Root.plist;
-		path = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		sourceTree = "<absolute>";
-	};
-	5488092B123E6E1B008C4AA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
-		name = "NowPlayingFriendsAppDelegate.m: 1025";
-		rLen = 0;
-		rLoc = 26834;
-		rType = 0;
-		vrLen = 980;
-		vrLoc = 13286;
-	};
-	5488092C123E6E1B008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			3,
-			DefaultValue,
-		);
-		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	5488092D123E6E1B008C4AA8 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 5488092E123E6E1B008C4AA8 /* Root.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			PreferenceSpecifiers,
-			2,
-			Type,
-		);
-		name = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	5488092E123E6E1B008C4AA8 /* Root.plist */ = {
-		isa = PBXFileReference;
-		name = Root.plist;
-		path = /Users/shin/src/NowPlayingFriends/newSettings.bundle/Root.plist;
-		sourceTree = "<absolute>";
 	};
 	54A9681E122F8F54004CF186 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -981,16 +545,6 @@
 		vrLen = 741;
 		vrLoc = 215;
 	};
-	54A96821122F8F54004CF186 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
-		name = "NowPlayingFriendsAppDelegate.m: 536";
-		rLen = 0;
-		rLoc = 14144;
-		rType = 0;
-		vrLen = 1212;
-		vrLoc = 13261;
-	};
 	54A96822122F8F54004CF186 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 5480C58212212FF600F6E1C6 /* PlayListSongsViewController.h */;
@@ -999,16 +553,6 @@
 		rLoc = 374;
 		rType = 0;
 		vrLen = 374;
-		vrLoc = 0;
-	};
-	54A96823122F8F54004CF186 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 54C1E00C1216CA7E00EBD811 /* ArtistFriendsViewController.m */;
-		name = "ArtistFriendsViewController.m: 35";
-		rLen = 0;
-		rLoc = 882;
-		rType = 0;
-		vrLen = 902;
 		vrLoc = 0;
 	};
 	54A96824122F8F54004CF186 /* PBXTextBookmark */ = {
@@ -1315,9 +859,9 @@
 	};
 	54C1E00C1216CA7E00EBD811 /* ArtistFriendsViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {651, 676}}";
-			sepNavSelRange = "{1210, 0}";
-			sepNavVisRange = "{684, 461}";
+			sepNavIntBoundsRect = "{{0, 0}, {673, 836}}";
+			sepNavSelRange = "{882, 0}";
+			sepNavVisRange = "{62, 864}";
 		};
 	};
 	54C1E0111216CB0700EBD811 /* SongFriendsViewController.h */ = {
@@ -1408,25 +952,54 @@
 		vrLen = 774;
 		vrLoc = 165;
 	};
-	54F8A163123DE7E400563867 /* PBXTextBookmark */ = {
+	54E48890124308D300D5317B /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 54C1E0521217B48C00EBD811 /* MusicPlayerViewController.m */;
-		name = "MusicPlayerViewController.m: 962";
+		fRef = 1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */;
+		name = "NowPlayingFriendsAppDelegate.m: 1025";
 		rLen = 0;
-		rLoc = 24932;
+		rLoc = 26839;
 		rType = 0;
-		vrLen = 824;
-		vrLoc = 3267;
+		vrLen = 996;
+		vrLoc = 13296;
 	};
-	54F8A164123DE7E400563867 /* PBXTextBookmark */ = {
+	54E488A012430C4800D5317B /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 54C1E0521217B48C00EBD811 /* MusicPlayerViewController.m */;
-		name = "MusicPlayerViewController.m: 141";
+		fRef = 54C1E00C1216CA7E00EBD811 /* ArtistFriendsViewController.m */;
+		name = "ArtistFriendsViewController.m: 39";
 		rLen = 0;
-		rLoc = 3602;
+		rLoc = 882;
 		rType = 0;
-		vrLen = 824;
-		vrLoc = 3267;
+		vrLen = 864;
+		vrLoc = 62;
+	};
+	54E488A112430C4800D5317B /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 546514F3122CDF04003DE639 /* Root.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	54E488C81243335500D5317B /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 54E488C91243335500D5317B /* Root.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	54E488C91243335500D5317B /* Root.plist */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text.plist.xml;
+		name = Root.plist;
+		path = /Users/shin/src/NowPlayingFriends/Settings.bundle/Root.plist;
+		sourceTree = "<absolute>";
 	};
 	8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */ = {
 		uiCtxt = {
