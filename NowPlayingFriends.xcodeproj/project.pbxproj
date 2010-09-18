@@ -14,6 +14,7 @@
 		28193060112F816700ECF9B4 /* NowPlayingFriends.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2819305F112F816700ECF9B4 /* NowPlayingFriends.xcdatamodeld */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		544FA52F12447BDE003BFB95 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 544FA52E12447BDE003BFB95 /* Default.png */; };
 		54651253122A3321003DE639 /* SongsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54651252122A3321003DE639 /* SongsListViewController.m */; };
 		546512A5122B50E1003DE639 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546512A4122B50E1003DE639 /* QuartzCore.framework */; };
 		5465131D122B510A003DE639 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5465131C122B510A003DE639 /* CoreGraphics.framework */; };
@@ -101,6 +102,7 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* NowPlayingFriends_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingFriends_Prefix.pch; sourceTree = "<group>"; };
+		544FA52E12447BDE003BFB95 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		54651251122A3321003DE639 /* SongsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongsListViewController.h; sourceTree = "<group>"; };
 		54651252122A3321003DE639 /* SongsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongsListViewController.m; sourceTree = "<group>"; };
 		546512A4122B50E1003DE639 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -334,6 +336,7 @@
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */,
 				54C1DC891214162600EBD811 /* FriendCell.xib */,
+				544FA52E12447BDE003BFB95 /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				54D260A8123A38AC004023A6 /* Play_mini.png in Resources */,
 				54D260AB123A3989004023A6 /* Next_mini.png in Resources */,
 				54D260AC123A3989004023A6 /* Previous_mini.png in Resources */,
+				544FA52F12447BDE003BFB95 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
