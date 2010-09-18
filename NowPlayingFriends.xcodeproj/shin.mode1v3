@@ -277,13 +277,12 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>55</integer>
-									<integer>18</integer>
-									<integer>0</integer>
+									<integer>68</integer>
+									<integer>67</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 377}, {272, 736}}</string>
+							<string>{{0, 556}, {272, 736}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -330,7 +329,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>544FA575124491A7003BFB95</string>
+										<string>544FA58A1244A380003BFB95</string>
 										<key>history</key>
 										<array>
 											<string>54C1DD14121512AD00EBD811</string>
@@ -582,13 +581,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>544FA576124491A7003BFB95</string>
+		<string>544FA5821244984B003BFB95</string>
 		<string>544FA52712447A48003BFB95</string>
 		<string>544FA52912447A48003BFB95</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
 		<string>54C1DC1E1213B28F00EBD811</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>/Users/shin/src/NowPlayingFriends/NowPlayingFriends.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>652 141 1028 795 0 0 1680 1028 </string>
