@@ -338,7 +338,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   tweet = [template stringByReplacingOccurrencesOfString:@"[st]"
 		    withString:[self nowPlayingTitle]];
 
-  tweet = [template stringByReplacingOccurrencesOfString:@"[al]"
+  tweet = [tweet stringByReplacingOccurrencesOfString:@"[al]"
 		    withString:[self nowPlayingAlbumTitle]];
 
   tweet = [tweet stringByReplacingOccurrencesOfString:@"[ar]"
