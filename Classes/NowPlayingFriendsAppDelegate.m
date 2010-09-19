@@ -22,6 +22,7 @@
 @synthesize window;
 @synthesize tabBarController;
 @synthesize profileImages;
+@synthesize profileImagesIndex;
 @synthesize musicPlayer;
 @dynamic template_preference;
 @dynamic userDefaults;
@@ -44,10 +45,9 @@
   [managedObjectContext_ release];
   [managedObjectModel_ release];
   [persistentStoreCoordinator_ release];
-  
   [tabBarController release];
   [profileImages release];
-
+  [profileImagesIndex release];
   [window release];
   [super dealloc];
 }
@@ -176,8 +176,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   TwitterClient *client = [[TwitterClient alloc] init];
   NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
+  NSMutableArray *newProfileImagesIndex = [[NSMutableArray alloc] init];
+
   self.profileImages = newProfileImages;
   [newProfileImages release];
+
+  self.profileImagesIndex = newProfileImagesIndex;
+  [newProfileImagesIndex release];
 
   [self createDirectory:kProfileImageDirectory];
   [self setupMusicPlayer];
@@ -332,6 +337,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   tweet = [template stringByReplacingOccurrencesOfString:@"[st]"
 		    withString:[self nowPlayingTitle]];
+
+  tweet = [template stringByReplacingOccurrencesOfString:@"[al]"
+		    withString:[self nowPlayingAlbumTitle]];
 
   tweet = [tweet stringByReplacingOccurrencesOfString:@"[ar]"
 		 withString:[self nowPlayingArtistName]];
@@ -685,28 +693,23 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
   if (newImage != nil && [profileImages objectForKey:imageURLString] == nil) {
     @synchronized(profileImages) {
+      if ([profileImagesIndex count] > kProfileImageMaxMemoryCacheCount) {
+	NSString *key = [profileImagesIndex lastObject];
+	[profileImages removeObjectForKey:key];
+	[profileImagesIndex removeLastObject];
+      }
+
       [profileImages setObject:newImage forKey:imageURLString];
-    }    
+
+      if ([profileImagesIndex count] == 0) {
+	[profileImagesIndex addObject:imageURLString];
+      } else {
+	[profileImagesIndex insertObject:imageURLString atIndex:0];
+      }
+    }
   }
 
   return newImage;
-}
-
-/**
- * @brief アカウントの画像キャッシュが一定数になったらクリアする。
- */
-- (void)clearProfileImageCache {
-
-  if ([profileImages count] < kProfileImageMaxMemoryCacheCount) {
-    return;
-  }
-
-  @synchronized(profileImages) {
-    NSMutableDictionary *newDictionary = [[NSMutableDictionary alloc] init];
-    [profileImages release];
-    profileImages = newDictionary;
-    NSLog(@"profile image cache (on memory) cleared.");
-  }
 }
 
 - (UIImage *)originalProfileImage:(NSDictionary *)data {

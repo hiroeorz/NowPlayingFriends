@@ -171,7 +171,6 @@
 - (void)viewWillAppear:(BOOL)animated {
 
   [friendsTableView reloadData];
-  [self.appDelegate clearProfileImageCache];
 
   self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
   [super viewWillAppear:animated];
@@ -240,8 +239,6 @@
  * @brief 新たなデータを取得してテーブルの内容を更新します。
  */
 - (IBAction)refreshTableOnThread {
-
-  [self.appDelegate clearProfileImageCache];
 
   changed = NO;
   [self performSelectorInBackground:@selector(refreshTable)

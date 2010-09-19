@@ -270,8 +270,6 @@
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStateInterrupted) {
   }
-
-  [self.appDelegate clearProfileImageCache];
 }
 
 /**

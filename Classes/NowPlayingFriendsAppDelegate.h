@@ -13,7 +13,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <QuartzCore/QuartzCore.h>
 
-#define kTweetTemplate @"♪ Now Playing \"[st]\" by \"[ar]\" ♬ #nowplaying"
+#define kTweetTemplate @"♪ Now Playing \"[st]\" by \"[ar]\" on album \"[al]\" ♬ #nowplaying"
 #define kMaxTweetLength 140
 #define kProfileImageDirectory @"profileImages"
 #define kProfileImageMaxFileCacheCount 512
@@ -32,6 +32,7 @@
   UITabBarController *tabBarController;
   
   NSMutableDictionary *profileImages;
+  NSMutableArray *profileImagesIndex;
   MPMusicPlayerController *musicPlayer;
   
   NSInteger testFlag;
@@ -45,6 +46,7 @@
 
 @property (nonatomic, retain) UITabBarController *tabBarController;
 @property (nonatomic, retain) NSMutableDictionary *profileImages;
+@property (nonatomic, retain) NSMutableArray *profileImagesIndex;
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 @property (nonatomic, retain) NSUserDefaults *userDefaults;
 
@@ -94,7 +96,6 @@
 
 - (UIImage *)profileImage:(NSDictionary *)data 
 		getRemote:(BOOL) getRemoteFlag;
-- (void)clearProfileImageCache;
 
 - (UIImage *)originalProfileImage:(NSDictionary *)data;
 - (NSString *)profileImageFileName:(NSString *)urlString;
