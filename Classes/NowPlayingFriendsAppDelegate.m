@@ -241,7 +241,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
   navController = [self navigationWithViewController:viewController
 			title:@"Home"  
-			imageName:@"30-key.png"];
+			imageName:@"53-house.png"];
   
   [controllers addObject:navController];
   [viewController release];
@@ -253,7 +253,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
   navController = [self navigationWithViewController:viewController
 			title:@"Mentions"  
-			imageName:@"30-key.png"];
+			imageName:@"18-envelope.png"];
   
   [controllers addObject:navController];
   [viewController release];
@@ -264,7 +264,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
   navController = [self navigationWithViewController:viewController
 			title:@"Sent Tweet"  
-			imageName:@"30-key.png"];
+			imageName:@"23-bird.png"];
     
   [controllers addObject:navController];
   [viewController release];
