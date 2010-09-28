@@ -8,8 +8,7 @@
 
 @class MusicPlayerViewController;
 
-@interface SongsListViewController : UIViewController 
-<UITableViewDataSource, UITableViewDelegate> {
+@interface SongsListViewController : UIViewController <UITableViewDelegate> {
 
   MPMediaItemCollection *playlist;
   MPMusicPlayerController *musicPlayer;
@@ -24,7 +23,5 @@
 @property (nonatomic, retain) UITableView *songListView;
 @property (nonatomic, retain, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) NSString *playListTitle;
-
-- (id)initWithPlaylist:(MPMediaItemCollection *)newPlaylist;
 
 @end

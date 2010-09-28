@@ -177,6 +177,7 @@
     [[UserInformationViewController alloc] initWithUserName:username];
 
   [self.navigationController pushViewController:viewController animated:YES];
+  [viewController release];
 }
 
 - (IBAction)changeAutoTweetMode:(id)sender {
@@ -625,12 +626,12 @@
   [nowButton setTitle:@"♬" 
 	     forState:UIControlStateNormal];
   
-  [nowButton setTintColor:[UIColor redColor]];
-  
+  [nowButton setValue:[UIColor redColor] forKey:@"tintColor"];
+
   [nowButton addTarget:self action:selector
 	     forControlEvents:UIControlEventTouchUpInside];
   
-  nowButton.font = [UIFont boldSystemFontOfSize:16];
+  nowButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
   nowButton.alpha = kNowButtonAlpha;
   
   return nowButton;
@@ -712,6 +713,7 @@
   UINavigationController *navController = 
     [self.appDelegate navigationWithViewController:viewController
 	 title:@"Tweet"  imageName:nil];
+  [viewController release];
 
   [self presentModalViewController:navController animated:YES];
 }
@@ -941,7 +943,8 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
       (PlayListSongsViewController *)[[PlayListSongsViewController alloc] 
 				       initWithPlaylist:playlist];
 
-    listTitle = [playlist valueForProperty:MPMediaPlaylistPropertyName];
+    listTitle = [[playlist representativeItem] 
+		  valueForProperty:MPMediaPlaylistPropertyName];
   }
 
   [viewController setMusicPlayer:musicPlayer];

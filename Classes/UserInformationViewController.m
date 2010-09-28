@@ -11,6 +11,10 @@
 #import "JSON/JSON.h"
 #import "UserTimelineViewController.h"
 
+@interface UserInformationViewController (Local)
+- (void)setFollowingButtonFollowing:(NSNumber *)followingNumber;
+@end
+
 @implementation UserInformationViewController
 
 @synthesize username;
@@ -82,9 +86,24 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
 
+  [super viewDidLoad];
   self.title = username;
+
+  if (descriptionView != nil) {
+    [descriptionView release];
+  }
+
+  descriptionView = [[UITextView alloc] init];
+  CGRect frame;
+  frame.origin.x = 0;
+  frame.origin.y = 169;
+  frame.size.width = 320;
+  frame.size.height = 193;
+  descriptionView.frame = frame;
+  descriptionView.font = [UIFont systemFontOfSize:15];
+  descriptionView.backgroundColor = [UIColor blackColor];
+  descriptionView.textColor = [UIColor grayColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -113,15 +132,19 @@
   TwitterClient *client = [[TwitterClient alloc] init];
   BOOL following = [client checkFollowing:username];
 
-  [self performSelectorOnMainThread:@selector(setFollowingButtonFollowing:)
-	withObject:following
-	waitUntilDone:YES];
+  @synchronized(descriptionView) {
+    [self performSelectorOnMainThread:@selector(setFollowingButtonFollowing:)
+	  withObject:[NSNumber numberWithBool:following]
+	  waitUntilDone:YES];
+  }
 
   [client release];
   [pool release];
 }
 
-- (void)setFollowingButtonFollowing:(BOOL)following {
+- (void)setFollowingButtonFollowing:(NSNumber *)followingNumber {
+
+  BOOL following = [followingNumber boolValue];
 
   if (following == YES) {
     [followButton setEnabled:NO];
@@ -138,13 +161,14 @@
   TwitterClient *client = [[TwitterClient alloc] init];
   NSDictionary *user = [client userInformation:username];
 
+  @synchronized(descriptionView) {
+    [self performSelectorOnMainThread:@selector(setUserInformations:)
+	  withObject:user
+	  waitUntilDone:YES];
+  }
+
   [self performSelectorInBackground:@selector(getUserProfileImage:)
 	withObject:user];
-
-  [self performSelectorOnMainThread:@selector(setUserInformations:)
-	withObject:user
-	waitUntilDone:YES];
-
   
   [client release];
   [pool release];
@@ -152,17 +176,29 @@
 
 - (void)setUserInformations:(NSDictionary *)user {
 
-  nameLabel.text = [user objectForKey:@"name"];
-  locationLabel.text = [user objectForKey:@"location"];
-  descriptionView.font = [UIFont systemFontOfSize:15];
-  descriptionView.text = [user objectForKey:@"description"];
+  if (![[user objectForKey:@"name"] isKindOfClass:[NSNull class]]) {
+    nameLabel.text = [user objectForKey:@"name"];
+  }
 
-  followersLabel.text = [NSString stringWithFormat:@"Followers :  %@",
-				  [user objectForKey:@"followers_count"]];
+  if (![[user objectForKey:@"location"] isKindOfClass:[NSNull class]]) {
+    locationLabel.text = [user objectForKey:@"location"];
+  }
 
-  friendsLabel.text = [NSString stringWithFormat:@"Friends    :  %@",
-				[user objectForKey:@"friends_count"]];
+  if (![[user objectForKey:@"followers_count"] isKindOfClass:[NSNull class]]) {
+    followersLabel.text = [NSString stringWithFormat:@"Followers :  %@",
+				    [user objectForKey:@"followers_count"]];
+  }
 
+  if (![[user objectForKey:@"friends_count"] isKindOfClass:[NSNull class]]) {
+    friendsLabel.text = [NSString stringWithFormat:@"Friends    :  %@",
+				  [user objectForKey:@"friends_count"]];
+  }
+
+  if (![[user objectForKey:@"description"] isKindOfClass:[NSNull class]]) {
+    NSLog(@"helo");
+    descriptionView.text = [user objectForKey:@"description"];
+    [self.view addSubview:descriptionView];
+  }
 }
 
 - (void)getUserProfileImage:(NSDictionary *)user {
@@ -171,9 +207,11 @@
   UIImage *newImage = [self.appDelegate originalProfileImage:user];
   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
-  [self performSelectorOnMainThread:@selector(setUserProfileImage:)
-	withObject:newImage
-	waitUntilDone:YES];
+  @synchronized(descriptionView) {
+    [self performSelectorOnMainThread:@selector(setUserProfileImage:)
+	  withObject:newImage
+	  waitUntilDone:YES];
+  }
 
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   [pool release];

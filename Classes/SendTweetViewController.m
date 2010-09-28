@@ -41,6 +41,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     twitterClient = [[TwitterClient alloc] init];
+
+    editView = [[UITextView alloc] init];
   }
   return self;
 }
@@ -57,13 +59,26 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 
-  editView.text = [self.appDelegate tweetString];
-  [self countAndWriteTweetLength:[editView.text length]];
-
   [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+
+  [super viewDidAppear:animated];
+
+  CGRect frame;
+  frame.origin.x = 20;
+  frame.origin.y = 20;
+  frame.size.width = 280;
+  frame.size.height = 135;
+  editView.frame = frame;
+  editView.backgroundColor = [UIColor whiteColor];
+  editView.textColor = [UIColor blackColor];
+  editView.font = [UIFont systemFontOfSize:18];
+
+  editView.text = [self.appDelegate tweetString];
+  [self.view addSubview:editView];
+  [self countAndWriteTweetLength:[editView.text length]];
 
   [editView becomeFirstResponder];
 }

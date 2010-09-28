@@ -788,8 +788,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [documentsDirectory stringByAppendingPathComponent:dirname];
 
   if (![[NSFileManager defaultManager] fileExistsAtPath:dirpath]) {
-    [[NSFileManager defaultManager] 
-      createDirectoryAtPath:dirpath attributes:nil];
+    NSError *error = nil;
+    [[NSFileManager defaultManager] createDirectoryAtPath:dirpath
+				    withIntermediateDirectories:YES
+				    attributes:nil
+				    error:&error];
   }
 
   return dirpath;
@@ -797,21 +800,24 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 - (void)cleanupProfileImageFileCache {
 
-  NSString *dirpath = [self createDirectory:kProfileImageDirectory]; 
+  NSString *dirpath = [self createDirectory:kProfileImageDirectory];
+
+  NSError *error = nil;
   NSArray *filesArray = [[NSFileManager defaultManager] 
-			  directoryContentsAtPath:dirpath];
+			  subpathsOfDirectoryAtPath:dirpath error:&error];
   NSInteger filecount = [filesArray count];
 
   if (filecount > kProfileImageMaxFileCacheCount) {
     NSDirectoryEnumerator *dirEnum = [[NSFileManager defaultManager]
 				       enumeratorAtPath:dirpath];
 
-    NSString *filename;
-    NSString *filepath;
+    NSString *filename = nil;
+    NSString *filepath = nil;
+    NSError *error = nil;
 
     while (filename = [dirEnum nextObject]) {
       filepath = [dirpath stringByAppendingPathComponent:filename];
-      [[NSFileManager defaultManager] removeFileAtPath:filepath handler:self];
+      [[NSFileManager defaultManager] removeItemAtPath:filepath error:&error];
       NSLog(@"deleted filename: %@", filepath);
     }
   }

@@ -14,7 +14,8 @@
 #import "MusicPlayerViewController.h"
 #import "SongsListViewController.h"
 
-@interface AlbumSongsViewController : SongsListViewController {
+@interface AlbumSongsViewController : SongsListViewController
+<UITableViewDataSource> {
 
 }
 

@@ -10,7 +10,8 @@
 
 @class MusicPlayerViewController;
 
-@interface PlayListSongsViewController : SongsListViewController {
+@interface PlayListSongsViewController : SongsListViewController 
+<UITableViewDataSource> {
 
 }
 

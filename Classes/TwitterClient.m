@@ -170,12 +170,13 @@
  * @brief URLエンコードされた文字列を返します。
  */
 - (NSString *)urlEncodedString:(NSString *)str {
-
+  
+  CFStringRef ignoreString = CFSTR(";,/?:@&=+$#");
   NSString *encodedString = 
     (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,  
-							str,
+							(CFStringRef)str,
 							NULL,  
-							CFSTR(";,/?:@&=+$#"),
+							ignoreString,
 							kCFStringEncodingUTF8);
   return [encodedString autorelease];
 }
@@ -183,7 +184,7 @@
 /**
  * @brief 認証情報を埋めこんだRequestオブジェクトを生成する。
  */
-- (OAMutableURLRequest *)authenticatedRequest:(NSURL *)url {
+- (id)authenticatedRequest:(NSURL *)url {
 
   if (![self oAuthTokenExist]) {
     NSMutableURLRequest *notAuthencticatedRequest = 

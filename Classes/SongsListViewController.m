@@ -2,6 +2,7 @@
 #import "SongsListViewController.h"
 #import "PlayListSongsViewController.h"
 #import "NowPlayingFriendsAppDelegate.h"
+#import "MusicPlayerViewController.h"
 
 @implementation SongsListViewController
 
@@ -83,12 +84,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [songListView removeFromSuperview];
   }
 
-  UIView *songView = [musicPlayerViewController songView];
+  
+  UIView *songView = 
+    [(MusicPlayerViewController *)musicPlayerViewController songView];
   
   [self.view addSubview:songView];
   [UIView commitAnimations];
 
-  [musicPlayerViewController setSongListController:self];  
+  [(MusicPlayerViewController *)musicPlayerViewController 
+				setSongListController:self];  
 
   self.navigationItem.rightBarButtonItem = 
     [self.appDelegate listButton:@selector(changeToSongsListview) 

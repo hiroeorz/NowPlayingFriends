@@ -530,6 +530,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     [[UserInformationViewController alloc] initWithUserName:username];
 
   [self.navigationController pushViewController:viewController animated:YES];
+  [viewController release];
 }
 
 #pragma mark -
