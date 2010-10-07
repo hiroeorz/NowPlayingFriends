@@ -93,13 +93,15 @@
   NSURL *baseUrl = [NSURL URLWithString:kUpdateStatusURL];
   OAMutableURLRequest *request = [self authenticatedRequest:baseUrl];
 
+  CFStringRef ignoreString = CFSTR(";,/?:@&=+$#");
+
   NSString *bodyString = 
     [NSString stringWithFormat:@"status=%@",
 	      (NSString *)CFURLCreateStringByAddingPercentEscapes(  
 					 kCFAllocatorDefault,
                                          (CFStringRef)message,
                                          NULL,
-                                         NULL,
+                                         ignoreString,
                                          kCFStringEncodingUTF8)];
 
   [request setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
