@@ -34,15 +34,13 @@
 - (void)updateStatus:(NSString *)message delegate:(id)aDelegate;
 - (NSString *)username;
 
-- (NSString *)urlEncodedString:(NSString *)str;
-- (NSArray *)arrayOfRemoteJson:(NSString *)urlString;
-- (NSDictionary *)dictionaryOfRemoteJson:(NSString *)urlString;
-- (NSString *)stringOfRemoteJson:(NSString *)urlString;
-- (void)logJsonData:(NSArray *)jsonArray;
-
 - (void)getAccessTokenWithUsername:(NSString *)username 
 			  password:(NSString *)password
 			  delegate:(id)delegate;
+
+- (NSDictionary *)oAuthToken;
+- (BOOL)oAuthTokenExist;
+- (NSString *)oAuthAccessTokenFileName;
 
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;

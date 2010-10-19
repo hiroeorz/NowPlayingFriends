@@ -19,9 +19,11 @@
 - (OAMutableURLRequest *)authenticatedRequest:(NSURL *)url;
 - (NSURL*)authenticatedURL:(NSURL *)url;
 
-- (NSDictionary *)oAuthToken;
-- (BOOL)oAuthTokenExist;
-- (NSString *)oAuthAccessTokenFileName;
+- (NSString *)urlEncodedString:(NSString *)str;
+- (NSArray *)arrayOfRemoteJson:(NSString *)urlString;
+- (NSDictionary *)dictionaryOfRemoteJson:(NSString *)urlString;
+- (NSString *)stringOfRemoteJson:(NSString *)urlString;
+- (void)logJsonData:(NSArray *)jsonArray;
 
 @end
 
