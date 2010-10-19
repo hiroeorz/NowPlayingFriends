@@ -24,6 +24,7 @@
   NSArray *timeline;
   NSMutableArray *lineOverFlowQueue;
   NSString *myUserName;
+  UIImage *noArtWorkMini;
   UITableView *friendsTableView;
 
 @private
@@ -33,6 +34,7 @@
 }
 
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
+@property (nonatomic, retain)  UIImage *noArtWorkMini;
 @property (nonatomic, retain) IBOutlet UITableView *friendsTableView;
 @property (nonatomic, retain) NSArray *beforeTimeline;
 @property (nonatomic, retain) NSArray *timeline;

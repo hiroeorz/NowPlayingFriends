@@ -47,8 +47,8 @@
 @synthesize friendsTableView;
 @synthesize lineOverFlowQueue;
 @synthesize myUserName;
+@synthesize noArtWorkMini;
 @synthesize timeline;
-
 
 #pragma mark -
 #pragma mark Memory management
@@ -59,6 +59,7 @@
   [friendsTableView release];
   [lineOverFlowQueue release];
   [myUserName release];
+  [noArtWorkMini release];
   [timeline release];
   [super dealloc];
 }
@@ -69,6 +70,7 @@
   self.friendsTableView = nil;
   self.lineOverFlowQueue = nil;
   self.myUserName = nil;
+  self.noArtWorkMini = nil;
   self.timeline = nil;
   [super viewDidUnload];
 }
@@ -82,6 +84,8 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
+
+  self.noArtWorkMini = [UIImage imageNamed:@"no_artwork_mini.png"];
 
   changed = YES;
   NSArray *array = [[NSArray alloc] init];
@@ -397,8 +401,7 @@
 
 
   [cell.userImageView 
-       setBackgroundImage:[UIImage imageNamed:@"no_artwork_mini.png"]
-       forState:UIControlStateNormal];
+       setBackgroundImage:noArtWorkMini forState:UIControlStateNormal];
 
   [self performSelectorInBackground:@selector(setProfileImageWithObjects:)
   	withObject:objects];
