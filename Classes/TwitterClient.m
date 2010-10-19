@@ -13,6 +13,19 @@
 #import "OAuthConsumer/OARequestParameter.h"
 #import "OAuthConsumer/OADataFetcher.h"
 
+
+@interface TwitterClient (Local) 
+
+- (OAMutableURLRequest *)authenticatedRequest:(NSURL *)url;
+- (NSURL*)authenticatedURL:(NSURL *)url;
+
+- (NSDictionary *)oAuthToken;
+- (BOOL)oAuthTokenExist;
+- (NSString *)oAuthAccessTokenFileName;
+
+@end
+
+
 @implementation TwitterClient
 
 #pragma mark -
@@ -59,6 +72,14 @@
  * @brief 指定されたユーザのタイムラインを取得します。
  */
 - (NSArray *)getHomeTimeLine:(NSString *)username {
+
+  NSString *urlString = [[NSString alloc] 
+			  initWithFormat:kHomeTimelineURL, username];
+
+  return [self arrayOfRemoteJson:urlString];
+}
+
+- (NSArray *)getHomeTimeLine:(NSString *)username delegate:(id)aDelegate {
 
   NSString *urlString = [[NSString alloc] 
 			  initWithFormat:kHomeTimelineURL, username];

@@ -82,11 +82,6 @@
 @property (nonatomic, retain) UIView *baseView;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *musicSegmentedControl;
 
-- (void)setMusicArtwork;
-
-- (void)refreshTimeline;
-- (void)setFriendImageView;
-
 - (IBAction)changeMusicSegmentedControl:(id)sender;
 - (IBAction)changeAutoTweetMode:(id)sender;
 - (IBAction)changeVolume:(id)sender;
@@ -94,35 +89,12 @@
 - (IBAction)skipToNextItem:(id)sender;
 - (IBAction)skipToBeginningOrPreviousItem:(id)sender;
 - (IBAction)skipToPreviousItem:(id)sender;
-- (void)openUserInformationView:(id)sender;
 
-- (void)releaseNowButtons;
-- (void)addProfileImageButton:(NSDictionary *)objects;
-- (void)setBackgroundImage:(NSDictionary *)objects;
-- (void)setBackgroundApha:(NSDictionary *)objects;
-- (BOOL)checkNowPlayingUser:(NSDictionary *)data;
-- (UIButton *)nowButton:(SEL)selector
-		  frame:(CGRect)frame;
-- (void)addNowButton:(NSDictionary *)objects;
-
-- (IBAction)changeRepeatMode:(id)sender;
-- (IBAction)openSettingView:(id)sender;
-- (void)closeSettingView;
-- (IBAction)closeSettingView:(id)sender;
-- (void)openEditView;
-- (void)changeToListview;
-- (void)changeToSongview;
-
-- (void)sendAutoTweetAfterTimeLag;
-- (void)sendAutoTweet;
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
-
 
 - (void)handle_PlayBackStateDidChanged:(id)notification;
 - (void)handle_VolumeChanged:(id)notification;
 - (void)handle_NowPlayingItemChanged:(id)notification;
-
-- (NowPlayingFriendsAppDelegate *)appDelegate;
 
 @end

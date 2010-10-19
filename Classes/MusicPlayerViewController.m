@@ -13,6 +13,38 @@
 #import "UserAuthenticationViewController.h"
 #import "SendTweetViewController.h"
 
+@interface MusicPlayerViewController (Local)
+
+- (void)openUserInformationView:(id)sender;
+- (void)setMusicArtwork;
+- (void)refreshTimeline;
+- (void)setFriendImageView;
+
+- (void)releaseNowButtons;
+- (void)addProfileImageButton:(NSDictionary *)objects;
+- (void)setBackgroundImage:(NSDictionary *)objects;
+- (void)setBackgroundApha:(NSDictionary *)objects;
+- (BOOL)checkNowPlayingUser:(NSDictionary *)data;
+- (UIButton *)nowButton:(SEL)selector
+		  frame:(CGRect)frame;
+- (void)addNowButton:(NSDictionary *)objects;
+
+- (IBAction)changeRepeatMode:(id)sender;
+- (IBAction)openSettingView:(id)sender;
+- (void)closeSettingView;
+- (IBAction)closeSettingView:(id)sender;
+- (void)openEditView;
+- (void)changeToListview;
+- (void)changeToSongview;
+
+- (void)sendAutoTweetAfterTimeLag;
+- (void)sendAutoTweet;
+
+- (NowPlayingFriendsAppDelegate *)appDelegate;
+
+@end
+
+
 @implementation MusicPlayerViewController
 
 @synthesize timeline;
@@ -879,6 +911,8 @@
 
     if (artwork) {
       cell.imageView.image = [artwork imageWithSize:CGSizeMake(50, 50)];
+    } else {
+      cell.imageView.image = [UIImage imageNamed:@"no_artwork_mini.png"];
     }
   }
 

@@ -32,20 +32,13 @@
 - (NSArray *)getSearchTimeLine:(NSString *)searchString, ...;
 - (NSDictionary *)userInformation:(NSString *)username;
 - (void)updateStatus:(NSString *)message delegate:(id)aDelegate;
+- (NSString *)username;
 
 - (NSString *)urlEncodedString:(NSString *)str;
 - (NSArray *)arrayOfRemoteJson:(NSString *)urlString;
 - (NSDictionary *)dictionaryOfRemoteJson:(NSString *)urlString;
 - (NSString *)stringOfRemoteJson:(NSString *)urlString;
 - (void)logJsonData:(NSArray *)jsonArray;
-
-- (NSDictionary *)oAuthToken;
-- (BOOL)oAuthTokenExist;
-- (NSString *)oAuthAccessTokenFileName;
-- (NSString *)username;
-
-- (OAMutableURLRequest *)authenticatedRequest:(NSURL *)url;
-- (NSURL*)authenticatedURL:(NSURL *)url;
 
 - (void)getAccessTokenWithUsername:(NSString *)username 
 			  password:(NSString *)password

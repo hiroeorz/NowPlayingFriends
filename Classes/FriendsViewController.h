@@ -20,46 +20,30 @@
 @interface FriendsViewController : UIViewController 
 <UITableViewDataSource, UITableViewDelegate> {
 
-  NSArray *timeline;
-  UITableView *friendsTableView;
   BOOL changed;
+  NSArray *timeline;
+  NSMutableArray *lineOverFlowQueue;
   NSString *myUserName;
+  UITableView *friendsTableView;
 
 @private
-  NSArray *beforeTimeline;
   BOOL activateFlag;
+  NSArray *beforeTimeline;
   NSInteger cellRow;
 }
 
-@property (nonatomic, retain) NSArray *timeline;
-@property (nonatomic, retain) NSArray *beforeTimeline;
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) IBOutlet UITableView *friendsTableView;
+@property (nonatomic, retain) NSArray *beforeTimeline;
+@property (nonatomic, retain) NSArray *timeline;
+@property (nonatomic, retain) NSMutableArray *lineOverFlowQueue;
 @property (nonatomic, retain) NSString *myUserName;
+
 
 - (void)handle_PlayBackStateDidChanged:(id)notification;
 - (void)handle_VolumeChanged:(id)notification;
 - (void)handle_NowPlayingItemChanged:(id)notification;
 
-- (NSInteger)refreshTimeline;
 - (NSInteger)createNewTimeline:(NSArray *)newTimeline;
-- (void)tableRefreshLoop;
-- (void)shurinkTimeline;
-
-- (IBAction)refreshTableOnThread;
-- (void)refreshTable;
-
-- (BOOL)checkSpecialCell:(NSDictionary *)data;
-- (NSString *)clientname:(NSDictionary *)data;
-- (NSString *)username:(NSDictionary *)data;
-- (void)setProfileImageWithObjects:(NSDictionary *)objects;
-- (void) cacheAllProfileImage;
-
-- (void)openUserInformationView:(id)sender;
-- (CGFloat)lineHeightValue:(NSIndexPath *)indexPath;
-- (CGFloat)lineOverFlowSize:(NSIndexPath *)indexPath;
-- (NSInteger)newOffset:(NSInteger)addCount;
-
-- (NowPlayingFriendsAppDelegate *)appDelegate;
 
 @end

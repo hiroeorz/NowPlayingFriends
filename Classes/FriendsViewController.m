@@ -12,30 +12,64 @@
 #import "UserInformationViewController.h"
 
 
+@interface FriendsViewController (Local)
+
+- (NSInteger)refreshTimeline;
+- (void)tableRefreshLoop;
+- (void)shurinkTimeline;
+
+- (IBAction)refreshTableOnThread;
+- (void)refreshTable;
+
+- (BOOL)checkSpecialCell:(NSDictionary *)data;
+- (NSString *)clientname:(NSDictionary *)data;
+- (NSString *)username:(NSDictionary *)data;
+- (void)setProfileImageWithObjects:(NSDictionary *)objects;
+- (void) cacheAllProfileImage;
+
+- (void)openUserInformationView:(id)sender;
+- (CGFloat)lineHeightValue:(NSInteger)row;
+- (float)lineOverFlowSize:(NSInteger)row;
+- (NSInteger)newOffset:(NSInteger)addCount;
+- (float)lineOverFlowSizeFromQueue:(NSInteger)row;
+- (NSString *)passedTimeString:(NSDictionary *)aData;
+- (void)queuingLineOverFlowSize;
+
+- (NowPlayingFriendsAppDelegate *)appDelegate;
+
+@end
+
+
 @implementation FriendsViewController
 
-@synthesize timeline;
-@synthesize beforeTimeline;
 @dynamic appDelegate;
+@synthesize beforeTimeline;
 @synthesize friendsTableView;
+@synthesize lineOverFlowQueue;
 @synthesize myUserName;
+@synthesize timeline;
+
 
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc {
-  [timeline release];
+
   [beforeTimeline release];
   [friendsTableView release];
+  [lineOverFlowQueue release];
   [myUserName release];
+  [timeline release];
   [super dealloc];
 }
 
 - (void)viewDidUnload {
-  self.timeline = nil;
+
   self.beforeTimeline = nil;
   self.friendsTableView = nil;
+  self.lineOverFlowQueue = nil;
   self.myUserName = nil;
+  self.timeline = nil;
   [super viewDidUnload];
 }
 
@@ -257,11 +291,12 @@
   NSInteger newOffset = [self newOffset:addCount];
   
   [self shurinkTimeline];
-  
+  [self queuingLineOverFlowSize];
+
   if (activateFlag && ![timeline isEqualToArray:beforeTimeline]) {
     [self performSelectorOnMainThread:@selector(reloadTableDataOnMainThread:)
 	  withObject:[NSNumber numberWithInteger:newOffset]
-	  waitUntilDone:YES];    
+	  waitUntilDone:NO];    
   }
 
   [self.appDelegate cleanupProfileImageFileCache];
@@ -303,7 +338,7 @@
 	 cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
   cellRow = [indexPath row];
-  static NSString *FriendsCellIdentifier = @"Cell";
+  static NSString *FriendsCellIdentifier = @"FriendCell";
     
   FriendCell *cell = 
     (FriendCell *)[tableView 
@@ -318,7 +353,7 @@
       if ([oneObject isKindOfClass:[FriendCell class]]) {
 	cell = (FriendCell *)oneObject;
 	cell.bodyTextView.font = [UIFont systemFontOfSize:15];
-
+	
 	[cell.userImageView addTarget:self 
 	     action:@selector(openUserInformationView:)
 	     forControlEvents:UIControlEventTouchUpInside];
@@ -329,14 +364,11 @@
   NSInteger row = [indexPath row];
   NSDictionary *data = [timeline objectAtIndex:row];
   NSString *rowText = [data objectForKey:@"text"];
-
+  
   cell.bodyTextView.text = [self.appDelegate stringByUnescapedString:rowText];
   cell.accountLabel.text = [self username:data];
   cell.userImageView.tag = row;
   cell.clientLabel.text = [self clientname:data];
-
-  NSString *passedString;
-  NSInteger intervalSec = [self.appDelegate secondSinceNow:data];
 
   if ([self checkSpecialCell:data]) {
     cell.baseView.backgroundColor = [UIColor colorWithHue:0.0f
@@ -346,6 +378,40 @@
   } else {
     cell.baseView.backgroundColor = [UIColor blackColor];
   }
+  
+  cell.timeLabel.text = [self passedTimeString:data];
+  
+  CGFloat overflow = [self lineOverFlowSizeFromQueue:[indexPath row]];
+
+  CGRect viewFrame = cell.baseView.frame;
+  viewFrame.size.height = kViewFrameHeight + overflow;
+  cell.baseView.frame = viewFrame;
+
+  CGRect textFrame = cell.bodyTextView.frame;
+  textFrame.size.height = kTextFrameHeight + overflow;
+  cell.bodyTextView.frame = textFrame;
+
+  NSDictionary *objects = [[NSDictionary alloc] initWithObjectsAndKeys:
+						  data, @"data",
+						cell, @"cell", nil];
+
+
+  [cell.userImageView 
+       setBackgroundImage:[UIImage imageNamed:@"no_artwork_mini.png"]
+       forState:UIControlStateNormal];
+
+  [self performSelectorInBackground:@selector(setProfileImageWithObjects:)
+  	withObject:objects];
+
+  [objects release];
+  
+  return cell;
+}
+
+- (NSString *)passedTimeString:(NSDictionary *)aData {
+
+  NSInteger intervalSec = [self.appDelegate secondSinceNow:aData];
+  NSString *passedString = nil;
 
   if (intervalSec < 60) {
     passedString = [[NSString alloc] initWithFormat:@"%ds", intervalSec];
@@ -360,29 +426,7 @@
     passedString = [[NSString alloc] initWithFormat:@"%dmo", (intervalSec / (60 * 60 * 24 * 30))];    
 
   }
-
-  cell.timeLabel.text = passedString;
-  [passedString release];
-  
-  CGFloat overflow = [self lineOverFlowSize:indexPath];
-
-  CGRect viewFrame = cell.baseView.frame;
-  viewFrame.size.height = kViewFrameHeight + overflow;
-  cell.baseView.frame = viewFrame;
-
-  CGRect textFrame = cell.bodyTextView.frame;
-  textFrame.size.height = kTextFrameHeight + overflow;
-  cell.bodyTextView.frame = textFrame;
-
-  NSDictionary *objects = [[NSDictionary alloc] initWithObjectsAndKeys:
-						  data, @"data",
-						cell, @"cell", nil];
-
-  [self performSelectorInBackground:@selector(setProfileImageWithObjects:)
-	withObject:objects];
-
-  [objects release];
-  return cell;
+  return [passedString autorelease];
 }
 
 /**
@@ -425,7 +469,7 @@
 
   [self performSelectorOnMainThread:@selector(setProfileImageWithImage:)
 	withObject:setObjects
-	waitUntilDone:YES];
+	waitUntilDone:NO];
 
   [setObjects release];
   [pool release];
@@ -436,11 +480,9 @@
   UIImage *newImage =  [objects objectForKey:@"image"];
   FriendCell *cell = [objects objectForKey:@"cell"];
 
-  @synchronized(timeline) {
-    if (cell != nil && cell.superview != nil) {
-      [cell.userImageView setBackgroundImage:newImage
-	   forState:UIControlStateNormal];
-    }
+  if (cell != nil && cell.superview != nil) {
+    [cell.userImageView setBackgroundImage:newImage
+	 forState:UIControlStateNormal];
   }
 
   [cell autorelease];
@@ -449,7 +491,7 @@
 /**
  * @brief ユーザのプロフィール画像のキャッシュをとります。
  */
-- (void) cacheAllProfileImage {
+- (void)cacheAllProfileImage {
   
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
@@ -473,7 +515,7 @@
       NSInteger cellViewHeight = kTimelineTableRowHeight;
       NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
       
-      cellViewHeight = cellViewHeight + [self lineOverFlowSize:indexPath];
+      cellViewHeight = cellViewHeight + [self lineOverFlowSize:[indexPath row]];
       totalOffset = totalOffset + cellViewHeight;
     }
   }
@@ -481,9 +523,8 @@
   return totalOffset;
 }
 
-- (CGFloat)lineHeightValue:(NSIndexPath *)indexPath {
+- (CGFloat)lineHeightValue:(NSInteger)row {
 
-  NSInteger row = [indexPath row];
   NSDictionary *data = [timeline objectAtIndex:row];
 
   NSString *rowText = [data objectForKey:@"text"];
@@ -495,25 +536,46 @@
 			  constrainedToSize:bounds
 			  lineBreakMode:UILineBreakModeTailTruncation];
 
-  return size.height + 9;
+  return size.height + 9.0f;
 }
 
-- (CGFloat)lineOverFlowSize:(NSIndexPath *)indexPath {
+- (float)lineOverFlowSize:(NSInteger)row {
 
-  CGFloat lineHeight = [self lineHeightValue:indexPath];
+  CGFloat lineHeight = [self lineHeightValue:row];
 
   if (lineHeight <= kDefaultBodyTextHeight) {
     return 0.0f;
   }
 
   CGFloat overFlowSize = lineHeight - kDefaultBodyTextHeight;
-  return overFlowSize;
+  return (float)overFlowSize;
+}
+
+- (float)lineOverFlowSizeFromQueue:(NSInteger)row {
+
+  NSNumber *overFlowNumber = [lineOverFlowQueue objectAtIndex:row];
+  return [overFlowNumber floatValue];
+}
+
+- (void)queuingLineOverFlowSize {
+
+  NSMutableArray *array = [[NSMutableArray alloc] init];
+  NSInteger row = 0;
+
+  for (NSDictionary *data in timeline) {
+    [array addObject:[NSNumber numberWithFloat:[self lineOverFlowSize:row]]];
+    row++;
+  }
+
+  self.lineOverFlowQueue = array;
+  [array release];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-  CGFloat overflow = [self lineOverFlowSize:indexPath];
+
+  CGFloat overflow = [self lineOverFlowSizeFromQueue:[indexPath row]];
   return kTimelineTableRowHeight + overflow;
 }
 
