@@ -54,7 +54,7 @@
     [self.appDelegate cancelButton:@selector(closeEditView) target:self];
 
   self.navigationItem.rightBarButtonItem = 
-    [self.appDelegate completeButton:@selector(sendTweet) target:self];
+    [self.appDelegate sendButton:@selector(sendTweet) target:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

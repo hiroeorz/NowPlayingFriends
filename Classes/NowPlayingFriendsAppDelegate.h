@@ -125,6 +125,8 @@
 			 target:(id)target;
 - (UIBarButtonItem *)completeButton:(SEL)selector
 			     target:(id)target;
+- (UIBarButtonItem *)sendButton:(SEL)selector
+			 target:(id)target;
 
 @end
 

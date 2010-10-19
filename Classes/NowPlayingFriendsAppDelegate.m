@@ -915,6 +915,18 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return [button autorelease];
 }
 
+- (UIBarButtonItem *)sendButton:(SEL)selector
+			 target:(id)target {
+
+  UIBarButtonItem *button = 
+    [[UIBarButtonItem alloc] initWithTitle:@"Send"
+			     style:UIBarButtonItemStyleDone
+			     target:target
+			     action:selector];
+
+  return [button autorelease];
+}
+
 /**
  * @brief 渡されたイメージを渡されたボタンに縦横比を保ったままリサイズしてセットします。
  */
