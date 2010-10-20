@@ -30,6 +30,8 @@
 #define kMusicPlayerDefaultNowInterval 60 * 5
 #define kNowButtonFrame (CGRectMake(35.0f, 40.0f, 30.0f, 25.0f))
 #define kNowButtonAlpha 0.7f
+#define kPlayButtonFrame (CGRectMake(105.0f, 40.0f, 50.0f, 50.0f))
+#define kPlayButtonAlpha 0.7f
 
 @interface MusicPlayerViewController : UIViewController 
 <UITableViewDataSource, UITableViewDelegate> {
@@ -37,50 +39,52 @@
   NSArray *timeline;
 
 @private
-  NSArray *beforeTimeline;
-  UIImageView *albumImageView;
-  UISlider *volumeSlider;
-  UIButton *playButton;
-  UIButton *button;
-  NSMutableArray *profileImageButtons;
-  NSMutableArray *nowButtons;
-  MPMusicPlayerController *musicPlayer;
-  UIView *songView;
-  UITableView *listView;
-  NSArray *playLists;
-  NSArray *albumLists;
-  NSInteger listmode;
-  NSString *refreshProfileImagesMutex;
-  UIViewController *songListController;
-  UIView *settingView;
-  UISegmentedControl *repeatModeControll;
   BOOL autoTweetMode;
-  UISwitch *autoTweetSwitch;
-  UIView *baseView;
+  MPMusicPlayerController *musicPlayer;
+  NSArray *albumLists;
+  NSArray *beforeTimeline;
+  NSArray *playLists;
+  NSInteger listmode;
+  NSMutableArray *nowButtons;
+  NSMutableArray *profileImageButtons;
+  NSString *refreshProfileImagesMutex;
+  UIButton *button;
+  UIButton *playButton;
+  UIImageView *albumImageView;
   UISegmentedControl *musicSegmentedControl;
+  UISegmentedControl *repeatModeControll;
+  UISlider *volumeSlider;
+  UISwitch *autoTweetSwitch;
+  UITableView *listView;
+  UIView *baseView;
+  UIView *musicControllerView;
+  UIView *settingView;
+  UIView *songView;
+  UIViewController *songListController;
 }
 
-@property (nonatomic, retain) NSArray *timeline;
-@property (nonatomic, retain) NSArray *beforeTimeline;
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
-@property (nonatomic, retain) IBOutlet UIImageView *albumImageView;
-@property (nonatomic, retain) IBOutlet UISlider *volumeSlider;
-@property (nonatomic, retain) IBOutlet UIButton *playButton;
 @property (nonatomic, retain) IBOutlet UIButton *button;
-@property (nonatomic, retain) NSMutableArray *profileImageButtons;
-@property (nonatomic, retain) NSMutableArray *nowButtons;
-@property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
-@property (nonatomic, retain) IBOutlet UIView *songView;
+@property (nonatomic, retain) IBOutlet UIButton *playButton;
+@property (nonatomic, retain) IBOutlet UIImageView *albumImageView;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *musicSegmentedControl;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *repeatModeControll;
+@property (nonatomic, retain) IBOutlet UISlider *volumeSlider;
+@property (nonatomic, retain) IBOutlet UISwitch *autoTweetSwitch;
 @property (nonatomic, retain) IBOutlet UITableView *listView;
 @property (nonatomic, retain) IBOutlet UIView *settingView;
-@property (nonatomic, retain) NSArray *playLists;
+@property (nonatomic, retain) IBOutlet UIView *songView;
+@property (nonatomic, retain) IBOutlet UIView *musicControllerView;
+@property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 @property (nonatomic, retain) NSArray *albumLists;
+@property (nonatomic, retain) NSArray *beforeTimeline;
+@property (nonatomic, retain) NSArray *playLists;
+@property (nonatomic, retain) NSArray *timeline;
+@property (nonatomic, retain) NSMutableArray *nowButtons;
+@property (nonatomic, retain) NSMutableArray *profileImageButtons;
 @property (nonatomic, retain) NSString *refreshProfileImagesMutex;
-@property (nonatomic, retain) UIViewController *songListController;
-@property (nonatomic, retain) IBOutlet UISegmentedControl *repeatModeControll;
-@property (nonatomic, retain) IBOutlet UISwitch *autoTweetSwitch;
 @property (nonatomic, retain) UIView *baseView;
-@property (nonatomic, retain) IBOutlet UISegmentedControl *musicSegmentedControl;
+@property (nonatomic, retain) UIViewController *songListController;
 
 - (IBAction)changeMusicSegmentedControl:(id)sender;
 - (IBAction)changeAutoTweetMode:(id)sender;

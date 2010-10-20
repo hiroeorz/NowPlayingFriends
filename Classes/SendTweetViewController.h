@@ -10,10 +10,11 @@
 #import "NowPlayingFriendsAppDelegate.h"
 #import "TwitterClient.h"
 
-@interface SendTweetViewController : UIViewController {
+@interface SendTweetViewController : UIViewController <UITextViewDelegate> {
   TwitterClient *twitterClient;
   UITextView *editView;
   UILabel *letterCountLabel;
+  BOOL sending;
 }
 
 @property (nonatomic, retain, readonly) NowPlayingFriendsAppDelegate *appDelegate;

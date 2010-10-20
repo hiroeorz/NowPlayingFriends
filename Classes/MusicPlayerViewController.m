@@ -28,7 +28,9 @@
 - (UIButton *)nowButton:(SEL)selector
 		  frame:(CGRect)frame;
 - (void)addNowButton:(NSDictionary *)objects;
-
+- (UIButton *)playButton:(SEL)selector
+		   frame:(CGRect)frame;
+- (void)addPlayButton:(NSDictionary *)objects;
 - (IBAction)changeRepeatMode:(id)sender;
 - (IBAction)openSettingView:(id)sender;
 - (void)closeSettingView;
@@ -47,71 +49,75 @@
 
 @implementation MusicPlayerViewController
 
-@synthesize timeline;
-@synthesize beforeTimeline;
-@synthesize albumImageView;
-@synthesize volumeSlider;
-@synthesize playButton;
-@synthesize button;
-@synthesize profileImageButtons;
-@synthesize nowButtons;
 @dynamic appDelegate;
-@synthesize musicPlayer;
-@synthesize songView;
-@synthesize listView;
-@synthesize playLists;
+@synthesize albumImageView;
 @synthesize albumLists;
-@synthesize refreshProfileImagesMutex;
-@synthesize songListController;
-@synthesize settingView;
-@synthesize repeatModeControll;
 @synthesize autoTweetSwitch;
 @synthesize baseView;
+@synthesize beforeTimeline;
+@synthesize button;
+@synthesize listView;
+@synthesize musicControllerView;
+@synthesize musicPlayer;
 @synthesize musicSegmentedControl;
+@synthesize nowButtons;
+@synthesize playButton;
+@synthesize playLists;
+@synthesize profileImageButtons;
+@synthesize refreshProfileImagesMutex;
+@synthesize repeatModeControll;
+@synthesize settingView;
+@synthesize songListController;
+@synthesize songView;
+@synthesize timeline;
+@synthesize volumeSlider;
 
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc {
-  [timeline release];
-  [beforeTimeline release];
+
   [albumImageView release];
-  [volumeSlider release];
-  [profileImageButtons release];
-  [nowButtons release];
-  [songView release];
-  [listView release];
-  [playLists release];
   [albumLists release];
-  [refreshProfileImagesMutex release];
-  [songListController release];
-  [settingView release];
-  [repeatModeControll release];
   [autoTweetSwitch release];
   [baseView release];
+  [beforeTimeline release];
+  [listView release];
+  [musicControllerView release];
   [musicSegmentedControl release];
+  [nowButtons release];
+  [playLists release];
+  [profileImageButtons release];
+  [refreshProfileImagesMutex release];
+  [repeatModeControll release];
+  [settingView release];
+  [songListController release];
+  [songView release];
+  [timeline release];
+  [volumeSlider release];
   [super dealloc];
 }
 
 - (void)viewDidUnload {
 
-  self.timeline = nil;
-  self.beforeTimeline = nil;
   self.albumImageView = nil;
-  self.volumeSlider = nil;
-  self.profileImageButtons = nil;
-  self.nowButtons = nil;
-  self.songView = nil;
-  self.listView = nil;
-  self.playLists = nil;
   self.albumLists = nil;
-  self.refreshProfileImagesMutex = nil;
-  self.songListController = nil;
-  self.settingView = nil;
-  self.repeatModeControll = nil;
   self.autoTweetSwitch = nil;
   self.baseView = nil;
+  self.beforeTimeline = nil;
+  self.listView = nil;
+  self.musicControllerView = nil;
   self.musicSegmentedControl = nil;
+  self.nowButtons = nil;
+  self.playLists = nil;
+  self.profileImageButtons = nil;
+  self.refreshProfileImagesMutex = nil;
+  self.repeatModeControll = nil;
+  self.settingView = nil;
+  self.songListController = nil;
+  self.songView = nil;
+  self.timeline = nil;
+  self.volumeSlider = nil;
   [super viewDidUnload];
 }
 
@@ -346,7 +352,8 @@
 	    withObject:nil];
     }
 
-    if (autoTweetMode) {
+    if (autoTweetMode && 
+	[musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
       [self performSelectorInBackground:@selector(sendAutoTweetAfterTimeLag)
 	    withObject:nil];
     }
@@ -640,6 +647,14 @@
   [nowButtons addObject:nowButton];
 }
 
+- (void)addPlayButton:(NSDictionary *)objects {
+
+  UIButton *aPlayButton = [self playButton:@selector(openUserInformationView:)
+				frame:kPlayButtonFrame];
+
+  [musicControllerView addSubview:aPlayButton];
+}
+
 /**
  * @brief 一定時間内のポストデータかどうかを判断する。
  */
@@ -667,6 +682,26 @@
   nowButton.alpha = kNowButtonAlpha;
   
   return nowButton;
+}
+
+- (UIButton *)playButton:(SEL)selector
+		   frame:(CGRect)frame {
+
+  UIButton *aPlayButton = [UIButton buttonWithType:111];
+  aPlayButton.frame = frame;
+  
+  [aPlayButton setImage:[UIImage imageNamed:@"Play.png"]
+	     forState:UIControlStateNormal];
+  
+  [aPlayButton setValue:[UIColor blackColor] forKey:@"tintColor"];
+
+  [aPlayButton addTarget:self action:selector
+	     forControlEvents:UIControlEventTouchUpInside];
+  
+  [aPlayButton setTitle:@"" forState:UIControlStateNormal];
+  aPlayButton.alpha = kPlayButtonAlpha;
+  
+  return aPlayButton;
 }
 
 #pragma mark -

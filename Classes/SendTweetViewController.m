@@ -50,6 +50,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  sending = NO;
+
   self.navigationItem.leftBarButtonItem = 
     [self.appDelegate cancelButton:@selector(closeEditView) target:self];
 
@@ -75,8 +77,10 @@
   editView.backgroundColor = [UIColor whiteColor];
   editView.textColor = [UIColor blackColor];
   editView.font = [UIFont systemFontOfSize:18];
-
   editView.text = [self.appDelegate tweetString];
+
+  //  [editView addTarget:self action:@selector()]
+  editView.delegate = self;
   [self.view addSubview:editView];
   [self countAndWriteTweetLength:[editView.text length]];
 
@@ -87,12 +91,16 @@
 
 - (void)closeEditView {
 
+  sending = NO;
   [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)sendTweet {
-  
-  [twitterClient updateStatus:editView.text delegate:self];
+
+  if (sending == NO) {
+    sending = YES;
+    [twitterClient updateStatus:editView.text delegate:self];
+  }
 }
 
 #pragma mark -
@@ -124,6 +132,8 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {
 
   NSLog(@"didFinishWithData");
+  sending = NO;
+
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   NSString *dataString = [[NSString alloc] 
 			   initWithData:data encoding:NSUTF8StringEncoding];
@@ -134,7 +144,10 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 }
 
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
+
   NSLog(@"didFailWithError");
+  sending = NO;
+
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   [self dismissModalViewControllerAnimated:YES];
 }
