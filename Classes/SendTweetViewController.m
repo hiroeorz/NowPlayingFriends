@@ -79,7 +79,6 @@
   editView.font = [UIFont systemFontOfSize:18];
   editView.text = [self.appDelegate tweetString];
 
-  //  [editView addTarget:self action:@selector()]
   editView.delegate = self;
   [self.view addSubview:editView];
   [self countAndWriteTweetLength:[editView.text length]];
