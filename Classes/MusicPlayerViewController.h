@@ -30,7 +30,7 @@
 #define kMusicPlayerDefaultNowInterval 60 * 5
 #define kNowButtonFrame (CGRectMake(35.0f, 40.0f, 30.0f, 25.0f))
 #define kNowButtonAlpha 0.7f
-#define kPlayButtonFrame (CGRectMake(105.0f, 40.0f, 50.0f, 50.0f))
+#define kPlayButtonFrame (CGRectMake(210.0f, 17.5f, 70.0f, 70.0f))
 #define kPlayButtonAlpha 0.7f
 
 @interface MusicPlayerViewController : UIViewController 
@@ -93,6 +93,8 @@
 - (IBAction)skipToNextItem:(id)sender;
 - (IBAction)skipToBeginningOrPreviousItem:(id)sender;
 - (IBAction)skipToPreviousItem:(id)sender;
+- (IBAction)changeRepeatMode:(id)sender;
+- (IBAction)openSettingView:(id)sender;
 
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;

@@ -28,9 +28,8 @@
 - (UIButton *)nowButton:(SEL)selector
 		  frame:(CGRect)frame;
 - (void)addNowButton:(NSDictionary *)objects;
-- (UIButton *)playButton:(SEL)selector
-		   frame:(CGRect)frame;
-- (void)addPlayButton:(NSDictionary *)objects;
+- (UIButton *)playButton:(CGRect)frame;
+- (void)addPlayButton;
 - (IBAction)changeRepeatMode:(id)sender;
 - (IBAction)openSettingView:(id)sender;
 - (void)closeSettingView;
@@ -161,6 +160,8 @@
 
   [self.appDelegate checkAuthenticateWithController:self];
   [super viewDidLoad];
+
+  [self addPlayButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -279,7 +280,7 @@
 
     image = [UIImage imageNamed:@"Play.png"];
     miniImage = [UIImage imageNamed:@"Play_mini.png"];
-    [playButton setBackgroundImage:image 
+    [playButton setImage:image 
 		forState:UIControlStateNormal];
     [musicSegmentedControl setImage:miniImage
 			   forSegmentAtIndex:1];
@@ -290,7 +291,7 @@
 
     image = [UIImage imageNamed:@"Pause.png"];
     miniImage = [UIImage imageNamed:@"Pause_mini.png"];
-    [playButton setBackgroundImage:image 
+    [playButton setImage:image 
 		forState:UIControlStateNormal];
     [musicSegmentedControl setImage:miniImage
 			   forSegmentAtIndex:1];
@@ -301,7 +302,7 @@
 
     image = [UIImage imageNamed:@"Play.png"];
     miniImage = [UIImage imageNamed:@"Play_mini.png"];
-    [playButton setBackgroundImage:image 
+    [playButton setImage:image 
 		forState:UIControlStateNormal];    
     [musicSegmentedControl setImage:miniImage
 			   forSegmentAtIndex:1];
@@ -647,12 +648,11 @@
   [nowButtons addObject:nowButton];
 }
 
-- (void)addPlayButton:(NSDictionary *)objects {
+- (void)addPlayButton {
 
-  UIButton *aPlayButton = [self playButton:@selector(openUserInformationView:)
-				frame:kPlayButtonFrame];
+  self.playButton = [self playButton:kPlayButtonFrame];
 
-  [musicControllerView addSubview:aPlayButton];
+  [musicControllerView addSubview:playButton];
 }
 
 /**
@@ -684,8 +684,7 @@
   return nowButton;
 }
 
-- (UIButton *)playButton:(SEL)selector
-		   frame:(CGRect)frame {
+- (UIButton *)playButton:(CGRect)frame {
 
   UIButton *aPlayButton = [UIButton buttonWithType:111];
   aPlayButton.frame = frame;
@@ -693,14 +692,15 @@
   [aPlayButton setImage:[UIImage imageNamed:@"Play.png"]
 	     forState:UIControlStateNormal];
   
-  [aPlayButton setValue:[UIColor blackColor] forKey:@"tintColor"];
+  UIColor *playButtonColor = [UIColor blackColor];
+  [aPlayButton setValue:playButtonColor forKey:@"tintColor"];
 
-  [aPlayButton addTarget:self action:selector
-	     forControlEvents:UIControlEventTouchUpInside];
+  [aPlayButton addTarget:self action:@selector(togglePlayStop:)
+	       forControlEvents:UIControlEventTouchUpInside];
   
   [aPlayButton setTitle:@"" forState:UIControlStateNormal];
   aPlayButton.alpha = kPlayButtonAlpha;
-  
+
   return aPlayButton;
 }
 
