@@ -253,15 +253,15 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				54C1DCA61214EC6A00EBD811 /* OAuthConsumer */,
+				54C1DCFA1215103000EBD811 /* JSON */,
 				54A9698C1230C752004CF186 /* HomeTimelineViewController.h */,
 				54A9698A1230C743004CF186 /* HomeTimelineViewController.m */,
 				54A96874122FA322004CF186 /* MentionsTimelineViewController.m */,
 				54A96873122FA316004CF186 /* MentionsTimelineViewController.h */,
 				54651251122A3321003DE639 /* SongsListViewController.h */,
 				54651252122A3321003DE639 /* SongsListViewController.m */,
-				54C1DCFA1215103000EBD811 /* JSON */,
 				54C1DCF712150D1000EBD811 /* TwitterClient+ConsumerKey.h */,
-				54C1DCA61214EC6A00EBD811 /* OAuthConsumer */,
 				1D3623240D0F684500981E51 /* NowPlayingFriendsAppDelegate.h */,
 				1D3623250D0F684500981E51 /* NowPlayingFriendsAppDelegate.m */,
 				54C1DC3A1213F3ED00EBD811 /* FriendsViewController.h */,
