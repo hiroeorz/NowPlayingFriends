@@ -22,6 +22,7 @@
 @property (nonatomic, retain) IBOutlet UITextView *editView;
 @property (nonatomic, retain) IBOutlet UILabel *letterCountLabel;
 
+- (IBAction)clearText:(id)sender;
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 - (void)countAndWriteTweetLength:(NSInteger)textcount;

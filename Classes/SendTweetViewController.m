@@ -69,15 +69,15 @@
   [super viewDidAppear:animated];
 
   CGRect frame;
-  frame.origin.x = 20;
-  frame.origin.y = 20;
-  frame.size.width = 280;
-  frame.size.height = 135;
-  editView.frame = frame;
+  frame.origin.x = 5;
+  frame.origin.y = 5;
+  frame.size.width = 310;
+  frame.size.height = 140;
   editView.backgroundColor = [UIColor whiteColor];
   editView.textColor = [UIColor blackColor];
-  editView.font = [UIFont systemFontOfSize:18];
+  editView.font = [UIFont systemFontOfSize:15];
   editView.text = [self.appDelegate tweetString];
+  editView.frame = frame;
 
   editView.delegate = self;
   [self.view addSubview:editView];
@@ -100,6 +100,10 @@
     sending = YES;
     [twitterClient updateStatus:editView.text delegate:self];
   }
+}
+
+- (IBAction)clearText:(id)sender {
+  editView.text = @"";
 }
 
 #pragma mark -
