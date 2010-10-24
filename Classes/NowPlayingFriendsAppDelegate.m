@@ -6,16 +6,17 @@
 //  Copyright __MyCompanyName__ 2010. All rights reserved.
 //
 
+#import "ArtistFriendsViewController.h"
+#import "HomeTimelineViewController.h"
+#import "MentionsTimelineViewController.h"
+#import "MusicPlayerViewController.h"
 #import "NowPlayingFriendsAppDelegate.h"
 #import "NowPlayingViewController.h"
+#import "SettingViewController.h"
 #import "SongFriendsViewController.h"
-#import "ArtistFriendsViewController.h"
-#import "MusicPlayerViewController.h"
 #import "TwitterClient.h"
 #import "UserAuthenticationViewController.h"
 #import "UserTimelineViewController.h"
-#import "MentionsTimelineViewController.h"
-#import "HomeTimelineViewController.h"
 
 @implementation NowPlayingFriendsAppDelegate
 
@@ -195,6 +196,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSMutableArray *controllers = [[NSMutableArray alloc] init];
   UIViewController *viewController;
   UINavigationController *navController;
+  NSString *username = [client username];
 
   /* Music Player */
   viewController = [[MusicPlayerViewController alloc] 
@@ -226,31 +228,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [controllers addObject:navController];
   [viewController release];
 
-  /* Now */
-  viewController = [[NowPlayingViewController alloc] 
-		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];
-
-  navController = [self navigationWithViewController:viewController
-			title:@"Now Playing"  imageName:@"09-chat2.png"];
-
-  [controllers addObject:navController];
-  [viewController release];
-
-  NSString *username = [client username];
-
-
-  /* Homeimeline */
-  viewController = [[HomeTimelineViewController alloc] 
-		     initWithNibName:@"NowPlayingViewControllers"
-		     bundle:nil];
-  
-  navController = [self navigationWithViewController:viewController
-			title:@"Home"  
-			imageName:@"53-house.png"];
-  
-  [controllers addObject:navController];
-  [viewController release];
-  
   /* MentionsTimeline */
   viewController = [[MentionsTimelineViewController alloc] 
 		     initWithNibName:@"NowPlayingViewControllers"
@@ -259,6 +236,18 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   navController = [self navigationWithViewController:viewController
 			title:@"Mentions"  
 			imageName:@"18-envelope.png"];
+  
+  [controllers addObject:navController];
+  [viewController release];
+  
+  /* Homeimeline */
+  viewController = [[HomeTimelineViewController alloc] 
+		     initWithNibName:@"NowPlayingViewControllers"
+		     bundle:nil];
+  
+  navController = [self navigationWithViewController:viewController
+			title:@"Home"  
+			imageName:@"53-house.png"];
   
   [controllers addObject:navController];
   [viewController release];
@@ -274,6 +263,16 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [controllers addObject:navController];
   [viewController release];
 
+  /* Now */
+  viewController = [[NowPlayingViewController alloc] 
+		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];
+
+  navController = [self navigationWithViewController:viewController
+			title:@"Now Playing"  imageName:@"09-chat2.png"];
+
+  [controllers addObject:navController];
+  [viewController release];
+
   /* UserAuth */
   viewController = [[UserAuthenticationViewController alloc] 
 		     initWithNibName:@"UserAuthenticationViewController" 
@@ -282,6 +281,18 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   navController = [self navigationWithViewController:viewController
 			title:@"Authentication"  
 			imageName:@"30-key.png"];
+
+  [controllers addObject:navController];
+  [viewController release];
+
+  /* SettingViewController */
+  viewController = [[SettingViewController alloc] 
+		     initWithNibName:@"SettingViewController" 
+		     bundle:nil];
+
+  navController = [self navigationWithViewController:viewController
+			title:@"Settings"  
+			imageName:@"20-gear2.png"];
 
   [controllers addObject:navController];
   [viewController release];

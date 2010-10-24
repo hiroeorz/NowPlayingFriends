@@ -14,6 +14,9 @@
 		28193060112F816700ECF9B4 /* NowPlayingFriends.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2819305F112F816700ECF9B4 /* NowPlayingFriends.xcdatamodeld */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		5420CC401274138F002C94DC /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5420CC3E1274138F002C94DC /* SettingViewController.m */; };
+		5420CC411274138F002C94DC /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5420CC3F1274138F002C94DC /* SettingViewController.xib */; };
+		5420CC4A12741732002C94DC /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5420CC4912741732002C94DC /* 20-gear2.png */; };
 		544FA54512448640003BFB95 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 544FA54412448640003BFB95 /* Default.png */; };
 		54651253122A3321003DE639 /* SongsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54651252122A3321003DE639 /* SongsListViewController.m */; };
 		546512A5122B50E1003DE639 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546512A4122B50E1003DE639 /* QuartzCore.framework */; };
@@ -106,6 +109,10 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* NowPlayingFriends_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingFriends_Prefix.pch; sourceTree = "<group>"; };
+		5420CC3D1274138F002C94DC /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		5420CC3E1274138F002C94DC /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		5420CC3F1274138F002C94DC /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingViewController.xib; path = Classes/SettingViewController.xib; sourceTree = "<group>"; };
+		5420CC4912741732002C94DC /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
 		544FA54412448640003BFB95 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		54651251122A3321003DE639 /* SongsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongsListViewController.h; sourceTree = "<group>"; };
 		54651252122A3321003DE639 /* SongsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongsListViewController.m; sourceTree = "<group>"; };
@@ -292,6 +299,8 @@
 				5480CA2D1227EF3100F6E1C6 /* UserAuthenticationViewController.m */,
 				5480CA9712289CB700F6E1C6 /* SendTweetViewController.h */,
 				5480CA9812289CB700F6E1C6 /* SendTweetViewController.m */,
+				5420CC3D1274138F002C94DC /* SettingViewController.h */,
+				5420CC3E1274138F002C94DC /* SettingViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -329,6 +338,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5420CC3F1274138F002C94DC /* SettingViewController.xib */,
 				54BDCD62126D59F600958FDA /* no_artwork_mini.png */,
 				5480E3821238EB1800FF2271 /* icon.png */,
 				546515D9122E2667003DE639 /* no_artwork_image.jpg */,
@@ -368,6 +378,7 @@
 		5480C3B4121FA0CA00F6E1C6 /* tabBarIcons */ = {
 			isa = PBXGroup;
 			children = (
+				5420CC4912741732002C94DC /* 20-gear2.png */,
 				54E7C6B91245D126006EDACE /* 23-bird.png */,
 				54E7C6B71245D0E8006EDACE /* 18-envelope.png */,
 				54E7C6B01245D027006EDACE /* 53-house.png */,
@@ -574,6 +585,8 @@
 				54E7C6B81245D0E8006EDACE /* 18-envelope.png in Resources */,
 				54E7C6BA1245D126006EDACE /* 23-bird.png in Resources */,
 				54BDCD63126D59F600958FDA /* no_artwork_mini.png in Resources */,
+				5420CC411274138F002C94DC /* SettingViewController.xib in Resources */,
+				5420CC4A12741732002C94DC /* 20-gear2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +639,7 @@
 				54651253122A3321003DE639 /* SongsListViewController.m in Sources */,
 				54A96875122FA322004CF186 /* MentionsTimelineViewController.m in Sources */,
 				54A9698B1230C743004CF186 /* HomeTimelineViewController.m in Sources */,
+				5420CC401274138F002C94DC /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -68,16 +68,8 @@
 
   [super viewDidAppear:animated];
 
-  CGRect frame;
-  frame.origin.x = 5;
-  frame.origin.y = 5;
-  frame.size.width = 310;
-  frame.size.height = 140;
-  editView.backgroundColor = [UIColor whiteColor];
-  editView.textColor = [UIColor blackColor];
-  editView.font = [UIFont systemFontOfSize:15];
+  setTweetEditField(editView, 5.0f, 310.0f, 140.0f);
   editView.text = [self.appDelegate tweetString];
-  editView.frame = frame;
 
   editView.delegate = self;
   [self.view addSubview:editView];

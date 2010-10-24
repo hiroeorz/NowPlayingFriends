@@ -86,15 +86,19 @@
 @property (nonatomic, retain) UIView *baseView;
 @property (nonatomic, retain) UIViewController *songListController;
 
-- (IBAction)changeMusicSegmentedControl:(id)sender;
 - (IBAction)changeAutoTweetMode:(id)sender;
-- (IBAction)changeVolume:(id)sender;
-- (IBAction)togglePlayStop:(id)sender;
-- (IBAction)skipToNextItem:(id)sender;
-- (IBAction)skipToBeginningOrPreviousItem:(id)sender;
-- (IBAction)skipToPreviousItem:(id)sender;
+- (IBAction)changeMusicSegmentedControl:(id)sender;
 - (IBAction)changeRepeatMode:(id)sender;
+- (IBAction)changeRepeatMode:(id)sender;
+- (IBAction)changeVolume:(id)sender;
+- (IBAction)closeSettingView:(id)sender;
 - (IBAction)openSettingView:(id)sender;
+- (IBAction)openSettingView:(id)sender;
+- (IBAction)skipToBeginningOrPreviousItem:(id)sender;
+- (IBAction)skipToNextItem:(id)sender;
+- (IBAction)skipToPreviousItem:(id)sender;
+- (IBAction)togglePlayStop:(id)sender;
+- (IBAction)closeSettingView:(id)sender;
 
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;

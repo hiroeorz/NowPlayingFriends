@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="54"/>
+			<integer value="34"/>
 			<integer value="36"/>
-			<integer value="7"/>
+			<integer value="54"/>
 			<integer value="4"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -539,15 +539,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">closeSettingView:</string>
-						<reference key="source" ref="636618852"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">40</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">changeRepeatMode:</string>
 						<reference key="source" ref="816912125"/>
 						<reference key="destination" ref="372490531"/>
@@ -604,6 +595,15 @@
 						<reference key="destination" ref="292323937"/>
 					</object>
 					<int key="connectionID">61</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">closeSettingView:</string>
+						<reference key="source" ref="636618852"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">62</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -833,7 +833,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABDkYAAw7sAAA</bytes>
 					</object>
-					<string>{{48, 589}, {320, 367}}</string>
+					<string>{{54, 589}, {320, 367}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -857,7 +857,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABBUAAAw4wAAA</bytes>
 					</object>
-					<string>{{48, 496}, {320, 460}}</string>
+					<string>{{54, 496}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -887,7 +887,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">61</int>
+			<int key="maxID">62</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -911,6 +911,7 @@
 							<string>changeMusicSegmentedControl:</string>
 							<string>changeRepeatMode:</string>
 							<string>changeVolume:</string>
+							<string>closeSettingView:</string>
 							<string>openSettingView:</string>
 							<string>skipToBeginningOrPreviousItem:</string>
 							<string>skipToNextItem:</string>
@@ -919,6 +920,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -938,6 +940,7 @@
 							<string>changeMusicSegmentedControl:</string>
 							<string>changeRepeatMode:</string>
 							<string>changeVolume:</string>
+							<string>closeSettingView:</string>
 							<string>openSettingView:</string>
 							<string>skipToBeginningOrPreviousItem:</string>
 							<string>skipToNextItem:</string>
@@ -960,6 +963,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">changeVolume:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">closeSettingView:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">

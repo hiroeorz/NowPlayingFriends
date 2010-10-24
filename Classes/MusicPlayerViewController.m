@@ -30,10 +30,6 @@
 - (void)addNowButton:(NSDictionary *)objects;
 - (UIButton *)playButton:(CGRect)frame;
 - (void)addPlayButton;
-- (IBAction)changeRepeatMode:(id)sender;
-- (IBAction)openSettingView:(id)sender;
-- (void)closeSettingView;
-- (IBAction)closeSettingView:(id)sender;
 - (void)openEditView;
 - (void)changeToListview;
 - (void)changeToSongview;
@@ -753,7 +749,7 @@
 
 - (IBAction)closeSettingView:(id)sender {
 
-  [self closeSettingView];
+  [self closeSettingView:nil];
 }
 
 - (void)closeSettingView {

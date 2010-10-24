@@ -10,6 +10,20 @@
 #import "NowPlayingFriendsAppDelegate.h"
 #import "TwitterClient.h"
 
+
+#define setTweetEditField(aEditView, kXPosition, kWidth, kHeight)  \
+                          CGRect frame;	      \
+                          frame.origin.x = kXPosition; \
+                          frame.origin.y = 5; \
+                          frame.size.width = kWidth; \
+                          frame.size.height = kHeight; \
+                          aEditView.backgroundColor = [UIColor whiteColor]; \
+                          aEditView.textColor = [UIColor blackColor]; \
+                          aEditView.font = [UIFont systemFontOfSize:15]; \
+                          aEditView.frame = frame;
+
+
+
 @interface SendTweetViewController : UIViewController <UITextViewDelegate> {
   TwitterClient *twitterClient;
   UITextView *editView;
