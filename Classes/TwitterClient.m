@@ -111,8 +111,6 @@
     return;
   }
 
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
   NSURL *baseUrl = [NSURL URLWithString:kUpdateStatusURL];
   OAMutableURLRequest *request = [self authenticatedRequest:baseUrl];
 

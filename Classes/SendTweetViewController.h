@@ -25,16 +25,21 @@
 
 
 @interface SendTweetViewController : UIViewController <UITextViewDelegate> {
-  TwitterClient *twitterClient;
-  UITextView *editView;
-  UILabel *letterCountLabel;
+
   BOOL sending;
+  TwitterClient *twitterClient;
+  UIActivityIndicatorView *indicator;
+  UILabel *letterCountLabel;
+  UITextView *editView;
+  UIView *indicatorBase;
 }
 
-@property (nonatomic, retain, readonly) NowPlayingFriendsAppDelegate *appDelegate;
-@property (nonatomic, retain) TwitterClient *twitterClient;
-@property (nonatomic, retain) IBOutlet UITextView *editView;
 @property (nonatomic, retain) IBOutlet UILabel *letterCountLabel;
+@property (nonatomic, retain) IBOutlet UITextView *editView;
+@property (nonatomic, retain) TwitterClient *twitterClient;
+@property (nonatomic, retain) UIActivityIndicatorView *indicator;
+@property (nonatomic, retain) UIView *indicatorBase;
+@property (nonatomic, retain, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 
 - (IBAction)clearText:(id)sender;
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;

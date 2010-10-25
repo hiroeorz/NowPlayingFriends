@@ -9,15 +9,26 @@
 #import "SendTweetViewController.h"
 
 
+@interface SendTweetViewController (Local)
+- (void)startIndicator;
+- (void)stopIndicator;
+- (void)stopIndicatoWithThread;
+@end
+
+
 @implementation SendTweetViewController
 
 @dynamic appDelegate;
+@synthesize indicator;
+@synthesize indicatorBase;
 @synthesize twitterClient;
 @synthesize editView;
 @synthesize letterCountLabel;
 
 - (void)dealloc {
 
+  [indicator release];
+  [indicatorBase release];
   [twitterClient release];
   [editView release];
   [letterCountLabel release];
@@ -26,6 +37,8 @@
 
 - (void)viewDidUnload {
 
+  self.indicator = nil;
+  self.indicatorBase = nil;
   self.twitterClient = nil;
   self.editView = nil;
   self.letterCountLabel = nil;
@@ -90,6 +103,11 @@
 
   if (sending == NO) {
     sending = YES;
+    editView.backgroundColor = [UIColor colorWithRed: 0.6f green:0.6f blue:0.6f
+					alpha:0.9];
+    editView.editable = NO;
+    [self startIndicator];
+  
     [twitterClient updateStatus:editView.text delegate:self];
   }
 }
@@ -128,8 +146,9 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 
   NSLog(@"didFinishWithData");
   sending = NO;
+  [self performSelectorInBackground:@selector(stopIndicatoWithThread)
+  	withObject:nil];
 
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   NSString *dataString = [[NSString alloc] 
 			   initWithData:data encoding:NSUTF8StringEncoding];
 
@@ -142,6 +161,8 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 
   NSLog(@"didFailWithError");
   sending = NO;
+  [self performSelectorInBackground:@selector(stopIndicatoWithThread)
+  	withObject:nil];
 
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   [self dismissModalViewControllerAnimated:YES];
@@ -150,6 +171,50 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 
 #pragma mark -
 #pragma mark Local Methods
+
+- (void)stopIndicatoWithThread {
+
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+  [self stopIndicator];
+  [pool release];
+}
+
+- (void)startIndicator {
+
+  UIView *baseView = [[UIView alloc] 
+		       initWithFrame:CGRectMake(0.0, 0.0, 320, 367)];
+  self.indicatorBase = baseView;
+  [baseView release];
+
+  UIColor *baseColor = [[UIColor alloc] initWithRed:0.0
+					green:0.0
+					blue:0.0
+					alpha:0.4];
+  indicatorBase.backgroundColor = baseColor;
+  [baseColor release];
+
+  UIActivityIndicatorView *indicatorView = 
+    [[UIActivityIndicatorView alloc] 
+      initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+  indicatorView.frame = CGRectMake(135.0, 135.0, 50.0, 50.0);
+
+  self.indicator = indicatorView;
+  [indicatorView release];
+    
+
+  [indicatorBase addSubview:indicator];
+  [self.view addSubview:indicatorBase];
+  [indicator startAnimating];
+}
+
+- (void)stopIndicator {
+  [indicator stopAnimating];
+  [indicator removeFromSuperview];
+  [indicatorBase removeFromSuperview];
+
+  self.indicator = nil;
+  self.indicatorBase = nil;
+}
 
 - (NowPlayingFriendsAppDelegate *)appDelegate {
   return [[UIApplication sharedApplication] delegate];
