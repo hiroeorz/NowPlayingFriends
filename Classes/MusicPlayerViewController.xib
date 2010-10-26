@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="34"/>
 			<integer value="36"/>
 			<integer value="54"/>
+			<integer value="34"/>
 			<integer value="4"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -202,7 +202,7 @@
 					<object class="IBUILabel" id="376060344">
 						<reference key="NSNextResponder" ref="483057754"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{28, 204}, {69, 21}}</string>
+						<string key="NSFrame">{{28, 229}, {69, 21}}</string>
 						<reference key="NSSuperview" ref="483057754"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -218,11 +218,12 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
+						<int key="IBUITextAlignment">2</int>
 					</object>
 					<object class="IBUILabel" id="183301791">
 						<reference key="NSNextResponder" ref="483057754"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{13, 264}, {84, 21}}</string>
+						<string key="NSFrame">{{13, 289}, {84, 21}}</string>
 						<reference key="NSSuperview" ref="483057754"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -238,11 +239,12 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
+						<int key="IBUITextAlignment">2</int>
 					</object>
 					<object class="IBUISegmentedControl" id="816912125">
 						<reference key="NSNextResponder" ref="483057754"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{110, 195}, {190, 40}}</string>
+						<string key="NSFrame">{{110, 220}, {190, 40}}</string>
 						<reference key="NSSuperview" ref="483057754"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -280,10 +282,72 @@
 							<reference ref="4"/>
 						</object>
 					</object>
+					<object class="IBUILabel" id="74422823">
+						<reference key="NSNextResponder" ref="483057754"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{7, 168}, {90, 21}}</string>
+						<reference key="NSSuperview" ref="483057754"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">7</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<string key="IBUIText">SHUFFLE</string>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MSAxIDEAA</bytes>
+							<reference key="NSCustomColorSpace" ref="499470317"/>
+						</object>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<float key="IBUIMinimumFontSize">10</float>
+						<int key="IBUITextAlignment">2</int>
+					</object>
+					<object class="IBUISegmentedControl" id="84121575">
+						<reference key="NSNextResponder" ref="483057754"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{110, 159}, {190, 40}}</string>
+						<reference key="NSSuperview" ref="483057754"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBSegmentControlStyle">3</int>
+						<int key="IBNumberOfSegments">3</int>
+						<int key="IBSelectedSegmentIndex">0</int>
+						<object class="NSArray" key="IBSegmentTitles">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>OFF</string>
+							<string>Song</string>
+							<string>List</string>
+						</object>
+						<object class="NSMutableArray" key="IBSegmentWidths">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<real value="0.0"/>
+							<real value="0.0"/>
+							<real value="0.0"/>
+						</object>
+						<object class="NSMutableArray" key="IBSegmentEnabledStates">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<boolean value="YES"/>
+							<boolean value="YES"/>
+							<boolean value="YES"/>
+						</object>
+						<object class="NSMutableArray" key="IBSegmentContentOffsets">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>{0, 0}</string>
+							<string>{0, 0}</string>
+							<string>{0, 0}</string>
+						</object>
+						<object class="NSMutableArray" key="IBSegmentImages">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="4"/>
+							<reference ref="4"/>
+							<reference ref="4"/>
+						</object>
+					</object>
 					<object class="IBUISegmentedControl" id="355124447">
 						<reference key="NSNextResponder" ref="483057754"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{110, 255}, {190, 40}}</string>
+						<string key="NSFrame">{{110, 280}, {190, 40}}</string>
 						<reference key="NSSuperview" ref="483057754"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -605,6 +669,23 @@
 					</object>
 					<int key="connectionID">62</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">changeShuffleMode:</string>
+						<reference key="source" ref="84121575"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">66</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">shuffleModeControll</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="84121575"/>
+					</object>
+					<int key="connectionID">67</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -684,6 +765,8 @@
 							<reference ref="816912125"/>
 							<reference ref="355124447"/>
 							<reference ref="636618852"/>
+							<reference ref="74422823"/>
+							<reference ref="84121575"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -754,6 +837,16 @@
 						<reference key="object" ref="520075226"/>
 						<reference key="parent" ref="368109915"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">63</int>
+						<reference key="object" ref="74422823"/>
+						<reference key="parent" ref="483057754"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">64</int>
+						<reference key="object" ref="84121575"/>
+						<reference key="parent" ref="483057754"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -796,6 +889,10 @@
 					<string>54.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
 					<string>6.IBViewBoundsToFrameTransform</string>
+					<string>63.IBPluginDependency</string>
+					<string>63.IBViewBoundsToFrameTransform</string>
+					<string>64.IBPluginDependency</string>
+					<string>64.IBViewBoundsToFrameTransform</string>
 					<string>7.CustomClassName</string>
 					<string>7.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
@@ -827,7 +924,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABC3AAAw2YAAA</bytes>
+						<bytes key="NSTransformStruct">AULcAABDXAAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -837,7 +934,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABB4AAAw1wAAA</bytes>
+						<bytes key="NSTransformStruct">AUHgAABDZQAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -863,6 +960,14 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAw5mAAA</bytes>
 					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABB4AAAw1wAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABC3AAAw2YAAA</bytes>
+					</object>
 					<string>MusicControllerView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -887,7 +992,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">62</int>
+			<int key="maxID">67</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -910,6 +1015,7 @@
 							<string>changeAutoTweetMode:</string>
 							<string>changeMusicSegmentedControl:</string>
 							<string>changeRepeatMode:</string>
+							<string>changeShuffleMode:</string>
 							<string>changeVolume:</string>
 							<string>closeSettingView:</string>
 							<string>openSettingView:</string>
@@ -930,6 +1036,7 @@
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
+							<string>id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
@@ -939,6 +1046,7 @@
 							<string>changeAutoTweetMode:</string>
 							<string>changeMusicSegmentedControl:</string>
 							<string>changeRepeatMode:</string>
+							<string>changeShuffleMode:</string>
 							<string>changeVolume:</string>
 							<string>closeSettingView:</string>
 							<string>openSettingView:</string>
@@ -959,6 +1067,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">changeRepeatMode:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">changeShuffleMode:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -1004,6 +1116,7 @@
 							<string>playButton</string>
 							<string>repeatModeControll</string>
 							<string>settingView</string>
+							<string>shuffleModeControll</string>
 							<string>songView</string>
 							<string>volumeSlider</string>
 						</object>
@@ -1018,6 +1131,7 @@
 							<string>UIButton</string>
 							<string>UISegmentedControl</string>
 							<string>UIView</string>
+							<string>UISegmentedControl</string>
 							<string>UIView</string>
 							<string>UISlider</string>
 						</object>
@@ -1035,6 +1149,7 @@
 							<string>playButton</string>
 							<string>repeatModeControll</string>
 							<string>settingView</string>
+							<string>shuffleModeControll</string>
 							<string>songView</string>
 							<string>volumeSlider</string>
 						</object>
@@ -1075,6 +1190,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">settingView</string>
 								<string key="candidateClassName">UIView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">shuffleModeControll</string>
+								<string key="candidateClassName">UISegmentedControl</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">songView</string>

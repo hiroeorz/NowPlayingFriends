@@ -703,20 +703,18 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   }
   
   if (newImage != nil && [profileImages objectForKey:imageURLString] == nil) {
-    @synchronized(profileImages) {
-      if ([profileImagesIndex count] > kProfileImageMaxMemoryCacheCount) {
-	NSString *key = [profileImagesIndex lastObject];
-	[profileImages removeObjectForKey:key];
-	[profileImagesIndex removeLastObject];
-      }
-
-      [profileImages setObject:newImage forKey:imageURLString];
-
-      if ([profileImagesIndex count] == 0) {
-	[profileImagesIndex addObject:imageURLString];
-      } else {
-	[profileImagesIndex insertObject:imageURLString atIndex:0];
-      }
+    if ([profileImagesIndex count] > kProfileImageMaxMemoryCacheCount) {
+      NSString *key = [profileImagesIndex lastObject];
+      [profileImages removeObjectForKey:key];
+      [profileImagesIndex removeLastObject];
+    }
+    
+    [profileImages setObject:newImage forKey:imageURLString];
+    
+    if ([profileImagesIndex count] == 0) {
+      [profileImagesIndex addObject:imageURLString];
+    } else {
+      [profileImagesIndex insertObject:imageURLString atIndex:0];
     }
   }
 

@@ -22,6 +22,10 @@
 #define kListModeAlbum 0
 #define kListModePlayList 1
 
+#define kShuffleModeNone 0
+#define kShuffleModeOne 1
+#define kShuffleModeAll 2
+
 #define kRepeatModeNone 0
 #define kRepeatModeOne 1
 #define kRepeatModeAll 2
@@ -53,6 +57,7 @@
   UIImageView *albumImageView;
   UISegmentedControl *musicSegmentedControl;
   UISegmentedControl *repeatModeControll;
+  UISegmentedControl *shuffleModeControll;
   UISlider *volumeSlider;
   UISwitch *autoTweetSwitch;
   UITableView *listView;
@@ -69,12 +74,13 @@
 @property (nonatomic, retain) IBOutlet UIImageView *albumImageView;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *musicSegmentedControl;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *repeatModeControll;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *shuffleModeControll;
 @property (nonatomic, retain) IBOutlet UISlider *volumeSlider;
 @property (nonatomic, retain) IBOutlet UISwitch *autoTweetSwitch;
 @property (nonatomic, retain) IBOutlet UITableView *listView;
+@property (nonatomic, retain) IBOutlet UIView *musicControllerView;
 @property (nonatomic, retain) IBOutlet UIView *settingView;
 @property (nonatomic, retain) IBOutlet UIView *songView;
-@property (nonatomic, retain) IBOutlet UIView *musicControllerView;
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 @property (nonatomic, retain) NSArray *albumLists;
 @property (nonatomic, retain) NSArray *beforeTimeline;
@@ -88,7 +94,7 @@
 
 - (IBAction)changeAutoTweetMode:(id)sender;
 - (IBAction)changeMusicSegmentedControl:(id)sender;
-- (IBAction)changeRepeatMode:(id)sender;
+- (IBAction)changeShuffleMode:(id)sender;
 - (IBAction)changeRepeatMode:(id)sender;
 - (IBAction)changeVolume:(id)sender;
 - (IBAction)closeSettingView:(id)sender;
