@@ -29,16 +29,14 @@
 		  frame:(CGRect)frame;
 - (void)addNowButton:(NSDictionary *)objects;
 - (UIButton *)playButton:(CGRect)frame;
+- (void)closeSettingView;
 - (void)addPlayButton;
 - (void)openEditView;
 - (void)changeToListview;
 - (void)changeToSongview;
-
 - (void)sendAutoTweetAfterTimeLag;
 - (void)sendAutoTweet;
-
 - (NowPlayingFriendsAppDelegate *)appDelegate;
-
 @end
 
 
@@ -749,7 +747,7 @@
 
 - (IBAction)closeSettingView:(id)sender {
 
-  [self closeSettingView:nil];
+  [self closeSettingView];
 }
 
 - (void)closeSettingView {
