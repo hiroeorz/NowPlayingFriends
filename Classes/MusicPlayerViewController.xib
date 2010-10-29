@@ -12,10 +12,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="36"/>
 			<integer value="54"/>
-			<integer value="34"/>
 			<integer value="4"/>
+			<integer value="36"/>
+			<integer value="34"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -202,7 +202,7 @@
 					<object class="IBUILabel" id="376060344">
 						<reference key="NSNextResponder" ref="483057754"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{28, 229}, {69, 21}}</string>
+						<string key="NSFrame">{{28, 249}, {69, 21}}</string>
 						<reference key="NSSuperview" ref="483057754"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -223,7 +223,7 @@
 					<object class="IBUILabel" id="183301791">
 						<reference key="NSNextResponder" ref="483057754"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{13, 289}, {84, 21}}</string>
+						<string key="NSFrame">{{13, 299}, {84, 21}}</string>
 						<reference key="NSSuperview" ref="483057754"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -244,7 +244,7 @@
 					<object class="IBUISegmentedControl" id="816912125">
 						<reference key="NSNextResponder" ref="483057754"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{110, 220}, {190, 40}}</string>
+						<string key="NSFrame">{{110, 240}, {190, 40}}</string>
 						<reference key="NSSuperview" ref="483057754"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -255,7 +255,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>OFF</string>
 							<string>Song</string>
-							<string>List</string>
+							<string>album</string>
 						</object>
 						<object class="NSMutableArray" key="IBSegmentWidths">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -285,7 +285,7 @@
 					<object class="IBUILabel" id="74422823">
 						<reference key="NSNextResponder" ref="483057754"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{7, 168}, {90, 21}}</string>
+						<string key="NSFrame">{{7, 198}, {90, 21}}</string>
 						<reference key="NSSuperview" ref="483057754"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -306,22 +306,20 @@
 					<object class="IBUISegmentedControl" id="84121575">
 						<reference key="NSNextResponder" ref="483057754"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{110, 159}, {190, 40}}</string>
+						<string key="NSFrame">{{110, 189}, {190, 40}}</string>
 						<reference key="NSSuperview" ref="483057754"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBSegmentControlStyle">3</int>
-						<int key="IBNumberOfSegments">3</int>
+						<int key="IBNumberOfSegments">2</int>
 						<int key="IBSelectedSegmentIndex">0</int>
 						<object class="NSArray" key="IBSegmentTitles">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>OFF</string>
-							<string>Song</string>
-							<string>List</string>
+							<string>ON</string>
 						</object>
 						<object class="NSMutableArray" key="IBSegmentWidths">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<real value="0.0"/>
 							<real value="0.0"/>
 							<real value="0.0"/>
 						</object>
@@ -329,11 +327,9 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<boolean value="YES"/>
 							<boolean value="YES"/>
-							<boolean value="YES"/>
 						</object>
 						<object class="NSMutableArray" key="IBSegmentContentOffsets">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>{0, 0}</string>
 							<string>{0, 0}</string>
 							<string>{0, 0}</string>
 						</object>
@@ -341,13 +337,12 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="4"/>
 							<reference ref="4"/>
-							<reference ref="4"/>
 						</object>
 					</object>
 					<object class="IBUISegmentedControl" id="355124447">
 						<reference key="NSNextResponder" ref="483057754"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{110, 280}, {190, 40}}</string>
+						<string key="NSFrame">{{110, 290}, {190, 40}}</string>
 						<reference key="NSSuperview" ref="483057754"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
