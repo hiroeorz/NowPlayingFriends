@@ -21,7 +21,6 @@
 #define kProfileImageMaxMemoryCacheCount 30
 #define KNowPlayingTags @"Playing OR nowplaying OR listening OR nowlistening OR playing OR twitmusic OR BGM";
 
-
 @interface NowPlayingFriendsAppDelegate : NSObject <UIApplicationDelegate> {
   
   UIWindow *window;
@@ -54,6 +53,7 @@
 @property (nonatomic, retain) NSString *template_preference;
 @property (nonatomic) BOOL get_twitterusers_preference;
 @property (nonatomic) BOOL autotweet_preference;
+@property (nonatomic) BOOL over140alert_preference;
 
 - (NSString *)applicationDocumentsDirectory;
 - (UINavigationController *)navigationWithViewController:(id)viewController

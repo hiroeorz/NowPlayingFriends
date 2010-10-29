@@ -394,11 +394,26 @@
  * @brief 自動ツイートを実行する。
  */
 - (void)sendAutoTweet {
-  
-  TwitterClient *client = [[TwitterClient alloc] init];
+
   NSString *message = [self.appDelegate tweetString];
-  [client updateStatus:message delegate:self];
-  [client release];
+  
+  if (self.appDelegate.over140alert_preference &&
+      kMaxTweetLength < [message length]) {
+    UIAlertView *alert = [[UIAlertView alloc] 
+			   initWithTitle:@"Can't send tweet"
+			   message:@"Over 140 characters.\n\n You can disable this alert on setting view or please make the template shorter ."
+			   delegate:nil
+			   cancelButtonTitle:@"OK"
+			   otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+  }
+
+  if (kMaxTweetLength >= [message length]) {
+    TwitterClient *client = [[TwitterClient alloc] init];
+    [client updateStatus:message delegate:self];
+    [client release];
+  }
 }
 
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {

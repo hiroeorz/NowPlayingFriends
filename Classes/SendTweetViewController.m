@@ -7,6 +7,7 @@
 //
 
 #import "SendTweetViewController.h"
+#import "NowPlayingFriendsAppDelegate.h"
 
 
 @interface SendTweetViewController (Local)
@@ -101,13 +102,23 @@
 
 - (void)sendTweet {
 
-  if (sending == NO) {
+  if (kMaxTweetLength < [editView.text length]) {
+        UIAlertView *alert = [[UIAlertView alloc] 
+			   initWithTitle:@"Can't send tweet"
+			   message:@"Over 140 characters."
+			   delegate:nil
+			   cancelButtonTitle:@"OK"
+			   otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+  }
+
+  if (sending == NO && kMaxTweetLength >= [editView.text length]) {
     sending = YES;
     editView.backgroundColor = [UIColor colorWithRed: 0.6f green:0.6f blue:0.6f
 					alpha:0.9];
     editView.editable = NO;
     [self startIndicator];
-  
     [twitterClient updateStatus:editView.text delegate:self];
   }
 }

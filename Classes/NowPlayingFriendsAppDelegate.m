@@ -29,6 +29,7 @@
 @dynamic userDefaults;
 @dynamic get_twitterusers_preference;
 @dynamic autotweet_preference;
+@dynamic over140alert_preference;
 
 #pragma mark -
 #pragma mark Memory management
@@ -499,6 +500,40 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   }
 
   [self.userDefaults setValue:autorefresh forKey:@"autotweet_preference"];
+}
+
+/**
+ * @brief 自動ツイートで140文字を超えていたときにアラートを表示するかの設定。
+ */
+- (BOOL)over140alert_preference {
+
+  NSNumber *over140CharAlertEnable = 
+    [self.userDefaults valueForKey:@"over140alert_preference"];
+  
+  if (over140CharAlertEnable == nil) {
+    over140CharAlertEnable = [NSNumber numberWithInteger:1];
+  }
+  
+  BOOL flag;
+  if ([over140CharAlertEnable integerValue] == 1) {
+    flag = YES;
+  } else {
+    flag = NO;
+  }
+
+  return flag;
+}
+
+- (void)setOver140alert_preference:(BOOL)flag {
+
+  NSNumber *over140CharAlertEnable = [NSNumber numberWithInteger:0];
+
+  if (flag) {
+    over140CharAlertEnable = [NSNumber numberWithInteger:1];
+  }
+
+  [self.userDefaults setValue:over140CharAlertEnable 
+       forKey:@"over140alert_preference"];
 }
 
 #pragma mark -
