@@ -13,7 +13,7 @@
 #define kDefaultBodyTextHeight 27.0f
 #define kViewFrameHeight 75.0f
 #define kTextFrameHeight 32.0f
-#define kTimelineUpdateInterval 60 * 5
+#define kTimelineUpdateInterval 3 * 60
 #define kMaxTableCellRow 100
 #define kTableUpdateMaxScrollRow 80
 
@@ -21,6 +21,7 @@
 <UITableViewDataSource, UITableViewDelegate> {
 
   BOOL changed;
+  BOOL firstFlag;
   NSArray *timeline;
   NSMutableArray *lineOverFlowQueue;
   NSString *myUserName;
@@ -46,6 +47,8 @@
 - (void)handle_VolumeChanged:(id)notification;
 - (void)handle_NowPlayingItemChanged:(id)notification;
 
+- (void)updateNewItemCountToBadge;
 - (NSInteger)createNewTimeline:(NSArray *)newTimeline;
+- (NSNumber *)lastTweetId;
 
 @end

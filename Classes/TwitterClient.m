@@ -73,36 +73,59 @@
 /**
  * @brief 指定されたユーザのタイムラインを取得します。
  */
-- (NSArray *)getHomeTimeLine:(NSString *)username {
+- (NSArray *)getHomeTimeLine:(NSString *)username 
+		     sinceId:(NSNumber *)sinceId; {
+
+  NSInteger aCount = 40;
+  NSString *params = nil;
+
+  if (sinceId == nil) {
+    params = [[NSString alloc] initWithFormat:@"?count=%d", aCount];
+  } else {
+    params = [[NSString alloc] initWithFormat:@"?since_id=%@", sinceId];
+  }
 
   NSString *urlString = [[NSString alloc] 
-			  initWithFormat:kHomeTimelineURL, username];
+			  initWithFormat:kHomeTimelineURL, username, params];
 
+  [params release];
   return [self arrayOfRemoteJson:urlString];
 }
 
-- (NSArray *)getHomeTimeLine:(NSString *)username delegate:(id)aDelegate {
+- (NSArray *)getUserTimeLine:(NSString *)username
+		     sinceId:(NSNumber *)sinceId {
+
+  NSInteger aCount = 40;
+  NSString *params = nil;
+
+  if (sinceId == nil) {
+    params = [[NSString alloc] initWithFormat:@"?count=%d", aCount];
+  } else {
+    params = [[NSString alloc] initWithFormat:@"?since_id=%@", sinceId];
+  }
 
   NSString *urlString = [[NSString alloc] 
-			  initWithFormat:kHomeTimelineURL, username];
-
+			  initWithFormat:kUserTimelineURL, username, params];
+  [params release];
   return [self arrayOfRemoteJson:urlString];
 }
 
-- (NSArray *)getUserTimeLine:(NSString *)username {
+- (NSArray *)getMentionsTimeLineSince:(NSNumber *)sinceId {
 
-  NSString *urlString = [[NSString alloc] 
-			  initWithFormat:kUserTimelineURL, username];
+  NSInteger aCount = 40;
+  NSString *params = nil;
 
+  if (sinceId == nil) {
+    params = [[NSString alloc] initWithFormat:@"?count=%d", aCount];
+  } else {
+    params = [[NSString alloc] initWithFormat:@"?since_id=%@", sinceId];
+  }
+
+  NSString *urlString = [[NSString alloc] initWithFormat:kMenthonsTimelineURL,
+			 params];
+  NSLog(@"url: %@", urlString);
+  [params release];
   return [self arrayOfRemoteJson:urlString];
-}
-
-- (NSArray *)getMentionsTimeLine {
-
-  NSString *urlString = [[NSString alloc] initWithFormat:kMenthonsTimelineURL];
-
-  NSArray *array = [self arrayOfRemoteJson:urlString];
-  return array;
 }
 
 - (void)updateStatus:(NSString *)message delegate:(id)aDelegate {

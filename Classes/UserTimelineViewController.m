@@ -29,8 +29,9 @@
 
   NSLog(@"updating user timeline data...");
 
+  NSNumber *lastId = [super lastTweetId];
   TwitterClient *client = [[TwitterClient alloc] init];
-  NSArray *newTimeline = [client getUserTimeLine:username];
+  NSArray *newTimeline = [client getUserTimeLine:username sinceId:lastId];
   [client release];
 
   NSInteger addCount = [super createNewTimeline:newTimeline];

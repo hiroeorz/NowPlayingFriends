@@ -239,6 +239,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 			imageName:@"18-envelope.png"];
   
   [controllers addObject:navController];
+
+  [viewController /* 自分宛の@があったらタブに赤いバッジを表示するルーチン */
+    performSelectorInBackground:@selector(updateNewItemCountToBadge)
+    withObject:nil];
   [viewController release];
   
   /* Homeimeline */

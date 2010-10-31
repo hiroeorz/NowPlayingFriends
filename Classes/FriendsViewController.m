@@ -75,6 +75,16 @@
   [super viewDidUnload];
 }
 
+#pragma mark -
+#pragma mark initializer
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+    firstFlag = YES;
+  }
+  return self;
+}
+
 - (void)didReceiveMemoryWarning {
 
   [super didReceiveMemoryWarning];
@@ -139,6 +149,59 @@
 
 #pragma mark -
 #pragma Timeline Update Methods
+
+- (void)updateNewItemCountToBadge {
+
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+  TwitterClient *client = [[TwitterClient alloc] init];
+  NSDate *date;
+  NSDate *nextStartDate;
+
+  while (YES) {
+    NSAutoreleasePool *inPool = [[NSAutoreleasePool alloc] init];
+    
+    if (timeline == nil) {
+      NSArray *newTimeline = [client getMentionsTimeLineSince:nil];
+      self.timeline = newTimeline;
+
+    } else {
+      NSNumber *lastId = [self lastTweetId];
+      NSArray *newTimeline = [client getMentionsTimeLineSince:lastId];
+      
+      for (NSDictionary *obj in newTimeline) {
+	NSLog(@"id:%@", [obj objectForKey:@"id"]);
+      }
+      
+      NSLog(@"newCount: %d", [newTimeline count]);
+      
+      NSString *countStr = nil;
+      if ([newTimeline count] > 0) {
+	countStr = [[NSString alloc] initWithFormat:@"%d", [newTimeline count]];
+      }
+
+      [self performSelectorOnMainThread:@selector(setBadgeValueOnMainThread:)
+	    withObject:countStr
+	    waitUntilDone:NO];
+      
+      [countStr release];
+    }
+
+    date = [[NSDate alloc] init];
+    nextStartDate = [[NSDate alloc] 
+		      initWithTimeInterval:kTimelineUpdateInterval 
+		      sinceDate:date];
+    [NSThread sleepUntilDate: nextStartDate];
+    
+    [inPool release];
+  }
+
+  [client release];
+  [pool release];
+}
+
+- (void)setBadgeValueOnMainThread:(NSString *)aBadgeValue {
+  self.navigationController.tabBarItem.badgeValue = aBadgeValue;
+}
 
 - (NSInteger)refreshTimeline {
   [NSException raise:@"called base class method"
@@ -217,11 +280,6 @@
 - (void)viewDidAppear:(BOOL)animated {
   
   [super viewDidAppear:animated];
-  /*
-  activateFlag = YES;
-  [self performSelectorInBackground:@selector(tableRefreshLoop)
-	withObject:nil];
-  */
 
   activateFlag = YES;
   [self refreshTableOnThread];
@@ -325,12 +383,6 @@
 
 #pragma mark -
 #pragma mark Table view data source
-
-/*
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return <#number of sections#>;
-}
-*/
 
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section {
@@ -604,18 +656,21 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)tableView:(UITableView *)tableView 
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
 }
 
 #pragma mark -
 #pragma mark Local Methods
+
+- (NSNumber *)lastTweetId {
+
+  if (timeline == nil || [timeline count] <= 0) {
+    return nil;
+  }
+
+  NSDictionary *lastTweet = [timeline objectAtIndex:0];
+  NSNumber *lastId = [lastTweet objectForKey:@"id"];
+  return lastId;
+}
 
 - (NowPlayingFriendsAppDelegate *)appDelegate {
   return [[UIApplication sharedApplication] delegate];

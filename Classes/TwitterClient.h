@@ -10,9 +10,9 @@
 #import "TwitterClient+ConsumerKey.h"
 #import "OAuthConsumer/OAServiceTicket.h"
 
-#define kHomeTimelineURL @"http://twitter.com/statuses/home_timeline/%@.json"
-#define kUserTimelineURL @"http://twitter.com/statuses/user_timeline/%@.json"
-#define kMenthonsTimelineURL @"http://api.twitter.com/1/statuses/mentions.json"
+#define kHomeTimelineURL @"http://twitter.com/statuses/home_timeline/%@.json%@"
+#define kUserTimelineURL @"http://twitter.com/statuses/user_timeline/%@.json%@"
+#define kMenthonsTimelineURL @"http://api.twitter.com/1/statuses/mentions.json%@"
 #define kSearchURL @"http://search.twitter.com/search.json?q=%@"
 #define kUserInformationURL @"http://api.twitter.com/1/users/show/%@.json"
 #define kUpdateStatusURL @"http://twitter.com/statuses/update.json"
@@ -26,9 +26,9 @@
 
 - (void)followUser:(NSString *)usernameOrId delegate:(id)aDelegate;
 - (BOOL)checkFollowing:(NSString *)username;
-- (NSArray *)getHomeTimeLine:(NSString *)username;
-- (NSArray *)getUserTimeLine:(NSString *)username;
-- (NSArray *)getMentionsTimeLine;
+- (NSArray *)getHomeTimeLine:(NSString *)username sinceId:(NSNumber *)sinceId;
+- (NSArray *)getUserTimeLine:(NSString *)username sinceId:(NSNumber *)sinceId;;
+- (NSArray *)getMentionsTimeLineSince:(NSNumber *)sinceId;
 - (NSArray *)getSearchTimeLine:(NSString *)searchString, ...;
 - (NSDictionary *)userInformation:(NSString *)username;
 - (void)updateStatus:(NSString *)message delegate:(id)aDelegate;

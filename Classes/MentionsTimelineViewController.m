@@ -16,8 +16,15 @@
 
   NSLog(@"updating user timeline data...");
 
+  if (firstFlag) {
+    firstFlag = NO;
+    self.timeline = nil;
+    self.beforeTimeline = nil;
+  }
+
+  NSNumber *lastId = [super lastTweetId];
   TwitterClient *client = [[TwitterClient alloc] init];
-  NSArray *newTimeline = [client getMentionsTimeLine];
+  NSArray *newTimeline = [client getMentionsTimeLineSince:lastId];
   [client release];
 
   NSInteger addCount = [super createNewTimeline:newTimeline];
@@ -31,6 +38,8 @@
   [super viewDidAppear:animated];
   self.navigationController.title = @"Mentions";
   self.navigationController.tabBarItem.title = @"Mentions";
+
+  self.navigationController.tabBarItem.badgeValue = nil;
 }
 
 @end
