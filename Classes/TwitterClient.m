@@ -76,13 +76,14 @@
 - (NSArray *)getHomeTimeLine:(NSString *)username 
 		     sinceId:(NSNumber *)sinceId; {
 
-  NSInteger aCount = 40;
+  NSInteger aCount = 50;
   NSString *params = nil;
 
   if (sinceId == nil) {
     params = [[NSString alloc] initWithFormat:@"?count=%d", aCount];
   } else {
-    params = [[NSString alloc] initWithFormat:@"?since_id=%@", sinceId];
+    params = [[NSString alloc] initWithFormat:@"?since_id=%@&count=%d", 
+			       sinceId, aCount];
   }
 
   NSString *urlString = [[NSString alloc] 
@@ -101,7 +102,8 @@
   if (sinceId == nil) {
     params = [[NSString alloc] initWithFormat:@"?count=%d", aCount];
   } else {
-    params = [[NSString alloc] initWithFormat:@"?since_id=%@", sinceId];
+    params = [[NSString alloc] initWithFormat:@"?since_id=%@&count=%d", 
+			       sinceId, aCount];
   }
 
   NSString *urlString = [[NSString alloc] 
@@ -118,7 +120,8 @@
   if (sinceId == nil) {
     params = [[NSString alloc] initWithFormat:@"?count=%d", aCount];
   } else {
-    params = [[NSString alloc] initWithFormat:@"?since_id=%@", sinceId];
+    params = [[NSString alloc] initWithFormat:@"?since_id=%@&count=%d", 
+			       sinceId, aCount];
   }
 
   NSString *urlString = [[NSString alloc] initWithFormat:kMenthonsTimelineURL,
