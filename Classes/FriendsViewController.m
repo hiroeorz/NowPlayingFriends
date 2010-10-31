@@ -539,7 +539,7 @@
 			  constrainedToSize:bounds
 			  lineBreakMode:UILineBreakModeTailTruncation];
 
-  return size.height + 9.0f;
+  return size.height + 3.0f;
 }
 
 - (float)lineOverFlowSize:(NSInteger)row {

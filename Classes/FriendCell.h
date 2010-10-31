@@ -15,7 +15,7 @@
   UILabel *accountLabel;
   UILabel *clientLabel;
   UILabel *timeLabel;
-  UITextView *bodyTextView;
+  UILabel *bodyTextView;
   UIView *baseView;
 }
 
@@ -23,7 +23,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *accountLabel;
 @property (nonatomic, retain) IBOutlet UILabel *clientLabel;
 @property (nonatomic, retain) IBOutlet UILabel *timeLabel;
-@property (nonatomic, retain) IBOutlet UITextView *bodyTextView;
+@property (nonatomic, retain) IBOutlet UILabel *bodyTextView;
 @property (nonatomic, retain) IBOutlet  UIView *baseView;
 
 @end
