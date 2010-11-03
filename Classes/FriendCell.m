@@ -17,6 +17,7 @@
 @synthesize timeLabel;
 @synthesize bodyTextView;
 @synthesize baseView;
+@synthesize username;
 
 - (void)dealloc {
 

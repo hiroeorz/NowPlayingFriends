@@ -13,6 +13,7 @@
 #import "UserAuthenticationViewController.h"
 #import "SendTweetViewController.h"
 
+
 @interface MusicPlayerViewController (Local)
 
 - (void)openUserInformationView:(id)sender;

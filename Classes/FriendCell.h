@@ -12,18 +12,20 @@
 @interface FriendCell : UITableViewCell {
 
   UIButton *userImageView;
-  UILabel *accountLabel;
+  UIButton *accountLabel;
   UILabel *clientLabel;
   UILabel *timeLabel;
   UILabel *bodyTextView;
   UIView *baseView;
+  NSString *username;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *userImageView;
-@property (nonatomic, retain) IBOutlet UILabel *accountLabel;
+@property (nonatomic, retain) IBOutlet UIButton *accountLabel;
 @property (nonatomic, retain) IBOutlet UILabel *clientLabel;
 @property (nonatomic, retain) IBOutlet UILabel *timeLabel;
 @property (nonatomic, retain) IBOutlet UILabel *bodyTextView;
-@property (nonatomic, retain) IBOutlet  UIView *baseView;
+@property (nonatomic, retain) IBOutlet UIView *baseView;
+@property (nonatomic, retain) NSString *username;
 
 @end

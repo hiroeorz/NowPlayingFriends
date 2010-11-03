@@ -17,6 +17,7 @@
 		5420CC401274138F002C94DC /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5420CC3E1274138F002C94DC /* SettingViewController.m */; };
 		5420CC411274138F002C94DC /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5420CC3F1274138F002C94DC /* SettingViewController.xib */; };
 		5420CC4A12741732002C94DC /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5420CC4912741732002C94DC /* 20-gear2.png */; };
+		544BDEB91281BB2B00E0AE9E /* AccountLabelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 544BDEB81281BB2B00E0AE9E /* AccountLabelButton.m */; };
 		544FA54512448640003BFB95 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 544FA54412448640003BFB95 /* Default.png */; };
 		54651253122A3321003DE639 /* SongsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54651252122A3321003DE639 /* SongsListViewController.m */; };
 		546512A5122B50E1003DE639 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546512A4122B50E1003DE639 /* QuartzCore.framework */; };
@@ -113,6 +114,8 @@
 		5420CC3E1274138F002C94DC /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		5420CC3F1274138F002C94DC /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingViewController.xib; path = Classes/SettingViewController.xib; sourceTree = "<group>"; };
 		5420CC4912741732002C94DC /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
+		544BDEB71281BB2B00E0AE9E /* AccountLabelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountLabelButton.h; sourceTree = "<group>"; };
+		544BDEB81281BB2B00E0AE9E /* AccountLabelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountLabelButton.m; sourceTree = "<group>"; };
 		544FA54412448640003BFB95 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		54651251122A3321003DE639 /* SongsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongsListViewController.h; sourceTree = "<group>"; };
 		54651252122A3321003DE639 /* SongsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongsListViewController.m; sourceTree = "<group>"; };
@@ -301,6 +304,8 @@
 				5480CA9812289CB700F6E1C6 /* SendTweetViewController.m */,
 				5420CC3D1274138F002C94DC /* SettingViewController.h */,
 				5420CC3E1274138F002C94DC /* SettingViewController.m */,
+				544BDEB71281BB2B00E0AE9E /* AccountLabelButton.h */,
+				544BDEB81281BB2B00E0AE9E /* AccountLabelButton.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -640,6 +645,7 @@
 				54A96875122FA322004CF186 /* MentionsTimelineViewController.m in Sources */,
 				54A9698B1230C743004CF186 /* HomeTimelineViewController.m in Sources */,
 				5420CC401274138F002C94DC /* SettingViewController.m in Sources */,
+				544BDEB91281BB2B00E0AE9E /* AccountLabelButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,8 +6,10 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
+#import "AccountLabelButton.h"
 #import "FriendsViewController.h"
 #import "FriendCell.h"
+#import "SendTweetViewController.h"
 #import "TwitterClient.h"
 #import "UserInformationViewController.h"
 
@@ -35,6 +37,7 @@
 - (NSString *)passedTimeString:(NSDictionary *)aData;
 - (void)queuingLineOverFlowSize;
 
+- (void)openEditView:(UIButton *)button;
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 
 @end
@@ -423,9 +426,15 @@
   NSString *rowText = [data objectForKey:@"text"];
   
   cell.bodyTextView.text = [self.appDelegate stringByUnescapedString:rowText];
-  cell.accountLabel.text = [self username:data];
   cell.userImageView.tag = row;
   cell.clientLabel.text = [self clientname:data];
+  [cell.accountLabel setTitle:[self username:data] 
+       forState:UIControlStateNormal];
+  [cell.accountLabel setTitle:[self username:data] 
+       forState:UIControlStateHighlighted];
+  [cell.accountLabel addTarget:self action:@selector(openEditView:)
+       forControlEvents:UIControlEventTouchUpInside];
+  [(AccountLabelButton *)cell.accountLabel setData:data];
 
   if ([self checkSpecialCell:data]) {
     cell.baseView.backgroundColor = [UIColor colorWithHue:0.0f
@@ -661,6 +670,25 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 #pragma mark -
 #pragma mark Local Methods
+
+- (void)openEditView:(AccountLabelButton *)button {
+
+  NSString *username = [self.appDelegate username:button.data];
+  NSString *replyString = [[NSString alloc] initWithFormat:@"@%@ ", username];
+
+  SendTweetViewController *viewController = 
+    [[SendTweetViewController alloc] initWithNibName:@"SendTweetViewController"
+				     bundle:nil];
+  viewController.defaultTweetString = replyString;
+  [replyString release];
+
+  UINavigationController *navController = 
+    [self.appDelegate navigationWithViewController:viewController
+	 title:@"Tweet"  imageName:nil];
+  [viewController release];
+
+  [self presentModalViewController:navController animated:YES];
+}
 
 - (NSNumber *)lastTweetId {
 

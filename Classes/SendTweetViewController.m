@@ -20,11 +20,12 @@
 @implementation SendTweetViewController
 
 @dynamic appDelegate;
+@synthesize defaultTweetString;
+@synthesize editView;
 @synthesize indicator;
 @synthesize indicatorBase;
-@synthesize twitterClient;
-@synthesize editView;
 @synthesize letterCountLabel;
+@synthesize twitterClient;
 
 - (void)dealloc {
 
@@ -55,8 +56,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     twitterClient = [[TwitterClient alloc] init];
-
     editView = [[UITextView alloc] init];
+    defaultTweetString = nil;
   }
   return self;
 }
@@ -76,20 +77,24 @@
 - (void)viewWillAppear:(BOOL)animated {
 
   [super viewWillAppear:animated];
+
+  setTweetEditField(editView, 5.0f, 310.0f, 140.0f);
+
+  if (defaultTweetString != nil) {
+    editView.text = defaultTweetString;
+  } else {
+    editView.text = [self.appDelegate tweetString];
+  }
+
+  editView.delegate = self;
+  [self.view addSubview:editView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 
   [super viewDidAppear:animated];
-
-  setTweetEditField(editView, 5.0f, 310.0f, 140.0f);
-  editView.text = [self.appDelegate tweetString];
-
-  editView.delegate = self;
-  [self.view addSubview:editView];
-  [self countAndWriteTweetLength:[editView.text length]];
-
   [editView becomeFirstResponder];
+  [self countAndWriteTweetLength:[editView.text length]];
 }
 
 #pragma mark
