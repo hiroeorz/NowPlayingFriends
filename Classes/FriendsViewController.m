@@ -375,6 +375,7 @@
     friendsTableView.delegate = self;
 
     [friendsTableView reloadData];
+    self.navigationController.tabBarItem.badgeValue = nil;
 
     friendsTableView.contentOffset = 
       CGPointMake(0.0f, [newOffsetNumber floatValue]);
@@ -392,7 +393,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView 
 	 cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
   cellRow = [indexPath row];
   static NSString *FriendsCellIdentifier = @"FriendCell";
     
