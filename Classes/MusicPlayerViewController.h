@@ -34,7 +34,7 @@
 #define kMusicPlayerDefaultNowInterval 60 * 5
 #define kNowButtonFrame (CGRectMake(35.0f, 40.0f, 30.0f, 25.0f))
 #define kNowButtonAlpha 0.7f
-#define kPlayButtonFrame (CGRectMake(210.0f, 17.5f, 70.0f, 70.0f))
+#define kPlayButtonFrame (CGRectMake(190.0f, 20.5f, 70.0f, 70.0f))
 #define kPlayButtonAlpha 0.7f
 
 @interface MusicPlayerViewController : UIViewController 
