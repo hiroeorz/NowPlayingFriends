@@ -131,7 +131,9 @@
   return [self arrayOfRemoteJson:urlString];
 }
 
-- (void)updateStatus:(NSString *)message delegate:(id)aDelegate {
+- (void)updateStatus:(NSString *)message
+   inReplyToStatusId:(NSNumber *)replayToStatusId
+	    delegate:(id)aDelegate {
 
   if (![self oAuthTokenExist]) {
     return;
@@ -140,16 +142,23 @@
   NSURL *baseUrl = [NSURL URLWithString:kUpdateStatusURL];
   OAMutableURLRequest *request = [self authenticatedRequest:baseUrl];
 
-  CFStringRef ignoreString = CFSTR(";,/?:@&=+$#");
 
-  NSString *bodyString = 
-    [NSString stringWithFormat:@"status=%@",
-	      (NSString *)CFURLCreateStringByAddingPercentEscapes(  
-					 kCFAllocatorDefault,
-                                         (CFStringRef)message,
-                                         NULL,
-                                         ignoreString,
-                                         kCFStringEncodingUTF8)];
+  CFStringRef ignoreString = CFSTR(";,/?:@&=+$#");
+  NSMutableString *bodyString = 
+    [NSMutableString stringWithFormat:@"status=%@",
+		     (NSString *)CFURLCreateStringByAddingPercentEscapes(  
+						       kCFAllocatorDefault,
+						       (CFStringRef)message,
+						       NULL,
+                                                       ignoreString,
+                                                       kCFStringEncodingUTF8)];
+  if (replayToStatusId != nil) {
+    NSMutableString *replyParameter = [[NSMutableString alloc] 
+				     initWithString:@"&in_reply_to_status_id="];
+    [replyParameter appendString:[replayToStatusId stringValue]];
+    [bodyString appendString:replyParameter];
+    [replyParameter release];
+  }
 
   [request setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
 

@@ -22,28 +22,32 @@
 @dynamic appDelegate;
 @synthesize defaultTweetString;
 @synthesize editView;
+@synthesize inReplyToStatusId;
 @synthesize indicator;
 @synthesize indicatorBase;
 @synthesize letterCountLabel;
 @synthesize twitterClient;
 
+
 - (void)dealloc {
 
+  [editView release];
+  [inReplyToStatusId release];
   [indicator release];
   [indicatorBase release];
-  [twitterClient release];
-  [editView release];
   [letterCountLabel release];
+  [twitterClient release];
   [super dealloc];
 }
 
 - (void)viewDidUnload {
 
+  self.editView = nil;
+  self.inReplyToStatusId = nil;
   self.indicator = nil;
   self.indicatorBase = nil;
-  self.twitterClient = nil;
-  self.editView = nil;
   self.letterCountLabel = nil;
+  self.twitterClient = nil;
   [super viewDidUnload];
 }
 
@@ -58,6 +62,7 @@
     twitterClient = [[TwitterClient alloc] init];
     editView = [[UITextView alloc] init];
     defaultTweetString = nil;
+    inReplyToStatusId = nil;
   }
   return self;
 }
@@ -124,7 +129,8 @@
 					alpha:0.9];
     editView.editable = NO;
     [self startIndicator];
-    [twitterClient updateStatus:editView.text delegate:self];
+    [twitterClient updateStatus:editView.text 
+		   inReplyToStatusId:inReplyToStatusId delegate:self];
   }
 }
 

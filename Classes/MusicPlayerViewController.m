@@ -412,7 +412,7 @@
 
   if (kMaxTweetLength >= [message length]) {
     TwitterClient *client = [[TwitterClient alloc] init];
-    [client updateStatus:message delegate:self];
+    [client updateStatus:message inReplyToStatusId:nil delegate:self];
     [client release];
   }
 }

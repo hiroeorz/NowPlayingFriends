@@ -43,6 +43,7 @@
   NSArray *timeline;
 
 @private
+
   BOOL autoTweetMode;
   MPMusicPlayerController *musicPlayer;
   NSArray *albumLists;

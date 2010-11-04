@@ -162,11 +162,10 @@
 									<object class="IBUIButton" id="759743233">
 										<reference key="NSNextResponder" ref="380588009"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{60, 0}, {226, 21}}</string>
+										<string key="NSFrame">{{60, 0}, {226, 39}}</string>
 										<reference key="NSSuperview" ref="380588009"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<int key="IBUIContentVerticalAlignment">0</int>
 										<object class="NSFont" key="IBUIFont">
 											<string key="NSName">Helvetica</string>
 											<double key="NSSize">17</double>

@@ -460,8 +460,6 @@
   NSDictionary *objects = [[NSDictionary alloc] initWithObjectsAndKeys:
 						  data, @"data",
 						cell, @"cell", nil];
-
-
   [cell.userImageView 
        setBackgroundImage:noArtWorkMini forState:UIControlStateNormal];
 
@@ -680,6 +678,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [[SendTweetViewController alloc] initWithNibName:@"SendTweetViewController"
 				     bundle:nil];
   viewController.defaultTweetString = replyString;
+  viewController.inReplyToStatusId = [button.data objectForKey:@"id"];
+ 
   [replyString release];
 
   UINavigationController *navController = 

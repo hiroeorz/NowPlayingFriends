@@ -27,6 +27,7 @@
 @interface SendTweetViewController : UIViewController <UITextViewDelegate> {
 
   BOOL sending;
+  NSNumber  *inReplyToStatusId;
   NSString *defaultTweetString;
   TwitterClient *twitterClient;
   UIActivityIndicatorView *indicator;
@@ -38,6 +39,7 @@
 @property (nonatomic, retain) IBOutlet NSString *defaultTweetString;
 @property (nonatomic, retain) IBOutlet UILabel *letterCountLabel;
 @property (nonatomic, retain) IBOutlet UITextView *editView;
+@property (nonatomic, retain) NSNumber  *inReplyToStatusId;
 @property (nonatomic, retain) TwitterClient *twitterClient;
 @property (nonatomic, retain) UIActivityIndicatorView *indicator;
 @property (nonatomic, retain) UIView *indicatorBase;

@@ -31,7 +31,9 @@
 - (NSArray *)getMentionsTimeLineSince:(NSNumber *)sinceId;
 - (NSArray *)getSearchTimeLine:(NSString *)searchString, ...;
 - (NSDictionary *)userInformation:(NSString *)username;
-- (void)updateStatus:(NSString *)message delegate:(id)aDelegate;
+- (void)updateStatus:(NSString *)message
+   inReplyToStatusId:(NSNumber *)replayToStatusId
+	    delegate:(id)aDelegate;
 - (NSString *)username;
 
 - (void)getAccessTokenWithUsername:(NSString *)username 
