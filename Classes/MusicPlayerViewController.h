@@ -69,6 +69,7 @@
   UIViewController *songListController;
 }
 
+@property (nonatomic) BOOL autoTweetMode;
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) IBOutlet UIButton *button;
 @property (nonatomic, retain) IBOutlet UIButton *playButton;

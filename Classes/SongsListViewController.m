@@ -1,8 +1,13 @@
 
-#import "SongsListViewController.h"
-#import "PlayListSongsViewController.h"
-#import "NowPlayingFriendsAppDelegate.h"
 #import "MusicPlayerViewController.h"
+#import "NowPlayingFriendsAppDelegate.h"
+#import "PlayListSongsViewController.h"
+#import "SendTweetViewController.h"
+#import "SongsListViewController.h"
+
+@interface SongsListViewController (Local)
+- (void)openEditView;
+@end
 
 @implementation SongsListViewController
 
@@ -47,6 +52,8 @@
 - (void)viewDidLoad {
 
   [super viewDidLoad];
+  self.navigationItem.rightBarButtonItem = 
+    [self.appDelegate editButton:@selector(openEditView) target:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -55,6 +62,20 @@
   [super viewWillAppear:animated];
 }
 
+- (void)openEditView {
+
+  musicPlayerViewController.autoTweetMode = NO;
+  SendTweetViewController *viewController = 
+    [[SendTweetViewController alloc] initWithNibName:@"SendTweetViewController"
+				     bundle:nil];
+
+  UINavigationController *navController = 
+    [self.appDelegate navigationWithViewController:viewController
+	 title:@"Tweet"  imageName:nil];
+  [viewController release];
+
+  [self presentModalViewController:navController animated:YES];
+}
 
 #pragma mark -
 #pragma mark Table view delegate

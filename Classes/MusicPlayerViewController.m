@@ -46,6 +46,7 @@
 @dynamic appDelegate;
 @synthesize albumImageView;
 @synthesize albumLists;
+@synthesize autoTweetMode;
 @synthesize autoTweetSwitch;
 @synthesize baseView;
 @synthesize beforeTimeline;
