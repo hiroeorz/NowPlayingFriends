@@ -1,0 +1,9 @@
+/* 
+  Please rename this file to TwitterClient+ConsumerKey.h 
+    and put your consumer key and consumer secret.
+
+  Caution: Don't put repository this file github or any.
+*/
+
+#define kConsumerKey @"twitter consumer key"
+#define kConsumerSecret @"twitter consumer secret"
