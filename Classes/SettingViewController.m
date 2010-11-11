@@ -15,6 +15,8 @@
 @interface SettingViewController (Local)
 
 - (NowPlayingFriendsAppDelegate *)appDelegate;
+- (void)save_get_twitterusers:(UISwitch *)sender;
+- (void)save_alert_140char:(UISwitch *)sender;
 @end
 
 @implementation SettingViewController
@@ -74,7 +76,7 @@
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
+  return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView 
@@ -85,7 +87,7 @@
   switch (section) {
   case 0: rowsCount = 3;
     break;
-  case 1: rowsCount = 1;
+  case 1: rowsCount = 2;
     break;
   }
 
@@ -111,8 +113,10 @@ titleForHeaderInSection:(NSInteger)section {
 	 cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
   static NSString *SettingCellIdentifier = @"SettingCell";
+  static NSString *SwitchCellIdentifier = @"SwitchCell";
   static NSString *TemplateCellIdentifier = @"TemplateSettingCell";
   UITableViewCell *cell = nil;
+  UISwitch *switchObj = nil;
 
   if ([indexPath section] == 0 && [indexPath row] == 0) {
     cell = [tableView dequeueReusableCellWithIdentifier:
@@ -130,7 +134,7 @@ titleForHeaderInSection:(NSInteger)section {
       [cell addSubview: aTextView];
     }
 
-  } else {
+  } else if ([indexPath section] == 0 && [indexPath row] > 0){
     cell = [tableView dequeueReusableCellWithIdentifier:SettingCellIdentifier];
     
     if (cell == nil) {
@@ -138,10 +142,27 @@ titleForHeaderInSection:(NSInteger)section {
 				      reuseIdentifier:SettingCellIdentifier];
       [cell autorelease];
     }
+  } else {
+    cell = [tableView dequeueReusableCellWithIdentifier:SwitchCellIdentifier];
+    
+    if (cell == nil) {
+      CGRect frame = CGRectMake(0, 0, 300, 44);
+      cell = [[UITableViewCell alloc] initWithFrame:frame
+				      reuseIdentifier:SwitchCellIdentifier];
+      [cell autorelease];
+      cell.selectionStyle = UITableViewCellSelectionStyleNone;
+      cell.textLabel.font = [UIFont systemFontOfSize:14];
+      
+      switchObj = [[UISwitch alloc] 
+		    initWithFrame:CGRectMake(1.0, 1.0, 20.0, 20.0)];
+
+      cell.accessoryView = switchObj;
+      [switchObj release];
+    }
   }
 
   switch ([indexPath section]) {
-  case 0: {
+  case 0: { //１列目
 
     switch ([indexPath row]) {
     case 0: {
@@ -156,7 +177,6 @@ titleForHeaderInSection:(NSInteger)section {
     }
       break;
     case 2: {
-      NSLog(@"22222");
       UIButton *aButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
       [aButton setFrame:CGRectMake(110.0f, 2.0f, 100.0f, 40.0f)]; 
       [aButton setTitle:@"Reset" forState:UIControlStateNormal];
@@ -169,9 +189,37 @@ titleForHeaderInSection:(NSInteger)section {
 
     break;
   }
+
+  case 1: { //２列目
+    switch ([indexPath row]) {
+    case 0: {
+      cell.textLabel.text = @"View same song users";
+      switchObj.on  = self.appDelegate.get_twitterusers_preference;
+      [switchObj addTarget:self action:@selector(save_get_twitterusers:)
+		 forControlEvents:UIControlEventValueChanged];
+    }
+      break;
+
+    case 1: {
+      cell.textLabel.text = @"Alert if over 140 characters";
+      switchObj.on  = self.appDelegate.over140alert_preference;
+      [switchObj addTarget:self action:@selector(save_alert_140char:)
+		 forControlEvents:UIControlEventValueChanged];
+    }
+      break;
+    }
+  }
+    break;
   }
 
   return cell;
+}
+
+- (void)save_get_twitterusers:(UISwitch *)sender {
+  self.appDelegate.get_twitterusers_preference = sender.on;
+}
+- (void)save_alert_140char:(UISwitch *)sender {
+  self.appDelegate.over140alert_preference = sender.on;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView

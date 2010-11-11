@@ -474,6 +474,16 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return flag;
 }
 
+- (void)setGet_twitterusers_preference:(BOOL)aFlag {
+
+  NSNumber *getFlag = [NSNumber numberWithInteger:0];
+
+  if (aFlag) {
+    getFlag = [NSNumber numberWithInteger:1];
+  }
+
+  [self.userDefaults setObject:getFlag forKey:@"get_twitterusers_preference"];
+}
 
 /**
  * @brief 曲が変わった際に自動ツイートするかどうかの設定。

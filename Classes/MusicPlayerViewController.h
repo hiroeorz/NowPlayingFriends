@@ -14,7 +14,7 @@
 #import "NowPlayingFriendsAppDelegate.h"
 #import "TwitterClient.h"
 
-#define kProfileImageButtonAlpha 0.4f
+#define kProfileImageButtonAlpha 0.55f
 #define kProfileImageSize 64
 #define kPlayListTableRowHeight 55
 #define kModeSelectTableRowHeight 65
@@ -31,7 +31,7 @@
 #define kRepeatModeAll 2
 
 #define kAutoTweetTimeLag 10
-#define kMusicPlayerDefaultNowInterval 60 * 5
+#define kMusicPlayerDefaultNowInterval 60 * 10
 #define kNowButtonFrame (CGRectMake(35.0f, 40.0f, 30.0f, 25.0f))
 #define kNowButtonAlpha 0.7f
 #define kPlayButtonFrame (CGRectMake(190.0f, 20.5f, 70.0f, 70.0f))
