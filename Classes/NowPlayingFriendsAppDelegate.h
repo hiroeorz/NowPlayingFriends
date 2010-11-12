@@ -13,6 +13,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <QuartzCore/QuartzCore.h>
+#import "GData/GData.h"
 
 #define kTweetTemplate @"♪ Now Playing \"[st]\" by \"[ar]\" on album \"[al]\" ♬ #nowplaying"
 #define kMaxTweetLength 140
