@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NowPlayingFriendsAppDelegate.h"
 #import "TwitterClient.h"
+
+
+@class MusicPlayerViewController;
+@class NowPlayingFriendsAppDelegate;
+@class TwitterClient;
 
 
 #define setTweetEditField(aEditView, kXPosition, kWidth, kHeight)  \
@@ -27,6 +31,7 @@
 @interface SendTweetViewController : UIViewController <UITextViewDelegate> {
 
   BOOL sending;
+  MusicPlayerViewController *musicPlayer;
   NSNumber  *inReplyToStatusId;
   NSString *defaultTweetString;
   TwitterClient *twitterClient;
@@ -39,6 +44,7 @@
 @property (nonatomic, retain) IBOutlet NSString *defaultTweetString;
 @property (nonatomic, retain) IBOutlet UILabel *letterCountLabel;
 @property (nonatomic, retain) IBOutlet UITextView *editView;
+@property (nonatomic, retain) MusicPlayerViewController *musicPlayer;
 @property (nonatomic, retain) NSNumber  *inReplyToStatusId;
 @property (nonatomic, retain) TwitterClient *twitterClient;
 @property (nonatomic, retain) UIActivityIndicatorView *indicator;

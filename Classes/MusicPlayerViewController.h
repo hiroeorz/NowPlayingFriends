@@ -72,6 +72,8 @@
 }
 
 @property (nonatomic) BOOL autoTweetMode;
+@property (nonatomic) BOOL sending;
+@property (nonatomic) BOOL sent;
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) IBOutlet UIButton *button;
 @property (nonatomic, retain) IBOutlet UIButton *playButton;

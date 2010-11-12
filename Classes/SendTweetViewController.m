@@ -6,8 +6,9 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "SendTweetViewController.h"
+#import "MusicPlayerViewController.h"
 #import "NowPlayingFriendsAppDelegate.h"
+#import "SendTweetViewController.h"
 
 
 @interface SendTweetViewController (Local)
@@ -26,8 +27,8 @@
 @synthesize indicator;
 @synthesize indicatorBase;
 @synthesize letterCountLabel;
+@synthesize musicPlayer;
 @synthesize twitterClient;
-
 
 - (void)dealloc {
 
@@ -36,6 +37,7 @@
   [indicator release];
   [indicatorBase release];
   [letterCountLabel release];
+  [musicPlayer release];
   [twitterClient release];
   [super dealloc];
 }
@@ -47,6 +49,7 @@
   self.indicator = nil;
   self.indicatorBase = nil;
   self.letterCountLabel = nil;
+  self.musicPlayer = nil;
   self.twitterClient = nil;
   [super viewDidUnload];
 }
@@ -125,6 +128,7 @@
 
   if (sending == NO && kMaxTweetLength >= [editView.text length]) {
     sending = YES;
+    musicPlayer.sending = YES;
     editView.backgroundColor = [UIColor colorWithRed: 0.6f green:0.6f blue:0.6f
 					alpha:0.9];
     editView.editable = NO;
@@ -168,6 +172,9 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 
   NSLog(@"didFinishWithData");
   sending = NO;
+  musicPlayer.sending = NO;
+  musicPlayer.sent = YES;
+
   [self performSelectorInBackground:@selector(stopIndicatoWithThread)
   	withObject:nil];
 
@@ -183,6 +190,9 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 
   NSLog(@"didFailWithError");
   sending = NO;
+  musicPlayer.sending = NO;
+  musicPlayer.sent = YES;
+
   [self performSelectorInBackground:@selector(stopIndicatoWithThread)
   	withObject:nil];
 

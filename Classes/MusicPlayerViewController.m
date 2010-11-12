@@ -61,6 +61,8 @@
 @synthesize profileImageButtons;
 @synthesize refreshProfileImagesMutex;
 @synthesize repeatModeControll;
+@synthesize sending;
+@synthesize sent;
 @synthesize settingView;
 @synthesize shuffleModeControll;
 @synthesize songListController;
@@ -837,6 +839,7 @@
   SendTweetViewController *viewController = 
     [[SendTweetViewController alloc] initWithNibName:@"SendTweetViewController"
 				     bundle:nil];
+  viewController.musicPlayer = self;
 
   UINavigationController *navController = 
     [self.appDelegate navigationWithViewController:viewController
