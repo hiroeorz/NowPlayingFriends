@@ -130,6 +130,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     autoTweetMode = NO;
+    sent = NO;
+    sending = NO;
   }
   return self;
 }
@@ -222,6 +224,12 @@
 
   autoTweetMode = [sender isOn];
   self.appDelegate.autotweet_preference = [sender isOn];
+
+  if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying &&
+      sent == NO && sending == NO) {
+    [self performSelectorInBackground:@selector(sendAutoTweetAfterTimeLag)
+	  withObject:nil];    
+  }
 }
 
 - (IBAction)changeVolume:(id)sender {
@@ -331,6 +339,8 @@
 - (void)handle_NowPlayingItemChanged:(id)notification {
 
   NSLog(@"music changed!");
+  sent = NO;
+  sending = NO;
   autoTweetMode = self.appDelegate.autotweet_preference;
 
   self.title = [self.appDelegate nowPlayingTitle];
@@ -360,6 +370,7 @@
 	[musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
       [self performSelectorInBackground:@selector(sendAutoTweetAfterTimeLag)
 	    withObject:nil];
+      sending = YES;
     }
   }
 }
@@ -397,6 +408,7 @@
  */
 - (void)sendAutoTweet {
 
+  if (sent) {return;}
   NSString *message = [self.appDelegate tweetString];
   
   if (self.appDelegate.over140alert_preference &&
@@ -415,6 +427,8 @@
     TwitterClient *client = [[TwitterClient alloc] init];
     [client updateStatus:message inReplyToStatusId:nil delegate:self];
     [client release];
+    sending = NO;
+    sent = YES;
   }
 }
 

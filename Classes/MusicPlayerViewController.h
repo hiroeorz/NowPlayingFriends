@@ -45,6 +45,8 @@
 @private
 
   BOOL autoTweetMode;
+  BOOL sent;
+  BOOL sending;
   MPMusicPlayerController *musicPlayer;
   NSArray *albumLists;
   NSArray *beforeTimeline;
