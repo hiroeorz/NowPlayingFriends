@@ -77,7 +77,6 @@
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section {
 
-  NSLog(@"row in section: %d", [[playlist items] count]);
   return [[playlist items] count];
 }
 
