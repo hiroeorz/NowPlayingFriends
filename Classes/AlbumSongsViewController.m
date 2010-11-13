@@ -78,7 +78,7 @@
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section {
 
-  return [playlist count];
+  return [[playlist items] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView 
