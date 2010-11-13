@@ -27,6 +27,7 @@
 		54651520122CF4AF003DE639 /* music-note.png in Resources */ = {isa = PBXBuildFile; fileRef = 5465151F122CF4AF003DE639 /* music-note.png */; };
 		546515CF122E1E18003DE639 /* no_artwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 546515CE122E1E18003DE639 /* no_artwork.png */; };
 		546515DA122E2667003DE639 /* no_artwork_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 546515D9122E2667003DE639 /* no_artwork_image.jpg */; };
+		5468C580128EAD4D00CA77BB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5468C57F128EAD4D00CA77BB /* libxml2.dylib */; };
 		5480C258121E4E5D00F6E1C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5480C257121E4E5D00F6E1C6 /* AVFoundation.framework */; };
 		5480C25C121E4E7900F6E1C6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5480C25B121E4E7900F6E1C6 /* AudioToolbox.framework */; };
 		5480C260121E4E8700F6E1C6 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5480C25F121E4E8700F6E1C6 /* MediaPlayer.framework */; };
@@ -126,6 +127,7 @@
 		5465151F122CF4AF003DE639 /* music-note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "music-note.png"; sourceTree = "<group>"; };
 		546515CE122E1E18003DE639 /* no_artwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_artwork.png; path = icons/no_artwork.png; sourceTree = "<group>"; };
 		546515D9122E2667003DE639 /* no_artwork_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = no_artwork_image.jpg; sourceTree = "<group>"; };
+		5468C57F128EAD4D00CA77BB /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		5480C257121E4E5D00F6E1C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5480C25B121E4E7900F6E1C6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5480C25F121E4E8700F6E1C6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -254,6 +256,7 @@
 				5480C260121E4E8700F6E1C6 /* MediaPlayer.framework in Frameworks */,
 				546512A5122B50E1003DE639 /* QuartzCore.framework in Frameworks */,
 				5465131D122B510A003DE639 /* CoreGraphics.framework in Frameworks */,
+				5468C580128EAD4D00CA77BB /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +371,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5468C57F128EAD4D00CA77BB /* libxml2.dylib */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				28D801B30F44B63D00FB423F /* CoreData.framework */,
@@ -662,6 +666,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlayingFriends_Prefix.pch;
+				HEADER_SEARCH_PATHS = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.1.sdk/usr/include/libxml2;
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A8E2E3E5-4EE5-4965-AFA1-C099B9861C44";
@@ -675,6 +680,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlayingFriends_Prefix.pch;
+				HEADER_SEARCH_PATHS = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.1.sdk/usr/include/libxml2;
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				PRODUCT_NAME = "Now Playing Friends";
 				VALIDATE_PRODUCT = YES;
@@ -706,6 +712,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlayingFriends_Prefix.pch;
+				HEADER_SEARCH_PATHS = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.1.sdk/usr/include/libxml2;
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
