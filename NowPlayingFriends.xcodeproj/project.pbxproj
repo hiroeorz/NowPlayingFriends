@@ -28,6 +28,7 @@
 		546515CF122E1E18003DE639 /* no_artwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 546515CE122E1E18003DE639 /* no_artwork.png */; };
 		546515DA122E2667003DE639 /* no_artwork_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 546515D9122E2667003DE639 /* no_artwork_image.jpg */; };
 		5468C580128EAD4D00CA77BB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5468C57F128EAD4D00CA77BB /* libxml2.dylib */; };
+		5468C59D128EAEF800CA77BB /* YouTubeClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5468C59C128EAEF800CA77BB /* YouTubeClient.m */; };
 		5480C258121E4E5D00F6E1C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5480C257121E4E5D00F6E1C6 /* AVFoundation.framework */; };
 		5480C25C121E4E7900F6E1C6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5480C25B121E4E7900F6E1C6 /* AudioToolbox.framework */; };
 		5480C260121E4E8700F6E1C6 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5480C25F121E4E8700F6E1C6 /* MediaPlayer.framework */; };
@@ -128,6 +129,8 @@
 		546515CE122E1E18003DE639 /* no_artwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_artwork.png; path = icons/no_artwork.png; sourceTree = "<group>"; };
 		546515D9122E2667003DE639 /* no_artwork_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = no_artwork_image.jpg; sourceTree = "<group>"; };
 		5468C57F128EAD4D00CA77BB /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		5468C59B128EAEF800CA77BB /* YouTubeClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeClient.h; sourceTree = "<group>"; };
+		5468C59C128EAEF800CA77BB /* YouTubeClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeClient.m; sourceTree = "<group>"; };
 		5480C257121E4E5D00F6E1C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5480C25B121E4E7900F6E1C6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5480C25F121E4E8700F6E1C6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -309,6 +312,8 @@
 				5420CC3E1274138F002C94DC /* SettingViewController.m */,
 				544BDEB71281BB2B00E0AE9E /* AccountLabelButton.h */,
 				544BDEB81281BB2B00E0AE9E /* AccountLabelButton.m */,
+				5468C59B128EAEF800CA77BB /* YouTubeClient.h */,
+				5468C59C128EAEF800CA77BB /* YouTubeClient.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -650,6 +655,7 @@
 				54A9698B1230C743004CF186 /* HomeTimelineViewController.m in Sources */,
 				5420CC401274138F002C94DC /* SettingViewController.m in Sources */,
 				544BDEB91281BB2B00E0AE9E /* AccountLabelButton.m in Sources */,
+				5468C59D128EAEF800CA77BB /* YouTubeClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

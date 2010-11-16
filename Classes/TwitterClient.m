@@ -114,6 +114,10 @@
 
 - (NSArray *)getMentionsTimeLineSince:(NSNumber *)sinceId {
 
+  if (![self oAuthTokenExist]) {
+    return [NSArray array];
+  }
+
   NSInteger aCount = 40;
   NSString *params = nil;
 

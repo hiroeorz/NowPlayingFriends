@@ -18,6 +18,8 @@
 #import "UserAuthenticationViewController.h"
 #import "UserTimelineViewController.h"
 
+#import "YouTubeClient.h"
+
 @implementation NowPlayingFriendsAppDelegate
 
 @synthesize window;
@@ -173,7 +175,10 @@
 
 - (BOOL)application:(UIApplication *)application 
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-  
+  /*
+  YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
+  [youtube searchWithTitle:@"高架線" artist:@"ELLEGARDEN"];
+  */
   testFlag = 0;
 
   TwitterClient *client = [[TwitterClient alloc] init];
