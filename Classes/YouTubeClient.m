@@ -18,7 +18,7 @@ static void startElementHandler(
         const xmlChar** namespaces, 
         int nb_attributes, 
         int nb_defaulted, 
-        const xmlChar** attributes)
+        const xmlChar*(*attributes)[5])
 {
     [(YouTubeClient *)ctx 
 		      startElementLocalName:localname 
@@ -95,6 +95,11 @@ static xmlSAXHandler _saxHandlerStruct = {
 @implementation YouTubeClient
 
 - (void)dealloc {
+  
+  if (_parserContext) {
+    xmlFreeParserCtxt(_parserContext);
+  }
+
   [super dealloc];
 }
 
@@ -146,7 +151,6 @@ static xmlSAXHandler _saxHandlerStruct = {
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 
   xmlParseChunk(_parserContext, NULL, 0, 1);
-  NSLog(@"_link: %@", _link);
 }
 
 
@@ -162,6 +166,8 @@ static xmlSAXHandler _saxHandlerStruct = {
 		 nb_defaulted:(int)nb_defaulted 
 		   attributes:(const xmlChar**)attributes {
 
+  NSLog(@"localname: %s", localname);
+
   if (strncmp((char*)localname, "entry", sizeof("entry")) == 0) {
     NSLog(@"entry in");
     _isEntry = YES;
@@ -170,22 +176,51 @@ static xmlSAXHandler _saxHandlerStruct = {
 
   if (strncmp((char*)localname, "link", sizeof("link")) == 0) {
     NSLog(@"link in");
-    _isLink = YES;    
+    _isLink = YES;
     _link = [NSMutableDictionary dictionary];
     [[_link objectForKey:@"link"] addObject:_currentItem];
+
+    /*
+    for (int i=0; i < nb_attributes; i++) {
+      NSString *key = [NSString stringWithCString: attributes[0] 
+				encoding: NSUTF8StringEncoding];
+      NSString *value = [NSString stringWithCString: attributes[3] 
+				  encoding: NSUTF8StringEncoding];
+      NSLog(@"key: %@ value:%@\n", key, value);
+      attributes += 5;
+    }
+    */
+
+    for (int i=0; i < nb_attributes; i++) {
+      NSString *string = [NSString stringWithFormat:@"%s=\"%.*s\"", 
+				   attributes[i][0], 
+				   attributes[i][4] – attributes[i][3], 
+				   attributes[i][3] ];) {
+      　NSLog(string);
+    }
     return;
   }
 }
 
 - (void)charactersFoundCharacter:(const xmlChar*)ch len:(int)len {
-  
-  NSLog(@"len:%d", len);
 
-  if (_isEntry && _isLink) {
-    printf("ch: %s", ch);
+  if (_isEntry) {NSLog(@"isEntry=YES");}
+  if (_isLink) {NSLog(@"isLink=YES");}
+
+  if (_isLink) {
+    NSString *chStr = [NSString stringWithCString:(char*)ch 
+				encoding:NSUTF8StringEncoding];
+    
+    //NSLog(@"ch: %@", chStr);
+    //[chStr release];
   }
 }
 
+- (void)getEntityName:(const xmlChar*)name {
+
+  NSString *nameStr = [NSString stringWithCString:(char*)name
+				encoding:NSUTF8StringEncoding];
+}
 
 - (void)endElementLocalName:(const xmlChar*)localname 
         prefix:(const xmlChar*)prefix URI:(const xmlChar*)URI {
@@ -216,10 +251,13 @@ static xmlSAXHandler _saxHandlerStruct = {
   }
 
   if (strncmp((char*)localname, "entry", sizeof("entry")) == 0) {
+    NSLog(@"entry out");
     _isEntry = NO;
+    NSLog(@"entry outed!");
   }
 
   if (strncmp((char*)localname, "link", sizeof("link")) == 0) {
+    NSLog(@"link out");
     _isLink = NO;    
   }
 

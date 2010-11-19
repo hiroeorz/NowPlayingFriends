@@ -10,7 +10,7 @@
 #import <libxml/tree.h>
 
 
-#define kYouTubeSearchURL @"http://gdata.youtube.com/feeds/api/videos?"
+#define kYouTubeSearchURL @"http://gdata.youtube.com/feeds/api/videos?max-results=1&"
 
 @interface YouTubeClient : NSOperation {
 
