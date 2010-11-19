@@ -175,11 +175,7 @@
 
 - (BOOL)application:(UIApplication *)application 
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-  
-  YouTubeClient *youtube = [[YouTubeClient alloc] init];
-  [youtube autorelease];
-  [youtube searchWithTitle:@"高架線" artist:@"ELLEGARDEN"];
-  
+    
   testFlag = 0;
 
   TwitterClient *client = [[TwitterClient alloc] init];

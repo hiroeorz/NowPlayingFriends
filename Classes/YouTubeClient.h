@@ -12,33 +12,25 @@
 
 #define kYouTubeSearchURL @"http://gdata.youtube.com/feeds/api/videos?max-results=1&"
 
-@interface YouTubeClient : NSOperation {
+@interface YouTubeClient : NSOperation <NSXMLParserDelegate>{
+
+  NSMutableData *xmlData;
+  BOOL isEntry;
+  BOOL isLink;
+  NSString *linkUrl;
+  id delegate;
+  SEL action;
 
   NSURLRequest *_request;
   NSURLConnection *_connection;
-  xmlParserCtxtPtr _parserContext;
   BOOL _isExecuting, _isFinished;
-
-  BOOL _isChannel, _isItem;
-  BOOL _isEntry, _isID, _isLink;
-  NSMutableDictionary *_link;
-  NSMutableDictionary *_channel;
-  NSMutableDictionary *_currentItem;
-  NSMutableString *_currentCharacters;
 }
 
-- (void)searchWithTitle:(NSString *)title artist:(NSString *)artist;
-- (void)charactersFoundCharacter:(const xmlChar*)ch len:(int)len;
-- (void)startElementLocalName:(const xmlChar*)localname 
-		       prefix:(const xmlChar*)prefix 
-			  URI:(const xmlChar*)URI 
-		nb_namespaces:(int)nb_namespaces
-		   namespaces:(const xmlChar**)namespaces 
-		nb_attributes:(int)nb_attributes 
-		 nb_defaulted:(int)nb_defaulted 
-		   attributes:(const xmlChar**)attributes;
+@property (nonatomic, retain) NSMutableData *xmlData;
+@property (nonatomic, retain) NSString *linkUrl;
+@property (nonatomic, retain) id delegate;
+@property (nonatomic) SEL action;
 
-- (void)endElementLocalName:(const xmlChar*)localname 
-		     prefix:(const xmlChar*)prefix URI:(const xmlChar*)URI;
-
+- (void)searchWithTitle:(NSString *)title artist:(NSString *)artist
+	       delegate:(id)aDelegate action:(SEL)aAction;
 @end

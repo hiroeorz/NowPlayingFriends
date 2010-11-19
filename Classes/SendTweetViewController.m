@@ -9,6 +9,7 @@
 #import "MusicPlayerViewController.h"
 #import "NowPlayingFriendsAppDelegate.h"
 #import "SendTweetViewController.h"
+#import "YouTubeClient.h"
 
 
 @interface SendTweetViewController (Local)
@@ -94,8 +95,37 @@
     editView.text = [self.appDelegate tweetString];
   }
 
+  YouTubeClient *youtube = [[YouTubeClient alloc] init];
+  [youtube autorelease];
+  [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
+	   artist:[self.appDelegate nowPlayingArtistName]
+	   delegate:self
+	   action:@selector(addYouTubeLink:)];
+
   editView.delegate = self;
   [self.view addSubview:editView];
+}
+
+- (void)addYouTubeLink:(NSString *)linkUrl {
+
+  if (linkUrl != nil) {
+    NSString *clearUrl = 
+      [linkUrl stringByReplacingOccurrencesOfString:@"&feature=youtube_gdata"
+	       withString:@""];
+    
+    NSString *complessedUrl = 
+      [clearUrl 
+	stringByReplacingOccurrencesOfString:@"http://www.youtube.com/watch?v="
+	withString:@"http://youtu.be/"];
+
+    NSLog(@"complessedUrl:%@", complessedUrl);
+
+    NSString *newText = [[NSString alloc] initWithFormat:@"%@ [YouTube: %@ ]",
+					  editView.text,
+					  complessedUrl];
+    editView.text = newText;
+    [newText release];
+  }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
