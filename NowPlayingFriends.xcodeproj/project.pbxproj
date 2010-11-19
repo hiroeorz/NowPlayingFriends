@@ -675,7 +675,7 @@
 				HEADER_SEARCH_PATHS = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.1.sdk/usr/include/libxml2;
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				PRODUCT_NAME = "Now Playing Friends";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A8E2E3E5-4EE5-4965-AFA1-C099B9861C44";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A7721726-CE1B-49D5-AA21-0F81126EDF1B";
 			};
 			name = Debug;
 		};
@@ -689,6 +689,7 @@
 				HEADER_SEARCH_PATHS = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.1.sdk/usr/include/libxml2;
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				PRODUCT_NAME = "Now Playing Friends";
+				SDKROOT = iphoneos4.1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -714,14 +715,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlayingFriends_Prefix.pch;
 				HEADER_SEARCH_PATHS = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.1.sdk/usr/include/libxml2;
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				PRODUCT_NAME = "Now Playing Friends";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A7721726-CE1B-49D5-AA21-0F81126EDF1B";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;
