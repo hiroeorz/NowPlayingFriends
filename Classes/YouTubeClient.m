@@ -12,6 +12,7 @@
 @interface YouTubeClient (Local)
 - (void)startWithRequestString:(NSString *)urlString 
 		     parameter:(NSString *)aParameter;
+- (NSString *)shurinkedUrl:(NSString *)aUrl;
 @end
 
 @implementation YouTubeClient
@@ -65,6 +66,7 @@
   [self setValue:[NSNumber numberWithBool:NO] forKey:@"isFinished"]; 
   [self setValue:[NSNumber numberWithBool:YES] forKey:@"isExecuting"]; 
   [NSURLConnection connectionWithRequest:request delegate:self];
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 #pragma mark -
@@ -78,6 +80,8 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
   
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
   NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xmlData];
   [parser setDelegate:self];
   [parser parse];
@@ -107,9 +111,32 @@
   if (isEntry && isLink) {
     if ([(NSString *)[attributeDict objectForKey:@"rel"] 
 	  compare:@"alternate"] == NSOrderedSame) {
-      self.linkUrl = (NSString *)[attributeDict objectForKey:@"href"];
+      NSString *aUrl = (NSString *)[attributeDict objectForKey:@"href"];
+      self.linkUrl = [self shurinkedUrl:aUrl];
     }
   }
+}
+
+- (NSString *)shurinkedUrl:(NSString *)aUrl {
+
+  if (aUrl == nil) {
+    return nil;
+  }
+
+  NSString *clearUrl = 
+    [aUrl stringByReplacingOccurrencesOfString:@"&feature=youtube_gdata"
+	     withString:@""];
+
+  NSLog(@"clearUrl: %@", clearUrl);
+    
+  NSString *shurinkedUrl = 
+    [clearUrl 
+      stringByReplacingOccurrencesOfString:@"http://www.youtube.com/watch?v="
+      withString:@"http://youtu.be/"];
+
+  NSLog(@"shurinkedUrl: %@", shurinkedUrl);
+
+  return shurinkedUrl;
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {

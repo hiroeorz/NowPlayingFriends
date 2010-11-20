@@ -109,20 +109,8 @@
 - (void)addYouTubeLink:(NSString *)linkUrl {
 
   if (linkUrl != nil) {
-    NSString *clearUrl = 
-      [linkUrl stringByReplacingOccurrencesOfString:@"&feature=youtube_gdata"
-	       withString:@""];
-    
-    NSString *complessedUrl = 
-      [clearUrl 
-	stringByReplacingOccurrencesOfString:@"http://www.youtube.com/watch?v="
-	withString:@"http://youtu.be/"];
-
-    NSLog(@"complessedUrl:%@", complessedUrl);
-
-    NSString *newText = [[NSString alloc] initWithFormat:@"%@ [YouTube: %@ ]",
-					  editView.text,
-					  complessedUrl];
+    NSString *newText = [[NSString alloc] initWithFormat:@"%@ YouTube:%@",
+					  editView.text, linkUrl];
     editView.text = newText;
     [newText release];
   }
