@@ -43,7 +43,6 @@
   [newProfileImages release];
 }
 
-
 - (void)dealloc {
     
   [managedObjectContext_ release];
@@ -347,6 +346,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 #pragma mark -
 #pragma iPod Information Methods
+
+- (BOOL)hasYouTubeLink {
+
+  NSString *template = self.template_preference;
+  return ([template rangeOfString:@"[yt]"].location != NSNotFound);
+}
 
 - (NSString *)tweetString {
 

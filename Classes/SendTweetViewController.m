@@ -95,12 +95,19 @@
     editView.text = [self.appDelegate tweetString];
   }
 
-  YouTubeClient *youtube = [[YouTubeClient alloc] init];
-  [youtube autorelease];
-  [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
-	   artist:[self.appDelegate nowPlayingArtistName]
-	   delegate:self
-	   action:@selector(addYouTubeLink:)];
+  if ([self.appDelegate hasYouTubeLink]) {
+    YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
+    
+    [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
+	     artist:[self.appDelegate nowPlayingArtistName]
+	     delegate:self
+	     action:@selector(addYouTubeLink:)];
+  } else {
+    NSString *tweet = 
+      [editView.text stringByReplacingOccurrencesOfString:@"[yt]" 
+	       withString:@""]; 
+    editView.text = tweet;
+  }
 
   editView.delegate = self;
   [self.view addSubview:editView];
@@ -108,12 +115,17 @@
 
 - (void)addYouTubeLink:(NSString *)linkUrl {
 
+  NSString *tweet = nil;
+
   if (linkUrl != nil) {
-    NSString *newText = [[NSString alloc] initWithFormat:@"%@ YouTube:%@",
-					  editView.text, linkUrl];
-    editView.text = newText;
-    [newText release];
+    tweet = [editView.text stringByReplacingOccurrencesOfString:@"[yt]"
+		     withString:linkUrl];
+  } else {
+    tweet = [editView.text stringByReplacingOccurrencesOfString:@"[yt]"
+		     withString:@""]; 
   }
+
+  editView.text = tweet;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

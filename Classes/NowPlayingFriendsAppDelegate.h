@@ -14,7 +14,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <QuartzCore/QuartzCore.h>
 
-#define kTweetTemplate @"♪ #NowPlaying \"[st]\" by \"[ar]\" on album \"[al]\" ♬ "
+#define kTweetTemplate @"♪ #NowPlaying \"[st]\" by \"[ar]\" on album \"[al]\" ♬ [yt]"
 #define kMaxTweetLength 140
 #define kProfileImageDirectory @"profileImages"
 #define kProfileImageMaxFileCacheCount 512
@@ -75,6 +75,7 @@
 - (NSString *)nowPlayingTagsString;
 - (NSArray *)albums;
 - (NSArray *)playLists;
+- (BOOL)hasYouTubeLink;
 - (NSString *)tweetString;
 
 - (void)setHalfCurlAnimationWithController:(id)targetViewController

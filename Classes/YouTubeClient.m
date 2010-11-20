@@ -36,9 +36,12 @@
   self.delegate = aDelegate;
   self.action = aAction;
   self.linkUrl = nil;
-  NSString *parameter = [[NSString alloc] initWithFormat:@"%@,%@,Music",
-					  artist, title];
-  [self startWithRequestString:kYouTubeSearchURL parameter:parameter];
+  NSString *parameter = [[[NSString alloc] initWithFormat:@"%@,%@,Music",
+					   title, artist] autorelease];
+  NSString *url = [[[NSString alloc] initWithFormat:kYouTubeSearchURL, 1] 
+		    autorelease];
+
+  [self startWithRequestString:url parameter:parameter];
 }
 
 #pragma mark -
@@ -48,13 +51,16 @@
   
   self.xmlData = [NSMutableData data];
   
+  NSString *replaced = 
+    [aParameter stringByReplacingOccurrencesOfString:@" " withString:@","];
+
   CFStringRef ignoreString = CFSTR(";,/?:@&=+$#");
   NSMutableString *bodyString = 
     [NSMutableString stringWithFormat:@"%@category=%@&v=2",
 		     urlString,
 		     (NSString *)CFURLCreateStringByAddingPercentEscapes(  
 						       kCFAllocatorDefault,
-						       (CFStringRef)aParameter,
+						       (CFStringRef)replaced,
 						       NULL,
                                                        ignoreString,
                                                        kCFStringEncodingUTF8)];
