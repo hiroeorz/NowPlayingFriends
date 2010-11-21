@@ -89,12 +89,14 @@
 
   setTweetEditField(editView, 5.0f, 310.0f, 140.0f);
 
-  if (defaultTweetString != nil) {
+  if (defaultTweetString != nil) { /* 通常のツイート*/
     editView.text = defaultTweetString;
+  } else {                         /* 楽曲ツイート */
+    editView.text = [self.appDelegate tweetString];
 
     if ([self.appDelegate hasYouTubeLink]) {
       YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
-      
+
       [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
 	       artist:[self.appDelegate nowPlayingArtistName]
 	       delegate:self
@@ -105,8 +107,6 @@
 		 withString:@""]; 
       editView.text = tweet;
     }
-  } else {
-    editView.text = [self.appDelegate tweetString];
   }
 
   editView.delegate = self;

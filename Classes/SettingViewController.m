@@ -171,9 +171,10 @@ titleForHeaderInSection:(NSInteger)section {
       break;
 
     case 1: {
+      cell.textLabel.numberOfLines = 5;
       cell.textLabel.font = [UIFont systemFontOfSize:12];
       cell.textLabel.text = 
-	@"[al]:Album Name  [ar]:Artist Name  [st]:Song Title";
+	@"[al]:Album Name  [ar]:Artist Name  [st]:Song Title \n[yt]:YouTube link";
     }
       break;
     case 2: {

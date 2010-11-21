@@ -14,12 +14,12 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <QuartzCore/QuartzCore.h>
 
-#define kTweetTemplate @"♪ #NowPlaying \"[st]\" by \"[ar]\" on album \"[al]\" ♬ [yt]"
+#define kTweetTemplate @"♪ Now Playing \"[st]\" by \"[ar]\" on album \"[al]\" ♬ [yt] #nowplaying"
 #define kMaxTweetLength 140
 #define kProfileImageDirectory @"profileImages"
 #define kProfileImageMaxFileCacheCount 512
 #define kProfileImageMaxMemoryCacheCount 30
-#define KNowPlayingTags @"Playing OR nowplaying OR listening OR nowlistening OR playing OR twitmusic OR BGM";
+#define KNowPlayingTags @"Playing OR nowplaying OR listening OR nowlistening OR playing OR twitmusic OR BGM OR youtube";
 
 @interface NowPlayingFriendsAppDelegate : NSObject <UIApplicationDelegate> {
   

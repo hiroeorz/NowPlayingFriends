@@ -100,6 +100,13 @@
   [delegate performSelector:action withObject:linkUrl];
 }
 
+-(void)connection:(NSURLConnection*)connection 
+ didFailWithError:(NSError*)error {
+
+  NSLog(@"YouTube Connection Error");
+  [delegate performSelector:action withObject:nil];
+}
+
 #pragma mark -
 #pragma NSXMLParser Delegate Methods
 
@@ -159,6 +166,10 @@
   if([elementName compare:@"link"] == NSOrderedSame){
     isLink = NO;
   }
+}
+
+- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError{
+  NSLog(@"XML ParseError");
 }
 
 @end

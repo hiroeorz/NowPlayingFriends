@@ -20,7 +20,7 @@
 			<key>Key</key>
 			<string>template_preference</string>
 			<key>DefaultValue</key>
-			<string>♪ Now Playing &quot;[st]&quot; by &quot;[ar]&quot; on album &quot;[al]&quot; ♬ #nowplaying</string>
+			<string>♪ Now Playing &quot;[st]&quot; by &quot;[ar]&quot; on album &quot;[al]&quot; ♬ [yt] #nowplaying</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>
