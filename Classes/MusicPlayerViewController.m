@@ -6,12 +6,13 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "MusicPlayerViewController.h"
 #import "AlbumSongsViewController.h"
+#import "MusicPlayerViewController.h"
 #import "PlayListSongsViewController.h"
-#import "UserInformationViewController.h"
-#import "UserAuthenticationViewController.h"
 #import "SendTweetViewController.h"
+#import "UserAuthenticationViewController.h"
+#import "UserInformationViewController.h"
+#import "YouTubeClient.h"
 
 
 @interface MusicPlayerViewController (Local)
@@ -37,6 +38,7 @@
 - (void)changeToSongview;
 - (void)sendAutoTweetAfterTimeLag;
 - (void)sendAutoTweet;
+- (void)sendAutoTweetDetail:(NSString *)message;
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 @end
 
@@ -411,8 +413,40 @@
 - (void)sendAutoTweet {
 
   if (sent) {return;}
+
+  if ([self.appDelegate hasYouTubeLink]) {
+    YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
+      
+    [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
+	     artist:[self.appDelegate nowPlayingArtistName]
+	     delegate:self
+	     action:@selector(createMessageIncludeYouTube:)];
+
+  } else {
+    NSString *message = [self.appDelegate tweetString];
+    [self sendAutoTweetDetail:
+	    [message stringByReplacingOccurrencesOfString:@"[yt]" 
+		     withString:@""]];
+  }
+}
+
+/**
+ * @brief 受け取ったYouTubeリンクをメッセージに埋込む。YouTubeクライアントから呼ばれる。
+ */
+- (void)createMessageIncludeYouTube:(NSString *)linkUrl {
+
   NSString *message = [self.appDelegate tweetString];
-  
+  NSString *linkedMessage = 
+    [message stringByReplacingOccurrencesOfString:@"[yt]" withString:linkUrl];
+
+  [self sendAutoTweetDetail: linkedMessage];
+}
+
+/**
+ * @brief 引数で受け取ったメッセージを送信する。
+ */
+- (void)sendAutoTweetDetail:(NSString *)message {
+
   if (self.appDelegate.over140alert_preference &&
       kMaxTweetLength < [message length]) {
     UIAlertView *alert = [[UIAlertView alloc] 

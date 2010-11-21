@@ -91,22 +91,22 @@
 
   if (defaultTweetString != nil) {
     editView.text = defaultTweetString;
+
+    if ([self.appDelegate hasYouTubeLink]) {
+      YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
+      
+      [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
+	       artist:[self.appDelegate nowPlayingArtistName]
+	       delegate:self
+	       action:@selector(addYouTubeLink:)];
+    } else {
+      NSString *tweet = 
+	[editView.text stringByReplacingOccurrencesOfString:@"[yt]" 
+		 withString:@""]; 
+      editView.text = tweet;
+    }
   } else {
     editView.text = [self.appDelegate tweetString];
-  }
-
-  if ([self.appDelegate hasYouTubeLink]) {
-    YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
-    
-    [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
-	     artist:[self.appDelegate nowPlayingArtistName]
-	     delegate:self
-	     action:@selector(addYouTubeLink:)];
-  } else {
-    NSString *tweet = 
-      [editView.text stringByReplacingOccurrencesOfString:@"[yt]" 
-	       withString:@""]; 
-    editView.text = tweet;
   }
 
   editView.delegate = self;
