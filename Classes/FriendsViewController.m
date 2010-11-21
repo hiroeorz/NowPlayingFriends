@@ -673,13 +673,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
   NSString *username = [self.appDelegate username:button.data];
   NSString *replyString = [[NSString alloc] initWithFormat:@"@%@ ", username];
+  NSString *sourceString = [button.data objectForKey:@"text"];
 
   SendTweetViewController *viewController = 
     [[SendTweetViewController alloc] initWithNibName:@"SendTweetViewController"
 				     bundle:nil];
   viewController.defaultTweetString = replyString;
   viewController.inReplyToStatusId = [button.data objectForKey:@"id"];
- 
+  viewController.sourceString = sourceString;
+
   [replyString release];
 
   UINavigationController *navController = 

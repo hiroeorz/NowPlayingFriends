@@ -29,6 +29,8 @@
 @synthesize indicatorBase;
 @synthesize letterCountLabel;
 @synthesize musicPlayer;
+@synthesize retweetButton;
+@synthesize sourceString;
 @synthesize twitterClient;
 
 - (void)dealloc {
@@ -39,6 +41,8 @@
   [indicatorBase release];
   [letterCountLabel release];
   [musicPlayer release];
+  [retweetButton release];
+  [sourceString release];
   [twitterClient release];
   [super dealloc];
 }
@@ -51,6 +55,8 @@
   self.indicatorBase = nil;
   self.letterCountLabel = nil;
   self.musicPlayer = nil;
+  self.retweetButton = nil;
+  self.sourceString = nil;
   self.twitterClient = nil;
   [super viewDidUnload];
 }
@@ -86,6 +92,10 @@
 - (void)viewWillAppear:(BOOL)animated {
 
   [super viewWillAppear:animated];
+
+  if (defaultTweetString == nil || sourceString == nil) {
+    [retweetButton removeFromSuperview];
+  }
 
   setTweetEditField(editView, 5.0f, 310.0f, 140.0f);
 
@@ -170,6 +180,15 @@
 
 - (IBAction)clearText:(id)sender {
   editView.text = @"";
+}
+
+- (IBAction)setRetweetString:(id)sender {
+
+  NSString *retweetBody = [[NSString alloc] initWithFormat:@"RT %@%@",
+					    defaultTweetString,
+					    sourceString];
+  editView.text = retweetBody;
+  [retweetBody release];
 }
 
 #pragma mark -

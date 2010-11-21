@@ -34,24 +34,29 @@
   MusicPlayerViewController *musicPlayer;
   NSNumber  *inReplyToStatusId;
   NSString *defaultTweetString;
+  NSString *sourceString;
   TwitterClient *twitterClient;
   UIActivityIndicatorView *indicator;
+  UIButton *retweetButton;
   UILabel *letterCountLabel;
   UITextView *editView;
   UIView *indicatorBase;
 }
 
 @property (nonatomic, retain) IBOutlet NSString *defaultTweetString;
+@property (nonatomic, retain) IBOutlet UIButton *retweetButton;
 @property (nonatomic, retain) IBOutlet UILabel *letterCountLabel;
 @property (nonatomic, retain) IBOutlet UITextView *editView;
 @property (nonatomic, retain) MusicPlayerViewController *musicPlayer;
 @property (nonatomic, retain) NSNumber  *inReplyToStatusId;
+@property (nonatomic, retain) NSString *sourceString;
 @property (nonatomic, retain) TwitterClient *twitterClient;
 @property (nonatomic, retain) UIActivityIndicatorView *indicator;
 @property (nonatomic, retain) UIView *indicatorBase;
 @property (nonatomic, retain, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 
 - (IBAction)clearText:(id)sender;
+- (IBAction)setRetweetString:(id)sender;
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 - (void)countAndWriteTweetLength:(NSInteger)textcount;
