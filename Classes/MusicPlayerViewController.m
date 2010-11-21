@@ -435,10 +435,16 @@
  */
 - (void)createMessageIncludeYouTube:(NSString *)linkUrl {
 
-  NSString *message = [self.appDelegate tweetString];
-  NSString *linkedMessage = 
-    [message stringByReplacingOccurrencesOfString:@"[yt]" withString:linkUrl];
+  NSString *linkedMessage = nil;
 
+  if (linkUrl == nil) {
+    linkedMessage = [self.appDelegate tweetString];
+  } else {
+    NSString *message = [self.appDelegate tweetString];
+    linkedMessage = 
+      [message stringByReplacingOccurrencesOfString:@"[yt]" withString:linkUrl];
+  }
+  
   [self sendAutoTweetDetail: linkedMessage];
 }
 
