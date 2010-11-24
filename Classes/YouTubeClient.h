@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <libxml/tree.h>
 
 
 #define kYouTubeSearchURL @"http://gdata.youtube.com/feeds/api/videos?max-results=%d&orderby=relevance&"

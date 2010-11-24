@@ -902,7 +902,6 @@
   [self.view addSubview:listView];
   [UIView commitAnimations];
 
-
   self.navigationItem.leftBarButtonItem = 
     [self.appDelegate playerButton:@selector(changeToSongview) 
 	 target:self];    

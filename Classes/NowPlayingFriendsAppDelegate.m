@@ -20,6 +20,12 @@
 
 #import "YouTubeClient.h"
 
+@interface NowPlayingFriendsAppDelegate (Local)
+
+- (UIImage *)resizedImage:(UIImage *)aImage 
+		    width:(float)width height:(float)height;
+@end
+
 @implementation NowPlayingFriendsAppDelegate
 
 @synthesize window;
@@ -923,15 +929,21 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (UIBarButtonItem *)playerButton:(SEL)selector
 			 target:(id)target {
 
+  float size = 25.0f;
+
   UIImage *artworkImage = 
-    [self currentMusicArtWorkWithWidth:20 height:20 useDefault:NO];
+    [self currentMusicArtWorkWithWidth:size height:size useDefault:NO];
+
+  UIImage *resizedImage = [self resizedImage:[artworkImage retain] 
+				width:size height:size];
+  [artworkImage release];
 
   if (artworkImage == nil) {
     artworkImage = [UIImage imageNamed:@"no_artwork.png"];
   }
 
   UIBarButtonItem *button = 
-    [[UIBarButtonItem alloc] initWithImage:artworkImage
+    [[UIBarButtonItem alloc] initWithImage:resizedImage
 			     style:UIBarButtonItemStylePlain
 			     target:target
 			     action:selector];
@@ -992,6 +1004,29 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return [button autorelease];
 }
 
+
+- (UIImage *)resizedImage:(UIImage *)aImage 
+		    width:(float)width height:(float)height {
+
+  UIImage *image = [aImage copy];
+  CGRect rect = CGRectMake(0.0, 0.0, width, height);
+
+  //	計算した描画領域を指定して描画準備。
+  UIGraphicsBeginImageContext(rect.size);	
+
+  //	UIGraphicsGetImageFromCurrentImageContextが呼ばれるまで
+  //	描画はすべて新しい描画領域が対象となる。
+  [image drawInRect:rect];	//	イメージ描画。
+	
+  //	新しい描画領域からUIImageを作成。
+  image = UIGraphicsGetImageFromCurrentImageContext();	
+  UIGraphicsEndImageContext();			//	解除。
+
+  NSLog(@"iamge: %@", image);
+
+  return image;
+}
+
 /**
  * @brief 渡されたイメージを渡されたボタンに縦横比を保ったままリサイズしてセットします。
  */
@@ -1011,22 +1046,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     ratio = wide / size.height;
   }
 
-  CGRect rect = CGRectMake(0.0, 0.0, 
-			   ratio * size.width, ratio * size.height);
+  UIImage *newImage = [self resizedImage:image 
+			    width:(ratio * size.width) 
+			    height:(ratio * size.height)];
 
-  //	計算した描画領域を指定して描画準備。
-  UIGraphicsBeginImageContext(rect.size);	
-
-  //	UIGraphicsGetImageFromCurrentImageContextが呼ばれるまで
-  //	描画はすべて新しい描画領域が対象となる。
-  [image drawInRect:rect];	//	イメージ描画。
-	
-  //	新しい描画領域からUIImageを作成。
-  image = UIGraphicsGetImageFromCurrentImageContext();	
-  UIGraphicsEndImageContext();			//	解除。
-	
   //	スケーリングされたUIImageを設定。
-  [imageButton setImage:image forState:UIControlStateNormal];
+  [imageButton setImage:newImage forState:UIControlStateNormal];
 	
   //	説明文は消す。
   [imageButton setTitle:nil forState:UIControlStateNormal];

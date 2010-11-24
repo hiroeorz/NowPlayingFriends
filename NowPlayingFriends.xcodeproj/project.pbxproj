@@ -676,6 +676,7 @@
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A7721726-CE1B-49D5-AA21-0F81126EDF1B";
+				SDKROOT = iphoneos4.2;
 			};
 			name = Debug;
 		};
@@ -689,7 +690,7 @@
 				HEADER_SEARCH_PATHS = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.1.sdk/usr/include/libxml2;
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				PRODUCT_NAME = "Now Playing Friends";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -723,6 +724,7 @@
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A7721726-CE1B-49D5-AA21-0F81126EDF1B";
+				SDKROOT = iphoneos4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;
