@@ -107,6 +107,8 @@
 - (NSString *)createDirectory:(NSString *)dirname;
 - (void)cleanupProfileImageFileCache;
 
+- (UIImage *)resizedImageWithImage:(UIImage *)orgImage
+			     width:(float)width height:(float)height;
 - (void)setResizedImage:(UIImage *)image 
 	       toButton:(UIButton *)imageButton;
 
