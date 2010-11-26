@@ -15,6 +15,11 @@
 #import "YouTubeClient.h"
 
 
+#define kRefreshTypeSong 0
+#define kRefreshTypeArtist 1
+#define kRefreshTypeAll 2
+
+
 @interface MusicPlayerViewController (Local)
 
 - (void)openUserInformationView:(id)sender;
@@ -62,6 +67,7 @@
 @synthesize playLists;
 @synthesize profileImageButtons;
 @synthesize refreshProfileImagesMutex;
+@synthesize refreshTypeSegmentedControl;
 @synthesize repeatModeControll;
 @synthesize sending;
 @synthesize sent;
@@ -89,6 +95,7 @@
   [playLists release];
   [profileImageButtons release];
   [refreshProfileImagesMutex release];
+  [refreshTypeSegmentedControl release];
   [repeatModeControll release];
   [settingView release];
   [shuffleModeControll release];
@@ -113,6 +120,7 @@
   self.playLists = nil;
   self.profileImageButtons = nil;
   self.refreshProfileImagesMutex = nil;
+  self.refreshTypeSegmentedControl = nil;
   self.repeatModeControll = nil;
   self.settingView = nil;
   self.shuffleModeControll = nil;
@@ -209,6 +217,13 @@
    break;
  }
 }
+
+- (IBAction)changeRefreshType:(id)sender {
+  
+  [self performSelectorInBackground:@selector(refreshProfileImages)
+	withObject:nil];
+}
+
 
 - (void)openUserInformationView:(id)sender {
 
@@ -414,19 +429,16 @@
 
   if (sent) {return;}
 
-  if ([self.appDelegate hasYouTubeLink]) {
+  if ([self.appDelegate use_youtube_preference]) {
     YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
       
     [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
 	     artist:[self.appDelegate nowPlayingArtistName]
 	     delegate:self
 	     action:@selector(createMessageIncludeYouTube:)];
-
   } else {
     NSString *message = [self.appDelegate tweetString];
-    [self sendAutoTweetDetail:
-	    [message stringByReplacingOccurrencesOfString:@"[yt]" 
-		     withString:@""]];
+    [self sendAutoTweetDetail:message];
   }
 }
 
@@ -439,11 +451,10 @@
   NSString *linkedMessage = nil;
 
   if (linkUrl == nil) {
-    linkedMessage = 
-      [message stringByReplacingOccurrencesOfString:@"[yt]" withString:@""];
+    linkedMessage = message;
   } else {
-    linkedMessage = 
-      [message stringByReplacingOccurrencesOfString:@"[yt]" withString:linkUrl];
+    linkedMessage = [[[NSString alloc] 
+		       initWithFormat:@"%@ %@", message, linkUrl] autorelease];
   }
   
   [self sendAutoTweetDetail: linkedMessage];
@@ -533,14 +544,23 @@
 - (void)refreshTimeline {
 
   NSLog(@"updating timeline data...");
-
   TwitterClient *client = [[TwitterClient alloc] init];
   NSString *songTitle = [self.appDelegate nowPlayingTitle];
   NSString *artistName = [self.appDelegate nowPlayingArtistName];
   NSString *tags = [self.appDelegate nowPlayingTagsString];
-
-  NSArray *newTimeline = [client getSearchTimeLine: songTitle, 
-				 artistName, tags, nil];
+  NSArray *newTimeline = nil;
+  
+  switch (refreshTypeSegmentedControl.selectedSegmentIndex) {
+  case kRefreshTypeSong:
+    newTimeline = [client getSearchTimeLine: songTitle, artistName, tags, nil];
+    break;
+  case kRefreshTypeArtist:
+    newTimeline = [client getSearchTimeLine: artistName, tags, nil];
+    break;
+  case kRefreshTypeAll:
+    newTimeline = [client getSearchTimeLine: tags, nil];
+    break;
+  }
 
   NSMutableArray *uniqArray = [[NSMutableArray alloc] init];
   NSMutableArray *checkArray = [[NSMutableArray alloc] init];

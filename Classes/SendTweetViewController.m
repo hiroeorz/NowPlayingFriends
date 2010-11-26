@@ -104,18 +104,14 @@
   } else {                         /* 楽曲ツイート */
     editView.text = [self.appDelegate tweetString];
 
-    if ([self.appDelegate hasYouTubeLink]) {
+    if ([self.appDelegate use_youtube_manual_preference]) {
+      [self startIndicator];
       YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
 
       [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
 	       artist:[self.appDelegate nowPlayingArtistName]
 	       delegate:self
 	       action:@selector(addYouTubeLink:)];
-    } else {
-      NSString *tweet = 
-	[editView.text stringByReplacingOccurrencesOfString:@"[yt]" 
-		 withString:@""]; 
-      editView.text = tweet;
     }
   }
 
@@ -125,17 +121,14 @@
 
 - (void)addYouTubeLink:(NSString *)linkUrl {
 
-  NSString *tweet = nil;
+  [self performSelectorInBackground:@selector(stopIndicatoWithThread)
+  	withObject:nil];
 
   if (linkUrl != nil) {
-    tweet = [editView.text stringByReplacingOccurrencesOfString:@"[yt]"
-		     withString:linkUrl];
-  } else {
-    tweet = [editView.text stringByReplacingOccurrencesOfString:@"[yt]"
-		     withString:@""]; 
+    editView.text = [[[NSString alloc] 
+		       initWithFormat:@"%@ %@", editView.text, linkUrl] 
+		      autorelease];
   }
-
-  editView.text = tweet;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -189,6 +182,17 @@
 					    sourceString];
   editView.text = retweetBody;
   [retweetBody release];
+}
+
+- (IBAction)addYouTubeTweet:(id)sender {
+
+  [self startIndicator];
+  YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
+
+  [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
+	   artist:[self.appDelegate nowPlayingArtistName]
+	   delegate:self
+	   action:@selector(addYouTubeLink:)];
 }
 
 #pragma mark -

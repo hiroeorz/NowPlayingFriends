@@ -19,7 +19,7 @@
 #define kProfileImageDirectory @"profileImages"
 #define kProfileImageMaxFileCacheCount 512
 #define kProfileImageMaxMemoryCacheCount 30
-#define KNowPlayingTags @"Playing OR nowplaying OR listening OR nowlistening OR playing OR twitmusic OR BGM OR youtube";
+#define KNowPlayingTags @"Playing OR nowplaying OR listening OR nowlistening OR playing OR twitmusic OR BGM";
 
 @interface NowPlayingFriendsAppDelegate : NSObject <UIApplicationDelegate> {
   
@@ -54,6 +54,8 @@
 @property (nonatomic) BOOL get_twitterusers_preference;
 @property (nonatomic) BOOL autotweet_preference;
 @property (nonatomic) BOOL over140alert_preference;
+@property (nonatomic) BOOL use_youtube_preference;
+@property (nonatomic) BOOL use_youtube_manual_preference;
 
 - (NSString *)applicationDocumentsDirectory;
 - (UINavigationController *)navigationWithViewController:(id)viewController

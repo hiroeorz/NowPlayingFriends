@@ -45,8 +45,8 @@
 @private
 
   BOOL autoTweetMode;
-  BOOL sent;
   BOOL sending;
+  BOOL sent;
   MPMusicPlayerController *musicPlayer;
   NSArray *albumLists;
   NSArray *beforeTimeline;
@@ -59,6 +59,7 @@
   UIButton *playButton;
   UIImageView *albumImageView;
   UISegmentedControl *musicSegmentedControl;
+  UISegmentedControl *refreshTypeSegmentedControl;
   UISegmentedControl *repeatModeControll;
   UISegmentedControl *shuffleModeControll;
   UISlider *volumeSlider;
@@ -95,14 +96,17 @@
 @property (nonatomic, retain) NSMutableArray *nowButtons;
 @property (nonatomic, retain) NSMutableArray *profileImageButtons;
 @property (nonatomic, retain) NSString *refreshProfileImagesMutex;
+@property (nonatomic, retain) UISegmentedControl *refreshTypeSegmentedControl;
 @property (nonatomic, retain) UIView *baseView;
 @property (nonatomic, retain) UIViewController *songListController;
 
 - (IBAction)changeAutoTweetMode:(id)sender;
 - (IBAction)changeMusicSegmentedControl:(id)sender;
-- (IBAction)changeShuffleMode:(id)sender;
+- (IBAction)changeRefreshType:(id)sender;
 - (IBAction)changeRepeatMode:(id)sender;
+- (IBAction)changeShuffleMode:(id)sender;
 - (IBAction)changeVolume:(id)sender;
+- (IBAction)closeSettingView:(id)sender;
 - (IBAction)closeSettingView:(id)sender;
 - (IBAction)openSettingView:(id)sender;
 - (IBAction)openSettingView:(id)sender;
@@ -110,7 +114,6 @@
 - (IBAction)skipToNextItem:(id)sender;
 - (IBAction)skipToPreviousItem:(id)sender;
 - (IBAction)togglePlayStop:(id)sender;
-- (IBAction)closeSettingView:(id)sender;
 
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;

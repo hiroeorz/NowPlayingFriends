@@ -37,6 +37,9 @@
 @dynamic get_twitterusers_preference;
 @dynamic autotweet_preference;
 @dynamic over140alert_preference;
+@dynamic use_youtube_preference;
+@dynamic use_youtube_manual_preference;
+
 
 #pragma mark -
 #pragma mark Memory management
@@ -560,6 +563,52 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   [self.userDefaults setValue:over140CharAlertEnable 
        forKey:@"over140alert_preference"];
+}
+
+/**
+ * @brief 自動ツイート時にYouTubeリンクを付加するかどうかの設定。
+ */
+- (BOOL)use_youtube_preference {
+
+  NSNumber *use_youtube_preference = 
+    [self.userDefaults valueForKey:@"use_youtube_preference"];
+  
+  if (use_youtube_preference == nil) {
+    use_youtube_preference = [NSNumber numberWithBool:YES];
+  }
+  
+  return [use_youtube_preference boolValue];
+}
+
+- (void)setUse_youtube_preference:(BOOL)flag {
+
+  NSNumber *use_youtube_preference = [NSNumber numberWithBool:flag];
+
+  [self.userDefaults setValue:use_youtube_preference 
+       forKey:@"use_youtube_preference"];
+}
+
+/**
+ * @brief 手動ツイート時にYouTubeリンクを付加するかどうかの設定。
+ */
+- (BOOL)use_youtube_manual_preference {
+
+  NSNumber *use_youtube_manual_preference = 
+    [self.userDefaults valueForKey:@"use_youtube_manual_preference"];
+  
+  if (use_youtube_manual_preference == nil) {
+    use_youtube_manual_preference = [NSNumber numberWithBool:NO];
+  }
+  
+  return [use_youtube_manual_preference boolValue];
+}
+
+- (void)setUse_youtube_manual_preference:(BOOL)flag {
+
+  NSNumber *use_youtube_manual_preference = [NSNumber numberWithBool:flag];
+
+  [self.userDefaults setValue:use_youtube_manual_preference 
+       forKey:@"use_youtube_manual_preference"];
 }
 
 #pragma mark -
