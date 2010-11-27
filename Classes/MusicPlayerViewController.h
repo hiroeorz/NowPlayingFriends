@@ -36,6 +36,9 @@
 #define kNowButtonAlpha 0.7f
 #define kPlayButtonFrame (CGRectMake(190.0f, 20.5f, 70.0f, 70.0f))
 #define kPlayButtonAlpha 0.7f
+#define kRefreshButtonFrame (CGRectMake(220.0f, 12.0f, 100.0f, 50.0f))
+#define kRefreshButtonAlpha 1.0f
+
 
 @interface MusicPlayerViewController : UIViewController 
 <UITableViewDataSource, UITableViewDelegate> {
@@ -52,6 +55,7 @@
   NSArray *beforeTimeline;
   NSArray *playLists;
   NSInteger listmode;
+  NSInteger subControlTouchCount;
   NSMutableArray *nowButtons;
   NSMutableArray *profileImageButtons;
   NSString *refreshProfileImagesMutex;
@@ -69,7 +73,9 @@
   UIView *musicControllerView;
   UIView *settingView;
   UIView *songView;
+  UIView *subControlView;
   UIViewController *songListController;
+  UIButton *subControlDisplayButton;
 }
 
 @property (nonatomic) BOOL autoTweetMode;
@@ -78,8 +84,10 @@
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) IBOutlet UIButton *button;
 @property (nonatomic, retain) IBOutlet UIButton *playButton;
+@property (nonatomic, retain) IBOutlet UIButton *subControlDisplayButton;
 @property (nonatomic, retain) IBOutlet UIImageView *albumImageView;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *musicSegmentedControl;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *refreshTypeSegmentedControl;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *repeatModeControll;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *shuffleModeControll;
 @property (nonatomic, retain) IBOutlet UISlider *volumeSlider;
@@ -88,6 +96,7 @@
 @property (nonatomic, retain) IBOutlet UIView *musicControllerView;
 @property (nonatomic, retain) IBOutlet UIView *settingView;
 @property (nonatomic, retain) IBOutlet UIView *songView;
+@property (nonatomic, retain) IBOutlet UIView *subControlView;
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 @property (nonatomic, retain) NSArray *albumLists;
 @property (nonatomic, retain) NSArray *beforeTimeline;
@@ -96,10 +105,10 @@
 @property (nonatomic, retain) NSMutableArray *nowButtons;
 @property (nonatomic, retain) NSMutableArray *profileImageButtons;
 @property (nonatomic, retain) NSString *refreshProfileImagesMutex;
-@property (nonatomic, retain) UISegmentedControl *refreshTypeSegmentedControl;
 @property (nonatomic, retain) UIView *baseView;
 @property (nonatomic, retain) UIViewController *songListController;
 
+- (IBAction)touchSubControl:(id)sender;
 - (IBAction)changeAutoTweetMode:(id)sender;
 - (IBAction)changeMusicSegmentedControl:(id)sender;
 - (IBAction)changeRefreshType:(id)sender;
@@ -108,6 +117,7 @@
 - (IBAction)changeVolume:(id)sender;
 - (IBAction)closeSettingView:(id)sender;
 - (IBAction)closeSettingView:(id)sender;
+- (IBAction)displaySubview:(id)sender;
 - (IBAction)openSettingView:(id)sender;
 - (IBAction)openSettingView:(id)sender;
 - (IBAction)skipToBeginningOrPreviousItem:(id)sender;

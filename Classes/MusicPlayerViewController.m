@@ -19,6 +19,7 @@
 #define kRefreshTypeArtist 1
 #define kRefreshTypeAll 2
 
+#define kSubControlRemoteTimeout 6
 
 @interface MusicPlayerViewController (Local)
 
@@ -36,8 +37,10 @@
 		  frame:(CGRect)frame;
 - (void)addNowButton:(NSDictionary *)objects;
 - (UIButton *)playButton:(CGRect)frame;
+- (UIButton *)refreshButton:(CGRect)frame;
 - (void)closeSettingView;
 - (void)addPlayButton;
+- (void)addRefreshButton;
 - (void)openEditView;
 - (void)changeToListview;
 - (void)changeToSongview;
@@ -75,8 +78,11 @@
 @synthesize shuffleModeControll;
 @synthesize songListController;
 @synthesize songView;
+@synthesize subControlDisplayButton;
+@synthesize subControlView;
 @synthesize timeline;
 @synthesize volumeSlider;
+
 
 #pragma mark -
 #pragma mark Memory management
@@ -101,6 +107,7 @@
   [shuffleModeControll release];
   [songListController release];
   [songView release];
+  [subControlDisplayButton release];
   [timeline release];
   [volumeSlider release];
   [super dealloc];
@@ -126,6 +133,7 @@
   self.shuffleModeControll = nil;
   self.songListController = nil;
   self.songView = nil;
+  self.subControlDisplayButton = nil;
   self.timeline = nil;
   self.volumeSlider = nil;
   [super viewDidUnload];
@@ -144,6 +152,7 @@
     autoTweetMode = NO;
     sent = NO;
     sending = NO;
+    subControlTouchCount = 0;
   }
   return self;
 }
@@ -155,6 +164,8 @@
 
   self.baseView = self.view;
   self.refreshProfileImagesMutex = @"refreshProfileImagesMutex";
+
+  //[self addRefreshButton];
 
   listmode = kListModeAlbum;
 
@@ -203,6 +214,49 @@
 #pragma mark -
 #pragma mark IBAction Methods
 
+- (IBAction)touchSubControl:(id)sender {
+
+  subControlTouchCount ++;
+  [self performSelectorInBackground:@selector(removeDisplaySubview)
+	withObject:nil];
+}
+
+- (IBAction)displaySubview:(id)sender {
+
+  NSLog(@"displaySubview called.");
+  subControlTouchCount ++;
+
+  [UIView animateWithDuration:0.3
+	  animations:^{subControlView.alpha = 0.8;}
+          completion:^(BOOL finished) { 
+      [subControlDisplayButton removeFromSuperview]; 
+      [self performSelectorInBackground:@selector(removeDisplaySubview)
+	    withObject:nil]; }];
+}
+
+
+- (void)removeDisplaySubview {
+
+  id pool = [[NSAutoreleasePool alloc] init];
+
+  NSInteger counterBefore = subControlTouchCount;
+  NSDate *date = [[NSDate alloc] init];
+  NSDate *nextStartDate = [[NSDate alloc] 
+			    initWithTimeInterval:kSubControlRemoteTimeout 
+			    sinceDate:date];
+  [NSThread sleepUntilDate: nextStartDate];
+
+  if (subControlTouchCount == counterBefore) {
+    [UIView animateWithDuration:0.5
+	    animations:^{subControlView.alpha = 0.0;}
+            completion:^(BOOL finished) { 
+	[songView addSubview:subControlDisplayButton]; }];
+  }
+
+  [pool release];
+}
+
+
 - (IBAction)changeMusicSegmentedControl:(id)sender {
 
  switch ([sender selectedSegmentIndex]) {
@@ -220,10 +274,13 @@
 
 - (IBAction)changeRefreshType:(id)sender {
   
+  subControlTouchCount ++;
+
   [self performSelectorInBackground:@selector(refreshProfileImages)
 	withObject:nil];
+  [self performSelectorInBackground:@selector(removeDisplaySubview)
+	withObject:nil];
 }
-
 
 - (void)openUserInformationView:(id)sender {
 
@@ -314,6 +371,9 @@
 		forState:UIControlStateNormal];
     [musicSegmentedControl setImage:miniImage
 			   forSegmentAtIndex:1];
+
+    refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
+    [self displaySubview:nil];
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
@@ -325,6 +385,8 @@
 		forState:UIControlStateNormal];
     [musicSegmentedControl setImage:miniImage
 			   forSegmentAtIndex:1];
+    refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeSong;
+    [self displaySubview:nil];
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePaused) {
@@ -336,9 +398,13 @@
 		forState:UIControlStateNormal];    
     [musicSegmentedControl setImage:miniImage
 			   forSegmentAtIndex:1];
+    refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
+    [self displaySubview:nil];
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStateInterrupted) {
+    refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
+    [self displaySubview:nil];
   }
 }
 
@@ -380,9 +446,15 @@
     
     NSLog(@"title: %@", nowPlayingTitle);
     
-    if (self.appDelegate.get_twitterusers_preference) {
-      [self performSelectorInBackground:@selector(refreshProfileImages)
-	    withObject:nil];
+    if (self.appDelegate.get_twitterusers_preference &&
+	[musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
+
+      if (refreshTypeSegmentedControl.selectedSegmentIndex != kRefreshTypeSong){
+	refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeSong;
+      } else {
+	[self performSelectorInBackground:@selector(refreshProfileImages)
+	      withObject:nil];
+      }
     }
 
     if (autoTweetMode && 
@@ -522,7 +594,15 @@
 - (void)refreshProfileImages {
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+  TwitterClient *client = [[TwitterClient alloc] init];
+  
+  if (![client oAuthTokenExist]) {
+    NSLog(@"oAuth Token is not exist. refresh not executed.");
+    [client release];
+    return;
+  }
 
+  [client release];
   NSLog(@"waiting for mutex...");
 
   @synchronized(refreshProfileImagesMutex) {
@@ -534,6 +614,8 @@
     if (![timeline isEqualToArray:beforeTimeline]) {
       [self setFriendImageView];
       NSLog(@"refreshed.");
+    } else {
+      NSLog(@"not refreshed because same timeline data");
     }
   }
 
@@ -550,6 +632,8 @@
   NSString *tags = [self.appDelegate nowPlayingTagsString];
   NSArray *newTimeline = nil;
   
+  NSLog(@"INDEX: %d", refreshTypeSegmentedControl.selectedSegmentIndex);
+
   switch (refreshTypeSegmentedControl.selectedSegmentIndex) {
   case kRefreshTypeSong:
     newTimeline = [client getSearchTimeLine: songTitle, artistName, tags, nil];
@@ -746,8 +830,13 @@
 - (void)addPlayButton {
 
   self.playButton = [self playButton:kPlayButtonFrame];
-
   [musicControllerView addSubview:playButton];
+}
+
+- (void)addRefreshButton {
+
+  UIButton *refreshButton = [self refreshButton:kRefreshButtonFrame];
+  [subControlView addSubview:refreshButton];
 }
 
 /**
@@ -785,7 +874,7 @@
   aPlayButton.frame = frame;
   
   [aPlayButton setImage:[UIImage imageNamed:@"Play.png"]
-	     forState:UIControlStateNormal];
+	       forState:UIControlStateNormal];
   
   UIColor *playButtonColor = [UIColor blackColor];
   [aPlayButton setValue:playButtonColor forKey:@"tintColor"];
@@ -797,6 +886,23 @@
   aPlayButton.alpha = kPlayButtonAlpha;
 
   return aPlayButton;
+}
+
+- (UIButton *)refreshButton:(CGRect)frame {
+
+  UIButton *aButton = [UIButton buttonWithType:111];
+  aButton.frame = frame;
+
+  UIColor *buttonColor = [UIColor blackColor];
+  [aButton setValue:buttonColor forKey:@"tintColor"];
+
+  [aButton addTarget:self action:@selector(togglePlayStop:)
+	   forControlEvents:UIControlEventTouchUpInside];
+  
+  [aButton setTitle:@"Refresh" forState:UIControlStateNormal];
+  aButton.alpha = kRefreshButtonAlpha;
+
+  return aButton;
 }
 
 #pragma mark -

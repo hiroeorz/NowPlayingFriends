@@ -68,7 +68,7 @@
 					<object class="IBUIButton" id="1027180398">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{167, 152}, {55, 37}}</string>
+						<string key="NSFrame">{{104, 152}, {55, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -97,7 +97,7 @@
 					<object class="IBUIButton" id="499894243">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{104, 152}, {55, 37}}</string>
+						<string key="NSFrame">{{167, 152}, {55, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -219,8 +219,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="530779870"/>
 							<reference ref="645807517"/>
-							<reference ref="499894243"/>
 							<reference ref="1027180398"/>
+							<reference ref="499894243"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -277,11 +277,11 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>SendTweetViewController</string>
 					<string>UIResponder</string>
-					<string>{{327, 412}, {320, 480}}</string>
+					<string>{{292, 412}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDJgAAwzsAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDPAAAwzsAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -290,7 +290,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABC/AAAw3gAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDJwAAwzsAAA</bytes>
 					</object>
 				</object>
 			</object>

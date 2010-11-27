@@ -19,6 +19,7 @@
 		5420CC4A12741732002C94DC /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5420CC4912741732002C94DC /* 20-gear2.png */; };
 		544BDEB91281BB2B00E0AE9E /* AccountLabelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 544BDEB81281BB2B00E0AE9E /* AccountLabelButton.m */; };
 		544FA54512448640003BFB95 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 544FA54412448640003BFB95 /* Default.png */; };
+		545355B612A103B50098F9C3 /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 545355B512A103B50098F9C3 /* 01-refresh.png */; };
 		54651253122A3321003DE639 /* SongsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54651252122A3321003DE639 /* SongsListViewController.m */; };
 		546512A5122B50E1003DE639 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546512A4122B50E1003DE639 /* QuartzCore.framework */; };
 		5465131D122B510A003DE639 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5465131C122B510A003DE639 /* CoreGraphics.framework */; };
@@ -119,6 +120,7 @@
 		544BDEB71281BB2B00E0AE9E /* AccountLabelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountLabelButton.h; sourceTree = "<group>"; };
 		544BDEB81281BB2B00E0AE9E /* AccountLabelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountLabelButton.m; sourceTree = "<group>"; };
 		544FA54412448640003BFB95 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		545355B512A103B50098F9C3 /* 01-refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-refresh.png"; sourceTree = "<group>"; };
 		54651251122A3321003DE639 /* SongsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongsListViewController.h; sourceTree = "<group>"; };
 		54651252122A3321003DE639 /* SongsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongsListViewController.m; sourceTree = "<group>"; };
 		546512A4122B50E1003DE639 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -408,6 +410,7 @@
 		5480C6A3122296A200F6E1C6 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				545355B512A103B50098F9C3 /* 01-refresh.png */,
 				546515CE122E1E18003DE639 /* no_artwork.png */,
 				5465151F122CF4AF003DE639 /* music-note.png */,
 				5465150B122CE6D6003DE639 /* list-white.png */,
@@ -601,6 +604,7 @@
 				54BDCD63126D59F600958FDA /* no_artwork_mini.png in Resources */,
 				5420CC411274138F002C94DC /* SettingViewController.xib in Resources */,
 				5420CC4A12741732002C94DC /* 20-gear2.png in Resources */,
+				545355B612A103B50098F9C3 /* 01-refresh.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -76,7 +76,7 @@
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 2;
+  return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView 
@@ -88,6 +88,8 @@
   case 0: rowsCount = 3;
     break;
   case 1: rowsCount = 2;
+    break;
+  case 2: rowsCount = 2;
     break;
   }
 
@@ -104,6 +106,8 @@ titleForHeaderInSection:(NSInteger)section {
     break;
   case 1: sectionTitle = @"Tweet Settings";
     break;
+  case 2: sectionTitle = @"Services";
+    break;    
   }
 
   return sectionTitle;
@@ -122,44 +126,40 @@ titleForHeaderInSection:(NSInteger)section {
     cell = [tableView dequeueReusableCellWithIdentifier:
 			TemplateCellIdentifier];
 
-    if (cell == nil) {
-      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-				reuseIdentifier:TemplateCellIdentifier];
-      [cell autorelease];
-
-      UITextView *aTextView = [[[UITextView alloc] init] autorelease];
-      setTweetEditField(aTextView, 20.0f, 270.0f, 90.0f);
-      aTextView.delegate = self;
-      self.templateField = aTextView;
-      [cell addSubview: aTextView];
-    }
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+				    reuseIdentifier:TemplateCellIdentifier];
+    [cell autorelease];
+    
+    UITextView *aTextView = [[[UITextView alloc] init] autorelease];
+    setTweetEditField(aTextView, 20.0f, 270.0f, 90.0f);
+    aTextView.delegate = self;
+    self.templateField = aTextView;
+    [cell addSubview: aTextView];
 
   } else if ([indexPath section] == 0 && [indexPath row] > 0){
     cell = [tableView dequeueReusableCellWithIdentifier:SettingCellIdentifier];
     
-    if (cell == nil) {
-      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-				      reuseIdentifier:SettingCellIdentifier];
-      [cell autorelease];
-    }
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+				    reuseIdentifier:SettingCellIdentifier];
+    [cell autorelease];
   } else {
     cell = [tableView dequeueReusableCellWithIdentifier:SwitchCellIdentifier];
     
-    if (cell == nil) {
-      CGRect frame = CGRectMake(0, 0, 300, 44);
-      cell = [[UITableViewCell alloc] initWithFrame:frame
-				      reuseIdentifier:SwitchCellIdentifier];
-      [cell autorelease];
-      cell.selectionStyle = UITableViewCellSelectionStyleNone;
-      cell.textLabel.font = [UIFont systemFontOfSize:14];
-      
-      switchObj = [[UISwitch alloc] 
-		    initWithFrame:CGRectMake(1.0, 1.0, 20.0, 20.0)];
-
-      cell.accessoryView = switchObj;
-      [switchObj release];
-    }
+    CGRect frame = CGRectMake(0, 0, 300, 44);
+    cell = [[UITableViewCell alloc] initWithFrame:frame
+				    reuseIdentifier:SwitchCellIdentifier];
+    [cell autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    
+    switchObj = [[UISwitch alloc] 
+		  initWithFrame:CGRectMake(1.0, 1.0, 20.0, 20.0)];
+    
+    cell.accessoryView = switchObj;
+    [switchObj release];
   }
+
+  cell.textLabel.numberOfLines = 10;
 
   switch ([indexPath section]) {
   case 0: { //１列目
@@ -171,10 +171,9 @@ titleForHeaderInSection:(NSInteger)section {
       break;
 
     case 1: {
-      cell.textLabel.numberOfLines = 5;
       cell.textLabel.font = [UIFont systemFontOfSize:12];
       cell.textLabel.text = 
-	@"[al]:Album Name  [ar]:Artist Name  [st]:Song Title \n[yt]:YouTube link";
+	@"[al]:Album Name  [ar]:Artist Name  [st]:Song Title";
     }
       break;
     case 2: {
@@ -211,9 +210,42 @@ titleForHeaderInSection:(NSInteger)section {
     }
   }
     break;
+
+
+  case 2: { //２列目
+    switch ([indexPath row]) {
+    case 0: {
+      cell.textLabel.text = @"Add YouTube Link to Auto Tweet";
+      switchObj.on  = self.appDelegate.use_youtube_preference;
+      [switchObj addTarget:self 
+		 action:@selector(save_use_youtube_preference:)
+		 forControlEvents:UIControlEventValueChanged];
+    }
+      break;
+
+    case 1: {
+      cell.textLabel.text = @"Add YouTube Link to Manual Tweet";
+      switchObj.on  = self.appDelegate.use_youtube_manual_preference;
+      [switchObj addTarget:self 
+		 action:@selector(save_use_youtube_manual_preference:)
+		 forControlEvents:UIControlEventValueChanged];
+    }
+      break;
+    }
+    break;
+  }
+    break;
   }
 
   return cell;
+}
+
+- (void)save_use_youtube_preference:(UISwitch *)sender {
+  self.appDelegate.use_youtube_preference = sender.on;
+}
+
+- (void)save_use_youtube_manual_preference:(UISwitch *)sender {
+  self.appDelegate.use_youtube_manual_preference = sender.on;
 }
 
 - (void)save_get_twitterusers:(UISwitch *)sender {
@@ -238,6 +270,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   }
     break;
   case 1: cellHeight = 45.0f;
+    break;
+  case 2: cellHeight = 45.0f;
     break;
   }
   
