@@ -28,6 +28,10 @@
 - (void)refreshTimeline;
 - (void)setFriendImageView;
 
+- (void)displaySubview;
+- (void)removeDisplaySubview;
+- (void)removeDisplaySubviewAfterSecond;
+
 - (void)releaseNowButtons;
 - (void)addProfileImageButton:(NSDictionary *)objects;
 - (void)setBackgroundImage:(NSDictionary *)objects;
@@ -217,11 +221,20 @@
 - (IBAction)touchSubControl:(id)sender {
 
   subControlTouchCount ++;
-  [self performSelectorInBackground:@selector(removeDisplaySubview)
+  [self performSelectorInBackground:@selector(removeDisplaySubviewAfterSecond)
 	withObject:nil];
 }
 
-- (IBAction)displaySubview:(id)sender {
+- (IBAction)touchSubControllerDisplayButton:(id)sender {
+
+  if (subControlView.alpha > 0.0) {
+    [self removeDisplaySubview];
+  } else {
+    [self displaySubview];
+  }
+}
+
+- (void)displaySubview {
 
   NSLog(@"displaySubview called.");
   subControlTouchCount ++;
@@ -229,14 +242,15 @@
   [UIView animateWithDuration:0.3
 	  animations:^{subControlView.alpha = 0.8;}
           completion:^(BOOL finished) { 
-      [subControlDisplayButton removeFromSuperview]; 
-      [self performSelectorInBackground:@selector(removeDisplaySubview)
+      [self performSelectorInBackground:
+	      @selector(removeDisplaySubviewAfterSecond)
 	    withObject:nil]; }];
 }
 
-
-- (void)removeDisplaySubview {
-
+/**
+ * @brief ページ上部の表示対象切り替えコントロールのビューを消す処理。 
+ */
+- (void)removeDisplaySubviewAfterSecond {
   id pool = [[NSAutoreleasePool alloc] init];
 
   NSInteger counterBefore = subControlTouchCount;
@@ -247,16 +261,29 @@
   [NSThread sleepUntilDate: nextStartDate];
 
   if (subControlTouchCount == counterBefore) {
-    [UIView animateWithDuration:0.5
-	    animations:^{subControlView.alpha = 0.0;}
-            completion:^(BOOL finished) { 
-	[songView addSubview:subControlDisplayButton]; }];
+    [self removeDisplaySubview];
   }
 
   [pool release];
 }
 
+- (void)removeDisplaySubview {
 
+  [self performSelectorOnMainThread:@selector(removeDisplaySubviewOnMainThread)
+	withObject:nil
+	waitUntilDone:NO];
+}
+
+- (void) removeDisplaySubviewOnMainThread {
+
+  [UIView animateWithDuration:0.5
+	  animations:^{subControlView.alpha = 0.0;}
+          completion:^(BOOL finished) {}];
+}
+
+/**
+ * @brief 音楽プレイヤー制御のボタンがタップされたときに呼ばれる。
+ */
 - (IBAction)changeMusicSegmentedControl:(id)sender {
 
  switch ([sender selectedSegmentIndex]) {
@@ -278,7 +305,7 @@
 
   [self performSelectorInBackground:@selector(refreshProfileImages)
 	withObject:nil];
-  [self performSelectorInBackground:@selector(removeDisplaySubview)
+  [self performSelectorInBackground:@selector(removeDisplaySubviewAfterSecond)
 	withObject:nil];
 }
 
@@ -373,7 +400,7 @@
 			   forSegmentAtIndex:1];
 
     refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
-    [self displaySubview:nil];
+    [self displaySubview];
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
@@ -386,7 +413,7 @@
     [musicSegmentedControl setImage:miniImage
 			   forSegmentAtIndex:1];
     refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeSong;
-    [self displaySubview:nil];
+    [self displaySubview];
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePaused) {
@@ -399,12 +426,12 @@
     [musicSegmentedControl setImage:miniImage
 			   forSegmentAtIndex:1];
     refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
-    [self displaySubview:nil];
+    [self displaySubview];
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStateInterrupted) {
     refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
-    [self displaySubview:nil];
+    [self displaySubview];
   }
 }
 
