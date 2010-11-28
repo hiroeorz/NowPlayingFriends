@@ -19,6 +19,7 @@
 - (void)save_alert_140char:(UISwitch *)sender;
 @end
 
+
 @implementation SettingViewController
 
 @synthesize resignButton;
@@ -106,7 +107,7 @@ titleForHeaderInSection:(NSInteger)section {
     break;
   case 1: sectionTitle = @"Tweet Settings";
     break;
-  case 2: sectionTitle = @"Services";
+  case 2: sectionTitle = @"YouTube";
     break;    
   }
 
@@ -193,7 +194,7 @@ titleForHeaderInSection:(NSInteger)section {
   case 1: { //２列目
     switch ([indexPath row]) {
     case 0: {
-      cell.textLabel.text = @"View same song users";
+      cell.textLabel.text = @"View Listener's Icons on Music Player";
       switchObj.on  = self.appDelegate.get_twitterusers_preference;
       [switchObj addTarget:self action:@selector(save_get_twitterusers:)
 		 forControlEvents:UIControlEventValueChanged];
@@ -201,7 +202,7 @@ titleForHeaderInSection:(NSInteger)section {
       break;
 
     case 1: {
-      cell.textLabel.text = @"Alert if over 140 characters";
+      cell.textLabel.text = @"Alert if Over 140 Characters";
       switchObj.on  = self.appDelegate.over140alert_preference;
       [switchObj addTarget:self action:@selector(save_alert_140char:)
 		 forControlEvents:UIControlEventValueChanged];
