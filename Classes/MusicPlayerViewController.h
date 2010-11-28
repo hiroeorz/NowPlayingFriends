@@ -39,9 +39,11 @@
 #define kRefreshButtonFrame (CGRectMake(220.0f, 12.0f, 100.0f, 50.0f))
 #define kRefreshButtonAlpha 1.0f
 
+#define kAccelerationThreshold 1.6
+#define kAccelerationUpdateInterval (1.0f / 10.0f)
 
 @interface MusicPlayerViewController : UIViewController 
-<UITableViewDataSource, UITableViewDelegate> {
+<UITableViewDataSource, UITableViewDelegate, UIAccelerometerDelegate> {
 
   NSArray *timeline;
 
@@ -50,6 +52,7 @@
   BOOL autoTweetMode;
   BOOL sending;
   BOOL sent;
+  BOOL updatingFlag;
   MPMusicPlayerController *musicPlayer;
   NSArray *albumLists;
   NSArray *beforeTimeline;

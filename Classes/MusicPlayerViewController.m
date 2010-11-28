@@ -157,6 +157,7 @@
     sent = NO;
     sending = NO;
     subControlTouchCount = 0;
+    updatingFlag = NO;
   }
   return self;
 }
@@ -205,6 +206,11 @@
   self.albumLists = [self.appDelegate albums];
   self.playLists = [self.appDelegate playLists];
   [autoTweetSwitch setOn:self.appDelegate.autotweet_preference animated:NO];
+
+  UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
+  accel.delegate = self;
+  accel.updateInterval = kAccelerationUpdateInterval;
+
   [super viewWillAppear:animated];
 }
 
@@ -628,29 +634,37 @@
 - (void)refreshProfileImages {
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  TwitterClient *client = [[TwitterClient alloc] init];
-  
-  if (![client oAuthTokenExist]) {
-    NSLog(@"oAuth Token is not exist. refresh not executed.");
-    [client release];
-    return;
-  }
 
-  [client release];
-  NSLog(@"waiting for mutex...");
-
-  @synchronized(refreshProfileImagesMutex) {
-    NSLog(@"starting refresh timeline");
-
-    self.beforeTimeline = timeline;
-    [self refreshTimeline];
+  @try {
+    TwitterClient *client = [[TwitterClient alloc] init];
     
-    if (![timeline isEqualToArray:beforeTimeline]) {
-      [self setFriendImageView];
-      NSLog(@"refreshed.");
-    } else {
-      NSLog(@"not refreshed because same timeline data");
+    if (![client oAuthTokenExist]) {
+      NSLog(@"oAuth Token is not exist. refresh not executed.");
+      [client release];
+      return;
     }
+    
+    [client release];
+    NSLog(@"waiting for mutex...");
+    
+    @synchronized(refreshProfileImagesMutex) {
+      updatingFlag = YES;
+      NSLog(@"starting refresh timeline");
+      
+      self.beforeTimeline = timeline;
+      [self refreshTimeline];
+      
+      if (![timeline isEqualToArray:beforeTimeline]) {
+	[self setFriendImageView];
+	NSLog(@"refreshed.");
+      } else {
+	NSLog(@"not refreshed because same timeline data");
+      } 
+    }
+
+  }
+  @finally {
+    updatingFlag = NO;
   }
 
   [self.appDelegate cleanupProfileImageFileCache];
@@ -1111,6 +1125,24 @@
 
   listmode = [sender selectedSegmentIndex];
   [listView reloadData];
+}
+
+#pragma mark -
+#pragma mark Accelerometer Methods
+
+- (void)accelerometer:(UIAccelerometer *)accelerometer
+	didAccelerate:(UIAcceleration *)acceleration {
+
+  if (updatingFlag == NO) {
+    if (acceleration.x > kAccelerationThreshold ||
+	acceleration.y > kAccelerationThreshold ||
+	acceleration.z > kAccelerationThreshold) {
+      NSLog(@"user acceleration!!");
+      [self displaySubview];
+      [self performSelectorInBackground:@selector(refreshProfileImages)
+	    withObject:nil];
+    }
+  }
 }
 
 #pragma mark -
