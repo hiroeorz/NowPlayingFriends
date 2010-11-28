@@ -187,8 +187,16 @@
   [newProfileImageButtons release];
 
   [self.appDelegate checkAuthenticateWithController:self];
-  [super viewDidLoad];
 
+  TwitterClient *client = [[TwitterClient alloc] init];
+  if ([client oAuthTokenExist] &&
+      [musicPlayer playbackState] != MPMusicPlaybackStatePlaying) {
+    [self performSelectorInBackground:@selector(refreshProfileImages)
+	  withObject:nil];
+  }
+  [client release];
+
+  [super viewDidLoad];
   [self addPlayButton];
 }
 
@@ -274,7 +282,7 @@
 	waitUntilDone:NO];
 }
 
-- (void) removeDisplaySubviewOnMainThread {
+- (void)removeDisplaySubviewOnMainThread {
 
   [UIView animateWithDuration:0.5
 	  animations:^{subControlView.alpha = 0.0;}
@@ -614,7 +622,6 @@
 	 useDefault:YES];
 
   self.albumImageView.image = artworkImage;
-
 }
 
 

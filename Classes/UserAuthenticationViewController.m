@@ -7,17 +7,19 @@
 //
 
 #import "UserAuthenticationViewController.h"
+#import "MusicPlayerViewController.h"
 
 
 @implementation UserAuthenticationViewController
 
+@synthesize musicPlayerViewController;
 @synthesize nameField;
 @synthesize passwordField;
 @synthesize twitterClient;
 
-
 - (void)dealloc {
   
+  [musicPlayerViewController release];
   [nameField release];
   [passwordField release];
   [twitterClient release];
@@ -26,6 +28,7 @@
 
 - (void)viewDidUnload {
 
+  self.musicPlayerViewController = nil;
   self.nameField = nil;
   self.passwordField = nil;
   self.twitterClient = nil;
@@ -118,6 +121,13 @@
     [alert show];
     [alert release];
     [passwordField resignFirstResponder];
+
+    if (musicPlayerViewController != nil) {
+      [musicPlayerViewController 
+	performSelectorInBackground:@selector(refreshProfileImages)
+	withObject:nil];
+    }
+
     [self dismissModalViewControllerAnimated:YES];
   } else {
     UIAlertView *alert = [[UIAlertView alloc] 

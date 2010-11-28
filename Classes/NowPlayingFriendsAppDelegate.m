@@ -674,6 +674,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
       [[UserAuthenticationViewController alloc] 
 	initWithNibName:@"UserAuthenticationViewController" bundle:nil];
     
+    if ([viewController isKindOfClass:[MusicPlayerViewController class]]) {
+      authenticateViewController.musicPlayerViewController = viewController;
+    }
+
     [viewController presentModalViewController:authenticateViewController 
 		    animated:YES];
   }

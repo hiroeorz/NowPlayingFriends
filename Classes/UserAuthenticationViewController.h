@@ -11,16 +11,22 @@
 #import "TwitterClient.h"
 #import "NowPlayingFriendsAppDelegate.h"
 
+
+@class  MusicPlayerViewController;
+
+
 @interface UserAuthenticationViewController : UIViewController {
 
   UITextField *nameField;
   UITextField *passwordField;
   TwitterClient *twitterClient;
+  MusicPlayerViewController *musicPlayerViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *nameField;
 @property (nonatomic, retain) IBOutlet UITextField *passwordField;
 @property (nonatomic, retain) TwitterClient *twitterClient;
+@property (nonatomic, retain) MusicPlayerViewController *musicPlayerViewController;
 
 - (IBAction)authenticate:(id)sender;
 - (IBAction)nameFieldDoneEditing:(id)sender;

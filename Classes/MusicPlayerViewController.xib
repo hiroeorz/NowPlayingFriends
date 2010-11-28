@@ -12,10 +12,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="4"/>
-			<integer value="54"/>
 			<integer value="36"/>
 			<integer value="5"/>
+			<integer value="4"/>
+			<integer value="54"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -98,18 +98,18 @@
 									<object class="IBUISegmentedControl" id="689158871">
 										<reference key="NSNextResponder" ref="128257169"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{12, 17}, {207, 30}}</string>
+										<string key="NSFrame">{{59, 27}, {207, 30}}</string>
 										<reference key="NSSuperview" ref="128257169"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<int key="IBSegmentControlStyle">2</int>
 										<int key="IBNumberOfSegments">3</int>
-										<int key="IBSelectedSegmentIndex">0</int>
+										<int key="IBSelectedSegmentIndex">2</int>
 										<object class="NSArray" key="IBSegmentTitles">
 											<bool key="EncodedWithXMLCoder">YES</bool>
 											<string>Song</string>
 											<string>Artist</string>
-											<string>All</string>
+											<string>World</string>
 										</object>
 										<object class="NSMutableArray" key="IBSegmentWidths">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -139,6 +139,28 @@
 											<int key="NSColorSpace">1</int>
 											<bytes key="NSRGB">MC42NTgxNjMyNjUzIDAuMTgxMDQxMzI1IDAuMTIzNzg0OTMzMwA</bytes>
 										</object>
+									</object>
+									<object class="IBUILabel" id="789160378">
+										<reference key="NSNextResponder" ref="128257169"/>
+										<int key="NSvFlags">292</int>
+										<string key="NSFrame">{{85, 3}, {154, 21}}</string>
+										<reference key="NSSuperview" ref="128257169"/>
+										<bool key="IBUIOpaque">NO</bool>
+										<bool key="IBUIClipsSubviews">YES</bool>
+										<int key="IBUIContentMode">7</int>
+										<bool key="IBUIUserInteractionEnabled">NO</bool>
+										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+										<string key="IBUIText">They are listener of </string>
+										<object class="NSColor" key="IBUITextColor">
+											<int key="NSColorSpace">1</int>
+											<bytes key="NSRGB">MSAxIDEAA</bytes>
+											<object class="NSColorSpace" key="NSCustomColorSpace" id="499470317">
+												<int key="NSID">1</int>
+											</object>
+										</object>
+										<reference key="IBUIHighlightedColor" ref="826382982"/>
+										<int key="IBUIBaselineAdjustment">1</int>
+										<float key="IBUIMinimumFontSize">10</float>
 									</object>
 								</object>
 								<string key="NSFrame">{{0, 34}, {320, 70}}</string>
@@ -196,9 +218,7 @@
 										<object class="NSColor" key="IBUITextColor">
 											<int key="NSColorSpace">1</int>
 											<bytes key="NSRGB">MSAxIDEAA</bytes>
-											<object class="NSColorSpace" key="NSCustomColorSpace" id="499470317">
-												<int key="NSID">1</int>
-											</object>
+											<reference key="NSCustomColorSpace" ref="499470317"/>
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">1</int>
@@ -5368,6 +5388,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="689158871"/>
+							<reference ref="789160378"/>
 						</object>
 						<reference key="parent" ref="986792244"/>
 					</object>
@@ -5385,6 +5406,11 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<int key="objectID">76</int>
 						<reference key="object" ref="551951492"/>
 						<reference key="parent" ref="986792244"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">81</int>
+						<reference key="object" ref="789160378"/>
+						<reference key="parent" ref="128257169"/>
 					</object>
 				</object>
 			</object>
@@ -5444,6 +5470,8 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<string>76.IBViewBoundsToFrameTransform</string>
 					<string>8.IBPluginDependency</string>
 					<string>8.IBViewBoundsToFrameTransform</string>
+					<string>81.IBPluginDependency</string>
+					<string>81.IBViewBoundsToFrameTransform</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -5522,7 +5550,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABCkAAAwrQAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABC2AAAwkQAAA</bytes>
 					</object>
 					<string>MusicControllerView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -5536,6 +5564,10 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABCXAAAwgAAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABBMAAAwegAAA</bytes>
 					</object>
 				</object>
 			</object>
@@ -5555,7 +5587,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">80</int>
+			<int key="maxID">81</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
