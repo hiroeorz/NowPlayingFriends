@@ -197,6 +197,9 @@
   }
   [client release];
 
+  UIButton *nowButton = [self nowButton:nil frame:kNowButtonInfoFrame];
+  [musicControllerView addSubview:nowButton];
+
   [super viewDidLoad];
   [self addPlayButton];
 }
@@ -413,8 +416,10 @@
     [musicSegmentedControl setImage:miniImage
 			   forSegmentAtIndex:1];
 
-    refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
-    [self displaySubview];
+    if (self.appDelegate.get_twitterusers_preference) {
+      refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
+      [self displaySubview];
+    }
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
@@ -426,8 +431,11 @@
 		forState:UIControlStateNormal];
     [musicSegmentedControl setImage:miniImage
 			   forSegmentAtIndex:1];
-    refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeSong;
-    [self displaySubview];
+
+    if (self.appDelegate.get_twitterusers_preference) {
+      refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeSong;
+      [self displaySubview];
+    }
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePaused) {
@@ -439,8 +447,11 @@
 		forState:UIControlStateNormal];    
     [musicSegmentedControl setImage:miniImage
 			   forSegmentAtIndex:1];
-    refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
-    [self displaySubview];
+
+    if (self.appDelegate.get_twitterusers_preference) {
+      refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
+      [self displaySubview];
+    }
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStateInterrupted) {
@@ -490,11 +501,11 @@
     if (self.appDelegate.get_twitterusers_preference &&
 	[musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
 
-      if (refreshTypeSegmentedControl.selectedSegmentIndex != kRefreshTypeSong){
-	refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeSong;
-      } else {
+      if (refreshTypeSegmentedControl.selectedSegmentIndex == kRefreshTypeSong){
 	[self performSelectorInBackground:@selector(refreshProfileImages)
 	      withObject:nil];
+      } else {
+	refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeSong;
       }
     }
 

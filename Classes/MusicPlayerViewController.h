@@ -33,8 +33,9 @@
 #define kAutoTweetTimeLag 10
 #define kMusicPlayerDefaultNowInterval 60 * 10
 #define kNowButtonFrame (CGRectMake(35.0f, 40.0f, 30.0f, 25.0f))
+#define kNowButtonInfoFrame (CGRectMake(260.0f, 3.0f, 30.0f, 25.0f))
 #define kNowButtonAlpha 0.7f
-#define kPlayButtonFrame (CGRectMake(190.0f, 20.5f, 70.0f, 70.0f))
+#define kPlayButtonFrame (CGRectMake(185.0f, 23.5f, 70.0f, 70.0f))
 #define kPlayButtonAlpha 0.7f
 #define kRefreshButtonFrame (CGRectMake(220.0f, 12.0f, 100.0f, 50.0f))
 #define kRefreshButtonAlpha 1.0f
