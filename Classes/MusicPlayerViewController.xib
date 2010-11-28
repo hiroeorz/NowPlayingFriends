@@ -98,7 +98,7 @@
 									<object class="IBUISegmentedControl" id="689158871">
 										<reference key="NSNextResponder" ref="128257169"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{59, 27}, {207, 30}}</string>
+										<string key="NSFrame">{{39, 27}, {248, 30}}</string>
 										<reference key="NSSuperview" ref="128257169"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -107,9 +107,9 @@
 										<int key="IBSelectedSegmentIndex">2</int>
 										<object class="NSArray" key="IBSegmentTitles">
 											<bool key="EncodedWithXMLCoder">YES</bool>
-											<string>Song</string>
-											<string>Artist</string>
-											<string>World</string>
+											<string>Same Song</string>
+											<string>Same Artist</string>
+											<string>Music</string>
 										</object>
 										<object class="NSMutableArray" key="IBSegmentWidths">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -140,7 +140,7 @@
 											<bytes key="NSRGB">MC42NTgxNjMyNjUzIDAuMTgxMDQxMzI1IDAuMTIzNzg0OTMzMwA</bytes>
 										</object>
 									</object>
-									<object class="IBUILabel" id="171491848">
+									<object class="IBUILabel" id="807722900">
 										<reference key="NSNextResponder" ref="128257169"/>
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{37, 3}, {252, 21}}</string>
@@ -150,7 +150,7 @@
 										<int key="IBUIContentMode">7</int>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUIText">They are listenners of the same</string>
+										<string key="IBUIText">They are listenning to...</string>
 										<object class="NSColor" key="IBUITextColor">
 											<int key="NSColorSpace">1</int>
 											<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -5389,7 +5389,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="689158871"/>
-							<reference ref="171491848"/>
+							<reference ref="807722900"/>
 						</object>
 						<reference key="parent" ref="986792244"/>
 					</object>
@@ -5410,7 +5410,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">81</int>
-						<reference key="object" ref="171491848"/>
+						<reference key="object" ref="807722900"/>
 						<reference key="parent" ref="128257169"/>
 					</object>
 				</object>
