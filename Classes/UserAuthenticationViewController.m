@@ -15,6 +15,7 @@
 @synthesize passwordField;
 @synthesize twitterClient;
 
+
 - (void)dealloc {
   
   [nameField release];

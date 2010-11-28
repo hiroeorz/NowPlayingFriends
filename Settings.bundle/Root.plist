@@ -70,13 +70,13 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Services</string>
+			<string>YouTube</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Add YouTube Link</string>
+			<string>Auto Tweet</string>
 			<key>Key</key>
 			<string>use_youtube_preference</string>
 			<key>DefaultValue</key>
@@ -86,11 +86,11 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Add YouTube Link</string>
+			<string>Manual Tweet</string>
 			<key>Key</key>
 			<string>use_youtube_manual_preference</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 	</array>
 </dict>
