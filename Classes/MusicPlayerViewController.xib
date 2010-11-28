@@ -13,7 +13,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="36"/>
-			<integer value="5"/>
+			<integer value="68"/>
 			<integer value="4"/>
 			<integer value="54"/>
 		</object>
@@ -140,17 +140,17 @@
 											<bytes key="NSRGB">MC42NTgxNjMyNjUzIDAuMTgxMDQxMzI1IDAuMTIzNzg0OTMzMwA</bytes>
 										</object>
 									</object>
-									<object class="IBUILabel" id="789160378">
+									<object class="IBUILabel" id="905862601">
 										<reference key="NSNextResponder" ref="128257169"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{85, 3}, {154, 21}}</string>
+										<string key="NSFrame">{{37, 3}, {252, 21}}</string>
 										<reference key="NSSuperview" ref="128257169"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<int key="IBUIContentMode">7</int>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUIText">They are listener of </string>
+										<string key="IBUIText">They are listeners of the same... </string>
 										<object class="NSColor" key="IBUITextColor">
 											<int key="NSColorSpace">1</int>
 											<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -161,6 +161,7 @@
 										<reference key="IBUIHighlightedColor" ref="826382982"/>
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
+										<int key="IBUITextAlignment">1</int>
 									</object>
 								</object>
 								<string key="NSFrame">{{0, 34}, {320, 70}}</string>
@@ -5388,7 +5389,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="689158871"/>
-							<reference ref="789160378"/>
+							<reference ref="905862601"/>
 						</object>
 						<reference key="parent" ref="986792244"/>
 					</object>
@@ -5409,7 +5410,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">81</int>
-						<reference key="object" ref="789160378"/>
+						<reference key="object" ref="905862601"/>
 						<reference key="parent" ref="128257169"/>
 					</object>
 				</object>
