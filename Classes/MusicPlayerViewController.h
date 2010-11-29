@@ -130,6 +130,8 @@
 - (IBAction)touchSubControl:(id)sender;
 - (IBAction)touchSubControllerDisplayButton:(id)sender;
 
+- (void)displaySubview;
+
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 

@@ -28,7 +28,6 @@
 - (void)refreshTimeline;
 - (void)setFriendImageView;
 
-- (void)displaySubview;
 - (void)removeDisplaySubview;
 - (void)removeDisplaySubviewAfterSecond;
 

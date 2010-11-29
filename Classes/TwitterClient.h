@@ -10,15 +10,16 @@
 #import "TwitterClient+ConsumerKey.h"
 #import "OAuthConsumer/OAServiceTicket.h"
 
-#define kHomeTimelineURL @"http://twitter.com/statuses/home_timeline/%@.json%@"
-#define kUserTimelineURL @"http://twitter.com/statuses/user_timeline/%@.json%@"
-#define kMenthonsTimelineURL @"http://api.twitter.com/1/statuses/mentions.json%@"
+#define kOAuthTokenUrl @"https://api.twitter.com/oauth/access_token"
+#define kHomeTimelineURL @"https://twitter.com/statuses/home_timeline/%@.json%@"
+#define kUserTimelineURL @"https://twitter.com/statuses/user_timeline/%@.json%@"
+#define kMenthonsTimelineURL @"https://api.twitter.com/1/statuses/mentions.json%@"
 #define kSearchURL @"http://search.twitter.com/search.json?q=%@"
-#define kUserInformationURL @"http://api.twitter.com/1/users/show/%@.json"
-#define kUpdateStatusURL @"http://twitter.com/statuses/update.json"
+#define kUserInformationURL @"https://api.twitter.com/1/users/show/%@.json"
+#define kUpdateStatusURL @"https://twitter.com/statuses/update.json"
 #define kOAuthAccetokenFileName @"access_token.plist"
-#define kCreateFriendURL @"http://twitter.com/friendships/create/%@.json"
-#define kCheckFriendShipURL @"http://api.twitter.com/1/friendships/show.json?target_screen_name=%@"
+#define kCreateFriendURL @"https://twitter.com/friendships/create/%@.json"
+#define kCheckFriendShipURL @"https://api.twitter.com/1/friendships/show.json?target_screen_name=%@"
 
 @interface TwitterClient : NSObject {
 

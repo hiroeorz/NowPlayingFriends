@@ -126,6 +126,7 @@
       [musicPlayerViewController 
 	performSelectorInBackground:@selector(refreshProfileImages)
 	withObject:nil];
+      [musicPlayerViewController displaySubview];
     }
 
     [self dismissModalViewControllerAnimated:YES];

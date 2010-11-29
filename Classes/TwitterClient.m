@@ -369,7 +369,7 @@
 			  password:(NSString *)password
 			  delegate:(id)delegate {
   NSURL *url = 
-    [NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"];
+    [NSURL URLWithString:kOAuthTokenUrl];
 
   OAConsumer *consumer = [[OAConsumer alloc] initWithKey:kConsumerKey
 					     secret:kConsumerSecret];
