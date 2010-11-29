@@ -279,6 +279,8 @@
     [self removeDisplaySubview];
   }
 
+  [date release];
+  [nextStartDate release];
   [pool release];
 }
 
