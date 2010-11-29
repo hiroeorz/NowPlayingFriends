@@ -158,6 +158,7 @@
     sending = NO;
     subControlTouchCount = 0;
     updatingFlag = NO;
+    cancelFlag = NO;
   }
   return self;
 }
@@ -169,8 +170,6 @@
 
   self.baseView = self.view;
   self.refreshProfileImagesMutex = @"refreshProfileImagesMutex";
-
-  //[self addRefreshButton];
 
   listmode = kListModeAlbum;
 
@@ -656,21 +655,17 @@
     }
     
     [client release];
+    cancelFlag = YES;
     NSLog(@"waiting for mutex...");
     
     @synchronized(refreshProfileImagesMutex) {
+      cancelFlag = NO;
       updatingFlag = YES;
       NSLog(@"starting refresh timeline");
       
       self.beforeTimeline = timeline;
       [self refreshTimeline];
-      
-      if (![timeline isEqualToArray:beforeTimeline]) {
-	[self setFriendImageView];
-	NSLog(@"refreshed.");
-      } else {
-	NSLog(@"not refreshed because same timeline data");
-      } 
+      [self setFriendImageView];
     }
 
   }
@@ -692,6 +687,10 @@
   NSArray *newTimeline = nil;
   
   NSLog(@"INDEX: %d", refreshTypeSegmentedControl.selectedSegmentIndex);
+
+  if (cancelFlag) {
+    return;
+  }
 
   switch (refreshTypeSegmentedControl.selectedSegmentIndex) {
   case kRefreshTypeSong:
@@ -750,7 +749,9 @@
   NSInteger xRange = kProfileImageSize;
   NSInteger y = albumImageView.frame.size.height - xRange + 32;
   
-  for (NSDictionary *data in timeline) {
+  for (NSDictionary *data in timeline)  {
+    if (cancelFlag) { break; }
+
     UIButton *profileImageButton = nil;
     BOOL newButtonFlag = NO;
     

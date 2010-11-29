@@ -51,6 +51,7 @@
 @private
 
   BOOL autoTweetMode;
+  BOOL cancelFlag;
   BOOL sending;
   BOOL sent;
   BOOL updatingFlag;
