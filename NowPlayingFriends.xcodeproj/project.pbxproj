@@ -98,8 +98,8 @@
 		54D260AB123A3989004023A6 /* Next_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260A9123A3989004023A6 /* Next_mini.png */; };
 		54D260AC123A3989004023A6 /* Previous_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260AA123A3989004023A6 /* Previous_mini.png */; };
 		54E7C6B11245D027006EDACE /* 53-house.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E7C6B01245D027006EDACE /* 53-house.png */; };
-		54E7C6B81245D0E8006EDACE /* 18-envelope.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E7C6B71245D0E8006EDACE /* 18-envelope.png */; };
 		54E7C6BA1245D126006EDACE /* 23-bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E7C6B91245D126006EDACE /* 23-bird.png */; };
+		54F0BCBE12A5CEAE00986791 /* atMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F0BCBD12A5CEAE00986791 /* atMark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -243,8 +243,8 @@
 		54D260A9123A3989004023A6 /* Next_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Next_mini.png; path = icons/mediaIcons005/Next_mini.png; sourceTree = "<group>"; };
 		54D260AA123A3989004023A6 /* Previous_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Previous_mini.png; path = icons/mediaIcons005/Previous_mini.png; sourceTree = "<group>"; };
 		54E7C6B01245D027006EDACE /* 53-house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "53-house.png"; sourceTree = "<group>"; };
-		54E7C6B71245D0E8006EDACE /* 18-envelope.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "18-envelope.png"; sourceTree = "<group>"; };
 		54E7C6B91245D126006EDACE /* 23-bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "23-bird.png"; sourceTree = "<group>"; };
+		54F0BCBD12A5CEAE00986791 /* atMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atMark.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NowPlayingFriends-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -394,9 +394,9 @@
 		5480C3B4121FA0CA00F6E1C6 /* tabBarIcons */ = {
 			isa = PBXGroup;
 			children = (
+				54F0BCBD12A5CEAE00986791 /* atMark.png */,
 				5420CC4912741732002C94DC /* 20-gear2.png */,
 				54E7C6B91245D126006EDACE /* 23-bird.png */,
-				54E7C6B71245D0E8006EDACE /* 18-envelope.png */,
 				54E7C6B01245D027006EDACE /* 53-house.png */,
 				54A9684F122F97B1004CF186 /* 30-key.png */,
 				5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */,
@@ -599,12 +599,12 @@
 				54D260AC123A3989004023A6 /* Previous_mini.png in Resources */,
 				544FA54512448640003BFB95 /* Default.png in Resources */,
 				54E7C6B11245D027006EDACE /* 53-house.png in Resources */,
-				54E7C6B81245D0E8006EDACE /* 18-envelope.png in Resources */,
 				54E7C6BA1245D126006EDACE /* 23-bird.png in Resources */,
 				54BDCD63126D59F600958FDA /* no_artwork_mini.png in Resources */,
 				5420CC411274138F002C94DC /* SettingViewController.xib in Resources */,
 				5420CC4A12741732002C94DC /* 20-gear2.png in Resources */,
 				545355B612A103B50098F9C3 /* 01-refresh.png in Resources */,
+				54F0BCBE12A5CEAE00986791 /* atMark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -245,7 +245,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
   navController = [self navigationWithViewController:viewController
 			title:@"Mentions"  
-			imageName:@"18-envelope.png"];
+			imageName:@"atMark.png"];
   
   [controllers addObject:navController];
 
@@ -574,7 +574,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self.userDefaults valueForKey:@"use_youtube_preference"];
   
   if (use_youtube_preference == nil) {
-    use_youtube_preference = [NSNumber numberWithBool:YES];
+    use_youtube_preference = [NSNumber numberWithBool:NO];
   }
   
   return [use_youtube_preference boolValue];

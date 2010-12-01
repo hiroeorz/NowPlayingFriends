@@ -80,7 +80,7 @@
 			<key>Key</key>
 			<string>use_youtube_preference</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Type</key>
