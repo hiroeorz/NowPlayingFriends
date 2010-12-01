@@ -49,8 +49,8 @@
 @synthesize beforeTimeline;
 @synthesize friendsTableView;
 @synthesize lineOverFlowQueue;
-@synthesize newTimelineQueue;
 @synthesize myUserName;
+@synthesize newTimelineQueue;
 @synthesize noArtWorkMini;
 @synthesize timeline;
 
@@ -62,8 +62,8 @@
   [beforeTimeline release];
   [friendsTableView release];
   [lineOverFlowQueue release];
-  [newTimelineQueue release];
   [myUserName release];
+  [newTimelineQueue release];
   [noArtWorkMini release];
   [timeline release];
   [super dealloc];
@@ -74,8 +74,8 @@
   self.beforeTimeline = nil;
   self.friendsTableView = nil;
   self.lineOverFlowQueue = nil;
-  self.newTimelineQueue = nil;
   self.myUserName = nil;
+  self.newTimelineQueue = nil;
   self.noArtWorkMini = nil;
   self.timeline = nil;
   [super viewDidUnload];
@@ -447,6 +447,22 @@
   [cell.accountLabel addTarget:self action:@selector(openEditView:)
        forControlEvents:UIControlEventTouchUpInside];
   [(AccountLabelButton *)cell.accountLabel setData:data];
+
+  NSArray *urlArray = [cell arrayOfUrl];
+
+  if ([urlArray count] == 1) {
+    if (cell.linkButton.alpha == 0.0f) {cell.linkButton.alpha = 1.0f;}
+    [cell.linkButton addTarget:cell 
+	 action:@selector(openLink:)
+	 forControlEvents:UIControlEventTouchUpInside];
+  } else if ([urlArray count] > 1) { /* @todo 複数リンクがあるときは別ビューで選択*/
+    if (cell.linkButton.alpha == 0.0f) {cell.linkButton.alpha = 1.0f;}
+    [cell.linkButton addTarget:cell 
+	 action:@selector(openLink:)
+	 forControlEvents:UIControlEventTouchUpInside];
+  } else {
+    if (cell.linkButton.alpha > 0.0f) {cell.linkButton.alpha = 0.0f;}
+  }
 
   if ([self checkSpecialCell:data]) {
     cell.baseView.backgroundColor = [UIColor colorWithHue:0.0f

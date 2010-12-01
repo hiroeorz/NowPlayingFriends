@@ -18,6 +18,7 @@
   UILabel *bodyTextView;
   UIView *baseView;
   NSString *username;
+  UIButton *linkButton;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *userImageView;
@@ -27,5 +28,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *bodyTextView;
 @property (nonatomic, retain) IBOutlet UIView *baseView;
 @property (nonatomic, retain) NSString *username;
+@property (nonatomic, retain) IBOutlet UIButton *linkButton;
+
+- (NSArray *)arrayOfUrl;
 
 @end
