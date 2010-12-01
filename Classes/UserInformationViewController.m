@@ -31,14 +31,14 @@
 
 - (void)dealloc {
 
-  [username release];
-  [profileImageButton release];
-  [nameLabel release];
-  [locationLabel release];
-  [descriptionView release];
+  //[descriptionView release]; /* commented out because reason of crash */
+  [followButton release];
   [followersLabel release];
   [friendsLabel release];
-  [followButton release];
+  [locationLabel release];
+  [nameLabel release];
+  [profileImageButton release];
+  [username release];
   [super dealloc];
 }
 
@@ -78,6 +78,7 @@
 	       bundle:(NSBundle *)nibBundleOrNil {
 
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+    activateFlag = NO;
   }
   return self;
 }
@@ -114,13 +115,21 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 
+  activateFlag = YES;
+  
   [self performSelectorInBackground:@selector(getUserInformation)
 	withObject:nil];
-
+  
   [self performSelectorInBackground:@selector(setFollowButtonEnabled)
 	withObject:nil];
 
   [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  NSLog(@"viewWillDisappear");
+  activateFlag = NO;
 }
 
 #pragma mark -
@@ -129,16 +138,15 @@
   
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-  TwitterClient *client = [[TwitterClient alloc] init];
+  TwitterClient *client = [[[TwitterClient alloc] init] autorelease];
   BOOL following = [client checkFollowing:username];
 
-  @synchronized(descriptionView) {
+  if (activateFlag) {
     [self performSelectorOnMainThread:@selector(setFollowingButtonFollowing:)
 	  withObject:[NSNumber numberWithBool:following]
 	  waitUntilDone:YES];
   }
 
-  [client release];
   [pool release];
 }
 
@@ -158,19 +166,17 @@
 - (void)getUserInformation {
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  TwitterClient *client = [[TwitterClient alloc] init];
+  TwitterClient *client = [[[TwitterClient alloc] init] autorelease];
+
   NSDictionary *user = [client userInformation:username];
 
-  @synchronized(descriptionView) {
+  if (activateFlag) {
     [self performSelectorOnMainThread:@selector(setUserInformations:)
 	  withObject:user
 	  waitUntilDone:YES];
   }
 
-  [self performSelectorInBackground:@selector(getUserProfileImage:)
-	withObject:user];
-  
-  [client release];
+  [self getUserProfileImage:user];
   [pool release];
 }
 
@@ -195,7 +201,6 @@
   }
 
   if (![[user objectForKey:@"description"] isKindOfClass:[NSNull class]]) {
-    NSLog(@"helo");
     descriptionView.text = [user objectForKey:@"description"];
     [self.view addSubview:descriptionView];
   }
@@ -203,18 +208,13 @@
 
 - (void)getUserProfileImage:(NSDictionary *)user {
 
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
   UIImage *newImage = [self.appDelegate originalProfileImage:user];
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
-  @synchronized(descriptionView) {
+  if (activateFlag) {
     [self performSelectorOnMainThread:@selector(setUserProfileImage:)
 	  withObject:newImage
 	  waitUntilDone:YES];
   }
-
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-  [pool release];
 }
 
 - (void)setUserProfileImage:(UIImage *)newImage {

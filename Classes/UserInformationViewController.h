@@ -17,6 +17,7 @@
 @interface UserInformationViewController : UIViewController {
 
 @private
+  BOOL activateFlag;
   NSString *username;
   UIButton *profileImageButton;
   UILabel *nameLabel;
