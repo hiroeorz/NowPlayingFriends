@@ -30,7 +30,9 @@
 @property (nonatomic, retain) NSString *username;
 @property (nonatomic, retain) IBOutlet UIButton *linkButton;
 
+
 - (BOOL)urlIsIncluded;
 - (NSArray *)arrayOfUrl;
+- (void)openLink:(id)sender;
 
 @end

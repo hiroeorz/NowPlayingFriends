@@ -10,7 +10,7 @@
 
 @interface FriendCell (Local)
 
-- (NSArray *)arrayOfUrlMaches;
+- (NSArray *)arrayOfUrlMatches;
 @end
 
 
@@ -50,7 +50,35 @@
   [super setSelected:selected animated:animated];
 }
 
-- (NSArray *)arrayOfUrlMaches {
+- (BOOL)urlIsIncluded {
+  return ([[self arrayOfUrlMatches] count] > 0);
+}
+
+- (NSArray *)arrayOfUrl {
+
+  NSString *body = bodyTextView.text;
+  NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
+  NSArray *matches = [self arrayOfUrlMatches];
+
+  for (NSTextCheckingResult *match in matches) {
+    [array addObject:[body substringWithRange:[match rangeAtIndex:0]]];
+  }
+
+  return array;
+}
+
+- (void)openLink:(id)sender {
+  
+  NSArray *urlArray = [self arrayOfUrl];
+  NSString *url = [urlArray objectAtIndex:0];
+  
+  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];  
+}
+
+#pragma mark-
+#pragma Local Methods
+
+- (NSArray *)arrayOfUrlMatches {
 
   NSError *error = nil;
   NSString *body = bodyTextView.text;
@@ -70,31 +98,6 @@
   }
 
   return matches;
-}
-
-- (BOOL)urlIsIncluded {
-  return ([[self arrayOfUrlMaches] count] > 0);
-}
-
-- (NSArray *)arrayOfUrl {
-
-  NSString *body = bodyTextView.text;
-  NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
-  NSArray *matches = [self arrayOfUrlMaches];
-
-  for (NSTextCheckingResult *match in matches) {
-    [array addObject:[body substringWithRange:[match rangeAtIndex:0]]];
-  }
-
-  return array;
-}
-
-- (void)openLink:(id)sender {
-  
-  NSArray *urlArray = [self arrayOfUrl];
-  NSString *url = [urlArray objectAtIndex:0];
-  
-  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];  
 }
 
 @end
