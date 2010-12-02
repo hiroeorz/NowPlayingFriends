@@ -8,6 +8,11 @@
 
 #import "FriendCell.h"
 
+@interface FriendCell (Local)
+
+- (NSArray *)arrayOfUrlMaches;
+@end
+
 
 @implementation FriendCell
 
@@ -45,9 +50,8 @@
   [super setSelected:selected animated:animated];
 }
 
-- (NSArray *)arrayOfUrl {
+- (NSArray *)arrayOfUrlMaches {
 
-  NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
   NSError *error = nil;
   NSString *body = bodyTextView.text;
 
@@ -56,16 +60,30 @@
       regularExpressionWithPattern:@"https?://[a-zA-Z0-9/.?_+~=%:;!#-]+"
       options:0 error:&error];
 
+  NSArray *matches = nil;
+
   if (error != nil) {
     NSLog(@"%@", error);
   } else {
     NSRange range = NSMakeRange(0, [body length]);
-    NSArray *matches = [regexp matchesInString:bodyTextView.text 
-			       options:0 range:range];
+    matches = [regexp matchesInString:bodyTextView.text options:0 range:range];
+  }
 
-    for (NSTextCheckingResult *match in matches) {
-      [array addObject:[body substringWithRange:[match rangeAtIndex:0]]];
-    }
+  return matches;
+}
+
+- (BOOL)urlIsIncluded {
+  return ([[self arrayOfUrlMaches] count] > 0);
+}
+
+- (NSArray *)arrayOfUrl {
+
+  NSString *body = bodyTextView.text;
+  NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
+  NSArray *matches = [self arrayOfUrlMaches];
+
+  for (NSTextCheckingResult *match in matches) {
+    [array addObject:[body substringWithRange:[match rangeAtIndex:0]]];
   }
 
   return array;
