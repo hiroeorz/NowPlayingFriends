@@ -8,6 +8,7 @@
 
 #import "ArtistFriendsViewController.h"
 #import "HomeTimelineViewController.h"
+#import "ITunesStore.h"
 #import "MentionsTimelineViewController.h"
 #import "MusicPlayerViewController.h"
 #import "NowPlayingFriendsAppDelegate.h"
@@ -18,7 +19,6 @@
 #import "UserAuthenticationViewController.h"
 #import "UserTimelineViewController.h"
 #import "YouTubeClient.h"
-
 
 @interface NowPlayingFriendsAppDelegate (Local)
 
@@ -39,6 +39,7 @@
 @dynamic over140alert_preference;
 @dynamic use_youtube_preference;
 @dynamic use_youtube_manual_preference;
+@dynamic use_itunes_preference;
 
 
 #pragma mark -
@@ -609,6 +610,26 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   [self.userDefaults setValue:use_youtube_manual_preference 
        forKey:@"use_youtube_manual_preference"];
+}
+
+- (BOOL)use_itunes_preference {
+
+  NSNumber *use_itunes_preference = 
+    [self.userDefaults valueForKey:@"use_itunes_preference"];
+  
+  if (use_itunes_preference == nil) {
+    use_itunes_preference = [NSNumber numberWithBool:NO];
+  }
+  
+  return [use_itunes_preference boolValue];
+}
+
+- (void)setUse_itunes_preference:(BOOL)flag {
+
+  NSNumber *use_itunes_preference = [NSNumber numberWithBool:flag];
+
+  [self.userDefaults setValue:use_itunes_preference 
+       forKey:@"use_itunes_preference"];
 }
 
 #pragma mark -

@@ -15,8 +15,11 @@
 @interface SettingViewController (Local)
 
 - (NowPlayingFriendsAppDelegate *)appDelegate;
+- (void)save_use_itunes_preference:(UISwitch *)sender;
 - (void)save_get_twitterusers:(UISwitch *)sender;
 - (void)save_alert_140char:(UISwitch *)sender;
+- (void)save_use_youtube_preference:(UISwitch *)sender;
+- (void)save_use_youtube_manual_preference:(UISwitch *)sender;
 @end
 
 
@@ -77,7 +80,7 @@
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 3;
+  return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView 
@@ -91,6 +94,8 @@
   case 1: rowsCount = 2;
     break;
   case 2: rowsCount = 2;
+    break;
+  case 3: rowsCount = 1;
     break;
   }
 
@@ -108,6 +113,8 @@ titleForHeaderInSection:(NSInteger)section {
   case 1: sectionTitle = @"Tweet Settings";
     break;
   case 2: sectionTitle = @"YouTube";
+    break;    
+  case 3: sectionTitle = @"iTunes Store";
     break;    
   }
 
@@ -187,7 +194,6 @@ titleForHeaderInSection:(NSInteger)section {
     }
       break;
     }
-
     break;
   }
 
@@ -235,10 +241,29 @@ titleForHeaderInSection:(NSInteger)section {
     }
     break;
   }
+
+  case 3: { //２列目
+    switch ([indexPath row]) {
+    case 0: {
+      cell.textLabel.text = @"Add iTunes Store Link to Auto Tweet";
+      switchObj.on  = self.appDelegate.use_itunes_preference;
+      [switchObj addTarget:self 
+		 action:@selector(save_use_itunes_preference:)
+		 forControlEvents:UIControlEventValueChanged];
+    }
+      break;
+    }
+    break;
+  }
+
     break;
   }
 
   return cell;
+}
+
+- (void)save_use_itunes_preference:(UISwitch *)sender {
+  self.appDelegate.use_itunes_preference = sender.on;
 }
 
 - (void)save_use_youtube_preference:(UISwitch *)sender {
@@ -270,9 +295,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     }
   }
     break;
-  case 1: cellHeight = 45.0f;
-    break;
-  case 2: cellHeight = 45.0f;
+
+  default: cellHeight = 45.0f;
     break;
   }
   

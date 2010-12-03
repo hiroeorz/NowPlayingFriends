@@ -449,11 +449,23 @@
   [(AccountLabelButton *)cell.accountLabel setData:data];
 
   if ([cell urlIsIncluded]) {
-    cell.linkButton.alpha = 1.0f;
-    [cell.linkButton addTarget:cell action:@selector(openLink:)
-	 forControlEvents:UIControlEventTouchUpInside];
+    UIButton *aButton = nil;
+
+    if ([cell hasYouTubeUrl]) {
+      cell.linkButton.alpha = 0.0f;
+      cell.youTubeLinkButton.alpha = 1.0f;
+      aButton = cell.youTubeLinkButton;
+    } else {
+      cell.youTubeLinkButton.alpha = 0.0f;
+      cell.linkButton.alpha = 1.0f;
+      aButton = cell.linkButton;
+    }
+
+    [aButton addTarget:cell action:@selector(openLink:)
+	     forControlEvents:UIControlEventTouchUpInside];
   } else {
     cell.linkButton.alpha = 0.0f;
+    cell.youTubeLinkButton.alpha = 0.0f;
   }
 
   if ([self checkSpecialCell:data]) {

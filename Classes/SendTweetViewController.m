@@ -6,6 +6,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
+#import "ITunesStore.h"
 #import "MusicPlayerViewController.h"
 #import "NowPlayingFriendsAppDelegate.h"
 #import "SendTweetViewController.h"
@@ -16,6 +17,7 @@
 - (void)startIndicator;
 - (void)stopIndicator;
 - (void)stopIndicatoWithThread;
+- (void)addITunesStoreSearchLink:(NSString *)linkUrl;
 @end
 
 
@@ -119,6 +121,27 @@
   [self.view addSubview:editView];
 }
 
+- (void)addITunesStoreSearchLink:(NSString *)linkUrl {
+
+  [self performSelectorInBackground:@selector(stopIndicatoWithThread)
+  	withObject:nil];
+
+  if (linkUrl != nil) {
+    editView.text = [[[NSString alloc] 
+		       initWithFormat:@"%@ iTunes: %@", editView.text, linkUrl] 
+		      autorelease];
+  } else {
+    UIAlertView *alert = [[UIAlertView alloc] 
+			   initWithTitle:@"Error"
+			   message:@"Connection Error."
+			   delegate:nil
+			   cancelButtonTitle:@"OK"
+			   otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+  }
+}
+
 - (void)addYouTubeLink:(NSString *)linkUrl {
 
   [self performSelectorInBackground:@selector(stopIndicatoWithThread)
@@ -128,6 +151,15 @@
     editView.text = [[[NSString alloc] 
 		       initWithFormat:@"%@ %@", editView.text, linkUrl] 
 		      autorelease];
+  } else {
+    UIAlertView *alert = [[UIAlertView alloc] 
+			   initWithTitle:@"Search Failure"
+			   message:@"Cannot find a movie on YouTube."
+			   delegate:nil
+			   cancelButtonTitle:@"OK"
+			   otherButtonTitles:nil];
+    [alert show];
+    [alert release];
   }
 }
 
@@ -193,6 +225,16 @@
 	   artist:[self.appDelegate nowPlayingArtistName]
 	   delegate:self
 	   action:@selector(addYouTubeLink:)];
+}
+
+- (IBAction)addITunesStoreSearchTweet:(id)sender {
+
+  [self startIndicator];
+  ITunesStore *store = [[[ITunesStore alloc] init] autorelease];
+  [store searchLinkUrlWithTitle:[self.appDelegate nowPlayingTitle] 
+	 artist:[self.appDelegate nowPlayingArtistName]
+	 delegate:self 
+	 action:@selector(addITunesStoreSearchLink:)];
 }
 
 #pragma mark -

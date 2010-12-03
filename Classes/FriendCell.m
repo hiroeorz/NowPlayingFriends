@@ -24,6 +24,8 @@
 @synthesize baseView;
 @synthesize username;
 @synthesize linkButton;
+@synthesize youTubeLinkButton;
+
 
 - (void)dealloc {
 
@@ -34,6 +36,7 @@
   [timeLabel release];
   [bodyTextView release];
   [baseView release];
+  [youTubeLinkButton release];
   [super dealloc];
 }
 
@@ -73,6 +76,30 @@
   NSString *url = [urlArray objectAtIndex:0];
   
   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];  
+}
+
+- (BOOL)hasYouTubeUrl {
+  
+  NSString *body = bodyTextView.text;
+  if (body == nil) {return NO;}
+
+  NSError *error = nil;
+
+  NSRegularExpression *regexp = 
+    [NSRegularExpression 
+     regularExpressionWithPattern:@"https?://(www.youtube.com|youtu.be|y2u.be)/"
+      options:0 error:&error];
+
+  NSArray *matches = nil;
+
+  if (error != nil) {
+    NSLog(@"%@", error);
+  } else {
+    NSRange range = NSMakeRange(0, [body length]);
+    matches = [regexp matchesInString:body options:0 range:range];
+  }
+
+  return ([matches count] > 0);
 }
 
 #pragma mark-

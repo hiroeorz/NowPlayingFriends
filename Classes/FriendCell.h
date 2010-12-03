@@ -19,6 +19,7 @@
   UIView *baseView;
   NSString *username;
   UIButton *linkButton;
+  UIButton *youTubeLinkButton;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *userImageView;
@@ -29,9 +30,11 @@
 @property (nonatomic, retain) IBOutlet UIView *baseView;
 @property (nonatomic, retain) NSString *username;
 @property (nonatomic, retain) IBOutlet UIButton *linkButton;
+@property (nonatomic, retain) IBOutlet UIButton *youTubeLinkButton;
 
 
 - (BOOL)urlIsIncluded;
+- (BOOL)hasYouTubeUrl;
 - (NSArray *)arrayOfUrl;
 - (void)openLink:(id)sender;
 

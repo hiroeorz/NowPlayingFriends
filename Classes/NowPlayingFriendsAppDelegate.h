@@ -56,6 +56,8 @@
 @property (nonatomic) BOOL over140alert_preference;
 @property (nonatomic) BOOL use_youtube_preference;
 @property (nonatomic) BOOL use_youtube_manual_preference;
+@property (nonatomic) BOOL use_itunes_preference;
+
 
 - (NSString *)applicationDocumentsDirectory;
 - (UINavigationController *)navigationWithViewController:(id)viewController

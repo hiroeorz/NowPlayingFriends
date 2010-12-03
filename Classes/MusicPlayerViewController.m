@@ -7,6 +7,7 @@
 //
 
 #import "AlbumSongsViewController.h"
+#import "ITunesStore.h"
 #import "MusicPlayerViewController.h"
 #import "PlayListSongsViewController.h"
 #import "SendTweetViewController.h"
@@ -51,6 +52,9 @@
 - (void)sendAutoTweet;
 - (void)sendAutoTweetDetail:(NSString *)message;
 - (NowPlayingFriendsAppDelegate *)appDelegate;
+
+- (void)createMessageIncludeITunes:(NSString *)linkUrl;
+- (void)createMessageIncludeYouTube:(NSString *)linkUrl;
 @end
 
 
@@ -553,13 +557,22 @@
 
   if (sent) {return;}
 
-  if ([self.appDelegate use_youtube_preference]) {
+  if ([self.appDelegate use_itunes_preference]) {
+
+    ITunesStore *store = [[[ITunesStore alloc] init] autorelease];
+    [store searchLinkUrlWithTitle:[self.appDelegate nowPlayingTitle] 
+	   artist:[self.appDelegate nowPlayingArtistName]
+	   delegate:self 
+	   action:@selector(createMessageIncludeITunes:)];
+
+  } else if ([self.appDelegate use_youtube_preference]) {
     YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
-      
+    
     [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
 	     artist:[self.appDelegate nowPlayingArtistName]
 	     delegate:self
 	     action:@selector(createMessageIncludeYouTube:)];
+    
   } else {
     NSString *message = [self.appDelegate tweetString];
     [self sendAutoTweetDetail:message];
@@ -581,6 +594,26 @@
 		       initWithFormat:@"%@ %@", message, linkUrl] autorelease];
   }
   
+  [self sendAutoTweetDetail: linkedMessage];
+}
+
+/**
+ * @brief 受け取ったiTunes検索リンクをメッセージに埋込む。
+          YouTubeクライアントから呼ばれる。
+ */
+- (void)createMessageIncludeITunes:(NSString *)linkUrl {
+
+  NSString *message = [self.appDelegate tweetString];
+  NSString *linkedMessage = nil;
+
+  if (linkUrl == nil) {
+    linkedMessage = message;
+  } else {
+    linkedMessage = [[[NSString alloc] 
+		       initWithFormat:@"%@ iTunes: %@", message, linkUrl] 
+		      autorelease];
+  }
+
   [self sendAutoTweetDetail: linkedMessage];
 }
 
