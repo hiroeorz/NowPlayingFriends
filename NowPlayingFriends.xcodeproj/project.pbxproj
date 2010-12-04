@@ -17,7 +17,6 @@
 		5420CC401274138F002C94DC /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5420CC3E1274138F002C94DC /* SettingViewController.m */; };
 		5420CC411274138F002C94DC /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5420CC3F1274138F002C94DC /* SettingViewController.xib */; };
 		5420CC4A12741732002C94DC /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5420CC4912741732002C94DC /* 20-gear2.png */; };
-		54323A0412A8BD670053EA97 /* 15-tags-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 54323A0312A8BD670053EA97 /* 15-tags-white.png */; };
 		54323A1F12A8EEE50053EA97 /* youtube_link.png in Resources */ = {isa = PBXBuildFile; fileRef = 54323A1E12A8EEE50053EA97 /* youtube_link.png */; };
 		54323A4612A905740053EA97 /* ITunesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 54323A4512A905740053EA97 /* ITunesStore.m */; };
 		544BDEB91281BB2B00E0AE9E /* AccountLabelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 544BDEB81281BB2B00E0AE9E /* AccountLabelButton.m */; };
@@ -120,7 +119,6 @@
 		5420CC3E1274138F002C94DC /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		5420CC3F1274138F002C94DC /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingViewController.xib; path = Classes/SettingViewController.xib; sourceTree = "<group>"; };
 		5420CC4912741732002C94DC /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
-		54323A0312A8BD670053EA97 /* 15-tags-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "15-tags-white.png"; sourceTree = "<group>"; };
 		54323A1E12A8EEE50053EA97 /* youtube_link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_link.png; sourceTree = "<group>"; };
 		54323A4412A905740053EA97 /* ITunesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITunesStore.h; sourceTree = "<group>"; };
 		54323A4512A905740053EA97 /* ITunesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITunesStore.m; sourceTree = "<group>"; };
@@ -420,7 +418,6 @@
 			isa = PBXGroup;
 			children = (
 				54323A1E12A8EEE50053EA97 /* youtube_link.png */,
-				54323A0312A8BD670053EA97 /* 15-tags-white.png */,
 				545355B512A103B50098F9C3 /* 01-refresh.png */,
 				546515CE122E1E18003DE639 /* no_artwork.png */,
 				5465151F122CF4AF003DE639 /* music-note.png */,
@@ -616,7 +613,6 @@
 				5420CC4A12741732002C94DC /* 20-gear2.png in Resources */,
 				545355B612A103B50098F9C3 /* 01-refresh.png in Resources */,
 				54F0BCBE12A5CEAE00986791 /* atMark.png in Resources */,
-				54323A0412A8BD670053EA97 /* 15-tags-white.png in Resources */,
 				54323A1F12A8EEE50053EA97 /* youtube_link.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

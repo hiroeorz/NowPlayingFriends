@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-#define kiTunesStoreSearchUrl @"http://ax.itunes.apple.com/WebObjects/MZSearch.woa/wa/search?term=%@+%@"
+#define kiTunesStoreSearchUrl @"http://ax.itunes.apple.com/WebObjects/MZSearch.woa/wa/search?term=%@"
 #define kTinyUrl @"http://tinyurl.com/api-create.php?url=%@"
 
 @interface ITunesStore : NSOperation <NSXMLParserDelegate> {

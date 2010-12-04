@@ -29,23 +29,30 @@
 
   self.resultDelegate = aDelegate;
   self.action = aAction;
-  NSString *storeUrl = [[NSString alloc] initWithFormat:kiTunesStoreSearchUrl,
-					 title, artist];
+  NSString *query = [[NSString alloc] initWithFormat:@"%@ %@", 
+				      title, artist];
 
   CFStringRef ignoreString = CFSTR(";,/?:@&=+$#");
-  NSMutableString *bodyString = 
-    [NSMutableString stringWithFormat:kTinyUrl,
+  NSMutableString *storeSearchUrl = 
+    [NSMutableString stringWithFormat:kiTunesStoreSearchUrl,
 		     (NSString *)CFURLCreateStringByAddingPercentEscapes(  
 						       kCFAllocatorDefault,
-						       (CFStringRef)storeUrl,
+						       (CFStringRef)query,
 						       NULL,
                                                        ignoreString,
                                                        kCFStringEncodingUTF8)];
-  [storeUrl release];
-  NSLog(@"url: %@", bodyString);
+
+  NSString *compressUrl = [[NSString alloc] 
+			    initWithFormat:kTinyUrl, storeSearchUrl];
+
 
   NSURLRequest *request = [NSURLRequest 
-			    requestWithURL:[NSURL URLWithString:bodyString]];
+			    requestWithURL:[NSURL URLWithString:compressUrl]];
+
+  [compressUrl release];
+  [query release];
+
+  NSLog(@"url: %@", compressUrl);
   self.urlData = [NSMutableData data];
   [NSURLConnection connectionWithRequest:request delegate:self];
 }
