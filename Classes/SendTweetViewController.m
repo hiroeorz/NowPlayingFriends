@@ -232,6 +232,7 @@
   [self startIndicator];
   ITunesStore *store = [[[ITunesStore alloc] init] autorelease];
   [store searchLinkUrlWithTitle:[self.appDelegate nowPlayingTitle] 
+	 album:[self.appDelegate nowPlayingAlbumTitle]
 	 artist:[self.appDelegate nowPlayingArtistName]
 	 delegate:self 
 	 action:@selector(addITunesStoreSearchLink:)];

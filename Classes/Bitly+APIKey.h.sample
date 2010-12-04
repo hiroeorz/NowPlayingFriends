@@ -1,0 +1,9 @@
+/*
+ * replace your bitly username and api key.
+ * see http://bit.ly/
+ * API Document 
+ *   http://code.google.com/p/bitly-api/wiki/ApiDocumentation
+ */
+
+#define kBitlyUserName @"<your bitly username>"
+#define kBitlyAPIKey @"<your bitly api key>"

@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Bitly+APIKey.h"
 
 
-#define kiTunesStoreSearchUrl @"http://ax.itunes.apple.com/WebObjects/MZSearch.woa/wa/search?term=%@"
+#define kiTunesStoreSearchUrl @"http://ax.itunes.apple.com/WebObjects/MZSearch.woa/wa/search?term=%@ %@"
 #define kTinyUrl @"http://tinyurl.com/api-create.php?url=%@"
+#define kBitlyUrl @"http://api.bit.ly/v3/shorten?login=%@&apiKey=%@&format=json&%@"
 
 @interface ITunesStore : NSOperation <NSXMLParserDelegate> {
 
-  NSData *urlData;
+  NSMutableData *urlData;
   id resultDelegate;
   SEL action;
 }
@@ -24,6 +26,7 @@
 @property (nonatomic) SEL action;
 
 - (void)searchLinkUrlWithTitle:(NSString *)title
+			 album:(NSString *)album
 			artist:(NSString *)artist
 		      delegate:(id) aDelegate
 			action:(SEL)aAction;

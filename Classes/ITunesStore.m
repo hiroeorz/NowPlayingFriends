@@ -7,6 +7,7 @@
 //
 
 #import "ITunesStore.h"
+#import "JSON/JSON.h"
 
 
 @implementation ITunesStore
@@ -23,34 +24,46 @@
 }
 
 - (void)searchLinkUrlWithTitle:(NSString *)title
+			 album:(NSString *)album
 			artist:(NSString *)artist
 		      delegate:(id) aDelegate
 			action:(SEL)aAction {
 
   self.resultDelegate = aDelegate;
   self.action = aAction;
-  NSString *query = [[NSString alloc] initWithFormat:@"%@ %@", 
-				      title, artist];
+
+  NSString *keyword1 = artist;
+  NSString *keyword2 = nil;
+
+  if (album == nil || [album length] == 0) {
+    keyword2 = title;
+  } else {
+    keyword2 = album;
+  }
+
+  NSString *storeSearchUrl = [[NSString alloc] 
+			      initWithFormat:kiTunesStoreSearchUrl, 
+			      keyword1, keyword2];
 
   CFStringRef ignoreString = CFSTR(";,/?:@&=+$#");
-  NSMutableString *storeSearchUrl = 
-    [NSMutableString stringWithFormat:kiTunesStoreSearchUrl,
+  NSMutableString *compressParam = 
+    [NSMutableString stringWithFormat:@"longUrl=%@",
 		     (NSString *)CFURLCreateStringByAddingPercentEscapes(  
-						       kCFAllocatorDefault,
-						       (CFStringRef)query,
-						       NULL,
-                                                       ignoreString,
-                                                       kCFStringEncodingUTF8)];
+						   kCFAllocatorDefault,
+						   (CFStringRef)storeSearchUrl,
+						   NULL,
+                                                   ignoreString,
+                                                   kCFStringEncodingUTF8)];
 
-  NSString *compressUrl = [[NSString alloc] 
-			    initWithFormat:kTinyUrl, storeSearchUrl];
-
-
+  NSString *compressUrl = [[NSString alloc] initWithFormat:kBitlyUrl,
+					    kBitlyUserName, 
+					    kBitlyAPIKey,
+					    compressParam];
   NSURLRequest *request = [NSURLRequest 
 			    requestWithURL:[NSURL URLWithString:compressUrl]];
 
   [compressUrl release];
-  [query release];
+  [storeSearchUrl release];
 
   self.urlData = [NSMutableData data];
   [NSURLConnection connectionWithRequest:request delegate:self];
@@ -68,12 +81,22 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
   
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-  NSString *compressedUrl = [[NSString alloc] initWithData:urlData
-					      encoding:NSUTF8StringEncoding];
 
-  NSLog(@"TinyURL Search Result: %@", compressedUrl);
-  [resultDelegate performSelector:action 
-		  withObject:[compressedUrl autorelease]];
+  NSString *jsonString = [[NSString alloc] initWithData:urlData
+					   encoding:NSUTF8StringEncoding];
+  NSLog(@"json: %@", jsonString);
+  NSDictionary *jsonDictionary = [jsonString JSONValue];
+
+  if ([[jsonDictionary objectForKey:@"status_code"] integerValue] != 200) {
+    self.urlData = nil;
+    [resultDelegate performSelector:action withObject:nil];    
+  }
+
+  NSDictionary *responseData = [jsonDictionary objectForKey:@"data"];
+  NSString *compressedUrl = [responseData objectForKey:@"url"];
+
+  NSLog(@"Bitly Search Result: %@", compressedUrl);
+  [resultDelegate performSelector:action withObject:compressedUrl];
   self.urlData = nil;
 }
 
