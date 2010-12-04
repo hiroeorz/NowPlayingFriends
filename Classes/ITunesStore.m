@@ -52,7 +52,6 @@
   [compressUrl release];
   [query release];
 
-  NSLog(@"url: %@", compressUrl);
   self.urlData = [NSMutableData data];
   [NSURLConnection connectionWithRequest:request delegate:self];
 }

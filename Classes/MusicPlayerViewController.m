@@ -701,7 +701,6 @@
       [self refreshTimeline];
       [self setFriendImageView];
     }
-
   }
   @finally {
     updatingFlag = NO;
@@ -784,7 +783,7 @@
   NSInteger y = albumImageView.frame.size.height - xRange + 32;
   
   for (NSDictionary *data in timeline)  {
-    if (cancelFlag) { break; }
+    if (cancelFlag || timeline == beforeTimeline) { break; }
 
     UIButton *profileImageButton = nil;
     BOOL newButtonFlag = NO;
