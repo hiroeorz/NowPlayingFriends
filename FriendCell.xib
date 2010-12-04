@@ -118,7 +118,7 @@
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<int key="IBUIContentHorizontalAlignment">0</int>
 										<int key="IBUIContentVerticalAlignment">0</int>
-										<object class="NSFont" key="IBUIFont" id="236506877">
+										<object class="NSFont" key="IBUIFont" id="772662104">
 											<string key="NSName">Helvetica-Bold</string>
 											<double key="NSSize">15</double>
 											<int key="NSfFlags">16</int>
@@ -176,16 +176,16 @@
 										<reference key="IBUINormalTitleColor" ref="330718391"/>
 										<reference key="IBUINormalTitleShadowColor" ref="917992263"/>
 									</object>
-									<object class="IBUIButton" id="569180025">
+									<object class="IBUIButton" id="466183525">
 										<reference key="NSNextResponder" ref="380588009"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{246, 8}, {18, 19}}</string>
+										<string key="NSFrame">{{266, 10}, {18, 19}}</string>
 										<reference key="NSSuperview" ref="380588009"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<int key="IBUIContentHorizontalAlignment">0</int>
 										<int key="IBUIContentVerticalAlignment">0</int>
-										<reference key="IBUIFont" ref="236506877"/>
+										<reference key="IBUIFont" ref="772662104"/>
 										<int key="IBUIButtonType">3</int>
 										<bool key="IBUIShowsTouchWhenHighlighted">YES</bool>
 										<reference key="IBUIHighlightedTitleColor" ref="749092956"/>
@@ -195,23 +195,23 @@
 										</object>
 										<reference key="IBUINormalTitleShadowColor" ref="917992263"/>
 									</object>
-									<object class="IBUIButton" id="169656543">
+									<object class="IBUIButton" id="853380536">
 										<reference key="NSNextResponder" ref="380588009"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{236, 1}, {35, 39}}</string>
+										<string key="NSFrame">{{230, 1}, {35, 39}}</string>
 										<reference key="NSSuperview" ref="380588009"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<int key="IBUIContentHorizontalAlignment">0</int>
 										<int key="IBUIContentVerticalAlignment">0</int>
-										<reference key="IBUIFont" ref="236506877"/>
+										<reference key="IBUIFont" ref="772662104"/>
 										<reference key="IBUIHighlightedTitleColor" ref="749092956"/>
 										<object class="NSColor" key="IBUINormalTitleColor">
 											<int key="NSColorSpace">1</int>
 											<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 										</object>
 										<reference key="IBUINormalTitleShadowColor" ref="917992263"/>
-										<object class="NSCustomResource" key="IBUINormalImage">
+										<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">youtube_link.png</string>
 										</object>
@@ -311,7 +311,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">linkButton</string>
 						<reference key="source" ref="322024191"/>
-						<reference key="destination" ref="569180025"/>
+						<reference key="destination" ref="466183525"/>
 					</object>
 					<int key="connectionID">28</int>
 				</object>
@@ -319,7 +319,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">youTubeLinkButton</string>
 						<reference key="source" ref="322024191"/>
-						<reference key="destination" ref="169656543"/>
+						<reference key="destination" ref="853380536"/>
 					</object>
 					<int key="connectionID">30</int>
 				</object>
@@ -363,8 +363,8 @@
 							<reference ref="7454775"/>
 							<reference ref="69183653"/>
 							<reference ref="759743233"/>
-							<reference ref="569180025"/>
-							<reference ref="169656543"/>
+							<reference ref="466183525"/>
+							<reference ref="853380536"/>
 						</object>
 						<reference key="parent" ref="322024191"/>
 					</object>
@@ -395,12 +395,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">27</int>
-						<reference key="object" ref="569180025"/>
+						<reference key="object" ref="466183525"/>
 						<reference key="parent" ref="380588009"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">29</int>
-						<reference key="object" ref="169656543"/>
+						<reference key="object" ref="853380536"/>
 						<reference key="parent" ref="380588009"/>
 					</object>
 				</object>
@@ -441,11 +441,11 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDYQAAwdAAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDdgAAwcgAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDRgAAwmQAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDVwAAwhQAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -612,7 +612,7 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{16, 16}</string>
+				<string>{420, 420}</string>
 				<string>{64, 64}</string>
 			</object>
 		</object>
