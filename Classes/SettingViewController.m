@@ -95,7 +95,7 @@
     break;
   case 2: rowsCount = 2;
     break;
-  case 3: rowsCount = 1;
+  case 3: rowsCount = 2;
     break;
   }
 
@@ -219,7 +219,7 @@ titleForHeaderInSection:(NSInteger)section {
     break;
 
 
-  case 2: { //２列目
+  case 2: { //3列目
     switch ([indexPath row]) {
     case 0: {
       cell.textLabel.text = @"Add YouTube Link to Auto Tweet";
@@ -242,13 +242,21 @@ titleForHeaderInSection:(NSInteger)section {
     break;
   }
 
-  case 3: { //２列目
+  case 3: { //4列目
     switch ([indexPath row]) {
     case 0: {
       cell.textLabel.text = @"Add iTunes Store Link to Auto Tweet";
       switchObj.on  = self.appDelegate.use_itunes_preference;
       [switchObj addTarget:self 
 		 action:@selector(save_use_itunes_preference:)
+		 forControlEvents:UIControlEventValueChanged];
+    }
+      break;
+    case 1: {
+      cell.textLabel.text = @"Add iTunes Store Link to Manual Tweet";
+      switchObj.on  = self.appDelegate.use_itunes_manual_preference;
+      [switchObj addTarget:self 
+		 action:@selector(save_use_itunes_manual_preference:)
 		 forControlEvents:UIControlEventValueChanged];
     }
       break;
@@ -260,6 +268,10 @@ titleForHeaderInSection:(NSInteger)section {
   }
 
   return cell;
+}
+
+- (void)save_use_itunes_manual_preference:(UISwitch *)sender {
+  self.appDelegate.use_itunes_manual_preference = sender.on;
 }
 
 - (void)save_use_itunes_preference:(UISwitch *)sender {

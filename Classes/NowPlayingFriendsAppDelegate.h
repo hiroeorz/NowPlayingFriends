@@ -57,6 +57,7 @@
 @property (nonatomic) BOOL use_youtube_preference;
 @property (nonatomic) BOOL use_youtube_manual_preference;
 @property (nonatomic) BOOL use_itunes_preference;
+@property (nonatomic) BOOL use_itunes_manual_preference;
 
 
 - (NSString *)applicationDocumentsDirectory;

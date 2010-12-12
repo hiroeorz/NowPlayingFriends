@@ -106,14 +106,10 @@
   } else {                         /* 楽曲ツイート */
     editView.text = [self.appDelegate tweetString];
 
-    if ([self.appDelegate use_youtube_manual_preference]) {
-      [self startIndicator];
-      YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
-
-      [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
-	       artist:[self.appDelegate nowPlayingArtistName]
-	       delegate:self
-	       action:@selector(addYouTubeLink:)];
+    if ([self.appDelegate use_itunes_manual_preference]) {
+      [self addITunesStoreSearchTweet:nil];
+    }else if ([self.appDelegate use_youtube_manual_preference]) {
+      [self addYouTubeTweet:nil];
     }
   }
 
