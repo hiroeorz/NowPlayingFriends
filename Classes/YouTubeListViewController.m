@@ -27,12 +27,14 @@
 @dynamic appDelegate;
 @synthesize movieTableView;
 @synthesize movies;
+@synthesize selectedMovie;
 @synthesize tweetViewController;
 @synthesize typeSelectViewController;
 
 - (void)dealloc {
 
   [movieTableView release];
+  [selectedMovie release];
   [tweetViewController release];
   [typeSelectViewController release];
   [super dealloc];
@@ -41,6 +43,7 @@
 - (void)viewDidUnload {
 
   self.movieTableView = nil;
+  self.selectedMovie = nil;
   self.tweetViewController = nil;
   self.typeSelectViewController = nil;
   [super viewDidUnload];
@@ -56,6 +59,7 @@
 
   if (self) {
     typeSelectViewController = nil;
+    movieSelected = NO;
   }
 
   return self;
@@ -64,14 +68,24 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.navigationItem.rightBarButtonItem = 
+  self.navigationItem.leftBarButtonItem = 
     [self.appDelegate cancelButton:@selector(cancel) target:self];
 
   [self searchFromNowPlaying];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {  
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
   
+  NSLog(@"closed!");
+
+  if (movieSelected == YES) {
+    [tweetViewController addYouTubeLink:
+			   [NSArray arrayWithObjects:selectedMovie, nil]];
+    movieSelected = NO;
+  }
 }
 
 -(void)cancel {
@@ -109,6 +123,10 @@
 
   NSDictionary *movie = [movies objectAtIndex:[indexPath row]];
   cell.titleLabel.text = [movie objectForKey:@"contentTitle"];
+
+  cell.thumbnailImageView.image = nil;
+  [cell loadMovieImage:[movie objectForKey:@"thumbnailUrl"]];
+
   return cell;
 }
 
@@ -123,6 +141,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)tableView:(UITableView *)tableView 
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+  NSDictionary *movie = [movies objectAtIndex:[indexPath row]];
+  NSLog(@"didSelect: %@", movie);
+  self.selectedMovie = movie;
+  movieSelected = YES;
+
+  [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark -

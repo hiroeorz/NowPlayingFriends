@@ -572,7 +572,8 @@
     [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
 	     artist:[self.appDelegate nowPlayingArtistName]
 	     delegate:self
-	     action:@selector(createMessageIncludeYouTube:)];
+	     action:@selector(createMessageIncludeYouTube:)
+	     count:1];
     
   } else {
     NSString *message = [self.appDelegate tweetString];

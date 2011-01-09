@@ -18,7 +18,6 @@
 - (void)stopIndicator;
 - (void)stopIndicatoWithThread;
 - (void)addITunesStoreSearchLink:(NSString *)linkUrl;
-- (void)addYouTubeLink:(NSArray *)searchResults;
 @end
 
 

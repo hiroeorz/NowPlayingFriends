@@ -11,9 +11,20 @@
 
 @interface YouTubeMovieCell : UITableViewCell {
 
+  NSMutableData *responseData;
+  NSURLConnection *connection;
+  NSURLResponse *response;
   UILabel *titleLabel;
+  UIImageView *thumbnailImageView;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
+@property (nonatomic, retain) IBOutlet UIImageView *thumbnailImageView;
+@property (nonatomic, retain) NSMutableData *responseData;
+@property (nonatomic, retain) NSURLConnection *connection;
+@property (nonatomic, retain) NSURLResponse *response;
+
+
+- (void)loadMovieImage:(NSString *)aUrl;
 
 @end

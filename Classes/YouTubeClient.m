@@ -132,23 +132,19 @@
 
   if ([elementName compare:@"entry"] == NSOrderedSame) {
     isEntry = YES;
-    NSLog(@"--------------------ENTRY--------------------");
   }
   if ([elementName compare:@"link"] == NSOrderedSame) {
     isLink = YES;
-    NSLog(@"--------------------LINK---------------------");
   }
   if ([elementName compare:@"title"] == NSOrderedSame) {
     isTitle = YES;
-    NSLog(@"--------------------TITLE---------------------");
   }
   if ([elementName compare:@"media:thumbnail"] == NSOrderedSame) {
     isThumbnail = YES;
-    NSLog(@"--------------------Thumbnail----------------");
   }
 
-  NSLog(@"element: %@", elementName);
-  NSLog(@"dict: %@", attributeDict);
+  //NSLog(@"element: %@", elementName);
+  //NSLog(@"dict: %@", attributeDict);
 
   if (isEntry && isLink) {
     if ([(NSString *)[attributeDict objectForKey:@"rel"] 
@@ -216,8 +212,6 @@
 						nil];
       [searchResultArray addObject: dic];
       [dic release];
-
-      NSLog(@"dic: %@", dic);
 
       self.contentTitle = nil;
       self.linkUrl = nil;

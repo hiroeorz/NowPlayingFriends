@@ -59,6 +59,7 @@
 - (IBAction)setRetweetString:(id)sender;
 - (IBAction)addYouTubeTweet:(id)sender;
 - (IBAction)addITunesStoreSearchTweet:(id)sender;
+- (void)addYouTubeLink:(NSArray *)searchResults;
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 - (void)countAndWriteTweetLength:(NSInteger)textcount;

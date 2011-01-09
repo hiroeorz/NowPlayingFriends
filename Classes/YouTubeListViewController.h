@@ -21,6 +21,8 @@
 @interface YouTubeListViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate> {
 
+  BOOL movieSelected;
+  NSDictionary *selectedMovie;
   NSArray *movies;
   SendTweetViewController *tweetViewController;
   UITableView *movieTableView;
@@ -30,6 +32,7 @@
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) IBOutlet UITableView *movieTableView;
 @property (nonatomic, retain) NSArray *movies;
+@property (nonatomic, retain) NSDictionary *selectedMovie;
 @property (nonatomic, retain) SendTweetViewController *tweetViewController;
 @property (nonatomic, retain) YoutubeTypeSelectViewController *typeSelectViewController;
 
