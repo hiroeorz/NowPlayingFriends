@@ -18,27 +18,39 @@
 @implementation YouTubeClient
 
 @synthesize delegate;
+@synthesize contentTitle;
 @synthesize linkUrl;
+@synthesize searchResultArray;
+@synthesize thumbnailUrl;
 @synthesize xmlData;
 @synthesize action;
 
 - (void)dealloc {
   
+  [contentTitle release];
   [delegate release];
   [linkUrl release];
+  [searchResultArray release];
+  [thumbnailUrl release];
   [xmlData release];
   [super dealloc];
 }
 
 - (void)searchWithTitle:(NSString *)title artist:(NSString *)artist 
-	       delegate:(id)aDelegate action:(SEL)aAction{
+	       delegate:(id)aDelegate action:(SEL)aAction 
+		  count: (NSInteger)count {
 
   self.delegate = aDelegate;
   self.action = aAction;
+  self.contentTitle = nil;
   self.linkUrl = nil;
+  self.thumbnailUrl = nil;
+
+  self.searchResultArray = [[NSMutableArray alloc] init];
+
   NSString *parameter = [[[NSString alloc] initWithFormat:@"%@,%@,Music",
 					   title, artist] autorelease];
-  NSString *url = [[[NSString alloc] initWithFormat:kYouTubeSearchURL, 1] 
+  NSString *url = [[[NSString alloc] initWithFormat:kYouTubeSearchURL, count] 
 		    autorelease];
 
   [self startWithRequestString:url parameter:parameter];
@@ -92,12 +104,13 @@
   [parser setDelegate:self];
   [parser parse];
   [parser release];
+  
   self.xmlData = nil;
 
   [self setValue:[NSNumber numberWithBool:YES] forKey:@"isFinished"]; 
   [self setValue:[NSNumber numberWithBool:NO] forKey:@"isExecuting"];
 
-  [delegate performSelector:action withObject:linkUrl];
+  [delegate performSelector:action withObject:searchResultArray];
 }
 
 -(void)connection:(NSURLConnection*)connection 
@@ -110,16 +123,32 @@
 #pragma mark -
 #pragma NSXMLParser Delegate Methods
 
+/**
+ * @brief XMLのエレメントを見つけるたびに呼ばれる。
+ */
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName 
     attributes:(NSDictionary *)attributeDict {
 
   if ([elementName compare:@"entry"] == NSOrderedSame) {
     isEntry = YES;
+    NSLog(@"--------------------ENTRY--------------------");
   }
   if ([elementName compare:@"link"] == NSOrderedSame) {
     isLink = YES;
+    NSLog(@"--------------------LINK---------------------");
   }
+  if ([elementName compare:@"title"] == NSOrderedSame) {
+    isTitle = YES;
+    NSLog(@"--------------------TITLE---------------------");
+  }
+  if ([elementName compare:@"media:thumbnail"] == NSOrderedSame) {
+    isThumbnail = YES;
+    NSLog(@"--------------------Thumbnail----------------");
+  }
+
+  NSLog(@"element: %@", elementName);
+  NSLog(@"dict: %@", attributeDict);
 
   if (isEntry && isLink) {
     if ([(NSString *)[attributeDict objectForKey:@"rel"] 
@@ -128,8 +157,26 @@
       self.linkUrl = [self shurinkedUrl:aUrl];
     }
   }
+
+  if (isEntry && isThumbnail) {
+    NSString *aThumbnailUrl = (NSString *)[attributeDict objectForKey:@"url"];
+
+    if ([aThumbnailUrl rangeOfString:@"/default.jpg"].location != NSNotFound) {
+      self.thumbnailUrl = aThumbnailUrl;
+    }
+  }
 }
 
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+
+  if (isEntry && isTitle) {
+    self.contentTitle = string;
+  }
+}
+
+/**
+ * @brief youtubeの短縮URLを生成する。
+ */
 - (NSString *)shurinkedUrl:(NSString *)aUrl {
 
   if (aUrl == nil) {
@@ -152,9 +199,6 @@
   return shurinkedUrl;
 }
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-
-}
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName 
   namespaceURI:(NSString *)namespaceURI
@@ -162,9 +206,32 @@
 
   if([elementName compare:@"entry"] == NSOrderedSame){
     isEntry = NO;
+
+    if (contentTitle != nil && linkUrl != nil && thumbnailUrl != nil) {
+
+      NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:
+						  contentTitle, @"contentTitle",
+						linkUrl, @"linkUrl",
+						thumbnailUrl, @"thumbnailUrl",
+						nil];
+      [searchResultArray addObject: dic];
+      [dic release];
+
+      NSLog(@"dic: %@", dic);
+
+      self.contentTitle = nil;
+      self.linkUrl = nil;
+      self.thumbnailUrl = nil;
+    }
   }
   if([elementName compare:@"link"] == NSOrderedSame){
     isLink = NO;
+  }
+  if([elementName compare:@"title"] == NSOrderedSame){
+    isTitle = NO;
+  }
+  if([elementName compare:@"media:thumbnail"] == NSOrderedSame){
+    isThumbnail = NO;
   }
 }
 

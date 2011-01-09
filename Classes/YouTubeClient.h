@@ -13,23 +13,33 @@
 
 @interface YouTubeClient : NSOperation <NSXMLParserDelegate>{
 
-  NSMutableData *xmlData;
   BOOL isEntry;
   BOOL isLink;
+  BOOL isThumbnail;
+  BOOL isTitle;
+  NSMutableData *xmlData;
+  NSString *contentTitle;
   NSString *linkUrl;
-  id delegate;
+  NSString *thumbnailUrl;
   SEL action;
+  id delegate;
+  NSMutableArray *searchResultArray;
 
   NSURLRequest *_request;
   NSURLConnection *_connection;
   BOOL _isExecuting, _isFinished;
 }
 
-@property (nonatomic, retain) NSMutableData *xmlData;
-@property (nonatomic, retain) NSString *linkUrl;
-@property (nonatomic, retain) id delegate;
 @property (nonatomic) SEL action;
+@property (nonatomic, retain) NSMutableArray *searchResultArray;
+@property (nonatomic, retain) NSMutableData *xmlData;
+@property (nonatomic, retain) NSString *contentTitle;
+@property (nonatomic, retain) NSString *linkUrl;
+@property (nonatomic, retain) NSString *thumbnailUrl;
+@property (nonatomic, retain) id delegate;
+
 
 - (void)searchWithTitle:(NSString *)title artist:(NSString *)artist
-	       delegate:(id)aDelegate action:(SEL)aAction;
+	       delegate:(id)aDelegate action:(SEL)aAction
+		  count: (NSInteger)count;
 @end

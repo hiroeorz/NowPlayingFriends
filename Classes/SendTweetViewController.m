@@ -18,6 +18,7 @@
 - (void)stopIndicator;
 - (void)stopIndicatoWithThread;
 - (void)addITunesStoreSearchLink:(NSString *)linkUrl;
+- (void)addYouTubeLink:(NSArray *)searchResults;
 @end
 
 
@@ -138,10 +139,17 @@
   }
 }
 
-- (void)addYouTubeLink:(NSString *)linkUrl {
+- (void)addYouTubeLink:(NSArray *)searchResults {
 
   [self performSelectorInBackground:@selector(stopIndicatoWithThread)
   	withObject:nil];
+
+  NSString *linkUrl = nil;
+
+  if ([searchResults count] > 0) {
+    NSDictionary *dic = [searchResults objectAtIndex:0];
+    linkUrl = [dic objectForKey:@"linkUrl"];
+  }
 
   if (linkUrl != nil) {
     editView.text = [[[NSString alloc] 
@@ -221,16 +229,6 @@
   viewController.tweetViewController = self;
 
   [self presentModalViewController:viewController animated:YES];
-
-  /*
-  [self startIndicator];
-  YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
-
-  [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
-	   artist:[self.appDelegate nowPlayingArtistName]
-	   delegate:self
-	   action:@selector(addYouTubeLink:)];
-  */
 }
 
 - (IBAction)addITunesStoreSearchTweet:(id)sender {
