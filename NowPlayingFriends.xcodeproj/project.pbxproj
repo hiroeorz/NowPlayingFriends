@@ -57,6 +57,8 @@
 		5480CA9A12289CB700F6E1C6 /* SendTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5480CA9812289CB700F6E1C6 /* SendTweetViewController.m */; };
 		5480CA9B12289CB700F6E1C6 /* SendTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5480CA9912289CB700F6E1C6 /* SendTweetViewController.xib */; };
 		5480E3831238EB1900FF2271 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5480E3821238EB1800FF2271 /* icon.png */; };
+		54882EFD12D99AEB00462891 /* YoutubeTypeSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54882EFB12D99AEB00462891 /* YoutubeTypeSelectViewController.m */; };
+		54882EFE12D99AEB00462891 /* YoutubeTypeSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54882EFC12D99AEB00462891 /* YoutubeTypeSelectViewController.xib */; };
 		54A96850122F97B1004CF186 /* 30-key.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A9684F122F97B1004CF186 /* 30-key.png */; };
 		54A96875122FA322004CF186 /* MentionsTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A96874122FA322004CF186 /* MentionsTimelineViewController.m */; };
 		54A9698B1230C743004CF186 /* HomeTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A9698A1230C743004CF186 /* HomeTimelineViewController.m */; };
@@ -170,6 +172,9 @@
 		5480CA9812289CB700F6E1C6 /* SendTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendTweetViewController.m; sourceTree = "<group>"; };
 		5480CA9912289CB700F6E1C6 /* SendTweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SendTweetViewController.xib; path = Classes/SendTweetViewController.xib; sourceTree = "<group>"; };
 		5480E3821238EB1800FF2271 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		54882EFA12D99AEB00462891 /* YoutubeTypeSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeTypeSelectViewController.h; sourceTree = "<group>"; };
+		54882EFB12D99AEB00462891 /* YoutubeTypeSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeTypeSelectViewController.m; sourceTree = "<group>"; };
+		54882EFC12D99AEB00462891 /* YoutubeTypeSelectViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = YoutubeTypeSelectViewController.xib; path = Classes/YoutubeTypeSelectViewController.xib; sourceTree = "<group>"; };
 		54A9684F122F97B1004CF186 /* 30-key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "30-key.png"; path = "../../Downloads/iPhoneタブバー用アイコン/glyphish-icons/icons/30-key.png"; sourceTree = SOURCE_ROOT; };
 		54A96873122FA316004CF186 /* MentionsTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MentionsTimelineViewController.h; sourceTree = "<group>"; };
 		54A96874122FA322004CF186 /* MentionsTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MentionsTimelineViewController.m; sourceTree = "<group>"; };
@@ -323,6 +328,8 @@
 				5468C59C128EAEF800CA77BB /* YouTubeClient.m */,
 				54323A4412A905740053EA97 /* ITunesStore.h */,
 				54323A4512A905740053EA97 /* ITunesStore.m */,
+				54882EFA12D99AEB00462891 /* YoutubeTypeSelectViewController.h */,
+				54882EFB12D99AEB00462891 /* YoutubeTypeSelectViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -360,6 +367,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				54882EFC12D99AEB00462891 /* YoutubeTypeSelectViewController.xib */,
 				5420CC3F1274138F002C94DC /* SettingViewController.xib */,
 				54BDCD62126D59F600958FDA /* no_artwork_mini.png */,
 				5480E3821238EB1800FF2271 /* icon.png */,
@@ -614,6 +622,7 @@
 				545355B612A103B50098F9C3 /* 01-refresh.png in Resources */,
 				54F0BCBE12A5CEAE00986791 /* atMark.png in Resources */,
 				54323A1F12A8EEE50053EA97 /* youtube_link.png in Resources */,
+				54882EFE12D99AEB00462891 /* YoutubeTypeSelectViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +679,7 @@
 				544BDEB91281BB2B00E0AE9E /* AccountLabelButton.m in Sources */,
 				5468C59D128EAEF800CA77BB /* YouTubeClient.m in Sources */,
 				54323A4612A905740053EA97 /* ITunesStore.m in Sources */,
+				54882EFD12D99AEB00462891 /* YoutubeTypeSelectViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

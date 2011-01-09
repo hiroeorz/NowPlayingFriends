@@ -11,6 +11,7 @@
 #import "NowPlayingFriendsAppDelegate.h"
 #import "SendTweetViewController.h"
 #import "YouTubeClient.h"
+#import "YoutubeTypeSelectViewController.h"
 
 
 @interface SendTweetViewController (Local)
@@ -214,6 +215,15 @@
 
 - (IBAction)addYouTubeTweet:(id)sender {
 
+  YoutubeTypeSelectViewController *viewController = 
+    [[YoutubeTypeSelectViewController alloc] 
+      initWithNibName:@"YoutubeTypeSelectViewController" bundle:nil];
+
+  viewController.tweetViewController = self;
+
+  [self presentModalViewController:viewController animated:YES];
+
+  /*
   [self startIndicator];
   YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
 
@@ -221,6 +231,7 @@
 	   artist:[self.appDelegate nowPlayingArtistName]
 	   delegate:self
 	   action:@selector(addYouTubeLink:)];
+  */
 }
 
 - (IBAction)addITunesStoreSearchTweet:(id)sender {
