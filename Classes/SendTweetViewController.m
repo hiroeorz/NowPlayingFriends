@@ -15,7 +15,6 @@
 
 
 @interface SendTweetViewController (Local)
-- (void)startIndicator;
 - (void)stopIndicator;
 - (void)stopIndicatoWithThread;
 - (void)addITunesStoreSearchLink:(NSString *)linkUrl;
