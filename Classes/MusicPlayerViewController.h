@@ -39,6 +39,8 @@
 #define kPlayButtonAlpha 0.7f
 #define kRefreshButtonFrame (CGRectMake(220.0f, 12.0f, 100.0f, 50.0f))
 #define kRefreshButtonAlpha 1.0f
+#define kYouTubeButtonFrame (CGRectMake(11.0f, 62.0f, 105.0f, 37.0f))
+#define kYouTubeButtonAlpha 0.7f
 
 #define kAccelerationThreshold 1.6
 #define kAccelerationUpdateInterval (1.0f / 10.0f)
@@ -66,6 +68,7 @@
   NSString *refreshProfileImagesMutex;
   UIButton *button;
   UIButton *playButton;
+  UIButton *youTubeButton;
   UIImageView *albumImageView;
   UISegmentedControl *musicSegmentedControl;
   UISegmentedControl *refreshTypeSegmentedControl;
@@ -89,6 +92,7 @@
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) IBOutlet UIButton *button;
 @property (nonatomic, retain) IBOutlet UIButton *playButton;
+@property (nonatomic, retain) IBOutlet UIButton *youTubeButton;
 @property (nonatomic, retain) IBOutlet UIButton *subControlDisplayButton;
 @property (nonatomic, retain) IBOutlet UIImageView *albumImageView;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *musicSegmentedControl;

@@ -68,8 +68,10 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.navigationItem.leftBarButtonItem = 
-    [self.appDelegate cancelButton:@selector(cancel) target:self];
+  if (tweetViewController != nil) {
+    self.navigationItem.leftBarButtonItem = 
+      [self.appDelegate cancelButton:@selector(cancel) target:self];
+  }
 
   [self searchFromNowPlaying];
 }
@@ -79,7 +81,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
   
-  if (movieSelected == YES) {
+  if (movieSelected == YES && tweetViewController != nil) {
     [tweetViewController addYouTubeLink:
 			   [NSArray arrayWithObjects:selectedMovie, nil]];
     movieSelected = NO;

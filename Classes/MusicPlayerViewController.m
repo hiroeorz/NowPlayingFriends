@@ -14,6 +14,7 @@
 #import "UserAuthenticationViewController.h"
 #import "UserInformationViewController.h"
 #import "YouTubeClient.h"
+#import "YouTubeListViewController.h"
 
 
 #define kRefreshTypeSong 0
@@ -44,6 +45,7 @@
 - (UIButton *)refreshButton:(CGRect)frame;
 - (void)closeSettingView;
 - (void)addPlayButton;
+- (void)addYouTubeButton;
 - (void)addRefreshButton;
 - (void)openEditView;
 - (void)changeToListview;
@@ -74,6 +76,7 @@
 @synthesize musicSegmentedControl;
 @synthesize nowButtons;
 @synthesize playButton;
+@synthesize youTubeButton;
 @synthesize playLists;
 @synthesize profileImageButtons;
 @synthesize refreshProfileImagesMutex;
@@ -115,6 +118,7 @@
   [songListController release];
   [songView release];
   [subControlDisplayButton release];
+  [youTubeButton release];
   [timeline release];
   [volumeSlider release];
   [super dealloc];
@@ -143,6 +147,7 @@
   self.subControlDisplayButton = nil;
   self.timeline = nil;
   self.volumeSlider = nil;
+  self.youTubeButton = nil;
   [super viewDidUnload];
 }
 
@@ -204,6 +209,7 @@
 
   [super viewDidLoad];
   [self addPlayButton];
+  [self addYouTubeButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -934,6 +940,12 @@
   [subControlView addSubview:refreshButton];
 }
 
+- (void)addYouTubeButton {
+
+  self.youTubeButton = [self youTubeButton:kYouTubeButtonFrame];
+  [musicControllerView addSubview:youTubeButton];
+}
+
 /**
  * @brief 一定時間内のポストデータかどうかを判断する。
  */
@@ -998,6 +1010,32 @@
   aButton.alpha = kRefreshButtonAlpha;
 
   return aButton;
+}
+
+- (UIButton *)youTubeButton:(CGRect)frame {
+
+  UIButton *aYouTubeButton = [UIButton buttonWithType:111];
+  aYouTubeButton.frame = frame;
+  
+  UIColor *playButtonColor = [UIColor scrollViewTexturedBackgroundColor];
+  [aYouTubeButton setValue:playButtonColor forKey:@"tintColor"];
+
+  [aYouTubeButton addTarget:self action:@selector(openYouTubeList:)
+	       forControlEvents:UIControlEventTouchUpInside];
+  
+  [aYouTubeButton setTitle:@"YouTube" forState:UIControlStateNormal];
+  aYouTubeButton.alpha = kYouTubeButtonAlpha;
+
+  return aYouTubeButton;
+}
+
+- (IBAction)openYouTubeList:(id)sender {
+
+  YouTubeListViewController *viewController = 
+  [[YouTubeListViewController alloc] 
+    initWithNibName:@"YouTubeListViewController" bundle:nil];
+  [self.navigationController pushViewController:viewController animated:YES];
+  [viewController autorelease];
 }
 
 #pragma mark -
