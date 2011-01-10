@@ -17,9 +17,11 @@
 #define kTweetTemplate @"♪ #NowPlaying \"[st]\" by \"[ar]\" on album \"[al]\" ♬"
 #define kMaxTweetLength 140
 #define kProfileImageDirectory @"profileImages"
+#define kYouTubeThumbnailDirectory @"youtubeThumbnails"
 #define kProfileImageMaxFileCacheCount 1024
 #define kProfileImageMaxMemoryCacheCount 10
 #define KNowPlayingTags @"nowplaying OR nowlistening OR twitmusic OR BGM";
+
 
 @interface NowPlayingFriendsAppDelegate : NSObject <UIApplicationDelegate> {
   
@@ -111,6 +113,11 @@
 - (NSData *)profileImageDataWithURLString:(NSString *)urlString;
 - (NSString *)createDirectory:(NSString *)dirname;
 - (void)cleanupProfileImageFileCache;
+
+- (void)saveYoutubeThumbnailData:(NSData *)imageData 
+		       urlString:(NSString *) urlString;
+- (NSData *)youtubeThumbnailDataWithURLString:(NSString *)urlString;
+- (NSString *)youtubeThumbnailFileName:(NSString *)urlString;
 
 - (UIImage *)resizedImageWithImage:(UIImage *)orgImage
 			     width:(float)width height:(float)height;

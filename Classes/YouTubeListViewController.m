@@ -79,8 +79,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
   
-  NSLog(@"closed!");
-
   if (movieSelected == YES) {
     [tweetViewController addYouTubeLink:
 			   [NSArray arrayWithObjects:selectedMovie, nil]];
@@ -125,8 +123,29 @@
   cell.titleLabel.text = [movie objectForKey:@"contentTitle"];
 
   cell.thumbnailImageView.image = nil;
-  [cell loadMovieImage:[movie objectForKey:@"thumbnailUrl"]];
+  cell.nameLabel.text = [movie objectForKey:@"name"];
+  cell.playCountLabel.text = [movie objectForKey:@"viewCount"];
 
+  NSString *secondsString = [movie objectForKey:@"seconds"];
+  NSInteger seconds = [secondsString intValue];
+  NSInteger min = seconds / 60;
+  NSInteger seconds_of_min = seconds % 60;
+  NSString *time_str = [NSString stringWithFormat:@"%d:%02d", 
+				 min, seconds_of_min];
+  cell.timeLabel.text = time_str;
+
+  NSString *imageUrl = [movie objectForKey:@"thumbnailUrl"];
+  NSData *imageData = [self.appDelegate 
+			   youtubeThumbnailDataWithURLString:imageUrl];
+
+  if (imageData == nil) {
+    [cell loadMovieImage:imageUrl];
+  } else {
+    UIImage *movieImage = [UIImage imageWithData:imageData];
+    cell.thumbnailImageView.image = movieImage;
+  }
+
+  cell.linkUrl = [movie objectForKey:@"linkUrl"];
   return cell;
 }
 
@@ -142,7 +161,6 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
   NSDictionary *movie = [movies objectAtIndex:[indexPath row]];
-  NSLog(@"didSelect: %@", movie);
   self.selectedMovie = movie;
   movieSelected = YES;
 
@@ -167,7 +185,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
   self.movies = searchResults;
   [movieTableView reloadData];
-  NSLog(@"search results: %@", searchResults);
+  //NSLog(@"search results: %@", searchResults);
 }
 
 

@@ -7,22 +7,34 @@
 //
 
 #import "YouTubeMovieCell.h"
+#import "NowPlayingFriendsAppDelegate.h"
 
 
 @implementation YouTubeMovieCell
 
-@synthesize titleLabel;
-@synthesize responseData;
+@dynamic appDelegate;
 @synthesize connection;
+@synthesize imageUrl;
+@synthesize linkUrl;
+@synthesize nameLabel;
+@synthesize playCountLabel;
 @synthesize response;
+@synthesize responseData;
 @synthesize thumbnailImageView;
+@synthesize timeLabel;
+@synthesize titleLabel;
 
 - (void)dealloc {
   
   [connection release];
-  [responseData release];
+  [imageUrl release];
+  [linkUrl release];
+  [nameLabel release];
+  [playCountLabel release];
   [response release];
+  [responseData release];
   [thumbnailImageView release];
+  [timeLabel release];
   [titleLabel release];
   [super dealloc];
 }
@@ -36,7 +48,6 @@
   return self;
 }
 
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     
   [super setSelected:selected animated:animated];
@@ -47,8 +58,6 @@
 */
 - (void)connection:(NSURLConnection *)aConnection 
 didReceiveResponse:(NSURLResponse *)aResponse {
-
-  NSLog(@"didReceiveResponse");
 
   [response release];
   response = [aResponse retain];
@@ -72,22 +81,37 @@ didReceiveResponse:(NSURLResponse *)aResponse {
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 
-  NSLog(@"didFinishLoading");
   UIImage *movieImage = [UIImage imageWithData:responseData];
-  NSLog(@"image: %@", [UIImage imageWithData:responseData]);
-  NSLog(@"data length: %d", [responseData length]);
-  NSLog(@"image: %@", movieImage);
   thumbnailImageView.image = movieImage;
+  
+  [self.appDelegate saveYoutubeThumbnailData:responseData 
+       urlString:imageUrl];
 
   self.responseData = nil;
 }
 
 - (void)loadMovieImage:(NSString *)aUrl {
-  
+
+  self.imageUrl = aUrl;
   NSURLRequest *request = [NSURLRequest requestWithURL: 
 					  [NSURL URLWithString:aUrl]];
 
   connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+}
+
+#pragma mark -
+#pragma IBAction Methods
+
+- (IBAction)openMovie:(id)sender {
+  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:linkUrl]];  
+}
+
+
+#pragma mark -
+#pragma Local Methods
+
+- (NowPlayingFriendsAppDelegate *)appDelegate {
+  return [[UIApplication sharedApplication] delegate];
 }
 
 @end

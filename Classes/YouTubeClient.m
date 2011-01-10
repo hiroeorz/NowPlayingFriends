@@ -18,19 +18,26 @@
 @implementation YouTubeClient
 
 @synthesize delegate;
+@synthesize name;
 @synthesize contentTitle;
 @synthesize linkUrl;
 @synthesize searchResultArray;
 @synthesize thumbnailUrl;
+@synthesize viewCount;
 @synthesize xmlData;
 @synthesize action;
+@synthesize seconds;
+
 
 - (void)dealloc {
   
+  [name release];
   [contentTitle release];
   [delegate release];
   [linkUrl release];
   [searchResultArray release];
+  [viewCount release];
+  [seconds release];
   [thumbnailUrl release];
   [xmlData release];
   [super dealloc];
@@ -45,6 +52,9 @@
   self.contentTitle = nil;
   self.linkUrl = nil;
   self.thumbnailUrl = nil;
+  self.name = nil;
+  self.seconds = nil;
+  self.viewCount = nil;
 
   self.searchResultArray = [[NSMutableArray alloc] init];
 
@@ -77,7 +87,7 @@
                                                        ignoreString,
                                                        kCFStringEncodingUTF8)];
 
-  NSLog(@"url: %@", bodyString);
+  //NSLog(@"url: %@", bodyString);
   NSURLRequest *request = [NSURLRequest 
 			    requestWithURL:[NSURL URLWithString:bodyString]];
   
@@ -139,8 +149,17 @@
   if ([elementName compare:@"title"] == NSOrderedSame) {
     isTitle = YES;
   }
+  if ([elementName compare:@"name"] == NSOrderedSame) {
+    isName = YES;
+  }
   if ([elementName compare:@"media:thumbnail"] == NSOrderedSame) {
     isThumbnail = YES;
+  }
+  if ([elementName compare:@"yt:statistics"] == NSOrderedSame) {
+    isViewCount = YES;
+  }
+  if ([elementName compare:@"yt:duration"] == NSOrderedSame) {
+    isDuration = YES;
   }
 
   //NSLog(@"element: %@", elementName);
@@ -153,7 +172,6 @@
       self.linkUrl = [self shurinkedUrl:aUrl];
     }
   }
-
   if (isEntry && isThumbnail) {
     NSString *aThumbnailUrl = (NSString *)[attributeDict objectForKey:@"url"];
 
@@ -161,6 +179,17 @@
       self.thumbnailUrl = aThumbnailUrl;
     }
   }
+  if (isEntry && isViewCount) {
+    if ([attributeDict objectForKey:@"viewCount"] != nil) {
+      self.viewCount = [attributeDict objectForKey:@"viewCount"];
+    }
+  }
+  if (isEntry && isDuration) {
+    if ([attributeDict objectForKey:@"seconds"] != nil) {
+      self.seconds = [attributeDict objectForKey:@"seconds"];
+    }
+  }
+
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
@@ -168,6 +197,10 @@
   if (isEntry && isTitle) {
     self.contentTitle = string;
   }
+  if (isEntry && isName) {
+    self.name = string;
+  }
+
 }
 
 /**
@@ -183,14 +216,14 @@
     [aUrl stringByReplacingOccurrencesOfString:@"&feature=youtube_gdata"
 	     withString:@""];
 
-  NSLog(@"clearUrl: %@", clearUrl);
+  //NSLog(@"clearUrl: %@", clearUrl);
     
   NSString *shurinkedUrl = 
     [clearUrl 
       stringByReplacingOccurrencesOfString:@"http://www.youtube.com/watch?v="
       withString:@"http://youtu.be/"];
 
-  NSLog(@"shurinkedUrl: %@", shurinkedUrl);
+  //NSLog(@"shurinkedUrl: %@", shurinkedUrl);
 
   return shurinkedUrl;
 }
@@ -209,6 +242,9 @@
 						  contentTitle, @"contentTitle",
 						linkUrl, @"linkUrl",
 						thumbnailUrl, @"thumbnailUrl",
+						name, @"name",
+						viewCount, @"viewCount",
+						seconds, @"seconds",
 						nil];
       [searchResultArray addObject: dic];
       [dic release];
@@ -216,6 +252,9 @@
       self.contentTitle = nil;
       self.linkUrl = nil;
       self.thumbnailUrl = nil;
+      self.name = nil;
+      self.viewCount = nil;
+      self.seconds = nil;
     }
   }
   if([elementName compare:@"link"] == NSOrderedSame){
@@ -224,13 +263,22 @@
   if([elementName compare:@"title"] == NSOrderedSame){
     isTitle = NO;
   }
+  if([elementName compare:@"name"] == NSOrderedSame){
+    isName = NO;
+  }
   if([elementName compare:@"media:thumbnail"] == NSOrderedSame){
     isThumbnail = NO;
+  }
+  if([elementName compare:@"yt:statistics"] == NSOrderedSame){
+    isViewCount = NO;
+  }
+  if([elementName compare:@"yt:duration"] == NSOrderedSame){
+    isDuration = NO;
   }
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError{
-  NSLog(@"XML ParseError");
+  //NSLog(@"XML ParseError");
 }
 
 @end

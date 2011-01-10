@@ -13,14 +13,21 @@
 
 @interface YouTubeClient : NSOperation <NSXMLParserDelegate>{
 
+  BOOL isDuration;
   BOOL isEntry;
   BOOL isLink;
+  BOOL isName;
   BOOL isThumbnail;
   BOOL isTitle;
+  BOOL isViewCount;
   NSMutableData *xmlData;
   NSString *contentTitle;
   NSString *linkUrl;
   NSString *thumbnailUrl;
+  NSString *name;
+  NSString *viewCount;
+  NSString *seconds;
+
   SEL action;
   id delegate;
   NSMutableArray *searchResultArray;
@@ -33,9 +40,12 @@
 @property (nonatomic) SEL action;
 @property (nonatomic, retain) NSMutableArray *searchResultArray;
 @property (nonatomic, retain) NSMutableData *xmlData;
+@property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *contentTitle;
 @property (nonatomic, retain) NSString *linkUrl;
+@property (nonatomic, retain) NSString *seconds;
 @property (nonatomic, retain) NSString *thumbnailUrl;
+@property (nonatomic, retain) NSString *viewCount;
 @property (nonatomic, retain) id delegate;
 
 

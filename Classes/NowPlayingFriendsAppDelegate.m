@@ -198,6 +198,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [newProfileImagesIndex release];
 
   [self createDirectory:kProfileImageDirectory];
+  [self createDirectory:kYouTubeThumbnailDirectory];  
   [self setupMusicPlayer];
 
   [UIApplication sharedApplication].statusBarStyle = 
@@ -935,6 +936,52 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSString *documentsDirectory = [paths objectAtIndex:0];
   NSString *dirname = 
     [documentsDirectory stringByAppendingPathComponent:kProfileImageDirectory];
+
+  NSString *filename = [dirname stringByAppendingPathComponent:replaced];
+  
+  return filename;
+}
+
+
+/**
+ * @brief YouTubeサムネイル画像をファイルに保存
+ */
+- (void)saveYoutubeThumbnailData:(NSData *)imageData 
+		       urlString:(NSString *) urlString {
+
+  if (imageData == nil) { return; }
+
+  NSString *path = [self youtubeThumbnailFileName:urlString];
+  [imageData writeToFile:path atomically:YES];
+}
+
+/**
+ * @brief ファイルとして保存されているYouTubeサムネイル画像を取得
+ */
+- (NSData *)youtubeThumbnailDataWithURLString:(NSString *)urlString {
+
+  NSString *path = [self youtubeThumbnailFileName:urlString];
+  NSData *imageData = [[NSData alloc] initWithContentsOfFile:path];
+
+  return imageData;
+}
+
+- (NSString *)youtubeThumbnailFileName:(NSString *)urlString {
+
+  NSString *replaced = [urlString 
+			 stringByReplacingOccurrencesOfString:@"http://"
+			 withString:@""];
+
+  replaced = [replaced 
+	       stringByReplacingOccurrencesOfString:@"/"
+	       withString:@"_"];
+
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+						       NSUserDomainMask, YES);
+  
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSString *dirname = 
+    [documentsDirectory stringByAppendingPathComponent:kYouTubeThumbnailDirectory];
 
   NSString *filename = [dirname stringByAppendingPathComponent:replaced];
   
