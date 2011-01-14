@@ -314,13 +314,19 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [controllers addObject:navController];
   [viewController release];
 
+
   /* create tabBar */
   [tabBarController setViewControllers:controllers];
+
+  if ([client oAuthTokenExist]) {
+    [client saveFriends];
+  }
+
   [controllers release];
   [client release];
-
   [window makeKeyAndVisible];
   [window addSubview:tabBarController.view];
+
   return YES;
 }
 

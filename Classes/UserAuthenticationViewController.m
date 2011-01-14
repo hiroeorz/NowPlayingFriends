@@ -129,6 +129,8 @@
       [musicPlayerViewController displaySubview];
     }
 
+    [twitterClient saveFriends];
+
     [self dismissModalViewControllerAnimated:YES];
   } else {
     UIAlertView *alert = [[UIAlertView alloc] 

@@ -11,7 +11,7 @@
 
 #define kYouTubeSearchURL @"http://gdata.youtube.com/feeds/api/videos?max-results=%d&orderby=relevance&"
 
-@interface YouTubeClient : NSOperation <NSXMLParserDelegate>{
+@interface YouTubeClient : NSOperation <NSXMLParserDelegate> {
 
   BOOL isDuration;
   BOOL isEntry;

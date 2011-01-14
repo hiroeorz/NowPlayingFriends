@@ -109,6 +109,7 @@
 		54E7C6B11245D027006EDACE /* 53-house.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E7C6B01245D027006EDACE /* 53-house.png */; };
 		54E7C6BA1245D126006EDACE /* 23-bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E7C6B91245D126006EDACE /* 23-bird.png */; };
 		54F0BCBE12A5CEAE00986791 /* atMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F0BCBD12A5CEAE00986791 /* atMark.png */; };
+		54F2D06612DDC3FA006C8C77 /* TwitterFriendsGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F2D06512DDC3FA006C8C77 /* TwitterFriendsGetter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -267,6 +268,8 @@
 		54E7C6B01245D027006EDACE /* 53-house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "53-house.png"; sourceTree = "<group>"; };
 		54E7C6B91245D126006EDACE /* 23-bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "23-bird.png"; sourceTree = "<group>"; };
 		54F0BCBD12A5CEAE00986791 /* atMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atMark.png; sourceTree = "<group>"; };
+		54F2D06412DDC3FA006C8C77 /* TwitterFriendsGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterFriendsGetter.h; sourceTree = "<group>"; };
+		54F2D06512DDC3FA006C8C77 /* TwitterFriendsGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterFriendsGetter.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NowPlayingFriends-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -346,6 +349,8 @@
 				54882F3512D9A98500462891 /* YouTubeListViewController.m */,
 				54882FF612D9D18800462891 /* YouTubeMovieCell.h */,
 				54882FF712D9D18800462891 /* YouTubeMovieCell.m */,
+				54F2D06412DDC3FA006C8C77 /* TwitterFriendsGetter.h */,
+				54F2D06512DDC3FA006C8C77 /* TwitterFriendsGetter.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -704,6 +709,7 @@
 				54882EFD12D99AEB00462891 /* YoutubeTypeSelectViewController.m in Sources */,
 				54882F3712D9A98500462891 /* YouTubeListViewController.m in Sources */,
 				54882FF812D9D18800462891 /* YouTubeMovieCell.m in Sources */,
+				54F2D06612DDC3FA006C8C77 /* TwitterFriendsGetter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,10 +21,14 @@
 #define kCreateFriendURL @"https://twitter.com/friendships/create/%@.json"
 #define kCheckFriendShipURL @"https://api.twitter.com/1/friendships/show.json?target_screen_name=%@"
 
+#define kTwitterFrindsSearchUrl @"https://api.twitter.com/1/statuses/friends.json?screen_name=%@&cursor=%@"
+
 @interface TwitterClient : NSObject {
 
 }
 
+- (void)saveFriends;
+- (void)saveFriendsWithCursor:(NSNumber *)cursorNumber;
 - (void)followUser:(NSString *)usernameOrId delegate:(id)aDelegate;
 - (BOOL)checkFollowing:(NSString *)username;
 - (NSArray *)getHomeTimeLine:(NSString *)username sinceId:(NSNumber *)sinceId;

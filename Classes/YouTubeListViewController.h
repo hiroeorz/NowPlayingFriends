@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 
 
-#define kYouTubeSearchCount 7
+#define kYouTubeSearchCount 10
 #define kYouTubeThumbnailHeight 91
 
 
-@class SendTweetViewController;
 @class NowPlayingFriendsAppDelegate;
+@class SendTweetViewController;
 @class YoutubeTypeSelectViewController;
 
 

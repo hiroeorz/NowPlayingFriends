@@ -6,12 +6,13 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "TwitterClient.h"
 #import "JSON/JSON.h"
 #import "OAuthConsumer/OAConsumer.h"
+#import "OAuthConsumer/OADataFetcher.h"
 #import "OAuthConsumer/OAMutableURLRequest.h"
 #import "OAuthConsumer/OARequestParameter.h"
-#import "OAuthConsumer/OADataFetcher.h"
+#import "TwitterClient.h"
+#import "TwitterFriendsGetter.h"
 
 
 @interface TwitterClient (Local) 
@@ -32,6 +33,44 @@
 
 #pragma mark -
 #pragma Twitter Get TimeLine Methods
+
+/**
+ * @brief フォローしているユーザのリストを取得して保存します。
+ */
+- (void)saveFriends {
+
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+						       NSUserDomainMask, YES);  
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSString *filePath = 
+    [documentsDirectory stringByAppendingPathComponent:kFriendsFileName];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+
+  if ([fileManager fileExistsAtPath:filePath]) {
+    NSError *error;
+    [fileManager removeItemAtPath:filePath error:&error];
+  }
+
+  [self saveFriendsWithCursor:[NSNumber numberWithInteger:-1]];
+}
+- (void)saveFriendsWithCursor:(NSNumber *)cursorNumber {
+
+  NSString *urlString = [[NSString alloc] 
+			  initWithFormat:kTwitterFrindsSearchUrl,
+			  [self username], cursorNumber];
+
+  NSURL *baseUrl = [NSURL URLWithString:urlString];
+  OAMutableURLRequest *request = [self authenticatedRequest:baseUrl];
+  [request setHTTPMethod:@"GET"];
+
+  TwitterFriendsGetter *getter = [[TwitterFriendsGetter alloc] init];
+
+  OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+  [fetcher fetchDataWithRequest:request
+	   delegate:getter
+	   didFinishSelector:@selector(ticket:didFinishWithData:)
+	   didFailSelector:@selector(ticket:didFailWithError:)];
+}
 
 /**
  * @brief 指定されたユーザをフォローします。
