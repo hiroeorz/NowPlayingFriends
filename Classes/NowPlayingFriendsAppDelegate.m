@@ -646,7 +646,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self.userDefaults valueForKey:@"use_itunes_manual_preference"];
   
   if (use_itunes_manual_preference == nil) {
-    use_itunes_manual_preference = [NSNumber numberWithBool:YES];
+    use_itunes_manual_preference = [NSNumber numberWithBool:NO];
   }
   
   return [use_itunes_manual_preference boolValue];

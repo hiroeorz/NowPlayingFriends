@@ -116,7 +116,7 @@
 			<key>Key</key>
 			<string>use_itunes_manual_preference</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 	</array>
 </dict>
