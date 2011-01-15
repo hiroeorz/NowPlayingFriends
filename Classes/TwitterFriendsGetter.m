@@ -16,12 +16,19 @@
 #import "TwitterFriendsGetter.h"
 
 
+@interface TwitterFriendsGetter (Local)
+- (NSString *)lastName;
+@end
+
 @implementation TwitterFriendsGetter
 
 
 @dynamic appDelegate;
+@synthesize nextCursor;
 
 - (void)dealloc {
+
+  [nextCursor release];
   [super dealloc];
 }
 
@@ -33,6 +40,7 @@
   self = [super init];
 
   if (self != nil) {
+    trycount = 3;
   }
   return self;
 }
@@ -43,6 +51,8 @@
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {
 
   NSLog(@"didFinishWithData(getting friends list)");
+  trycount = 3;
+
   NSString *dataString = [[NSString alloc] 
 			   initWithData:data encoding:NSUTF8StringEncoding];
 
@@ -57,33 +67,41 @@
   NSNumber *next_cursor = [result objectForKey:@"next_cursor"];
   NSArray *users = [result objectForKey:@"users"];
   NSMutableArray *array = nil;
+  NSString *tmpFilePath = [self tmpFilePath];
+  BOOL knownAreaFlag = NO;
+  NSString *lastName = [self lastName];
 
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-						       NSUserDomainMask, YES);  
-  NSString *documentsDirectory = [paths objectAtIndex:0];
-  NSString *filePath = 
-    [documentsDirectory stringByAppendingPathComponent:kFriendsFileName];
-
-
-  if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-    array = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
+  if ([[NSFileManager defaultManager] fileExistsAtPath:tmpFilePath]) {
+    array = [[NSMutableArray alloc] initWithContentsOfFile:tmpFilePath];
   } else {
     array = [[NSMutableArray alloc] init];
   }
 
   for (NSDictionary *user in users) {
     NSString *screen_name = [user objectForKey:@"screen_name"];
-    [array addObject:screen_name];
+
+    if ([screen_name compare:lastName] == NSOrderedSame) {
+      knownAreaFlag = YES;
+    }
+
+    if (!knownAreaFlag) {
+      [array addObject:screen_name];
+    }
   }
   
-  [array writeToFile:filePath atomically:YES];
+  [array writeToFile:tmpFilePath atomically:YES];
   [array release];
 
-  if ([next_cursor integerValue] == 0) {
+  if ([next_cursor integerValue] == 0 || knownAreaFlag) {
+    NSError *error = nil;
+    [[NSFileManager defaultManager] moveItemAtPath:tmpFilePath
+				    toPath:[self filePath]
+				    error:&error];
     NSLog(@"friends getter: getting friends is finished.");
   } else {
     NSLog(@"friends getter: next cursor: %@", next_cursor);
     TwitterClient *client = [[[TwitterClient alloc] init] autorelease];
+    self.nextCursor = next_cursor;
     [client saveFriendsWithCursor:next_cursor];
   }
 
@@ -91,13 +109,58 @@
 }
 
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
+
   NSLog(@"didFailWithError(getting friends list)");
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
+  if (trycount > 0) {
+    trycount--;
+    TwitterClient *client = [[[TwitterClient alloc] init] autorelease];
+    [client saveFriendsWithCursor:nextCursor];
+  }
 }
 
 
+#pragma mark
+
+- (NSString *)tmpFilePath {
+  return [NSString stringWithFormat:@"%@.tmp", [self filePath]];
+}
+
+- (NSString *)filePath {
+
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+						       NSUserDomainMask, YES);  
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSString *filePath = 
+    [documentsDirectory stringByAppendingPathComponent:kFriendsFileName];
+
+  return filePath;
+}
+
 #pragma mark -
 #pragma mark Local Methods
+
+- (NSString *)lastName {
+
+  NSArray *array = nil;
+  NSString *filePath = [self filePath];
+  NSString *lastName = nil;
+
+  if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+    array = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
+
+    if (array == nil || [array count] == 0) {
+      lastName = nil;
+    } else {
+      lastName = [array objectAtIndex:0];
+    }
+    
+  } else {
+    lastName = nil;
+  }
+  
+  return lastName;
+}
 
 - (NowPlayingFriendsAppDelegate *)appDelegate {
   return [[UIApplication sharedApplication] delegate];

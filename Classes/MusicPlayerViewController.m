@@ -57,6 +57,8 @@
 
 - (void)createMessageIncludeITunes:(NSString *)linkUrl;
 - (void)createMessageIncludeYouTube:(NSString *)linkUrl;
+
+- (UIButton *)youTubeButton:(CGRect)frame;
 @end
 
 

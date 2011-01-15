@@ -10,6 +10,7 @@
 #import "MusicPlayerViewController.h"
 #import "NowPlayingFriendsAppDelegate.h"
 #import "SendTweetViewController.h"
+#import "TwitterFriendsListViewController.h"
 #import "YouTubeClient.h"
 #import "YoutubeTypeSelectViewController.h"
 
@@ -51,6 +52,7 @@
 
 - (void)viewDidUnload {
 
+  linkAdded = NO;
   self.editView = nil;
   self.inReplyToStatusId = nil;
   self.indicator = nil;
@@ -63,7 +65,6 @@
   [super viewDidUnload];
 }
 
-
 - (void)didReceiveMemoryWarning {
 
   [super didReceiveMemoryWarning];
@@ -75,6 +76,7 @@
     editView = [[UITextView alloc] init];
     defaultTweetString = nil;
     inReplyToStatusId = nil;
+    linkAdded = NO;
   }
   return self;
 }
@@ -99,17 +101,22 @@
     [retweetButton removeFromSuperview];
   }
 
-  setTweetEditField(editView, 5.0f, 310.0f, 140.0f);
+  setTweetEditField(editView, 5.0f, 270.0f, 140.0f);
 
   if (defaultTweetString != nil) { /* 通常のツイート*/
     editView.text = defaultTweetString;
   } else {                         /* 楽曲ツイート */
-    editView.text = [self.appDelegate tweetString];
 
-    if ([self.appDelegate use_itunes_manual_preference]) {
-      [self addITunesStoreSearchTweet:nil];
-    }else if ([self.appDelegate use_youtube_manual_preference]) {
-      [self addYouTubeTweet:nil];
+    if (linkAdded == NO) {
+      editView.text = [self.appDelegate tweetString];
+      
+      if ([self.appDelegate use_itunes_manual_preference]) {
+	[self addITunesStoreSearchTweet:nil];
+      } else if ([self.appDelegate use_youtube_manual_preference]) {
+	[self addYouTubeTweet:nil];
+      }
+
+      linkAdded = YES;
     }
   }
 
@@ -136,6 +143,13 @@
     [alert show];
     [alert release];
   }
+}
+
+- (void)addScreenName:(NSString *)screenName {
+
+  editView.text = [[[NSString alloc] 
+		     initWithFormat:@"@%@ %@", screenName, editView.text] 
+		    autorelease];
 }
 
 - (void)addYouTubeLink:(NSArray *)searchResults {
@@ -239,6 +253,23 @@
 	 artist:[self.appDelegate nowPlayingArtistName]
 	 delegate:self 
 	 action:@selector(addITunesStoreSearchLink:)];
+}
+
+- (IBAction)openTwitterFriendsViewController:(id)sender {
+
+  TwitterFriendsListViewController *viewController =
+    [[TwitterFriendsListViewController alloc] 
+      initWithNibName:@"TwitterFriendsListViewController"
+      bundle:nil];
+
+  viewController.tweetViewController = self;
+
+  UINavigationController *navController = 
+    [self.appDelegate navigationWithViewController:viewController
+	 title:@"Friends"  imageName:nil];
+  [viewController release];
+
+  [self presentModalViewController:navController animated:YES];
 }
 
 #pragma mark -

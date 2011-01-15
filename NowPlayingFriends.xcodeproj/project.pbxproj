@@ -17,6 +17,8 @@
 		5420CC401274138F002C94DC /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5420CC3E1274138F002C94DC /* SettingViewController.m */; };
 		5420CC411274138F002C94DC /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5420CC3F1274138F002C94DC /* SettingViewController.xib */; };
 		5420CC4A12741732002C94DC /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5420CC4912741732002C94DC /* 20-gear2.png */; };
+		542B3FCA12E1DE5100EDF94A /* TwitterFriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 542B3FC812E1DE5100EDF94A /* TwitterFriendsListViewController.m */; };
+		542B3FCB12E1DE5100EDF94A /* TwitterFriendsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 542B3FC912E1DE5100EDF94A /* TwitterFriendsListViewController.xib */; };
 		54323A1F12A8EEE50053EA97 /* youtube_link.png in Resources */ = {isa = PBXBuildFile; fileRef = 54323A1E12A8EEE50053EA97 /* youtube_link.png */; };
 		54323A4612A905740053EA97 /* ITunesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 54323A4512A905740053EA97 /* ITunesStore.m */; };
 		544BDEB91281BB2B00E0AE9E /* AccountLabelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 544BDEB81281BB2B00E0AE9E /* AccountLabelButton.m */; };
@@ -127,6 +129,9 @@
 		5420CC3E1274138F002C94DC /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		5420CC3F1274138F002C94DC /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingViewController.xib; path = Classes/SettingViewController.xib; sourceTree = "<group>"; };
 		5420CC4912741732002C94DC /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
+		542B3FC712E1DE5100EDF94A /* TwitterFriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterFriendsListViewController.h; sourceTree = "<group>"; };
+		542B3FC812E1DE5100EDF94A /* TwitterFriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterFriendsListViewController.m; sourceTree = "<group>"; };
+		542B3FC912E1DE5100EDF94A /* TwitterFriendsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TwitterFriendsListViewController.xib; path = Classes/TwitterFriendsListViewController.xib; sourceTree = "<group>"; };
 		54323A1E12A8EEE50053EA97 /* youtube_link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_link.png; sourceTree = "<group>"; };
 		54323A4412A905740053EA97 /* ITunesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITunesStore.h; sourceTree = "<group>"; };
 		54323A4512A905740053EA97 /* ITunesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITunesStore.m; sourceTree = "<group>"; };
@@ -351,6 +356,8 @@
 				54882FF712D9D18800462891 /* YouTubeMovieCell.m */,
 				54F2D06412DDC3FA006C8C77 /* TwitterFriendsGetter.h */,
 				54F2D06512DDC3FA006C8C77 /* TwitterFriendsGetter.m */,
+				542B3FC712E1DE5100EDF94A /* TwitterFriendsListViewController.h */,
+				542B3FC812E1DE5100EDF94A /* TwitterFriendsListViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -388,6 +395,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				542B3FC912E1DE5100EDF94A /* TwitterFriendsListViewController.xib */,
 				54882F3612D9A98500462891 /* YouTubeListViewController.xib */,
 				54882EFC12D99AEB00462891 /* YoutubeTypeSelectViewController.xib */,
 				5420CC3F1274138F002C94DC /* SettingViewController.xib */,
@@ -650,6 +658,7 @@
 				54882F3812D9A98500462891 /* YouTubeListViewController.xib in Resources */,
 				5488302812D9D86C00462891 /* YouTubeMovieCell.xib in Resources */,
 				54A5B7ED12DB714F00BA8269 /* 06-magnifying-glass.png in Resources */,
+				542B3FCB12E1DE5100EDF94A /* TwitterFriendsListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,6 +719,7 @@
 				54882F3712D9A98500462891 /* YouTubeListViewController.m in Sources */,
 				54882FF812D9D18800462891 /* YouTubeMovieCell.m in Sources */,
 				54F2D06612DDC3FA006C8C77 /* TwitterFriendsGetter.m in Sources */,
+				542B3FCA12E1DE5100EDF94A /* TwitterFriendsListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,20 +39,18 @@
  */
 - (void)saveFriends {
 
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-						       NSUserDomainMask, YES);  
-  NSString *documentsDirectory = [paths objectAtIndex:0];
-  NSString *filePath = 
-    [documentsDirectory stringByAppendingPathComponent:kFriendsFileName];
   NSFileManager *fileManager = [NSFileManager defaultManager];
+  TwitterFriendsGetter *getter = [[TwitterFriendsGetter alloc] init];
+  NSString *tmpFilePath = [getter tmpFilePath];
 
-  if ([fileManager fileExistsAtPath:filePath]) {
+  if ([fileManager fileExistsAtPath:tmpFilePath]) {
     NSError *error;
-    [fileManager removeItemAtPath:filePath error:&error];
+    [fileManager removeItemAtPath:tmpFilePath error:&error];
   }
 
   [self saveFriendsWithCursor:[NSNumber numberWithInteger:-1]];
 }
+
 - (void)saveFriendsWithCursor:(NSNumber *)cursorNumber {
 
   NSString *urlString = [[NSString alloc] 

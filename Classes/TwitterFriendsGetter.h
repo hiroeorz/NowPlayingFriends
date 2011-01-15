@@ -16,12 +16,15 @@
 
 @interface TwitterFriendsGetter : NSObject {
 
+  NSNumber *nextCursor;
+  NSInteger trycount;
 }
 
-
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
+@property (nonatomic, retain) NSNumber *nextCursor;
 
-
+- (NSString *)filePath;
+- (NSString *)tmpFilePath;
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 

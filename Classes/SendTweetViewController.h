@@ -30,6 +30,7 @@
 
 @interface SendTweetViewController : UIViewController <UITextViewDelegate> {
 
+  BOOL linkAdded;
   BOOL sending;
   MusicPlayerViewController *musicPlayer;
   NSNumber  *inReplyToStatusId;
@@ -55,15 +56,17 @@
 @property (nonatomic, retain) UIView *indicatorBase;
 @property (nonatomic, retain, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 
-- (IBAction)clearText:(id)sender;
-- (IBAction)setRetweetString:(id)sender;
-- (IBAction)addYouTubeTweet:(id)sender;
 - (IBAction)addITunesStoreSearchTweet:(id)sender;
+- (IBAction)addYouTubeTweet:(id)sender;
+- (IBAction)clearText:(id)sender;
+- (IBAction)openTwitterFriendsViewController:(id)sender;
+- (IBAction)setRetweetString:(id)sender;
+- (void)addScreenName:(NSString *)screenName;
 - (void)addYouTubeLink:(NSArray *)searchResults;
-- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
-- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 - (void)countAndWriteTweetLength:(NSInteger)textcount;
 - (void)startIndicator;
+- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 
