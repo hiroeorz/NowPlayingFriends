@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define kFriendsFileName @"friends.plist"
+#define kFriendsIdFileName @"friends_id.plist"
 
 @class OAServiceTicket;
 @class NowPlayingFriendsAppDelegate;
@@ -23,6 +24,10 @@
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) NSNumber *nextCursor;
 
+- (void)deleteFriendsFiles;
+- (NSNumber *)friendIdForName:(NSString *)aName;
+- (NSString *)tmpFriendIDFilePath;
+- (NSString *)idFilePath;
 - (NSString *)filePath;
 - (NSString *)tmpFilePath;
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;

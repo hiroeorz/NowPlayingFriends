@@ -8,7 +8,7 @@
 
 #import "UserAuthenticationViewController.h"
 #import "MusicPlayerViewController.h"
-
+#import "TwitterFriendsGetter.h"
 
 @implementation UserAuthenticationViewController
 
@@ -128,6 +128,10 @@
 	withObject:nil];
       [musicPlayerViewController displaySubview];
     }
+
+    TwitterFriendsGetter *friendsGetter = [[TwitterFriendsGetter alloc] init];
+    [friendsGetter deleteFriendsFiles];
+    [friendsGetter release];
 
     [twitterClient saveFriends];
 

@@ -100,7 +100,7 @@
 
   UINavigationController *navController = 
     [self.appDelegate navigationWithViewController:viewController
-	 title:@"Search From YouTube"  imageName:nil];
+	 title:nil  imageName:nil];
   [viewController release];
   [tweetViewController presentModalViewController:navController animated:YES];
 }

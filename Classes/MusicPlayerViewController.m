@@ -1037,6 +1037,7 @@
   [[YouTubeListViewController alloc] 
     initWithNibName:@"YouTubeListViewController" bundle:nil];
   [self.navigationController pushViewController:viewController animated:YES];
+
   [viewController autorelease];
 }
 

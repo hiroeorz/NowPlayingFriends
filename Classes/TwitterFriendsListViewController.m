@@ -221,6 +221,11 @@ titleForHeaderInSection:(NSInteger)section {
   [self addRecentFriendToFile:selectedName];
   [self dismissModalViewControllerAnimated:YES];
 
+  TwitterFriendsGetter *friendGetter = [[TwitterFriendsGetter alloc] init];
+
+  NSNumber *sendId = [friendGetter friendIdForName:selectedName];
+  tweetViewController.inReplyToStatusId = sendId;
+
   return indexPath;
 }
 

@@ -41,12 +41,19 @@
 
   NSFileManager *fileManager = [NSFileManager defaultManager];
   TwitterFriendsGetter *getter = [[TwitterFriendsGetter alloc] init];
+
   NSString *tmpFilePath = [getter tmpFilePath];
+  NSString *tmpIdFilePath = [getter tmpFriendIDFilePath];
+
   [getter release];
 
   if ([fileManager fileExistsAtPath:tmpFilePath]) {
     NSError *error;
     [fileManager removeItemAtPath:tmpFilePath error:&error];
+  }
+  if ([fileManager fileExistsAtPath:tmpIdFilePath]) {
+    NSError *error;
+    [fileManager removeItemAtPath:tmpIdFilePath error:&error];
   }
 
   [self saveFriendsWithCursor:[NSNumber numberWithInteger:-1]];

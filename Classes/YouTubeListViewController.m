@@ -73,6 +73,7 @@
       [self.appDelegate cancelButton:@selector(cancel) target:self];
   }
 
+  self.title = @"YouTube Search";
   [self searchFromNowPlaying];
 }
 
