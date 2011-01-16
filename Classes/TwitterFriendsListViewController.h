@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
+#define kRecentFriendsFileName @"recent_friends.plist"
+#define kRecentFriendsGroupName @"recent"
+#define kRecentFriendMaxCount 10
+
 @class SendTweetViewController;
 @class NowPlayingFriendsAppDelegate;
 

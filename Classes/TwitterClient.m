@@ -42,6 +42,7 @@
   NSFileManager *fileManager = [NSFileManager defaultManager];
   TwitterFriendsGetter *getter = [[TwitterFriendsGetter alloc] init];
   NSString *tmpFilePath = [getter tmpFilePath];
+  [getter release];
 
   if ([fileManager fileExistsAtPath:tmpFilePath]) {
     NSError *error;
@@ -61,6 +62,9 @@
   OAMutableURLRequest *request = [self authenticatedRequest:baseUrl];
   [request setHTTPMethod:@"GET"];
 
+  /* このインスタンスのリリースは自分でやらせています 
+     ticket:didFinishWithData 内。
+   */
   TwitterFriendsGetter *getter = [[TwitterFriendsGetter alloc] init];
 
   OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];

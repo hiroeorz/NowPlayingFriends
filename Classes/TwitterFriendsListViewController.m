@@ -12,6 +12,14 @@
 #import "TwitterFriendsListViewController.h"
 
 
+@interface TwitterFriendsListViewController (Local)
+
+- (void)addRecentFriendToFile:(NSString *)friendName;
+- (NSString *)recentFriendFilePath;
+- (NSMutableArray *)arrayOfRecentFriends;
+@end
+
+
 @implementation TwitterFriendsListViewController
 
 @dynamic appDelegate;
@@ -77,7 +85,7 @@
   }
   
   NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-
+  
   for (NSString *screen_name in array) {
     NSString *initialChar = 
       [[screen_name substringWithRange:NSMakeRange(0, 1)] lowercaseString];
@@ -101,7 +109,17 @@
   NSArray *keys = 
     [[dic allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 
-  self.initials = keys;
+  NSMutableArray *mutableKeys = [[NSMutableArray alloc] initWithArray:keys];
+
+  NSMutableArray *recentFriends = [self arrayOfRecentFriends];
+
+  if ([recentFriends count] > 0) {
+    [friends setObject:recentFriends forKey:kRecentFriendsGroupName];
+    [mutableKeys insertObject:kRecentFriendsGroupName atIndex:0];
+  }
+
+  self.initials = mutableKeys;
+  [mutableKeys release];
 }
 
 - (void)viewDidAppear:(BOOL)animated {  
@@ -200,6 +218,7 @@ titleForHeaderInSection:(NSInteger)section {
   NSArray *namesArray = [friends objectForKey:key];
   self.selectedName = [namesArray objectAtIndex:[indexPath row]];
 
+  [self addRecentFriendToFile:selectedName];
   [self dismissModalViewControllerAnimated:YES];
 
   return indexPath;
@@ -212,21 +231,62 @@ titleForHeaderInSection:(NSInteger)section {
 - (NSInteger)tableView:(UITableView *)tableView
 sectionForSectionIndexTitle:(NSString *)title
 	       atIndex:(NSInteger)index {
-  /*
-  id initial = [areas objectAtIndex:index];
-
-  if ([area class] == [UITableViewIndexSearch class]) {
-    [table setContentOffset:CGPointZero animated:YES];
-    return NSNotFound;
-  }
-  */
-
   return index;
 }
 
 
 #pragma mark -
 #pragma Local Methods
+
+- (NSMutableArray *)arrayOfRecentFriends {
+
+  NSString *filePath = [self recentFriendFilePath];
+  NSMutableArray *array = nil;
+
+  if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+    array = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
+  } else {
+    array = [[NSMutableArray alloc] init];
+  }
+
+  return [array autorelease];
+}
+
+- (void)addRecentFriendToFile:(NSString *)friendName {
+
+  NSString *filePath = [self recentFriendFilePath];
+  NSMutableArray *array = [self arrayOfRecentFriends];
+  BOOL hasObject = NO;
+  
+  for (NSString *name in array) {
+    if ([name compare:friendName] == NSOrderedSame) {
+      hasObject = YES;
+    }
+  }
+
+  if (hasObject == NO) {
+    [array insertObject:friendName atIndex:0];
+  }
+
+  if ([array count] > kRecentFriendMaxCount) {
+    [array removeLastObject];
+  }
+
+  NSLog(@"add: %@ to File: %@", array, filePath);
+  [array writeToFile:filePath atomically:YES];
+}
+
+- (NSString *)recentFriendFilePath {
+
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+						       NSUserDomainMask, YES);  
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSString *filePath = 
+    [documentsDirectory stringByAppendingPathComponent:kRecentFriendsFileName];
+
+  return filePath;
+}
+
 
 - (NowPlayingFriendsAppDelegate *)appDelegate {
   return [[UIApplication sharedApplication] delegate];

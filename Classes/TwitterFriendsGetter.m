@@ -68,7 +68,7 @@
   NSArray *users = [result objectForKey:@"users"];
   NSMutableArray *array = nil;
   NSString *tmpFilePath = [self tmpFilePath];
-  BOOL knownAreaFlag = NO;
+  BOOL knownAddressFlag = NO;
   NSString *lastName = [self lastName];
 
   if ([[NSFileManager defaultManager] fileExistsAtPath:tmpFilePath]) {
@@ -81,10 +81,10 @@
     NSString *screen_name = [user objectForKey:@"screen_name"];
 
     if ([screen_name compare:lastName] == NSOrderedSame) {
-      knownAreaFlag = YES;
+      knownAddressFlag = YES;
     }
 
-    if (!knownAreaFlag) {
+    if (!knownAddressFlag) {
       [array addObject:screen_name];
     }
   }
@@ -92,7 +92,7 @@
   [array writeToFile:tmpFilePath atomically:YES];
   [array release];
 
-  if ([next_cursor integerValue] == 0 || knownAreaFlag) {
+  if ([next_cursor integerValue] == 0 || knownAddressFlag) {
     NSError *error = nil;
     [[NSFileManager defaultManager] moveItemAtPath:tmpFilePath
 				    toPath:[self filePath]
@@ -116,6 +116,7 @@
     trycount--;
     TwitterClient *client = [[[TwitterClient alloc] init] autorelease];
     [client saveFriendsWithCursor:nextCursor];
+    [self autorelease];
   }
 }
 
