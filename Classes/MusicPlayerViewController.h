@@ -70,6 +70,7 @@
   UIButton *playButton;
   UIButton *youTubeButton;
   UIImageView *albumImageView;
+  UISegmentedControl *friendGetModeControl;
   UISegmentedControl *musicSegmentedControl;
   UISegmentedControl *refreshTypeSegmentedControl;
   UISegmentedControl *repeatModeControll;
@@ -95,6 +96,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *youTubeButton;
 @property (nonatomic, retain) IBOutlet UIButton *subControlDisplayButton;
 @property (nonatomic, retain) IBOutlet UIImageView *albumImageView;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *friendGetModeControl;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *musicSegmentedControl;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *refreshTypeSegmentedControl;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *repeatModeControll;
@@ -118,6 +120,7 @@
 @property (nonatomic, retain) UIViewController *songListController;
 
 - (IBAction)changeAutoTweetMode:(id)sender;
+- (IBAction)changeFriendGetMode:(id)sender;
 - (IBAction)changeMusicSegmentedControl:(id)sender;
 - (IBAction)changeRefreshType:(id)sender;
 - (IBAction)changeRepeatMode:(id)sender;

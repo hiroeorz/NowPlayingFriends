@@ -804,11 +804,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   if (curlUp) {
     animation.type = @"pageCurl";
     animation.fillMode = kCAFillModeForwards;
-    animation.endProgress = 0.70;
+    animation.endProgress = 0.76;
   } else {
     animation.type = @"pageUnCurl";
     animation.fillMode = kCAFillModeBackwards;
-    animation.startProgress = 0.70;
+    animation.startProgress = 0.76;
   }
 
   [animation setRemovedOnCompletion:NO];

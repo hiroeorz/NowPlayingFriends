@@ -34,6 +34,7 @@
 - (void)removeDisplaySubviewAfterSecond;
 
 - (void)releaseNowButtons;
+- (void)releaseProfileImageButtons;
 - (void)addProfileImageButton:(NSDictionary *)objects;
 - (void)setBackgroundImage:(NSDictionary *)objects;
 - (void)setBackgroundApha:(NSDictionary *)objects;
@@ -72,13 +73,13 @@
 @synthesize baseView;
 @synthesize beforeTimeline;
 @synthesize button;
+@synthesize friendGetModeControl;
 @synthesize listView;
 @synthesize musicControllerView;
 @synthesize musicPlayer;
 @synthesize musicSegmentedControl;
 @synthesize nowButtons;
 @synthesize playButton;
-@synthesize youTubeButton;
 @synthesize playLists;
 @synthesize profileImageButtons;
 @synthesize refreshProfileImagesMutex;
@@ -94,6 +95,7 @@
 @synthesize subControlView;
 @synthesize timeline;
 @synthesize volumeSlider;
+@synthesize youTubeButton;
 
 
 #pragma mark -
@@ -106,6 +108,7 @@
   [autoTweetSwitch release];
   [baseView release];
   [beforeTimeline release];
+  [friendGetModeControl release];
   [listView release];
   [musicControllerView release];
   [musicSegmentedControl release];
@@ -120,9 +123,9 @@
   [songListController release];
   [songView release];
   [subControlDisplayButton release];
-  [youTubeButton release];
   [timeline release];
   [volumeSlider release];
+  [youTubeButton release];
   [super dealloc];
 }
 
@@ -133,6 +136,7 @@
   self.autoTweetSwitch = nil;
   self.baseView = nil;
   self.beforeTimeline = nil;
+  self.friendGetModeControl = nil;
   self.listView = nil;
   self.musicControllerView = nil;
   self.musicSegmentedControl = nil;
@@ -363,6 +367,32 @@
 	  withObject:nil];    
   }
 }
+
+- (IBAction)changeFriendGetMode:(id)sender {
+  
+  NSLog(@"before change value is %@", 
+	[NSNumber numberWithBool:self.appDelegate.get_twitterusers_preference]);
+
+ switch ([sender selectedSegmentIndex]) {
+ case 0: { //OFF
+   NSLog(@"selected segment 0");
+   cancelFlag = YES;
+   self.appDelegate.get_twitterusers_preference = NO;
+   [self releaseNowButtons];
+   [self releaseProfileImageButtons];
+ };
+   break;
+ case 1: { //ON
+   NSLog(@"selected segment 1");
+   cancelFlag = NO;
+   self.appDelegate.get_twitterusers_preference = YES;
+   [self performSelectorInBackground:@selector(refreshProfileImages)
+	 withObject:nil];
+ };
+   break;
+ }
+}
+
 
 - (IBAction)changeVolume:(id)sender {
 
@@ -679,52 +709,58 @@
 
   UIImage *artworkImage = nil;
 
-  if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
+  if ([musicPlayer playbackState] == MPMusicPlaybackStateStopped) {
+    artworkImage = 
+      [self.appDelegate 
+	   noArtworkImageWithWidth:albumImageView.frame.size.height
+	   height:albumImageView.frame.size.height];
+  } else {
     artworkImage = 
       [self.appDelegate 
 	   currentMusicArtWorkWithWidth:albumImageView.frame.size.height
 	   height:albumImageView.frame.size.height
 	   useDefault:YES];
-  } else {
-    artworkImage = 
-      [self.appDelegate 
-	   noArtworkImageWithWidth:albumImageView.frame.size.height
-	   height:albumImageView.frame.size.height];
   }
 
   self.albumImageView.image = artworkImage;
 }
 
-
 - (void)refreshProfileImages {
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-  @try {
-    TwitterClient *client = [[TwitterClient alloc] init];
-    
-    if (![client oAuthTokenExist]) {
-      NSLog(@"oAuth Token is not exist. refresh not executed.");
-      [client release];
-      return;
-    }
-    
-    [client release];
-    cancelFlag = YES;
-    NSLog(@"waiting for mutex...");
-    
-    @synchronized(refreshProfileImagesMutex) {
-      cancelFlag = NO;
-      updatingFlag = YES;
-      NSLog(@"starting refresh timeline");
+  if (self.appDelegate.get_twitterusers_preference == YES) {
+    @try {
+      TwitterClient *client = [[TwitterClient alloc] init];
       
-      self.beforeTimeline = timeline;
-      [self refreshTimeline];
-      [self setFriendImageView];
+      if (![client oAuthTokenExist]) {
+	NSLog(@"oAuth Token is not exist. refresh not executed.");
+	[client release];
+	return;
+      }
+      
+      [client release];
+      cancelFlag = YES;
+      NSLog(@"waiting for mutex...");
+      
+      @synchronized(refreshProfileImagesMutex) {
+	cancelFlag = NO;
+	updatingFlag = YES;
+	NSLog(@"starting refresh timeline");
+	
+	self.beforeTimeline = timeline;
+	[self refreshTimeline];
+	[self setFriendImageView];
+      }
     }
-  }
-  @finally {
-    updatingFlag = NO;
+    @finally {
+      updatingFlag = NO;
+      
+      if (cancelFlag) {
+	[self releaseNowButtons];
+	[self releaseProfileImageButtons];
+      }
+    }
   }
 
   [self.appDelegate cleanupProfileImageFileCache];
@@ -792,6 +828,13 @@
 
   [nowButtons release];
   nowButtons = [[NSMutableArray alloc] init];
+}
+
+- (void)releaseProfileImageButtons {
+
+  for (UIButton *profileButton in profileImageButtons) {
+    if (profileButton.superview != nil) { [profileButton removeFromSuperview]; }
+  }
 }
 
 - (void)setFriendImageView {
@@ -1115,6 +1158,12 @@
     repeatModeControll.selectedSegmentIndex = kRepeatModeAll;
   }
 
+  if (self.appDelegate.get_twitterusers_preference) {
+    friendGetModeControl.selectedSegmentIndex = 1;
+  } else {
+    friendGetModeControl.selectedSegmentIndex = 0;
+  }
+
   [self.appDelegate setHalfCurlAnimationWithController:self
        frontView:songView
        curlUp:YES];
@@ -1123,7 +1172,6 @@
     [songView removeFromSuperview];
   }
 
-  //[self.view addSubview:settingView];
   [self.baseView addSubview:settingView];
   [UIView commitAnimations];
 }
