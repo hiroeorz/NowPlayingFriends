@@ -440,7 +440,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   }
 
   if (useDefault && artworkImage == nil) {
-    UIImage *orgImage = [UIImage imageNamed:@"no_artwork_image.jpg"];
+    UIImage *orgImage = [UIImage imageNamed:kNoArtWorkImage];
     artworkImage = [orgImage stretchableImageWithLeftCapWidth:width 
 			     topCapHeight:height];
   }

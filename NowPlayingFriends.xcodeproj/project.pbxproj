@@ -21,6 +21,7 @@
 		542B3FCB12E1DE5100EDF94A /* TwitterFriendsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 542B3FC912E1DE5100EDF94A /* TwitterFriendsListViewController.xib */; };
 		54323A1F12A8EEE50053EA97 /* youtube_link.png in Resources */ = {isa = PBXBuildFile; fileRef = 54323A1E12A8EEE50053EA97 /* youtube_link.png */; };
 		54323A4612A905740053EA97 /* ITunesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 54323A4512A905740053EA97 /* ITunesStore.m */; };
+		5441761212F24F6E00A29AD7 /* no_artwork_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5441761112F24F6E00A29AD7 /* no_artwork_image.png */; };
 		544BDEB91281BB2B00E0AE9E /* AccountLabelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 544BDEB81281BB2B00E0AE9E /* AccountLabelButton.m */; };
 		544FA54512448640003BFB95 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 544FA54412448640003BFB95 /* Default.png */; };
 		545355B612A103B50098F9C3 /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 545355B512A103B50098F9C3 /* 01-refresh.png */; };
@@ -31,7 +32,6 @@
 		5465150C122CE6D6003DE639 /* list-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 5465150B122CE6D6003DE639 /* list-white.png */; };
 		54651520122CF4AF003DE639 /* music-note.png in Resources */ = {isa = PBXBuildFile; fileRef = 5465151F122CF4AF003DE639 /* music-note.png */; };
 		546515CF122E1E18003DE639 /* no_artwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 546515CE122E1E18003DE639 /* no_artwork.png */; };
-		546515DA122E2667003DE639 /* no_artwork_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 546515D9122E2667003DE639 /* no_artwork_image.jpg */; };
 		5468C580128EAD4D00CA77BB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5468C57F128EAD4D00CA77BB /* libxml2.dylib */; };
 		5468C59D128EAEF800CA77BB /* YouTubeClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5468C59C128EAEF800CA77BB /* YouTubeClient.m */; };
 		5480C258121E4E5D00F6E1C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5480C257121E4E5D00F6E1C6 /* AVFoundation.framework */; };
@@ -135,6 +135,7 @@
 		54323A1E12A8EEE50053EA97 /* youtube_link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_link.png; sourceTree = "<group>"; };
 		54323A4412A905740053EA97 /* ITunesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITunesStore.h; sourceTree = "<group>"; };
 		54323A4512A905740053EA97 /* ITunesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITunesStore.m; sourceTree = "<group>"; };
+		5441761112F24F6E00A29AD7 /* no_artwork_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_artwork_image.png; sourceTree = "<group>"; };
 		544BDEB71281BB2B00E0AE9E /* AccountLabelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountLabelButton.h; sourceTree = "<group>"; };
 		544BDEB81281BB2B00E0AE9E /* AccountLabelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountLabelButton.m; sourceTree = "<group>"; };
 		544FA54412448640003BFB95 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -147,7 +148,6 @@
 		5465150B122CE6D6003DE639 /* list-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-white.png"; sourceTree = "<group>"; };
 		5465151F122CF4AF003DE639 /* music-note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "music-note.png"; sourceTree = "<group>"; };
 		546515CE122E1E18003DE639 /* no_artwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_artwork.png; path = icons/no_artwork.png; sourceTree = "<group>"; };
-		546515D9122E2667003DE639 /* no_artwork_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = no_artwork_image.jpg; sourceTree = "<group>"; };
 		5468C57F128EAD4D00CA77BB /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		5468C59B128EAEF800CA77BB /* YouTubeClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeClient.h; sourceTree = "<group>"; };
 		5468C59C128EAEF800CA77BB /* YouTubeClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeClient.m; sourceTree = "<group>"; };
@@ -395,13 +395,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5441761112F24F6E00A29AD7 /* no_artwork_image.png */,
 				542B3FC912E1DE5100EDF94A /* TwitterFriendsListViewController.xib */,
 				54882F3612D9A98500462891 /* YouTubeListViewController.xib */,
 				54882EFC12D99AEB00462891 /* YoutubeTypeSelectViewController.xib */,
 				5420CC3F1274138F002C94DC /* SettingViewController.xib */,
 				54BDCD62126D59F600958FDA /* no_artwork_mini.png */,
 				5480E3821238EB1800FF2271 /* icon.png */,
-				546515D9122E2667003DE639 /* no_artwork_image.jpg */,
 				5480CA9912289CB700F6E1C6 /* SendTweetViewController.xib */,
 				5480CA2E1227EF3100F6E1C6 /* UserAuthenticationViewController.xib */,
 				5480C73E12236F0D00F6E1C6 /* UserInformationViewController.xib */,
@@ -638,7 +638,6 @@
 				5465150C122CE6D6003DE639 /* list-white.png in Resources */,
 				54651520122CF4AF003DE639 /* music-note.png in Resources */,
 				546515CF122E1E18003DE639 /* no_artwork.png in Resources */,
-				546515DA122E2667003DE639 /* no_artwork_image.jpg in Resources */,
 				54A96850122F97B1004CF186 /* 30-key.png in Resources */,
 				5480E3831238EB1900FF2271 /* icon.png in Resources */,
 				54D260A7123A38AC004023A6 /* Pause_mini.png in Resources */,
@@ -659,6 +658,7 @@
 				5488302812D9D86C00462891 /* YouTubeMovieCell.xib in Resources */,
 				54A5B7ED12DB714F00BA8269 /* 06-magnifying-glass.png in Resources */,
 				542B3FCB12E1DE5100EDF94A /* TwitterFriendsListViewController.xib in Resources */,
+				5441761212F24F6E00A29AD7 /* no_artwork_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,9 +25,6 @@
 @property (nonatomic, retain) NSNumber *nextCursor;
 
 - (void)deleteFriendsFiles;
-- (NSNumber *)friendIdForName:(NSString *)aName;
-- (NSString *)tmpFriendIDFilePath;
-- (NSString *)idFilePath;
 - (NSString *)filePath;
 - (NSString *)tmpFilePath;
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
