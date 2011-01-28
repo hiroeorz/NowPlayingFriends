@@ -470,6 +470,8 @@
     refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
     [self displaySubview];
   }
+
+  [self setMusicArtwork];
 }
 
 /**
@@ -675,11 +677,20 @@
  */
 - (void)setMusicArtwork {
 
-  UIImage *artworkImage = 
-    [self.appDelegate 
-	 currentMusicArtWorkWithWidth:albumImageView.frame.size.height
-	 height:albumImageView.frame.size.height
-	 useDefault:YES];
+  UIImage *artworkImage = nil;
+
+  if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
+    artworkImage = 
+      [self.appDelegate 
+	   currentMusicArtWorkWithWidth:albumImageView.frame.size.height
+	   height:albumImageView.frame.size.height
+	   useDefault:YES];
+  } else {
+    artworkImage = 
+      [self.appDelegate 
+	   noArtworkImageWithWidth:albumImageView.frame.size.height
+	   height:albumImageView.frame.size.height];
+  }
 
   self.albumImageView.image = artworkImage;
 }

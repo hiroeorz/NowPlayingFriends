@@ -448,6 +448,16 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return artworkImage;
 }
 
+- (UIImage *)noArtworkImageWithWidth:(NSInteger)width
+			      height:(NSInteger)height {
+
+  UIImage *orgImage = [UIImage imageNamed:kNoArtWorkImage];
+  UIImage *artworkImage = [orgImage stretchableImageWithLeftCapWidth:width 
+				    topCapHeight:height];
+  
+  return artworkImage;
+}
+
 #pragma mark -
 #pragma mark SettingBundle Methods
 

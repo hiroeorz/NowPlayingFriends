@@ -78,6 +78,9 @@
 - (UIImage *)currentMusicArtWorkWithWidth:(NSInteger)width
 				   height:(NSInteger)height
 			       useDefault:(BOOL)useDefault;
+- (UIImage *)noArtworkImageWithWidth:(NSInteger)width
+			      height:(NSInteger)height;
+
 - (void)setupMusicPlayer;
 - (NSString *)nowPlayingTagsString;
 - (NSArray *)albums;
