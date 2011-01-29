@@ -40,7 +40,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Icon Change</string>
+			<string>get twitter icons</string>
 			<key>Key</key>
 			<string>get_twitterusers_preference</string>
 			<key>DefaultValue</key>

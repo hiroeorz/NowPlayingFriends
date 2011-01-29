@@ -200,7 +200,7 @@ titleForHeaderInSection:(NSInteger)section {
   case 1: { //２列目
     switch ([indexPath row]) {
     case 0: {
-      cell.textLabel.text = @"Change automatically Listener's Icons on Music Player";
+      cell.textLabel.text = @"Get Music Listener's Icons on Music Player";
       switchObj.on  = self.appDelegate.get_twitterusers_preference;
       [switchObj addTarget:self action:@selector(save_get_twitterusers:)
 		 forControlEvents:UIControlEventValueChanged];
