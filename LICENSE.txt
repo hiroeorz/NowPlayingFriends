@@ -9,3 +9,5 @@ This program is distributed in the hope that it will be useful, but WITHOUT
 ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
 details.
+
+But If you release this software, Please change it into another Icon in your application. Icon file names is icon.png, no_artwork_mini.png and no_artwork_image.png 
