@@ -12,6 +12,7 @@
 #import "SendTweetViewController.h"
 #import "TwitterFriendsListViewController.h"
 #import "YouTubeClient.h"
+#import "YouTubeListViewController.h"
 #import "YoutubeTypeSelectViewController.h"
 
 
@@ -234,13 +235,39 @@
 
 - (IBAction)addYouTubeTweet:(id)sender {
 
-  YoutubeTypeSelectViewController *viewController = 
-    [[YoutubeTypeSelectViewController alloc] 
-      initWithNibName:@"YoutubeTypeSelectViewController" bundle:nil];
+  if (self.appDelegate.select_youtube_preference) {
+    /*
+    YoutubeTypeSelectViewController *viewController = 
+      [[YoutubeTypeSelectViewController alloc] 
+	initWithNibName:@"YoutubeTypeSelectViewController" bundle:nil];
+    
+    viewController.tweetViewController = self;
+    
+    [self presentModalViewController:viewController animated:YES];
+    */
 
-  viewController.tweetViewController = self;
+    YouTubeListViewController *viewController = 
+      [[YouTubeListViewController alloc] 
+	initWithNibName:@"YouTubeListViewController" bundle:nil];
 
-  [self presentModalViewController:viewController animated:YES];
+    viewController.tweetViewController = self;
+
+    UINavigationController *navController = 
+      [self.appDelegate navigationWithViewController:viewController
+	   title:nil  imageName:nil];
+
+    [self presentModalViewController:navController animated:YES];
+
+  } else {
+    [self startIndicator];
+    YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
+
+    [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
+	     artist:[self.appDelegate nowPlayingArtistName]
+	     delegate:self
+	     action:@selector(addYouTubeLink:)
+	     count:1];
+  }
 }
 
 - (IBAction)addITunesStoreSearchTweet:(id)sender {

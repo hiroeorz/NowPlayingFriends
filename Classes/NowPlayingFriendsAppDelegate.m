@@ -41,6 +41,7 @@
 @dynamic use_youtube_manual_preference;
 @dynamic use_itunes_preference;
 @dynamic use_itunes_manual_preference;
+@dynamic select_youtube_preference;
 
 
 #pragma mark -
@@ -668,6 +669,26 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   [self.userDefaults setValue:use_itunes_manual_preference 
        forKey:@"use_itunes_manual_preference"];
+}
+
+- (BOOL)select_youtube_preference {
+
+  NSNumber *select_youtube_preference = 
+    [self.userDefaults valueForKey:@"select_youtube_preference"];
+  
+  if (select_youtube_preference == nil) {
+    select_youtube_preference = [NSNumber numberWithBool:YES];
+  }
+  
+  return [select_youtube_preference boolValue];
+}
+
+- (void)setSelect_youtube_preference:(BOOL)flag {
+
+  NSNumber *select_youtube_preference = [NSNumber numberWithBool:flag];
+
+  [self.userDefaults setValue:select_youtube_preference
+       forKey:@"select_youtube_preference"];
 }
 
 #pragma mark -

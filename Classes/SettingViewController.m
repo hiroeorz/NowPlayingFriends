@@ -93,7 +93,7 @@
     break;
   case 1: rowsCount = 2;
     break;
-  case 2: rowsCount = 2;
+  case 2: rowsCount = 3;
     break;
   case 3: rowsCount = 2;
     break;
@@ -238,6 +238,15 @@ titleForHeaderInSection:(NSInteger)section {
 		 forControlEvents:UIControlEventValueChanged];
     }
       break;
+
+    case 2: {
+      cell.textLabel.text = @"Select YouTube Movie From List When Manual Tweet";
+      switchObj.on  = self.appDelegate.select_youtube_preference;
+      [switchObj addTarget:self 
+		 action:@selector(save_select_youtube_preference:)
+		 forControlEvents:UIControlEventValueChanged];
+    }
+      break;
     }
     break;
   }
@@ -268,6 +277,10 @@ titleForHeaderInSection:(NSInteger)section {
   }
 
   return cell;
+}
+
+- (void)save_select_youtube_preference:(UISwitch *)sender {
+  self.appDelegate.select_youtube_preference = sender.on;
 }
 
 - (void)save_use_itunes_manual_preference:(UISwitch *)sender {
@@ -308,7 +321,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   }
     break;
 
-  default: cellHeight = 45.0f;
+  default: cellHeight = 55.0f;
     break;
   }
   
