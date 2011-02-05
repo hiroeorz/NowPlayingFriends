@@ -148,7 +148,7 @@
 - (void)addScreenName:(NSString *)screenName {
 
   editView.text = [[[NSString alloc] 
-		     initWithFormat:@"@%@ %@", screenName, editView.text] 
+		     initWithFormat:@".@%@ %@", screenName, editView.text] 
 		    autorelease];
 }
 
