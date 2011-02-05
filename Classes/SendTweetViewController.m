@@ -91,17 +91,14 @@
 
   self.navigationItem.rightBarButtonItem = 
     [self.appDelegate sendButton:@selector(sendTweet) target:self];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-
-  [super viewWillAppear:animated];
 
   if (defaultTweetString == nil || sourceString == nil) {
     [retweetButton removeFromSuperview];
   }
 
   setTweetEditField(editView, 5.0f, 270.0f, 140.0f);
+  editView.delegate = self;
+  [self.view addSubview:editView];
 
   if (defaultTweetString != nil) { /* 通常のツイート*/
     editView.text = defaultTweetString;
@@ -119,9 +116,11 @@
       linkAdded = YES;
     }
   }
+}
 
-  editView.delegate = self;
-  [self.view addSubview:editView];
+- (void)viewWillAppear:(BOOL)animated {
+
+  [super viewWillAppear:animated];
 }
 
 - (void)addITunesStoreSearchLink:(NSString *)linkUrl {
@@ -148,7 +147,7 @@
 - (void)addScreenName:(NSString *)screenName {
 
   editView.text = [[[NSString alloc] 
-		     initWithFormat:@".@%@ %@", screenName, editView.text] 
+		     initWithFormat:@"%@ @%@", editView.text, screenName] 
 		    autorelease];
 }
 
