@@ -94,13 +94,25 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
+			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Select YouTube Movie From List</string>
+			<string>YouTube Link Select Type</string>
 			<key>Key</key>
-			<string>select_youtube_preference</string>
+			<string>select_youtube_link_preference</string>
 			<key>DefaultValue</key>
-			<true/>
+			<integer>2</integer>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Top Of Search</string>
+				<string>Select From List</string>
+				<string>Confirmation</string>
+			</array>
 		</dict>
 		<dict>
 			<key>Type</key>

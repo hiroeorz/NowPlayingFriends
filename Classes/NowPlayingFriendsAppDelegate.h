@@ -23,6 +23,10 @@
 #define KNowPlayingTags @"nowplaying OR nowlistening OR twitmusic OR BGM";
 #define kNoArtWorkImage @"no_artwork_image.png"
 
+#define kSelectYouTubeTypeTopOfSerach 0
+#define kSelectYouTubeTypeSelectFromList 1
+#define kSelectYouTubeTypeConfirmation 2
+
 @interface NowPlayingFriendsAppDelegate : NSObject <UIApplicationDelegate> {
   
   UIWindow *window;
@@ -61,6 +65,7 @@
 @property (nonatomic) BOOL use_itunes_preference;
 @property (nonatomic) BOOL use_itunes_manual_preference;
 @property (nonatomic) BOOL select_youtube_preference;
+@property (nonatomic) NSInteger select_youtube_link_preference;
 
 
 - (NSString *)applicationDocumentsDirectory;

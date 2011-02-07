@@ -42,6 +42,7 @@
 @dynamic use_itunes_preference;
 @dynamic use_itunes_manual_preference;
 @dynamic select_youtube_preference;
+@dynamic select_youtube_link_preference;
 
 
 #pragma mark -
@@ -689,6 +690,28 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   [self.userDefaults setValue:select_youtube_preference
        forKey:@"select_youtube_preference"];
+}
+
+- (NSInteger)select_youtube_link_preference {
+
+  NSNumber *select_youtube_link_preference = 
+    [self.userDefaults valueForKey:@"select_youtube_link_preference"];
+  
+  if (select_youtube_link_preference == nil) {
+    select_youtube_link_preference = 
+      [NSNumber numberWithInteger:kSelectYouTubeTypeConfirmation];
+  }
+  
+  return [select_youtube_link_preference integerValue];
+}
+
+- (void)setSelect_youtube_link_preference:(NSInteger)selectType {
+
+  NSNumber *select_youtube_link_preference = 
+    [NSNumber numberWithInteger:selectType];
+
+  [self.userDefaults setValue:select_youtube_link_preference
+       forKey:@"select_youtube_link_preference"];
 }
 
 #pragma mark -

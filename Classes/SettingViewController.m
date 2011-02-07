@@ -6,10 +6,10 @@
 //  Copyright 2010 hiroe_orz17. All rights reserved.
 //
 
-#import "SettingViewController.h"
-
-#import "SendTweetViewController.h"
 #import "NowPlayingFriendsAppDelegate.h"
+#import "SendTweetViewController.h"
+#import "SettingSelectYouTubeLinkView.h"
+#import "SettingViewController.h"
 
 
 @interface SettingViewController (Local)
@@ -240,11 +240,9 @@ titleForHeaderInSection:(NSInteger)section {
       break;
 
     case 2: {
-      cell.textLabel.text = @"Select YouTube Movie From List When Manual Tweet";
-      switchObj.on  = self.appDelegate.select_youtube_preference;
-      [switchObj addTarget:self 
-		 action:@selector(save_select_youtube_preference:)
-		 forControlEvents:UIControlEventValueChanged];
+      cell.textLabel.text = @"YouTube Link Select Type";
+      cell.accessoryView = nil;
+      cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
       break;
     }
@@ -326,6 +324,22 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   }
   
   return cellHeight;
+}
+
+#pragma mark -
+#pragma mark Table view delegate
+
+- (void)tableView:(UITableView *)tableView 
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+  if ([indexPath section] == 2 && [indexPath row] == 2) {
+    SettingSelectYouTubeLinkView *viewController = 
+      [[SettingSelectYouTubeLinkView alloc] 
+	initWithNibName:@"SettingSelectYouTubeLinkView" bundle:nil];
+
+    [self.navigationController pushViewController:viewController animated:YES];
+    [viewController release];
+  }
 }
 
 #pragma mark -

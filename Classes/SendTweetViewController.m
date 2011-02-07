@@ -235,30 +235,8 @@
 
 - (IBAction)addYouTubeTweet:(id)sender {
 
-  if (self.appDelegate.select_youtube_preference) {
-    /*
-    YoutubeTypeSelectViewController *viewController = 
-      [[YoutubeTypeSelectViewController alloc] 
-	initWithNibName:@"YoutubeTypeSelectViewController" bundle:nil];
-    
-    viewController.tweetViewController = self;
-    
-    [self presentModalViewController:viewController animated:YES];
-    */
-
-    YouTubeListViewController *viewController = 
-      [[YouTubeListViewController alloc] 
-	initWithNibName:@"YouTubeListViewController" bundle:nil];
-
-    viewController.tweetViewController = self;
-
-    UINavigationController *navController = 
-      [self.appDelegate navigationWithViewController:viewController
-	   title:nil  imageName:nil];
-
-    [self presentModalViewController:navController animated:YES];
-
-  } else {
+  switch(self.appDelegate.select_youtube_link_preference) {
+  case kSelectYouTubeTypeTopOfSerach: {
     [self startIndicator];
     YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
 
@@ -267,6 +245,34 @@
 	     delegate:self
 	     action:@selector(addYouTubeLink:)
 	     count:1];
+    }
+    break;
+
+  case kSelectYouTubeTypeSelectFromList: {
+      YouTubeListViewController *viewController = 
+	[[YouTubeListViewController alloc] 
+	  initWithNibName:@"YouTubeListViewController" bundle:nil];
+      
+      viewController.tweetViewController = self;
+      
+      UINavigationController *navController = 
+	[self.appDelegate navigationWithViewController:viewController
+	     title:nil  imageName:nil];
+      
+      [self presentModalViewController:navController animated:YES];
+    }
+    break;
+
+  case kSelectYouTubeTypeConfirmation: {
+      YoutubeTypeSelectViewController *viewController = 
+	[[YoutubeTypeSelectViewController alloc] 
+	  initWithNibName:@"YoutubeTypeSelectViewController" bundle:nil];
+      
+      viewController.tweetViewController = self;
+      
+      [self presentModalViewController:viewController animated:YES];
+    }
+    break;
   }
 }
 
