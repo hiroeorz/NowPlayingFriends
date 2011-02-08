@@ -277,10 +277,6 @@ titleForHeaderInSection:(NSInteger)section {
   return cell;
 }
 
-- (void)save_select_youtube_preference:(UISwitch *)sender {
-  self.appDelegate.select_youtube_preference = sender.on;
-}
-
 - (void)save_use_itunes_manual_preference:(UISwitch *)sender {
   self.appDelegate.use_itunes_manual_preference = sender.on;
 }
