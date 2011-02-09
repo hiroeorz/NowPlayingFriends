@@ -20,8 +20,9 @@
 #define kRefreshTypeSong 0
 #define kRefreshTypeArtist 1
 #define kRefreshTypeAll 2
-
 #define kSubControlRemoteTimeout 6
+#define kOver140ErrorMessage @"Over 140 characters"
+
 
 @interface MusicPlayerViewController (Local)
 
@@ -60,6 +61,11 @@
 - (void)createMessageIncludeYouTube:(NSString *)linkUrl;
 
 - (UIButton *)youTubeButton:(CGRect)frame;
+
+- (void)displayOrDeleteTweetErrorView;
+- (void)displayTweetErrorView;
+- (void)deleteTweetErrorView;
+
 @end
 
 
@@ -85,6 +91,7 @@
 @synthesize refreshProfileImagesMutex;
 @synthesize refreshTypeSegmentedControl;
 @synthesize repeatModeControll;
+@synthesize sendErrorQueue;
 @synthesize sending;
 @synthesize sent;
 @synthesize settingView;
@@ -94,6 +101,7 @@
 @synthesize subControlDisplayButton;
 @synthesize subControlView;
 @synthesize timeline;
+@synthesize tweetErrorView;
 @synthesize volumeSlider;
 @synthesize youTubeButton;
 
@@ -118,6 +126,7 @@
   [refreshProfileImagesMutex release];
   [refreshTypeSegmentedControl release];
   [repeatModeControll release];
+  [sendErrorQueue release];
   [settingView release];
   [shuffleModeControll release];
   [songListController release];
@@ -146,6 +155,7 @@
   self.refreshProfileImagesMutex = nil;
   self.refreshTypeSegmentedControl = nil;
   self.repeatModeControll = nil;
+  self.sendErrorQueue = nil;
   self.settingView = nil;
   self.shuffleModeControll = nil;
   self.songListController = nil;
@@ -173,6 +183,7 @@
     subControlTouchCount = 0;
     updatingFlag = NO;
     cancelFlag = NO;
+    sendErrorQueue = [[NSMutableArray alloc] init];
   }
   return self;
 }
@@ -213,6 +224,8 @@
   UIButton *nowButton = [self nowButton:nil frame:kNowButtonInfoFrame];
   [musicControllerView addSubview:nowButton];
 
+  [self deleteTweetErrorView];
+
   [super viewDidLoad];
   [self addPlayButton];
   [self addYouTubeButton];
@@ -228,6 +241,7 @@
   accel.delegate = self;
   accel.updateInterval = kAccelerationUpdateInterval;
 
+  [self displayOrDeleteTweetErrorView];
   [super viewWillAppear:animated];
 }
 
@@ -276,6 +290,30 @@
       [self performSelectorInBackground:
 	      @selector(removeDisplaySubviewAfterSecond)
 	    withObject:nil]; }];
+}
+
+- (void)displayOrDeleteTweetErrorView {
+
+  if ([sendErrorQueue count] > 0) {
+    [self displayTweetErrorView];
+  } else {
+    [self deleteTweetErrorView];
+  }
+}
+
+- (void)displayTweetErrorView {
+
+  NSLog(@"displayTweetErrorView called.");
+
+  [UIView animateWithDuration:0.1
+	  animations:^{tweetErrorView.alpha = 1.0;}
+          completion:^(BOOL finished) {}];
+}
+
+- (void)deleteTweetErrorView {
+
+  NSLog(@"deleteTweetErrorView called.");
+  tweetErrorView.alpha = 0.0;
 }
 
 /**
@@ -634,6 +672,7 @@
   } else {
     linkedMessage = [[[NSString alloc] 
 		       initWithFormat:@"%@ %@", message, linkUrl] autorelease];
+    if ([linkedMessage length] > kMaxTweetLength) {linkedMessage = message;}
   }
   
   [self sendAutoTweetDetail: linkedMessage];
@@ -654,6 +693,7 @@
     linkedMessage = [[[NSString alloc] 
 		       initWithFormat:@"%@ iTunes: %@", message, linkUrl] 
 		      autorelease];
+    if ([linkedMessage length] > kMaxTweetLength) {linkedMessage = message;}
   }
 
   [self sendAutoTweetDetail: linkedMessage];
@@ -666,6 +706,7 @@
 
   if (self.appDelegate.over140alert_preference &&
       kMaxTweetLength < [message length]) {
+    /*
     UIAlertView *alert = [[UIAlertView alloc] 
 			   initWithTitle:@"Can't send tweet"
 			   message:@"Over 140 characters.\n\n You can disable this alert on setting view or please make the template shorter ."
@@ -674,6 +715,22 @@
 			   otherButtonTitles:nil];
     [alert show];
     [alert release];
+    */
+    NSDate *now = [[NSDate alloc] init];
+    NSDictionary *errorDic = 
+      [[NSDictionary alloc] initWithObjectsAndKeys:
+			      message, @"message",
+			    kOver140ErrorMessage, @"reason",
+			    now, @"time", nil];
+
+    [self.sendErrorQueue addObject:errorDic];
+    [now release];
+    [errorDic release];
+    [self displayTweetErrorView];
+  }
+
+  if ([message length] >= kMaxTweetLength) {
+    message = [self.appDelegate tweetStringShort];
   }
 
   if (kMaxTweetLength >= [message length]) {

@@ -385,6 +385,26 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   tweet = [tweet stringByReplacingOccurrencesOfString:@"[ar]"
 		 withString:[self nowPlayingArtistName]];
 
+  if ([tweet length] > kMaxTweetLength) {
+    tweet = [self tweetStringShort];
+  }
+
+  return tweet;
+}
+
+- (NSString *)tweetStringShort {
+
+  NSString *template = kTweetTemplateShort;
+  NSString *tweet;
+
+  tweet = [template stringByReplacingOccurrencesOfString:@"[st]"
+		    withString:[self nowPlayingTitle]];
+
+  tweet = [tweet stringByReplacingOccurrencesOfString:@"[al]"
+		    withString:[self nowPlayingAlbumTitle]];
+
+  tweet = [tweet stringByReplacingOccurrencesOfString:@"[ar]"
+		 withString:[self nowPlayingArtistName]];
   return tweet;
 }
 

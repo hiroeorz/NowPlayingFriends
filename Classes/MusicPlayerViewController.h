@@ -61,6 +61,7 @@
   NSArray *albumLists;
   NSArray *beforeTimeline;
   NSArray *playLists;
+  NSMutableArray *sendErrorQueue;
   NSInteger listmode;
   NSInteger subControlTouchCount;
   NSMutableArray *nowButtons;
@@ -83,6 +84,7 @@
   UIView *settingView;
   UIView *songView;
   UIView *subControlView;
+  UIView *tweetErrorView;
   UIViewController *songListController;
   UIButton *subControlDisplayButton;
 }
@@ -108,11 +110,13 @@
 @property (nonatomic, retain) IBOutlet UIView *settingView;
 @property (nonatomic, retain) IBOutlet UIView *songView;
 @property (nonatomic, retain) IBOutlet UIView *subControlView;
+@property (nonatomic, retain) IBOutlet UIView *tweetErrorView;
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 @property (nonatomic, retain) NSArray *albumLists;
 @property (nonatomic, retain) NSArray *beforeTimeline;
 @property (nonatomic, retain) NSArray *playLists;
 @property (nonatomic, retain) NSArray *timeline;
+@property (nonatomic, retain) NSMutableArray *sendErrorQueue;
 @property (nonatomic, retain) NSMutableArray *nowButtons;
 @property (nonatomic, retain) NSMutableArray *profileImageButtons;
 @property (nonatomic, retain) NSString *refreshProfileImagesMutex;
