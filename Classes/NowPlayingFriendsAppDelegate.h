@@ -15,7 +15,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define kTweetTemplate @"♪ #NowPlaying \"[st]\" by \"[ar]\" on album \"[al]\" ♬"
-#define kTweetTemplateShort @"♪ #NowPlaying \"[st]\" by \"[ar]\" ♬"
+#define kTweetTemplateShort @"♪ #NowPlaying \"[st]\" by \"[ar]\" (over 140char) ♬"
 
 #define kMaxTweetLength 140
 #define kProfileImageDirectory @"profileImages"
@@ -61,7 +61,6 @@
 @property (nonatomic, retain) NSString *template_preference;
 @property (nonatomic) BOOL get_twitterusers_preference;
 @property (nonatomic) BOOL autotweet_preference;
-@property (nonatomic) BOOL over140alert_preference;
 @property (nonatomic) BOOL use_youtube_preference;
 @property (nonatomic) BOOL use_youtube_manual_preference;
 @property (nonatomic) BOOL use_itunes_preference;
@@ -94,8 +93,6 @@
 - (NSArray *)playLists;
 - (BOOL)hasYouTubeLink;
 - (NSString *)tweetString;
-- (NSString *)tweetStringShort;
-- (NSString *)autoTweetString;
 
 - (void)setHalfCurlAnimationWithController:(id)targetViewController
 				 frontView:(UIView *)frontView

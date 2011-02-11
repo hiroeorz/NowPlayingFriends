@@ -21,7 +21,6 @@
 #define kRefreshTypeArtist 1
 #define kRefreshTypeAll 2
 #define kSubControlRemoteTimeout 6
-#define kOver140ErrorMessage @"Over 140 characters"
 
 
 @interface MusicPlayerViewController (Local)
@@ -654,7 +653,7 @@
 	     count:1];
     
   } else {
-    NSString *message = [self.appDelegate autoTweetString];
+    NSString *message = [self.appDelegate tweetString];
     [self sendAutoTweetDetail:message];
   }
 }
@@ -664,7 +663,7 @@
  */
 - (void)createMessageIncludeYouTube:(NSString *)linkUrl {
 
-  NSString *message = [self.appDelegate autoTweetString];
+  NSString *message = [self.appDelegate tweetString];
   NSString *linkedMessage = nil;
 
   if (linkUrl == nil) {
@@ -684,7 +683,7 @@
  */
 - (void)createMessageIncludeITunes:(NSString *)linkUrl {
 
-  NSString *message = [self.appDelegate autoTweetString];
+  NSString *message = [self.appDelegate tweetString];
   NSString *linkedMessage = nil;
 
   if (linkUrl == nil) {
@@ -704,42 +703,15 @@
  */
 - (void)sendAutoTweetDetail:(NSString *)message {
 
-  if (self.appDelegate.over140alert_preference &&
-      kMaxTweetLength < [message length]) {
-    /*
-    UIAlertView *alert = [[UIAlertView alloc] 
-			   initWithTitle:@"Can't send tweet"
-			   message:@"Over 140 characters.\n\n You can disable this alert on setting view or please make the template shorter ."
-			   delegate:nil
-			   cancelButtonTitle:@"OK"
-			   otherButtonTitles:nil];
-    [alert show];
-    [alert release];
-    */
-    NSDate *now = [[NSDate alloc] init];
-    NSDictionary *errorDic = 
-      [[NSDictionary alloc] initWithObjectsAndKeys:
-			      message, @"message",
-			    kOver140ErrorMessage, @"reason",
-			    now, @"time", nil];
-
-    [self.sendErrorQueue addObject:errorDic];
-    [now release];
-    [errorDic release];
-    [self displayTweetErrorView];
+  if ([message length] >= kMaxTweetLength) {/* それでも長かったら切り捨て */
+    message = [message substringToIndex:kMaxTweetLength];
   }
 
-  if ([message length] >= kMaxTweetLength) {
-    message = [self.appDelegate tweetStringShort];
-  }
-
-  if (kMaxTweetLength >= [message length]) {
-    TwitterClient *client = [[TwitterClient alloc] init];
-    [client updateStatus:message inReplyToStatusId:nil delegate:self];
-    [client release];
-    sending = NO;
-    sent = YES;
-  }
+  TwitterClient *client = [[TwitterClient alloc] init];
+  [client updateStatus:message inReplyToStatusId:nil delegate:self];
+  [client release];
+  sending = NO;
+  sent = YES;
 }
 
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {

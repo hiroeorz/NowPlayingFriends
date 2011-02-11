@@ -17,7 +17,6 @@
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 - (void)save_use_itunes_preference:(UISwitch *)sender;
 - (void)save_get_twitterusers:(UISwitch *)sender;
-- (void)save_alert_140char:(UISwitch *)sender;
 - (void)save_use_youtube_preference:(UISwitch *)sender;
 - (void)save_use_youtube_manual_preference:(UISwitch *)sender;
 @end
@@ -91,7 +90,7 @@
   switch (section) {
   case 0: rowsCount = 3;
     break;
-  case 1: rowsCount = 2;
+  case 1: rowsCount = 1;
     break;
   case 2: rowsCount = 3;
     break;
@@ -206,14 +205,6 @@ titleForHeaderInSection:(NSInteger)section {
 		 forControlEvents:UIControlEventValueChanged];
     }
       break;
-
-    case 1: {
-      cell.textLabel.text = @"Alert if Over 140 Characters";
-      switchObj.on  = self.appDelegate.over140alert_preference;
-      [switchObj addTarget:self action:@selector(save_alert_140char:)
-		 forControlEvents:UIControlEventValueChanged];
-    }
-      break;
     }
   }
     break;
@@ -295,9 +286,6 @@ titleForHeaderInSection:(NSInteger)section {
 
 - (void)save_get_twitterusers:(UISwitch *)sender {
   self.appDelegate.get_twitterusers_preference = sender.on;
-}
-- (void)save_alert_140char:(UISwitch *)sender {
-  self.appDelegate.over140alert_preference = sender.on;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
