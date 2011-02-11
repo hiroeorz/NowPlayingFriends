@@ -95,6 +95,7 @@
 - (BOOL)hasYouTubeLink;
 - (NSString *)tweetString;
 - (NSString *)tweetStringShort;
+- (NSString *)autoTweetString;
 
 - (void)setHalfCurlAnimationWithController:(id)targetViewController
 				 frontView:(UIView *)frontView

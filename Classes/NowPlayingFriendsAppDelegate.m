@@ -371,6 +371,17 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return ([template rangeOfString:@"[yt]"].location != NSNotFound);
 }
 
+- (NSString *)autoTweetString {
+
+  NSString *tweet = [self tweetString];
+
+  if ([tweet length] > kMaxTweetLength) {
+    tweet = [self tweetStringShort];
+  }
+
+  return tweet;
+}
+
 - (NSString *)tweetString {
 
   NSString *template = self.template_preference;
@@ -384,10 +395,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   tweet = [tweet stringByReplacingOccurrencesOfString:@"[ar]"
 		 withString:[self nowPlayingArtistName]];
-
-  if ([tweet length] > kMaxTweetLength) {
-    tweet = [self tweetStringShort];
-  }
 
   return tweet;
 }

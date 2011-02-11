@@ -654,7 +654,7 @@
 	     count:1];
     
   } else {
-    NSString *message = [self.appDelegate tweetString];
+    NSString *message = [self.appDelegate autoTweetString];
     [self sendAutoTweetDetail:message];
   }
 }
@@ -664,7 +664,7 @@
  */
 - (void)createMessageIncludeYouTube:(NSString *)linkUrl {
 
-  NSString *message = [self.appDelegate tweetString];
+  NSString *message = [self.appDelegate autoTweetString];
   NSString *linkedMessage = nil;
 
   if (linkUrl == nil) {
@@ -684,7 +684,7 @@
  */
 - (void)createMessageIncludeITunes:(NSString *)linkUrl {
 
-  NSString *message = [self.appDelegate tweetString];
+  NSString *message = [self.appDelegate autoTweetString];
   NSString *linkedMessage = nil;
 
   if (linkUrl == nil) {
