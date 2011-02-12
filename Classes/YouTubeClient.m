@@ -120,7 +120,6 @@
   [self setValue:[NSNumber numberWithBool:YES] forKey:@"isFinished"]; 
   [self setValue:[NSNumber numberWithBool:NO] forKey:@"isExecuting"];
 
-  NSLog(@"YouTube SearchResult: %@", searchResultArray);
   [delegate performSelector:action withObject:searchResultArray];
 }
 
