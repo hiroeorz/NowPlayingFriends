@@ -61,10 +61,6 @@
 
 - (UIButton *)youTubeButton:(CGRect)frame;
 
-- (void)displayOrDeleteTweetErrorView;
-- (void)displayTweetErrorView;
-- (void)deleteTweetErrorView;
-
 @end
 
 
@@ -90,7 +86,6 @@
 @synthesize refreshProfileImagesMutex;
 @synthesize refreshTypeSegmentedControl;
 @synthesize repeatModeControll;
-@synthesize sendErrorQueue;
 @synthesize sending;
 @synthesize sent;
 @synthesize settingView;
@@ -100,7 +95,6 @@
 @synthesize subControlDisplayButton;
 @synthesize subControlView;
 @synthesize timeline;
-@synthesize tweetErrorView;
 @synthesize volumeSlider;
 @synthesize youTubeButton;
 
@@ -125,7 +119,6 @@
   [refreshProfileImagesMutex release];
   [refreshTypeSegmentedControl release];
   [repeatModeControll release];
-  [sendErrorQueue release];
   [settingView release];
   [shuffleModeControll release];
   [songListController release];
@@ -154,7 +147,6 @@
   self.refreshProfileImagesMutex = nil;
   self.refreshTypeSegmentedControl = nil;
   self.repeatModeControll = nil;
-  self.sendErrorQueue = nil;
   self.settingView = nil;
   self.shuffleModeControll = nil;
   self.songListController = nil;
@@ -182,7 +174,6 @@
     subControlTouchCount = 0;
     updatingFlag = NO;
     cancelFlag = NO;
-    sendErrorQueue = [[NSMutableArray alloc] init];
   }
   return self;
 }
@@ -223,8 +214,6 @@
   UIButton *nowButton = [self nowButton:nil frame:kNowButtonInfoFrame];
   [musicControllerView addSubview:nowButton];
 
-  [self deleteTweetErrorView];
-
   [super viewDidLoad];
   [self addPlayButton];
   [self addYouTubeButton];
@@ -240,7 +229,6 @@
   accel.delegate = self;
   accel.updateInterval = kAccelerationUpdateInterval;
 
-  [self displayOrDeleteTweetErrorView];
   [super viewWillAppear:animated];
 }
 
@@ -289,30 +277,6 @@
       [self performSelectorInBackground:
 	      @selector(removeDisplaySubviewAfterSecond)
 	    withObject:nil]; }];
-}
-
-- (void)displayOrDeleteTweetErrorView {
-
-  if ([sendErrorQueue count] > 0) {
-    [self displayTweetErrorView];
-  } else {
-    [self deleteTweetErrorView];
-  }
-}
-
-- (void)displayTweetErrorView {
-
-  NSLog(@"displayTweetErrorView called.");
-
-  [UIView animateWithDuration:0.1
-	  animations:^{tweetErrorView.alpha = 1.0;}
-          completion:^(BOOL finished) {}];
-}
-
-- (void)deleteTweetErrorView {
-
-  NSLog(@"deleteTweetErrorView called.");
-  tweetErrorView.alpha = 0.0;
 }
 
 /**
