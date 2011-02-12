@@ -57,7 +57,7 @@
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 
 - (void)createMessageIncludeITunes:(NSString *)linkUrl;
-- (void)createMessageIncludeYouTube:(NSString *)linkUrl;
+- (void)createMessageIncludeYouTube:(NSArray *)linkUrlArray;
 
 - (UIButton *)youTubeButton:(CGRect)frame;
 
@@ -625,14 +625,18 @@
 /**
  * @brief 受け取ったYouTubeリンクをメッセージに埋込む。YouTubeクライアントから呼ばれる。
  */
-- (void)createMessageIncludeYouTube:(NSString *)linkUrl {
+- (void)createMessageIncludeYouTube:(NSArray *)linkUrlArray {
 
   NSString *message = [self.appDelegate tweetString];
   NSString *linkedMessage = nil;
+  
 
-  if (linkUrl == nil) {
+  if (linkUrlArray == nil || [linkUrlArray count] == 0) {
     linkedMessage = message;
   } else {
+    NSDictionary *linkDic = [linkUrlArray objectAtIndex:0];
+    NSString *linkUrl = [linkDic objectForKey: @"linkUrl"];
+
     linkedMessage = [[[NSString alloc] 
 		       initWithFormat:@"%@ %@", message, linkUrl] autorelease];
     if ([linkedMessage length] > kMaxTweetLength) {linkedMessage = message;}
