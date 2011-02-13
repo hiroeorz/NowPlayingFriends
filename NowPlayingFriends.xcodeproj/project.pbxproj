@@ -105,35 +105,35 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 542D33BD128D55DA00E9FF3B /* GData.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 4F38F6A60B66E91D00B24B81 /* GData.framework */;
+			remoteGlobalIDString = 4F38F6A60B66E91D00B24B81;
 			remoteInfo = GDataFramework;
 		};
 		542D33CB128D55DA00E9FF3B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 542D33BD128D55DA00E9FF3B /* GData.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 4F1C6E0F1027B3CE00B46459 /* libGDataTouchStaticLib.a */;
+			remoteGlobalIDString = 4F1C6E0F1027B3CE00B46459;
 			remoteInfo = GDataTouchStaticLib;
 		};
 		542D33CD128D55DA00E9FF3B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 542D33BD128D55DA00E9FF3B /* GData.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 4F14A9DD0B1276B70072EBB8 /* GDataUnitTests.octest */;
+			remoteGlobalIDString = 4F14A9DD0B1276B70072EBB8;
 			remoteInfo = GDataUnitTests;
 		};
 		542D33CF128D55DA00E9FF3B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 542D33BD128D55DA00E9FF3B /* GData.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 4F85E018103B83B700B4C418 /* GDataIPhoneUnitTests.octest */;
+			remoteGlobalIDString = 4F85E018103B83B700B4C418;
 			remoteInfo = GDataIPhoneUnitTests;
 		};
 		542D33D1128D55DA00E9FF3B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 542D33BD128D55DA00E9FF3B /* GData.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 4F1AD9020B71603F00DC0485 /* DevelopmentTestTool */;
+			remoteGlobalIDString = 4F1AD9020B71603F00DC0485;
 			remoteInfo = DevelopmentTestTool;
 		};
 /* End PBXContainerItemProxy section */
