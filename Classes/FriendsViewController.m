@@ -26,9 +26,6 @@
 - (BOOL)checkSpecialCell:(NSDictionary *)data;
 - (NSString *)clientname:(NSDictionary *)data;
 - (NSString *)username:(NSDictionary *)data;
-- (void)setProfileImageWithObjects:(NSDictionary *)objects;
-- (void) cacheAllProfileImage;
-
 - (void)openUserInformationView:(id)sender;
 - (CGFloat)lineHeightValue:(NSInteger)row;
 - (float)lineOverFlowSize:(NSInteger)row;
@@ -440,6 +437,7 @@
   cell.bodyTextView.text = [self.appDelegate stringByUnescapedString:rowText];
   cell.userImageView.tag = row;
   cell.clientLabel.text = [self clientname:data];
+
   [cell.accountLabel setTitle:[self username:data] 
        forState:UIControlStateNormal];
   [cell.accountLabel setTitle:[self username:data] 
@@ -489,18 +487,11 @@
   textFrame.size.height = kTextFrameHeight + overflow;
   cell.bodyTextView.frame = textFrame;
 
-  NSDictionary *objects = [[NSDictionary alloc] initWithObjectsAndKeys:
-						  data, @"data",
-						cell, @"cell", nil];
   [cell.userImageView 
        setBackgroundImage:noArtWorkMini forState:UIControlStateNormal];
 
   [cell getProfileImageWithTweetData:data];
-  //  [self performSelectorInBackground:@selector(setProfileImageWithObjects:)
-  //	withObject:objects];
 
-  [objects release];
-  
   return cell;
 }
 
@@ -547,56 +538,6 @@
 - (NSString *)username:(NSDictionary *)data {
 
   return [self.appDelegate username:data];
-}
-
-- (void)setProfileImageWithObjects:(NSDictionary *)objects {
-
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
-  NSDictionary *data = [objects objectForKey:@"data"];
-  FriendCell *cell = [[objects objectForKey:@"cell"] retain];
-  UIImage *newImage = [self.appDelegate profileImage:data
-			    getRemote:YES];
-
-  NSDictionary *setObjects = [[NSDictionary alloc] initWithObjectsAndKeys:
-						     newImage, @"image",
-						   cell, @"cell",
-						   nil];
-
-  [self performSelectorOnMainThread:@selector(setProfileImageWithImage:)
-	withObject:setObjects
-	waitUntilDone:NO];
-
-  [setObjects release];
-  [pool release];
-}
-
-- (void)setProfileImageWithImage:(NSDictionary *)objects {
-
-  UIImage *newImage =  [objects objectForKey:@"image"];
-  FriendCell *cell = [objects objectForKey:@"cell"];
-
-  if (cell != nil && cell.superview != nil) {
-    [cell.userImageView setBackgroundImage:newImage
-	 forState:UIControlStateNormal];
-  }
-
-  [cell autorelease];
-}
-
-/**
- * @brief ユーザのプロフィール画像のキャッシュをとります。
- */
-- (void)cacheAllProfileImage {
-  
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
-  for (NSDictionary *data in timeline) {
-    [self.appDelegate profileImage:data 
-	 getRemote:YES];
-  }
-
-  [pool release];
 }
 
 - (NSInteger)newOffset:(NSInteger)addCount {

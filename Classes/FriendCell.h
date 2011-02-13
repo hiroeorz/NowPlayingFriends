@@ -11,26 +11,28 @@
 
 @interface FriendCell : UITableViewCell {
 
-  UIButton *userImageView;
+  NSString *imageURLString;
+  NSString *username;
   UIButton *accountLabel;
+  UIButton *linkButton;
+  UIButton *userImageView;
+  UIButton *youTubeLinkButton;
+  UILabel *bodyTextView;
   UILabel *clientLabel;
   UILabel *timeLabel;
-  UILabel *bodyTextView;
   UIView *baseView;
-  NSString *username;
-  UIButton *linkButton;
-  UIButton *youTubeLinkButton;
 }
 
-@property (nonatomic, retain) IBOutlet UIButton *userImageView;
 @property (nonatomic, retain) IBOutlet UIButton *accountLabel;
+@property (nonatomic, retain) IBOutlet UIButton *linkButton;
+@property (nonatomic, retain) IBOutlet UIButton *userImageView;
+@property (nonatomic, retain) IBOutlet UIButton *youTubeLinkButton;
+@property (nonatomic, retain) IBOutlet UILabel *bodyTextView;
 @property (nonatomic, retain) IBOutlet UILabel *clientLabel;
 @property (nonatomic, retain) IBOutlet UILabel *timeLabel;
-@property (nonatomic, retain) IBOutlet UILabel *bodyTextView;
 @property (nonatomic, retain) IBOutlet UIView *baseView;
+@property (nonatomic, retain) NSString *imageURLString;
 @property (nonatomic, retain) NSString *username;
-@property (nonatomic, retain) IBOutlet UIButton *linkButton;
-@property (nonatomic, retain) IBOutlet UIButton *youTubeLinkButton;
 
 
 - (void) getProfileImageWithTweetData:(NSDictionary *)tData;

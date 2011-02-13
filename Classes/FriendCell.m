@@ -21,6 +21,7 @@
 @synthesize userImageView;
 @synthesize accountLabel;
 @synthesize clientLabel;
+@synthesize imageURLString;
 @synthesize timeLabel;
 @synthesize bodyTextView;
 @synthesize baseView;
@@ -33,6 +34,7 @@
 
   [userImageView release];
   [accountLabel release];
+  [imageURLString release];
   [linkButton release];
   [clientLabel release];
   [timeLabel release];
@@ -53,11 +55,18 @@
 #pragma mark -
 #pragma Profile Image Get Methods
 
-- (void)getProfileImageWithTweetData:(NSDictionary *)tData {
+- (void)getProfileImageWithTweetData:(NSDictionary *)tweetData {
+
+  NSDictionary *user = [tweetData objectForKey:@"user"];
+  if (user == nil) { user = tweetData; }
+
+  /* 途中で表示対象のユーザが変わった事を伝える為 */
+  self.imageURLString = [user objectForKey:@"profile_image_url"];
 
   FriendCellProfileImageDelegate *getter = 
-    [[FriendCellProfileImageDelegate alloc] initWithTweetData:tData
+    [[FriendCellProfileImageDelegate alloc] initWithTweetData:tweetData
 					    cell:self];
+  [getter autorelease];
   [getter startGetProfileImage];
 }
 
