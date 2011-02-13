@@ -65,7 +65,7 @@
 		54882F3812D9A98500462891 /* YouTubeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54882F3612D9A98500462891 /* YouTubeListViewController.xib */; };
 		54882FF812D9D18800462891 /* YouTubeMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54882FF712D9D18800462891 /* YouTubeMovieCell.m */; };
 		5488302812D9D86C00462891 /* YouTubeMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5488302712D9D86C00462891 /* YouTubeMovieCell.xib */; };
-		549E00211307A09900908AB6 /* FriendCellProfileImageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 549E00201307A09900908AB6 /* FriendCellProfileImageDelegate.m */; };
+		549E00211307A09900908AB6 /* FriendCellProfileImageGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 549E00201307A09900908AB6 /* FriendCellProfileImageGetter.m */; };
 		549EFEAF1300383A00908AB6 /* SettingSelectYouTubeLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 549EFEAD1300383A00908AB6 /* SettingSelectYouTubeLinkView.m */; };
 		549EFEB01300383A00908AB6 /* SettingSelectYouTubeLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 549EFEAE1300383A00908AB6 /* SettingSelectYouTubeLinkView.xib */; };
 		54A5B7ED12DB714F00BA8269 /* 06-magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A5B7EC12DB714F00BA8269 /* 06-magnifying-glass.png */; };
@@ -195,8 +195,8 @@
 		54882FF612D9D18800462891 /* YouTubeMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeMovieCell.h; sourceTree = "<group>"; };
 		54882FF712D9D18800462891 /* YouTubeMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeMovieCell.m; sourceTree = "<group>"; };
 		5488302712D9D86C00462891 /* YouTubeMovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YouTubeMovieCell.xib; sourceTree = "<group>"; };
-		549E001F1307A09900908AB6 /* FriendCellProfileImageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCellProfileImageDelegate.h; sourceTree = "<group>"; };
-		549E00201307A09900908AB6 /* FriendCellProfileImageDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCellProfileImageDelegate.m; sourceTree = "<group>"; };
+		549E001F1307A09900908AB6 /* FriendCellProfileImageGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCellProfileImageGetter.h; sourceTree = "<group>"; };
+		549E00201307A09900908AB6 /* FriendCellProfileImageGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCellProfileImageGetter.m; sourceTree = "<group>"; };
 		549EFEAC1300383A00908AB6 /* SettingSelectYouTubeLinkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingSelectYouTubeLinkView.h; sourceTree = "<group>"; };
 		549EFEAD1300383A00908AB6 /* SettingSelectYouTubeLinkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingSelectYouTubeLinkView.m; sourceTree = "<group>"; };
 		549EFEAE1300383A00908AB6 /* SettingSelectYouTubeLinkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingSelectYouTubeLinkView.xib; path = Classes/SettingSelectYouTubeLinkView.xib; sourceTree = "<group>"; };
@@ -368,8 +368,8 @@
 				542B3FC812E1DE5100EDF94A /* TwitterFriendsListViewController.m */,
 				549EFEAC1300383A00908AB6 /* SettingSelectYouTubeLinkView.h */,
 				549EFEAD1300383A00908AB6 /* SettingSelectYouTubeLinkView.m */,
-				549E001F1307A09900908AB6 /* FriendCellProfileImageDelegate.h */,
-				549E00201307A09900908AB6 /* FriendCellProfileImageDelegate.m */,
+				549E001F1307A09900908AB6 /* FriendCellProfileImageGetter.h */,
+				549E00201307A09900908AB6 /* FriendCellProfileImageGetter.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -735,7 +735,7 @@
 				54F2D06612DDC3FA006C8C77 /* TwitterFriendsGetter.m in Sources */,
 				542B3FCA12E1DE5100EDF94A /* TwitterFriendsListViewController.m in Sources */,
 				549EFEAF1300383A00908AB6 /* SettingSelectYouTubeLinkView.m in Sources */,
-				549E00211307A09900908AB6 /* FriendCellProfileImageDelegate.m in Sources */,
+				549E00211307A09900908AB6 /* FriendCellProfileImageGetter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

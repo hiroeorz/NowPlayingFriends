@@ -7,7 +7,7 @@
 //
 
 #import "FriendCell.h"
-#import "FriendCellProfileImageDelegate.h"
+#import "FriendCellProfileImageGetter.h"
 
 
 @interface FriendCell (Local)
@@ -63,9 +63,9 @@
   /* 途中で表示対象のユーザが変わった事を伝える為 */
   self.imageURLString = [user objectForKey:@"profile_image_url"];
 
-  FriendCellProfileImageDelegate *getter = 
-    [[FriendCellProfileImageDelegate alloc] initWithTweetData:tweetData
-					    cell:self];
+  FriendCellProfileImageGetter *getter = 
+    [[FriendCellProfileImageGetter alloc] initWithTweetData:tweetData
+					  cell:self];
   [getter autorelease];
   [getter startGetProfileImage];
 }

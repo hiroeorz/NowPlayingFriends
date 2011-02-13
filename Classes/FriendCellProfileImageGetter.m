@@ -1,5 +1,5 @@
 //
-//  FriendCellProfileImageDelegate.m
+//  FriendCellProfileImageGetter.m
 //  NowPlayingFriends
 //
 //  Created by Hiroe Shin on 11/02/13.
@@ -7,11 +7,11 @@
 //
 
 #import "FriendCell.h"
-#import "FriendCellProfileImageDelegate.h"
+#import "FriendCellProfileImageGetter.h"
 #import "NowPlayingFriendsAppDelegate.h"
 
 
-@implementation FriendCellProfileImageDelegate
+@implementation FriendCellProfileImageGetter
 
 @dynamic appDelegate;
 @synthesize cancelFlag;

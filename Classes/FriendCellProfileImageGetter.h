@@ -1,5 +1,5 @@
 //
-//  FriendCellProfileImageDelegate.h
+//  FriendCellProfileImageGetter.h
 //  NowPlayingFriends
 //
 //  Created by Hiroe Shin on 11/02/13.
@@ -13,7 +13,7 @@
 @class NowPlayingFriendsAppDelegate;
 
 
-@interface FriendCellProfileImageDelegate : NSOperation {
+@interface FriendCellProfileImageGetter : NSOperation {
 
   BOOL cancelFlag;
   FriendCell *cell;
