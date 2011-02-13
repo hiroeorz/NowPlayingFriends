@@ -33,6 +33,8 @@
 @property (nonatomic, retain) IBOutlet UIButton *youTubeLinkButton;
 
 
+- (void) getProfileImageWithTweetData:(NSDictionary *)tData;
+
 - (BOOL)urlIsIncluded;
 - (BOOL)hasYouTubeUrl;
 - (NSArray *)arrayOfUrl;

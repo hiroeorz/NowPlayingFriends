@@ -495,8 +495,9 @@
   [cell.userImageView 
        setBackgroundImage:noArtWorkMini forState:UIControlStateNormal];
 
-  [self performSelectorInBackground:@selector(setProfileImageWithObjects:)
-  	withObject:objects];
+  [cell getProfileImageWithTweetData:data];
+  //  [self performSelectorInBackground:@selector(setProfileImageWithObjects:)
+  //	withObject:objects];
 
   [objects release];
   

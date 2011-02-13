@@ -7,6 +7,8 @@
 //
 
 #import "FriendCell.h"
+#import "FriendCellProfileImageDelegate.h"
+
 
 @interface FriendCell (Local)
 
@@ -47,6 +49,20 @@
   }
   return self;
 }
+
+#pragma mark -
+#pragma Profile Image Get Methods
+
+- (void)getProfileImageWithTweetData:(NSDictionary *)tData {
+
+  FriendCellProfileImageDelegate *getter = 
+    [[FriendCellProfileImageDelegate alloc] initWithTweetData:tData
+					    cell:self];
+  [getter startGetProfileImage];
+}
+
+
+#pragma mark -
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 

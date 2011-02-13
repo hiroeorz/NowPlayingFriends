@@ -1274,6 +1274,9 @@
 #pragma mark -
 #pragma mark Accelerometer Methods
 
+/**
+ * @brief iPhoneがシェイクされたときの動作：表示されているツイッターアイコンを更新する。
+ */
 - (void)accelerometer:(UIAccelerometer *)accelerometer
 	didAccelerate:(UIAcceleration *)acceleration {
 
@@ -1281,7 +1284,7 @@
     if (acceleration.x > kAccelerationThreshold ||
 	acceleration.y > kAccelerationThreshold ||
 	acceleration.z > kAccelerationThreshold) {
-      NSLog(@"user acceleration!!");
+
       [self displaySubview];
       [self performSelectorInBackground:@selector(refreshProfileImages)
 	    withObject:nil];
@@ -1434,8 +1437,8 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
   id viewController;
   NSString *listTitle;
 
-  if (listmode == kListModeAlbum) {
-    MPMediaItemCollection *album = [albumLists objectAtIndex:listRow];
+  if (listmode == kListModeAlbum) { 
+   MPMediaItemCollection *album = [albumLists objectAtIndex:listRow];
     
     viewController = 
       (AlbumSongsViewController *)[[AlbumSongsViewController alloc] 

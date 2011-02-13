@@ -15,7 +15,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define kTweetTemplate @"♪ #NowPlaying \"[st]\" by \"[ar]\" on album \"[al]\" ♬"
-#define kTweetTemplateShort @"♪ #NowPlaying \"[st]\" by \"[ar]\" (over 140char) ♬"
 
 #define kMaxTweetLength 140
 #define kProfileImageDirectory @"profileImages"
