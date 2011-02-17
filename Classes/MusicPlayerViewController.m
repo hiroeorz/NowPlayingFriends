@@ -21,6 +21,7 @@
 #define kRefreshTypeArtist 1
 #define kRefreshTypeAll 2
 #define kSubControlRemoteTimeout 6
+#define kUpdateAfterSafetyTime 10
 
 
 @interface MusicPlayerViewController (Local)
@@ -51,6 +52,7 @@
 - (void)openEditView;
 - (void)changeToListview;
 - (void)changeToSongview;
+- (void)continuousTweetStopper;
 - (void)sendAutoTweetAfterTimeLag;
 - (void)sendAutoTweet;
 - (void)sendAutoTweetDetail:(NSString *)message;
@@ -155,6 +157,8 @@
   self.timeline = nil;
   self.volumeSlider = nil;
   self.youTubeButton = nil;
+
+  [self.appDelegate removeMusicPlayerNotification:self];
   [super viewDidUnload];
 }
 
@@ -174,6 +178,7 @@
     subControlTouchCount = 0;
     updatingFlag = NO;
     cancelFlag = NO;
+    updateAfterSafetyTime = NO;
   }
   return self;
 }
@@ -189,6 +194,7 @@
   listmode = kListModeAlbum;
 
   self.musicPlayer = self.appDelegate.musicPlayer;
+  [self.appDelegate removeMusicPlayerNotification:self];
   [self.appDelegate addMusicPlayerNotification:self];
 
   self.navigationItem.leftBarButtonItem = 
@@ -221,6 +227,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 
+  updateAfterSafetyTime = NO;
   self.albumLists = [self.appDelegate albums];
   self.playLists = [self.appDelegate playLists];
   [autoTweetSwitch setOn:self.appDelegate.autotweet_preference animated:NO];
@@ -320,17 +327,17 @@
  */
 - (IBAction)changeMusicSegmentedControl:(id)sender {
 
- switch ([sender selectedSegmentIndex]) {
- case 0:
-   [self skipToBeginningOrPreviousItem:sender];
-   break;
- case 1:
-   [self togglePlayStop:sender];
-   break;
- case 2:
-   [self skipToNextItem:sender];
-   break;
- }
+  switch ([sender selectedSegmentIndex]) {
+  case 0:
+    [self skipToBeginningOrPreviousItem:sender];
+    break;
+  case 1:
+    [self togglePlayStop:sender];
+    break;
+  case 2:
+    [self skipToNextItem:sender];
+    break;
+  }
 }
 
 - (IBAction)changeRefreshType:(id)sender {
@@ -449,6 +456,8 @@
   UIImage *image;  
   UIImage *miniImage;
 
+  updateAfterSafetyTime = NO;
+
   if ([musicPlayer playbackState] == MPMusicPlaybackStateStopped) {
     NSLog(@"playbackStateChanged:%@", @"stop");
 
@@ -516,6 +525,27 @@
 }
 
 /**
+ * @brief 自動ツイート処理が複数平行して走らない為の処置。
+ */
+- (void)continuousTweetStopper {
+
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+  
+  NSDate *date = [[NSDate alloc] init];
+  NSDate *nextStartDate = 
+    [[NSDate alloc] initWithTimeInterval:kUpdateAfterSafetyTime
+		    sinceDate:date];
+  
+  [NSThread sleepUntilDate: nextStartDate];
+  [date release];
+  [nextStartDate release];
+
+  updateAfterSafetyTime = NO;
+
+  [pool release];
+}
+
+/**
  * @brief 再生中の曲が変わったときに呼ばれる。
  */
 - (void)handle_NowPlayingItemChanged:(id)notification {
@@ -523,6 +553,8 @@
   NSLog(@"music changed!");
   sent = NO;
   sending = NO;
+  updateAfterSafetyTime = NO;
+
   autoTweetMode = self.appDelegate.autotweet_preference;
 
   self.title = [self.appDelegate nowPlayingTitle];
@@ -597,6 +629,15 @@
 - (void)sendAutoTweet {
 
   if (sent) {return;}
+
+  if (updateAfterSafetyTime) {
+    NSLog(@"Canceled auto tweet because after tweeting safety time.");
+    return;
+  }
+
+  updateAfterSafetyTime = YES;
+  [self performSelectorInBackground:@selector(continuousTweetStopper)
+	withObject:nil];
 
   if ([self.appDelegate use_itunes_preference]) {
 

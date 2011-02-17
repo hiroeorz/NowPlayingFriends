@@ -57,6 +57,7 @@
   BOOL sending;
   BOOL sent;
   BOOL updatingFlag;
+  BOOL updateAfterSafetyTime;
   MPMusicPlayerController *musicPlayer;
   NSArray *albumLists;
   NSArray *beforeTimeline;

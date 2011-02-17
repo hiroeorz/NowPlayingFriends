@@ -278,7 +278,8 @@
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError{
-  //NSLog(@"XML ParseError");
+  NSLog(@"XML ParseError");
+  [delegate performSelector:action withObject:nil];
 }
 
 @end
