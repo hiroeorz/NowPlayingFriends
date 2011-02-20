@@ -94,7 +94,9 @@
   [array writeToFile:tmpFilePath atomically:YES];
   [array release];
 
-  if ([next_cursor integerValue] == 0 || knownAddressFlag) {
+  if (next_cursor == nil || 
+      [next_cursor integerValue] == 0 || knownAddressFlag) {
+
     NSError *error = nil;
     [[NSFileManager defaultManager] moveItemAtPath:tmpFilePath
 				    toPath:[self filePath]
