@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "TwitterClient+ConsumerKey.h"
+#import "TwitterClient+TwitpicAPIKey.h"
 #import "OAuthConsumer/OAServiceTicket.h"
+
 
 #define kOAuthTokenUrl @"https://api.twitter.com/oauth/access_token"
 #define kHomeTimelineURL @"https://twitter.com/statuses/home_timeline/%@.json%@"
@@ -23,9 +25,15 @@
 
 #define kTwitterFrindsSearchUrl @"https://api.twitter.com/1/statuses/friends.json?screen_name=%@&cursor=%@"
 
+
+@class NowPlayingFriendsAppDelegate;
+
+
 @interface TwitterClient : NSObject {
 
 }
+
+@property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 
 - (void)saveFriends;
 - (void)saveFriendsWithCursor:(NSNumber *)cursorNumber;

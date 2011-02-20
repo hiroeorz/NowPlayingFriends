@@ -6,14 +6,15 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
+#import "ASIHTTPRequest/ASIFormDataRequest.h"
 #import "JSON/JSON.h"
+#import "NowPlayingFriendsAppDelegate.h"
 #import "OAuthConsumer/OAConsumer.h"
 #import "OAuthConsumer/OADataFetcher.h"
 #import "OAuthConsumer/OAMutableURLRequest.h"
 #import "OAuthConsumer/OARequestParameter.h"
 #import "TwitterClient.h"
 #import "TwitterFriendsGetter.h"
-
 
 @interface TwitterClient (Local) 
 
@@ -26,10 +27,19 @@
 - (NSString *)stringOfRemoteJson:(NSString *)urlString;
 - (void)logJsonData:(NSArray *)jsonArray;
 
+- (void)uploadToTwitterByTwitPic:(NSString*)tweet image:(UIImage*)image;
+- (ASIFormDataRequest*)createOAuthEchoRequest:(NSString*)url 
+				       format:(NSString*)format;
+- (void)twitPicRequestFinished:(NSData *)data;
+- (void)requestFailed:(NSError *)error;
+- (void)sendTwitpicUploadRequest;
+
 @end
 
 
 @implementation TwitterClient
+
+@dynamic appDelegate;
 
 #pragma mark -
 #pragma Twitter Get TimeLine Methods
@@ -181,6 +191,9 @@
 - (void)updateStatus:(NSString *)message
    inReplyToStatusId:(NSNumber *)replayToStatusId
 	    delegate:(id)aDelegate {
+
+  [self sendTwitpicUploadRequest];
+  return;
 
   if (![self oAuthTokenExist]) {
     return;
@@ -512,6 +525,102 @@
     [documentsDirectory stringByAppendingPathComponent:kOAuthAccetokenFileName];
 
   return filename;
+}
+
+
+
+/**
+ * @brief Twitpicへファイルをアップロードする。
+ */
+- (ASIFormDataRequest*)createOAuthEchoRequest:(NSString*)url 
+				       format:(NSString*)format {
+
+  NSString *authorizeUrl = [NSString stringWithFormat:@"https://api.twitter.com/1/account/verify_credentials.%@", format];
+
+  OAConsumer *consumer = [[OAConsumer alloc] initWithKey:kConsumerKey
+					     secret:kConsumerSecret];
+    
+  NSDictionary *token = [self oAuthToken];
+  OAToken *accessToken =
+    [[[OAToken alloc] initWithKey:[token objectForKey:@"oauth_token"]
+		      secret:[token objectForKey:@"oauth_token_secret"]] 
+      autorelease];
+
+  OAMutableURLRequest *oauthRequest = 
+    [[[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:authorizeUrl]
+				  consumer:consumer
+				  token:accessToken
+				  realm:@"http://api.twitter.com/"
+				  signatureProvider:nil] autorelease];
+ 
+  NSString *oauthHeader = [oauthRequest 
+			    valueForHTTPHeaderField:@"Authorization"];
+  if (!oauthHeader) {
+    [oauthRequest prepare];
+    oauthHeader = [oauthRequest valueForHTTPHeaderField:@"Authorization"];
+  }
+ 
+  NSLog(@"OAuth header : %@\n\n", oauthHeader);
+ 
+  ASIFormDataRequest *request = [ASIFormDataRequest 
+				  requestWithURL:[NSURL URLWithString:url]];
+
+  request.requestMethod = @"POST";
+  request.shouldAttemptPersistentConnection = NO; 
+ 
+  [request addRequestHeader:@"X-Auth-Service-Provider" value:authorizeUrl];
+  [request addRequestHeader:@"X-Verify-Credentials-Authorization" 
+	   value:oauthHeader];
+  
+  return request;
+}
+
+- (void)uploadToTwitterByTwitPic:(NSString*)tweet image:(UIImage*)image {
+
+  NSString *url = @"http://api.twitpic.com/2/upload.json";
+  ASIFormDataRequest *request = [self createOAuthEchoRequest:url 
+				      format:@"json"];
+ 
+  NSData *imageRepresentation = UIImageJPEGRepresentation(image, 1.0);
+  [request setData:imageRepresentation forKey:@"media"];
+  [request setPostValue:tweet  forKey:@"message"];
+  [request setPostValue:kTwitpicAPIKey forKey:@"key"];
+    
+  NSLog(@"accessToken: %@", [self oAuthToken]);
+  NSLog(@"apiKey: %@", kTwitpicAPIKey);
+
+  [request setDelegate:self];
+  [request setDidFinishSelector:@selector(twitPicRequestFinished:)];
+  [request setDidFailSelector:@selector(requestFailed:)];
+  [request startAsynchronous];
+}
+
+
+- (void)twitPicRequestFinished:(NSData *)data {
+  NSLog(@"Twitpic ok 1");
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)theRequest {
+  NSString *resultText = [NSString stringWithFormat:@"Request failed:\r\n%@",
+				   [[theRequest error] localizedDescription]];
+
+  NSLog(@"Twitpic failure: %@", resultText);
+}
+
+- (void)sendTwitpicUploadRequest {
+  UIImage *aImage = [self.appDelegate 
+			 currentMusicArtWorkWithWidth:320.0f
+			 height:320.0f
+			 useDefault:NO];
+
+  [self uploadToTwitterByTwitPic:@"投稿テスト2" image:aImage];
+}
+
+#pragma mark -
+#pragma mark Local Methods
+
+- (NowPlayingFriendsAppDelegate *)appDelegate {
+  return [[UIApplication sharedApplication] delegate];
 }
 
 @end
