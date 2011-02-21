@@ -28,14 +28,16 @@
 
 
 @class NowPlayingFriendsAppDelegate;
+@class TwitpicClient;
 
 
 @interface TwitterClient : NSObject {
-  id senderDelegate;
+  TwitpicClient *twitpicClient;
 }
 
+
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
-@property (nonatomic, retain) id senderDelegate;
+@property (nonatomic, retain) TwitpicClient *twitpicClient;
 
 
 - (void)saveFriends;

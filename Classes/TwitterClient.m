@@ -6,6 +6,8 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
+#import "TwitterClient.h"
+
 #import "ASIHTTPRequest/ASIFormDataRequest.h"
 #import "JSON/JSON.h"
 #import "NowPlayingFriendsAppDelegate.h"
@@ -13,8 +15,9 @@
 #import "OAuthConsumer/OADataFetcher.h"
 #import "OAuthConsumer/OAMutableURLRequest.h"
 #import "OAuthConsumer/OARequestParameter.h"
-#import "TwitterClient.h"
 #import "TwitterFriendsGetter.h"
+#import "TwitpicClient.h"
+
 
 @interface TwitterClient (Local) 
 
@@ -27,20 +30,8 @@
 - (NSString *)stringOfRemoteJson:(NSString *)urlString;
 - (void)logJsonData:(NSArray *)jsonArray;
 
-- (void)uploadToTwitterByTwitPic:(NSString*)tweet image:(UIImage*)image
-			delegate:(id)aDelegate;
-
-- (ASIFormDataRequest*)createOAuthEchoRequest:(NSString*)url 
-				       format:(NSString*)format;
-
-- (void)twitPicRequestFinished:(ASIHTTPRequest *)theRequest;
-- (void)requestFailed:(ASIHTTPRequest *)theRequest;
-
 - (void)uploadAlbumArtworkImageWithTweet:(NSString *)tweet
 				delegate:(id)aDelegate ;
-
-- (void)uploadImage:(UIImage *)aImage withTweet:(NSString *)tweet
-	   delegate:(id)aDelegate;
 
 @end
 
@@ -48,11 +39,25 @@
 @implementation TwitterClient
 
 @dynamic appDelegate;
-@synthesize senderDelegate;
+@synthesize twitpicClient;
 
 - (void)dealloc {
-  [senderDelegate release];
+  [twitpicClient release];
   [super dealloc];
+}
+
+#pragma mark -
+#pragma Twitter Get TimeLine Methods
+
+- (id)init {
+  
+  self = [super init];
+
+  if (self != nil) {
+    twitpicClient = [[TwitpicClient alloc] init];
+  }
+
+  return self;
 }
 
 #pragma mark -
@@ -558,116 +563,6 @@
 /**
  * @brief Twitpicへファイルをアップロードする。
  */
-- (ASIFormDataRequest*)createOAuthEchoRequest:(NSString*)url 
-				       format:(NSString*)format {
-
-  OAConsumer *consumer = [[OAConsumer alloc] initWithKey:kConsumerKey
-					     secret:kConsumerSecret];
-    
-  NSDictionary *token = [self oAuthToken];
-  OAToken *accessToken =
-    [[[OAToken alloc] initWithKey:[token objectForKey:@"oauth_token"]
-		      secret:[token objectForKey:@"oauth_token_secret"]] 
-      autorelease];
-
-  OAMutableURLRequest *oauthRequest = 
-    [[[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:kVerifyUrl]
-				  consumer:consumer
-				  token:accessToken
-				  realm:@"http://api.twitter.com/"
-				  signatureProvider:nil] autorelease];
- 
-  NSString *oauthHeader = [oauthRequest 
-			    valueForHTTPHeaderField:@"Authorization"];
-  if (!oauthHeader) {
-    [oauthRequest prepare];
-    oauthHeader = [oauthRequest valueForHTTPHeaderField:@"Authorization"];
-  }
- 
-  NSLog(@"OAuth header : %@\n\n", oauthHeader);
- 
-  ASIFormDataRequest *request = [ASIFormDataRequest 
-				  requestWithURL:[NSURL URLWithString:url]];
-
-  request.requestMethod = @"POST";
-  request.shouldAttemptPersistentConnection = NO; 
- 
-  [request addRequestHeader:@"X-Auth-Service-Provider" value:kVerifyUrl];
-  [request addRequestHeader:@"X-Verify-Credentials-Authorization" 
-	   value:oauthHeader];
-  
-  return request;
-}
-
-- (void)uploadToTwitterByTwitPic:(NSString*)tweet image:(UIImage*)image 
-			delegate:(id)aDelegate {
-
-  NSString *url = @"http://api.twitpic.com/2/upload.json";
-  ASIFormDataRequest *request = [self createOAuthEchoRequest:url 
-				      format:@"json"];
-  
-  NSData *imageRepresentation = UIImageJPEGRepresentation(image, 1.0);
-  [request setData:imageRepresentation forKey:@"media"];
-  [request setPostValue:tweet  forKey:@"message"];
-  [request setPostValue:kTwitpicAPIKey forKey:@"key"];
-  
-  self.senderDelegate = aDelegate;
-
-  [request setDelegate:self];
-  [request setDidFinishSelector:@selector(twitPicRequestFinished:)];
-  [request setDidReceiveDataSelector:@selector(twitPicReceiveResponse:data:)];
-  [request setDidFailSelector:@selector(requestFailed:)];
-  [request startAsynchronous];
-}
-
-- (void)twitPicReceiveResponse:(ASIHTTPRequest *)theRequest 
-			  data:(NSData *)aData {
-
-  NSString *jsonString = [[NSString alloc] initWithData: aData
-					   encoding:NSUTF8StringEncoding];
-
-  NSLog(@"Twitpic receiveData.data: %@", jsonString);
-
-  NSDictionary *jsonDictionary = [jsonString JSONValue];
-  [jsonString release];
-
-  NSString *tweet = [jsonDictionary objectForKey:@"text"];
-  NSString *picUrl = [jsonDictionary objectForKey:@"url"];
-
-  NSString *formattedTweet = [NSString stringWithFormat:@"%@ %@", 
-				       tweet, picUrl];
-
-  if ([formattedTweet length] > kMaxTweetLength) { /* 140文字超えたらリンク切り捨て */
-    formattedTweet = [NSString stringWithFormat:@"%@", tweet];
-  }
-  if ([formattedTweet length] > kMaxTweetLength) { /* それでも長かったら切り捨て */
-    formattedTweet = [formattedTweet substringToIndex:kMaxTweetLength];
-  }
-
-  NSLog(@"formatted tweet: %@", formattedTweet);
-
-  id aDelegate = [[senderDelegate retain] autorelease];
-  self.senderDelegate = nil;
-
-  [self updateStatus:formattedTweet
-	inReplyToStatusId:nil
-	withArtwork:NO
-	delegate:aDelegate];  
-}
-
-- (void)twitPicRequestFinished:(ASIHTTPRequest *)theRequest {
-  NSLog(@"Twitpic ok.");
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-}
-
-- (void)requestFailed:(ASIHTTPRequest *)theRequest {
-  NSString *resultText = [NSString stringWithFormat:@"Request failed:\r\n%@",
-				   [[theRequest error] localizedDescription]];
-  
-  NSLog(@"Twitpic failure: %@", resultText);
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-}
-
 - (void)uploadAlbumArtworkImageWithTweet:(NSString *)tweet
 				delegate:(id)aDelegate {
 
@@ -676,13 +571,9 @@
 			 height:320.0f
 			 useDefault:NO];
 
-  [self uploadImage:aImage withTweet:tweet delegate:aDelegate];
-}
-
-- (void)uploadImage:(UIImage *)aImage withTweet:(NSString *)tweet
-	   delegate:(id)aDelegate {
-  
-  [self uploadToTwitterByTwitPic:tweet image:aImage delegate:aDelegate];
+  [twitpicClient uploadImage:aImage withTweet:tweet
+		 twitterClient:self
+		 delegate:aDelegate];
 }
 
 #pragma mark -

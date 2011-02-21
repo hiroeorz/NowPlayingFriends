@@ -14,6 +14,7 @@
 		28193060112F816700ECF9B4 /* NowPlayingFriends.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2819305F112F816700ECF9B4 /* NowPlayingFriends.xcdatamodeld */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		541649F51312678300B91837 /* TwitpicClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 541649F41312678300B91837 /* TwitpicClient.m */; };
 		5420CC401274138F002C94DC /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5420CC3E1274138F002C94DC /* SettingViewController.m */; };
 		5420CC411274138F002C94DC /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5420CC3F1274138F002C94DC /* SettingViewController.xib */; };
 		5420CC4A12741732002C94DC /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5420CC4912741732002C94DC /* 20-gear2.png */; };
@@ -157,6 +158,8 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* NowPlayingFriends_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingFriends_Prefix.pch; sourceTree = "<group>"; };
+		541649F31312678300B91837 /* TwitpicClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitpicClient.h; sourceTree = "<group>"; };
+		541649F41312678300B91837 /* TwitpicClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitpicClient.m; sourceTree = "<group>"; };
 		5420CC3D1274138F002C94DC /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		5420CC3E1274138F002C94DC /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		5420CC3F1274138F002C94DC /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingViewController.xib; path = Classes/SettingViewController.xib; sourceTree = "<group>"; };
@@ -463,6 +466,8 @@
 				549EFEAD1300383A00908AB6 /* SettingSelectYouTubeLinkView.m */,
 				549E001F1307A09900908AB6 /* FriendCellProfileImageGetter.h */,
 				549E00201307A09900908AB6 /* FriendCellProfileImageGetter.m */,
+				541649F31312678300B91837 /* TwitpicClient.h */,
+				541649F41312678300B91837 /* TwitpicClient.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -948,6 +953,7 @@
 				5455D1A813112494005BA507 /* ASIS3Request.m in Sources */,
 				5455D1A913112494005BA507 /* ASIS3ServiceRequest.m in Sources */,
 				5455D1CE1311260D005BA507 /* Reachability.m in Sources */,
+				541649F51312678300B91837 /* TwitpicClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
