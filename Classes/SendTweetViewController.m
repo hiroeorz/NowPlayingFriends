@@ -26,6 +26,7 @@
 @implementation SendTweetViewController
 
 @dynamic appDelegate;
+@synthesize addAlbumArtworkButton;
 @synthesize defaultTweetString;
 @synthesize editView;
 @synthesize inReplyToStatusId;
@@ -39,6 +40,7 @@
 
 - (void)dealloc {
 
+  [addAlbumArtworkButton release];
   [editView release];
   [inReplyToStatusId release];
   [indicator release];
@@ -54,6 +56,7 @@
 - (void)viewDidUnload {
 
   linkAdded = NO;
+  self.addAlbumArtworkButton = nil;
   self.editView = nil;
   self.inReplyToStatusId = nil;
   self.indicator = nil;
@@ -122,6 +125,7 @@
 - (void)viewWillAppear:(BOOL)animated {
 
   [super viewWillAppear:animated];
+  addAlbumArtwork = NO;
 }
 
 - (void)addITunesStoreSearchLink:(NSString *)linkUrl {
@@ -216,7 +220,28 @@
     editView.editable = NO;
     [self startIndicator];
     [twitterClient updateStatus:editView.text 
-		   inReplyToStatusId:inReplyToStatusId delegate:self];
+		   inReplyToStatusId:inReplyToStatusId
+		   withArtwork:addAlbumArtwork
+		   delegate:self];
+  }
+}
+
+- (IBAction)toggleAddAlbumArtworkFlag:(id)sender {
+  addAlbumArtwork = !addAlbumArtwork;
+
+  if (addAlbumArtwork) {
+    UIImage *artworkImage = [self.appDelegate currentMusicArtWorkWithWidth:35
+				 height:35
+				 useDefault:NO];
+    if (artworkImage == nil) {
+      addAlbumArtwork = NO;
+    } else {
+      [addAlbumArtworkButton setImage:artworkImage 
+			     forState:UIControlStateNormal];
+    }
+  } else {
+    [addAlbumArtworkButton setImage:[UIImage imageNamed:@"68-paperclip.png"]
+			   forState:UIControlStateNormal];
   }
 }
 

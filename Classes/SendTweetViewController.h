@@ -30,6 +30,7 @@
 
 @interface SendTweetViewController : UIViewController <UITextViewDelegate> {
 
+  BOOL addAlbumArtwork;
   BOOL linkAdded;
   BOOL sending;
   MusicPlayerViewController *musicPlayer;
@@ -38,6 +39,7 @@
   NSString *sourceString;
   TwitterClient *twitterClient;
   UIActivityIndicatorView *indicator;
+  UIButton *addAlbumArtworkButton;
   UIButton *retweetButton;
   UILabel *letterCountLabel;
   UITextView *editView;
@@ -45,6 +47,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet NSString *defaultTweetString;
+@property (nonatomic, retain) IBOutlet UIButton *addAlbumArtworkButton;
 @property (nonatomic, retain) IBOutlet UIButton *retweetButton;
 @property (nonatomic, retain) IBOutlet UILabel *letterCountLabel;
 @property (nonatomic, retain) IBOutlet UITextView *editView;
@@ -56,6 +59,7 @@
 @property (nonatomic, retain) UIView *indicatorBase;
 @property (nonatomic, retain, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 
+- (IBAction)toggleAddAlbumArtworkFlag:(id)sender;
 - (IBAction)addITunesStoreSearchTweet:(id)sender;
 - (IBAction)addYouTubeTweet:(id)sender;
 - (IBAction)clearText:(id)sender;

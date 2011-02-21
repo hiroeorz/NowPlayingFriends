@@ -54,6 +54,7 @@
 		5455D1BE131124F5005BA507 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5455D1BD131124F5005BA507 /* Security.framework */; };
 		5455D1C113112509005BA507 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5455D1C013112509005BA507 /* MobileCoreServices.framework */; };
 		5455D1CE1311260D005BA507 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455D1CD1311260D005BA507 /* Reachability.m */; };
+		5455D2AC1311FA01005BA507 /* 68-paperclip.png in Resources */ = {isa = PBXBuildFile; fileRef = 5455D2AB1311FA01005BA507 /* 68-paperclip.png */; };
 		54651253122A3321003DE639 /* SongsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54651252122A3321003DE639 /* SongsListViewController.m */; };
 		546512A5122B50E1003DE639 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546512A4122B50E1003DE639 /* QuartzCore.framework */; };
 		5465131D122B510A003DE639 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5465131C122B510A003DE639 /* CoreGraphics.framework */; };
@@ -228,6 +229,7 @@
 		5455D1C013112509005BA507 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		5455D1CC1311260D005BA507 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		5455D1CD1311260D005BA507 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		5455D2AB1311FA01005BA507 /* 68-paperclip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "68-paperclip.png"; sourceTree = "<group>"; };
 		54651251122A3321003DE639 /* SongsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongsListViewController.h; sourceTree = "<group>"; };
 		54651252122A3321003DE639 /* SongsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongsListViewController.m; sourceTree = "<group>"; };
 		546512A4122B50E1003DE639 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -654,6 +656,7 @@
 		5480C6A3122296A200F6E1C6 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				5455D2AB1311FA01005BA507 /* 68-paperclip.png */,
 				54A5B7EC12DB714F00BA8269 /* 06-magnifying-glass.png */,
 				54323A1E12A8EEE50053EA97 /* youtube_link.png */,
 				545355B512A103B50098F9C3 /* 01-refresh.png */,
@@ -858,6 +861,7 @@
 				542B3FCB12E1DE5100EDF94A /* TwitterFriendsListViewController.xib in Resources */,
 				5441761212F24F6E00A29AD7 /* no_artwork_image.png in Resources */,
 				549EFEB01300383A00908AB6 /* SettingSelectYouTubeLinkView.xib in Resources */,
+				5455D2AC1311FA01005BA507 /* 68-paperclip.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
