@@ -12,6 +12,7 @@
 #import "OAuthConsumer/OAServiceTicket.h"
 
 
+#define kVerifyUrl @"https://api.twitter.com/1/account/verify_credentials.json"
 #define kOAuthTokenUrl @"https://api.twitter.com/oauth/access_token"
 #define kHomeTimelineURL @"https://twitter.com/statuses/home_timeline/%@.json%@"
 #define kUserTimelineURL @"https://twitter.com/statuses/user_timeline/%@.json%@"
@@ -30,10 +31,12 @@
 
 
 @interface TwitterClient : NSObject {
-
+  id senderDelegate;
 }
 
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
+@property (nonatomic, retain) id senderDelegate;
+
 
 - (void)saveFriends;
 - (void)saveFriendsWithCursor:(NSNumber *)cursorNumber;
@@ -44,9 +47,17 @@
 - (NSArray *)getMentionsTimeLineSince:(NSNumber *)sinceId;
 - (NSArray *)getSearchTimeLine:(NSString *)searchString, ...;
 - (NSDictionary *)userInformation:(NSString *)username;
+
 - (void)updateStatus:(NSString *)message
    inReplyToStatusId:(NSNumber *)replayToStatusId
 	    delegate:(id)aDelegate;
+
+- (void)updateStatus:(NSString *)message
+   inReplyToStatusId:(NSNumber *)replayToStatusId
+	   withArtwork:(BOOL)withArtwork
+	    delegate:(id)aDelegate;
+
+
 - (NSString *)username;
 
 - (void)getAccessTokenWithUsername:(NSString *)username 
