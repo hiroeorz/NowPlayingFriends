@@ -128,6 +128,10 @@
   addAlbumArtwork = NO;
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+  addAlbumArtwork = NO;
+}
+
 - (void)addITunesStoreSearchLink:(NSString *)linkUrl {
 
   [self performSelectorInBackground:@selector(stopIndicatoWithThread)
@@ -223,6 +227,8 @@
 		   inReplyToStatusId:inReplyToStatusId
 		   withArtwork:addAlbumArtwork
 		   delegate:self];
+
+    addAlbumArtwork = NO;
   }
 }
 

@@ -25,40 +25,104 @@
 - (void)twitPicRequestFinished:(ASIHTTPRequest *)theRequest;
 - (void)requestFailed:(ASIHTTPRequest *)theRequest;
 
+- (NSString *)getMediaUrlWithAlbumName:(NSString *)albumName;
+- (NSString *)getPictureIdWithAlbumName:(NSString *)albumName;
+
 - (void)uploadImage:(UIImage *)aImage withTweet:(NSString *)tweet
 	   delegate:(id)aDelegate;
+
+- (void)saveId:(NSString *)aUrl withAlbumName:(NSString *)albumName;
+- (void)deleteUrlWithAlbumName:(NSString *)albumName;
+- (NSString *)filePath;
 
 @end
 
 @implementation TwitpicClient
 
 @dynamic appDelegate;
-@synthesize twitterClient;
 @synthesize senderDelegate;
-
+@synthesize tweetString;
+@synthesize twitterClient;
+@synthesize picImage;
 
 - (void)dealloc {
 
+  [picImage release];
   [senderDelegate release];
+  [tweetString release];
   [twitterClient release];
   [super dealloc];
 }
 
 #pragma mark -
-#pragma Twitpic Upload Methods
+#pragma Public Methods
 
-
+/**
+ * @brief Twitpicへ画像をアップロードし、ツイートを送信する。
+ */
 - (void)uploadImage:(UIImage *)aImage withTweet:(NSString *)tweet
       twitterClient:(TwitterClient *)aTwitterClient
 	   delegate:(id)aDelegate {
 
+  [self cancel];
   self.twitterClient = aTwitterClient;
-  [self uploadToTwitterByTwitPic:tweet image:aImage delegate:aDelegate];
+  self.tweetString = tweet;
+  self.picImage = aImage;
+  self.senderDelegate = aDelegate;
+  uploadedOk = NO;
+
+  NSString *albumName = [self.appDelegate nowPlayingAlbumTitle];
+  NSString *picId = [self getPictureIdWithAlbumName:albumName];
+
+  if (picId != nil) {
+    NSLog(@"Cached twitpic checking uploaded picture is exist or not...");
+    NSString *url = [self getMediaUrlWithAlbumName:albumName];
+    NSLog(@"mediaUrl: %@", url);
+
+    NSURLRequest *request = [NSURLRequest 
+			      requestWithURL:[NSURL URLWithString:url]];
+  
+    [NSURLConnection connectionWithRequest:request delegate:self];
+  } else {
+    NSLog(@"No cached twitpic starting upload...");
+    [self uploadToTwitterByTwitPic:tweet image:aImage delegate:aDelegate];
+  }
 }
 
+#pragma mark -
+#pragma NSOperation Delegate Methods
+
+- (void)connection:(NSURLConnection *)connection
+    didReceiveData:(NSData *) data {
+
+  [self cancel];
+
+  if (uploadedOk == NO) {
+    NSLog(@"Picutre is already uploaded");
+    uploadedOk = YES;
+    [twitterClient sendUploadedAlbumArtworkLinkedTweet:tweetString
+		   delegate:senderDelegate];
+  }
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+  uploadedOk = NO;
+}
+
+-(void)connection:(NSURLConnection*)connection 
+ didFailWithError:(NSError*)error {
+
+  NSLog(@"Twitpic Connection Error");
+  NSString *albumName = [self.appDelegate nowPlayingAlbumTitle];
+  [self deleteUrlWithAlbumName:albumName];
+
+  [self uploadToTwitterByTwitPic:tweetString 
+	image:picImage 
+	delegate:senderDelegate];
+}
 
 #pragma mark -
-#pragma mark Local Methods
+#pragma Twitpic Upload Local Methods
 
 /**
  * @brief Twitpicへファイルをアップロードする。
@@ -89,7 +153,7 @@
     oauthHeader = [oauthRequest valueForHTTPHeaderField:@"Authorization"];
   }
  
-  NSLog(@"OAuth header : %@\n\n", oauthHeader);
+  //NSLog(@"OAuth header : %@\n\n", oauthHeader);
  
   ASIFormDataRequest *request = [ASIFormDataRequest 
 				  requestWithURL:[NSURL URLWithString:url]];
@@ -116,8 +180,6 @@
   [request setPostValue:tweet  forKey:@"message"];
   [request setPostValue:kTwitpicAPIKey forKey:@"key"];
   
-  self.senderDelegate = aDelegate;
-
   [request setDelegate:self];
   [request setDidFinishSelector:@selector(twitPicRequestFinished:)];
   [request setDidReceiveDataSelector:@selector(twitPicReceiveResponse:data:)];
@@ -125,19 +187,25 @@
   [request startAsynchronous];
 }
 
+/**
+ * @brief 送信完了時にデータを引数として呼ばれるメソッド
+ */
 - (void)twitPicReceiveResponse:(ASIHTTPRequest *)theRequest 
 			  data:(NSData *)aData {
 
   NSString *jsonString = [[NSString alloc] initWithData: aData
 					   encoding:NSUTF8StringEncoding];
 
-  NSLog(@"Twitpic receiveData.data: %@", jsonString);
+  //NSLog(@"Twitpic receiveData.data: %@", jsonString);
 
   NSDictionary *jsonDictionary = [jsonString JSONValue];
   [jsonString release];
 
+  //NSLog(@"Twitpic receiveData.json: %@", jsonDictionary);
+
   NSString *tweet = [jsonDictionary objectForKey:@"text"];
   NSString *picUrl = [jsonDictionary objectForKey:@"url"];
+  NSString *picId = [jsonDictionary objectForKey:@"id"];
 
   NSString *formattedTweet = [NSString stringWithFormat:@"%@ %@", 
 				       tweet, picUrl];
@@ -157,26 +225,134 @@
   [twitterClient updateStatus:formattedTweet
 		 inReplyToStatusId:nil
 		 withArtwork:NO
-		 delegate:aDelegate];  
+		 delegate:aDelegate];
+  
+  NSString *albumName = [self.appDelegate nowPlayingAlbumTitle];
+
+  if (albumName != nil && ![albumName isEqualToString:@""]) {
+    [self saveId:picId withAlbumName:albumName];
+  }
 }
 
+/**
+ * @brief 送信完了時に呼ばれるメソッド
+ */
 - (void)twitPicRequestFinished:(ASIHTTPRequest *)theRequest {
-  NSLog(@"Twitpic ok.");
+
+  NSLog(@"Twitpic Uploaded OK.");
+
   self.twitterClient = nil;
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
+
+/**
+ * @brief 送信失敗時に呼ばれるメソッド
+ */
 - (void)requestFailed:(ASIHTTPRequest *)theRequest {
   self.twitterClient = nil;
   NSString *resultText = [NSString stringWithFormat:@"Request failed:\r\n%@",
 				   [[theRequest error] localizedDescription]];
   
-  NSLog(@"Twitpic failure: %@", resultText);
+  NSLog(@"Twitpic Upload Failure: %@", resultText);
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
+
+  id aDelegate = [[senderDelegate retain] autorelease];
+  self.senderDelegate = nil;
+
+  [twitterClient updateStatus:tweetString
+		 inReplyToStatusId:nil
+		 withArtwork:NO
+		 delegate:aDelegate];
 }
+
+#pragma mark -
+#pragma Picture Cache Methods
+
+- (NSString *)getPictureIdWithAlbumName:(NSString *)albumName {
+
+  NSString *path = [self filePath];
+
+  if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+    NSString *path = [self filePath];
+    NSMutableDictionary *ids = [[NSMutableDictionary alloc] 
+				 initWithContentsOfFile:path];
+    NSString *picId = [ids objectForKey:albumName];
+    NSLog(@"picId: %@", picId);
+    return picId;
+  } else {
+    return nil;
+  }
+}
+
+- (NSString *)getUrlWithAlbumName:(NSString *)albumName {
+
+  NSString *picId = [self getPictureIdWithAlbumName:albumName];
+
+  if (picId == nil) { return nil; }
+  return [NSString stringWithFormat:kTwitpicBaseUrl, picId];
+}
+
+- (NSString *)getMediaUrlWithAlbumName:(NSString *)albumName {
+
+  NSString *picId = [self getPictureIdWithAlbumName:albumName];
+
+  if (picId == nil) { return nil; }
+  return [NSString stringWithFormat:kTwitpicMediaUrl, picId];
+}
+
+- (void)saveId:(NSString *)picId withAlbumName:(NSString *)albumName {
+
+  NSLog(@"save twitpic id to file: %@: %@", albumName, picId);
+
+  NSMutableDictionary *ids = nil;
+  NSString *path = [self filePath];
+
+  if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+    ids = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+  } else {
+    ids = [[NSMutableDictionary alloc] init];
+  }
+
+  [ids setObject:picId forKey:albumName];
+  [ids writeToFile:path atomically:YES];
+  [ids release];
+}
+
+- (void)deleteUrlWithAlbumName:(NSString *)albumName {
+
+  NSLog(@"delete twitpic_id from file: %@", albumName);
+
+  NSMutableDictionary *ids = nil;
+  NSString *path = [self filePath];
+
+  if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+    ids = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    [ids removeObjectForKey:albumName];
+    [ids writeToFile:path atomically:YES];
+  }
+
+  [ids release];
+}
+
+- (NSString *)filePath {
+
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+						       NSUserDomainMask, YES);  
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSString *filePath = 
+    [documentsDirectory stringByAppendingPathComponent:kTwitPicIdsFileNmae];
+
+  return filePath;
+}
+
+#pragma mark -
+#pragma mark Local Methods
 
 - (NowPlayingFriendsAppDelegate *)appDelegate {
   return [[UIApplication sharedApplication] delegate];
 }
 
 @end
+

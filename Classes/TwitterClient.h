@@ -73,4 +73,7 @@
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 
+- (void)sendUploadedAlbumArtworkLinkedTweet:(NSString *)tweet
+				   delegate:(id)aDelegate;
+
 @end

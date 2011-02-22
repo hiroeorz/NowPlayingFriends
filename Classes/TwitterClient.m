@@ -31,8 +31,7 @@
 - (void)logJsonData:(NSArray *)jsonArray;
 
 - (void)uploadAlbumArtworkImageWithTweet:(NSString *)tweet
-				delegate:(id)aDelegate ;
-
+				delegate:(id)aDelegate;
 @end
 
 
@@ -566,14 +565,34 @@
 - (void)uploadAlbumArtworkImageWithTweet:(NSString *)tweet
 				delegate:(id)aDelegate {
 
-  UIImage *aImage = [self.appDelegate 
-			 currentMusicArtWorkWithWidth:320.0f
-			 height:320.0f
-			 useDefault:NO];
+    UIImage *aImage = [self.appDelegate 
+			   currentMusicArtWorkWithWidth:320.0f
+			   height:320.0f
+			   useDefault:NO];
+    
+    [twitpicClient uploadImage:aImage withTweet:tweet
+		   twitterClient:self
+		   delegate:aDelegate];
+}
 
-  [twitpicClient uploadImage:aImage withTweet:tweet
-		 twitterClient:self
-		 delegate:aDelegate];
+- (void)sendUploadedAlbumArtworkLinkedTweet:(NSString *)tweet
+				   delegate:(id)aDelegate {
+
+  NSString *albumName = [self.appDelegate nowPlayingAlbumTitle];
+  NSString *picUrl = [twitpicClient getUrlWithAlbumName:albumName];
+  NSString *formattedTweet = [NSString stringWithFormat:@"%@ %@", 
+				       tweet, picUrl];
+
+  /* 140文字超えたらリンク切り捨て */
+  if ([formattedTweet length] > kMaxTweetLength) { 
+    formattedTweet = [NSString stringWithFormat:@"%@", tweet];
+  }
+  if ([formattedTweet length] > kMaxTweetLength) { /* それでも長かったら切り捨て */
+    formattedTweet = [formattedTweet substringToIndex:kMaxTweetLength];
+  }
+  
+  [self updateStatus:formattedTweet inReplyToStatusId:nil
+	withArtwork:NO delegate:aDelegate];
 }
 
 #pragma mark -

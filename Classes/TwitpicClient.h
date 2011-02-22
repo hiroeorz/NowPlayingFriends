@@ -12,26 +12,36 @@
 #import "TwitterClient+TwitpicAPIKey.h"
 
 
+#define kTwitPicIdsFileNmae @"twitpic_friends.plist"
+#define kTwitpicBaseUrl @"http://twitpic.com/%@"
+#define kTwitpicShowUrl @"http://api.twitpic.com/2/media/show.json?id=%@"
+#define kTwitpicMediaUrl @"http://api.twitpic.com/2/media/show.json?id=%@"
+
+
 @class NowPlayingFriendsAppDelegate;
 @class TwitterClient;
 
 
-@interface TwitpicClient : NSObject {
+@interface TwitpicClient : NSOperation {
 
   id senderDelegate;
+  BOOL uploadedOk;
+  NSString *tweetString;
   TwitterClient *twitterClient;
+  UIImage *picImage;
 }
 
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) id senderDelegate;
+@property (nonatomic, retain) NSString *tweetString;
 @property (nonatomic, retain) TwitterClient *twitterClient;
+@property (nonatomic, retain) UIImage *picImage;
 
-
-+ (id)twitpicWithTwitterClient:(TwitterClient *)aClient;
-- (id)initWithTwitterClient:(TwitterClient *)aClient;
 
 - (void)uploadImage:(UIImage *)aImage withTweet:(NSString *)tweet
       twitterClient:(TwitterClient *)twitterClient
 	   delegate:(id)aDelegate;
+
+- (NSString *)getUrlWithAlbumName:(NSString *)albumName;
 
 @end
