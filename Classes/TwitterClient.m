@@ -212,7 +212,7 @@
 
   [self updateStatus:message
 	inReplyToStatusId:replayToStatusId
-	withArtwork:YES
+	withArtwork:NO
 	delegate:aDelegate];
 }
 
