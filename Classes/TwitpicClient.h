@@ -26,6 +26,7 @@
 
   id senderDelegate;
   BOOL uploadedOk;
+  NSMutableData *jsonData;
   NSString *tweetString;
   TwitterClient *twitterClient;
   UIImage *picImage;
@@ -33,6 +34,7 @@
 
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) id senderDelegate;
+@property (nonatomic, retain) NSMutableData *jsonData;
 @property (nonatomic, retain) NSString *tweetString;
 @property (nonatomic, retain) TwitterClient *twitterClient;
 @property (nonatomic, retain) UIImage *picImage;

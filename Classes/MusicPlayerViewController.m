@@ -717,8 +717,11 @@
   }
 
   TwitterClient *client = [[TwitterClient alloc] init];
-  [client updateStatus:message inReplyToStatusId:nil delegate:self];
-  [client release];
+  [client updateStatus:message inReplyToStatusId:nil
+	  withArtwork:[self.appDelegate autotweet_upload_picture_preference]
+	  delegate:self];
+
+  [client autorelease];
   sending = NO;
   sent = YES;
 }

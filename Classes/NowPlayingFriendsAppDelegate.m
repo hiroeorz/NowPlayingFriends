@@ -41,6 +41,8 @@
 @dynamic use_itunes_preference;
 @dynamic use_itunes_manual_preference;
 @dynamic select_youtube_link_preference;
+@dynamic autotweet_upload_picture_preference;
+@dynamic manual_upload_picture_preference;
 
 
 #pragma mark -
@@ -657,6 +659,31 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [self.userDefaults setValue:select_youtube_link_preference
        forKey:@"select_youtube_link_preference"];
 }
+
+- (BOOL)autotweet_upload_picture_preference {
+
+  NSNumber *value = 
+    [self.userDefaults valueForKey:@"autotweet_upload_picture_preference"];
+  
+  if (value == nil) {
+    value = [NSNumber numberWithInteger:NO];
+  }
+  
+  return [value boolValue];
+}
+
+- (BOOL)manual_upload_picture_preference {
+
+  NSNumber *value = 
+    [self.userDefaults valueForKey:@"manual_upload_picture_preference"];
+  
+  if (value == nil) {
+    value = [NSNumber numberWithInteger:NO];
+  }
+  
+  return [value boolValue];
+}
+
 
 #pragma mark -
 #pragma mark Util Methods

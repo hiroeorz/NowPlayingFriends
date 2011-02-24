@@ -40,6 +40,7 @@
 @implementation TwitpicClient
 
 @dynamic appDelegate;
+@synthesize jsonData;
 @synthesize senderDelegate;
 @synthesize tweetString;
 @synthesize twitterClient;
@@ -47,6 +48,7 @@
 
 - (void)dealloc {
 
+  [jsonData release];
   [picImage release];
   [senderDelegate release];
   [tweetString release];
@@ -70,6 +72,10 @@
   self.picImage = aImage;
   self.senderDelegate = aDelegate;
   uploadedOk = NO;
+  
+  NSMutableData *emptyData = [[NSMutableData alloc] init];
+  self.jsonData = emptyData;
+  [emptyData release];
 
   NSString *albumName = [self.appDelegate nowPlayingAlbumTitle];
   NSString *picId = [self getPictureIdWithAlbumName:albumName];
@@ -95,17 +101,31 @@
 - (void)connection:(NSURLConnection *)connection
     didReceiveData:(NSData *) data {
 
-  [self cancel];
+  [jsonData appendData:data];
+}
 
-  if (uploadedOk == NO) {
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+
+  NSString *jsonString = [[NSString alloc] initWithData:jsonData
+					   encoding:NSUTF8StringEncoding];
+  
+  NSDictionary *jsonDictionary = [jsonString JSONValue];
+  NSLog(@"jsonDictionary: %@", jsonDictionary);
+  self.jsonData = nil;
+
+  if ([jsonDictionary objectForKey:@"short_id"] != nil) {
     NSLog(@"Picutre is already uploaded");
     uploadedOk = YES;
     [twitterClient sendUploadedAlbumArtworkLinkedTweet:tweetString
 		   delegate:senderDelegate];
+  } else {
+    NSString *albumName = [self.appDelegate nowPlayingAlbumTitle];
+    [self deleteUrlWithAlbumName:albumName];
+    [self uploadToTwitterByTwitPic:tweetString 
+	  image:picImage 
+	  delegate:senderDelegate];
   }
-}
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
   uploadedOk = NO;
 }
 
@@ -113,12 +133,10 @@
  didFailWithError:(NSError*)error {
 
   NSLog(@"Twitpic Connection Error");
-  NSString *albumName = [self.appDelegate nowPlayingAlbumTitle];
-  [self deleteUrlWithAlbumName:albumName];
 
-  [self uploadToTwitterByTwitPic:tweetString 
-	image:picImage 
-	delegate:senderDelegate];
+  [twitterClient sendUploadedAlbumArtworkLinkedTweet:tweetString
+		 delegate:senderDelegate];
+  uploadedOk = NO;
 }
 
 #pragma mark -
@@ -232,6 +250,8 @@
   if (albumName != nil && ![albumName isEqualToString:@""]) {
     [self saveId:picId withAlbumName:albumName];
   }
+
+  self.tweetString = nil;
 }
 
 /**
@@ -240,9 +260,8 @@
 - (void)twitPicRequestFinished:(ASIHTTPRequest *)theRequest {
 
   NSLog(@"Twitpic Uploaded OK.");
-
-  self.twitterClient = nil;
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+  self.picImage = nil;
 }
 
 
@@ -250,21 +269,20 @@
  * @brief 送信失敗時に呼ばれるメソッド
  */
 - (void)requestFailed:(ASIHTTPRequest *)theRequest {
-  self.twitterClient = nil;
+
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   NSString *resultText = [NSString stringWithFormat:@"Request failed:\r\n%@",
 				   [[theRequest error] localizedDescription]];
   
   NSLog(@"Twitpic Upload Failure: %@", resultText);
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
 
   id aDelegate = [[senderDelegate retain] autorelease];
-  self.senderDelegate = nil;
-
   [twitterClient updateStatus:tweetString
 		 inReplyToStatusId:nil
 		 withArtwork:NO
 		 delegate:aDelegate];
+
+  self.tweetString = nil;
 }
 
 #pragma mark -

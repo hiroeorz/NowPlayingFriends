@@ -20,6 +20,7 @@
 - (void)stopIndicator;
 - (void)stopIndicatoWithThread;
 - (void)addITunesStoreSearchLink:(NSString *)linkUrl;
+- (void)setAlbumArtworkButtonStyle;
 @end
 
 
@@ -125,7 +126,9 @@
 - (void)viewWillAppear:(BOOL)animated {
 
   [super viewWillAppear:animated];
-  addAlbumArtwork = NO;
+
+  addAlbumArtwork = [self.appDelegate manual_upload_picture_preference];
+  [self setAlbumArtworkButtonStyle];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -234,6 +237,10 @@
 
 - (IBAction)toggleAddAlbumArtworkFlag:(id)sender {
   addAlbumArtwork = !addAlbumArtwork;
+  [self setAlbumArtworkButtonStyle];
+}
+
+- (void)setAlbumArtworkButtonStyle {
 
   if (addAlbumArtwork) {
     UIImage *artworkImage = [self.appDelegate currentMusicArtWorkWithWidth:35
