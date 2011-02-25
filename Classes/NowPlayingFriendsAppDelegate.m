@@ -561,7 +561,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self.userDefaults valueForKey:@"use_youtube_preference"];
   
   if (use_youtube_preference == nil) {
-    use_youtube_preference = [NSNumber numberWithBool:NO];
+    use_youtube_preference = [NSNumber numberWithBool:YES];
   }
   
   return [use_youtube_preference boolValue];
@@ -604,7 +604,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self.userDefaults valueForKey:@"use_itunes_preference"];
   
   if (use_itunes_preference == nil) {
-    use_itunes_preference = [NSNumber numberWithBool:YES];
+    use_itunes_preference = [NSNumber numberWithBool:NO];
   }
   
   return [use_itunes_preference boolValue];
