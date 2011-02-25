@@ -41,7 +41,7 @@
 @dynamic use_itunes_preference;
 @dynamic use_itunes_manual_preference;
 @dynamic select_youtube_link_preference;
-@dynamic autotweet_upload_picture_preference;
+@dynamic auto_upload_picture_preference;
 @dynamic manual_upload_picture_preference;
 
 
@@ -660,16 +660,24 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
        forKey:@"select_youtube_link_preference"];
 }
 
-- (BOOL)autotweet_upload_picture_preference {
+- (BOOL)auto_upload_picture_preference {
 
   NSNumber *value = 
-    [self.userDefaults valueForKey:@"autotweet_upload_picture_preference"];
+    [self.userDefaults valueForKey:@"auto_upload_picture_preference"];
   
   if (value == nil) {
     value = [NSNumber numberWithInteger:NO];
   }
   
   return [value boolValue];
+}
+
+- (void)setAuto_upload_picture_preference:(BOOL)flag {
+
+  NSNumber *value = [NSNumber numberWithBool:flag];
+
+  [self.userDefaults setValue:value 
+       forKey:@"auto_upload_picture_preference"];
 }
 
 - (BOOL)manual_upload_picture_preference {
@@ -684,6 +692,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return [value boolValue];
 }
 
+- (void)setManual_upload_picture_preference:(BOOL)flag {
+
+  NSNumber *value = [NSNumber numberWithBool:flag];
+
+  [self.userDefaults setValue:value 
+       forKey:@"manual_upload_picture_preference"];
+}
 
 #pragma mark -
 #pragma mark Util Methods

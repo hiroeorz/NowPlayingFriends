@@ -152,7 +152,7 @@
 			<key>Title</key>
 			<string>Auto Tweet</string>
 			<key>Key</key>
-			<string>autotweet_upload_picture_preference</string>
+			<string>auto_upload_picture_preference</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>

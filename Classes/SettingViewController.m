@@ -79,7 +79,7 @@
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 4;
+  return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView 
@@ -95,6 +95,8 @@
   case 2: rowsCount = 3;
     break;
   case 3: rowsCount = 2;
+    break;
+  case 4: rowsCount = 2;
     break;
   }
 
@@ -114,6 +116,8 @@ titleForHeaderInSection:(NSInteger)section {
   case 2: sectionTitle = @"YouTube";
     break;    
   case 3: sectionTitle = @"iTunes Store";
+    break;    
+  case 4: sectionTitle = @"Album Artwork Upload";
     break;    
   }
 
@@ -262,10 +266,41 @@ titleForHeaderInSection:(NSInteger)section {
     break;
   }
 
+  case 4: { //5列目
+    switch ([indexPath row]) {
+    case 0: {
+      cell.textLabel.text = @"Upload Album Artowrk With Auto Tweet";
+      switchObj.on  = self.appDelegate.auto_upload_picture_preference;
+      [switchObj addTarget:self 
+		 action:@selector(save_auto_upload_picture_preference:)
+		 forControlEvents:UIControlEventValueChanged];
+    }
+      break;
+    case 1: {
+      cell.textLabel.text = @"Upload Album Artowrk With Manual Tweet";
+      switchObj.on  = self.appDelegate.manual_upload_picture_preference;
+      [switchObj addTarget:self 
+		 action:@selector(save_manual_upload_picture_preference:)
+		 forControlEvents:UIControlEventValueChanged];
+    }
+      break;
+    }
+    break;
+  }
+
+    /* End Of Switch */
     break;
   }
 
   return cell;
+}
+
+- (void)save_auto_upload_picture_preference:(UISwitch *)sender {
+  self.appDelegate.auto_upload_picture_preference = sender.on;
+}
+
+- (void)save_manual_upload_picture_preference:(UISwitch *)sender {
+  self.appDelegate.manual_upload_picture_preference = sender.on;
 }
 
 - (void)save_use_itunes_manual_preference:(UISwitch *)sender {

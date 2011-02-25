@@ -65,7 +65,7 @@
 @property (nonatomic) BOOL use_itunes_preference;
 @property (nonatomic) BOOL use_itunes_manual_preference;
 @property (nonatomic) NSInteger select_youtube_link_preference;
-@property (nonatomic) BOOL autotweet_upload_picture_preference;
+@property (nonatomic) BOOL auto_upload_picture_preference;
 @property (nonatomic) BOOL manual_upload_picture_preference;
 
 
