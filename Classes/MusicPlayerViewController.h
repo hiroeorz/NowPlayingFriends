@@ -14,6 +14,7 @@
 #import "NowPlayingFriendsAppDelegate.h"
 #import "TwitterClient.h"
 
+
 #define kProfileImageButtonAlpha 0.55f
 #define kProfileImageSize 64
 #define kPlayListTableRowHeight 55
@@ -67,6 +68,7 @@
   NSMutableArray *nowButtons;
   NSMutableArray *profileImageButtons;
   NSString *refreshProfileImagesMutex;
+  TwitterClient *twitterClient;
   UIButton *button;
   UIButton *playButton;
   UIButton *youTubeButton;
@@ -94,8 +96,8 @@
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) IBOutlet UIButton *button;
 @property (nonatomic, retain) IBOutlet UIButton *playButton;
-@property (nonatomic, retain) IBOutlet UIButton *youTubeButton;
 @property (nonatomic, retain) IBOutlet UIButton *subControlDisplayButton;
+@property (nonatomic, retain) IBOutlet UIButton *youTubeButton;
 @property (nonatomic, retain) IBOutlet UIImageView *albumImageView;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *friendGetModeControl;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *musicSegmentedControl;
@@ -117,8 +119,10 @@
 @property (nonatomic, retain) NSMutableArray *nowButtons;
 @property (nonatomic, retain) NSMutableArray *profileImageButtons;
 @property (nonatomic, retain) NSString *refreshProfileImagesMutex;
+@property (nonatomic, retain) TwitterClient *twitterClient;
 @property (nonatomic, retain) UIView *baseView;
 @property (nonatomic, retain) UIViewController *songListController;
+
 
 - (IBAction)changeAutoTweetMode:(id)sender;
 - (IBAction)changeFriendGetMode:(id)sender;

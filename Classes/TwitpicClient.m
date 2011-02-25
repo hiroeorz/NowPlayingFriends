@@ -46,13 +46,16 @@
 @synthesize twitterClient;
 @synthesize picImage;
 
+/**
+ * No Release because Weakend Reference
+ * senderDelegate; 
+ * twitterClient;
+ */
 - (void)dealloc {
 
   [jsonData release];
   [picImage release];
-  [senderDelegate release];
   [tweetString release];
-  [twitterClient release];
   [super dealloc];
 }
 
@@ -67,10 +70,11 @@
 	   delegate:(id)aDelegate {
 
   [self cancel];
+
   self.twitterClient = aTwitterClient;
+  self.senderDelegate = aDelegate;
   self.tweetString = tweet;
   self.picImage = aImage;
-  self.senderDelegate = aDelegate;
   uploadedOk = NO;
   
   NSMutableData *emptyData = [[NSMutableData alloc] init];
@@ -237,13 +241,10 @@
 
   NSLog(@"formatted tweet: %@", formattedTweet);
 
-  id aDelegate = [[senderDelegate retain] autorelease];
-  self.senderDelegate = nil;
-
   [twitterClient updateStatus:formattedTweet
 		 inReplyToStatusId:nil
 		 withArtwork:NO
-		 delegate:aDelegate];
+		 delegate:senderDelegate];
   
   NSString *albumName = [self.appDelegate nowPlayingAlbumTitle];
 
@@ -276,11 +277,10 @@
   
   NSLog(@"Twitpic Upload Failure: %@", resultText);
 
-  id aDelegate = [[senderDelegate retain] autorelease];
   [twitterClient updateStatus:tweetString
 		 inReplyToStatusId:nil
 		 withArtwork:NO
-		 delegate:aDelegate];
+		 delegate:senderDelegate];
 
   self.tweetString = nil;
 }

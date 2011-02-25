@@ -97,6 +97,7 @@
 @synthesize subControlDisplayButton;
 @synthesize subControlView;
 @synthesize timeline;
+@synthesize twitterClient;
 @synthesize volumeSlider;
 @synthesize youTubeButton;
 
@@ -127,6 +128,7 @@
   [songView release];
   [subControlDisplayButton release];
   [timeline release];
+  [twitterClient release];
   [volumeSlider release];
   [youTubeButton release];
   [super dealloc];
@@ -155,6 +157,7 @@
   self.songView = nil;
   self.subControlDisplayButton = nil;
   self.timeline = nil;
+  self.twitterClient = nil;
   self.volumeSlider = nil;
   self.youTubeButton = nil;
 
@@ -179,6 +182,10 @@
     updatingFlag = NO;
     cancelFlag = NO;
     updateAfterSafetyTime = NO;
+
+    TwitterClient *client = [[TwitterClient alloc] init];
+    self.twitterClient = client;
+    [client release];
   }
   return self;
 }
@@ -209,13 +216,11 @@
 
   [self.appDelegate checkAuthenticateWithController:self];
 
-  TwitterClient *client = [[TwitterClient alloc] init];
-  if ([client oAuthTokenExist] &&
+  if ([twitterClient oAuthTokenExist] &&
       [musicPlayer playbackState] != MPMusicPlaybackStatePlaying) {
     [self performSelectorInBackground:@selector(refreshProfileImages)
 	  withObject:nil];
   }
-  [client release];
 
   UIButton *nowButton = [self nowButton:nil frame:kNowButtonInfoFrame];
   [musicControllerView addSubview:nowButton];
@@ -716,12 +721,9 @@
     message = [message substringToIndex:kMaxTweetLength];
   }
 
-  TwitterClient *client = [[TwitterClient alloc] init];
-  [client updateStatus:message inReplyToStatusId:nil
-	  withArtwork:[self.appDelegate auto_upload_picture_preference]
-	  delegate:self];
-
-  [client autorelease];
+  [twitterClient updateStatus:message inReplyToStatusId:nil
+		 withArtwork:[self.appDelegate auto_upload_picture_preference]
+		 delegate:self];
   sending = NO;
   sent = YES;
 }
@@ -772,15 +774,11 @@
 
   if (self.appDelegate.get_twitterusers_preference == YES) {
     @try {
-      TwitterClient *client = [[TwitterClient alloc] init];
-      
-      if (![client oAuthTokenExist]) {
+      if (![twitterClient oAuthTokenExist]) {
 	NSLog(@"oAuth Token is not exist. refresh not executed.");
-	[client release];
 	return;
       }
       
-      [client release];
       cancelFlag = YES;
       NSLog(@"waiting for mutex...");
       
