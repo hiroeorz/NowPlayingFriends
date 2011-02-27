@@ -65,6 +65,7 @@
   NSArray *playLists;
   NSInteger listmode;
   NSInteger subControlTouchCount;
+  NSMutableArray *addLinkArray;
   NSMutableArray *nowButtons;
   NSMutableArray *profileImageButtons;
   NSString *refreshProfileImagesMutex;
@@ -116,6 +117,7 @@
 @property (nonatomic, retain) NSArray *beforeTimeline;
 @property (nonatomic, retain) NSArray *playLists;
 @property (nonatomic, retain) NSArray *timeline;
+@property (nonatomic, retain) NSMutableArray *addLinkArray;
 @property (nonatomic, retain) NSMutableArray *nowButtons;
 @property (nonatomic, retain) NSMutableArray *profileImageButtons;
 @property (nonatomic, retain) NSString *refreshProfileImagesMutex;

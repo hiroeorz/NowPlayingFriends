@@ -153,6 +153,9 @@
 #pragma mark -
 #pragma Timeline Update Methods
 
+/**
+ * @brief 別スレッドで実行し、新着ツイートがあったらタブのバッジに表示する。
+ */
 - (void)updateNewItemCountToBadge {
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -166,6 +169,7 @@
     if (timeline == nil) {
       NSArray *newTimeline = [client getMentionsTimeLineSince:nil];
       self.timeline = newTimeline;
+      NSLog(@"set Mentions timeline (count: %d)", [timeline count]);
 
     } else {
       NSNumber *lastId = [self lastTweetId];
@@ -195,6 +199,11 @@
 		      initWithTimeInterval:kTimelineUpdateInterval 
 		      sinceDate:date];
     [NSThread sleepUntilDate: nextStartDate];
+
+    [date release];
+    [nextStartDate release];
+    date = nil;
+    nextStartDate = nil;
     
     [inPool release];
   }
@@ -239,6 +248,7 @@
     if ([timeline count] == 0) {
       self.timeline = newTimeline;
       addRowCount = [newTimeline count];
+      NSLog(@"new Time line count: %d", [timeline count]);
 
     } else {
       NSDictionary *firstItem = [timeline objectAtIndex:0];
@@ -275,16 +285,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 
-  if (newTimelineQueue != nil) {
-    NSArray *array = [newTimelineQueue arrayByAddingObjectsFromArray:timeline];
-    NSLog(@"array: %@", newTimelineQueue);
-    self.timeline = array;
-    self.newTimelineQueue = nil;
-    [self queuingLineOverFlowSize];
-  }
-
-  [friendsTableView reloadData];
-
   self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
   [super viewWillAppear:animated];
 }
@@ -292,6 +292,15 @@
 - (void)viewDidAppear:(BOOL)animated {
   
   [super viewDidAppear:animated];
+
+  if (newTimelineQueue != nil) {
+    NSArray *array = [newTimelineQueue arrayByAddingObjectsFromArray:timeline];
+    self.timeline = array;
+    self.newTimelineQueue = nil;
+    [self queuingLineOverFlowSize];
+  }
+
+  [friendsTableView reloadData];
 
   activateFlag = YES;
   [self refreshTableOnThread];

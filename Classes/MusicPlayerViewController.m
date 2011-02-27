@@ -69,6 +69,7 @@
 @implementation MusicPlayerViewController
 
 @dynamic appDelegate;
+@synthesize addLinkArray;
 @synthesize albumImageView;
 @synthesize albumLists;
 @synthesize autoTweetMode;
@@ -107,6 +108,7 @@
 
 - (void)dealloc {
 
+  [addLinkArray release];
   [albumImageView release];
   [albumLists release];
   [autoTweetSwitch release];
@@ -136,6 +138,7 @@
 
 - (void)viewDidUnload {
 
+  self.addLinkArray = nil;
   self.albumImageView = nil;
   self.albumLists = nil;
   self.autoTweetSwitch = nil;
@@ -186,6 +189,8 @@
     TwitterClient *client = [[TwitterClient alloc] init];
     self.twitterClient = client;
     [client release];
+
+    addLinkArray = [[NSMutableArray alloc] init];
   }
   return self;
 }
@@ -644,6 +649,10 @@
   [self performSelectorInBackground:@selector(continuousTweetStopper)
 	withObject:nil];
 
+  NSMutableArray *newAddLinkArray = [[NSMutableArray alloc] init];
+  self.addLinkArray = newAddLinkArray;
+  [newAddLinkArray release];
+
   if ([self.appDelegate use_itunes_preference]) {
 
     ITunesStore *store = [[[ITunesStore alloc] init] autorelease];
@@ -652,6 +661,7 @@
 	   artist:[self.appDelegate nowPlayingArtistName]
 	   delegate:self 
 	   action:@selector(createMessageIncludeITunes:)];
+    return;
 
   } else if ([self.appDelegate use_youtube_preference]) {
     YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
@@ -661,11 +671,32 @@
 	     delegate:self
 	     action:@selector(createMessageIncludeYouTube:)
 	     count:1];
-    
+    return;
+
   } else {
     NSString *message = [self.appDelegate tweetString];
     [self sendAutoTweetDetail:message];
   }
+}
+
+- (NSString *)tweetString:(NSString *)aTweetString
+	   withLinksArray:(NSArray *)aLinksArray {
+
+  if (aLinksArray == nil || [aLinksArray count] == 0) { return aTweetString; }
+
+  NSString *newString = nil;
+  NSString *resultString = [[NSString alloc] initWithString:aTweetString];
+
+  for (NSString *aLink in aLinksArray) {
+    newString = [[NSString alloc] initWithFormat:@"%@ %@", resultString, aLink];
+    if ([newString length] > kMaxTweetLength) {continue;}
+    
+    [resultString release];
+    resultString = [newString retain];
+    [newString release];
+  }
+
+  return [resultString autorelease];
 }
 
 /**
@@ -673,10 +704,11 @@
  */
 - (void)createMessageIncludeYouTube:(NSArray *)linkUrlArray {
 
-  NSString *message = [self.appDelegate tweetString];
+  //NSString *message = [self.appDelegate tweetString];
+  NSString *message = [self tweetString:[self.appDelegate tweetString]
+			    withLinksArray:addLinkArray];
   NSString *linkedMessage = nil;
   
-
   if (linkUrlArray == nil || [linkUrlArray count] == 0) {
     linkedMessage = message;
   } else {
@@ -696,6 +728,19 @@
           YouTubeクライアントから呼ばれる。
  */
 - (void)createMessageIncludeITunes:(NSString *)linkUrl {
+
+  if (linkUrl != nil) { [addLinkArray addObject:linkUrl]; }
+
+  if ([self.appDelegate use_youtube_preference]) { /* call youtube if YES */
+    YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
+    
+    [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
+	     artist:[self.appDelegate nowPlayingArtistName]
+	     delegate:self
+	     action:@selector(createMessageIncludeYouTube:)
+	     count:1];
+    return;
+  }
 
   NSString *message = [self.appDelegate tweetString];
   NSString *linkedMessage = nil;
