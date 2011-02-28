@@ -293,15 +293,7 @@
   
   [super viewDidAppear:animated];
 
-  if (newTimelineQueue != nil) {
-    NSArray *array = [newTimelineQueue arrayByAddingObjectsFromArray:timeline];
-    self.timeline = array;
-    self.newTimelineQueue = nil;
-    [self queuingLineOverFlowSize];
-  }
-
   [friendsTableView reloadData];
-
   activateFlag = YES;
   [self refreshTableOnThread];
 }
