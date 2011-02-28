@@ -32,8 +32,8 @@
   UIImage *picImage;
 }
 
-@property (nonatomic) TwitterClient *twitterClient;
-@property (nonatomic) id senderDelegate;
+@property (nonatomic, assign) TwitterClient *twitterClient;
+@property (nonatomic, assign) id senderDelegate;
 @property (nonatomic, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) NSMutableData *jsonData;
 @property (nonatomic, retain) NSString *tweetString;
