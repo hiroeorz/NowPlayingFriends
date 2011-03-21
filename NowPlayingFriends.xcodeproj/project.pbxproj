@@ -28,7 +28,6 @@
 		545355B612A103B50098F9C3 /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 545355B512A103B50098F9C3 /* 01-refresh.png */; };
 		5455CFF3131116CC005BA507 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5455CFF2131116CC005BA507 /* CFNetwork.framework */; };
 		5455CFF6131116E6005BA507 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5455CFF5131116E6005BA507 /* SystemConfiguration.framework */; };
-		5455D01013111EE5005BA507 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5455D00F13111EE5005BA507 /* libxml2.dylib */; };
 		5455D19313112494005BA507 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455D14013112493005BA507 /* ASIAuthenticationDialog.m */; };
 		5455D19413112494005BA507 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455D14313112494005BA507 /* ASIDataCompressor.m */; };
 		5455D19513112494005BA507 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455D14513112494005BA507 /* ASIDataDecompressor.m */; };
@@ -51,7 +50,6 @@
 		5455D1A713112494005BA507 /* ASIS3ObjectRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455D17013112494005BA507 /* ASIS3ObjectRequest.m */; };
 		5455D1A813112494005BA507 /* ASIS3Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455D17213112494005BA507 /* ASIS3Request.m */; };
 		5455D1A913112494005BA507 /* ASIS3ServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455D17413112494005BA507 /* ASIS3ServiceRequest.m */; };
-		5455D1BC131124E0005BA507 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5455D1BB131124E0005BA507 /* libz.dylib */; };
 		5455D1BE131124F5005BA507 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5455D1BD131124F5005BA507 /* Security.framework */; };
 		5455D1C113112509005BA507 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5455D1C013112509005BA507 /* MobileCoreServices.framework */; };
 		5455D1CE1311260D005BA507 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5455D1CD1311260D005BA507 /* Reachability.m */; };
@@ -143,6 +141,8 @@
 		54D260AC123A3989004023A6 /* Previous_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260AA123A3989004023A6 /* Previous_mini.png */; };
 		54E7C6B11245D027006EDACE /* 53-house.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E7C6B01245D027006EDACE /* 53-house.png */; };
 		54E7C6BA1245D126006EDACE /* 23-bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E7C6B91245D126006EDACE /* 23-bird.png */; };
+		54EB001F1337AA71008F325F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54EB001E1337AA71008F325F /* libxml2.dylib */; };
+		54EB00211337AA8A008F325F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54EB00201337AA8A008F325F /* libz.dylib */; };
 		54F0BCBE12A5CEAE00986791 /* atMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F0BCBD12A5CEAE00986791 /* atMark.png */; };
 		54F2D06612DDC3FA006C8C77 /* TwitterFriendsGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F2D06512DDC3FA006C8C77 /* TwitterFriendsGetter.m */; };
 /* End PBXBuildFile section */
@@ -369,6 +369,8 @@
 		54D260AA123A3989004023A6 /* Previous_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Previous_mini.png; path = icons/mediaIcons005/Previous_mini.png; sourceTree = "<group>"; };
 		54E7C6B01245D027006EDACE /* 53-house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "53-house.png"; sourceTree = "<group>"; };
 		54E7C6B91245D126006EDACE /* 23-bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "23-bird.png"; sourceTree = "<group>"; };
+		54EB001E1337AA71008F325F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		54EB00201337AA8A008F325F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		54F0BCBD12A5CEAE00986791 /* atMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atMark.png; sourceTree = "<group>"; };
 		54F2D06412DDC3FA006C8C77 /* TwitterFriendsGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterFriendsGetter.h; sourceTree = "<group>"; };
 		54F2D06512DDC3FA006C8C77 /* TwitterFriendsGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterFriendsGetter.m; sourceTree = "<group>"; };
@@ -380,6 +382,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54EB00211337AA8A008F325F /* libz.dylib in Frameworks */,
+				54EB001F1337AA71008F325F /* libxml2.dylib in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
@@ -390,8 +394,6 @@
 				5465131D122B510A003DE639 /* CoreGraphics.framework in Frameworks */,
 				5455CFF3131116CC005BA507 /* CFNetwork.framework in Frameworks */,
 				5455CFF6131116E6005BA507 /* SystemConfiguration.framework in Frameworks */,
-				5455D01013111EE5005BA507 /* libxml2.dylib in Frameworks */,
-				5455D1BC131124E0005BA507 /* libz.dylib in Frameworks */,
 				5455D1BE131124F5005BA507 /* Security.framework in Frameworks */,
 				5455D1C113112509005BA507 /* MobileCoreServices.framework in Frameworks */,
 			);
@@ -483,6 +485,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				54EB00201337AA8A008F325F /* libz.dylib */,
+				54EB001E1337AA71008F325F /* libxml2.dylib */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -973,11 +977,12 @@
 				HEADER_SEARCH_PATHS = (
 					/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/libxml2,
 					/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.1.sdk/usr/include/libxml2,
+					"/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E13DA5BF-C612-4C43-B78E-DCBF9C7BAE40";
-				SDKROOT = iphoneos4.2;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -985,18 +990,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlayingFriends_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
-					"/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/libxml2/**",
 					/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/libxml2,
+					/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/libxml2,
+					"/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				PRODUCT_NAME = "Now Playing Friends";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E13DA5BF-C612-4C43-B78E-DCBF9C7BAE40";
-				SDKROOT = iphoneos4.2;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1029,11 +1035,12 @@
 				HEADER_SEARCH_PATHS = (
 					/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/libxml2,
 					/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.1.sdk/usr/include/libxml2,
+					"/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7A2E7796-10D3-43DB-9E1F-BCD8EDD009ED";
-				SDKROOT = iphoneos4.2;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;

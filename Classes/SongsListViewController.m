@@ -89,9 +89,23 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   NSInteger row = [indexPath row];
   MPMediaItem *selectedItem = [[playlist items] objectAtIndex:row];
   
-  [musicPlayer setQueueWithItemCollection:playlist];
-  [musicPlayer setNowPlayingItem:selectedItem];
-  [musicPlayer play];
+  if ([self playListType] == kAlbumListType) {
+    MPMediaQuery *query = [[[MPMediaQuery alloc] init] autorelease];
+    MPMediaItem *representativeItem = [playlist representativeItem];
+    NSString *albumTitle = [representativeItem valueForProperty:
+						 MPMediaItemPropertyAlbumTitle];
+    [query addFilterPredicate:[MPMediaPropertyPredicate 
+				predicateWithValue:albumTitle
+				forProperty: MPMediaItemPropertyAlbumTitle]];
+    [musicPlayer setQueueWithQuery:query];
+    [musicPlayer setNowPlayingItem:selectedItem];
+  } else {
+    [musicPlayer setQueueWithItemCollection:playlist];
+    [musicPlayer setNowPlayingItem:selectedItem];
+  }
+
+
+    [musicPlayer play];
 }
 
 #pragma mark -
@@ -124,6 +138,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	 target:musicPlayerViewController];
 
 }
+
+#pragma mark -
+
+- (NSInteger)playListType {
+  return -1;
+}
+
 
 #pragma mark -
 #pragma mark Local Methods

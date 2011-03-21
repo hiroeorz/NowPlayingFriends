@@ -139,7 +139,7 @@
 
 - (void)setupMusicPlayer {
 
-  [self setMusicPlayer:[MPMusicPlayerController iPodMusicPlayer]];
+  self.musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
 }
 
 - (NSString *)nowPlayingTagsString {

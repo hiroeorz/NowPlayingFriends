@@ -13,7 +13,7 @@
 @implementation AlbumSongsViewController
 
 #pragma mark -
-#pragma mark Memory management
+                                                                                                                        #pragma mark Memory management
 
 - (void)dealloc {
 
@@ -102,6 +102,13 @@
         
   return cell;
 }
+
+#pragma mark -
+
+- (NSInteger)playListType {
+  return kAlbumListType;
+}
+
 
 @end
 

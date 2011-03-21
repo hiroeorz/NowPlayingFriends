@@ -6,6 +6,9 @@
 
 #import "NowPlayingFriendsAppDelegate.h"
 
+#define kAlbumListType 0
+#define kPlayListType 1
+
 @class MusicPlayerViewController;
 
 @interface SongsListViewController : UIViewController <UITableViewDelegate> {
@@ -23,5 +26,7 @@
 @property (nonatomic, retain) UITableView *songListView;
 @property (nonatomic, retain, readonly) NowPlayingFriendsAppDelegate *appDelegate;
 @property (nonatomic, retain) NSString *playListTitle;
+
+- (NSInteger)playListType;
 
 @end

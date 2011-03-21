@@ -1503,13 +1503,22 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
   NSInteger listRow = [indexPath row] - 1;
-  
+
   if (listmode == kListModePlayList) {
+    NSLog(@"helo_1");
     MPMediaPlaylist *playlist = [playLists objectAtIndex:listRow];
     [musicPlayer setQueueWithItemCollection:playlist];
   } else {
     MPMediaItemCollection *album = [albumLists objectAtIndex:listRow];
-    [musicPlayer setQueueWithItemCollection:album];
+    MPMediaQuery *query = [[[MPMediaQuery alloc] init] autorelease];
+    MPMediaItem *representativeItem = [album representativeItem];
+    NSString *albumTitle = [representativeItem valueForProperty:
+						 MPMediaItemPropertyAlbumTitle];
+    [query addFilterPredicate:[MPMediaPropertyPredicate 
+				predicateWithValue:albumTitle
+				forProperty: MPMediaItemPropertyAlbumTitle]];
+
+    [musicPlayer setQueueWithQuery:query];
   }
 
   [musicPlayer play];

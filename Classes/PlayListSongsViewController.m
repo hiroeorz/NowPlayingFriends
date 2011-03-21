@@ -102,4 +102,10 @@
   return cell;
 }
 
+#pragma mark -
+
+- (NSInteger)playListType {
+  return kPlayListType;
+}
+
 @end
