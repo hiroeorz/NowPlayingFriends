@@ -8,6 +8,11 @@
 	<string>Friends</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>icon.png</string>
+		<string>friends2_114_114.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.HiroeOrz17.NowPlayingFriends</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -19,10 +24,14 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.8.0</string>
+	<string>1.8.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
 </dict>
 </plist>

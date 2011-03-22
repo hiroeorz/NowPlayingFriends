@@ -143,6 +143,8 @@
 		54E7C6BA1245D126006EDACE /* 23-bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E7C6B91245D126006EDACE /* 23-bird.png */; };
 		54EB001F1337AA71008F325F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54EB001E1337AA71008F325F /* libxml2.dylib */; };
 		54EB00211337AA8A008F325F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54EB00201337AA8A008F325F /* libz.dylib */; };
+		54EB0023133826EF008F325F /* friends2_114_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 54EB0022133826EE008F325F /* friends2_114_114.png */; };
+		54EB002513382728008F325F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54EB002413382728008F325F /* Default@2x.png */; };
 		54F0BCBE12A5CEAE00986791 /* atMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F0BCBD12A5CEAE00986791 /* atMark.png */; };
 		54F2D06612DDC3FA006C8C77 /* TwitterFriendsGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F2D06512DDC3FA006C8C77 /* TwitterFriendsGetter.m */; };
 /* End PBXBuildFile section */
@@ -371,6 +373,8 @@
 		54E7C6B91245D126006EDACE /* 23-bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "23-bird.png"; sourceTree = "<group>"; };
 		54EB001E1337AA71008F325F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		54EB00201337AA8A008F325F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		54EB0022133826EE008F325F /* friends2_114_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends2_114_114.png; sourceTree = "<group>"; };
+		54EB002413382728008F325F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		54F0BCBD12A5CEAE00986791 /* atMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atMark.png; sourceTree = "<group>"; };
 		54F2D06412DDC3FA006C8C77 /* TwitterFriendsGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterFriendsGetter.h; sourceTree = "<group>"; };
 		54F2D06512DDC3FA006C8C77 /* TwitterFriendsGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterFriendsGetter.m; sourceTree = "<group>"; };
@@ -485,6 +489,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				54EB002413382728008F325F /* Default@2x.png */,
+				54EB0022133826EE008F325F /* friends2_114_114.png */,
 				54EB00201337AA8A008F325F /* libz.dylib */,
 				54EB001E1337AA71008F325F /* libxml2.dylib */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -871,6 +877,8 @@
 				5441761212F24F6E00A29AD7 /* no_artwork_image.png in Resources */,
 				549EFEB01300383A00908AB6 /* SettingSelectYouTubeLinkView.xib in Resources */,
 				5455D2AC1311FA01005BA507 /* 68-paperclip.png in Resources */,
+				54EB0023133826EF008F325F /* friends2_114_114.png in Resources */,
+				54EB002513382728008F325F /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -980,6 +988,7 @@
 					"/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E13DA5BF-C612-4C43-B78E-DCBF9C7BAE40";
 				SDKROOT = iphoneos;
@@ -1000,6 +1009,7 @@
 					"/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -1011,7 +1021,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: HIROE Shin";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: HIROE Shin";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos4.3]" = "iPhone Distribution: HIROE Shin";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
@@ -1019,8 +1030,9 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				PRODUCT_NAME = "Now Playing Friends";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7A2E7796-10D3-43DB-9E1F-BCD8EDD009ED";
-				SDKROOT = iphoneos4.1;
+				PROVISIONING_PROFILE = "5590599A-59E5-4A68-B502-980087B86F4F";
+				"PROVISIONING_PROFILE[sdk=iphoneos4.3]" = "5590599A-59E5-4A68-B502-980087B86F4F";
+				SDKROOT = iphoneos;
 			};
 			name = Distribution;
 		};
@@ -1038,6 +1050,7 @@
 					"/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7A2E7796-10D3-43DB-9E1F-BCD8EDD009ED";
 				SDKROOT = iphoneos;
@@ -1049,14 +1062,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Now Playing Friends";
-				SDKROOT = iphoneos4.1;
+				PROVISIONING_PROFILE = "FC01B822-742A-48BD-AC5F-8A66FC371D00";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FC01B822-742A-48BD-AC5F-8A66FC371D00";
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -1064,7 +1080,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
@@ -1072,7 +1089,9 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				PRODUCT_NAME = "Now Playing Friends";
-				SDKROOT = iphoneos4.0;
+				PROVISIONING_PROFILE = "7D35113F-1B9A-4FF6-BB21-3933CED6353E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FC01B822-742A-48BD-AC5F-8A66FC371D00";
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
