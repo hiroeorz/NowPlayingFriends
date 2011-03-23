@@ -225,15 +225,14 @@
 
   //NSLog(@"Twitpic receiveData.json: %@", jsonDictionary);
 
-  NSString *tweet = [jsonDictionary objectForKey:@"text"];
   NSString *picUrl = [jsonDictionary objectForKey:@"url"];
   NSString *picId = [jsonDictionary objectForKey:@"id"];
 
   NSString *formattedTweet = [NSString stringWithFormat:@"%@ %@", 
-				       tweet, picUrl];
+				       tweetString, picUrl];
 
   if ([formattedTweet length] > kMaxTweetLength) { /* 140文字超えたらリンク切り捨て */
-    formattedTweet = [NSString stringWithFormat:@"%@", tweet];
+    formattedTweet = [NSString stringWithFormat:@"%@", tweetString];
   }
   if ([formattedTweet length] > kMaxTweetLength) { /* それでも長かったら切り捨て */
     formattedTweet = [formattedTweet substringToIndex:kMaxTweetLength];
