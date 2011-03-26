@@ -88,7 +88,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
   NSInteger row = [indexPath row];
   MPMediaItem *selectedItem = [[playlist items] objectAtIndex:row];
-
+  
   if ([self playListType] == kAlbumListType) {
     MPMediaQuery *query = [[[MPMediaQuery alloc] init] autorelease];
     MPMediaItem *representativeItem = [playlist representativeItem];

@@ -59,7 +59,6 @@
   BOOL sent;
   BOOL updatingFlag;
   BOOL updateAfterSafetyTime;
-  NSNumber *nowPlayingSongId;
   MPMusicPlayerController *musicPlayer;
   NSArray *albumLists;
   NSArray *beforeTimeline;
@@ -121,7 +120,6 @@
 @property (nonatomic, retain) NSMutableArray *addLinkArray;
 @property (nonatomic, retain) NSMutableArray *nowButtons;
 @property (nonatomic, retain) NSMutableArray *profileImageButtons;
-@property (nonatomic, retain) NSNumber *nowPlayingSongId;
 @property (nonatomic, retain) NSString *refreshProfileImagesMutex;
 @property (nonatomic, retain) TwitterClient *twitterClient;
 @property (nonatomic, retain) UIView *baseView;
