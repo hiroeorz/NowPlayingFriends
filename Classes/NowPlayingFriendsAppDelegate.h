@@ -79,6 +79,7 @@
 - (void)setupMusicPlayer;
 - (void)handle_NowPlayingItemChanged:(id)notification;
 
+- (NSNumber *)nowPlayingSongId;
 - (NSString *)nowPlayingTitle;
 - (NSString *)nowPlayingAlbumTitle;
 - (NSString *)nowPlayingArtistName;

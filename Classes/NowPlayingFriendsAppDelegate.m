@@ -389,6 +389,17 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   return tweet;
 }
 
+- (NSNumber *)nowPlayingSongId {
+
+  MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
+
+  if (currentItem == nil) {
+    return -1;
+  }
+
+  return [currentItem valueForProperty:MPMediaItemPropertyPersistentID];
+}
+
 - (NSString *)nowPlayingTitle {
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];

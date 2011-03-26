@@ -88,7 +88,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
   NSInteger row = [indexPath row];
   MPMediaItem *selectedItem = [[playlist items] objectAtIndex:row];
-  
+
   if ([self playListType] == kAlbumListType) {
     MPMediaQuery *query = [[[MPMediaQuery alloc] init] autorelease];
     MPMediaItem *representativeItem = [playlist representativeItem];
@@ -98,14 +98,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 				predicateWithValue:albumTitle
 				forProperty: MPMediaItemPropertyAlbumTitle]];
     [musicPlayer setQueueWithQuery:query];
-    [musicPlayer setNowPlayingItem:selectedItem];
   } else {
     [musicPlayer setQueueWithItemCollection:playlist];
-    [musicPlayer setNowPlayingItem:selectedItem];
   }
 
-
-    [musicPlayer play];
+  [musicPlayer setNowPlayingItem:selectedItem];
+  [musicPlayer play];
 }
 
 #pragma mark -

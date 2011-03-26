@@ -83,6 +83,7 @@
 @synthesize musicPlayer;
 @synthesize musicSegmentedControl;
 @synthesize nowButtons;
+@synthesize nowPlayingSongId;
 @synthesize playButton;
 @synthesize playLists;
 @synthesize profileImageButtons;
@@ -119,6 +120,7 @@
   [musicControllerView release];
   [musicSegmentedControl release];
   [nowButtons release];
+  [nowPlayingSongId release];
   [playLists release];
   [profileImageButtons release];
   [refreshProfileImagesMutex release];
@@ -149,6 +151,7 @@
   self.musicControllerView = nil;
   self.musicSegmentedControl = nil;
   self.nowButtons = nil;
+  self.nowPlayingSongId = nil;
   self.playLists = nil;
   self.profileImageButtons = nil;
   self.refreshProfileImagesMutex = nil;
@@ -185,6 +188,7 @@
     updatingFlag = NO;
     cancelFlag = NO;
     updateAfterSafetyTime = NO;
+    nowPlayingSongId = nil;
 
     TwitterClient *client = [[TwitterClient alloc] init];
     self.twitterClient = client;
@@ -479,7 +483,11 @@
 			   forSegmentAtIndex:1];
 
     if (self.appDelegate.get_twitterusers_preference) {
-      refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
+      
+      if (refreshTypeSegmentedControl.selectedSegmentIndex != kRefreshTypeAll) {
+	refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
+      }
+
       [self displaySubview];
     }
   }
@@ -495,7 +503,11 @@
 			   forSegmentAtIndex:1];
 
     if (self.appDelegate.get_twitterusers_preference) {
-      refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeSong;
+
+      if (refreshTypeSegmentedControl.selectedSegmentIndex != kRefreshTypeSong){
+	refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeSong;
+      }
+
       [self displaySubview];
     }
   }
@@ -511,13 +523,21 @@
 			   forSegmentAtIndex:1];
 
     if (self.appDelegate.get_twitterusers_preference) {
-      refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
+
+      if (refreshTypeSegmentedControl.selectedSegmentIndex != kRefreshTypeAll) {
+	refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
+      }
+
       [self displaySubview];
     }
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStateInterrupted) {
-    refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
+
+    if (refreshTypeSegmentedControl.selectedSegmentIndex != kRefreshTypeAll) {
+      refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
+    }
+
     [self displaySubview];
   }
 
@@ -579,14 +599,15 @@
     [self setMusicArtwork];
     NSString *nowPlayingTitle = 
       [currentItem valueForProperty:MPMediaItemPropertyTitle];
-    
+
     self.navigationController.title = nowPlayingTitle;
     self.navigationController.tabBarItem.title = @"Player";
     
-    NSLog(@"title: %@", nowPlayingTitle);
     
     if (self.appDelegate.get_twitterusers_preference &&
 	[musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
+
+      NSLog(@"title: %@", nowPlayingTitle);
 
       if (refreshTypeSegmentedControl.selectedSegmentIndex == kRefreshTypeSong){
 	[self performSelectorInBackground:@selector(refreshProfileImages)
@@ -823,11 +844,12 @@
 	NSLog(@"oAuth Token is not exist. refresh not executed.");
 	return;
       }
-      
+
       cancelFlag = YES;
       NSLog(@"waiting for mutex...");
       
       @synchronized(refreshProfileImagesMutex) {
+	self.nowPlayingSongId = [self.appDelegate nowPlayingSongId];
 	cancelFlag = NO;
 	updatingFlag = YES;
 	NSLog(@"starting refresh timeline");
@@ -863,6 +885,7 @@
   NSLog(@"INDEX: %d", refreshTypeSegmentedControl.selectedSegmentIndex);
 
   if (cancelFlag) {
+    NSLog(@"Stopping refresh timeline because cacelFlag=YES");
     return;
   }
 
