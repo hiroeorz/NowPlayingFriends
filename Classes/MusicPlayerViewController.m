@@ -817,17 +817,24 @@
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-  if (self.appDelegate.get_twitterusers_preference == YES) {
+  if (cancelFlag == YES) { /* すでに待ちがある場合はやめる。 */
+    NSLog(@"cancel waiting for mutex because already waiting thread is exist.");
+    [pool release];
+    return; 
+  }
+ 
+  cancelFlag = YES;
+  NSLog(@"waiting for mutex...");
+  
+  @synchronized(refreshProfileImagesMutex) {
+
     @try {
-      if (![twitterClient oAuthTokenExist]) {
-	NSLog(@"oAuth Token is not exist. refresh not executed.");
-	return;
-      }
-      
-      cancelFlag = YES;
-      NSLog(@"waiting for mutex...");
-      
-      @synchronized(refreshProfileImagesMutex) {
+      if (self.appDelegate.get_twitterusers_preference == YES) {
+	if (![twitterClient oAuthTokenExist]) {
+	  NSLog(@"oAuth Token is not exist. refresh not executed.");
+	  return;
+	}
+	
 	cancelFlag = NO;
 	updatingFlag = YES;
 	NSLog(@"starting refresh timeline");
@@ -847,7 +854,6 @@
     }
   }
 
-  [self.appDelegate cleanupProfileImageFileCache];
   [pool release];
 }
 
@@ -891,9 +897,7 @@
     }
   }
 
-  @synchronized(timeline) {
-    self.timeline = uniqArray;
-  }
+  self.timeline = uniqArray;
 
   [client release];
   [uniqArray release];
@@ -975,10 +979,8 @@
 			    nil];
     
     if (newButtonFlag == YES) {
-
-      @synchronized(profileImageButtons) {
-	[profileImageButtons addObject:profileImageButton];
-      }
+      
+      [profileImageButtons addObject:profileImageButton];
 
       [self performSelectorOnMainThread:@selector(addProfileImageButton:)
 	    withObject:objects

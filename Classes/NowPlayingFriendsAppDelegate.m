@@ -336,8 +336,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (void)applicationWillResignActive:(UIApplication *)application {
 }
 
-
+/**
+ * @brief アプリがバックグラウンドに移行する際に呼ばれる。
+ */
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+  NSLog(@"application goto background.");
+  [self cleanupProfileImageFileCache];
 }
 
 
@@ -348,12 +352,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 }
 
-
 /**
    applicationWillTerminate: saves changes in the application's managed object context before the application terminates.
 */
 - (void)applicationWillTerminate:(UIApplication *)application {
-  
+
   NSError *error = nil;
   if (managedObjectContext_ != nil) {
     if ([managedObjectContext_ hasChanges] && ![managedObjectContext_ save:&error]) {
@@ -935,7 +938,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [normalImageURLString stringByReplacingOccurrencesOfString:@"_normal.jpg"
 			  withString:@".jpg"];
 
-
   NSURL *imageURL = [NSURL URLWithString:imageURLString];
   NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
   UIImage *newImage = [[UIImage alloc] initWithData:imageData];
@@ -1059,7 +1061,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (void)cleanupProfileImageFileCache {
 
   NSString *dirpath = [self createDirectory:kProfileImageDirectory];
-
   NSError *error = nil;
   NSArray *filesArray = [[NSFileManager defaultManager] 
 			  subpathsOfDirectoryAtPath:dirpath error:&error];

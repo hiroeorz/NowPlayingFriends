@@ -374,7 +374,6 @@
 	  waitUntilDone:NO];    
   }
 
-  [self.appDelegate cleanupProfileImageFileCache];
   [pool release];
 }
 
