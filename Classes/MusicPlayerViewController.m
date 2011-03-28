@@ -26,6 +26,8 @@
 
 @interface MusicPlayerViewController (Local)
 
+- (void)playBackStateDidChanged;
+
 - (void)openUserInformationView:(id)sender;
 - (void)setMusicArtwork;
 - (void)refreshTimeline;
@@ -160,9 +162,12 @@
   self.songView = nil;
   self.subControlDisplayButton = nil;
   self.timeline = nil;
-  self.twitterClient = nil;
   self.volumeSlider = nil;
   self.youTubeButton = nil;
+
+  /* not release objects
+  self.twitterClient = nil;
+  */
 
   [self.appDelegate removeMusicPlayerNotification:self];
   [super viewDidUnload];
@@ -186,10 +191,7 @@
     cancelFlag = NO;
     updateAfterSafetyTime = NO;
 
-    TwitterClient *client = [[TwitterClient alloc] init];
-    self.twitterClient = client;
-    [client release];
-
+    self.twitterClient = nil;
     addLinkArray = [[NSMutableArray alloc] init];
   }
   return self;
@@ -199,6 +201,12 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
+
+  if (twitterClient == nil) { /* created at first view loaded only */
+    TwitterClient *client = [[TwitterClient alloc] init];
+    self.twitterClient = client;
+    [client release];
+  }
 
   self.baseView = self.view;
   self.refreshProfileImagesMutex = @"refreshProfileImagesMutex";
@@ -257,6 +265,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+  [self playBackStateDidChanged];
   [super viewWillDisappear:animated];
 }
 
@@ -462,6 +471,10 @@
  * @brief プレイヤーの制御状況が変化したときに呼ばれる。
  */
 - (void)handle_PlayBackStateDidChanged:(id)notification {
+  [self playBackStateDidChanged];
+}
+
+- (void)playBackStateDidChanged {
   
   UIImage *image;  
   UIImage *miniImage;
@@ -817,12 +830,6 @@
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-  if (cancelFlag == YES) { /* すでに待ちがある場合はやめる。 */
-    NSLog(@"cancel waiting for mutex because already waiting thread is exist.");
-    [pool release];
-    return; 
-  }
- 
   cancelFlag = YES;
   NSLog(@"waiting for mutex...");
   
