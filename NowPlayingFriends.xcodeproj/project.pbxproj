@@ -1040,7 +1040,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: HIROE Shin";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlayingFriends_Prefix.pch;
@@ -1052,7 +1051,6 @@
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "Now Playing Friends";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7A2E7796-10D3-43DB-9E1F-BCD8EDD009ED";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
