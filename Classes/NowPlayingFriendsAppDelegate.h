@@ -90,8 +90,15 @@
 
 - (void)setupMusicPlayer;
 - (NSString *)nowPlayingTagsString;
+
 - (NSArray *)albums;
 - (NSArray *)playLists;
+- (NSArray *)searchAlbums:(NSString *)searchTerm;
+- (NSArray *)searchPlaylists:(NSString *)searchTerm;
+- (NSArray *)searchPlaylistsByPlaylistName:(NSString *)searchTerm;
+- (NSArray *)searchAlbumsByArtistName:(NSString *)searchTerm;
+- (NSArray *)searchAlbumsByAlbumName:(NSString *)searchTerm;
+
 - (BOOL)hasYouTubeLink;
 - (NSString *)tweetString;
 

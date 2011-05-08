@@ -22,6 +22,9 @@
 
 @interface NowPlayingFriendsAppDelegate (Local)
 
+- (NSArray *)searchAlbumsOrPlaylists:(NSString *)searchTerm
+		   mediaGroupingType:(NSInteger)groupingType
+		   predicateProperty:(NSString *)mediaItemProperty;
 @end
 
 
@@ -173,6 +176,73 @@
   [query release];
 
   return albums;
+}
+
+- (NSArray *)searchAlbums:(NSString *)searchTerm {
+  
+  NSMutableArray *array = [NSMutableArray array];
+  [array addObjectsFromArray:[self searchAlbumsByAlbumName:searchTerm]];
+  [array addObjectsFromArray:[self searchAlbumsByArtistName:searchTerm]];
+
+  return array;
+}
+
+- (NSArray *)searchPlaylists:(NSString *)searchTerm {
+  
+  NSMutableArray *array = [NSMutableArray array];
+  [array addObjectsFromArray:[self searchPlaylistsByPlaylistName:searchTerm]];
+
+  return array;
+}
+
+- (NSArray *)searchAlbumsOrPlaylists:(NSString *)searchTerm
+		   mediaGroupingType:(NSInteger)groupingType
+		   predicateProperty:(NSString *)mediaItemProperty {
+  
+ MPMediaQuery *query = [[MPMediaQuery alloc] init];
+  [query setGroupingType: groupingType];
+
+  MPMediaPropertyPredicate *predicate = 
+    [MPMediaPropertyPredicate predicateWithValue: searchTerm
+			     forProperty: mediaItemProperty
+			     comparisonType:MPMediaPredicateComparisonContains];
+  
+  [query addFilterPredicate:predicate];
+
+  NSArray *albums = [query collections];
+  [query release];
+  
+  return albums;
+}
+
+/**
+ * @brief 与えられた文字列を含むアーティストのアルバムオブジェクトを返す。
+ */
+- (NSArray *)searchPlaylistsByPlaylistName:(NSString *)searchTerm {
+
+  return [self searchAlbumsOrPlaylists:searchTerm
+	       mediaGroupingType:MPMediaGroupingPlaylist
+	       predicateProperty:MPMediaItemPropertyArtist];
+}
+
+/**
+ * @brief 与えられた文字列を含むアーティストのアルバムオブジェクトを返す。
+ */
+- (NSArray *)searchAlbumsByArtistName:(NSString *)searchTerm {
+
+  return [self searchAlbumsOrPlaylists:searchTerm
+	       mediaGroupingType:MPMediaGroupingAlbum
+	       predicateProperty:MPMediaItemPropertyArtist];
+}
+
+/**
+ * @brief 与えられた文字列を含むアルバム名のアルバムオブジェクトを返す。
+ */
+- (NSArray *)searchAlbumsByAlbumName:(NSString *)searchTerm {
+
+  return [self searchAlbumsOrPlaylists:searchTerm
+	       mediaGroupingType:MPMediaGroupingAlbum
+	       predicateProperty:MPMediaItemPropertyAlbumTitle];
 }
 
 - (void)handle_NowPlayingItemChanged:(id)notification {

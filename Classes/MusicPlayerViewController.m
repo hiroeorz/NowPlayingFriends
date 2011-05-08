@@ -93,6 +93,7 @@
 @synthesize repeatModeControll;
 @synthesize sending;
 @synthesize sent;
+@synthesize songSearchBar;
 @synthesize settingView;
 @synthesize shuffleModeControll;
 @synthesize songListController;
@@ -126,6 +127,7 @@
   [refreshProfileImagesMutex release];
   [refreshTypeSegmentedControl release];
   [repeatModeControll release];
+  [songSearchBar release];
   [settingView release];
   [shuffleModeControll release];
   [songListController release];
@@ -156,6 +158,7 @@
   self.refreshProfileImagesMutex = nil;
   self.refreshTypeSegmentedControl = nil;
   self.repeatModeControll = nil;
+  self.songSearchBar = nil;
   self.settingView = nil;
   self.shuffleModeControll = nil;
   self.songListController = nil;
@@ -1569,6 +1572,48 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
   [viewController setMusicPlayerViewController:self];
   [viewController setPlayListTitle:listTitle];
   [self.navigationController pushViewController:viewController animated:YES];
+}
+
+#pragma mark -
+#pragma mark Search Bar Delegate Methods
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+
+  NSString *searchTerm = [searchBar text];
+  NSLog(@"search request received: '%@'", searchTerm);
+
+  if (listmode == kListModeAlbum) {
+    self.albumLists = [self.appDelegate searchAlbums:searchTerm];
+  } else {
+  }
+  [listView reloadData];
+  [searchBar resignFirstResponder];
+}
+
+- (void)searchBar:(UISearchBar *)saearchBar
+    textDidChange:(NSString *)searchTerm {
+  
+  if ([searchTerm length] == 0) {
+    self.albumLists = [self.appDelegate albums];
+    self.playLists = [self.appDelegate playLists];
+    [listView reloadData];    
+  } else {
+    if (listmode == kListModeAlbum) { 
+      self.albumLists = [self.appDelegate searchAlbums:searchTerm];
+    } else {
+
+    }
+    [listView reloadData];
+  }
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+
+  songSearchBar.text = @"";
+  self.albumLists = [self.appDelegate albums];
+  self.playLists = [self.appDelegate playLists];
+  [listView reloadData];
+  [searchBar resignFirstResponder];
 }
 
 #pragma mark -

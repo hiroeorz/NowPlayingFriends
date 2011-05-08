@@ -992,6 +992,7 @@
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E13DA5BF-C612-4C43-B78E-DCBF9C7BAE40";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1013,6 +1014,7 @@
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1052,6 +1054,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "Now Playing Friends";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;
@@ -1061,7 +1064,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos4.3]" = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
@@ -1069,7 +1072,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "Now Playing Friends";
 				PROVISIONING_PROFILE = "FC01B822-742A-48BD-AC5F-8A66FC371D00";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FC01B822-742A-48BD-AC5F-8A66FC371D00";
+				"PROVISIONING_PROFILE[sdk=iphoneos4.3]" = "FC01B822-742A-48BD-AC5F-8A66FC371D00";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

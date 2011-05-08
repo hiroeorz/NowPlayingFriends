@@ -47,7 +47,8 @@
 #define kAccelerationUpdateInterval (1.0f / 10.0f)
 
 @interface MusicPlayerViewController : UIViewController 
-<UITableViewDataSource, UITableViewDelegate, UIAccelerometerDelegate> {
+<UITableViewDataSource, UITableViewDelegate, UIAccelerometerDelegate,
+ UISearchBarDelegate> {
 
   NSArray *timeline;
 
@@ -80,6 +81,7 @@
   UISegmentedControl *repeatModeControll;
   UISegmentedControl *shuffleModeControll;
   UISlider *volumeSlider;
+  UISearchBar *songSearchBar;
   UISwitch *autoTweetSwitch;
   UITableView *listView;
   UIView *baseView;
@@ -105,6 +107,7 @@
 @property (nonatomic, retain) IBOutlet UISegmentedControl *refreshTypeSegmentedControl;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *repeatModeControll;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *shuffleModeControll;
+@property (nonatomic, retain) IBOutlet UISearchBar *songSearchBar;
 @property (nonatomic, retain) IBOutlet UISlider *volumeSlider;
 @property (nonatomic, retain) IBOutlet UISwitch *autoTweetSwitch;
 @property (nonatomic, retain) IBOutlet UITableView *listView;
