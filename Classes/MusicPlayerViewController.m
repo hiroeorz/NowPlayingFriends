@@ -1368,6 +1368,16 @@
 - (void)listModeChanged:(id)sender {
 
   listmode = [sender selectedSegmentIndex];
+  NSString *searchTerm = [songSearchBar text];
+
+  if (![searchTerm isEqualToString:@""]) {
+    if (listmode == kListModeAlbum) {
+      self.albumLists = [self.appDelegate searchAlbums:searchTerm];
+    } else {
+      self.playLists = [self.appDelegate searchPlaylists:searchTerm];
+    }
+  }
+
   [listView reloadData];
 }
 
@@ -1580,7 +1590,6 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
 
   NSString *searchTerm = [searchBar text];
-  NSLog(@"search request received: '%@'", searchTerm);
 
   if (listmode == kListModeAlbum) {
     self.albumLists = [self.appDelegate searchAlbums:searchTerm];
