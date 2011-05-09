@@ -1585,6 +1585,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
   if (listmode == kListModeAlbum) {
     self.albumLists = [self.appDelegate searchAlbums:searchTerm];
   } else {
+    self.playLists = [self.appDelegate searchPlaylists:searchTerm];
   }
   [listView reloadData];
   [searchBar resignFirstResponder];
@@ -1601,7 +1602,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     if (listmode == kListModeAlbum) { 
       self.albumLists = [self.appDelegate searchAlbums:searchTerm];
     } else {
-
+      self.playLists = [self.appDelegate searchPlaylists:searchTerm];
     }
     [listView reloadData];
   }

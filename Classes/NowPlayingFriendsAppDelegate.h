@@ -93,9 +93,13 @@
 
 - (NSArray *)albums;
 - (NSArray *)playLists;
+
 - (NSArray *)searchAlbums:(NSString *)searchTerm;
 - (NSArray *)searchPlaylists:(NSString *)searchTerm;
 - (NSArray *)searchPlaylistsByPlaylistName:(NSString *)searchTerm;
+- (NSArray *)searchAlbumsBySongTitle:(NSString *)searchTerm;
+- (NSArray *)searchPlaylistsBySongTitle:(NSString *)searchTerm;
+- (NSArray *)searchPlaylistsByArtistName:(NSString *)searchTerm;
 - (NSArray *)searchAlbumsByArtistName:(NSString *)searchTerm;
 - (NSArray *)searchAlbumsByAlbumName:(NSString *)searchTerm;
 

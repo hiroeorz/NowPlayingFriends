@@ -25,6 +25,10 @@
 - (NSArray *)searchAlbumsOrPlaylists:(NSString *)searchTerm
 		   mediaGroupingType:(NSInteger)groupingType
 		   predicateProperty:(NSString *)mediaItemProperty;
+
+- (NSArray *)searchAlbumsOrPlaylistsBySong:(NSString *)searchTerm
+			 mediaGroupingType:(NSInteger)groupingType
+			 predicateProperty:(NSString *)mediaItemProperty;
 @end
 
 
@@ -183,6 +187,7 @@
   NSMutableArray *array = [NSMutableArray array];
   [array addObjectsFromArray:[self searchAlbumsByAlbumName:searchTerm]];
   [array addObjectsFromArray:[self searchAlbumsByArtistName:searchTerm]];
+  [array addObjectsFromArray:[self searchAlbumsBySongTitle:searchTerm]];
 
   return array;
 }
@@ -191,6 +196,8 @@
   
   NSMutableArray *array = [NSMutableArray array];
   [array addObjectsFromArray:[self searchPlaylistsByPlaylistName:searchTerm]];
+  [array addObjectsFromArray:[self searchPlaylistsBySongTitle:searchTerm]];
+  [array addObjectsFromArray:[self searchPlaylistsByArtistName:searchTerm]];
 
   return array;
 }
@@ -220,10 +227,87 @@
  */
 - (NSArray *)searchPlaylistsByPlaylistName:(NSString *)searchTerm {
 
-  return [self searchAlbumsOrPlaylists:searchTerm
+  MPMediaQuery *query = [[MPMediaQuery alloc] init];
+  [query setGroupingType:MPMediaGroupingPlaylist];
+
+  NSArray *playlists = [query collections];
+  [query release];
+
+  NSMutableArray *array = [NSMutableArray array];
+  MPMediaPlaylist *playlist = nil;
+
+  for (playlist in playlists) {
+    NSString *name = [playlist valueForProperty:MPMediaPlaylistPropertyName];
+
+    if ([name rangeOfString:searchTerm].location != NSNotFound) {
+      [array addObject:playlist];
+    }
+  }
+
+  return array;
+}
+
+/**
+ * @brief 与えられた文字列を含む曲名が入っているアルバムオブジェクトを返す。
+ */
+- (NSArray *)searchAlbumsBySongTitle:(NSString *)searchTerm {
+
+  return [self searchAlbumsOrPlaylistsBySong:searchTerm
+	       mediaGroupingType:MPMediaGroupingAlbum
+	       predicateProperty:MPMediaItemPropertyTitle];
+}
+
+/**
+ * @brief 与えられた文字列を含む曲名が入っているプレイリストオブジェクトを返す。
+ */
+- (NSArray *)searchPlaylistsBySongTitle:(NSString *)searchTerm {
+
+  return [self searchAlbumsOrPlaylistsBySong:searchTerm
+	       mediaGroupingType:MPMediaGroupingPlaylist
+	       predicateProperty:MPMediaItemPropertyTitle];
+}
+
+/**
+ * @brief 与えられた文字列を含むアーティストの曲を含むプレイリストオブジェクトを返す。
+ */
+- (NSArray *)searchPlaylistsByArtistName:(NSString *)searchTerm {
+
+  return [self searchAlbumsOrPlaylistsBySong:searchTerm
 	       mediaGroupingType:MPMediaGroupingPlaylist
 	       predicateProperty:MPMediaItemPropertyArtist];
 }
+
+- (NSArray *)searchAlbumsOrPlaylistsBySong:(NSString *)searchTerm
+		   mediaGroupingType:(NSInteger)groupingType
+		   predicateProperty:(NSString *)mediaItemProperty {
+  
+
+  MPMediaQuery *query = [[MPMediaQuery alloc] init];
+  [query setGroupingType:groupingType];
+
+  NSArray *playlists = [query collections];
+  [query release];
+
+  NSMutableArray *array = [NSMutableArray array];
+  MPMediaPlaylist *playlist = nil;
+
+  for (playlist in playlists) {
+    NSArray *songs = [playlist items];
+    MPMediaItem *song = nil;
+
+    for (song in songs) {
+      NSString *term = [song valueForProperty:mediaItemProperty];
+
+      if ([term rangeOfString:searchTerm].location != NSNotFound) {
+	[array addObject:playlist];
+	break;
+      }
+    }
+  }
+
+  return array;
+}
+
 
 /**
  * @brief 与えられた文字列を含むアーティストのアルバムオブジェクトを返す。
