@@ -167,7 +167,7 @@
     if (array == nil || [array count] == 0) {
       lastName = nil;
     } else {
-      lastName = [array objectAtIndex:0];
+      lastName = [[[array objectAtIndex:0] retain] autorelease];
     }
     
     [array release];

@@ -106,7 +106,7 @@
 - (NSString *)tableView:(UITableView *)tableView
 titleForHeaderInSection:(NSInteger)section {
 
-  NSString* sectionTitle;
+  NSString* sectionTitle = nil;
 
   switch (section) {
   case 0: sectionTitle = @"Tweet Templete";
@@ -145,14 +145,10 @@ titleForHeaderInSection:(NSInteger)section {
     [cell addSubview: aTextView];
 
   } else if ([indexPath section] == 0 && [indexPath row] > 0){
-    cell = [tableView dequeueReusableCellWithIdentifier:SettingCellIdentifier];
-    
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
 				    reuseIdentifier:SettingCellIdentifier];
     [cell autorelease];
   } else {
-    cell = [tableView dequeueReusableCellWithIdentifier:SwitchCellIdentifier];
-    
     CGRect frame = CGRectMake(0, 0, 300, 44);
     cell = [[UITableViewCell alloc] initWithFrame:frame
 				    reuseIdentifier:SwitchCellIdentifier];

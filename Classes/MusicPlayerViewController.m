@@ -703,19 +703,25 @@
   if (aLinksArray == nil || [aLinksArray count] == 0) { return aTweetString; }
 
   NSString *newString = nil;
-  NSString *resultString = [[NSString alloc] initWithString:aTweetString];
+  NSString *resultString = [[[NSString alloc] initWithString:aTweetString]
+			    autorelease];
 
   for (NSString *aLink in aLinksArray) {
-    newString = [[NSString alloc] initWithFormat:@"%@ %@", resultString, aLink];
-    [resultString release];
+    NSString *addedString = [[NSString alloc] 
+			      initWithFormat:@"%@ %@", resultString, aLink];
+    newString = [[NSString alloc] initWithString:addedString];
+    [addedString release];
 
-    if ([newString length] > kMaxTweetLength) {[newString release]; continue;}
+    if ([newString length] > kMaxTweetLength) {
+      [newString release];
+      continue;
+    }
     
-    resultString = [newString retain];
+    resultString = [[[NSString alloc] initWithString:newString] autorelease];
     [newString release];
   }
 
-  return [resultString autorelease];
+  return resultString;
 }
 
 /**
