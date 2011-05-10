@@ -179,29 +179,36 @@
   NSArray *albums = [query collections];
   [query release];
 
-  return albums;
+  return [self uniqArray:albums];
 }
 
+/**
+ * @brief 与えられた文字列を含むアルバムを検索する。
+ */
 - (NSArray *)searchAlbums:(NSString *)searchTerm {
   
   NSMutableArray *array = [NSMutableArray array];
   [array addObjectsFromArray:[self searchAlbumsByAlbumName:searchTerm]];
   [array addObjectsFromArray:[self searchAlbumsByArtistName:searchTerm]];
-  [array addObjectsFromArray:[self searchAlbumsBySongTitle:searchTerm]];
 
-  return array;
+  return [self uniqArray:array];
 }
 
+/**
+ * @brief 与えられた文字列を含むプレイリストを検索する。
+ */
 - (NSArray *)searchPlaylists:(NSString *)searchTerm {
   
   NSMutableArray *array = [NSMutableArray array];
   [array addObjectsFromArray:[self searchPlaylistsByPlaylistName:searchTerm]];
-  [array addObjectsFromArray:[self searchPlaylistsBySongTitle:searchTerm]];
   [array addObjectsFromArray:[self searchPlaylistsByArtistName:searchTerm]];
 
-  return array;
+  return [self uniqArray:array];
 }
 
+/**
+ * @brief 与えられた条件のアルバムまたはプレイリストを検索する。
+ */
 - (NSArray *)searchAlbumsOrPlaylists:(NSString *)searchTerm
 		   mediaGroupingType:(NSInteger)groupingType
 		   predicateProperty:(NSString *)mediaItemProperty {
@@ -248,26 +255,6 @@
 }
 
 /**
- * @brief 与えられた文字列を含む曲名が入っているアルバムオブジェクトを返す。
- */
-- (NSArray *)searchAlbumsBySongTitle:(NSString *)searchTerm {
-
-  return [self searchAlbumsOrPlaylistsBySong:searchTerm
-	       mediaGroupingType:MPMediaGroupingAlbum
-	       predicateProperty:MPMediaItemPropertyTitle];
-}
-
-/**
- * @brief 与えられた文字列を含む曲名が入っているプレイリストオブジェクトを返す。
- */
-- (NSArray *)searchPlaylistsBySongTitle:(NSString *)searchTerm {
-
-  return [self searchAlbumsOrPlaylistsBySong:searchTerm
-	       mediaGroupingType:MPMediaGroupingPlaylist
-	       predicateProperty:MPMediaItemPropertyTitle];
-}
-
-/**
  * @brief 与えられた文字列を含むアーティストの曲を含むプレイリストオブジェクトを返す。
  */
 - (NSArray *)searchPlaylistsByArtistName:(NSString *)searchTerm {
@@ -277,6 +264,9 @@
 	       predicateProperty:MPMediaItemPropertyArtist];
 }
 
+/**
+ * @brief 与えられた条件の曲を含むアルバムまたはプレイリストを検索する。
+ */
 - (NSArray *)searchAlbumsOrPlaylistsBySong:(NSString *)searchTerm
 		   mediaGroupingType:(NSInteger)groupingType
 		   predicateProperty:(NSString *)mediaItemProperty {
@@ -336,6 +326,15 @@
   NSString *nowPlayingTitle = 
     [currentItem valueForProperty: MPMediaItemPropertyTitle];
   NSLog(@"title: %@", nowPlayingTitle);
+}
+
+/**
+ * @brief 与えられた配列から重複を取り除いた配列を返す。
+ */
+-(NSArray *)uniqArray:(NSArray *)origArray {
+
+  NSSet *uniqElementsSet = [NSSet setWithArray:origArray];
+  return [uniqElementsSet allObjects];
 }
 
 - (BOOL)application:(UIApplication *)application 

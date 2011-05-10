@@ -144,7 +144,6 @@
 
   self.addLinkArray = nil;
   self.albumImageView = nil;
-  self.albumLists = nil;
   self.autoTweetSwitch = nil;
   self.baseView = nil;
   self.beforeTimeline = nil;
@@ -153,7 +152,6 @@
   self.musicControllerView = nil;
   self.musicSegmentedControl = nil;
   self.nowButtons = nil;
-  self.playLists = nil;
   self.profileImageButtons = nil;
   self.refreshProfileImagesMutex = nil;
   self.refreshTypeSegmentedControl = nil;
@@ -170,6 +168,8 @@
 
   /* not release objects
   self.twitterClient = nil;
+  self.albumLists = nil;
+  self.playLists = nil;
   */
 
   [self.appDelegate removeMusicPlayerNotification:self];
@@ -249,8 +249,10 @@
 - (void)viewWillAppear:(BOOL)animated {
 
   updateAfterSafetyTime = NO;
-  self.albumLists = [self.appDelegate albums];
-  self.playLists = [self.appDelegate playLists];
+  
+  if (albumLists == nil) { self.albumLists = [self.appDelegate albums];}
+  if (playLists == nil) { self.playLists = [self.appDelegate playLists];}
+
   [autoTweetSwitch setOn:self.appDelegate.autotweet_preference animated:NO];
 
   UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
@@ -1370,7 +1372,7 @@
   listmode = [sender selectedSegmentIndex];
   NSString *searchTerm = [songSearchBar text];
 
-  if (![searchTerm isEqualToString:@""]) {
+  if (searchTerm != nil && ![searchTerm isEqualToString:@""]) {
     if (listmode == kListModeAlbum) {
       self.albumLists = [self.appDelegate searchAlbums:searchTerm];
     } else {
@@ -1557,8 +1559,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
   NSString *listTitle;
 
   if (listmode == kListModeAlbum) { 
-   MPMediaItemCollection *album = [albumLists objectAtIndex:listRow];
-    
+    MPMediaItemCollection *album = [albumLists objectAtIndex:listRow];    
     viewController = 
       (AlbumSongsViewController *)[[AlbumSongsViewController alloc] 
 				    initWithAlbum:album];
