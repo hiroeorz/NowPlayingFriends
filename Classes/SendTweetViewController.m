@@ -296,6 +296,7 @@
       UINavigationController *navController = 
 	[self.appDelegate navigationWithViewController:viewController
 	     title:nil  imageName:nil];
+      [viewController release];
       
       [self presentModalViewController:navController animated:YES];
     }
@@ -309,6 +310,7 @@
       viewController.tweetViewController = self;
       
       [self presentModalViewController:viewController animated:YES];
+      [viewController release];
     }
     break;
   }

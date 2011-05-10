@@ -89,6 +89,7 @@
 			  [self username], cursorNumber];
 
   NSURL *baseUrl = [NSURL URLWithString:urlString];
+  [urlString release];
   OAMutableURLRequest *request = [self authenticatedRequest:baseUrl];
   [request setHTTPMethod:@"GET"];
 
@@ -115,6 +116,7 @@
 			  initWithFormat:kCreateFriendURL, usernameOrId];
 
   NSURL *baseUrl = [NSURL URLWithString:urlString];
+  [urlString release];
   OAMutableURLRequest *request = [self authenticatedRequest:baseUrl];
 
   OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
@@ -133,6 +135,7 @@
 			  initWithFormat:kCheckFriendShipURL, username];
 
   NSDictionary *response = [self dictionaryOfRemoteJson:urlString];
+  [urlString release];
   NSDictionary *relationship = [response objectForKey:@"relationship"];
   NSDictionary *target = [relationship objectForKey:@"target"];
   NSInteger result = [[target objectForKey:@"following"] integerValue];
@@ -157,8 +160,9 @@
 			       sinceId, aCount];
   }
 
-  NSString *urlString = [[NSString alloc] 
-			  initWithFormat:kHomeTimelineURL, username, params];
+  NSString *urlString = [[[NSString alloc] 
+			   initWithFormat:kHomeTimelineURL, username, params]
+			  autorelease];
 
   [params release];
   return [self arrayOfRemoteJson:urlString];
@@ -177,8 +181,9 @@
 			       sinceId, aCount];
   }
 
-  NSString *urlString = [[NSString alloc] 
-			  initWithFormat:kUserTimelineURL, username, params];
+  NSString *urlString = [[[NSString alloc] 
+			   initWithFormat:kUserTimelineURL, username, params]
+			 autorelease];
   [params release];
   return [self arrayOfRemoteJson:urlString];
 }
@@ -199,8 +204,8 @@
 			       sinceId, aCount];
   }
 
-  NSString *urlString = [[NSString alloc] initWithFormat:kMenthonsTimelineURL,
-			 params];
+  NSString *urlString = [[[NSString alloc] initWithFormat:kMenthonsTimelineURL,
+			 params] autorelease];
   NSLog(@"url: %@", urlString);
   [params release];
   return [self arrayOfRemoteJson:urlString];
@@ -233,14 +238,16 @@
 
 
   CFStringRef ignoreString = CFSTR(";,/?:@&=+$#");
-  NSMutableString *bodyString = 
-    [NSMutableString stringWithFormat:@"status=%@",
-		     (NSString *)CFURLCreateStringByAddingPercentEscapes(  
+  NSString *paramsStr = (NSString *)CFURLCreateStringByAddingPercentEscapes(  
 						       kCFAllocatorDefault,
 						       (CFStringRef)message,
 						       NULL,
                                                        ignoreString,
-                                                       kCFStringEncodingUTF8)];
+                                                       kCFStringEncodingUTF8);
+  NSMutableString *bodyString = 
+    [NSMutableString stringWithFormat:@"status=%@", paramsStr];
+  [paramsStr release];
+
   if (replayToStatusId != nil) {
     NSMutableString *replyParameter = [[NSMutableString alloc] 
 				     initWithString:@"&in_reply_to_status_id="];
@@ -263,10 +270,10 @@
 
   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
-  NSString *eachObject;
-  va_list argumentList;
-  NSMutableString *urlString;
-  NSString *encodedString;
+  NSString *eachObject = nil;
+  va_list argumentList = nil;
+  NSMutableString *urlString = nil;
+  NSString *encodedString = nil;
 
   if (searchString) {
     encodedString = [self urlEncodedString:searchString];

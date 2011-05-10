@@ -707,9 +707,10 @@
 
   for (NSString *aLink in aLinksArray) {
     newString = [[NSString alloc] initWithFormat:@"%@ %@", resultString, aLink];
-    if ([newString length] > kMaxTweetLength) {continue;}
-    
     [resultString release];
+
+    if ([newString length] > kMaxTweetLength) {[newString release]; continue;}
+    
     resultString = [newString retain];
     [newString release];
   }
@@ -882,6 +883,7 @@
 
   if (cancelFlag) {
     NSLog(@"Stopping refresh timeline because cacelFlag=YES");
+    [client release];
     return;
   }
 

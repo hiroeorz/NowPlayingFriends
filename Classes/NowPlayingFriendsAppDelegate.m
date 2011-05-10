@@ -890,7 +890,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 			    @"&", @"&amp;",
 			  nil];
 
-  NSString *newString = [[NSString alloc] initWithString:str];
+  NSString *newString = [[[NSString alloc] initWithString:str] autorelease];
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
@@ -925,6 +925,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     [viewController presentModalViewController:authenticateViewController 
 		    animated:YES];
+    [authenticateViewController autorelease];
   }
 
   [client release];
@@ -1093,7 +1094,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   NSURL *imageURL = [NSURL URLWithString:imageURLString];
   NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-  UIImage *newImage = [[UIImage alloc] initWithData:imageData];
+  UIImage *newImage = [[[UIImage alloc] initWithData:imageData] autorelease];
 
   return newImage;
 }
@@ -1118,7 +1119,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSString *path = [self profileImageFileName:urlString];
   NSData *imageData = [[NSData alloc] initWithContentsOfFile:path];
 
-  return imageData;
+  return [imageData autorelease];
 }
 
 - (NSString *)profileImageFileName:(NSString *)urlString {
@@ -1164,7 +1165,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSString *path = [self youtubeThumbnailFileName:urlString];
   NSData *imageData = [[NSData alloc] initWithContentsOfFile:path];
 
-  return imageData;
+  return [imageData autorelease];
 }
 
 - (NSString *)youtubeThumbnailFileName:(NSString *)urlString {

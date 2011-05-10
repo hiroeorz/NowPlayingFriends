@@ -46,14 +46,16 @@
 			      keyword1, keyword2];
 
   CFStringRef ignoreString = CFSTR(";,/?:@&=+$#");
+  NSString *paramsStr = 
+    (NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+							(CFStringRef)storeSearchUrl,
+							NULL,
+							ignoreString,
+							kCFStringEncodingUTF8);
   NSMutableString *compressParam = 
-    [NSMutableString stringWithFormat:@"longUrl=%@",
-		     (NSString *)CFURLCreateStringByAddingPercentEscapes(  
-						   kCFAllocatorDefault,
-						   (CFStringRef)storeSearchUrl,
-						   NULL,
-                                                   ignoreString,
-                                                   kCFStringEncodingUTF8)];
+    [NSMutableString stringWithFormat:@"longUrl=%@", paramsStr];
+  [paramsStr release];
+  [storeSearchUrl release];
 
   NSString *compressUrl = [[NSString alloc] initWithFormat:kBitlyUrl,
 					    kBitlyUserName, 
@@ -63,7 +65,6 @@
 			    requestWithURL:[NSURL URLWithString:compressUrl]];
 
   [compressUrl release];
-  [storeSearchUrl release];
 
   self.urlData = [NSMutableData data];
   [NSURLConnection connectionWithRequest:request delegate:self];
@@ -86,6 +87,7 @@
 					   encoding:NSUTF8StringEncoding];
   NSLog(@"json: %@", jsonString);
   NSDictionary *jsonDictionary = [jsonString JSONValue];
+  [jsonString release];
 
   if ([[jsonDictionary objectForKey:@"status_code"] integerValue] != 200) {
     self.urlData = nil;

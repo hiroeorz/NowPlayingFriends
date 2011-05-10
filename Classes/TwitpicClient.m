@@ -114,6 +114,7 @@
 					   encoding:NSUTF8StringEncoding];
   
   NSDictionary *jsonDictionary = [jsonString JSONValue];
+  [jsonString release];
   NSLog(@"jsonDictionary: %@", jsonDictionary);
   self.jsonData = nil;
 
@@ -167,7 +168,7 @@
 				  token:accessToken
 				  realm:@"http://api.twitter.com/"
 				  signatureProvider:nil] autorelease];
- 
+  [consumer release];
   NSString *oauthHeader = [oauthRequest 
 			    valueForHTTPHeaderField:@"Authorization"];
   if (!oauthHeader) {
@@ -296,6 +297,8 @@
     NSMutableDictionary *ids = [[NSMutableDictionary alloc] 
 				 initWithContentsOfFile:path];
     NSString *picId = [ids objectForKey:albumName];
+    [ids release];
+
     NSLog(@"picId: %@", picId);
     return picId;
   } else {

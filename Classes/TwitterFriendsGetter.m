@@ -170,6 +170,7 @@
       lastName = [array objectAtIndex:0];
     }
     
+    [array release];
   } else {
     lastName = nil;
   }

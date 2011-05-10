@@ -134,9 +134,6 @@ titleForHeaderInSection:(NSInteger)section {
   UISwitch *switchObj = nil;
 
   if ([indexPath section] == 0 && [indexPath row] == 0) {
-    cell = [tableView dequeueReusableCellWithIdentifier:
-			TemplateCellIdentifier];
-
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
 				    reuseIdentifier:TemplateCellIdentifier];
     [cell autorelease];

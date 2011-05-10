@@ -94,9 +94,11 @@
       [dic setObject:[NSMutableArray array] forKey:initialChar];
     }
 
-    NSMutableArray *array = [dic objectForKey:initialChar];
-    [array addObject:screen_name];
+    NSMutableArray *aArray = [dic objectForKey:initialChar];
+    [aArray addObject:screen_name];
   }
+
+  [array release];
 
   for (NSString *key in dic) {
     NSMutableArray *namesArray = [dic objectForKey:key];

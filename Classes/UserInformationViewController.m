@@ -208,7 +208,7 @@
 
 - (void)getUserProfileImage:(NSDictionary *)user {
 
-  UIImage *newImage = [self.appDelegate originalProfileImage:user];
+  UIImage *newImage = [[self.appDelegate originalProfileImage:user] retain];
 
   if (activateFlag) {
     [self performSelectorOnMainThread:@selector(setUserProfileImage:)
@@ -232,6 +232,7 @@
     [[UserTimelineViewController alloc] initWithUserName:username];
 
   [self.navigationController pushViewController:viewController animated:YES];
+  [viewController release];
 }
 
 - (IBAction)followUser {

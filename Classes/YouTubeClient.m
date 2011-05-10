@@ -77,15 +77,18 @@
     [aParameter stringByReplacingOccurrencesOfString:@" " withString:@","];
 
   CFStringRef ignoreString = CFSTR(";,/?:@&=+$#");
+  
+  NSString *paramsString = 
+    (NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+							(CFStringRef)replaced,
+							NULL,
+							ignoreString,
+							kCFStringEncodingUTF8);
   NSMutableString *bodyString = 
     [NSMutableString stringWithFormat:@"%@category=%@&v=2",
-		     urlString,
-		     (NSString *)CFURLCreateStringByAddingPercentEscapes(  
-						       kCFAllocatorDefault,
-						       (CFStringRef)replaced,
-						       NULL,
-                                                       ignoreString,
-                                                       kCFStringEncodingUTF8)];
+		     urlString, paramsString];
+
+  [paramsString release];
 
   //NSLog(@"url: %@", bodyString);
   NSURLRequest *request = [NSURLRequest 
