@@ -1191,7 +1191,7 @@
     initWithNibName:@"YouTubeListViewController" bundle:nil];
   [self.navigationController pushViewController:viewController animated:YES];
 
-  [viewController autorelease];
+  [viewController release];
 }
 
 #pragma mark -
@@ -1583,6 +1583,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
   [viewController setMusicPlayerViewController:self];
   [viewController setPlayListTitle:listTitle];
   [self.navigationController pushViewController:viewController animated:YES];
+  [viewController release];
 }
 
 #pragma mark -
