@@ -1024,7 +1024,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: HIROE Shin";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos4.3]" = "iPhone Distribution: HIROE Shin";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: HIROE Shin";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
@@ -1033,7 +1033,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "Now Playing Friends";
 				PROVISIONING_PROFILE = "5590599A-59E5-4A68-B502-980087B86F4F";
-				"PROVISIONING_PROFILE[sdk=iphoneos4.3]" = "5590599A-59E5-4A68-B502-980087B86F4F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5590599A-59E5-4A68-B502-980087B86F4F";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -1064,7 +1064,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos4.3]" = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
@@ -1072,7 +1072,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "Now Playing Friends";
 				PROVISIONING_PROFILE = "FC01B822-742A-48BD-AC5F-8A66FC371D00";
-				"PROVISIONING_PROFILE[sdk=iphoneos4.3]" = "FC01B822-742A-48BD-AC5F-8A66FC371D00";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FC01B822-742A-48BD-AC5F-8A66FC371D00";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
