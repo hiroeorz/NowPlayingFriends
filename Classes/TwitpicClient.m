@@ -231,8 +231,13 @@
   NSString *picUrl = [jsonDictionary objectForKey:@"url"];
   NSString *picId = [jsonDictionary objectForKey:@"id"];
 
-  NSString *formattedTweet = [NSString stringWithFormat:@"%@ %@", 
-				       tweetString, picUrl];
+  NSString *formattedTweet = nil;
+
+  if (picUrl == nil) {
+    formattedTweet = [NSString stringWithFormat:@"%@", tweetString];
+  } else {
+    formattedTweet = [NSString stringWithFormat:@"%@ %@", tweetString, picUrl];
+  }
 
   if ([formattedTweet length] > kMaxTweetLength) { /* 140文字超えたらリンク切り捨て */
     formattedTweet = [NSString stringWithFormat:@"%@", tweetString];

@@ -1550,7 +1550,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   NSInteger listRow = [indexPath row] - 1;
 
   if (listmode == kListModePlayList) {
-    NSLog(@"helo_1");
     MPMediaPlaylist *playlist = [playLists objectAtIndex:listRow];
     [musicPlayer setQueueWithItemCollection:playlist];
   } else {

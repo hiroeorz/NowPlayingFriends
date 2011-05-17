@@ -1107,7 +1107,7 @@
 				544FA58012449849003BFB95 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Distribution;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NowPlayingFriends" */ = {
 			isa = XCConfigurationList;
@@ -1117,7 +1117,7 @@
 				544FA57F12449849003BFB95 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Distribution;
 		};
 /* End XCConfigurationList section */
 

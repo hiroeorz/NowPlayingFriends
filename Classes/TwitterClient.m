@@ -587,8 +587,13 @@
 
   NSString *albumName = [self.appDelegate nowPlayingAlbumTitle];
   NSString *picUrl = [twitpicClient getUrlWithAlbumName:albumName];
-  NSString *formattedTweet = [NSString stringWithFormat:@"%@ %@", 
-				       tweet, picUrl];
+  NSString *formattedTweet = nil;
+
+  if (picUrl == nil) {
+    formattedTweet = [NSString stringWithFormat:@"%@", tweet];
+  } else {
+    formattedTweet = [NSString stringWithFormat:@"%@ %@", tweet, picUrl];
+  }
 
   /* 140文字超えたらリンク切り捨て */
   if ([formattedTweet length] > kMaxTweetLength) { 
