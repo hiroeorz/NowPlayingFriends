@@ -28,6 +28,10 @@
 #define kSelectYouTubeTypeSelectFromList 1
 #define kSelectYouTubeTypeConfirmation 2
 
+
+@class MusicPlayerViewController;
+
+
 @interface NowPlayingFriendsAppDelegate : NSObject <UIApplicationDelegate> {
   
   UIWindow *window;
@@ -41,6 +45,8 @@
   NSMutableDictionary *profileImages;
   NSMutableArray *profileImagesIndex;
   MPMusicPlayerController *musicPlayer;
+
+  MusicPlayerViewController *musicPlayerViewController;
   
   NSInteger testFlag;
 }
@@ -55,6 +61,7 @@
 @property (nonatomic, retain) NSMutableDictionary *profileImages;
 @property (nonatomic, retain) NSMutableArray *profileImagesIndex;
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
+@property (nonatomic, retain) MusicPlayerViewController *musicPlayerViewController;
 @property (nonatomic, retain) NSUserDefaults *userDefaults;
 
 @property (nonatomic, retain) NSString *template_preference;

@@ -26,8 +26,6 @@
 
 @interface MusicPlayerViewController (Local)
 
-- (void)playBackStateDidChanged;
-
 - (void)openUserInformationView:(id)sender;
 - (void)setMusicArtwork;
 - (void)refreshTimeline;
@@ -264,13 +262,15 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 
+  NSLog(@"viewDidAppear");
   [super viewDidAppear:animated];
-  volumeSlider.value = musicPlayer.volume;
-  [self setMusicArtwork];
+  //volumeSlider.value = musicPlayer.volume;
+
+  [self playBackStateDidChanged];  
+  [self setViewTitleAndMusicArtwork];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-  [self playBackStateDidChanged];
   [super viewWillDisappear:animated];
 }
 
@@ -583,26 +583,14 @@
   sending = NO;
   updateAfterSafetyTime = NO;
 
-  autoTweetMode = self.appDelegate.autotweet_preference;
+  [self setViewTitleAndMusicArtwork];
 
-  self.title = [self.appDelegate nowPlayingTitle];
+  autoTweetMode = self.appDelegate.autotweet_preference;
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
 
   if (currentItem == nil && listView.superview == nil) {
-    self.title = @"Player";
     [self changeToListview];
-
   } else {
-
-    [self setMusicArtwork];
-    NSString *nowPlayingTitle = 
-      [currentItem valueForProperty:MPMediaItemPropertyTitle];
-    
-    self.navigationController.title = nowPlayingTitle;
-    self.navigationController.tabBarItem.title = @"Player";
-    
-    NSLog(@"title: %@", nowPlayingTitle);
-    
     if (self.appDelegate.get_twitterusers_preference &&
 	[musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
 
@@ -836,6 +824,30 @@
   }
 
   self.albumImageView.image = artworkImage;
+}
+
+/*
+ * @brief 曲タイトル表示の切り替えとアルバムアートワークの変更を行う。
+ */
+
+- (void)setViewTitleAndMusicArtwork {
+
+  self.title = [self.appDelegate nowPlayingTitle];
+  MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
+
+  if (currentItem == nil && listView.superview == nil) {
+    NSLog(@"Play Item is NULL");
+    self.title = @"Player";
+  } else {
+    [self setMusicArtwork];
+    NSString *nowPlayingTitle = 
+      [currentItem valueForProperty:MPMediaItemPropertyTitle];
+    
+    self.navigationController.title = nowPlayingTitle;
+    self.navigationController.tabBarItem.title = @"Player";
+    
+    NSLog(@"title: %@", nowPlayingTitle);
+  }
 }
 
 - (void)refreshProfileImages {

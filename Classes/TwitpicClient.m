@@ -87,6 +87,8 @@
   if (picId != nil) {
     NSLog(@"Cached twitpic checking uploaded picture is exist or not...");
     NSString *url = [self getMediaUrlWithAlbumName:albumName];
+    NSLog(@"called!!");
+
     NSLog(@"mediaUrl: %@", url);
 
     NSURLRequest *request = [NSURLRequest 
@@ -296,7 +298,7 @@
     NSString *path = [self filePath];
     NSMutableDictionary *ids = [[NSMutableDictionary alloc] 
 				 initWithContentsOfFile:path];
-    NSString *picId = [ids objectForKey:albumName];
+    NSString *picId = [[[ids objectForKey:albumName] retain] autorelease];
     [ids release];
 
     NSLog(@"picId: %@", picId);

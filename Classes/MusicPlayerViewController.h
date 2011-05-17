@@ -148,6 +148,8 @@
 - (IBAction)touchSubControllerDisplayButton:(id)sender;
 
 - (void)displaySubview;
+- (void)playBackStateDidChanged;
+- (void)setViewTitleAndMusicArtwork;
 
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;

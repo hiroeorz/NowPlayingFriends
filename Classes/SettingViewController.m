@@ -262,7 +262,7 @@ titleForHeaderInSection:(NSInteger)section {
   case 4: { //5列目
     switch ([indexPath row]) {
     case 0: {
-      cell.textLabel.text = @"Upload Album Artowrk With Auto Tweet";
+      cell.textLabel.text = @"Upload Album Artwork With Auto Tweet";
       switchObj.on  = self.appDelegate.auto_upload_picture_preference;
       [switchObj addTarget:self 
 		 action:@selector(save_auto_upload_picture_preference:)
@@ -270,7 +270,7 @@ titleForHeaderInSection:(NSInteger)section {
     }
       break;
     case 1: {
-      cell.textLabel.text = @"Upload Album Artowrk With Manual Tweet";
+      cell.textLabel.text = @"Upload Album Artwork With Manual Tweet";
       switchObj.on  = self.appDelegate.manual_upload_picture_preference;
       [switchObj addTarget:self 
 		 action:@selector(save_manual_upload_picture_preference:)

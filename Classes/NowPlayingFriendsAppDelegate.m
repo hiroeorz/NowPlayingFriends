@@ -39,6 +39,7 @@
 @synthesize profileImages;
 @synthesize profileImagesIndex;
 @synthesize musicPlayer;
+@synthesize musicPlayerViewController;
 @dynamic template_preference;
 @dynamic userDefaults;
 @dynamic get_twitterusers_preference;
@@ -66,6 +67,7 @@
     
   [managedObjectContext_ release];
   [managedObjectModel_ release];
+  [musicPlayerViewController release];
   [persistentStoreCoordinator_ release];
   [tabBarController release];
   [profileImages release];
@@ -340,6 +342,7 @@
 - (BOOL)application:(UIApplication *)application 
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
+  NSLog(@"Stating Launching Now Playing Friends!!");
   testFlag = 0;
 
   TwitterClient *client = [[TwitterClient alloc] init];
@@ -373,6 +376,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   navController = [self navigationWithViewController:viewController
 			title:@"Player" imageName:@"65-note.png"];
 
+  self.musicPlayerViewController = (MusicPlayerViewController *)viewController;
   [controllers addObject:navController];
   [viewController release];
 
@@ -503,6 +507,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+  NSLog(@"application goto foreground.");
+
+  [musicPlayerViewController playBackStateDidChanged];
+  [musicPlayerViewController setViewTitleAndMusicArtwork];
 }
 
 /**
