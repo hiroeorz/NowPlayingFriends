@@ -976,7 +976,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -990,7 +991,8 @@
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "Now Playing Friends";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E13DA5BF-C612-4C43-B78E-DCBF9C7BAE40";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1024,7 +1026,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: HIROE Shin";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: HIROE Shin";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: HIROE Shin";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
@@ -1033,7 +1035,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "Now Playing Friends";
 				PROVISIONING_PROFILE = "5590599A-59E5-4A68-B502-980087B86F4F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5590599A-59E5-4A68-B502-980087B86F4F";
+				"PROVISIONING_PROFILE[sdk=*]" = "5590599A-59E5-4A68-B502-980087B86F4F";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -1064,6 +1066,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1072,6 +1075,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "Now Playing Friends";
 				PROVISIONING_PROFILE = "FC01B822-742A-48BD-AC5F-8A66FC371D00";
+				"PROVISIONING_PROFILE[sdk=*]" = "FC01B822-742A-48BD-AC5F-8A66FC371D00";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FC01B822-742A-48BD-AC5F-8A66FC371D00";
 				SDKROOT = iphoneos;
 			};
@@ -1107,7 +1111,7 @@
 				544FA58012449849003BFB95 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Distribution;
+			defaultConfigurationName = Debug;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NowPlayingFriends" */ = {
 			isa = XCConfigurationList;
@@ -1117,7 +1121,7 @@
 				544FA57F12449849003BFB95 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Distribution;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 
