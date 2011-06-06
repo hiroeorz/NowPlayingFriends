@@ -332,6 +332,7 @@
 - (void)saveId:(NSString *)picId withAlbumName:(NSString *)albumName {
 
   NSLog(@"save twitpic id to file: %@: %@", albumName, picId);
+  if (picId == nil) { return; }
 
   NSMutableDictionary *ids = nil;
   NSString *path = [self filePath];

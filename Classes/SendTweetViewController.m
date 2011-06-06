@@ -63,10 +63,12 @@
   self.indicator = nil;
   self.indicatorBase = nil;
   self.letterCountLabel = nil;
-  self.musicPlayer = nil;
   self.retweetButton = nil;
-  self.sourceString = nil;
-  self.twitterClient = nil;
+
+  //self.musicPlayer = nil;
+  //self.twitterClient = nil;
+  //self.sourceString = nil;
+
   [super viewDidUnload];
 }
 
@@ -90,6 +92,7 @@
   [super viewDidLoad];
 
   sending = NO;
+  addAlbumArtwork = [self.appDelegate manual_upload_picture_preference];
 
   self.navigationItem.leftBarButtonItem = 
     [self.appDelegate cancelButton:@selector(closeEditView) target:self];
@@ -126,13 +129,10 @@
 - (void)viewWillAppear:(BOOL)animated {
 
   [super viewWillAppear:animated];
-
-  addAlbumArtwork = [self.appDelegate manual_upload_picture_preference];
   [self setAlbumArtworkButtonStyle];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-  addAlbumArtwork = NO;
 }
 
 - (void)addITunesStoreSearchLink:(NSString *)linkUrl {

@@ -576,10 +576,14 @@
 			   currentMusicArtWorkWithWidth:320.0f
 			   height:320.0f
 			   useDefault:NO];
-    
-    [twitpicClient uploadImage:aImage withTweet:tweet
-		   twitterClient:self
-		   delegate:aDelegate];
+    if (aImage != nil) {
+      [twitpicClient uploadImage:aImage withTweet:tweet
+		     twitterClient:self
+		     delegate:aDelegate];
+    } else {
+      [self updateStatus:tweet inReplyToStatusId:nil
+	    withArtwork:NO delegate:aDelegate];
+    }
 }
 
 - (void)sendUploadedAlbumArtworkLinkedTweet:(NSString *)tweet
