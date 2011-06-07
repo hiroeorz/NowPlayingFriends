@@ -832,7 +832,34 @@
 
 - (void)setViewTitleAndMusicArtwork {
 
-  self.title = [self.appDelegate nowPlayingTitle];
+  UIView *titleView = [[UIView alloc] 
+			initWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 45.0f)];
+
+  UITextField *songTitleField = [[UITextField alloc] 
+				initWithFrame:CGRectMake(0.0f, 3.0f,
+							 200.0f, 35.0f)];
+  songTitleField.backgroundColor = nil;
+  songTitleField.textColor = [UIColor whiteColor];
+  songTitleField.font = [UIFont boldSystemFontOfSize:16.0f];
+  songTitleField.textAlignment = UITextAlignmentCenter;
+  songTitleField.text = [self.appDelegate nowPlayingTitle];
+  [titleView addSubview:songTitleField];
+
+  UITextField *artistNameField = [[UITextField alloc] 
+				initWithFrame:CGRectMake(0.0f, 25.0f,
+							 200.0f, 30.0f)];
+  artistNameField.backgroundColor = nil;
+  artistNameField.textColor = [UIColor whiteColor];
+  artistNameField.font = [UIFont boldSystemFontOfSize:12.0f];
+  artistNameField.textAlignment = UITextAlignmentCenter;
+  artistNameField.text = [self.appDelegate nowPlayingArtistName];
+  [titleView addSubview:artistNameField];
+
+  self.navigationItem.titleView = titleView;
+  [titleView release];
+  [songTitleField release];
+  [artistNameField release];
+
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
 
   if (currentItem == nil && listView.superview == nil) {
