@@ -362,7 +362,7 @@
     [[OAMutableURLRequest alloc] initWithURL:url
 				 consumer:consumer
 				 token:accessToken
-				 realm:nil
+				 realm:@"https://api.twitter.com"
 				 signatureProvider:nil];
   [request autorelease];
   [request setHTTPMethod:@"POST"];

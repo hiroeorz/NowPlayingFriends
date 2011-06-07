@@ -14,6 +14,9 @@
 #import "TwitterClient.h"
 
 
+#define kTwitpicTimeoutSeconds 90
+
+
 @interface TwitpicClient (Local)
 
 - (void)uploadToTwitterByTwitPic:(NSString*)tweet image:(UIImage*)image
@@ -87,13 +90,11 @@
   if (picId != nil) {
     NSLog(@"Cached twitpic checking uploaded picture is exist or not...");
     NSString *url = [self getMediaUrlWithAlbumName:albumName];
-    NSLog(@"called!!");
-
     NSLog(@"mediaUrl: %@", url);
 
     NSURLRequest *request = [NSURLRequest 
 			      requestWithURL:[NSURL URLWithString:url]];
-  
+
     [NSURLConnection connectionWithRequest:request delegate:self];
   } else {
     NSLog(@"No cached twitpic starting upload...");
@@ -201,6 +202,7 @@
 				      format:@"json"];
   
   NSData *imageRepresentation = UIImageJPEGRepresentation(image, 1.0);
+  [request setTimeOutSeconds:kTwitpicTimeoutSeconds];
   [request setData:imageRepresentation forKey:@"media"];
   [request setPostValue:tweet  forKey:@"message"];
   [request setPostValue:kTwitpicAPIKey forKey:@"key"];
