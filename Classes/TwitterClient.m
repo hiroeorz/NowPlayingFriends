@@ -30,6 +30,10 @@
 - (NSString *)stringOfRemoteJson:(NSString *)urlString;
 - (void)logJsonData:(NSArray *)jsonArray;
 
+- (void)repaireURLEncodingString:(NSMutableString *)sourceStr
+			    from:(NSString *)fromStr 
+			      to:(NSString *)toStr;
+
 - (void)uploadAlbumArtworkImageWithTweet:(NSString *)tweet
 				delegate:(id)aDelegate;
 @end
@@ -332,7 +336,23 @@
 							NULL,  
 							ignoreString,
 							kCFStringEncodingUTF8);
-  return [encodedString autorelease];
+  NSMutableString *newStr = [[NSMutableString alloc] 
+			      initWithString:encodedString];
+  [encodedString autorelease];
+
+  /* Fix for L'Arc~en~Ciel's users and others */
+  [self repaireURLEncodingString:newStr from:@"'" to:@"%27"];
+  [self repaireURLEncodingString:newStr from:@"%E3%80%9C" to:@"~"];
+
+  return [newStr autorelease];
+}
+
+- (void)repaireURLEncodingString:(NSMutableString *)sourceStr
+			    from:(NSString *)fromStr 
+			      to:(NSString *)toStr {
+
+  [sourceStr replaceOccurrencesOfString:fromStr withString:toStr options:0
+	     range:NSMakeRange(0, [sourceStr length])];
 }
 
 /**
