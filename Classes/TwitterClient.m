@@ -294,6 +294,10 @@
     va_end(argumentList);
   }
 
+  /* Fix for L'Arc~en~Ciel's users and others */
+  [self repaireURLEncodingString:urlString from:@"'" to:@"%27"];
+  [self repaireURLEncodingString:urlString from:@"%EF%BD%9E" to:@"~"];
+
   NSURL *url = [NSURL URLWithString:urlString];
   [urlString release];
 
@@ -339,10 +343,6 @@
   NSMutableString *newStr = [[NSMutableString alloc] 
 			      initWithString:encodedString];
   [encodedString autorelease];
-
-  /* Fix for L'Arc~en~Ciel's users and others */
-  [self repaireURLEncodingString:newStr from:@"'" to:@"%27"];
-  [self repaireURLEncodingString:newStr from:@"%EF%BD%9E" to:@"~"];
 
   return [newStr autorelease];
 }
