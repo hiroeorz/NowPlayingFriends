@@ -342,7 +342,7 @@
 
   /* Fix for L'Arc~en~Ciel's users and others */
   [self repaireURLEncodingString:newStr from:@"'" to:@"%27"];
-  [self repaireURLEncodingString:newStr from:@"%E3%80%9C" to:@"~"];
+  [self repaireURLEncodingString:newStr from:@"%EF%BD%9E" to:@"~"];
 
   return [newStr autorelease];
 }
