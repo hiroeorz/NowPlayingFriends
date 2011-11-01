@@ -24,6 +24,7 @@
 		54323A4612A905740053EA97 /* ITunesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 54323A4512A905740053EA97 /* ITunesStore.m */; };
 		5441761212F24F6E00A29AD7 /* no_artwork_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5441761112F24F6E00A29AD7 /* no_artwork_image.png */; };
 		544BDEB91281BB2B00E0AE9E /* AccountLabelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 544BDEB81281BB2B00E0AE9E /* AccountLabelButton.m */; };
+		544D5BCF14603B1A009FACD3 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 544D5BCE14603B1A009FACD3 /* libxml2.2.dylib */; };
 		544FA54512448640003BFB95 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 544FA54412448640003BFB95 /* Default.png */; };
 		545355B612A103B50098F9C3 /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 545355B512A103B50098F9C3 /* 01-refresh.png */; };
 		5455CFF3131116CC005BA507 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5455CFF2131116CC005BA507 /* CFNetwork.framework */; };
@@ -175,11 +176,11 @@
 		5441761112F24F6E00A29AD7 /* no_artwork_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_artwork_image.png; sourceTree = "<group>"; };
 		544BDEB71281BB2B00E0AE9E /* AccountLabelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountLabelButton.h; sourceTree = "<group>"; };
 		544BDEB81281BB2B00E0AE9E /* AccountLabelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountLabelButton.m; sourceTree = "<group>"; };
+		544D5BCE14603B1A009FACD3 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libxml2.2.dylib; sourceTree = "<group>"; };
 		544FA54412448640003BFB95 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		545355B512A103B50098F9C3 /* 01-refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-refresh.png"; sourceTree = "<group>"; };
 		5455CFF2131116CC005BA507 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5455CFF5131116E6005BA507 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		5455D00F13111EE5005BA507 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		5455D13F13112493005BA507 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		5455D14013112493005BA507 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		5455D14113112494005BA507 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -400,6 +401,7 @@
 				5455CFF6131116E6005BA507 /* SystemConfiguration.framework in Frameworks */,
 				5455D1BE131124F5005BA507 /* Security.framework in Frameworks */,
 				5455D1C113112509005BA507 /* MobileCoreServices.framework in Frameworks */,
+				544D5BCF14603B1A009FACD3 /* libxml2.2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,7 +547,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5455D00F13111EE5005BA507 /* libxml2.dylib */,
+				544D5BCE14603B1A009FACD3 /* libxml2.2.dylib */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				28D801B30F44B63D00FB423F /* CoreData.framework */,
@@ -976,23 +978,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: HIROE Shin";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlayingFriends_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
-					/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/libxml2,
-					/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.1.sdk/usr/include/libxml2,
-					"/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/libxml2/**",
+					/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2,
+					/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2,
+					"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "Now Playing Friends";
-				"PROVISIONING_PROFILE[sdk=*]" = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1013,6 +1017,10 @@
 				);
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -1054,6 +1062,10 @@
 				);
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "Now Playing Friends";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1111,7 +1123,7 @@
 				544FA58012449849003BFB95 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Distribution;
+			defaultConfigurationName = Debug;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NowPlayingFriends" */ = {
 			isa = XCConfigurationList;
@@ -1121,7 +1133,7 @@
 				544FA57F12449849003BFB95 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Distribution;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 

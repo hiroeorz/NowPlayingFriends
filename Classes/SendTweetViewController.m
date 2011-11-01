@@ -104,7 +104,8 @@
     [retweetButton removeFromSuperview];
   }
 
-  setTweetEditField(editView, 5.0f, 270.0f, 140.0f);
+  //setTweetEditField(editView, 5.0f, 270.0f, 140.0f);
+  setTweetEditField(editView, 5.0f, 270.0f, 118.0f);
   editView.delegate = self;
   [self.view addSubview:editView];
 
