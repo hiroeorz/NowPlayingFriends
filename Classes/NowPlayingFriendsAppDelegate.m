@@ -29,6 +29,9 @@
 - (NSArray *)searchAlbumsOrPlaylistsBySong:(NSString *)searchTerm
 			 mediaGroupingType:(NSInteger)groupingType
 			 predicateProperty:(NSString *)mediaItemProperty;
+
+- (UIImage *)streatchedImage:(UIImage *)orgImage
+		       width:(NSInteger)width height:(NSInteger)height;
 @end
 
 
@@ -593,22 +596,24 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 			       useDefault:(BOOL)useDefault {
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
-  UIImage *artworkImage = nil; // = noArtworkImage;
+  UIImage *orgImage = nil;     //   original size Image
+  UIImage *artworkImage = nil; //   resized Image;
 
   if (currentItem != nil) {
     MPMediaItemArtwork *artwork = 
       [currentItem valueForProperty:MPMediaItemPropertyArtwork];
 
     if (artwork) {
-      artworkImage = 
-      	[artwork imageWithSize:CGSizeMake(width, height)];
+      orgImage = [artwork imageWithSize:CGSizeMake(width, height)];
+      artworkImage = [self streatchedImage:orgImage
+				     width:width height:height];
     }
   }
 
   if (useDefault && artworkImage == nil) {
-    UIImage *orgImage = [UIImage imageNamed:kNoArtWorkImage];
-    artworkImage = [orgImage stretchableImageWithLeftCapWidth:width 
-			     topCapHeight:height];
+    orgImage = [UIImage imageNamed:kNoArtWorkImage];
+    artworkImage = [self streatchedImage:orgImage
+				   width:width height:height];
   }
 
   return artworkImage;
@@ -866,6 +871,17 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 #pragma mark -
 #pragma mark Util Methods
+
+- (void)sleep:(NSInteger)second {
+
+  NSDate *date = [[NSDate alloc] init];
+  NSDate *nextStartDate = [[NSDate alloc] initWithTimeInterval:second 
+					  sinceDate:date];
+
+  [NSThread sleepUntilDate: nextStartDate];
+  [date release];
+  [nextStartDate release];
+}
 
 /**
  * @brief 渡された文字列からタグを取り除いた文字列を返します。
@@ -1358,12 +1374,34 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   UIGraphicsBeginImageContext(CGSizeMake(width, height));
   CGContextRef context = UIGraphicsGetCurrentContext();
-  CGContextSetInterpolationQuality(context, kCGInterpolationLow);
+  CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
   [orgImage drawInRect:CGRectMake(0, 0, width, height)];
   UIImage *resized = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
   
   return resized;
+}
+
+/**
+ * @brief 渡されたイメージを縦横比を保ったまま、width, heigth,値の大きい方にあわせてリサイズ
+ *        した画像を返します。
+ */
+- (UIImage *)streatchedImage:(UIImage *)orgImage
+		       width:(NSInteger)width height:(NSInteger)height {
+
+  CGFloat ratio = 0.0f;
+
+  if (width > height) {
+    ratio = (CGFloat)width / orgImage.size.width;
+  } else {
+    ratio = (CGFloat)height / orgImage.size.height;
+  }
+
+  UIImage *newImage = [self resizedImageWithImage:orgImage
+			    width:(ratio * orgImage.size.width) 
+			    height:(ratio * orgImage.size.height)];
+  NSLog(@"newImage: %@", newImage);
+  return newImage;
 }
 
 /**

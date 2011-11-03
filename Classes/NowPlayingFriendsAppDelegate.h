@@ -119,6 +119,7 @@
 
 - (NSUserDefaults *)userDefaults;
 
+- (void)sleep:(NSInteger)second;
 - (NSString *)stringByUntaggedString:(NSString *)str;
 - (NSString *)stringByUnescapedString:(NSString *)str;
 - (void)checkAuthenticateWithController:(id)viewController;

@@ -301,13 +301,8 @@
 
   NSLog(@"displaySubview called.");
   subControlTouchCount ++;
-
   [UIView animateWithDuration:0.3
-	  animations:^{subControlView.alpha = 0.8;}
-          completion:^(BOOL finished) { 
-      [self performSelectorInBackground:
-	      @selector(removeDisplaySubviewAfterSecond)
-	    withObject:nil]; }];
+		   animations:^{subControlView.alpha = 0.8;}];
 }
 
 /**
@@ -317,19 +312,11 @@
   id pool = [[NSAutoreleasePool alloc] init];
 
   NSInteger counterBefore = subControlTouchCount;
-  NSDate *date = [[NSDate alloc] init];
-  NSDate *nextStartDate = [[NSDate alloc] 
-			    initWithTimeInterval:kSubControlRemoteTimeout 
-			    sinceDate:date];
-  [NSThread sleepUntilDate: nextStartDate];
+  [self.appDelegate sleep:kSubControlRemoteTimeout];
 
   if (subControlTouchCount == counterBefore) {
     [self removeDisplaySubview];
   }
-
-  [date release];
-  [nextStartDate release];
-  [pool release];
 }
 
 - (void)removeDisplaySubview {
@@ -370,8 +357,8 @@
 
   [self performSelectorInBackground:@selector(refreshProfileImages)
 	withObject:nil];
-  [self performSelectorInBackground:@selector(removeDisplaySubviewAfterSecond)
-	withObject:nil];
+  //[self performSelectorInBackground:@selector(removeDisplaySubviewAfterSecond)
+  //	withObject:nil];
 }
 
 - (void)openUserInformationView:(id)sender {
@@ -476,68 +463,41 @@
  * @brief プレイヤーの制御状況が変化したときに呼ばれる。
  */
 - (void)handle_PlayBackStateDidChanged:(id)notification {
+
   [self playBackStateDidChanged];
 }
 
 - (void)playBackStateDidChanged {
   
-  UIImage *image;  
-  UIImage *miniImage;
+  UIImage *image = nil;  
+  UIImage *miniImage = nil;
 
   updateAfterSafetyTime = NO;
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStateStopped) {
     NSLog(@"playbackStateChanged:%@", @"stop");
-
     image = [UIImage imageNamed:@"Play.png"];
     miniImage = [UIImage imageNamed:@"Play_mini.png"];
-    [playButton setImage:image 
-		forState:UIControlStateNormal];
-    [musicSegmentedControl setImage:miniImage
-			   forSegmentAtIndex:1];
-
-    if (self.appDelegate.get_twitterusers_preference) {
-      refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
-      [self displaySubview];
-    }
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
     NSLog(@"playbackStateChanged:%@", @"play");
-
     image = [UIImage imageNamed:@"Pause.png"];
     miniImage = [UIImage imageNamed:@"Pause_mini.png"];
-    [playButton setImage:image 
-		forState:UIControlStateNormal];
-    [musicSegmentedControl setImage:miniImage
-			   forSegmentAtIndex:1];
-
-    if (self.appDelegate.get_twitterusers_preference) {
-      refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeSong;
-      [self displaySubview];
+    if (autoTweetMode) {
+      [self performSelectorInBackground:@selector(sendAutoTweetAfterTimeLag)
+			     withObject:nil];
     }
   }
 
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePaused) {
     NSLog(@"playbackStateChanged:%@", @"pause");
-
     image = [UIImage imageNamed:@"Play.png"];
     miniImage = [UIImage imageNamed:@"Play_mini.png"];
-    [playButton setImage:image 
-		forState:UIControlStateNormal];    
-    [musicSegmentedControl setImage:miniImage
-			   forSegmentAtIndex:1];
-
-    if (self.appDelegate.get_twitterusers_preference) {
-      refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
-      [self displaySubview];
-    }
   }
 
-  if ([musicPlayer playbackState] == MPMusicPlaybackStateInterrupted) {
-    refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
-    [self displaySubview];
-  }
+  [playButton setImage:image forState:UIControlStateNormal];
+  [musicSegmentedControl setImage:miniImage forSegmentAtIndex:1];
 
   [self setMusicArtwork];
 }
@@ -591,15 +551,9 @@
   if (currentItem == nil && listView.superview == nil) {
     [self changeToListview];
   } else {
-    if (self.appDelegate.get_twitterusers_preference &&
-	[musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
-
-      if (refreshTypeSegmentedControl.selectedSegmentIndex == kRefreshTypeSong){
-	[self performSelectorInBackground:@selector(refreshProfileImages)
-	      withObject:nil];
-      } else {
-	refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeSong;
-      }
+    if (self.appDelegate.get_twitterusers_preference) {
+      [self performSelectorInBackground:@selector(refreshProfileImages)
+			     withObject:nil];
     }
 
     if (autoTweetMode && 
@@ -620,6 +574,9 @@
   NSInteger second = kAutoTweetTimeLag;
 
   NSString *title = [self.appDelegate nowPlayingTitle];
+  [self.appDelegate sleep:second];
+
+  /*
   NSDate *date = [[NSDate alloc] init];
   NSDate *nextStartDate = [[NSDate alloc] initWithTimeInterval:second 
 					  sinceDate:date];
@@ -627,6 +584,7 @@
   [NSThread sleepUntilDate: nextStartDate];
   [date release];
   [nextStartDate release];
+  */
 
   NSString *nowSongTitle = [self.appDelegate nowPlayingTitle];
 
@@ -818,7 +776,7 @@
   } else {
     artworkImage = 
       [self.appDelegate 
-	   currentMusicArtWorkWithWidth:albumImageView.frame.size.height
+	   currentMusicArtWorkWithWidth:albumImageView.frame.size.width
 	   height:albumImageView.frame.size.height
 	   useDefault:YES];
   }
