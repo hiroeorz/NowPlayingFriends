@@ -78,6 +78,7 @@
 @synthesize beforeTimeline;
 @synthesize button;
 @synthesize friendGetModeControl;
+@synthesize itemCollectionTitle;
 @synthesize listView;
 @synthesize musicControllerView;
 @synthesize musicPlayer;
@@ -116,6 +117,7 @@
   [baseView release];
   [beforeTimeline release];
   [friendGetModeControl release];
+  [itemCollectionTitle release];
   [listView release];
   [musicControllerView release];
   [musicSegmentedControl release];
@@ -191,9 +193,9 @@
     updatingFlag = NO;
     cancelFlag = NO;
     updateAfterSafetyTime = NO;
-
     self.twitterClient = nil;
     addLinkArray = [[NSMutableArray alloc] init];
+    itemCollectionTitle = nil;
   }
   return self;
 }
@@ -203,17 +205,19 @@
 
 - (void)viewDidLoad {
 
-  if (twitterClient == nil) { /* created at first view loaded only */
-    TwitterClient *client = [[TwitterClient alloc] init];
-    self.twitterClient = client;
-    [client release];
+  [super viewDidLoad];
+  [self addPlayButton];
+  [self addYouTubeButton];
+  [self.appDelegate checkAuthenticateWithController:self];
+  self.profileImageButtons = [NSMutableArray array];
+  listmode = kListModeAlbum;
+  
+  if (twitterClient == nil) {
+    self.twitterClient = [[[TwitterClient alloc] init] autorelease];
   }
 
   self.baseView = self.view;
   self.refreshProfileImagesMutex = @"refreshProfileImagesMutex";
-
-  listmode = kListModeAlbum;
-
   self.musicPlayer = self.appDelegate.musicPlayer;
   [self.appDelegate removeMusicPlayerNotification:self];
   [self.appDelegate addMusicPlayerNotification:self];
@@ -224,11 +228,6 @@
   self.navigationItem.rightBarButtonItem = 
     [self.appDelegate editButton:@selector(openEditView) target:self];
 
-  NSMutableArray *newProfileImageButtons = [[NSMutableArray alloc] init];
-  self.profileImageButtons = newProfileImageButtons;
-  [newProfileImageButtons release];
-
-  [self.appDelegate checkAuthenticateWithController:self];
 
   if ([twitterClient oAuthTokenExist] &&
       [musicPlayer playbackState] != MPMusicPlaybackStatePlaying) {
@@ -239,9 +238,14 @@
   UIButton *nowButton = [self nowButton:nil frame:kNowButtonInfoFrame];
   [musicControllerView addSubview:nowButton];
 
-  [super viewDidLoad];
-  [self addPlayButton];
-  [self addYouTubeButton];
+
+  /* 再生中, 一時停止中 */
+  if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying ||
+      [musicPlayer playbackState] == MPMusicPlaybackStatePaused) {
+    refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeSong;
+  } else { /* それ以外 */
+    refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
+  }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -264,8 +268,6 @@
 
   NSLog(@"viewDidAppear");
   [super viewDidAppear:animated];
-  //volumeSlider.value = musicPlayer.volume;
-
   [self playBackStateDidChanged];  
   [self setViewTitleAndMusicArtwork];
 }
@@ -317,6 +319,8 @@
   if (subControlTouchCount == counterBefore) {
     [self removeDisplaySubview];
   }
+
+  [pool release];
 }
 
 - (void)removeDisplaySubview {
@@ -474,12 +478,14 @@
 
   updateAfterSafetyTime = NO;
 
+  /* 停止 */
   if ([musicPlayer playbackState] == MPMusicPlaybackStateStopped) {
     NSLog(@"playbackStateChanged:%@", @"stop");
     image = [UIImage imageNamed:@"Play.png"];
     miniImage = [UIImage imageNamed:@"Play_mini.png"];
   }
 
+  /* 再生中 */
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
     NSLog(@"playbackStateChanged:%@", @"play");
     image = [UIImage imageNamed:@"Pause.png"];
@@ -490,6 +496,7 @@
     }
   }
 
+  /* 一時停止中 */
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePaused) {
     NSLog(@"playbackStateChanged:%@", @"pause");
     image = [UIImage imageNamed:@"Play.png"];
@@ -500,6 +507,11 @@
   [musicSegmentedControl setImage:miniImage forSegmentAtIndex:1];
 
   [self setMusicArtwork];
+
+  if (self.appDelegate.get_twitterusers_preference) {
+    [self performSelectorInBackground:@selector(refreshProfileImages)
+			   withObject:nil];
+  }
 }
 
 /**
@@ -550,18 +562,18 @@
 
   if (currentItem == nil && listView.superview == nil) {
     [self changeToListview];
-  } else {
-    if (self.appDelegate.get_twitterusers_preference) {
-      [self performSelectorInBackground:@selector(refreshProfileImages)
-			     withObject:nil];
-    }
+  }
 
-    if (autoTweetMode && 
-	[musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
-      [self performSelectorInBackground:@selector(sendAutoTweetAfterTimeLag)
-	    withObject:nil];
-      sending = YES;
-    }
+  if (self.appDelegate.get_twitterusers_preference) {
+    [self performSelectorInBackground:@selector(refreshProfileImages)
+			   withObject:nil];
+  }
+
+  if (autoTweetMode && 
+      [musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
+    [self performSelectorInBackground:@selector(sendAutoTweetAfterTimeLag)
+			   withObject:nil];
+    sending = YES;
   }
 }
 
@@ -575,16 +587,6 @@
 
   NSString *title = [self.appDelegate nowPlayingTitle];
   [self.appDelegate sleep:second];
-
-  /*
-  NSDate *date = [[NSDate alloc] init];
-  NSDate *nextStartDate = [[NSDate alloc] initWithTimeInterval:second 
-					  sinceDate:date];
-
-  [NSThread sleepUntilDate: nextStartDate];
-  [date release];
-  [nextStartDate release];
-  */
 
   NSString *nowSongTitle = [self.appDelegate nowPlayingTitle];
 
@@ -790,7 +792,7 @@
 
 - (void)setViewTitleAndMusicArtwork {
 
-  UIView *titleView = [[UIView alloc] 
+  UIView *titleView = [[UIControl alloc] 
 			initWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 45.0f)];
 
   UITextField *songTitleField = [[UITextField alloc] 
@@ -801,6 +803,7 @@
   songTitleField.font = [UIFont boldSystemFontOfSize:16.0f];
   songTitleField.textAlignment = UITextAlignmentCenter;
   songTitleField.text = [self.appDelegate nowPlayingTitle];
+  songTitleField.enabled = NO;
   [titleView addSubview:songTitleField];
 
   UITextField *artistNameField = [[UITextField alloc] 
@@ -811,7 +814,12 @@
   artistNameField.font = [UIFont boldSystemFontOfSize:12.0f];
   artistNameField.textAlignment = UITextAlignmentCenter;
   artistNameField.text = [self.appDelegate nowPlayingArtistName];
+  artistNameField.enabled = NO;
   [titleView addSubview:artistNameField];
+
+  [titleView addTarget:self
+		action:@selector(openSelectSongViewFromNowPlayingAlbum)
+       forControlEvents:UIControlEventTouchUpInside];
 
   self.navigationItem.titleView = titleView;
   [titleView release];
@@ -833,6 +841,47 @@
     
     NSLog(@"title: %@", nowPlayingTitle);
   }
+}
+
+/**
+ * @brief 現在再生中のアルバムまたはプレイリストの曲リストを表示する。
+ */
+- (void)openSelectSongViewFromNowPlayingAlbum {
+
+  NSLog(@"open select view.");
+
+  AlbumSongsViewController *viewController = nil;
+  NSString *listTitle = nil;
+  MPMediaItemCollection *itemCollection = nil;
+  NSArray *collection = nil;
+
+  NSLog(@"itemCollectionTitle:%@", itemCollectionTitle);
+
+  if (listmode == kListModePlayList) {
+    listTitle = itemCollectionTitle;
+    collection = [self.appDelegate searchPlaylists:itemCollectionTitle];
+  } else {
+    listTitle = [self.appDelegate nowPlayingAlbumTitle];
+    collection = [self.appDelegate searchAlbums:listTitle];
+  }
+
+  itemCollection = [collection objectAtIndex:0];
+  viewController = [[AlbumSongsViewController alloc] 
+		     initWithAlbum:itemCollection];
+
+  [viewController setMusicPlayer:musicPlayer];
+  [viewController setMusicPlayerViewController:self];
+  [viewController setPlayListTitle:listTitle];
+
+  UINavigationController *navController = 
+    [self.appDelegate navigationWithViewController:viewController
+	 title:listTitle  imageName:nil];
+
+  viewController.leftButtonItem = 
+    [self.appDelegate cancelButton:@selector(close) target:viewController];
+
+  [self presentModalViewController:navController animated:YES];
+  [viewController release];
 }
 
 - (void)refreshProfileImages {
@@ -1536,7 +1585,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
   if (listmode == kListModePlayList) {
     MPMediaPlaylist *playlist = [playLists objectAtIndex:listRow];
+
+    NSString *listTitle = 
+      [playlist valueForProperty:MPMediaPlaylistPropertyName];
+
+    self.itemCollectionTitle = listTitle;
     [musicPlayer setQueueWithItemCollection:playlist];
+
   } else {
     MPMediaItemCollection *album = [albumLists objectAtIndex:listRow];
     MPMediaQuery *query = [[[MPMediaQuery alloc] init] autorelease];
@@ -1559,8 +1614,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 
   NSInteger listRow = [indexPath row] - 1;
-  id viewController;
-  NSString *listTitle;
+  id viewController = nil;
+  NSString *listTitle = nil;
 
   if (listmode == kListModeAlbum) { 
     MPMediaItemCollection *album = [albumLists objectAtIndex:listRow];    
@@ -1581,6 +1636,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 
     listTitle = [[playlist representativeItem] 
 		  valueForProperty:MPMediaPlaylistPropertyName];
+    self.itemCollectionTitle = listTitle;
   }
 
   [viewController setMusicPlayer:musicPlayer];

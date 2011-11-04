@@ -13,7 +13,7 @@
 @implementation AlbumSongsViewController
 
 #pragma mark -
-                                                                                                                        #pragma mark Memory management
+#pragma mark Memory management
 
 - (void)dealloc {
 
@@ -39,6 +39,7 @@
 
   if (self != nil) {
     self.playlist = newAlbum;
+    leftButtonItem = nil;
   }
 
   return self;
@@ -50,6 +51,10 @@
 - (void)viewDidLoad {
 
   [super viewDidLoad];
+
+  if (leftButtonItem != nil) {
+    self.navigationItem.leftBarButtonItem = leftButtonItem;
+  }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

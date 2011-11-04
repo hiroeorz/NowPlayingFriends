@@ -68,7 +68,7 @@
   NSString *username = nameField.text;
   NSString *password = passwordField.text;
 
-  if ([username length] >= 0 && [password length] >= 0) {
+  if ([username length] > 0 && [password length] > 0) {
     [twitterClient getAccessTokenWithUsername:username password:password
 		   delegate:self];
   }

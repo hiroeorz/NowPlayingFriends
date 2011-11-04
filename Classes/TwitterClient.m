@@ -413,7 +413,7 @@
   NSArray *jsonArray = [jsonString JSONValue];
   
   if ([jsonArray isKindOfClass:[NSDictionary class]]) {
-    NSLog(@"invalid data received: &@", jsonArray);
+    NSLog(@"invalid data received: %@", jsonArray);
     return [NSArray array];
   }
 

@@ -38,6 +38,7 @@
 
   if (self != nil) {
     self.playlist = newPlaylist;
+    leftButtonItem = nil;
   }
 
   return self;

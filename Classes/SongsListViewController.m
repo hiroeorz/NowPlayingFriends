@@ -11,12 +11,13 @@
 
 @implementation SongsListViewController
 
-@synthesize playlist;
+@dynamic appDelegate;
+@synthesize leftButtonItem;
 @synthesize musicPlayer;
 @synthesize musicPlayerViewController;
-@synthesize songListView;
-@dynamic appDelegate;
 @synthesize playListTitle;
+@synthesize playlist;
+@synthesize songListView;
 
 #pragma mark -
 #pragma mark Memory management
@@ -104,9 +105,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
   [musicPlayer setNowPlayingItem:selectedItem];
   [musicPlayer play];
+  [self close];
 }
 
 #pragma mark -
+
+- (void)close {
+  [self dismissModalViewControllerAnimated:YES];
+}
+
 
 - (void)changeToSongview {
 
