@@ -37,9 +37,11 @@
   colorSpace = CGColorSpaceCreateDeviceRGB();
   gradient = CGGradientCreateWithColorComponents(colorSpace, components,
 						 locations, num_locations);
-  
-  CGPoint startPoint = CGPointMake(self.frame.size.width/2, 0.0);
-  CGPoint endPoint = CGPointMake(self.frame.size.width/2, self.frame.size.height);
+
+  CGPoint startPoint = CGPointMake(self.frame.size.width/2, 
+				   self.frame.size.height);
+  CGPoint endPoint = CGPointMake(self.frame.size.width/2, 0.0);
+
   CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
   
   CGColorSpaceRelease(colorSpace);

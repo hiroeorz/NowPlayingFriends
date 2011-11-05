@@ -139,7 +139,7 @@
     updatingFlag = NO;
     cancelFlag = NO;
     updateAfterSafetyTime = NO;
-    self.twitterClient = nil;
+    twitterClient = nil;
     addLinkArray = [[NSMutableArray alloc] init];
     itemCollectionTitle = nil;
   }
@@ -184,7 +184,6 @@
   UIButton *nowButton = [self nowButton:nil frame:kNowButtonInfoFrame];
   [musicControllerView addSubview:nowButton];
 
-
   /* 再生中, 一時停止中 */
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying ||
       [musicPlayer playbackState] == MPMusicPlaybackStatePaused) {
@@ -212,9 +211,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 
-  NSLog(@"viewDidAppear");
   [super viewDidAppear:animated];
-  [self playBackStateDidChanged];  
   [self setViewTitleAndMusicArtwork];
 }
 
@@ -309,32 +306,14 @@
 /*
  * @brief 曲タイトル表示の切り替えとアルバムアートワークの変更を行う。
  */
-
 - (void)setViewTitleAndMusicArtwork {
 
-  UIControl *titleView = [[UIControl alloc] 
-		     initWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 45.0f)];
+  UIControl *titleView = [self songTitleViewControl];
 
-  UITextField *songTitleField = [[UITextField alloc] 
-				initWithFrame:CGRectMake(0.0f, 3.0f,
-							 200.0f, 35.0f)];
-  songTitleField.backgroundColor = nil;
-  songTitleField.textColor = [UIColor whiteColor];
-  songTitleField.font = [UIFont boldSystemFontOfSize:16.0f];
-  songTitleField.textAlignment = UITextAlignmentCenter;
-  songTitleField.text = [self.appDelegate nowPlayingTitle];
-  songTitleField.enabled = NO;
+  UITextField *songTitleField = [self songTitleField];
   [titleView addSubview:songTitleField];
 
-  UITextField *artistNameField = [[UITextField alloc] 
-				initWithFrame:CGRectMake(0.0f, 25.0f,
-							 200.0f, 30.0f)];
-  artistNameField.backgroundColor = nil;
-  artistNameField.textColor = [UIColor whiteColor];
-  artistNameField.font = [UIFont boldSystemFontOfSize:12.0f];
-  artistNameField.textAlignment = UITextAlignmentCenter;
-  artistNameField.text = [self.appDelegate nowPlayingArtistName];
-  artistNameField.enabled = NO;
+  UITextField *artistNameField = [self artistNameField];
   [titleView addSubview:artistNameField];
 
   [titleView addTarget:self
@@ -348,19 +327,60 @@
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
 
-  if (currentItem == nil && listView.superview == nil) {
+  if (currentItem == nil && listView.superview == nil) { 
     NSLog(@"Play Item is NULL");
     self.title = @"Player";
   } else {
     [self setMusicArtwork];
-    NSString *nowPlayingTitle = 
-      [currentItem valueForProperty:MPMediaItemPropertyTitle];
+    NSString *nowPlayingTitle = [currentItem 
+				  valueForProperty:MPMediaItemPropertyTitle];
     
     self.navigationController.title = nowPlayingTitle;
     self.navigationController.tabBarItem.title = @"Player";
     
     NSLog(@"title: %@", nowPlayingTitle);
   }
+}
+
+/**
+ * @brief ナビゲーションバーに曲名とアーティスト名を表示するコントロールを返す。
+ */
+- (UIControl *)songTitleViewControl {
+  return [[UIControl alloc] initWithFrame:CGRectMake(0.0f, 1.0f, 200.0f, 43.0f)];
+}
+
+/**
+ * @brief ナビゲーションバーに曲名を表示するフィールドを生成して返す。
+ */
+- (UITextField *)songTitleField {
+
+  UITextField *songTitleField = [[UITextField alloc] 
+				initWithFrame:CGRectMake(0.0f, 3.0f,
+							 200.0f, 35.0f)];
+  songTitleField.backgroundColor = nil;
+  songTitleField.textColor = [UIColor whiteColor];
+  songTitleField.font = [UIFont boldSystemFontOfSize:16.0f];
+  songTitleField.textAlignment = UITextAlignmentCenter;
+  songTitleField.text = [self.appDelegate nowPlayingTitle];
+  songTitleField.enabled = NO;
+  return songTitleField;
+}
+
+/**
+ * @brief ナビゲーションバーにアーティスト名を表示するフィールドを生成して返す。
+ */
+- (UITextField *)artistNameField {
+
+  UITextField *artistNameField = [[UITextField alloc] 
+				initWithFrame:CGRectMake(0.0f, 25.0f,
+							 200.0f, 30.0f)];
+  artistNameField.backgroundColor = nil;
+  artistNameField.textColor = [UIColor whiteColor];
+  artistNameField.font = [UIFont boldSystemFontOfSize:12.0f];
+  artistNameField.textAlignment = UITextAlignmentCenter;
+  artistNameField.text = [self.appDelegate nowPlayingArtistName];
+  artistNameField.enabled = NO;
+  return artistNameField;
 }
 
 /**
@@ -962,6 +982,19 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 
 - (NowPlayingFriendsAppDelegate *)appDelegate {
   return [[UIApplication sharedApplication] delegate];
+}
+
+- (void)stateLog {
+
+  if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
+    NSLog(@"state: play");
+  }
+  if ([musicPlayer playbackState] == MPMusicPlaybackStatePaused) {
+    NSLog(@"state: pause");
+  }
+  if ([musicPlayer playbackState] == MPMusicPlaybackStateStopped) {
+    NSLog(@"state: stop");
+  }
 }
 
 @end

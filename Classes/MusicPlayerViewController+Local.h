@@ -1,3 +1,5 @@
+#import <QuartzCore/QuartzCore.h>
+
 #import "MusicPlayerViewController.h"
 
 #import "AlbumSongsViewController.h"
@@ -35,8 +37,12 @@
 - (void)openEditView;
 - (void)changeToListview;
 - (void)changeToSongview;
+- (UIControl *)songTitleViewControl;
+- (UITextField *)songTitleField;
+- (UITextField *)artistNameField;
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 - (UIButton *)youTubeButton:(CGRect)frame;
+- (void)stateLog;
 @end
 
 @interface MusicPlayerViewController (AutoTweet)

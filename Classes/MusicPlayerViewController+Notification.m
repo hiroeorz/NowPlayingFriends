@@ -9,6 +9,8 @@
  */
 - (void)handle_PlayBackStateDidChanged:(id)notification {
 
+  NSLog(@"Play State Changed!");
+  [self stateLog];
   [self playBackStateDidChanged];
 }
 
@@ -21,14 +23,12 @@
 
   /* 停止 */
   if ([musicPlayer playbackState] == MPMusicPlaybackStateStopped) {
-    NSLog(@"playbackStateChanged:%@", @"stop");
     image = [UIImage imageNamed:@"Play.png"];
     miniImage = [UIImage imageNamed:@"Play_mini.png"];
   }
 
   /* 再生中 */
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
-    NSLog(@"playbackStateChanged:%@", @"play");
     image = [UIImage imageNamed:@"Pause.png"];
     miniImage = [UIImage imageNamed:@"Pause_mini.png"];
     if (autoTweetMode) {
@@ -39,7 +39,6 @@
 
   /* 一時停止中 */
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePaused) {
-    NSLog(@"playbackStateChanged:%@", @"pause");
     image = [UIImage imageNamed:@"Play.png"];
     miniImage = [UIImage imageNamed:@"Play_mini.png"];
   }
@@ -70,7 +69,9 @@
  */
 - (void)handle_NowPlayingItemChanged:(id)notification {
 
-  NSLog(@"music changed!");
+  NSLog(@"Music Item Changed!");
+  [self stateLog];
+
   sent = NO;
   sending = NO;
   updateAfterSafetyTime = NO;
