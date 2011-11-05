@@ -149,9 +149,9 @@ titleForHeaderInSection:(NSInteger)section {
 				    reuseIdentifier:SettingCellIdentifier];
     [cell autorelease];
   } else {
-    CGRect frame = CGRectMake(0, 0, 300, 44);
-    cell = [[UITableViewCell alloc] initWithFrame:frame
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
 				    reuseIdentifier:SwitchCellIdentifier];
+
     [cell autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.font = [UIFont systemFontOfSize:14];

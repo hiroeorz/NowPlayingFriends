@@ -22,13 +22,10 @@
 
 - (void)openUserInformationView:(id)sender;
 - (void)setMusicArtwork;
-
 - (void)removeDisplaySubview;
 - (void)removeDisplaySubviewAfterSecond;
-
 - (BOOL)checkNowPlayingUser:(NSDictionary *)data;
-- (UIButton *)nowButton:(SEL)selector
-		  frame:(CGRect)frame;
+- (UIButton *)nowButton:(SEL)selector frame:(CGRect)frame;
 - (UIButton *)playButton:(CGRect)frame;
 - (UIButton *)refreshButton:(CGRect)frame;
 - (void)closeSettingView;
@@ -38,10 +35,8 @@
 - (void)openEditView;
 - (void)changeToListview;
 - (void)changeToSongview;
-
 - (NowPlayingFriendsAppDelegate *)appDelegate;
 - (UIButton *)youTubeButton:(CGRect)frame;
-
 @end
 
 @interface MusicPlayerViewController (AutoTweet)
