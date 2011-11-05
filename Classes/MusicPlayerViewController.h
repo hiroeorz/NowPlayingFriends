@@ -155,9 +155,4 @@
 
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
-
-- (void)handle_PlayBackStateDidChanged:(id)notification;
-- (void)handle_VolumeChanged:(id)notification;
-- (void)handle_NowPlayingItemChanged:(id)notification;
-
 @end
