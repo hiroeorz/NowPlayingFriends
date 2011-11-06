@@ -28,8 +28,6 @@
 
   [self performSelectorInBackground:@selector(refreshProfileImages)
 	withObject:nil];
-  //[self performSelectorInBackground:@selector(removeDisplaySubviewAfterSecond)
-  //	withObject:nil];
 }
 
 - (void)openUserInformationView:(id)sender {
@@ -126,5 +124,103 @@
 
   [musicPlayer skipToPreviousItem];
 }
+
+- (IBAction)changeShuffleMode:(id)sender {
+
+  NSLog(@"changeShuffleMode:%d", [sender selectedSegmentIndex]);
+
+ switch ([sender selectedSegmentIndex]) {
+ case kShuffleModeNone:
+   NSLog(@"0");
+   musicPlayer.shuffleMode = MPMusicShuffleModeOff;
+   break;
+ case kShuffleModeOne:
+   NSLog(@"1");
+   musicPlayer.shuffleMode = MPMusicShuffleModeSongs;
+   break;
+ case kShuffleModeAll:
+   NSLog(@"2");
+   musicPlayer.shuffleMode = MPMusicShuffleModeAlbums;
+   break;
+ }
+}
+
+- (IBAction)changeRepeatMode:(id)sender {
+
+  NSLog(@"changeRepeatMode:%d", [sender selectedSegmentIndex]);
+
+ switch ([sender selectedSegmentIndex]) {
+ case kRepeatModeNone:
+   musicPlayer.repeatMode = MPMusicRepeatModeNone;
+   break;
+ case kRepeatModeOne:
+   musicPlayer.repeatMode = MPMusicRepeatModeOne;
+   break;
+ case kRepeatModeAll:
+   musicPlayer.repeatMode = MPMusicRepeatModeAll;
+   break;
+ }
+}
+
+- (IBAction)openSettingView:(id)sender {
+
+  if (musicPlayer.shuffleMode == MPMusicShuffleModeOff) {
+    shuffleModeControll.selectedSegmentIndex = kShuffleModeNone;    
+  }
+  if (musicPlayer.shuffleMode == MPMusicShuffleModeSongs) {
+    shuffleModeControll.selectedSegmentIndex = kShuffleModeOne;    
+  }
+  if (musicPlayer.shuffleMode == MPMusicShuffleModeAlbums) {
+    shuffleModeControll.selectedSegmentIndex = kShuffleModeAll;    
+  }
+  
+
+  if (musicPlayer.repeatMode == MPMusicRepeatModeNone) {
+    repeatModeControll.selectedSegmentIndex = kRepeatModeNone;    
+  }
+  if (musicPlayer.repeatMode == MPMusicRepeatModeOne) {
+    repeatModeControll.selectedSegmentIndex = kRepeatModeOne;
+  }
+  if (musicPlayer.repeatMode == MPMusicRepeatModeAll) {
+    repeatModeControll.selectedSegmentIndex = kRepeatModeAll;
+  }
+
+  if (self.appDelegate.get_twitterusers_preference) {
+    friendGetModeControl.selectedSegmentIndex = 1;
+  } else {
+    friendGetModeControl.selectedSegmentIndex = 0;
+  }
+
+  [self.appDelegate setHalfCurlAnimationWithController:self
+       frontView:songView
+       curlUp:YES];
+  
+  if (songView.superview != nil) {
+    [songView removeFromSuperview];
+  }
+
+  [self.baseView addSubview:settingView];
+  [UIView commitAnimations];
+}
+
+- (IBAction)closeSettingView:(id)sender {
+
+  [self closeSettingView];
+}
+
+- (void)closeSettingView {
+
+  [self.appDelegate setHalfCurlAnimationWithController:self
+       frontView:songView
+       curlUp:NO];
+  
+  if (settingView.superview != nil) {
+    [settingView removeFromSuperview];
+  }
+  
+  [self.view addSubview:songView];
+  [UIView commitAnimations];
+}
+
 
 @end

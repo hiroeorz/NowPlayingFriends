@@ -1,4 +1,3 @@
-#import "MusicPlayerViewController+Notification.h"
 #import "MusicPlayerViewController+Local.h"
 
 
@@ -9,7 +8,7 @@
  */
 - (void)handle_PlayBackStateDidChanged:(id)notification {
 
-  NSLog(@"Play State Changed!");
+  NSLog(@"=========================Play State Changed!");
   [self stateLog];
   [self playBackStateDidChanged];
 }
@@ -69,7 +68,7 @@
  */
 - (void)handle_NowPlayingItemChanged:(id)notification {
 
-  NSLog(@"Music Item Changed!");
+  NSLog(@"------------------------------Music Item Changed!");
   [self stateLog];
 
   sent = NO;

@@ -1,4 +1,3 @@
-#import "MusicPlayerViewController.h"
 #import "MusicPlayerViewController+Local.h"
 
 
@@ -25,24 +24,26 @@
 	NSLog(@"starting refresh timeline");
 	
 	self.beforeTimeline = timeline;
-	[self refreshTimeline];
-	[self setFriendImageView];
+
+	if ([self refreshTimeline]) {
+	  if (cancelFlag) {
+	    [self releaseNowButtons];
+	    [self releaseProfileImageButtons];
+	  }
+	  [self setFriendImageView];  
+	}
+
       }
     }
     @finally {
-      updatingFlag = NO;
-      
-      if (cancelFlag) {
-	[self releaseNowButtons];
-	[self releaseProfileImageButtons];
-      }
+      updatingFlag = NO;      
     }
   }
 
   [pool release];
 }
 
-- (void)refreshTimeline {
+- (BOOL)refreshTimeline {
 
   NSLog(@"updating timeline data...");
   TwitterClient *client = [[TwitterClient alloc] init];
@@ -53,10 +54,9 @@
   
   NSLog(@"INDEX: %d", refreshTypeSegmentedControl.selectedSegmentIndex);
 
-  if (cancelFlag) {
-    NSLog(@"Stopping refresh timeline because cacelFlag=YES");
+  if (cancelFlag) { NSLog(@"Stopping refresh timeline because cacelFlag=YES");
     [client release];
-    return;
+    return NO;
   }
 
   switch (refreshTypeSegmentedControl.selectedSegmentIndex) {
@@ -83,6 +83,7 @@
     }
   }
 
+  BOOL changed = [self checkTimelineUpdated:uniqArray];
   self.timeline = uniqArray;
 
   [client release];
@@ -90,6 +91,29 @@
   [checkArray release];
 
   NSLog(@"timeline data updated.");
+  return changed;
+}
+
+- (BOOL)checkTimelineUpdated:(NSArray *)newArray {
+
+  if ([newArray count] != [timeline count]) { return YES; }
+
+  BOOL changed = NO;
+  NSInteger i = 0;
+
+  for(NSDictionary *newItem in newArray) {
+    NSDictionary *oldItem = [timeline objectAtIndex:i];
+    NSString *oldName = [self.appDelegate username:oldItem];
+    NSString *newName = [self.appDelegate username:newItem];
+
+    if (![oldName isEqualToString:newName]) {
+      changed = YES; break;
+    }
+
+    i++;
+  }
+
+  return changed;
 }
 
 /**
@@ -122,7 +146,7 @@
   NSInteger y = albumImageView.frame.size.height - xRange + 32.0f;
   
   for (NSDictionary *data in timeline)  {
-    if (cancelFlag || timeline == beforeTimeline) { break; }
+    //if (cancelFlag || timeline == beforeTimeline) { break; }
 
     UIButton *profileImageButton = nil;
     BOOL newButtonFlag = NO;

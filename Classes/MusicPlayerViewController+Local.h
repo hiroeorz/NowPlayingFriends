@@ -54,14 +54,12 @@
 - (void)createMessageIncludeYouTube:(NSArray *)linkUrlArray;
 @end
 
-@interface MusicPlayerViewController (Settings)
-@end
-
 @interface MusicPlayerViewController (FriendsIcon)
-- (void)refreshTimeline;
+- (BOOL)refreshTimeline;
 - (void)releaseNowButtons;
 - (void)releaseProfileImageButtons;
 - (void)setFriendImageView;
+- (BOOL)checkTimelineUpdated:(NSArray *)newArray;
 - (void)addProfileImageButton:(NSDictionary *)objects;
 - (void)setBackgroundImage:(NSDictionary *)objects;
 - (void)setBackgroundApha:(NSDictionary *)objects;

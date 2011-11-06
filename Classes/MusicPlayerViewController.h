@@ -11,7 +11,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-#import "NowPlayingFriendsAppDelegate.h"
 #import "TwitterClient.h"
 
 
@@ -131,6 +130,22 @@
 @property (nonatomic, retain) UIViewController *songListController;
 
 
+- (IBAction)touchSubControl:(id)sender;
+- (IBAction)touchSubControllerDisplayButton:(id)sender;
+- (void)displaySubview;
+- (void)setViewTitleAndMusicArtwork;
+- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+@end
+
+@interface MusicPlayerViewController (Notification)
+- (void)playBackStateDidChanged;
+- (void)handle_PlayBackStateDidChanged:(id)notification;
+- (void)handle_VolumeChanged:(id)notification;
+- (void)handle_NowPlayingItemChanged:(id)notification;
+@end
+
+@interface MusicPlayerViewController (Settings)
 - (IBAction)changeAutoTweetMode:(id)sender;
 - (IBAction)changeFriendGetMode:(id)sender;
 - (IBAction)changeMusicSegmentedControl:(id)sender;
@@ -146,13 +161,4 @@
 - (IBAction)skipToNextItem:(id)sender;
 - (IBAction)skipToPreviousItem:(id)sender;
 - (IBAction)togglePlayStop:(id)sender;
-- (IBAction)touchSubControl:(id)sender;
-- (IBAction)touchSubControllerDisplayButton:(id)sender;
-
-- (void)displaySubview;
-- (void)playBackStateDidChanged;
-- (void)setViewTitleAndMusicArtwork;
-
-- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
-- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 @end

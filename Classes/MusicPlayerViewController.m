@@ -321,9 +321,6 @@
        forControlEvents:UIControlEventTouchUpInside];
 
   self.navigationItem.titleView = titleView;
-  [titleView release];
-  [songTitleField release];
-  [artistNameField release];
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
 
@@ -346,7 +343,7 @@
  * @brief ナビゲーションバーに曲名とアーティスト名を表示するコントロールを返す。
  */
 - (UIControl *)songTitleViewControl {
-  return [[UIControl alloc] initWithFrame:CGRectMake(0.0f, 1.0f, 200.0f, 43.0f)];
+  return [[[UIControl alloc] initWithFrame:CGRectMake(0.0f, 1.0f, 200.0f, 43.0f)] autorelease];
 }
 
 /**
@@ -363,7 +360,7 @@
   songTitleField.textAlignment = UITextAlignmentCenter;
   songTitleField.text = [self.appDelegate nowPlayingTitle];
   songTitleField.enabled = NO;
-  return songTitleField;
+  return [songTitleField autorelease];
 }
 
 /**
@@ -380,7 +377,7 @@
   artistNameField.textAlignment = UITextAlignmentCenter;
   artistNameField.text = [self.appDelegate nowPlayingArtistName];
   artistNameField.enabled = NO;
-  return artistNameField;
+  return [artistNameField autorelease];
 }
 
 /**
@@ -537,106 +534,6 @@
   [viewController release];
 }
 
-#pragma mark -
-#pragma mark PlayList Methods
-
-- (IBAction)changeShuffleMode:(id)sender {
-
-  NSLog(@"changeShuffleMode:%d", [sender selectedSegmentIndex]);
-
- switch ([sender selectedSegmentIndex]) {
- case kShuffleModeNone:
-   NSLog(@"0");
-   musicPlayer.shuffleMode = MPMusicShuffleModeOff;
-   break;
- case kShuffleModeOne:
-   NSLog(@"1");
-   musicPlayer.shuffleMode = MPMusicShuffleModeSongs;
-   break;
- case kShuffleModeAll:
-   NSLog(@"2");
-   musicPlayer.shuffleMode = MPMusicShuffleModeAlbums;
-   break;
- }
-}
-
-- (IBAction)changeRepeatMode:(id)sender {
-
-  NSLog(@"changeRepeatMode:%d", [sender selectedSegmentIndex]);
-
- switch ([sender selectedSegmentIndex]) {
- case kRepeatModeNone:
-   musicPlayer.repeatMode = MPMusicRepeatModeNone;
-   break;
- case kRepeatModeOne:
-   musicPlayer.repeatMode = MPMusicRepeatModeOne;
-   break;
- case kRepeatModeAll:
-   musicPlayer.repeatMode = MPMusicRepeatModeAll;
-   break;
- }
-}
-
-- (IBAction)openSettingView:(id)sender {
-
-  if (musicPlayer.shuffleMode == MPMusicShuffleModeOff) {
-    shuffleModeControll.selectedSegmentIndex = kShuffleModeNone;    
-  }
-  if (musicPlayer.shuffleMode == MPMusicShuffleModeSongs) {
-    shuffleModeControll.selectedSegmentIndex = kShuffleModeOne;    
-  }
-  if (musicPlayer.shuffleMode == MPMusicShuffleModeAlbums) {
-    shuffleModeControll.selectedSegmentIndex = kShuffleModeAll;    
-  }
-  
-
-  if (musicPlayer.repeatMode == MPMusicRepeatModeNone) {
-    repeatModeControll.selectedSegmentIndex = kRepeatModeNone;    
-  }
-  if (musicPlayer.repeatMode == MPMusicRepeatModeOne) {
-    repeatModeControll.selectedSegmentIndex = kRepeatModeOne;
-  }
-  if (musicPlayer.repeatMode == MPMusicRepeatModeAll) {
-    repeatModeControll.selectedSegmentIndex = kRepeatModeAll;
-  }
-
-  if (self.appDelegate.get_twitterusers_preference) {
-    friendGetModeControl.selectedSegmentIndex = 1;
-  } else {
-    friendGetModeControl.selectedSegmentIndex = 0;
-  }
-
-  [self.appDelegate setHalfCurlAnimationWithController:self
-       frontView:songView
-       curlUp:YES];
-  
-  if (songView.superview != nil) {
-    [songView removeFromSuperview];
-  }
-
-  [self.baseView addSubview:settingView];
-  [UIView commitAnimations];
-}
-
-- (IBAction)closeSettingView:(id)sender {
-
-  [self closeSettingView];
-}
-
-- (void)closeSettingView {
-
-  [self.appDelegate setHalfCurlAnimationWithController:self
-       frontView:songView
-       curlUp:NO];
-  
-  if (settingView.superview != nil) {
-    [settingView removeFromSuperview];
-  }
-  
-  [self.view addSubview:songView];
-  [UIView commitAnimations];
-}
-
 - (void)openEditView {
 
   autoTweetMode = NO;
@@ -652,6 +549,9 @@
 
   [self presentModalViewController:navController animated:YES];
 }
+
+#pragma mark -
+#pragma mark PlayList Methods
 
 - (void)changeToListview {
 
@@ -995,6 +895,26 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
   if ([musicPlayer playbackState] == MPMusicPlaybackStateStopped) {
     NSLog(@"state: stop");
   }
+}
+
+#pragma mark -
+#pragma AutoTweet Call back.
+
+- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {
+
+  NSLog(@"didFinishWithData");
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
+  NSString *dataString = [[NSString alloc] 
+			   initWithData:data encoding:NSUTF8StringEncoding];
+
+  NSLog(@"tweet sended. result:: %@", dataString);
+  [dataString release];
+}
+
+- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
+  NSLog(@"didFailWithError");
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 @end

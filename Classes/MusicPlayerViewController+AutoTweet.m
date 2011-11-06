@@ -197,21 +197,4 @@
   sent = YES;
 }
 
-- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {
-
-  NSLog(@"didFinishWithData");
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
-  NSString *dataString = [[NSString alloc] 
-			   initWithData:data encoding:NSUTF8StringEncoding];
-
-  NSLog(@"tweet sended. result:: %@", dataString);
-  [dataString release];
-}
-
-- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
-  NSLog(@"didFailWithError");
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-}
-
 @end
