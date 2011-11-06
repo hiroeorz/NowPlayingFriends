@@ -39,8 +39,8 @@
 #define kPlayButtonAlpha 0.7f
 #define kRefreshButtonFrame (CGRectMake(220.0f, 12.0f, 100.0f, 50.0f))
 #define kRefreshButtonAlpha 1.0f
-#define kYouTubeButtonFrame (CGRectMake(11.0f, 62.0f, 105.0f, 37.0f))
-#define kYouTubeButtonAlpha 0.7f
+#define kYouTubeButtonFrame (CGRectMake(25.0f, 62.0f, 155.0f, 30.0f))
+#define kYouTubeButtonAlpha 1.0f
 
 #define kAccelerationThreshold 1.6
 #define kAccelerationUpdateInterval (1.0f / 10.0f)

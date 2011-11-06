@@ -515,10 +515,10 @@
 
 - (UIButton *)youTubeButton:(CGRect)frame {
 
-  UIButton *aYouTubeButton = [UIButton buttonWithType:111];
+  UIButton *aYouTubeButton = [UIButton buttonWithType:100];
   aYouTubeButton.frame = frame;
   
-  UIColor *playButtonColor = [UIColor darkGrayColor];
+  UIColor *playButtonColor = [UIColor orangeColor];
   [aYouTubeButton setValue:playButtonColor forKey:@"tintColor"];
 
   [aYouTubeButton addTarget:self action:@selector(openYouTubeList:)
@@ -527,6 +527,7 @@
   [aYouTubeButton setTitle:@"YouTube" forState:UIControlStateNormal];
   aYouTubeButton.alpha = kYouTubeButtonAlpha;
   aYouTubeButton.titleLabel.textColor = [UIColor whiteColor];
+  aYouTubeButton.titleLabel.font = [UIFont boldSystemFontOfSize:15.0f];
 
   return aYouTubeButton;
 }
