@@ -15,6 +15,7 @@
 
 - (void)playBackStateDidChanged {
   
+  [self setMusicArtwork];
   UIImage *image = nil;  
   UIImage *miniImage = nil;
 
@@ -44,13 +45,6 @@
 
   [playButton setImage:image forState:UIControlStateNormal];
   [musicSegmentedControl setImage:miniImage forSegmentAtIndex:1];
-
-  [self setMusicArtwork];
-
-  if (self.appDelegate.get_twitterusers_preference) {
-    [self performSelectorInBackground:@selector(refreshProfileImages)
-			   withObject:nil];
-  }
 }
 
 /**

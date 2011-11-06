@@ -343,7 +343,13 @@
  * @brief ナビゲーションバーに曲名とアーティスト名を表示するコントロールを返す。
  */
 - (UIControl *)songTitleViewControl {
-  return [[[UIControl alloc] initWithFrame:CGRectMake(0.0f, 1.0f, 200.0f, 43.0f)] autorelease];
+  //return [[[UIControl alloc] initWithFrame:CGRectMake(0.0f, 1.0f, 200.0f, 43.0f)] autorelease];
+
+  UIButton *button = [UIButton buttonWithType:110];
+  button.frame = CGRectMake(0.0f, 4.0f, 200.0f, 36.0f);
+  [button setTitle:@"" forState:UIControlStateNormal];
+  [button setValue:[UIColor blackColor] forKey:@"tintColor"];
+  return button;
 }
 
 /**
@@ -353,10 +359,10 @@
 
   UITextField *songTitleField = [[UITextField alloc] 
 				initWithFrame:CGRectMake(0.0f, 3.0f,
-							 200.0f, 35.0f)];
+							 200.0f, 30.0f)];
   songTitleField.backgroundColor = nil;
-  songTitleField.textColor = [UIColor whiteColor];
-  songTitleField.font = [UIFont boldSystemFontOfSize:16.0f];
+  songTitleField.textColor = [UIColor darkGrayColor];
+  songTitleField.font = [UIFont boldSystemFontOfSize:14.0f];
   songTitleField.textAlignment = UITextAlignmentCenter;
   songTitleField.text = [self.appDelegate nowPlayingTitle];
   songTitleField.enabled = NO;
@@ -369,10 +375,10 @@
 - (UITextField *)artistNameField {
 
   UITextField *artistNameField = [[UITextField alloc] 
-				initWithFrame:CGRectMake(0.0f, 25.0f,
+				initWithFrame:CGRectMake(0.0f, 19.0f,
 							 200.0f, 30.0f)];
   artistNameField.backgroundColor = nil;
-  artistNameField.textColor = [UIColor whiteColor];
+  artistNameField.textColor = [UIColor grayColor];
   artistNameField.font = [UIFont boldSystemFontOfSize:12.0f];
   artistNameField.textAlignment = UITextAlignmentCenter;
   artistNameField.text = [self.appDelegate nowPlayingArtistName];
@@ -512,7 +518,7 @@
   UIButton *aYouTubeButton = [UIButton buttonWithType:111];
   aYouTubeButton.frame = frame;
   
-  UIColor *playButtonColor = [UIColor scrollViewTexturedBackgroundColor];
+  UIColor *playButtonColor = [UIColor darkGrayColor];
   [aYouTubeButton setValue:playButtonColor forKey:@"tintColor"];
 
   [aYouTubeButton addTarget:self action:@selector(openYouTubeList:)
@@ -520,6 +526,7 @@
   
   [aYouTubeButton setTitle:@"YouTube" forState:UIControlStateNormal];
   aYouTubeButton.alpha = kYouTubeButtonAlpha;
+  aYouTubeButton.titleLabel.textColor = [UIColor whiteColor];
 
   return aYouTubeButton;
 }

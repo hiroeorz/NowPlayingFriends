@@ -39,7 +39,7 @@
 						 locations, num_locations);
 
   CGPoint startPoint = CGPointMake(self.frame.size.width/2, 
-				   self.frame.size.height);
+				   self.frame.size.height/10.0f * 5.4f);
   CGPoint endPoint = CGPointMake(self.frame.size.width/2, 0.0);
 
   CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
