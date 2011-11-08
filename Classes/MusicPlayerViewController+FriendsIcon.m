@@ -30,7 +30,7 @@
 	    [self releaseNowButtons];
 	    [self releaseProfileImageButtons];
 	  }
-	  [self setFriendImageView];  
+	  [self setFriendImageView];
 	}
 
       }
@@ -127,6 +127,7 @@
 
   [nowButtons release];
   nowButtons = [[NSMutableArray alloc] init];
+  animationOperator.buttonAndLines = [NSMutableArray array];
 }
 
 - (void)releaseProfileImageButtons {
@@ -139,14 +140,13 @@
 - (void)setFriendImageView {
 
   [self releaseNowButtons];
-
   NSInteger i = 0;
   NSInteger x = 0;
   NSInteger xRange = kProfileImageSize;
   NSInteger y = albumImageView.frame.size.height - xRange + 32.0f;
   
   for (NSDictionary *data in timeline)  {
-    //if (cancelFlag || timeline == beforeTimeline) { break; }
+    if (cancelFlag || timeline == beforeTimeline) { break; }
 
     UIButton *profileImageButton = nil;
     BOOL newButtonFlag = NO;
@@ -253,13 +253,13 @@
 
   UIButton *profileImageButton = [objects objectForKey:@"profileImageButton"];
   UIImage *newImage = [objects objectForKey:@"newImage"];
-
+  
   [self.appDelegate setAnimationWithView:profileImageButton
-       animationType:UIViewAnimationTransitionFlipFromLeft];
-
+			   animationType:UIViewAnimationTransitionFlipFromLeft];
+  
   [profileImageButton setBackgroundImage:newImage 
-		      forState:UIControlStateNormal];
-    
+				forState:UIControlStateNormal];
+  
   [UIView commitAnimations];
 }
 
@@ -274,11 +274,43 @@
 
   UIButton *profileImageButton = [objects objectForKey:@"profileImageButton"];
   UIButton *nowButton = [self nowButton:@selector(openUserInformationView:) 
-			      frame:kNowButtonFrame];
+				   frame:kNowButtonFrame];
 
   nowButton.tag = profileImageButton.tag;
+  [self addGraphViewToNowButton:nowButton];
+
   [profileImageButton addSubview:nowButton];
   [nowButtons addObject:nowButton];
+}
+
+/**
+ * @brief Nowボタンに疑似チューナーの棒グラフを追加する。
+ */
+- (void)addGraphViewToNowButton:(UIButton *)nowButton {
+  
+  UIView *graphLine = nil;
+  NSInteger i = 0;
+  CGFloat x = 7.0f;
+  CGFloat y = 9.0f;
+  CGFloat width = 3.5f;
+  CGFloat height = 10.0f;
+  NSMutableArray *array = [NSMutableArray arrayWithCapacity:4];
+
+  while(i < 3) {
+    graphLine = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    graphLine.backgroundColor = [UIColor whiteColor];
+    [nowButton addSubview:graphLine];
+    [array addObject:graphLine];
+    [graphLine autorelease];
+    x = x + width + 2.0f;
+    i++;
+  }
+  
+  NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+				      nowButton, @"button",
+				    array, @"graphLineArray", nil];
+
+  [animationOperator.buttonAndLines addObject:dic];
 }
 
 @end

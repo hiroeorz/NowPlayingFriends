@@ -145,6 +145,7 @@
 		54E76C64146581B8006612B6 /* MusicPlayerViewController+Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E76C61146581B8006612B6 /* MusicPlayerViewController+Notification.m */; };
 		54E76C65146581B8006612B6 /* MusicPlayerViewController+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E76C62146581B8006612B6 /* MusicPlayerViewController+Settings.m */; };
 		54E76C6714658421006612B6 /* MusicPlayerViewController+FriendsIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E76C6614658421006612B6 /* MusicPlayerViewController+FriendsIcon.m */; };
+		54E76C6A1466D3AC006612B6 /* MusicPlayerNowPlayingAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E76C691466D3AB006612B6 /* MusicPlayerNowPlayingAnimation.m */; };
 		54E7C6B11245D027006EDACE /* 53-house.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E7C6B01245D027006EDACE /* 53-house.png */; };
 		54E7C6BA1245D126006EDACE /* 23-bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E7C6B91245D126006EDACE /* 23-bird.png */; };
 		54EB001F1337AA71008F325F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54EB001E1337AA71008F325F /* libxml2.dylib */; };
@@ -154,6 +155,17 @@
 		54F0BCBE12A5CEAE00986791 /* atMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F0BCBD12A5CEAE00986791 /* atMark.png */; };
 		54F2D06612DDC3FA006C8C77 /* TwitterFriendsGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F2D06512DDC3FA006C8C77 /* TwitterFriendsGetter.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		54EDECBD146791DA0041B40A /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -378,10 +390,11 @@
 		54D260AA123A3989004023A6 /* Previous_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Previous_mini.png; path = icons/mediaIcons005/Previous_mini.png; sourceTree = "<group>"; };
 		54E76C5E146581B8006612B6 /* MusicPlayerViewController+AutoTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MusicPlayerViewController+AutoTweet.m"; sourceTree = "<group>"; };
 		54E76C5F146581B8006612B6 /* MusicPlayerViewController+Local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MusicPlayerViewController+Local.h"; sourceTree = "<group>"; };
-		54E76C60146581B8006612B6 /* MusicPlayerViewController+Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MusicPlayerViewController+Notification.h"; sourceTree = "<group>"; };
 		54E76C61146581B8006612B6 /* MusicPlayerViewController+Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MusicPlayerViewController+Notification.m"; sourceTree = "<group>"; };
 		54E76C62146581B8006612B6 /* MusicPlayerViewController+Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MusicPlayerViewController+Settings.m"; sourceTree = "<group>"; };
 		54E76C6614658421006612B6 /* MusicPlayerViewController+FriendsIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MusicPlayerViewController+FriendsIcon.m"; sourceTree = "<group>"; };
+		54E76C681466D3AB006612B6 /* MusicPlayerNowPlayingAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicPlayerNowPlayingAnimation.h; sourceTree = "<group>"; };
+		54E76C691466D3AB006612B6 /* MusicPlayerNowPlayingAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerNowPlayingAnimation.m; sourceTree = "<group>"; };
 		54E7C6B01245D027006EDACE /* 53-house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "53-house.png"; sourceTree = "<group>"; };
 		54E7C6B91245D126006EDACE /* 23-bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "23-bird.png"; sourceTree = "<group>"; };
 		54EB001E1337AA71008F325F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -451,7 +464,6 @@
 				54C1E0521217B48C00EBD811 /* MusicPlayerViewController.m */,
 				54E76C5E146581B8006612B6 /* MusicPlayerViewController+AutoTweet.m */,
 				54E76C5F146581B8006612B6 /* MusicPlayerViewController+Local.h */,
-				54E76C60146581B8006612B6 /* MusicPlayerViewController+Notification.h */,
 				54E76C61146581B8006612B6 /* MusicPlayerViewController+Notification.m */,
 				54E76C62146581B8006612B6 /* MusicPlayerViewController+Settings.m */,
 				54E76C6614658421006612B6 /* MusicPlayerViewController+FriendsIcon.m */,
@@ -493,6 +505,8 @@
 				549E00201307A09900908AB6 /* FriendCellProfileImageGetter.m */,
 				541649F31312678300B91837 /* TwitpicClient.h */,
 				541649F41312678300B91837 /* TwitpicClient.m */,
+				54E76C681466D3AB006612B6 /* MusicPlayerNowPlayingAnimation.h */,
+				54E76C691466D3AB006612B6 /* MusicPlayerNowPlayingAnimation.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -810,6 +824,7 @@
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 			);
 			buildRules = (
+				54EDECBD146791DA0041B40A /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -992,6 +1007,7 @@
 				54E76C64146581B8006612B6 /* MusicPlayerViewController+Notification.m in Sources */,
 				54E76C65146581B8006612B6 /* MusicPlayerViewController+Settings.m in Sources */,
 				54E76C6714658421006612B6 /* MusicPlayerViewController+FriendsIcon.m in Sources */,
+				54E76C6A1466D3AC006612B6 /* MusicPlayerNowPlayingAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,6 +1035,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				No_Use = "";
 				PRODUCT_NAME = "Now Playing Friends";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1045,6 +1062,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				No_Use = "";
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -1090,6 +1108,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				No_Use = "";
 				PRODUCT_NAME = "Now Playing Friends";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -14,6 +14,9 @@
 #import "TwitterClient.h"
 
 
+@class MusicPlayerNowPlayingAnimation;
+
+
 #define kProfileImageButtonAlpha 0.55f
 #define kProfileImageSize 64
 #define kPlayListTableRowHeight 55
@@ -32,9 +35,9 @@
 
 #define kAutoTweetTimeLag 10
 #define kMusicPlayerDefaultNowInterval 60 * 10
-#define kNowButtonFrame (CGRectMake(35.0f, 40.0f, 30.0f, 25.0f))
+#define kNowButtonFrame (CGRectMake(35.0f, 40.0f, 29.5f, 25.0f))
 #define kNowButtonInfoFrame (CGRectMake(260.0f, 3.0f, 30.0f, 25.0f))
-#define kNowButtonAlpha 0.7f
+#define kNowButtonAlpha 0.8f
 #define kPlayButtonFrame (CGRectMake(185.0f, 23.5f, 70.0f, 70.0f))
 #define kPlayButtonAlpha 0.7f
 #define kRefreshButtonFrame (CGRectMake(220.0f, 12.0f, 100.0f, 50.0f))
@@ -57,9 +60,10 @@
   BOOL cancelFlag;
   BOOL sending;
   BOOL sent;
-  BOOL updatingFlag;
   BOOL updateAfterSafetyTime;
+  BOOL updatingFlag;
   MPMusicPlayerController *musicPlayer;
+  MusicPlayerNowPlayingAnimation *animationOperator;
   NSArray *albumLists;
   NSArray *beforeTimeline;
   NSArray *playLists;
@@ -68,20 +72,21 @@
   NSMutableArray *addLinkArray;
   NSMutableArray *nowButtons;
   NSMutableArray *profileImageButtons;
-  NSString *refreshProfileImagesMutex;
   NSString *itemCollectionTitle;
+  NSString *refreshProfileImagesMutex;
   TwitterClient *twitterClient;
   UIButton *button;
   UIButton *playButton;
+  UIButton *subControlDisplayButton;
   UIButton *youTubeButton;
   UIImageView *albumImageView;
+  UISearchBar *songSearchBar;
   UISegmentedControl *friendGetModeControl;
   UISegmentedControl *musicSegmentedControl;
   UISegmentedControl *refreshTypeSegmentedControl;
   UISegmentedControl *repeatModeControll;
   UISegmentedControl *shuffleModeControll;
   UISlider *volumeSlider;
-  UISearchBar *songSearchBar;
   UISwitch *autoTweetSwitch;
   UITableView *listView;
   UIView *baseView;
@@ -90,7 +95,6 @@
   UIView *songView;
   UIView *subControlView;
   UIViewController *songListController;
-  UIButton *subControlDisplayButton;
 }
 
 @property (nonatomic) BOOL autoTweetMode;
@@ -116,6 +120,7 @@
 @property (nonatomic, retain) IBOutlet UIView *songView;
 @property (nonatomic, retain) IBOutlet UIView *subControlView;
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
+@property (nonatomic, retain) MusicPlayerNowPlayingAnimation *animationOperator;
 @property (nonatomic, retain) NSArray *albumLists;
 @property (nonatomic, retain) NSArray *beforeTimeline;
 @property (nonatomic, retain) NSArray *playLists;

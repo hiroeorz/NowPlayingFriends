@@ -12,12 +12,14 @@
 #import "MusicPlayerViewController+AutoTweet.m"
 #import "MusicPlayerViewController+FriendsIcon.m"
 
+
 @implementation MusicPlayerViewController
 
 @dynamic appDelegate;
 @synthesize addLinkArray;
 @synthesize albumImageView;
 @synthesize albumLists;
+@synthesize animationOperator;
 @synthesize autoTweetMode;
 @synthesize autoTweetSwitch;
 @synthesize baseView;
@@ -59,6 +61,7 @@
   [addLinkArray release];
   [albumImageView release];
   [albumLists release];
+  [animationOperator release];
   [autoTweetSwitch release];
   [baseView release];
   [beforeTimeline release];
@@ -90,6 +93,7 @@
 
   self.addLinkArray = nil;
   self.albumImageView = nil;
+  self.animationOperator = nil;
   self.autoTweetSwitch = nil;
   self.baseView = nil;
   self.beforeTimeline = nil;
@@ -156,6 +160,8 @@
   [self addYouTubeButton];
   [self.appDelegate checkAuthenticateWithController:self];
   self.profileImageButtons = [NSMutableArray array];
+  self.animationOperator = [[[MusicPlayerNowPlayingAnimation alloc] init] 
+			     autorelease];
   listmode = kListModeAlbum;
   
   if (twitterClient == nil) {
@@ -213,6 +219,11 @@
 
   [super viewDidAppear:animated];
   [self setViewTitleAndMusicArtwork];
+
+  if (!animationOperator.isRunning) {
+    [animationOperator performSelectorInBackground:@selector(startAnimation)
+					withObject:nil];
+  }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -343,13 +354,12 @@
  * @brief ナビゲーションバーに曲名とアーティスト名を表示するコントロールを返す。
  */
 - (UIControl *)songTitleViewControl {
-  //return [[[UIControl alloc] initWithFrame:CGRectMake(0.0f, 1.0f, 200.0f, 43.0f)] autorelease];
 
-  UIButton *button = [UIButton buttonWithType:110];
-  button.frame = CGRectMake(0.0f, 4.0f, 200.0f, 36.0f);
-  [button setTitle:@"" forState:UIControlStateNormal];
-  [button setValue:[UIColor blackColor] forKey:@"tintColor"];
-  return button;
+  UIButton *newButton = [UIButton buttonWithType:110];
+  newButton.frame = CGRectMake(0.0f, 4.0f, 200.0f, 36.0f);
+  [newButton setTitle:@"" forState:UIControlStateNormal];
+  [newButton setValue:[UIColor blackColor] forKey:@"tintColor"];
+  return newButton;
 }
 
 /**
@@ -462,7 +472,7 @@
   UIButton *nowButton = [UIButton buttonWithType:111];
   nowButton.frame = frame;
   
-  [nowButton setTitle:@"♬" 
+  [nowButton setTitle:@"" 
 	     forState:UIControlStateNormal];
   
   [nowButton setValue:[UIColor redColor] forKey:@"tintColor"];

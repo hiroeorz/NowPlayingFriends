@@ -4,6 +4,7 @@
 
 #import "AlbumSongsViewController.h"
 #import "ITunesStore.h"
+#import "MusicPlayerNowPlayingAnimation.h"
 #import "MusicPlayerViewController.h"
 #import "PlayListSongsViewController.h"
 #import "SendTweetViewController.h"
@@ -64,4 +65,5 @@
 - (void)setBackgroundImage:(NSDictionary *)objects;
 - (void)setBackgroundApha:(NSDictionary *)objects;
 - (void)addNowButton:(NSDictionary *)objects;
+- (void)addGraphViewToNowButton:(UIButton *)nowButton;
 @end
