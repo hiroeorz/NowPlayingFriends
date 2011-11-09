@@ -95,6 +95,9 @@
 #pragma mark -
 #pragma Public Methods
 
+/**
+ * @brief アニメーションを開始する。最初に一度だけ呼ばれる
+ */
 - (void)startAnimation {
   
   NSAutoreleasePool *outPool = [[NSAutoreleasePool alloc] init];
@@ -114,6 +117,9 @@
 #pragma mark -
 #pragma LocalMethods
 
+/**
+ * @brief 全Nowボタンで一コマ分アニメーションをすすめる
+ */
 - (void)execAnimation {
 
   @try {
@@ -135,6 +141,9 @@
   }
 }
 
+/**
+ * @brief ひとつ前の状態から次の状態へ１コマ分変化するチューナーアニメーション
+ */
 - (void)setAnimationCutToButton:(NSDictionary *)dic {
 
   UIButton *aButton = [dic objectForKey:@"button"];
@@ -155,6 +164,9 @@
   }
 }
 
+/**
+ * @brief チューナーアニメーションをゆっくりと停止する
+ */
 - (void)execMusicStopAnimation:(NSDictionary *)dic {
 
   [UIView beginAnimations:nil context:NULL];
