@@ -288,9 +288,15 @@
  */
 - (void)addGraphViewToNowButton:(UIButton *)nowButton {
   
+  NSDictionary *dic = [self dictionaryOfGraphLinesWithButton:nowButton];
+  [animationOperator.buttonAndLines addObject:dic];
+}
+
+- (NSDictionary *)dictionaryOfGraphLinesWithButton:(UIButton *)nowButton {
+
   UIView *graphLine = nil;
   NSInteger i = 0;
-  CGFloat x = 7.0f;
+  CGFloat x = 7.5f;
   CGFloat y = 9.0f;
   CGFloat width = 3.5f;
   CGFloat height = 10.0f;
@@ -309,8 +315,7 @@
   NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
 				      nowButton, @"button",
 				    array, @"graphLineArray", nil];
-
-  [animationOperator.buttonAndLines addObject:dic];
+  return dic;
 }
 
 @end

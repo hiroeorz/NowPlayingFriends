@@ -160,8 +160,7 @@
   [self addYouTubeButton];
   [self.appDelegate checkAuthenticateWithController:self];
   self.profileImageButtons = [NSMutableArray array];
-  self.animationOperator = [[[MusicPlayerNowPlayingAnimation alloc] init] 
-			     autorelease];
+
   listmode = kListModeAlbum;
   
   if (twitterClient == nil) {
@@ -173,6 +172,10 @@
   self.musicPlayer = self.appDelegate.musicPlayer;
   [self.appDelegate removeMusicPlayerNotification:self];
   [self.appDelegate addMusicPlayerNotification:self];
+
+  self.animationOperator = [[[MusicPlayerNowPlayingAnimation alloc] init] 
+			     autorelease];
+  [self.appDelegate addMusicPlayerNotification:animationOperator];
 
   self.navigationItem.leftBarButtonItem = 
     [self.appDelegate listButton:@selector(changeToListview) target:self];
@@ -188,6 +191,8 @@
   }
 
   UIButton *nowButton = [self nowButton:nil frame:kNowButtonInfoFrame];
+  NSDictionary *dic = [self dictionaryOfGraphLinesWithButton:nowButton];
+  animationOperator.sampleNowButtonDic = dic;
   [musicControllerView addSubview:nowButton];
 
   /* 再生中, 一時停止中 */

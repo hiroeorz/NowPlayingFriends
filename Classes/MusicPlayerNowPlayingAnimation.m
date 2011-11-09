@@ -9,6 +9,7 @@
 #import "MusicPlayerNowPlayingAnimation.h"
 
 #import "MusicPlayerViewController.h"
+#import "NowPlayingFriendsAppDelegate.h"
 
 
 #define kNowPlayingAnimationSleepInterval 0.1
@@ -17,6 +18,7 @@
 @interface MusicPlayerNowPlayingAnimation (Local)
 - (void)setAnimationCutToButton:(UIButton *)button;
 - (void)setupAnimationPartsList;
+- (void)execMusicStopAnimation:(NSDictionary *)dic;
 @end
 
 @implementation MusicPlayerNowPlayingAnimation
@@ -24,10 +26,12 @@
 @dynamic buttonAndLines;
 @synthesize isRunning;
 @synthesize viewController;
+@synthesize sampleNowButtonDic;
 
 - (void)dealloc {
 
   [buttonAndLines release];
+  [sampleNowButtonDic release];
   [viewController release];
   [super dealloc];
 }
@@ -39,6 +43,8 @@
     buttonAndLines = [[NSMutableArray alloc] init];
     viewController = nil;
     isRunning = NO;
+    sampleNowButtonDic = nil;
+    stateIsPlay = NO;
   }
 
   return self;
@@ -60,6 +66,31 @@
   }
 }
 
+#pragma mark -
+#pragma Notification Methods
+
+- (void)handle_NowPlayingItemChanged:(id)notification {
+}
+
+- (void)handle_VolumeChanged:(id)notification {
+}
+
+- (void)handle_PlayBackStateDidChanged:(id)notification {
+
+  NowPlayingFriendsAppDelegate *appDelegate = 
+    [[UIApplication sharedApplication] delegate];
+
+  MPMusicPlayerController *musicPlayer = appDelegate.musicPlayer;
+
+  if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
+    NSLog(@"MusicPlayNowPlayingAnimation: State Changed:Play");
+    stateIsPlay = YES;
+  } else {
+    NSLog(@"MusicPlayNowPlayingAnimation: State Changed:Stop or Pause");
+    [self execMusicStopAnimation:sampleNowButtonDic];
+    stateIsPlay = NO;
+  }
+}
 
 #pragma mark -
 #pragma Public Methods
@@ -85,20 +116,19 @@
 
 - (void)execAnimation {
 
-  if ([buttonAndLines count] == 0) { return; }
-
   @try {
     @synchronized(buttonAndLines) {
       [UIView beginAnimations:nil context:NULL];
       [UIView setAnimationDuration:0.2];
-      
+
       for (NSDictionary *dic in buttonAndLines) {
 	[self setAnimationCutToButton:dic];
       }
+      if (stateIsPlay) { [self setAnimationCutToButton:sampleNowButtonDic]; }
       
       [UIView commitAnimations];
     }
-    }
+  }
   @catch(...) {
     NSLog(@"Error: In Now Button GraphLine");
     [UIView commitAnimations];
@@ -113,16 +143,43 @@
   CGFloat fullY = 9.0f;
 
   for(UIView *line in graphLineArray) {
-    [line retain];
     [line removeFromSuperview];
     CGRect frame = line.frame;
     NSInteger randVal = arc4random() % 10;
     frame.size.height = fullHeight - (CGFloat)randVal;
     frame.size.width = 3.5f;
-    frame.origin.y = fullY + fullHeight - (fullHeight - (CGFloat)randVal);
+    frame.origin.y = fullY  + (CGFloat)randVal;
     frame.origin.x = line.frame.origin.x;
     line.frame = frame;
-    [aButton addSubview:[line autorelease]];
+    [aButton addSubview:line];
+  }
+}
+
+- (void)execMusicStopAnimation:(NSDictionary *)dic {
+
+  [UIView beginAnimations:nil context:NULL];
+  [UIView setAnimationDuration:1.0];
+
+  @try {
+    UIButton *aButton = [dic objectForKey:@"button"];
+    NSArray *graphLineArray = [dic objectForKey:@"graphLineArray"];
+    CGFloat fullHeight = 10.0f;
+    CGFloat fullY = 9.0f;
+    
+    for(UIView *line in graphLineArray) {
+      [line removeFromSuperview];
+      CGRect frame = line.frame;
+      frame.size.height = 1.0f;
+      frame.size.width = 3.5f;
+      frame.origin.y = fullY + (fullHeight - 1.0f);
+      frame.origin.x = line.frame.origin.x;
+      line.frame = frame;
+      [aButton addSubview:line];
+    }
+    [UIView commitAnimations];
+  }
+  @catch(...){
+    [UIView commitAnimations];
   }
 }
 

@@ -14,15 +14,21 @@
 
 @interface MusicPlayerNowPlayingAnimation : NSOperation {
 @private
-  MusicPlayerViewController *viewController;
-  NSMutableArray *buttonAndLines;
   BOOL isRunning;
+  BOOL stateIsPlay;
+  MusicPlayerViewController *viewController;
+  NSDictionary *sampleNowButtonDic;
+  NSMutableArray *buttonAndLines;
 }
 
 @property (nonatomic) BOOL isRunning;
 @property (nonatomic, retain) MusicPlayerViewController *viewController;
+@property (nonatomic, retain) NSDictionary *sampleNowButtonDic;
 @property (nonatomic, retain) NSMutableArray *buttonAndLines;
 
+- (void)handle_NowPlayingItemChanged:(id)notification;
+- (void)handle_VolumeChanged:(id)notification;
+- (void)handle_PlayBackStateDidChanged:(id)notification;
 - (void)startAnimation;
 
 @end

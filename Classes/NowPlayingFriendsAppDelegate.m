@@ -6,12 +6,13 @@
 //  Copyright __MyCompanyName__ 2010. All rights reserved.
 //
 
+#import "NowPlayingFriendsAppDelegate.h"
+
 #import "ArtistFriendsViewController.h"
 #import "HomeTimelineViewController.h"
 #import "ITunesStore.h"
 #import "MentionsTimelineViewController.h"
 #import "MusicPlayerViewController.h"
-#import "NowPlayingFriendsAppDelegate.h"
 #import "NowPlayingViewController.h"
 #import "SettingViewController.h"
 #import "SongFriendsViewController.h"

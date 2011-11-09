@@ -66,4 +66,5 @@
 - (void)setBackgroundApha:(NSDictionary *)objects;
 - (void)addNowButton:(NSDictionary *)objects;
 - (void)addGraphViewToNowButton:(UIButton *)nowButton;
+- (NSDictionary *)dictionaryOfGraphLinesWithButton:(UIButton *)nowButton;
 @end
