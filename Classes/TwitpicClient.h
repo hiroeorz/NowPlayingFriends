@@ -23,10 +23,11 @@
 
 
 @interface TwitpicClient : NSOperation {
-
+@private
   id senderDelegate;
   BOOL uploadedOk;
   NSMutableData *jsonData;
+  NSMutableData *twitpicResponseData;
   NSString *tweetString;
   TwitterClient *twitterClient;
   UIImage *picImage;

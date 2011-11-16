@@ -59,6 +59,7 @@
   [jsonData release];
   [picImage release];
   [tweetString release];
+  [twitpicResponseData releaes];
   [super dealloc];
 }
 
@@ -200,7 +201,8 @@
   NSString *url = @"http://api.twitpic.com/2/upload.json";
   ASIFormDataRequest *request = [self createOAuthEchoRequest:url 
 				      format:@"json"];
-  
+
+  twitpicResponseData = [[NSMutableData alloc] init];
   NSData *imageRepresentation = UIImageJPEGRepresentation(image, 1.0);
   [request setTimeOutSeconds:kTwitpicTimeoutSeconds];
   [request setData:imageRepresentation forKey:@"media"];
@@ -215,20 +217,31 @@
 }
 
 /**
- * @brief 送信完了時にデータを引数として呼ばれるメソッド
+ * @brief Picture送信中に呼ばれるメソッド
  */
-- (void)twitPicReceiveResponse:(ASIHTTPRequest *)theRequest 
-			  data:(NSData *)aData {
+- (void)twitPicReceiveResponse:(ASIHTTPRequest *)theRequest data:(NSData *)aData {
+  [twitpicResponseData appendData:aData];
+}
 
-  NSString *jsonString = [[NSString alloc] initWithData: aData
-					   encoding:NSUTF8StringEncoding];
+/**
+ * @brief Picture送信完了時に呼ばれるメソッド
+ */
+- (void)twitPicRequestFinished:(ASIHTTPRequest *)theRequest {
 
-  //NSLog(@"Twitpic receiveData.data: %@", jsonString);
+  NSLog(@"Twitpic Uploaded OK.");
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
+  NSString *jsonString = [[NSString alloc] initWithData:twitpicResponseData
+					       encoding:NSUTF8StringEncoding];
+  [twitpicResponseData release];
+  twitpicResponseData = nil;
+
+  NSLog(@"Twitpic receiveData.data: %@", jsonString);
 
   NSDictionary *jsonDictionary = [jsonString JSONValue];
   [jsonString release];
 
-  //NSLog(@"Twitpic receiveData.json: %@", jsonDictionary);
+  NSLog(@"Twitpic receiveData.json: %@", jsonDictionary);
 
   NSString *picUrl = [jsonDictionary objectForKey:@"url"];
   NSString *picId = [jsonDictionary objectForKey:@"id"];
@@ -262,15 +275,6 @@
   }
 
   self.tweetString = nil;
-}
-
-/**
- * @brief 送信完了時に呼ばれるメソッド
- */
-- (void)twitPicRequestFinished:(ASIHTTPRequest *)theRequest {
-
-  NSLog(@"Twitpic Uploaded OK.");
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   self.picImage = nil;
 }
 
@@ -292,6 +296,8 @@
 		 delegate:senderDelegate];
 
   self.tweetString = nil;
+  [twitpicResponseData release];
+  twitpicResponseData = nil;
 }
 
 #pragma mark -
