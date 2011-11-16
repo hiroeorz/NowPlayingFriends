@@ -405,6 +405,7 @@
 
 /**
  * @brief 現在再生中のアルバムまたはプレイリストの曲リストを表示する。
+ *        とりあえずプレイリストからの生成でもアルバムを表示する。
  */
 - (void)openSelectSongViewFromNowPlayingAlbum {
 
@@ -417,13 +418,8 @@
 
   NSLog(@"itemCollectionTitle:%@", itemCollectionTitle);
 
-  if (listmode == kListModePlayList) {
-    listTitle = itemCollectionTitle;
-    collection = [self.appDelegate searchPlaylists:itemCollectionTitle];
-  } else {
-    listTitle = [self.appDelegate nowPlayingAlbumTitle];
-    collection = [self.appDelegate searchAlbums:listTitle];
-  }
+  listTitle = [self.appDelegate nowPlayingAlbumTitle];
+  collection = [self.appDelegate searchAlbums:listTitle];
 
   itemCollection = [collection objectAtIndex:0];
   viewController = [[AlbumSongsViewController alloc] 

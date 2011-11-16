@@ -59,7 +59,7 @@
   [jsonData release];
   [picImage release];
   [tweetString release];
-  [twitpicResponseData releaes];
+  [twitpicResponseData release];
   [super dealloc];
 }
 
