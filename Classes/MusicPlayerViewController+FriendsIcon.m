@@ -3,6 +3,16 @@
 
 @implementation MusicPlayerViewController (FriendsIcon)
 
+-(void)refreshProfileImagesIfChanged {
+
+  if (![recentSongTitle isEqualToString:[self.appDelegate nowPlayingTitle]]) {
+    [self performSelectorInBackground:@selector(refreshProfileImages)
+			   withObject:nil];
+  } else {
+    NSLog(@"skip refresh icons because same song...");
+  }
+}
+
 - (void)refreshProfileImages {
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -11,7 +21,7 @@
   NSLog(@"waiting for mutex...");
   
   @synchronized(refreshProfileImagesMutex) {
-
+    
     @try {
       if (self.appDelegate.get_twitterusers_preference == YES) {
 	if (![twitterClient oAuthTokenExist]) {
@@ -24,7 +34,7 @@
 	NSLog(@"starting refresh timeline");
 	
 	self.beforeTimeline = timeline;
-
+	
 	if ([self refreshTimeline]) {
 	  if (cancelFlag) {
 	    [self releaseNowButtons];
@@ -32,7 +42,7 @@
 	  }
 	  [self setFriendImageView];
 	}
-
+	
       }
     }
     @finally {

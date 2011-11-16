@@ -43,6 +43,11 @@
     miniImage = [UIImage imageNamed:@"Play_mini.png"];
   }
 
+  /* アイコンを更新 */
+  if (self.appDelegate.get_twitterusers_preference) {
+    [self refreshProfileImagesIfChanged];
+  }
+
   [playButton setImage:image forState:UIControlStateNormal];
   [musicSegmentedControl setImage:miniImage forSegmentAtIndex:1];
 }
@@ -68,6 +73,7 @@
   sent = NO;
   sending = NO;
   updateAfterSafetyTime = NO;
+  self.recentSongTitle = [self.appDelegate nowPlayingTitle];
 
   [self setViewTitleAndMusicArtwork];
 
@@ -79,8 +85,7 @@
   }
 
   if (self.appDelegate.get_twitterusers_preference) {
-    [self performSelectorInBackground:@selector(refreshProfileImages)
-			   withObject:nil];
+    [self refreshProfileImagesIfChanged];
   }
 
   if (autoTweetMode && 

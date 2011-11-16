@@ -56,6 +56,7 @@
 @end
 
 @interface MusicPlayerViewController (FriendsIcon)
+-(void)refreshProfileImagesIfChanged;
 - (BOOL)refreshTimeline;
 - (void)releaseNowButtons;
 - (void)releaseProfileImageButtons;

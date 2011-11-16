@@ -73,6 +73,7 @@
   NSMutableArray *nowButtons;
   NSMutableArray *profileImageButtons;
   NSString *itemCollectionTitle;
+  NSString *recentSongTitle;
   NSString *refreshProfileImagesMutex;
   TwitterClient *twitterClient;
   UIButton *button;
@@ -129,6 +130,7 @@
 @property (nonatomic, retain) NSMutableArray *nowButtons;
 @property (nonatomic, retain) NSMutableArray *profileImageButtons;
 @property (nonatomic, retain) NSString *itemCollectionTitle;
+@property (nonatomic, retain) NSString *recentSongTitle;
 @property (nonatomic, retain) NSString *refreshProfileImagesMutex;
 @property (nonatomic, retain) TwitterClient *twitterClient;
 @property (nonatomic, retain) UIView *baseView;

@@ -35,15 +35,16 @@
 @synthesize playButton;
 @synthesize playLists;
 @synthesize profileImageButtons;
+@synthesize recentSongTitle;
 @synthesize refreshProfileImagesMutex;
 @synthesize refreshTypeSegmentedControl;
 @synthesize repeatModeControll;
 @synthesize sending;
 @synthesize sent;
-@synthesize songSearchBar;
 @synthesize settingView;
 @synthesize shuffleModeControll;
 @synthesize songListController;
+@synthesize songSearchBar;
 @synthesize songView;
 @synthesize subControlDisplayButton;
 @synthesize subControlView;
@@ -146,6 +147,7 @@
     twitterClient = nil;
     addLinkArray = [[NSMutableArray alloc] init];
     itemCollectionTitle = nil;
+    recentSongTitle = nil;
   }
   return self;
 }
