@@ -52,4 +52,8 @@
 - (void)searchWithTitle:(NSString *)title artist:(NSString *)artist
 	       delegate:(id)aDelegate action:(SEL)aAction
 		  count: (NSInteger)count;
+
+- (void)searchWithFreeParameters:(NSString *)params 
+			delegate:(id)aDelegate action:(SEL)aAction 
+			   count: (NSInteger)count;
 @end

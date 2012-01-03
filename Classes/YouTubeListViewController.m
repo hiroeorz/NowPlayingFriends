@@ -17,6 +17,7 @@
 
 @interface YouTubeListViewController (Local) 
 - (void)cancel;
+- (void)searchFromYouTube:(NSString *)searchStr;
 - (void)searchFromNowPlaying;
 - (void)searchFinished:(NSArray *)searchResults;
 @end
@@ -27,6 +28,8 @@
 @dynamic appDelegate;
 @synthesize movieTableView;
 @synthesize movies;
+@synthesize searchBar;
+@synthesize searchFinishButton;
 @synthesize selectedMovie;
 @synthesize tweetViewController;
 @synthesize typeSelectViewController;
@@ -34,6 +37,8 @@
 - (void)dealloc {
 
   [movieTableView release];
+  [searchBar release];
+  [searchFinishButton release];
   [selectedMovie release];
   [tweetViewController release];
   [typeSelectViewController release];
@@ -43,6 +48,7 @@
 - (void)viewDidUnload {
 
   self.movieTableView = nil;
+  self.searchBar = nil;
   self.selectedMovie = nil;
   self.tweetViewController = nil;
   self.typeSelectViewController = nil;
@@ -60,6 +66,7 @@
   if (self) {
     typeSelectViewController = nil;
     movieSelected = NO;
+    isSearching = NO;
   }
 
   return self;
@@ -91,6 +98,72 @@
 
 -(void)cancel {
   [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark -
+#pragma Search Bar Delegate Methods
+
+- (IBAction)searchFinishButtonClicked:(id)sender {
+  [self searchFromYouTube:searchBar.text];
+  [self hideSearchBarWithAnimated:YES];
+}
+
+- (void)searchFromYouTube:(NSString *)searchStr {
+
+  YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
+  [youtube searchWithFreeParameters:searchStr
+	   delegate:self
+	   action:@selector(searchFinished:)
+	   count: kYouTubeSearchCount];
+}
+
+/**
+ * @brief 検索ボタンタップ時に検索実行して検索バーとキーボードを片付ける。
+ */
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+
+  [self searchFromYouTube:searchBar.text];
+  [self hideSearchBarWithAnimated:YES];
+}
+
+/**
+ * @brief ユーザの入力に伴って検索実行。
+ */
+- (void)searchBar:(UISearchBar *)searchBar
+    textDidChange:(NSString *)searchTerm {
+
+  //[self searchFromYouTube:searchBar.text];
+}
+
+/**
+ * @brief ユーザが検索バーをタップした際に呼び出される。
+ */
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+  isSearching = YES;
+  CGRect frame = searchFinishButton.frame;
+  frame.origin.x = 0.0f;
+  frame.origin.y = 43.0f;
+  searchFinishButton.frame = frame;
+  [movieTableView addSubview:searchFinishButton];
+}
+
+/**
+ * @brief ユーザが検索バーのキャンセルボタンをタップした際に呼び出される。
+ */
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+
+  [self hideSearchBarWithAnimated:YES];
+  [self searchFromNowPlaying];
+}
+
+/**
+ * @brief キー入力を隠し、検索バーを隠す処理。
+ */
+- (void)hideSearchBarWithAnimated:(BOOL)animated {
+  isSearching = NO;
+  [searchBar resignFirstResponder];
+  [searchFinishButton removeFromSuperview];
+  [movieTableView setContentOffset:CGPointMake(0.0, 44.0) animated:animated];
 }
 
 #pragma mark -
@@ -176,12 +249,17 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)searchFromNowPlaying {
 
   YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
+  NSString *title = [self.appDelegate nowPlayingTitle];
+  NSString *artist = [self.appDelegate nowPlayingArtistName];
 
-  [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
-	   artist:[self.appDelegate nowPlayingArtistName]
+  [youtube searchWithTitle:title artist:artist
 	   delegate:self
 	   action:@selector(searchFinished:)
 	   count: kYouTubeSearchCount];
+
+  NSString *parameter = [[[NSString alloc] initWithFormat:@"%@ %@",
+					   title, artist] autorelease];
+  searchBar.text = parameter;
 }
 
 - (void)searchFinished:(NSArray *)searchResults {

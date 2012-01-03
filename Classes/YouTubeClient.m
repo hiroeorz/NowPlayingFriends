@@ -13,6 +13,7 @@
 - (void)startWithRequestString:(NSString *)urlString 
 		     parameter:(NSString *)aParameter;
 - (NSString *)shurinkedUrl:(NSString *)aUrl;
+- (void)initialize;
 @end
 
 @implementation YouTubeClient
@@ -43,26 +44,40 @@
   [super dealloc];
 }
 
+/**
+ * @brief 与えられたタイトルとアーティスト名からYouTubeApiで検索します。
+ */
 - (void)searchWithTitle:(NSString *)title artist:(NSString *)artist 
 	       delegate:(id)aDelegate action:(SEL)aAction 
 		  count: (NSInteger)count {
 
+  [self initialize];
   self.delegate = aDelegate;
   self.action = aAction;
-  self.contentTitle = nil;
-  self.linkUrl = nil;
-  self.thumbnailUrl = nil;
-  self.name = nil;
-  self.seconds = nil;
-  self.viewCount = nil;
 
-  self.searchResultArray = [[NSMutableArray alloc] init];
-
-  NSString *parameter = [[[NSString alloc] initWithFormat:@"%@,%@,Music",
+  NSString *parameter = [[[NSString alloc] initWithFormat:@"%@,%@",
 					   title, artist] autorelease];
   NSString *url = [[[NSString alloc] initWithFormat:kYouTubeSearchURL, count] 
 		    autorelease];
 
+  [self startWithRequestString:url parameter:parameter];
+}
+
+/**
+ * @brief 与えられたスペース区切り文字列をカンマ区切りにしてYouTubeApiで検索します。
+ */
+- (void)searchWithFreeParameters:(NSString *)params 
+			delegate:(id)aDelegate action:(SEL)aAction 
+			   count: (NSInteger)count {
+
+  [self initialize];
+  self.delegate = aDelegate;
+  self.action = aAction;
+
+  NSString *parameter = [params stringByReplacingOccurrencesOfString:@" "
+							 withString:@","];
+  NSString *url = [[[NSString alloc] initWithFormat:kYouTubeSearchURL, count] 
+		    autorelease];
   [self startWithRequestString:url parameter:parameter];
 }
 
@@ -283,6 +298,22 @@
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError{
   NSLog(@"XML ParseError");
   [delegate performSelector:action withObject:nil];
+}
+
+#pragma mark -
+#pragma Private Methods
+
+- (void)initialize {
+  self.delegate = nil;
+  self.action = nil;
+  self.contentTitle = nil;
+  self.linkUrl = nil;
+  self.thumbnailUrl = nil;
+  self.name = nil;
+  self.seconds = nil;
+  self.viewCount = nil;
+
+  self.searchResultArray = [[NSMutableArray alloc] init];
 }
 
 @end
