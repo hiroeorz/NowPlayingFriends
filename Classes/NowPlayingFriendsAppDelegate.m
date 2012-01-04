@@ -69,6 +69,7 @@
 
 - (void)dealloc {
     
+  [locationDelegate release];
   [managedObjectContext_ release];
   [managedObjectModel_ release];
   [musicPlayerViewController release];
@@ -352,6 +353,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   TwitterClient *client = [[TwitterClient alloc] init];
   NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
   NSMutableArray *newProfileImagesIndex = [[NSMutableArray alloc] init];
+  locationDelegate = [[LocationNotificationDelegate alloc] init];
 
   self.profileImages = newProfileImages;
   [newProfileImages release];
@@ -503,10 +505,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
   NSLog(@"application goto background.");
   [self cleanupProfileImageFileCache];
+  [locationDelegate start];
 }
 
-
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+
+  NSLog(@"application will goto foreground.");
+  [locationDelegate stop];
 }
 
 

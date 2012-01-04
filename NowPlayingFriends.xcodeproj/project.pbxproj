@@ -141,6 +141,8 @@
 		54D260A8123A38AC004023A6 /* Play_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260A6123A38AC004023A6 /* Play_mini.png */; };
 		54D260AB123A3989004023A6 /* Next_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260A9123A3989004023A6 /* Next_mini.png */; };
 		54D260AC123A3989004023A6 /* Previous_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260AA123A3989004023A6 /* Previous_mini.png */; };
+		54D2F41414B4ADAB00BF8792 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D2F41314B4ADAB00BF8792 /* CoreLocation.framework */; };
+		54D2F41714B4B20000BF8792 /* LocationNotificationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 54D2F41614B4B20000BF8792 /* LocationNotificationDelegate.m */; };
 		54E76C63146581B8006612B6 /* MusicPlayerViewController+AutoTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E76C5E146581B8006612B6 /* MusicPlayerViewController+AutoTweet.m */; };
 		54E76C64146581B8006612B6 /* MusicPlayerViewController+Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E76C61146581B8006612B6 /* MusicPlayerViewController+Notification.m */; };
 		54E76C65146581B8006612B6 /* MusicPlayerViewController+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E76C62146581B8006612B6 /* MusicPlayerViewController+Settings.m */; };
@@ -388,6 +390,9 @@
 		54D260A6123A38AC004023A6 /* Play_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Play_mini.png; path = icons/mediaIcons005/Play_mini.png; sourceTree = "<group>"; };
 		54D260A9123A3989004023A6 /* Next_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Next_mini.png; path = icons/mediaIcons005/Next_mini.png; sourceTree = "<group>"; };
 		54D260AA123A3989004023A6 /* Previous_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Previous_mini.png; path = icons/mediaIcons005/Previous_mini.png; sourceTree = "<group>"; };
+		54D2F41314B4ADAB00BF8792 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		54D2F41514B4B20000BF8792 /* LocationNotificationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationNotificationDelegate.h; sourceTree = "<group>"; };
+		54D2F41614B4B20000BF8792 /* LocationNotificationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationNotificationDelegate.m; sourceTree = "<group>"; };
 		54E76C5E146581B8006612B6 /* MusicPlayerViewController+AutoTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MusicPlayerViewController+AutoTweet.m"; sourceTree = "<group>"; };
 		54E76C5F146581B8006612B6 /* MusicPlayerViewController+Local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MusicPlayerViewController+Local.h"; sourceTree = "<group>"; };
 		54E76C61146581B8006612B6 /* MusicPlayerViewController+Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MusicPlayerViewController+Notification.m"; sourceTree = "<group>"; };
@@ -412,6 +417,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54D2F41414B4ADAB00BF8792 /* CoreLocation.framework in Frameworks */,
 				54EB00211337AA8A008F325F /* libz.dylib in Frameworks */,
 				54EB001F1337AA71008F325F /* libxml2.dylib in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -507,6 +513,8 @@
 				541649F41312678300B91837 /* TwitpicClient.m */,
 				54E76C681466D3AB006612B6 /* MusicPlayerNowPlayingAnimation.h */,
 				54E76C691466D3AB006612B6 /* MusicPlayerNowPlayingAnimation.m */,
+				54D2F41514B4B20000BF8792 /* LocationNotificationDelegate.h */,
+				54D2F41614B4B20000BF8792 /* LocationNotificationDelegate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -578,6 +586,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				54D2F41314B4ADAB00BF8792 /* CoreLocation.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				28D801B30F44B63D00FB423F /* CoreData.framework */,
@@ -1008,6 +1017,7 @@
 				54E76C65146581B8006612B6 /* MusicPlayerViewController+Settings.m in Sources */,
 				54E76C6714658421006612B6 /* MusicPlayerViewController+FriendsIcon.m in Sources */,
 				54E76C6A1466D3AC006612B6 /* MusicPlayerNowPlayingAnimation.m in Sources */,
+				54D2F41714B4B20000BF8792 /* LocationNotificationDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

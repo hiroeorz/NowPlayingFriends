@@ -13,6 +13,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <QuartzCore/QuartzCore.h>
+#import "LocationNotificationDelegate.h"
 
 #define kTweetTemplate @"♪ #NowPlaying \"[st]\" by \"[ar]\" on album \"[al]\" ♬"
 
@@ -37,6 +38,7 @@
   UIWindow *window;
   
 @private
+  LocationNotificationDelegate *locationDelegate;
   NSManagedObjectContext *managedObjectContext_;
   NSManagedObjectModel *managedObjectModel_;
   NSPersistentStoreCoordinator *persistentStoreCoordinator_;
