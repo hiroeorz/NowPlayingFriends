@@ -34,14 +34,14 @@
 	NSLog(@"starting refresh timeline");
 	
 	self.beforeTimeline = timeline;
-	
-	if ([self refreshTimeline]) {
-	  if (cancelFlag) {
-	    [self releaseNowButtons];
-	    [self releaseProfileImageButtons];
-	  }
-	  [self setFriendImageView];
+	[self refreshTimeline];
+
+	if (cancelFlag) {
+	  [self releaseNowButtons];
+	  [self releaseProfileImageButtons];
 	}
+
+	[self setFriendImageView];
 	
       }
     }
