@@ -231,6 +231,10 @@
     [animationOperator performSelectorInBackground:@selector(startAnimation)
 					withObject:nil];
   }
+
+  if (self.appDelegate.get_twitterusers_preference) {
+    [self refreshProfileImagesIfChanged];
+  }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

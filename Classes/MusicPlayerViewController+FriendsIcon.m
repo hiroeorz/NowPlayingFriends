@@ -156,7 +156,7 @@
   NSInteger y = albumImageView.frame.size.height - xRange + 32.0f;
   
   for (NSDictionary *data in timeline)  {
-    if (cancelFlag || timeline == beforeTimeline) { break; }
+    if (cancelFlag) { break; }
 
     UIButton *profileImageButton = nil;
     BOOL newButtonFlag = NO;

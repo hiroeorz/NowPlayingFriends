@@ -67,6 +67,7 @@
 - (IBAction)resignSettingField:(id)sender {
 
   [templateField resignFirstResponder];
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)resetTemplete:(id)sender {
