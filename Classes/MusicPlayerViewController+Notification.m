@@ -73,7 +73,11 @@
   sent = NO;
   sending = NO;
   updateAfterSafetyTime = NO;
-  self.recentSongTitle = [self.appDelegate nowPlayingTitle];
+
+  /* iOS5での曲選択時のデバイス側のタイミングに対応する為のコード。 */
+  if ([musicPlayer playbackState] != MPMusicPlaybackStatePlaying) {
+    self.recentSongTitle = [self.appDelegate nowPlayingTitle];
+  }
 
   [self setViewTitleAndMusicArtwork];
 
