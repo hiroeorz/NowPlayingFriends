@@ -82,7 +82,6 @@
   [self setViewTitleAndMusicArtwork];
 
   autoTweetMode = self.appDelegate.autotweet_preference;
-  MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
 
   if (self.appDelegate.get_twitterusers_preference) {
     [self refreshProfileImagesIfChanged];

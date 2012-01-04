@@ -19,6 +19,7 @@
 @interface SendTweetViewController (Local)
 - (void)stopIndicator;
 - (void)stopIndicatoWithThread;
+- (void)setYouTubeLinkedTweet;
 - (void)addITunesStoreSearchLink:(NSString *)linkUrl;
 - (void)setAlbumArtworkButtonStyle;
 @end
@@ -119,7 +120,7 @@
       if ([self.appDelegate use_itunes_manual_preference]) {
 	[self addITunesStoreSearchTweet:nil];
       } else if ([self.appDelegate use_youtube_manual_preference]) {
-	[self addYouTubeTweet:nil];
+	[self setYouTubeLinkedTweet];
       }
 
       linkAdded = YES;
@@ -272,10 +273,7 @@
   [retweetBody release];
 }
 
-- (IBAction)addYouTubeTweet:(id)sender {
-
-  switch(self.appDelegate.select_youtube_link_preference) {
-  case kSelectYouTubeTypeTopOfSerach: {
+- (void)setYouTubeLinkedTweet {
     [self startIndicator];
     YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
 
@@ -284,6 +282,13 @@
 	     delegate:self
 	     action:@selector(addYouTubeLink:)
 	     count:1];
+}
+
+- (IBAction)addYouTubeTweet:(id)sender {
+
+  switch(self.appDelegate.select_youtube_link_preference) {
+  case kSelectYouTubeTypeTopOfSerach: {
+    [self setYouTubeLinkedTweet];
     }
     break;
 

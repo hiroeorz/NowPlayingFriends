@@ -20,6 +20,7 @@
 - (void)searchFromYouTube:(NSString *)searchStr;
 - (void)searchFromNowPlaying;
 - (void)searchFinished:(NSArray *)searchResults;
+- (void)hideSearchBarWithAnimated:(BOOL)animated;
 @end
 
 
@@ -120,7 +121,7 @@
 /**
  * @brief 検索ボタンタップ時に検索実行して検索バーとキーボードを片付ける。
  */
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+- (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar {
 
   [self searchFromYouTube:searchBar.text];
   [self hideSearchBarWithAnimated:YES];
@@ -131,8 +132,8 @@
  */
 - (void)searchBar:(UISearchBar *)searchBar
     textDidChange:(NSString *)searchTerm {
-
-  //[self searchFromYouTube:searchBar.text];
+  
+  /* 都度通信が発生するのでここでは何もしない。 */
 }
 
 /**
