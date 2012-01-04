@@ -33,8 +33,9 @@
 	locationManager.locationServicesEnabled == YES) {
       locationManager = [[CLLocationManager alloc] init];
       locationManager.delegate = self;
-      locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-      //manager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+      //locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+      //locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+      locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
       locationManager.distanceFilter = kCLDistanceFilterNone;
     }
   }
