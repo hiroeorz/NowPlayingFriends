@@ -38,23 +38,25 @@
 
 @implementation NowPlayingFriendsAppDelegate
 
-@synthesize window;
-@synthesize tabBarController;
-@synthesize profileImages;
-@synthesize profileImagesIndex;
+@dynamic auto_upload_picture_preference;
+@dynamic autotweet_preference;
+@dynamic get_twitterusers_preference;
+@dynamic isForeGround;
+@dynamic manual_upload_picture_preference;
+@dynamic select_youtube_link_preference;
+@dynamic template_preference;
+@dynamic use_itunes_manual_preference;
+@dynamic use_itunes_preference;
+@dynamic use_youtube_manual_preference;
+@dynamic use_youtube_preference;
+@dynamic userDefaults;
+@synthesize isBackGround;
 @synthesize musicPlayer;
 @synthesize musicPlayerViewController;
-@dynamic template_preference;
-@dynamic userDefaults;
-@dynamic get_twitterusers_preference;
-@dynamic autotweet_preference;
-@dynamic use_youtube_preference;
-@dynamic use_youtube_manual_preference;
-@dynamic use_itunes_preference;
-@dynamic use_itunes_manual_preference;
-@dynamic select_youtube_link_preference;
-@dynamic auto_upload_picture_preference;
-@dynamic manual_upload_picture_preference;
+@synthesize profileImages;
+@synthesize profileImagesIndex;
+@synthesize tabBarController;
+@synthesize window;
 
 
 #pragma mark -
@@ -83,6 +85,10 @@
 
 #pragma mark -
 #pragma mark Application lifecycle
+
+- (BOOL)isForeGround {
+  return !isBackGround;
+}
 
 /**
  * @brief 与えられたviewControllerを含むナビゲーションビューをタブのタイトルと画像を設定して返す。
@@ -354,6 +360,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
   NSMutableArray *newProfileImagesIndex = [[NSMutableArray alloc] init];
   locationDelegate = [[LocationNotificationDelegate alloc] init];
+  isBackGround = NO;
 
   self.profileImages = newProfileImages;
   [newProfileImages release];
@@ -505,7 +512,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
   NSLog(@"application goto background.");
   [self cleanupProfileImageFileCache];
-  [locationDelegate start];
+
+  if (self.autotweet_preference) {
+    [locationDelegate start];
+  }
+
+  isBackGround = YES;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -518,6 +530,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   NSLog(@"application goto foreground.");
 
+  isBackGround = NO;
   [musicPlayerViewController playBackStateDidChanged];
   [musicPlayerViewController setViewTitleAndMusicArtwork];
 }

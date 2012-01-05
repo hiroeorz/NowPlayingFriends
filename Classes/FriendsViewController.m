@@ -166,32 +166,35 @@
   while (YES) {
     NSAutoreleasePool *inPool = [[NSAutoreleasePool alloc] init];
     
-    if (timeline == nil) {
-      NSArray *newTimeline = [client getMentionsTimeLineSince:nil];
-      self.timeline = newTimeline;
-      NSLog(@"set Mentions timeline (count: %d)", [timeline count]);
-
-    } else {
-      NSNumber *lastId = [self lastTweetId];
-      NSArray *newTimeline = [client getMentionsTimeLineSince:lastId];
-      
-      for (NSDictionary *obj in newTimeline) {
-	self.newTimelineQueue = newTimeline;
-	NSLog(@"id:%@", [obj objectForKey:@"id"]);
+    if (self.appDelegate.isForeGround) {
+      if (timeline == nil) {
+	NSArray *newTimeline = [client getMentionsTimeLineSince:nil];
+	self.timeline = newTimeline;
+	NSLog(@"set Mentions timeline (count: %d)", [timeline count]);
+	
+      } else {
+	NSNumber *lastId = [self lastTweetId];
+	NSArray *newTimeline = [client getMentionsTimeLineSince:lastId];
+	
+	for (NSDictionary *obj in newTimeline) {
+	  self.newTimelineQueue = newTimeline;
+	  NSLog(@"id:%@", [obj objectForKey:@"id"]);
+	}
+	
+	NSLog(@"newCount: %d", [newTimeline count]);
+	
+	NSString *countStr = nil;
+	if ([newTimeline count] > 0) {
+	  countStr = 
+	    [[NSString alloc] initWithFormat:@"%d", [newTimeline count]];
+	}
+	
+	[self performSelectorOnMainThread:@selector(setBadgeValueOnMainThread:)
+			       withObject:countStr
+			    waitUntilDone:NO];
+	
+	[countStr release];
       }
-      
-      NSLog(@"newCount: %d", [newTimeline count]);
-      
-      NSString *countStr = nil;
-      if ([newTimeline count] > 0) {
-	countStr = [[NSString alloc] initWithFormat:@"%d", [newTimeline count]];
-      }
-
-      [self performSelectorOnMainThread:@selector(setBadgeValueOnMainThread:)
-	    withObject:countStr
-	    waitUntilDone:NO];
-      
-      [countStr release];
     }
 
     date = [[NSDate alloc] init];

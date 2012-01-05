@@ -79,13 +79,15 @@
     self.recentSongTitle = [self.appDelegate nowPlayingTitle];
   }
 
-  [self setViewTitleAndMusicArtwork];
+  if (self.appDelegate.isForeGround) {
+    [self setViewTitleAndMusicArtwork];
+
+    if (self.appDelegate.get_twitterusers_preference) {
+      [self refreshProfileImagesIfChanged];
+    }
+  }
 
   autoTweetMode = self.appDelegate.autotweet_preference;
-
-  if (self.appDelegate.get_twitterusers_preference) {
-    [self refreshProfileImagesIfChanged];
-  }
 
   if (autoTweetMode && 
       [musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {

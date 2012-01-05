@@ -43,13 +43,11 @@
   NSManagedObjectModel *managedObjectModel_;
   NSPersistentStoreCoordinator *persistentStoreCoordinator_;
   UITabBarController *tabBarController;
-  
   NSMutableDictionary *profileImages;
   NSMutableArray *profileImagesIndex;
   MPMusicPlayerController *musicPlayer;
-
   MusicPlayerViewController *musicPlayerViewController;
-  
+  BOOL isBackGround;
   NSInteger testFlag;
 }
 
@@ -58,13 +56,14 @@
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
 @property (nonatomic, retain) UITabBarController *tabBarController;
 @property (nonatomic, retain) NSMutableDictionary *profileImages;
 @property (nonatomic, retain) NSMutableArray *profileImagesIndex;
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 @property (nonatomic, retain) MusicPlayerViewController *musicPlayerViewController;
 @property (nonatomic, retain) NSUserDefaults *userDefaults;
+@property (nonatomic) BOOL isBackGround;
+@property (nonatomic, readonly) BOOL isForeGround;
 
 @property (nonatomic, retain) NSString *template_preference;
 @property (nonatomic) BOOL get_twitterusers_preference;

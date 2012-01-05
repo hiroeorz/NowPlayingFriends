@@ -29,8 +29,7 @@
   if (self != nil) {
     locationManager = nil;
 
-    if ([CLLocationManager locationServicesEnabled] == YES || 
-	locationManager.locationServicesEnabled == YES) {
+    if ([CLLocationManager locationServicesEnabled] == YES) {
       locationManager = [[CLLocationManager alloc] init];
       locationManager.delegate = self;
       //locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -47,20 +46,21 @@
 
   self.recentSongTitle = [self.appDelegate nowPlayingTitle];
 
-  if ([CLLocationManager locationServicesEnabled] == YES || 
-      locationManager.locationServicesEnabled == YES) {
+  if ([CLLocationManager locationServicesEnabled] == YES) {
     [locationManager startUpdatingLocation];
   }
 }
 
 - (void)stop {
 
-  if ([CLLocationManager locationServicesEnabled] == YES || 
-      locationManager.locationServicesEnabled == YES) {
+  if ([CLLocationManager locationServicesEnabled] == YES) {
     [locationManager stopUpdatingLocation];
   }
 
 }
+
+#pragma mark -
+#pragma Location Manager Delegate Methods
 
 - (void) locationManager:(CLLocationManager *)manager 
      didUpdateToLocation:(CLLocation *)newLocation 
@@ -71,17 +71,13 @@
 
   if (![recentSongTitle isEqualToString:nowTitle]) {
     NSLog(@"music changed when background");
+    self.recentSongTitle = nowTitle;
   }
 }
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
   NSLog(@"NOTICE! LOCATION DID FAIL!");
-}
-
-- (void)locationManager:(CLLocationManager *)manager   
-       didUpdateHeading:(CLHeading *)newHeading {  
-  NSLog(@"NOTICE! LOCATION HEADING CHANGED!");
 }
 
 #pragma mark -

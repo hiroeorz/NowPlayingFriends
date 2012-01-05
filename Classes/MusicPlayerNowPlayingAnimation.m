@@ -16,7 +16,7 @@
 
 
 @interface MusicPlayerNowPlayingAnimation (Local)
-- (void)setAnimationCutToButton:(UIButton *)button;
+- (void)setAnimationCutToButton:(NSDictionary *)dic;
 - (void)setupAnimationPartsList;
 - (void)execMusicStopAnimation:(NSDictionary *)dic;
 @end
