@@ -40,6 +40,7 @@
 
 @dynamic auto_upload_picture_preference;
 @dynamic autotweet_preference;
+@dynamic autotweet_when_background_preference;
 @dynamic get_twitterusers_preference;
 @dynamic isForeGround;
 @dynamic manual_upload_picture_preference;
@@ -513,7 +514,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSLog(@"application goto background.");
   [self cleanupProfileImageFileCache];
 
-  if (self.autotweet_preference) {
+  if (self.autotweet_preference &&
+      self.autotweet_when_background_preference &&
+      [musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
     [locationDelegate start];
   }
 
@@ -738,6 +741,25 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   }
 
   [self.userDefaults setValue:autorefresh forKey:@"autotweet_preference"];
+}
+
+/**
+ * @brief バックグラウンドで自動ツイートするかどうかの設定。
+ */
+- (BOOL)autotweet_when_background_preference {
+
+  NSNumber *val = 
+    [self.userDefaults valueForKey:@"autotweet_when_background_preference"];
+  
+  if (val == nil) {val = [NSNumber numberWithBool:YES];}
+  return [val boolValue];
+}
+
+- (void)setAutotweet_when_background_preference:(BOOL)flag {
+
+  NSNumber *val = [NSNumber numberWithBool:flag];
+  [self.userDefaults setValue:val
+		       forKey:@"autotweet_when_background_preference"];
 }
 
 /**

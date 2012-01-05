@@ -18,6 +18,7 @@
 
 - (void)dealloc {
   [locationManager release];
+  [musicPlayer release];
   [recentSongTitle release];
   [super dealloc];
 }
@@ -27,6 +28,7 @@
   self = [super init];
 
   if (self != nil) {
+    musicPlayer = [[MPMusicPlayerController iPodMusicPlayer] retain];
     locationManager = nil;
 
     if ([CLLocationManager locationServicesEnabled] == YES) {
@@ -42,21 +44,57 @@
   return self;
 }
 
+/**
+ * @brief 位置情報の追跡を開始する。
+ */
 - (void)start {
-
+  
+  NSLog(@"location tracking START.");
   self.recentSongTitle = [self.appDelegate nowPlayingTitle];
 
   if ([CLLocationManager locationServicesEnabled] == YES) {
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter 
+						 defaultCenter];
+    [notificationCenter 
+      addObserver: self
+	 selector: @selector (handle_PlayBackStateDidChanged:)
+	     name: MPMusicPlayerControllerPlaybackStateDidChangeNotification
+	   object: musicPlayer];
+    
     [locationManager startUpdatingLocation];
   }
 }
 
+/**
+ * @brief 位置情報の追跡を停止する。
+ */
 - (void)stop {
 
+  NSLog(@"location tracking STOP.");
+
   if ([CLLocationManager locationServicesEnabled] == YES) {
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter 
+						 defaultCenter];
+    [notificationCenter 
+      removeObserver: self
+		name: MPMusicPlayerControllerPlaybackStateDidChangeNotification
+	      object: musicPlayer];
+
     [locationManager stopUpdatingLocation];
   }
+}
 
+/**
+ * @brief iPodプレイヤーの状態が変化したら呼ばれる。
+ *        再生中でなかったら位置情報の追跡をやめる。
+ */
+- (void)handle_PlayBackStateDidChanged:(id)notification {
+
+  NSLog(@"Play State Changed!(in LocationManagerDelegate)");
+
+  if ([musicPlayer playbackState] != MPMusicPlaybackStatePlaying) {
+    [self stop];
+  }
 }
 
 #pragma mark -

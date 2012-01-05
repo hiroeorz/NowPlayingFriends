@@ -68,6 +68,7 @@
 @property (nonatomic, retain) NSString *template_preference;
 @property (nonatomic) BOOL get_twitterusers_preference;
 @property (nonatomic) BOOL autotweet_preference;
+@property (nonatomic) BOOL autotweet_when_background_preference;
 @property (nonatomic) BOOL use_youtube_preference;
 @property (nonatomic) BOOL use_youtube_manual_preference;
 @property (nonatomic) BOOL use_itunes_preference;

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @class NowPlayingFriendsAppDelegate;
 
@@ -15,6 +16,7 @@
 @private
   CLLocationManager *locationManager;
   NSString *recentSongTitle;
+  MPMusicPlayerController *musicPlayer;
 }
 
 
@@ -23,5 +25,6 @@
 
 - (void)start;
 - (void)stop;
+- (void)handle_PlayBackStateDidChanged:(id)notification;
 
 @end
