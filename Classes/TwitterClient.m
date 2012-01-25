@@ -384,6 +384,8 @@
 				 token:accessToken
 				 realm:@"https://api.twitter.com"
 				 signatureProvider:nil];
+
+  [request setHTTPShouldHandleCookies:NO];
   [request autorelease];
   [request setHTTPMethod:@"POST"];
 
@@ -491,6 +493,8 @@
 					    token:nil
 					    realm:nil
 					    signatureProvider:nil];
+
+  [request setHTTPShouldHandleCookies:NO];
   [consumer release];
 
   // 新たに付加するパラメータ
@@ -559,7 +563,7 @@
   return result;
 }
 
- - (NSString *)username {
+- (NSString *)username {
   
   NSDictionary *token = [self oAuthToken];
   NSString *username = nil;

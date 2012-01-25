@@ -109,8 +109,7 @@
     
     NSLog(@"result: %@", dict);
     
-    [dict writeToFile:[twitterClient oAuthAccessTokenFileName] 
-	  atomically:YES];
+    [dict writeToFile:[twitterClient oAuthAccessTokenFileName] atomically:YES];
 
     UIAlertView *alert = [[UIAlertView alloc] 
 			   initWithTitle:@"Authentication success"

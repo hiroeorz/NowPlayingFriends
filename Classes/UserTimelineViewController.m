@@ -31,6 +31,8 @@
 
   NSNumber *lastId = [super lastTweetId];
   TwitterClient *client = [[TwitterClient alloc] init];
+
+  if (username == nil) { self.username = [client username]; } 
   NSArray *newTimeline = [client getUserTimeLine:username sinceId:lastId];
   [client release];
 
