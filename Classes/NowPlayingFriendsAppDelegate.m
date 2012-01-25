@@ -751,7 +751,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSNumber *val = 
     [self.userDefaults valueForKey:@"autotweet_when_background_preference"];
   
-  if (val == nil) {val = [NSNumber numberWithBool:YES];}
+  if (val == nil) {val = [NSNumber numberWithBool:NO];}
   return [val boolValue];
 }
 

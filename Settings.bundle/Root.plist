@@ -74,7 +74,7 @@
 			<key>Key</key>
 			<string>autotweet_when_background_preference</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Type</key>
