@@ -514,12 +514,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSLog(@"application goto background.");
   [self cleanupProfileImageFileCache];
 
+  /* @todo 次回申請までコメントアウト
   if (self.autotweet_preference &&
       self.autotweet_when_background_preference &&
       [musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
     [locationDelegate start];
   }
-
+  */
   isBackGround = YES;
 }
 
