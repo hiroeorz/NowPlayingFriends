@@ -149,7 +149,7 @@
   UIButton *aButton = [dic objectForKey:@"button"];
   NSArray *graphLineArray = [dic objectForKey:@"graphLineArray"];
   CGFloat fullHeight = 10.0f;
-  CGFloat fullY = 9.0f;
+  CGFloat fullY = 7.0f;
 
   for(UIView *line in graphLineArray) {
     [line removeFromSuperview];
@@ -176,7 +176,7 @@
     UIButton *aButton = [dic objectForKey:@"button"];
     NSArray *graphLineArray = [dic objectForKey:@"graphLineArray"];
     CGFloat fullHeight = 10.0f;
-    CGFloat fullY = 9.0f;
+    CGFloat fullY = 7.0f;
     
     for(UIView *line in graphLineArray) {
       [line removeFromSuperview];

@@ -143,6 +143,7 @@
 		54D260AC123A3989004023A6 /* Previous_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260AA123A3989004023A6 /* Previous_mini.png */; };
 		54D2F41414B4ADAB00BF8792 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D2F41314B4ADAB00BF8792 /* CoreLocation.framework */; };
 		54D2F41714B4B20000BF8792 /* LocationNotificationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 54D2F41614B4B20000BF8792 /* LocationNotificationDelegate.m */; };
+		54E51E19151EF91300223252 /* red_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E51E18151EF91300223252 /* red_button.png */; };
 		54E76C63146581B8006612B6 /* MusicPlayerViewController+AutoTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E76C5E146581B8006612B6 /* MusicPlayerViewController+AutoTweet.m */; };
 		54E76C64146581B8006612B6 /* MusicPlayerViewController+Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E76C61146581B8006612B6 /* MusicPlayerViewController+Notification.m */; };
 		54E76C65146581B8006612B6 /* MusicPlayerViewController+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E76C62146581B8006612B6 /* MusicPlayerViewController+Settings.m */; };
@@ -393,6 +394,7 @@
 		54D2F41314B4ADAB00BF8792 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		54D2F41514B4B20000BF8792 /* LocationNotificationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationNotificationDelegate.h; sourceTree = "<group>"; };
 		54D2F41614B4B20000BF8792 /* LocationNotificationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationNotificationDelegate.m; sourceTree = "<group>"; };
+		54E51E18151EF91300223252 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
 		54E76C5E146581B8006612B6 /* MusicPlayerViewController+AutoTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MusicPlayerViewController+AutoTweet.m"; sourceTree = "<group>"; };
 		54E76C5F146581B8006612B6 /* MusicPlayerViewController+Local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MusicPlayerViewController+Local.h"; sourceTree = "<group>"; };
 		54E76C61146581B8006612B6 /* MusicPlayerViewController+Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MusicPlayerViewController+Notification.m"; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				54E51E17151EF91300223252 /* buttonImages */,
 				549EFEAE1300383A00908AB6 /* SettingSelectYouTubeLinkView.xib */,
 				5441761112F24F6E00A29AD7 /* no_artwork_image.png */,
 				542B3FC912E1DE5100EDF94A /* TwitterFriendsListViewController.xib */,
@@ -821,6 +824,14 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		54E51E17151EF91300223252 /* buttonImages */ = {
+			isa = PBXGroup;
+			children = (
+				54E51E18151EF91300223252 /* red_button.png */,
+			);
+			path = buttonImages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -925,6 +936,7 @@
 				54EB002513382728008F325F /* Default@2x.png in Resources */,
 				545B03BC1462CE3000A7CB83 /* close2_blk.gif in Resources */,
 				545B03BE1462D52600A7CB83 /* closed_black_b.gif in Resources */,
+				54E51E19151EF91300223252 /* red_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

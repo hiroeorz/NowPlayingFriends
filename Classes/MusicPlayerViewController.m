@@ -473,16 +473,14 @@
   return (intervalSec < kMusicPlayerDefaultNowInterval);
 }
 
-- (UIButton *)nowButton:(SEL)selector
-		  frame:(CGRect)frame{
+- (UIButton *)nowButton:(SEL)selector frame:(CGRect)frame{
 
-  UIButton *nowButton = [UIButton buttonWithType:111];
+  UIButton *nowButton = [UIButton buttonWithType:UIButtonTypeCustom];
   nowButton.frame = frame;
   
-  [nowButton setTitle:@"" 
-	     forState:UIControlStateNormal];
-  
-  [nowButton setValue:[UIColor redColor] forKey:@"tintColor"];
+  [nowButton setTitle:@"" forState:UIControlStateNormal];
+  [nowButton setBackgroundImage:[UIImage imageNamed:@"red_button.png"]
+		       forState:UIControlStateNormal];
 
   [nowButton addTarget:self action:selector
 	     forControlEvents:UIControlEventTouchUpInside];
@@ -495,15 +493,12 @@
 
 - (UIButton *)playButton:(CGRect)frame {
 
-  UIButton *aPlayButton = [UIButton buttonWithType:111];
+  UIButton *aPlayButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   aPlayButton.frame = frame;
   
   [aPlayButton setImage:[UIImage imageNamed:@"Play.png"]
 	       forState:UIControlStateNormal];
   
-  UIColor *playButtonColor = [UIColor blackColor];
-  [aPlayButton setValue:playButtonColor forKey:@"tintColor"];
-
   [aPlayButton addTarget:self action:@selector(togglePlayStop:)
 	       forControlEvents:UIControlEventTouchUpInside];
   

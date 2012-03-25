@@ -306,8 +306,8 @@
 
   UIView *graphLine = nil;
   NSInteger i = 0;
-  CGFloat x = 7.5f;
-  CGFloat y = 9.0f;
+  CGFloat x = 4.5f;
+  CGFloat y = 6.0f;
   CGFloat width = 3.5f;
   CGFloat height = 10.0f;
   NSMutableArray *array = [NSMutableArray arrayWithCapacity:4];

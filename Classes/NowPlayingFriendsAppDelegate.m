@@ -517,6 +517,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   if (self.autotweet_preference &&
       self.autotweet_when_background_preference &&
       [musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
+    NSLog(@"locatin service start.");
     [locationDelegate start];
   }
 
