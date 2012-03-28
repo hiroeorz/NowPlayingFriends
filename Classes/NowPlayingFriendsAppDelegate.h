@@ -13,7 +13,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <QuartzCore/QuartzCore.h>
-#import "LocationNotificationDelegate.h"
 
 #define kTweetTemplate @"♪ #NowPlaying \"[st]\" by \"[ar]\" on album \"[al]\" ♬"
 
@@ -38,7 +37,6 @@
   UIWindow *window;
   
 @private
-  LocationNotificationDelegate *locationDelegate;
   NSManagedObjectContext *managedObjectContext_;
   NSManagedObjectModel *managedObjectModel_;
   NSPersistentStoreCoordinator *persistentStoreCoordinator_;
@@ -49,6 +47,7 @@
   MusicPlayerViewController *musicPlayerViewController;
   BOOL isBackGround;
   NSInteger testFlag;
+  UIBackgroundTaskIdentifier bgTask;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -62,13 +61,13 @@
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
 @property (nonatomic, retain) MusicPlayerViewController *musicPlayerViewController;
 @property (nonatomic, retain) NSUserDefaults *userDefaults;
+@property (nonatomic) UIBackgroundTaskIdentifier bgTask;
 @property (nonatomic) BOOL isBackGround;
 @property (nonatomic, readonly) BOOL isForeGround;
 
 @property (nonatomic, retain) NSString *template_preference;
 @property (nonatomic) BOOL get_twitterusers_preference;
 @property (nonatomic) BOOL autotweet_preference;
-@property (nonatomic) BOOL autotweet_when_background_preference;
 @property (nonatomic) BOOL use_youtube_preference;
 @property (nonatomic) BOOL use_youtube_manual_preference;
 @property (nonatomic) BOOL use_itunes_preference;

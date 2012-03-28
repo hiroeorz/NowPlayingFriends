@@ -40,7 +40,6 @@
 
 @dynamic auto_upload_picture_preference;
 @dynamic autotweet_preference;
-@dynamic autotweet_when_background_preference;
 @dynamic get_twitterusers_preference;
 @dynamic isForeGround;
 @dynamic manual_upload_picture_preference;
@@ -51,6 +50,7 @@
 @dynamic use_youtube_manual_preference;
 @dynamic use_youtube_preference;
 @dynamic userDefaults;
+@synthesize bgTask;
 @synthesize isBackGround;
 @synthesize musicPlayer;
 @synthesize musicPlayerViewController;
@@ -58,7 +58,6 @@
 @synthesize profileImagesIndex;
 @synthesize tabBarController;
 @synthesize window;
-
 
 #pragma mark -
 #pragma mark Memory management
@@ -72,7 +71,6 @@
 
 - (void)dealloc {
     
-  [locationDelegate release];
   [managedObjectContext_ release];
   [managedObjectModel_ release];
   [musicPlayerViewController release];
@@ -360,7 +358,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   TwitterClient *client = [[TwitterClient alloc] init];
   NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
   NSMutableArray *newProfileImagesIndex = [[NSMutableArray alloc] init];
-  locationDelegate = [[LocationNotificationDelegate alloc] init];
   isBackGround = NO;
 
   self.profileImages = newProfileImages;
@@ -514,20 +511,17 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSLog(@"application goto background.");
   [self cleanupProfileImageFileCache];
 
-  if (self.autotweet_preference &&
-      self.autotweet_when_background_preference &&
-      [musicPlayer playbackState] == MPMusicPlaybackStatePlaying) {
-    NSLog(@"locatin service start.");
-    [locationDelegate start];
-  }
+  UIApplication *app = [UIApplication sharedApplication];
+  [app beginBackgroundTaskWithExpirationHandler:^{
+      [app endBackgroundTask:bgTask];
+      bgTask = UIBackgroundTaskInvalid;
+    }];
 
   isBackGround = YES;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-
   NSLog(@"application will goto foreground.");
-  [locationDelegate stop];
 }
 
 

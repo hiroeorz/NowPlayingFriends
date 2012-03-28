@@ -50,16 +50,6 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Background Tweet</string>
-			<key>Key</key>
-			<string>autotweet_when_background_preference</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
 			<string>Auto Tweet</string>
 			<key>Key</key>
 			<string>autotweet_preference</string>

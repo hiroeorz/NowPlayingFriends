@@ -15,7 +15,6 @@
 @interface SettingViewController (Local)
 
 - (NowPlayingFriendsAppDelegate *)appDelegate;
-- (void)save_autotweet_when_background_preference:(UISwitch *)sender;
 - (void)save_use_itunes_preference:(UISwitch *)sender;
 - (void)save_get_twitterusers:(UISwitch *)sender;
 - (void)save_use_youtube_preference:(UISwitch *)sender;
@@ -92,7 +91,7 @@
   switch (section) {
   case 0: rowsCount = 3;
     break;
-  case 1: rowsCount = 2;
+  case 1: rowsCount = 1;
     break;
   case 2: rowsCount = 3;
     break;
@@ -205,15 +204,6 @@ titleForHeaderInSection:(NSInteger)section {
     }
       break;
 
-    case 1: {
-      cell.textLabel.text = @"Background Tweet";
-      switchObj.on  = self.appDelegate.autotweet_when_background_preference;
-      [switchObj addTarget:self 
-		 action:@selector(save_autotweet_when_background_preference:)
-		 forControlEvents:UIControlEventValueChanged];
-    }
-      break;
-
     }
   }
     break;
@@ -299,10 +289,6 @@ titleForHeaderInSection:(NSInteger)section {
   }
 
   return cell;
-}
-
-- (void)save_autotweet_when_background_preference:(UISwitch *)sender {
-  self.appDelegate.autotweet_when_background_preference = sender.on;
 }
 
 - (void)save_auto_upload_picture_preference:(UISwitch *)sender {
