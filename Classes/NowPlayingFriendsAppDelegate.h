@@ -87,6 +87,10 @@
 - (void)setupMusicPlayer;
 - (void)handle_NowPlayingItemChanged:(id)notification;
 
+- (CGFloat)windowHeight;
+- (CGFloat)windowHeightFixVal;
+- (void)fixPositionForAfteriPhone5View:(UIView *)aView;
+
 - (NSString *)nowPlayingTitle;
 - (NSString *)nowPlayingAlbumTitle;
 - (NSString *)nowPlayingArtistName;

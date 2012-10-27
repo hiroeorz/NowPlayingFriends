@@ -197,6 +197,10 @@
   animationOperator.sampleNowButtonDic = dic;
   [musicControllerView addSubview:nowButton];
 
+  /* iPhone5用に必要に応じて一を下にずらす */
+  [self.appDelegate fixPositionForAfteriPhone5View:musicControllerView];
+  [self.appDelegate fixPositionForAfteriPhone5View:albumImageView];
+
   /* 再生中, 一時停止中 */
   if ([musicPlayer playbackState] == MPMusicPlaybackStatePlaying ||
       [musicPlayer playbackState] == MPMusicPlaybackStatePaused) {

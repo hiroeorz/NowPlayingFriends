@@ -99,7 +99,6 @@
 		549EFEAF1300383A00908AB6 /* SettingSelectYouTubeLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 549EFEAD1300383A00908AB6 /* SettingSelectYouTubeLinkView.m */; };
 		549EFEB01300383A00908AB6 /* SettingSelectYouTubeLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 549EFEAE1300383A00908AB6 /* SettingSelectYouTubeLinkView.xib */; };
 		54A5B7ED12DB714F00BA8269 /* 06-magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A5B7EC12DB714F00BA8269 /* 06-magnifying-glass.png */; };
-		54A96850122F97B1004CF186 /* 30-key.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A9684F122F97B1004CF186 /* 30-key.png */; };
 		54A96875122FA322004CF186 /* MentionsTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A96874122FA322004CF186 /* MentionsTimelineViewController.m */; };
 		54A9698B1230C743004CF186 /* HomeTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A9698A1230C743004CF186 /* HomeTimelineViewController.m */; };
 		54BDCD63126D59F600958FDA /* no_artwork_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54BDCD62126D59F600958FDA /* no_artwork_mini.png */; };
@@ -137,6 +136,8 @@
 		54C1E0131216CB0700EBD811 /* SongFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1E0121216CB0700EBD811 /* SongFriendsViewController.m */; };
 		54C1E0541217B48C00EBD811 /* MusicPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1E0521217B48C00EBD811 /* MusicPlayerViewController.m */; };
 		54C1E0551217B48C00EBD811 /* MusicPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C1E0531217B48C00EBD811 /* MusicPlayerViewController.xib */; };
+		54CB18CB163B79D1005641D8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CB18CA163B79D1005641D8 /* Default-568h@2x.png */; };
+		54CB18D1163B8E67005641D8 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54CB18D0163B8E67005641D8 /* libxml2.dylib */; };
 		54D260A7123A38AC004023A6 /* Pause_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260A5123A38AC004023A6 /* Pause_mini.png */; };
 		54D260A8123A38AC004023A6 /* Play_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260A6123A38AC004023A6 /* Play_mini.png */; };
 		54D260AB123A3989004023A6 /* Next_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260A9123A3989004023A6 /* Next_mini.png */; };
@@ -150,10 +151,10 @@
 		54E76C6A1466D3AC006612B6 /* MusicPlayerNowPlayingAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E76C691466D3AB006612B6 /* MusicPlayerNowPlayingAnimation.m */; };
 		54E7C6B11245D027006EDACE /* 53-house.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E7C6B01245D027006EDACE /* 53-house.png */; };
 		54E7C6BA1245D126006EDACE /* 23-bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E7C6B91245D126006EDACE /* 23-bird.png */; };
-		54EB001F1337AA71008F325F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54EB001E1337AA71008F325F /* libxml2.dylib */; };
 		54EB00211337AA8A008F325F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54EB00201337AA8A008F325F /* libz.dylib */; };
 		54EB0023133826EF008F325F /* friends2_114_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 54EB0022133826EE008F325F /* friends2_114_114.png */; };
 		54EB002513382728008F325F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54EB002413382728008F325F /* Default@2x.png */; };
+		54F04C6C163B6E7900755E1C /* 30-key.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F04C6B163B6E7900755E1C /* 30-key.png */; };
 		54F0BCBE12A5CEAE00986791 /* atMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F0BCBD12A5CEAE00986791 /* atMark.png */; };
 		54F2D06612DDC3FA006C8C77 /* TwitterFriendsGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F2D06512DDC3FA006C8C77 /* TwitterFriendsGetter.m */; };
 /* End PBXBuildFile section */
@@ -313,7 +314,6 @@
 		549EFEAD1300383A00908AB6 /* SettingSelectYouTubeLinkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingSelectYouTubeLinkView.m; sourceTree = "<group>"; };
 		549EFEAE1300383A00908AB6 /* SettingSelectYouTubeLinkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingSelectYouTubeLinkView.xib; path = Classes/SettingSelectYouTubeLinkView.xib; sourceTree = "<group>"; };
 		54A5B7EC12DB714F00BA8269 /* 06-magnifying-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnifying-glass.png"; sourceTree = "<group>"; };
-		54A9684F122F97B1004CF186 /* 30-key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "30-key.png"; path = "../../Downloads/iPhoneタブバー用アイコン/glyphish-icons/icons/30-key.png"; sourceTree = SOURCE_ROOT; };
 		54A96873122FA316004CF186 /* MentionsTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MentionsTimelineViewController.h; sourceTree = "<group>"; };
 		54A96874122FA322004CF186 /* MentionsTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MentionsTimelineViewController.m; sourceTree = "<group>"; };
 		54A9698A1230C743004CF186 /* HomeTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTimelineViewController.m; sourceTree = "<group>"; };
@@ -386,6 +386,8 @@
 		54C1E0511217B48C00EBD811 /* MusicPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicPlayerViewController.h; sourceTree = "<group>"; };
 		54C1E0521217B48C00EBD811 /* MusicPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerViewController.m; sourceTree = "<group>"; };
 		54C1E0531217B48C00EBD811 /* MusicPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MusicPlayerViewController.xib; path = Classes/MusicPlayerViewController.xib; sourceTree = "<group>"; };
+		54CB18CA163B79D1005641D8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		54CB18D0163B8E67005641D8 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		54D260A5123A38AC004023A6 /* Pause_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Pause_mini.png; path = icons/mediaIcons005/Pause_mini.png; sourceTree = "<group>"; };
 		54D260A6123A38AC004023A6 /* Play_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Play_mini.png; path = icons/mediaIcons005/Play_mini.png; sourceTree = "<group>"; };
 		54D260A9123A3989004023A6 /* Next_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Next_mini.png; path = icons/mediaIcons005/Next_mini.png; sourceTree = "<group>"; };
@@ -401,10 +403,10 @@
 		54E76C691466D3AB006612B6 /* MusicPlayerNowPlayingAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerNowPlayingAnimation.m; sourceTree = "<group>"; };
 		54E7C6B01245D027006EDACE /* 53-house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "53-house.png"; sourceTree = "<group>"; };
 		54E7C6B91245D126006EDACE /* 23-bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "23-bird.png"; sourceTree = "<group>"; };
-		54EB001E1337AA71008F325F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		54EB00201337AA8A008F325F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		54EB0022133826EE008F325F /* friends2_114_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends2_114_114.png; sourceTree = "<group>"; };
 		54EB002413382728008F325F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		54F04C6B163B6E7900755E1C /* 30-key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "30-key.png"; sourceTree = "<group>"; };
 		54F0BCBD12A5CEAE00986791 /* atMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atMark.png; sourceTree = "<group>"; };
 		54F2D06412DDC3FA006C8C77 /* TwitterFriendsGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterFriendsGetter.h; sourceTree = "<group>"; };
 		54F2D06512DDC3FA006C8C77 /* TwitterFriendsGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterFriendsGetter.m; sourceTree = "<group>"; };
@@ -416,9 +418,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54CB18D1163B8E67005641D8 /* libxml2.dylib in Frameworks */,
 				54D2F41414B4ADAB00BF8792 /* CoreLocation.framework in Frameworks */,
 				54EB00211337AA8A008F325F /* libz.dylib in Frameworks */,
-				54EB001F1337AA71008F325F /* libxml2.dylib in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
@@ -527,10 +529,11 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				54CB18D0163B8E67005641D8 /* libxml2.dylib */,
+				54CB18CA163B79D1005641D8 /* Default-568h@2x.png */,
 				54EB002413382728008F325F /* Default@2x.png */,
 				54EB0022133826EE008F325F /* friends2_114_114.png */,
 				54EB00201337AA8A008F325F /* libz.dylib */,
-				54EB001E1337AA71008F325F /* libxml2.dylib */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -553,6 +556,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				54CB18CC163B8427005641D8 /* other */,
 				54E51E17151EF91300223252 /* buttonImages */,
 				549EFEAE1300383A00908AB6 /* SettingSelectYouTubeLinkView.xib */,
 				5441761112F24F6E00A29AD7 /* no_artwork_image.png */,
@@ -694,11 +698,11 @@
 		5480C3B4121FA0CA00F6E1C6 /* tabBarIcons */ = {
 			isa = PBXGroup;
 			children = (
+				54F04C6B163B6E7900755E1C /* 30-key.png */,
 				54F0BCBD12A5CEAE00986791 /* atMark.png */,
 				5420CC4912741732002C94DC /* 20-gear2.png */,
 				54E7C6B91245D126006EDACE /* 23-bird.png */,
 				54E7C6B01245D027006EDACE /* 53-house.png */,
-				54A9684F122F97B1004CF186 /* 30-key.png */,
 				5480C3C7121FA3A400F6E1C6 /* 120-headphones.png */,
 				5480C3C4121FA33900F6E1C6 /* 09-chat2.png */,
 				5480C3C1121FA2BC00F6E1C6 /* 65-note.png */,
@@ -819,6 +823,13 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		54CB18CC163B8427005641D8 /* other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = other;
+			sourceTree = "<group>";
+		};
 		54E51E17151EF91300223252 /* buttonImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -904,7 +915,6 @@
 				5465150C122CE6D6003DE639 /* list-white.png in Resources */,
 				54651520122CF4AF003DE639 /* music-note.png in Resources */,
 				546515CF122E1E18003DE639 /* no_artwork.png in Resources */,
-				54A96850122F97B1004CF186 /* 30-key.png in Resources */,
 				5480E3831238EB1900FF2271 /* icon.png in Resources */,
 				54D260A7123A38AC004023A6 /* Pause_mini.png in Resources */,
 				54D260A8123A38AC004023A6 /* Play_mini.png in Resources */,
@@ -932,6 +942,8 @@
 				545B03BC1462CE3000A7CB83 /* close2_blk.gif in Resources */,
 				545B03BE1462D52600A7CB83 /* closed_black_b.gif in Resources */,
 				54E51E19151EF91300223252 /* red_button.png in Resources */,
+				54F04C6C163B6E7900755E1C /* 30-key.png in Resources */,
+				54CB18CB163B79D1005641D8 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1034,13 +1046,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: HIROE Shin";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlayingFriends_Prefix.pch;
+				GCC_VERSION = "";
+				"GCC_VERSION[arch=*]" = "";
 				HEADER_SEARCH_PATHS = (
 					/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2,
 					/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2,
@@ -1072,6 +1086,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlayingFriends_Prefix.pch;
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2,
 					/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2,
@@ -1103,8 +1118,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: HIROE Shin";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos5.0]" = "iPhone Distribution: HIROE Shin";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos5.0]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
@@ -1112,8 +1127,8 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				PRODUCT_NAME = "Now Playing Friends";
-				PROVISIONING_PROFILE = "C95E2B6E-58BA-4F6C-AAE9-4889C3AA6272";
-				"PROVISIONING_PROFILE[sdk=iphoneos5.0]" = "C95E2B6E-58BA-4F6C-AAE9-4889C3AA6272";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos5.0]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -1122,10 +1137,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: HIROE Shin";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlayingFriends_Prefix.pch;
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2,
 					/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2,
@@ -1141,7 +1157,7 @@
 				);
 				No_Use = "";
 				PRODUCT_NAME = "Now Playing Friends";
-				PROVISIONING_PROFILE = "C95E2B6E-58BA-4F6C-AAE9-4889C3AA6272";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
@@ -1152,16 +1168,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				"GCC_VERSION[arch=*]" = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Now Playing Friends";
-				PROVISIONING_PROFILE = "FC01B822-742A-48BD-AC5F-8A66FC371D00";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -1172,8 +1189,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: HIROE Shin (RWZF7NNQ8E)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
@@ -1181,8 +1198,8 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				PRODUCT_NAME = "Now Playing Friends";
-				PROVISIONING_PROFILE = "7D35113F-1B9A-4FF6-BB21-3933CED6353E";
-				"PROVISIONING_PROFILE[sdk=*]" = "FC01B822-742A-48BD-AC5F-8A66FC371D00";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Release;

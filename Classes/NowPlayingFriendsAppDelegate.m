@@ -167,6 +167,30 @@
 }
 
 /**
+ * @brief 現在のWindowの高さをかえす。
+ */
+- (CGFloat)windowHeight {
+  return self.window.frame.size.height;
+}
+
+/**
+ * @brief iPhone4までと比べた場合のWindowの高さの補正値を返す。
+ */
+- (CGFloat)windowHeightFixVal {
+  return ([self windowHeight] - 480);
+}
+
+/**
+ * @brief 渡されたviewの縦方向の位置をiPhone5以降縦長になった分下に下ろす。
+ */
+- (void)fixPositionForAfteriPhone5View:(UIView *)aView {
+
+  CGRect frame = aView.frame;
+  frame.origin.y = frame.origin.y + [self windowHeightFixVal];
+  aView.frame = frame;
+}
+
+/**
  * @brief アルバム情報を持つMPMediaItemCollectionの配列を返します。
  */
 - (NSArray *)albums {
