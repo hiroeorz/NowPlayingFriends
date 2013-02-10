@@ -179,7 +179,6 @@
     profileImageButton.frame = CGRectMake(x, y, 
 					  kProfileImageSize, 
 					  kProfileImageSize);
-    [self.appDelegate fixPositionForAfteriPhone5View:profileImageButton]; /* iPhone5以降用 */
 
     UIImage *newImage = [self.appDelegate profileImage:data
 			     getRemote:YES];

@@ -89,6 +89,7 @@
 
 - (CGFloat)windowHeight;
 - (CGFloat)windowHeightFixVal;
+- (void)fixHeightForAfteriPhone5View:(UIView *)aView;
 - (void)fixPositionForAfteriPhone5View:(UIView *)aView;
 
 - (NSString *)nowPlayingTitle;

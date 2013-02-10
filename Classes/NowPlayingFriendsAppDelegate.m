@@ -181,7 +181,18 @@
 }
 
 /**
+ * @brief 渡されたviewの高さをiPhone5以降縦長になった分伸ばす。
+ */
+- (void)fixHeightForAfteriPhone5View:(UIView *)aView {
+
+  CGRect frame = aView.frame;
+  frame.size.height = frame.size.height + [self windowHeightFixVal];
+  aView.frame = frame;
+}
+
+/**
  * @brief 渡されたviewの縦方向の位置をiPhone5以降縦長になった分下に下ろす。
+ * 未使用（使用する時はこのコメント行を消す）
  */
 - (void)fixPositionForAfteriPhone5View:(UIView *)aView {
 
