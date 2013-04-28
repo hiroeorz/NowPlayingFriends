@@ -9,6 +9,7 @@
 #import "NowPlayingFriendsAppDelegate.h"
 
 #import "ArtistFriendsViewController.h"
+#import "FBAuthViewController.h"
 #import "HomeTimelineViewController.h"
 #import "ITunesStore.h"
 #import "MentionsTimelineViewController.h"
@@ -501,11 +502,24 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 		     bundle:nil];
 
   navController = [self navigationWithViewController:viewController
-			title:@"Authentication"  
+			title:@"Twutter Authentication"  
 			imageName:@"30-key.png"];
 
   [controllers addObject:navController];
   [viewController release];
+
+  /* Facebook UserAuth */
+  viewController = [[FBAuthViewController alloc] 
+		     initWithNibName:@"FBAuthViewController" 
+		     bundle:nil];
+
+  navController = [self navigationWithViewController:viewController
+			title:@"Facebook Authentication"  
+			imageName:@"30-key.png"];
+
+  [controllers addObject:navController];
+  [viewController release];
+
 
   /* SettingViewController */
   viewController = [[SettingViewController alloc] 

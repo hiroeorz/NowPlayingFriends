@@ -163,6 +163,8 @@
 		54FFEA3F172CF57A00EDCB6F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FFEA3E172CF57A00EDCB6F /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		54FFEA41172CF59B00EDCB6F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FFEA40172CF59B00EDCB6F /* libsqlite3.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		54FFEA43172CF5B300EDCB6F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FFEA42172CF5B300EDCB6F /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		54FFEA47172CFBF500EDCB6F /* FBAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FFEA45172CFBF500EDCB6F /* FBAuthViewController.m */; };
+		54FFEA48172CFBF500EDCB6F /* FBAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54FFEA46172CFBF500EDCB6F /* FBAuthViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -422,6 +424,9 @@
 		54FFEA3E172CF57A00EDCB6F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		54FFEA40172CF59B00EDCB6F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		54FFEA42172CF5B300EDCB6F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		54FFEA44172CFBF500EDCB6F /* FBAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBAuthViewController.h; sourceTree = "<group>"; };
+		54FFEA45172CFBF500EDCB6F /* FBAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBAuthViewController.m; sourceTree = "<group>"; };
+		54FFEA46172CFBF500EDCB6F /* FBAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FBAuthViewController.xib; path = Classes/FBAuthViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NowPlayingFriends-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -531,6 +536,8 @@
 				541649F41312678300B91837 /* TwitpicClient.m */,
 				54E76C681466D3AB006612B6 /* MusicPlayerNowPlayingAnimation.h */,
 				54E76C691466D3AB006612B6 /* MusicPlayerNowPlayingAnimation.m */,
+				54FFEA44172CFBF500EDCB6F /* FBAuthViewController.h */,
+				54FFEA45172CFBF500EDCB6F /* FBAuthViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -598,6 +605,7 @@
 				54C1DC891214162600EBD811 /* FriendCell.xib */,
 				544FA54412448640003BFB95 /* Default.png */,
 				5488302712D9D86C00462891 /* YouTubeMovieCell.xib */,
+				54FFEA46172CFBF500EDCB6F /* FBAuthViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -968,6 +976,7 @@
 				54F04C6C163B6E7900755E1C /* 30-key.png in Resources */,
 				54CB18CB163B79D1005641D8 /* Default-568h@2x.png in Resources */,
 				54FFEA3B172CF4F000EDCB6F /* FacebookSDKResources.bundle in Resources */,
+				54FFEA48172CFBF500EDCB6F /* FBAuthViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1060,6 +1069,7 @@
 				54E76C65146581B8006612B6 /* MusicPlayerViewController+Settings.m in Sources */,
 				54E76C6714658421006612B6 /* MusicPlayerViewController+FriendsIcon.m in Sources */,
 				54E76C6A1466D3AC006612B6 /* MusicPlayerNowPlayingAnimation.m in Sources */,
+				54FFEA47172CFBF500EDCB6F /* FBAuthViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
