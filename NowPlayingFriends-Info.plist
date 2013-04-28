@@ -37,5 +37,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>FacebookDisplayName</key>
+	<string>Now Playing Friends</string>
+	<key>FacebookAppID</key>
+	<string>364159220361632</string>
 </dict>
 </plist>
