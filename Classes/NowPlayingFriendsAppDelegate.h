@@ -88,6 +88,7 @@
 - (void)handle_NowPlayingItemChanged:(id)notification;
 
 - (CGFloat)windowHeight;
+- (CGFloat)windowWidth;
 - (CGFloat)windowHeightFixVal;
 - (void)fixHeightForAfteriPhone5View:(UIView *)aView;
 - (void)fixPositionForAfteriPhone5View:(UIView *)aView;

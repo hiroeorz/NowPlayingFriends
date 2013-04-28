@@ -175,6 +175,13 @@
 }
 
 /**
+ * @brief 現在のWindowの高さをかえす。
+ */
+- (CGFloat)windowWidth {
+  return self.window.frame.size.width;
+}
+
+/**
  * @brief iPhone4までと比べた場合のWindowの高さの補正値を返す。
  */
 - (CGFloat)windowHeightFixVal {
@@ -390,6 +397,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
   NSLog(@"Stating Launching Now Playing Friends!!");
   testFlag = 0;
+  [FBProfilePictureView class]; /* for Facebook Profile Picture View */
 
   TwitterClient *client = [[TwitterClient alloc] init];
   NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];

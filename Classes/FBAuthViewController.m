@@ -9,6 +9,8 @@
 #import "FBAuthViewController.h"
 
 #import <CoreLocation/CoreLocation.h>
+#import "NowPlayingFriendsAppDelegate.h"
+
 
 @interface FBAuthViewController () <FBLoginViewDelegate>
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePic;
@@ -38,7 +40,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    // Custom initialization
   }
   return self;
 }
@@ -46,8 +47,16 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  NowPlayingFriendsAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+  CGFloat width = [appDelegate windowWidth];
+  CGFloat height = [appDelegate windowHeight];
+  
   FBLoginView *loginview = [[FBLoginView alloc] init];
-  loginview.frame = CGRectOffset(loginview.frame, 10, 10);
+
+  CGFloat loginviewOffsetX = width / 2.0f - (loginview.frame.size.width / 2.0f);
+  CGFloat loginviewOffsetY = height / 2.0f - (loginview.frame.size.height / 2.0f);
+
+  loginview.frame = CGRectOffset(loginview.frame, loginviewOffsetX, loginviewOffsetY);
   loginview.delegate = self;
   [self.view addSubview:loginview];
   [loginview sizeToFit];
@@ -71,35 +80,25 @@
 #pragma mark - FBLoginViewDelegate
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-  // first get the buttons set for login mode
+
   self.buttonPostPhoto.enabled = YES;
   self.buttonPostStatus.enabled = YES;
   self.buttonPickFriends.enabled = YES;
   self.buttonPickPlace.enabled = YES;
-
-  // "Post Status" available when logged on and potentially when logged off.  Differentiate in the label.
-  [self.buttonPostStatus setTitle:@"Post Status Update (Logged On)" forState:self.buttonPostStatus.state];
 }
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
-  // here we use helper properties of FBGraphUser to dot-through to first_name and
-  // id properties of the json response from the server; alternatively we could use
-  // NSDictionary methods such as objectForKey to get values from the my json object
-  self.labelFirstName.text = [NSString stringWithFormat:@"Hello %@!", user.first_name];
-  // setting the profileID property of the FBProfilePictureView instance
-  // causes the control to fetch and display the profile picture for the user
+
+  self.labelFirstName.text = [NSString stringWithFormat:@"Logged in with %@", user.first_name];
   self.profilePic.profileID = user.id;
   self.loggedInUser = user;
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-  // test to see if we can use the share dialog built into the Facebook application
+
   FBShareDialogParams *p = [[FBShareDialogParams alloc] init];
   p.link = [NSURL URLWithString:@"http://developers.facebook.com/ios"];
-#ifdef DEBUG
-  [FBSettings enableBetaFeatures:FBBetaFeaturesShareDialog];
-#endif
   BOOL canShareFB = [FBDialogs canPresentShareDialogWithParams:p];
   BOOL canShareiOS6 = [FBDialogs canPresentOSIntegratedShareDialogWithSession:nil];
 
@@ -108,17 +107,13 @@
   self.buttonPickFriends.enabled = NO;
   self.buttonPickPlace.enabled = NO;
     
-  // "Post Status" available when logged on and potentially when logged off.  Differentiate in the label.
-  [self.buttonPostStatus setTitle:@"Post Status Update (Logged Off)" forState:self.buttonPostStatus.state];
-    
   self.profilePic.profileID = nil;
   self.labelFirstName.text = nil;
   self.loggedInUser = nil;
 }
 
 - (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
-  // see https://developers.facebook.com/docs/reference/api/errors/ for general guidance on error handling for Facebook API
-  // our policy here is to let the login view handle errors, but to log the results
+
   NSLog(@"FBLoginView encountered an error=%@", error);
 }
 
