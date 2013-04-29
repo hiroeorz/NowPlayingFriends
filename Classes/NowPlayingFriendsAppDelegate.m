@@ -605,6 +605,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 }
 
 #pragma mark -
+#pragma Facebook Methods
+
+- (BOOL)loggedinToFacebook {
+  return ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] != NSNotFound);
+}
+
+#pragma mark -
 #pragma iPod Information Methods
 
 - (BOOL)hasYouTubeLink {

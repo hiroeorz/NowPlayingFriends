@@ -82,6 +82,8 @@
 						   title:(NSString *)title
 					       imageName:(NSString *)imageName;
 
+- (BOOL)loggedinToFacebook;
+
 - (void)addMusicPlayerNotification:(id)object;
 - (void)removeMusicPlayerNotification:(id)object;
 - (void)setupMusicPlayer;

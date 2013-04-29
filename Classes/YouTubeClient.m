@@ -24,6 +24,7 @@
 @synthesize linkUrl;
 @synthesize searchResultArray;
 @synthesize thumbnailUrl;
+@synthesize contentUrl;
 @synthesize viewCount;
 @synthesize xmlData;
 @synthesize action;
@@ -40,6 +41,7 @@
   [viewCount release];
   [seconds release];
   [thumbnailUrl release];
+  [contentUrl release];
   [xmlData release];
   [super dealloc];
 }
@@ -158,6 +160,9 @@
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName 
     attributes:(NSDictionary *)attributeDict {
 
+  //NSLog(@"elementName: %@", elementName);
+  //NSLog(@"attribute dict: %@", attributeDict);
+
   if ([elementName compare:@"entry"] == NSOrderedSame) {
     isEntry = YES;
   }
@@ -173,6 +178,9 @@
   if ([elementName compare:@"media:thumbnail"] == NSOrderedSame) {
     isThumbnail = YES;
   }
+  if ([elementName compare:@"media:content"] == NSOrderedSame) {
+    isContent = YES;
+  }
   if ([elementName compare:@"yt:statistics"] == NSOrderedSame) {
     isViewCount = YES;
   }
@@ -180,14 +188,18 @@
     isDuration = YES;
   }
 
-  //NSLog(@"element: %@", elementName);
-  //NSLog(@"dict: %@", attributeDict);
-
   if (isEntry && isLink) {
     if ([(NSString *)[attributeDict objectForKey:@"rel"] 
 	  compare:@"alternate"] == NSOrderedSame) {
       NSString *aUrl = (NSString *)[attributeDict objectForKey:@"href"];
       self.linkUrl = [self shurinkedUrl:aUrl];
+    }
+  }
+  if (isEntry && isContent) {
+    NSString *type = (NSString *)[attributeDict objectForKey:@"type"];
+    if ([type isEqualToString: @"application/x-shockwave-flash"]) {
+      self.contentUrl = (NSString *)[attributeDict objectForKey:@"url"];
+      NSLog(@"contentUrl: %@", self.contentUrl);
     }
   }
   if (isEntry && isThumbnail) {
@@ -254,22 +266,25 @@
   if([elementName compare:@"entry"] == NSOrderedSame){
     isEntry = NO;
 
-    if (contentTitle != nil && linkUrl != nil && thumbnailUrl != nil) {
+    if (contentTitle != nil && linkUrl != nil && thumbnailUrl != nil && contentUrl != nil) {
 
       NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:
 						  contentTitle, @"contentTitle",
 						linkUrl, @"linkUrl",
 						thumbnailUrl, @"thumbnailUrl",
+						contentUrl, @"contentUrl",
 						name, @"name",
 						viewCount, @"viewCount",
 						seconds, @"seconds",
 						nil];
       [searchResultArray addObject: dic];
+      NSLog(@"search Result: %@", dic);
       [dic release];
 
       self.contentTitle = nil;
       self.linkUrl = nil;
       self.thumbnailUrl = nil;
+      self.contentUrl = nil;
       self.name = nil;
       self.viewCount = nil;
       self.seconds = nil;
@@ -277,6 +292,9 @@
   }
   if([elementName compare:@"link"] == NSOrderedSame){
     isLink = NO;
+  }
+  if([elementName compare:@"media:content"] == NSOrderedSame){
+    isContent = NO;
   }
   if([elementName compare:@"title"] == NSOrderedSame){
     isTitle = NO;
@@ -309,6 +327,7 @@
   self.contentTitle = nil;
   self.linkUrl = nil;
   self.thumbnailUrl = nil;
+  self.contentUrl = nil;
   self.name = nil;
   self.seconds = nil;
   self.viewCount = nil;

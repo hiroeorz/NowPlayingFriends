@@ -7,6 +7,8 @@
 //
 
 #import "ITunesStore.h"
+
+#import <CoreLocation/CoreLocation.h>
 #import "MusicPlayerViewController.h"
 #import "NowPlayingFriendsAppDelegate.h"
 #import "SendTweetViewController.h"
@@ -24,7 +26,6 @@
 - (void)setAlbumArtworkButtonStyle;
 @end
 
-
 @implementation SendTweetViewController
 
 @dynamic appDelegate;
@@ -39,6 +40,18 @@
 @synthesize retweetButton;
 @synthesize sourceString;
 @synthesize twitterClient;
+@synthesize snsSelectViewFacebook;
+@synthesize isSendToFacabookSwitch;
+@synthesize isSendToTwitterSwitch;
+
+/* Facebook */
+@synthesize buttonPostStatus;
+@synthesize buttonPostPhoto;
+@synthesize buttonPickFriends;
+@synthesize buttonPickPlace;
+@synthesize labelFirstName;
+@synthesize loggedInUser;
+@synthesize profilePic;
 
 - (void)dealloc {
 
@@ -52,6 +65,19 @@
   [retweetButton release];
   [sourceString release];
   [twitterClient release];
+  [snsSelectViewFacebook release];
+  [isSendToFacabookSwitch release];
+  [isSendToTwitterSwitch release];
+  [youtubeSearchResult release];
+
+  [buttonPickFriends release];
+  [buttonPickPlace release];
+  [buttonPostPhoto release];
+  [buttonPostStatus release];
+  [labelFirstName release];
+  [loggedInUser release];
+  [profilePic release];
+
   [super dealloc];
 }
 
@@ -65,11 +91,9 @@
   self.indicatorBase = nil;
   self.letterCountLabel = nil;
   self.retweetButton = nil;
+  self.snsSelectViewFacebook = nil;
 
-  //self.musicPlayer = nil;
-  //self.twitterClient = nil;
-  //self.sourceString = nil;
-
+  /* Facebook */
   [super viewDidUnload];
 }
 
@@ -89,6 +113,14 @@
   return self;
 }
 
+- (void)setFacebookLoginView {
+  FBLoginView *loginview = [[FBLoginView alloc] init];
+  loginview.frame = CGRectOffset(loginview.frame, 10, 10);
+  loginview.delegate = self;
+  [self.snsSelectViewFacebook addSubview:loginview];
+  [loginview sizeToFit];
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
 
@@ -105,7 +137,6 @@
     [retweetButton removeFromSuperview];
   }
 
-  //setTweetEditField(editView, 5.0f, 270.0f, 140.0f);
   setTweetEditField(editView, 5.0f, 270.0f, 118.0f);
   editView.delegate = self;
   [self.view addSubview:editView];
@@ -126,6 +157,8 @@
       linkAdded = YES;
     }
   }
+
+  [self setFacebookLoginView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -174,7 +207,11 @@
 
   if ([searchResults count] > 0) {
     NSDictionary *dic = [searchResults objectAtIndex:0];
+    NSLog(@"youtube: %@", dic);
     linkUrl = [dic objectForKey:@"linkUrl"];
+
+    [dic retain];[youtubeSearchResult releasae];
+    youtubeSearchResult = dic;
   }
 
   if (linkUrl != nil) {
@@ -196,7 +233,7 @@
 - (void)viewDidAppear:(BOOL)animated {
 
   [super viewDidAppear:animated];
-  [editView becomeFirstResponder];
+  //[editView becomeFirstResponder];
   [self countAndWriteTweetLength:[editView.text length]];
 }
 
@@ -222,19 +259,31 @@
   }
 
   if (sending == NO && kMaxTweetLength >= [editView.text length]) {
-    sending = YES;
-    musicPlayer.sending = YES;
-    editView.backgroundColor = [UIColor colorWithRed: 0.6f green:0.6f blue:0.6f
-					alpha:0.9];
-    editView.editable = NO;
-    [self startIndicator];
-    [twitterClient updateStatus:editView.text 
-		   inReplyToStatusId:inReplyToStatusId
-		   withArtwork:addAlbumArtwork
-		   delegate:self];
 
-    addAlbumArtwork = NO;
+    if (isSendToTwitterSwitch.on || isSendToFacabookSwitch.on) {
+      sending = YES;
+      musicPlayer.sending = YES;
+      editView.backgroundColor = [UIColor colorWithRed: 0.6f green:0.6f blue:0.6f alpha:0.9];
+      editView.editable = NO;
+      [self startIndicator];
+    }
+
+    if (isSendToTwitterSwitch.on) {
+      [twitterClient updateStatus:editView.text 
+		inReplyToStatusId:inReplyToStatusId
+		      withArtwork:addAlbumArtwork
+			 delegate:self];
+    } else {
+      if (isSendToFacabookSwitch.on) {
+	[self postFBStatusUpdate:editView.text];
+      }
+    }
   }
+}
+
+- (IBAction) showSNSSelectView:(id)sender {
+
+  [editView resignFirstResponder];
 }
 
 - (IBAction)toggleAddAlbumArtworkFlag:(id)sender {
@@ -383,15 +432,19 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
   musicPlayer.sending = NO;
   musicPlayer.sent = YES;
 
-  [self performSelectorInBackground:@selector(stopIndicatoWithThread)
-  	withObject:nil];
-
   NSString *dataString = [[NSString alloc] 
 			   initWithData:data encoding:NSUTF8StringEncoding];
 
   NSLog(@"data: %@", dataString);
   [dataString release];
-  [self dismissModalViewControllerAnimated:YES];
+
+  if (isSendToFacabookSwitch.on) {
+    [self postFBStatusUpdate:editView.text];
+  } else {
+    addAlbumArtwork = NO;
+    [self performSelectorInBackground:@selector(stopIndicatoWithThread) withObject:nil];
+    [self dismissModalViewControllerAnimated:YES];
+  }
 }
 
 - (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
@@ -400,6 +453,7 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
   sending = NO;
   musicPlayer.sending = NO;
   musicPlayer.sent = YES;
+  addAlbumArtwork = NO;
 
   [self performSelectorInBackground:@selector(stopIndicatoWithThread)
   	withObject:nil];
@@ -458,6 +512,139 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 
 - (NowPlayingFriendsAppDelegate *)appDelegate {
   return [[UIApplication sharedApplication] delegate];
+}
+
+#pragma mark - FBLoginViewDelegate
+
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
+
+  NSLog(@"loginViewShowingLoggedInUser");
+  isFacebookLoggedIn = YES;
+  isSendToFacabookSwitch.enabled = YES;
+}
+
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
+                            user:(id<FBGraphUser>)user {
+
+  self.loggedInUser = user;
+}
+
+- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
+
+  NSLog(@"loginViewShowingLoggedOutUser");
+  NSLog(@"switch: %@", isSendToFacabookSwitch);
+  isFacebookLoggedIn = NO;
+  isSendToFacabookSwitch.on = NO;
+  isSendToFacabookSwitch.enabled = NO;
+}
+
+- (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
+
+  NSLog(@"FBLoginView encountered an error=%@", error);
+}
+
+#pragma mark - FBPost
+
+- (void)performFBPublishAction:(void (^)(void)) action permission:(NSString *)permission {
+  if ([FBSession.activeSession.permissions indexOfObject:permission] == NSNotFound) {
+    [FBSession.activeSession requestNewPublishPermissions:@[permission]
+					  defaultAudience:FBSessionDefaultAudienceFriends
+					completionHandler:^(FBSession *session, NSError *error) {
+	                                  if (!error) { action(); } }];
+  } else {
+    action();
+  }  
+}
+
+- (IBAction)postFBStatusUpdate:(NSString *)message {
+
+  NSLog(@"youtubeSearchResult: %@", youtubeSearchResult); 
+
+  if (youtubeSearchResult != nil) { /* YouTube埋込み */
+    NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
+    NSString *thumbnailUrl = [youtubeSearchResult objectForKey:@"thumbnailUrl"];
+    NSString *contentUrl = [youtubeSearchResult objectForKey:@"contentUrl"];
+    NSString *linkUrl = [youtubeSearchResult objectForKey:@"linkUrl"];
+    [params setObject:message forKey:@"message"];
+    [params setObject:contentUrl forKey:@"source"];
+    [params setObject:thumbnailUrl forKey:@"picture"];
+    [params setObject:linkUrl forKey:@"link"];
+    NSLog(@"youtube search result: %@", youtubeSearchResult);
+    
+    [self performFBPublishAction:^{
+	[FBRequestConnection startWithGraphPath:@"me/feed"
+				     parameters:params
+				     HTTPMethod:@"POST"
+	  completionHandler:^(FBRequestConnection *connection, id result, NSError *error) { 
+	    [self showFBFailAlert:message result:result error:error];
+	    [self performSelectorInBackground:@selector(stopIndicatoWithThread) withObject:nil];
+	    [self dismissModalViewControllerAnimated:YES];
+	  }]; }
+    permission:@"publish_stream"];
+    
+    return;
+  }
+
+  if (addAlbumArtwork) { /* アルバム画像アップロード */
+    UIImage *artworkImage = [self.appDelegate currentMusicArtWorkWithWidth:170
+								    height:170
+								useDefault:NO];
+    
+    NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
+    [params setObject:message forKey:@"message"];
+    [params setObject:UIImagePNGRepresentation(artworkImage) forKey:@"picture"];
+    
+    [self performFBPublishAction:^{
+	[FBRequestConnection startWithGraphPath:@"me/photos"
+				     parameters:params
+				     HTTPMethod:@"POST"
+			      completionHandler:^(FBRequestConnection *connection, id result, NSError *error) { 
+	    [self showFBFailAlert:message result:result error:error];
+	    [self performSelectorInBackground:@selector(stopIndicatoWithThread) withObject:nil];
+	    [self dismissModalViewControllerAnimated:YES];
+	    addAlbumArtwork = NO;
+	  }]; }
+    permission:@"publish_actions"];
+    
+    return;
+  }
+  
+  [self performFBPublishAction:^{
+      [FBRequestConnection startForPostStatusUpdate:message
+	 completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+	  [self showFBFailAlert:message result:result error:error];
+	  [self performSelectorInBackground:@selector(stopIndicatoWithThread) withObject:nil];
+	  [self dismissModalViewControllerAnimated:YES];
+	}]; } 
+  permission:@"publish_actions"];
+}
+
+- (void)showFBFailAlert:(NSString *)message
+           result:(id)result
+            error:(NSError *)error {
+
+  if (error == nil) { return; }
+  
+  NSString *alertMsg;
+  NSString *alertTitle;
+  alertTitle = @"Error";
+  
+  if (error.fberrorShouldNotifyUser ||
+      error.fberrorCategory == FBErrorCategoryPermissions ||
+      error.fberrorCategory == FBErrorCategoryAuthenticationReopenSession) {
+    alertMsg = error.fberrorUserMessage;
+  } else {
+    alertMsg = @"Operation failed due to a connection problem, retry later.";
+  }
+  
+  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:alertTitle
+						      message:alertMsg
+						     delegate:nil
+					    cancelButtonTitle:@"OK"
+					    otherButtonTitles:nil];
+  [alertView show];
+  [alertMsg release];
+  [alertTitle release];
 }
 
 @end

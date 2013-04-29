@@ -165,6 +165,7 @@
 		54FFEA43172CF5B300EDCB6F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FFEA42172CF5B300EDCB6F /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		54FFEA47172CFBF500EDCB6F /* FBAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FFEA45172CFBF500EDCB6F /* FBAuthViewController.m */; };
 		54FFEA48172CFBF500EDCB6F /* FBAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54FFEA46172CFBF500EDCB6F /* FBAuthViewController.xib */; };
+		54FFEA4C172D39C500EDCB6F /* twitter-bird-dark-bgs.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FFEA4B172D39C500EDCB6F /* twitter-bird-dark-bgs.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -427,6 +428,7 @@
 		54FFEA44172CFBF500EDCB6F /* FBAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBAuthViewController.h; sourceTree = "<group>"; };
 		54FFEA45172CFBF500EDCB6F /* FBAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBAuthViewController.m; sourceTree = "<group>"; };
 		54FFEA46172CFBF500EDCB6F /* FBAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FBAuthViewController.xib; path = Classes/FBAuthViewController.xib; sourceTree = "<group>"; };
+		54FFEA4B172D39C500EDCB6F /* twitter-bird-dark-bgs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "twitter-bird-dark-bgs.png"; path = "icons/sns/twitter-bird-dark-bgs.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NowPlayingFriends-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -745,6 +747,7 @@
 		5480C6A3122296A200F6E1C6 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				54FFEA4B172D39C500EDCB6F /* twitter-bird-dark-bgs.png */,
 				545B03BD1462D52600A7CB83 /* closed_black_b.gif */,
 				545B03BB1462CE3000A7CB83 /* close2_blk.gif */,
 				5455D2AB1311FA01005BA507 /* 68-paperclip.png */,
@@ -977,6 +980,7 @@
 				54CB18CB163B79D1005641D8 /* Default-568h@2x.png in Resources */,
 				54FFEA3B172CF4F000EDCB6F /* FacebookSDKResources.bundle in Resources */,
 				54FFEA48172CFBF500EDCB6F /* FBAuthViewController.xib in Resources */,
+				54FFEA4C172D39C500EDCB6F /* twitter-bird-dark-bgs.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1107,6 +1111,9 @@
 					/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/libxml2,
 				);
 				No_Use = "";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+				);
 				PRODUCT_NAME = "Now Playing Friends";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1148,6 +1155,9 @@
 					/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/libxml2,
 				);
 				No_Use = "";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+				);
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				SDKROOT = iphoneos;
@@ -1202,6 +1212,9 @@
 					/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/libxml2,
 				);
 				No_Use = "";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+				);
 				PRODUCT_NAME = "Now Playing Friends";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
