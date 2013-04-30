@@ -178,7 +178,7 @@
 			<key>Title</key>
 			<string>Facebook</string>
 			<key>Key</key>
-			<string>fb_manual_post</string>
+			<string>fb_post</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>
@@ -188,7 +188,7 @@
 			<key>Title</key>
 			<string>twitter</string>
 			<key>Key</key>
-			<string>tw_manual_post</string>
+			<string>tw_post</string>
 			<key>DefaultValue</key>
 			<true/>
 		</dict>

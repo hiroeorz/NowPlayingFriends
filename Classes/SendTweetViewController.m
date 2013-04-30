@@ -171,8 +171,8 @@
 
 - (void)setSelectSNSSwitch {
 
-  isSendToFacabookSwitch.on = self.appDelegate.fb_manual_post_preference;
-  isSendToTwitterSwitch.on = self.appDelegate.tw_manual_post_preference;
+  isSendToFacabookSwitch.on = self.appDelegate.fb_post_preference;
+  isSendToTwitterSwitch.on = self.appDelegate.tw_post_preference;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -295,11 +295,11 @@
 }
 
 - (IBAction)changeFacebookSelectStatus:(UISwitch *)sender {
-  self.appDelegate.fb_manual_post_preference = sender.on;
+  self.appDelegate.fb_post_preference = sender.on;
 }
 
 - (IBAction)changeTwitterSelectStatus:(UISwitch *)sender {
-  self.appDelegate.tw_manual_post_preference = sender.on;
+  self.appDelegate.tw_post_preference = sender.on;
 }
 
 - (IBAction)showSNSSelectView:(id)sender {
@@ -471,7 +471,6 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
   [dataString release];
 
   if (isSendToFacabookSwitch.on) {
-    FacebookClient *facebookClient = [[[FacebookClient alloc] init] autorelease];
     [self postFBStatusUpdate:editView.text];
   } else {
     addAlbumArtwork = NO;
@@ -602,9 +601,10 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
   }
 
   if (addAlbumArtwork) { /* アルバム画像アップロード */
-    facebookClient.pictureImage = [self.appDelegate currentMusicArtWorkWithWidth:170
-									  height:170
-								      useDefault:NO];
+    facebookClient.pictureImage = [self.appDelegate 
+				      currentMusicArtWorkWithWidth:kFBPictureSizeHeight
+				      height:kFBPictureSizeWidth
+				      useDefault:NO];
   }
 
   [facebookClient postMessage:message 

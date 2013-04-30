@@ -1,6 +1,8 @@
 #import "MusicPlayerViewController.h"
 #import "MusicPlayerViewController+Local.h"
 
+#import "FacebookClient.h"
+
 
 @implementation MusicPlayerViewController (AutoTweet)
 
@@ -63,6 +65,7 @@
   }
 
   updateAfterSafetyTime = YES;
+  youtubeSearchResultForAutoTweet = nil;
   [self performSelectorInBackground:@selector(continuousTweetStopper)
 	withObject:nil];
 
@@ -128,7 +131,6 @@
  */
 - (void)createMessageIncludeYouTube:(NSArray *)linkUrlArray {
 
-  //NSString *message = [self.appDelegate tweetString];
   NSString *message = [self tweetString:[self.appDelegate tweetString]
 			    withLinksArray:addLinkArray];
   NSString *linkedMessage = nil;
@@ -142,6 +144,9 @@
     linkedMessage = [[[NSString alloc] 
 		       initWithFormat:@"%@ %@", message, linkUrl] autorelease];
     if ([linkedMessage length] > kMaxTweetLength) {linkedMessage = message;}
+
+    [linkDic retain]; [youtubeSearchResultForAutoTweet release];
+    youtubeSearchResultForAutoTweet = linkDic;
   }
   
   [self sendAutoTweetDetail: linkedMessage];
@@ -190,9 +195,31 @@
     message = [message substringToIndex:kMaxTweetLength];
   }
 
-  [twitterClient updateStatus:message inReplyToStatusId:nil
-		 withArtwork:[self.appDelegate auto_upload_picture_preference]
-		 delegate:self];
+  if (self.appDelegate.tw_post_preference == YES) {
+    [twitterClient updateStatus:message inReplyToStatusId:nil
+		    withArtwork:[self.appDelegate auto_upload_picture_preference]
+		       delegate:self];
+  }
+
+  if (self.appDelegate.fb_post_preference == YES) {
+      FacebookClient *facebookClient = [[[FacebookClient alloc] init ] autorelease];
+
+      if (youtubeSearchResultForAutoTweet != nil) { /* YouTube埋込み */
+	facebookClient.youtubeSearchResult = youtubeSearchResultForAutoTweet;
+      }
+      if (self.appDelegate.auto_upload_picture_preference == YES) { /* アルバム画像アップロード */
+	facebookClient.pictureImage = [self.appDelegate 
+					  currentMusicArtWorkWithWidth:kFBPictureSizeHeight
+					  height:kFBPictureSizeWidth
+					  useDefault:NO];
+      }
+
+      [facebookClient postMessage:message callback:^{
+	  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	  NSLog(@"facebook post sended.");
+	}];  
+  }
+
   sending = NO;
   sent = YES;
 }
