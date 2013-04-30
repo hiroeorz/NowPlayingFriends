@@ -17,7 +17,6 @@
 }
 
 @property (nonatomic, retain, readonly) NowPlayingFriendsAppDelegate *appDelegate;
-@property (nonatomic, strong) UIViewController *viewController;
 @property (nonatomic, strong) NSDictionary *youtubeSearchResult;
 @property (nonatomic, strong) UIImage *pictureImage;
 

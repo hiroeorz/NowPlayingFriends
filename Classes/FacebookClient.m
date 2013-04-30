@@ -14,7 +14,6 @@
 @implementation FacebookClient
 
 @dynamic appDelegate;
-@synthesize viewController = _viewController;
 @synthesize youtubeSearchResult = _youtubeSearchResult;
 @synthesize pictureImage = _pictureImage;
 
