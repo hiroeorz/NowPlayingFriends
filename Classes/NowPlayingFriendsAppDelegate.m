@@ -50,6 +50,8 @@
 @dynamic use_itunes_preference;
 @dynamic use_youtube_manual_preference;
 @dynamic use_youtube_preference;
+@dynamic fb_manual_post_preference;
+@dynamic tw_manual_post_preference;
 @dynamic userDefaults;
 @synthesize bgTask;
 @synthesize isBackGround;
@@ -967,6 +969,48 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   [self.userDefaults setValue:value 
        forKey:@"manual_upload_picture_preference"];
+}
+
+/**
+ * @brief 手動投稿時にFacebookに投稿するかどうかの設定。
+ */
+- (BOOL)fb_manual_post_preference {
+
+  NSNumber *fb_manual_post_preference = 
+    [self.userDefaults valueForKey:@"fb_manual_post_preference"];
+  
+  if (fb_manual_post_preference == nil) {
+    fb_manual_post_preference = [NSNumber numberWithBool:NO];
+  }
+  
+  return [fb_manual_post_preference boolValue];
+}
+
+- (void)setFb_manual_post_preference:(BOOL)flag {
+
+  NSNumber *fb_manual_post_preference = [NSNumber numberWithBool:flag];
+  [self.userDefaults setValue:fb_manual_post_preference forKey:@"fb_manual_post_preference"];
+}
+
+/**
+ * @brief 手動投稿時にtwitterに投稿するかどうかの設定。
+ */
+- (BOOL)tw_manual_post_preference {
+
+  NSNumber *tw_manual_post_preference = 
+    [self.userDefaults valueForKey:@"tw_manual_post_preference"];
+  
+  if (tw_manual_post_preference == nil) {
+    tw_manual_post_preference = [NSNumber numberWithBool:YES];
+  }
+  
+  return [tw_manual_post_preference boolValue];
+}
+
+- (void)setTw_manual_post_preference:(BOOL)flag {
+
+  NSNumber *tw_manual_post_preference = [NSNumber numberWithBool:flag];
+  [self.userDefaults setValue:tw_manual_post_preference forKey:@"tw_manual_post_preference"];
 }
 
 #pragma mark -

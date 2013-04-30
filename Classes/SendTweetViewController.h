@@ -88,6 +88,8 @@
 @property (strong, nonatomic) id<FBGraphUser> loggedInUser;
 
 
+- (IBAction)changeFacebookSelectStatus:(id)sender;
+- (IBAction)changeTwitterSelectStatus:(id)sender;
 - (IBAction)showSNSSelectView:(id)sender;
 - (IBAction)toggleAddAlbumArtworkFlag:(id)sender;
 - (IBAction)addITunesStoreSearchTweet:(id)sender;

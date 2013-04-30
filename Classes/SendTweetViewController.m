@@ -159,6 +159,13 @@
   }
 
   [self setFacebookLoginView];
+  [self setSelectSNSSwitch];
+}
+
+- (void)setSelectSNSSwitch {
+
+  isSendToFacabookSwitch.on = self.appDelegate.fb_manual_post_preference;
+  isSendToTwitterSwitch.on = self.appDelegate.tw_manual_post_preference;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -281,8 +288,15 @@
   }
 }
 
-- (IBAction) showSNSSelectView:(id)sender {
+- (IBAction)changeFacebookSelectStatus:(UISwitch *)sender {
+  self.appDelegate.fb_manual_post_preference = sender.on;
+}
 
+- (IBAction)changeTwitterSelectStatus:(UISwitch *)sender {
+  self.appDelegate.tw_manual_post_preference = sender.on;
+}
+
+- (IBAction)showSNSSelectView:(id)sender {
   [editView resignFirstResponder];
 }
 
@@ -545,6 +559,8 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 
 #pragma mark - FBPost
 
+//FBSessionDefaultAudienceEveryone
+//FBSessionDefaultAudienceFriends
 - (void)performFBPublishAction:(void (^)(void)) action permission:(NSString *)permission {
   if ([FBSession.activeSession.permissions indexOfObject:permission] == NSNotFound) {
     [FBSession.activeSession requestNewPublishPermissions:@[permission]

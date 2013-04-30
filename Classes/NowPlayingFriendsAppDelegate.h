@@ -75,6 +75,8 @@
 @property (nonatomic) NSInteger select_youtube_link_preference;
 @property (nonatomic) BOOL auto_upload_picture_preference;
 @property (nonatomic) BOOL manual_upload_picture_preference;
+@property (nonatomic) BOOL fb_manual_post_preference;
+@property (nonatomic) BOOL tw_manual_post_preference;
 
 
 - (NSString *)applicationDocumentsDirectory;
