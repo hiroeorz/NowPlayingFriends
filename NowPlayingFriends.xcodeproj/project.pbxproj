@@ -1117,9 +1117,7 @@
 					/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/libxml2,
 				);
 				No_Use = "";
-				"OTHER_LDFLAGS[arch=*]" = (
-					"-ObjC",
-				);
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "Now Playing Friends";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1161,9 +1159,7 @@
 					/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/libxml2,
 				);
 				No_Use = "";
-				"OTHER_LDFLAGS[arch=*]" = (
-					"-ObjC",
-				);
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "Now Playing Friends";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
 				SDKROOT = iphoneos;
@@ -1218,9 +1214,7 @@
 					/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/libxml2,
 				);
 				No_Use = "";
-				"OTHER_LDFLAGS[arch=*]" = (
-					"-ObjC",
-				);
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "Now Playing Friends";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
