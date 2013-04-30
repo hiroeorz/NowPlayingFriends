@@ -166,6 +166,7 @@
 		54FFEA47172CFBF500EDCB6F /* FBAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FFEA45172CFBF500EDCB6F /* FBAuthViewController.m */; };
 		54FFEA48172CFBF500EDCB6F /* FBAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54FFEA46172CFBF500EDCB6F /* FBAuthViewController.xib */; };
 		54FFEA4C172D39C500EDCB6F /* twitter-bird-dark-bgs.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FFEA4B172D39C500EDCB6F /* twitter-bird-dark-bgs.png */; };
+		54FFEA4F172F457F00EDCB6F /* FacebookClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FFEA4E172F457F00EDCB6F /* FacebookClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -429,6 +430,8 @@
 		54FFEA45172CFBF500EDCB6F /* FBAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBAuthViewController.m; sourceTree = "<group>"; };
 		54FFEA46172CFBF500EDCB6F /* FBAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FBAuthViewController.xib; path = Classes/FBAuthViewController.xib; sourceTree = "<group>"; };
 		54FFEA4B172D39C500EDCB6F /* twitter-bird-dark-bgs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "twitter-bird-dark-bgs.png"; path = "icons/sns/twitter-bird-dark-bgs.png"; sourceTree = "<group>"; };
+		54FFEA4D172F457F00EDCB6F /* FacebookClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookClient.h; sourceTree = "<group>"; };
+		54FFEA4E172F457F00EDCB6F /* FacebookClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookClient.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* NowPlayingFriends-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NowPlayingFriends-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -540,6 +543,8 @@
 				54E76C691466D3AB006612B6 /* MusicPlayerNowPlayingAnimation.m */,
 				54FFEA44172CFBF500EDCB6F /* FBAuthViewController.h */,
 				54FFEA45172CFBF500EDCB6F /* FBAuthViewController.m */,
+				54FFEA4D172F457F00EDCB6F /* FacebookClient.h */,
+				54FFEA4E172F457F00EDCB6F /* FacebookClient.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1074,6 +1079,7 @@
 				54E76C6714658421006612B6 /* MusicPlayerViewController+FriendsIcon.m in Sources */,
 				54E76C6A1466D3AC006612B6 /* MusicPlayerNowPlayingAnimation.m in Sources */,
 				54FFEA47172CFBF500EDCB6F /* FBAuthViewController.m in Sources */,
+				54FFEA4F172F457F00EDCB6F /* FacebookClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

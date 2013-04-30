@@ -9,6 +9,7 @@
 #import "ITunesStore.h"
 
 #import <CoreLocation/CoreLocation.h>
+#import "FacebookClient.h"
 #import "MusicPlayerViewController.h"
 #import "NowPlayingFriendsAppDelegate.h"
 #import "SendTweetViewController.h"
@@ -16,7 +17,6 @@
 #import "YouTubeClient.h"
 #import "YouTubeListViewController.h"
 #import "YoutubeTypeSelectViewController.h"
-
 
 @interface SendTweetViewController (Local)
 - (void)stopIndicator;
@@ -282,6 +282,7 @@
 			 delegate:self];
     } else {
       if (isSendToFacabookSwitch.on) {
+	FacebookClient *facebookClient = [[[FacebookClient alloc] init] autorelease];
 	[self postFBStatusUpdate:editView.text];
       }
     }
@@ -453,6 +454,7 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
   [dataString release];
 
   if (isSendToFacabookSwitch.on) {
+    FacebookClient *facebookClient = [[[FacebookClient alloc] init] autorelease];
     [self postFBStatusUpdate:editView.text];
   } else {
     addAlbumArtwork = NO;
@@ -574,65 +576,23 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 
 - (IBAction)postFBStatusUpdate:(NSString *)message {
 
-  NSLog(@"youtubeSearchResult: %@", youtubeSearchResult); 
+  FacebookClient *facebookClient = [[[FacebookClient alloc] init ] autorelease];
 
   if (youtubeSearchResult != nil) { /* YouTube埋込み */
-    NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
-    NSString *thumbnailUrl = [youtubeSearchResult objectForKey:@"thumbnailUrl"];
-    NSString *contentUrl = [youtubeSearchResult objectForKey:@"contentUrl"];
-    NSString *linkUrl = [youtubeSearchResult objectForKey:@"linkUrl"];
-    [params setObject:message forKey:@"message"];
-    [params setObject:contentUrl forKey:@"source"];
-    [params setObject:thumbnailUrl forKey:@"picture"];
-    [params setObject:linkUrl forKey:@"link"];
-    NSLog(@"youtube search result: %@", youtubeSearchResult);
-    
-    [self performFBPublishAction:^{
-	[FBRequestConnection startWithGraphPath:@"me/feed"
-				     parameters:params
-				     HTTPMethod:@"POST"
-	  completionHandler:^(FBRequestConnection *connection, id result, NSError *error) { 
-	    [self showFBFailAlert:message result:result error:error];
-	    [self performSelectorInBackground:@selector(stopIndicatoWithThread) withObject:nil];
-	    [self dismissModalViewControllerAnimated:YES];
-	  }]; }
-    permission:@"publish_stream"];
-    
-    return;
+    facebookClient.youtubeSearchResult = youtubeSearchResult;
   }
 
   if (addAlbumArtwork) { /* アルバム画像アップロード */
-    UIImage *artworkImage = [self.appDelegate currentMusicArtWorkWithWidth:170
-								    height:170
-								useDefault:NO];
-    
-    NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
-    [params setObject:message forKey:@"message"];
-    [params setObject:UIImagePNGRepresentation(artworkImage) forKey:@"picture"];
-    
-    [self performFBPublishAction:^{
-	[FBRequestConnection startWithGraphPath:@"me/photos"
-				     parameters:params
-				     HTTPMethod:@"POST"
-			      completionHandler:^(FBRequestConnection *connection, id result, NSError *error) { 
-	    [self showFBFailAlert:message result:result error:error];
-	    [self performSelectorInBackground:@selector(stopIndicatoWithThread) withObject:nil];
-	    [self dismissModalViewControllerAnimated:YES];
-	    addAlbumArtwork = NO;
-	  }]; }
-    permission:@"publish_actions"];
-    
-    return;
+    facebookClient.pictureImage = [self.appDelegate currentMusicArtWorkWithWidth:170
+									  height:170
+								      useDefault:NO];
   }
-  
-  [self performFBPublishAction:^{
-      [FBRequestConnection startForPostStatusUpdate:message
-	 completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-	  [self showFBFailAlert:message result:result error:error];
-	  [self performSelectorInBackground:@selector(stopIndicatoWithThread) withObject:nil];
-	  [self dismissModalViewControllerAnimated:YES];
-	}]; } 
-  permission:@"publish_actions"];
+
+  [facebookClient postMessage:message 
+		     callback:^{
+      [self performSelectorInBackground:@selector(stopIndicatoWithThread) withObject:nil];
+      [self dismissModalViewControllerAnimated:YES];
+    }];  
 }
 
 - (void)showFBFailAlert:(NSString *)message
