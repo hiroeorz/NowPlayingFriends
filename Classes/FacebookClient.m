@@ -21,7 +21,7 @@
 
   if (self.youtubeSearchResult != nil) { /* YouTube埋込み */
     NSLog(@"youtube search result: %@", self.youtubeSearchResult);
-    NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* params = [[[NSMutableDictionary alloc] init] autorelease];
     NSString *thumbnailUrl = [self.youtubeSearchResult objectForKey:@"thumbnailUrl"];
     NSString *contentUrl = [self.youtubeSearchResult objectForKey:@"contentUrl"];
     NSString *linkUrl = [self.youtubeSearchResult objectForKey:@"linkUrl"];
@@ -42,7 +42,7 @@
 
   if (self.pictureImage != nil) { /* アルバム画像アップロード */
     NSLog(@"sending picture post to facebook");
-    NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* params = [[[NSMutableDictionary alloc] init] autorelease];
     [params setObject:message forKey:@"message"];
     [params setObject:UIImagePNGRepresentation(self.pictureImage) forKey:@"picture"];
     

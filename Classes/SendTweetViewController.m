@@ -18,6 +18,10 @@
 #import "YouTubeListViewController.h"
 #import "YoutubeTypeSelectViewController.h"
 
+
+#define kSelectSNSButtonDisabledAlpha 0.5f
+
+
 @interface SendTweetViewController (Local)
 - (void)stopIndicator;
 - (void)stopIndicatoWithThread;
@@ -35,14 +39,15 @@
 @synthesize inReplyToStatusId;
 @synthesize indicator;
 @synthesize indicatorBase;
+@synthesize isSendToFacabookSwitch;
+@synthesize isSendToTwitterSwitch;
 @synthesize letterCountLabel;
 @synthesize musicPlayer;
 @synthesize retweetButton;
+@synthesize selectSNSButton;
+@synthesize snsSelectViewFacebook;
 @synthesize sourceString;
 @synthesize twitterClient;
-@synthesize snsSelectViewFacebook;
-@synthesize isSendToFacabookSwitch;
-@synthesize isSendToTwitterSwitch;
 
 /* Facebook */
 @synthesize buttonPostStatus;
@@ -115,7 +120,7 @@
 
 - (void)setFacebookLoginView {
   FBLoginView *loginview = [[FBLoginView alloc] init];
-  loginview.frame = CGRectOffset(loginview.frame, 10, 10);
+  loginview.frame = CGRectOffset(loginview.frame, 22, 10);
   loginview.delegate = self;
   [self.snsSelectViewFacebook addSubview:loginview];
   [loginview sizeToFit];
@@ -160,6 +165,8 @@
 
   [self setFacebookLoginView];
   [self setSelectSNSSwitch];
+  selectSNSButton.enabled = NO;
+  selectSNSButton.alpha = kSelectSNSButtonDisabledAlpha;
 }
 
 - (void)setSelectSNSSwitch {
@@ -217,7 +224,7 @@
     NSLog(@"youtube: %@", dic);
     linkUrl = [dic objectForKey:@"linkUrl"];
 
-    [dic retain];[youtubeSearchResult releasae];
+    [dic retain];[youtubeSearchResult release];
     youtubeSearchResult = dic;
   }
 
@@ -272,6 +279,7 @@
       musicPlayer.sending = YES;
       editView.backgroundColor = [UIColor colorWithRed: 0.6f green:0.6f blue:0.6f alpha:0.9];
       editView.editable = NO;
+      editView.delegate = self;
       [self startIndicator];
     }
 
@@ -281,10 +289,7 @@
 		      withArtwork:addAlbumArtwork
 			 delegate:self];
     } else {
-      if (isSendToFacabookSwitch.on) {
-	FacebookClient *facebookClient = [[[FacebookClient alloc] init] autorelease];
-	[self postFBStatusUpdate:editView.text];
-      }
+      if (isSendToFacabookSwitch.on) { [self postFBStatusUpdate:editView.text]; }
     }
   }
 }
@@ -437,6 +442,18 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
   return YES;
 }
 
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+
+  selectSNSButton.enabled = YES;
+  selectSNSButton.alpha = 1.0f;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+
+  selectSNSButton.enabled = NO;
+  selectSNSButton.alpha = kSelectSNSButtonDisabledAlpha;
+}
+
 #pragma mark -
 #pragma mark URLConnection Delegate Methods
 
@@ -492,7 +509,9 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 - (void)startIndicator {
 
   UIView *baseView = [[UIView alloc] 
-		       initWithFrame:CGRectMake(0.0, 0.0, 320, 367)];
+		       initWithFrame:CGRectMake(0.0, 0.0, 
+						self.view.frame.size.width,
+						self.view.frame.size.height)];
   self.indicatorBase = baseView;
   [baseView release];
 

@@ -36,6 +36,7 @@
   BOOL linkAdded;
   BOOL sending;
   MusicPlayerViewController *musicPlayer;
+  NSDictionary *youtubeSearchResult;
   NSNumber  *inReplyToStatusId;
   NSString *defaultTweetString;
   NSString *sourceString;
@@ -43,13 +44,13 @@
   UIActivityIndicatorView *indicator;
   UIButton *addAlbumArtworkButton;
   UIButton *retweetButton;
+  UIButton *selectSNSButton;
   UILabel *letterCountLabel;
+  UISwitch *isSendToFacabookSwitch;
+  UISwitch *isSendToTwitterSwitch;
   UITextView *editView;
   UIView *indicatorBase;
   UIView *snsSelectViewFacebook;
-  UISwitch *isSendToFacabookSwitch;
-  UISwitch *isSendToTwitterSwitch;
-  NSDictionary *youtubeSearchResult;
 
   /* Facebook */
   FBProfilePictureView *profilePic;
@@ -65,7 +66,10 @@
 @property (nonatomic, retain) IBOutlet NSString *defaultTweetString;
 @property (nonatomic, retain) IBOutlet UIButton *addAlbumArtworkButton;
 @property (nonatomic, retain) IBOutlet UIButton *retweetButton;
+@property (nonatomic, retain) IBOutlet UIButton *selectSNSButton;
 @property (nonatomic, retain) IBOutlet UILabel *letterCountLabel;
+@property (nonatomic, retain) IBOutlet UISwitch *isSendToFacabookSwitch;
+@property (nonatomic, retain) IBOutlet UISwitch *isSendToTwitterSwitch;
 @property (nonatomic, retain) IBOutlet UITextView *editView;
 @property (nonatomic, retain) IBOutlet UIView *snsSelectViewFacebook;
 @property (nonatomic, retain) MusicPlayerViewController *musicPlayer;
@@ -75,8 +79,6 @@
 @property (nonatomic, retain) UIActivityIndicatorView *indicator;
 @property (nonatomic, retain) UIView *indicatorBase;
 @property (nonatomic, retain, readonly) NowPlayingFriendsAppDelegate *appDelegate;
-@property (nonatomic, retain) IBOutlet UISwitch *isSendToFacabookSwitch;
-@property (nonatomic, retain) IBOutlet UISwitch *isSendToTwitterSwitch;
 
 /* Facebook */
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePic;
@@ -90,6 +92,7 @@
 
 - (IBAction)changeFacebookSelectStatus:(id)sender;
 - (IBAction)changeTwitterSelectStatus:(id)sender;
+
 - (IBAction)showSNSSelectView:(id)sender;
 - (IBAction)toggleAddAlbumArtworkFlag:(id)sender;
 - (IBAction)addITunesStoreSearchTweet:(id)sender;
