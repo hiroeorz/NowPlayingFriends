@@ -9,6 +9,7 @@
 #import "NowPlayingFriendsAppDelegate.h"
 
 #import "ArtistFriendsViewController.h"
+#import "FBAuthViewController.h"
 #import "HomeTimelineViewController.h"
 #import "ITunesStore.h"
 #import "MentionsTimelineViewController.h"
@@ -49,6 +50,8 @@
 @dynamic use_itunes_preference;
 @dynamic use_youtube_manual_preference;
 @dynamic use_youtube_preference;
+@dynamic fb_post_preference;
+@dynamic tw_post_preference;
 @dynamic userDefaults;
 @synthesize bgTask;
 @synthesize isBackGround;
@@ -171,6 +174,13 @@
  */
 - (CGFloat)windowHeight {
   return self.window.frame.size.height;
+}
+
+/**
+ * @brief 現在のWindowの高さをかえす。
+ */
+- (CGFloat)windowWidth {
+  return self.window.frame.size.width;
 }
 
 /**
@@ -389,6 +399,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
   NSLog(@"Stating Launching Now Playing Friends!!");
   testFlag = 0;
+  [FBProfilePictureView class]; /* for Facebook Profile Picture View */
 
   TwitterClient *client = [[TwitterClient alloc] init];
   NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];
@@ -501,11 +512,24 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 		     bundle:nil];
 
   navController = [self navigationWithViewController:viewController
-			title:@"Authentication"  
+			title:@"Twutter Authentication"  
 			imageName:@"30-key.png"];
 
   [controllers addObject:navController];
   [viewController release];
+
+  /* Facebook UserAuth */
+  viewController = [[FBAuthViewController alloc] 
+		     initWithNibName:@"FBAuthViewController" 
+		     bundle:nil];
+
+  navController = [self navigationWithViewController:viewController
+			title:@"Facebook Authentication"  
+			imageName:@"30-key.png"];
+
+  [controllers addObject:navController];
+  [viewController release];
+
 
   /* SettingViewController */
   viewController = [[SettingViewController alloc] 
@@ -580,6 +604,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
       abort();
     } 
   }
+}
+
+#pragma mark -
+#pragma Facebook Methods
+
+- (BOOL)loggedinToFacebook {
+  return ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] != NSNotFound);
 }
 
 #pragma mark -
@@ -938,6 +969,48 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   [self.userDefaults setValue:value 
        forKey:@"manual_upload_picture_preference"];
+}
+
+/**
+ * @brief 手動投稿時にFacebookに投稿するかどうかの設定。
+ */
+- (BOOL)fb_post_preference {
+
+  NSNumber *fb_post_preference = 
+    [self.userDefaults valueForKey:@"fb_post_preference"];
+  
+  if (fb_post_preference == nil) {
+    fb_post_preference = [NSNumber numberWithBool:NO];
+  }
+  
+  return [fb_post_preference boolValue];
+}
+
+- (void)setFb_post_preference:(BOOL)flag {
+
+  NSNumber *fb_post_preference = [NSNumber numberWithBool:flag];
+  [self.userDefaults setValue:fb_post_preference forKey:@"fb_post_preference"];
+}
+
+/**
+ * @brief 手動投稿時にtwitterに投稿するかどうかの設定。
+ */
+- (BOOL)tw_post_preference {
+
+  NSNumber *tw_post_preference = 
+    [self.userDefaults valueForKey:@"tw_post_preference"];
+  
+  if (tw_post_preference == nil) {
+    tw_post_preference = [NSNumber numberWithBool:YES];
+  }
+  
+  return [tw_post_preference boolValue];
+}
+
+- (void)setTw_post_preference:(BOOL)flag {
+
+  NSNumber *tw_post_preference = [NSNumber numberWithBool:flag];
+  [self.userDefaults setValue:tw_post_preference forKey:@"tw_post_preference"];
 }
 
 #pragma mark -
