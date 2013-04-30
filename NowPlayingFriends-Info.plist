@@ -22,11 +22,15 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.11.0</string>
+	<string>2.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.11.0</string>
+	<string>2.0.0</string>
+	<key>FacebookAppID</key>
+	<string>364159220361632</string>
+	<key>FacebookDisplayName</key>
+	<string>Now Playing Friends</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
@@ -36,6 +40,15 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>URL types </key>
+	<array>
+		<dict>
+			<key>URL Schemes</key>
+			<array>
+				<string>fb364159220361632</string>
+			</array>
+		</dict>
 	</array>
 </dict>
 </plist>

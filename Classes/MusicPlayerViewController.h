@@ -67,6 +67,7 @@
   NSArray *albumLists;
   NSArray *beforeTimeline;
   NSArray *playLists;
+  NSDictionary *youtubeSearchResultForAutoTweet;
   NSInteger listmode;
   NSInteger subControlTouchCount;
   NSMutableArray *addLinkArray;

@@ -75,6 +75,8 @@
 @property (nonatomic) NSInteger select_youtube_link_preference;
 @property (nonatomic) BOOL auto_upload_picture_preference;
 @property (nonatomic) BOOL manual_upload_picture_preference;
+@property (nonatomic) BOOL fb_post_preference;
+@property (nonatomic) BOOL tw_post_preference;
 
 
 - (NSString *)applicationDocumentsDirectory;
@@ -82,12 +84,15 @@
 						   title:(NSString *)title
 					       imageName:(NSString *)imageName;
 
+- (BOOL)loggedinToFacebook;
+
 - (void)addMusicPlayerNotification:(id)object;
 - (void)removeMusicPlayerNotification:(id)object;
 - (void)setupMusicPlayer;
 - (void)handle_NowPlayingItemChanged:(id)notification;
 
 - (CGFloat)windowHeight;
+- (CGFloat)windowWidth;
 - (CGFloat)windowHeightFixVal;
 - (void)fixHeightForAfteriPhone5View:(UIView *)aView;
 - (void)fixPositionForAfteriPhone5View:(UIView *)aView;

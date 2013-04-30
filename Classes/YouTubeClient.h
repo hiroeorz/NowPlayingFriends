@@ -13,6 +13,7 @@
 
 @interface YouTubeClient : NSOperation <NSXMLParserDelegate> {
 
+  BOOL isContent;
   BOOL isDuration;
   BOOL isEntry;
   BOOL isLink;
@@ -24,6 +25,7 @@
   NSString *contentTitle;
   NSString *linkUrl;
   NSString *thumbnailUrl;
+  NSString *contentUrl;
   NSString *name;
   NSString *viewCount;
   NSString *seconds;
@@ -45,6 +47,7 @@
 @property (nonatomic, retain) NSString *linkUrl;
 @property (nonatomic, retain) NSString *seconds;
 @property (nonatomic, retain) NSString *thumbnailUrl;
+@property (nonatomic, retain) NSString *contentUrl;
 @property (nonatomic, retain) NSString *viewCount;
 @property (nonatomic, retain) id delegate;
 
