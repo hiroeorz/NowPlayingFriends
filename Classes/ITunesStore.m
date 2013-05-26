@@ -45,7 +45,7 @@
 			      initWithFormat:kiTunesStoreSearchUrl, 
 			      keyword1, keyword2];
 
-  CFStringRef ignoreString = CFSTR(";,/?:@&=+$#");
+  CFStringRef ignoreString = CFSTR("';,/?:@&=+$#");
   NSString *paramsStr = 
     (NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
 							(CFStringRef)storeSearchUrl,

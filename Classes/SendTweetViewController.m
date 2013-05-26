@@ -247,7 +247,6 @@
 - (void)viewDidAppear:(BOOL)animated {
 
   [super viewDidAppear:animated];
-  //[editView becomeFirstResponder];
   [self countAndWriteTweetLength:[editView.text length]];
 }
 

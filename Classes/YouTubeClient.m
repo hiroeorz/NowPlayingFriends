@@ -93,7 +93,7 @@
   NSString *replaced = 
     [aParameter stringByReplacingOccurrencesOfString:@" " withString:@","];
 
-  CFStringRef ignoreString = CFSTR(";,/?:@&=+$#");
+  CFStringRef ignoreString = CFSTR("';,/?:@&=+$#");
   
   NSString *paramsString = 
     (NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
