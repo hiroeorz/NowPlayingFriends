@@ -281,15 +281,13 @@
 
   if (searchString) {
     encodedString = [self urlEncodedString:searchString];
-    urlString = [[NSMutableString alloc] 
-		  initWithFormat:kSearchURL, encodedString];
+    urlString = [[NSMutableString alloc] initWithFormat:kSearchURL, encodedString];
     
     va_start(argumentList, searchString);
     
     while(eachObject = va_arg(argumentList, id)) {
-      encodedString = [self urlEncodedString:eachObject];
-      [urlString appendString:@"+"];
-      [urlString appendString:encodedString];
+      [urlString appendString:@"%20"]; /* "+" -> "%20" */
+      [urlString appendString:[self urlEncodedString:eachObject]];
     }    
     va_end(argumentList);
   }
@@ -298,19 +296,11 @@
   [self repaireURLEncodingString:urlString from:@"'" to:@"%27"];
   [self repaireURLEncodingString:urlString from:@"%EF%BD%9E" to:@"~"];
 
-  NSURL *url = [NSURL URLWithString:urlString];
+  NSDictionary *jsonDictionary = [self dictionaryOfRemoteJson:urlString];
+  NSArray *jsonArray = [jsonDictionary objectForKey:@"statuses"];
   [urlString release];
 
-  NSString *jsonString = [[NSString alloc] initWithContentsOfURL:url
-					   encoding:NSUTF8StringEncoding
-					   error:nil];
-
-  NSDictionary *jsonDictionary = [jsonString JSONValue];
-  NSArray *jsonArray = [jsonDictionary objectForKey:@"results"];
-  [jsonString release];
-
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
   return jsonArray;
 }
 

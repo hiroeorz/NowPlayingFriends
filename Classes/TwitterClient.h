@@ -13,18 +13,18 @@
 
 
 #define kOAuthAccetokenFileName @"access_token.plist"
-#define kSearchURL @"http://search.twitter.com/search.json?q=%@"
+#define kSearchURL @"https://api.twitter.com/1.1/search/tweets.json?q=%@"
 #define kVerifyUrl @"https://api.twitter.com/1.1/account/verify_credentials.json"
 #define kOAuthTokenUrl @"https://api.twitter.com/oauth/access_token"
-#define kHomeTimelineURL @"http://api.twitter.com/1.1/statuses/home_timeline.json?screen_name=%@&%@"
-#define kUserTimelineURL @"http://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=%@&%@"
-#define kMenthonsTimelineURL @"http://api.twitter.com/1.1/statuses/mentions_timeline.json%@"
-#define kUserInformationURL @"http://api.twitter.com/1.1/users/show/%@.json"
-#define kUpdateStatusURL @"http://api.twitter.com/1.1/statuses/update.json"
-#define kCreateFriendURL @"http://api.twitter.com/1.1/friendships/create/%@.json"
-#define kCheckFriendShipURL @"http://api.twitter.com/1.1/friendships/show.json?target_screen_name=%@"
+#define kHomeTimelineURL @"https://api.twitter.com/1.1/statuses/home_timeline.json?screen_name=%@&%@"
+#define kUserTimelineURL @"https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=%@&%@"
+#define kMenthonsTimelineURL @"https://api.twitter.com/1.1/statuses/mentions_timeline.json%@"
+#define kUserInformationURL @"https://api.twitter.com/1.1/users/show/%@.json"
+#define kUpdateStatusURL @"https://api.twitter.com/1.1/statuses/update.json"
+#define kCreateFriendURL @"https://api.twitter.com/1.1/friendships/create/%@.json"
+#define kCheckFriendShipURL @"https://api.twitter.com/1.1/friendships/show.json?target_screen_name=%@"
 
-#define kTwitterFrindsSearchUrl @"http://api.twitter.com/1/statuses/friends.json?screen_name=%@&cursor=%@"
+#define kTwitterFrindsSearchUrl @"https://api.twitter.com/1.1/statuses/friends.json?screen_name=%@&cursor=%@"
 
 
 @class NowPlayingFriendsAppDelegate;
