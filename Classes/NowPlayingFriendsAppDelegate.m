@@ -399,7 +399,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
   NSLog(@"Stating Launching Now Playing Friends!!");
   testFlag = 0;
-  [FBProfilePictureView class]; /* for Facebook Profile Picture View */
 
   TwitterClient *client = [[TwitterClient alloc] init];
   NSMutableDictionary *newProfileImages = [[NSMutableDictionary alloc] init];

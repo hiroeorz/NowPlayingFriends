@@ -8,6 +8,8 @@
 
 #import "YouTubeClient.h"
 
+#import "NowPlayingFriendsAppDelegate.h"
+
 
 @interface YouTubeClient (Local)
 - (void)startWithRequestString:(NSString *)urlString 
@@ -93,7 +95,7 @@
   NSString *replaced = 
     [aParameter stringByReplacingOccurrencesOfString:@" " withString:@","];
 
-  CFStringRef ignoreString = CFSTR("';,/?:@&=+$#()");
+  CFStringRef ignoreString = kIgnoreString;
   
   NSString *paramsString = 
     (NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,

@@ -241,7 +241,7 @@
   OAMutableURLRequest *request = [self authenticatedRequest:baseUrl];
 
 
-  CFStringRef ignoreString = CFSTR("';,/?:@&=+$#()");
+  CFStringRef ignoreString = kIgnoreString;
   NSString *paramsStr = (NSString *)CFURLCreateStringByAddingPercentEscapes(  
 						       kCFAllocatorDefault,
 						       (CFStringRef)message,
@@ -323,7 +323,7 @@
  */
 - (NSString *)urlEncodedString:(NSString *)str {
   
-  CFStringRef ignoreString = CFSTR("';,/?:@&=+$#()");
+  CFStringRef ignoreString = kIgnoreString;
   NSString *encodedString = 
     (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,  
 							(CFStringRef)str,

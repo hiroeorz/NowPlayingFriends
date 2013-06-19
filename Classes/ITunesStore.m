@@ -7,7 +7,9 @@
 //
 
 #import "ITunesStore.h"
+
 #import "JSON/JSON.h"
+#import "NowPlayingFriendsAppDelegate.h"
 
 
 @implementation ITunesStore
@@ -45,7 +47,7 @@
 			      initWithFormat:kiTunesStoreSearchUrl, 
 			      keyword1, keyword2];
 
-  CFStringRef ignoreString = CFSTR("';,/?:@&=+$#()");
+  CFStringRef ignoreString = kIgnoreString;
   NSString *paramsStr = 
     (NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
 							(CFStringRef)storeSearchUrl,

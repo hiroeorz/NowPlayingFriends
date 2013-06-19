@@ -15,6 +15,7 @@
 @class MusicPlayerViewController;
 @class NowPlayingFriendsAppDelegate;
 @class TwitterClient;
+@class FBLoginView;
 
 
 #define setTweetEditField(aEditView, kXPosition, kWidth, kHeight)  \
@@ -35,6 +36,7 @@
   BOOL addAlbumArtwork;
   BOOL linkAdded;
   BOOL sending;
+  FBLoginView *facebookLoginView;
   MusicPlayerViewController *musicPlayer;
   NSDictionary *youtubeSearchResult;
   NSNumber  *inReplyToStatusId;
@@ -46,7 +48,7 @@
   UIButton *retweetButton;
   UIButton *selectSNSButton;
   UILabel *letterCountLabel;
-  UISwitch *isSendToFacabookSwitch;
+  UISwitch *isSendToFacebookSwitch;
   UISwitch *isSendToTwitterSwitch;
   UITextView *editView;
   UIView *indicatorBase;
@@ -68,7 +70,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *retweetButton;
 @property (nonatomic, retain) IBOutlet UIButton *selectSNSButton;
 @property (nonatomic, retain) IBOutlet UILabel *letterCountLabel;
-@property (nonatomic, retain) IBOutlet UISwitch *isSendToFacabookSwitch;
+@property (nonatomic, retain) IBOutlet UISwitch *isSendToFacebookSwitch;
 @property (nonatomic, retain) IBOutlet UISwitch *isSendToTwitterSwitch;
 @property (nonatomic, retain) IBOutlet UITextView *editView;
 @property (nonatomic, retain) IBOutlet UIView *snsSelectViewFacebook;

@@ -267,7 +267,6 @@
 								<string key="NSFrame">{{211, 18}, {94, 27}}</string>
 								<reference key="NSSuperview" ref="764446123"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -423,14 +422,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">isSendToFacabookSwitch</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="675931612"/>
-					</object>
-					<int key="connectionID">39</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">isSendToTwitterSwitch</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="322761745"/>
@@ -444,6 +435,14 @@
 						<reference key="destination" ref="890772996"/>
 					</object>
 					<int key="connectionID">43</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">isSendToFacebookSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="675931612"/>
+					</object>
+					<int key="connectionID">44</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -708,7 +707,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">43</int>
+			<int key="maxID">44</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -816,7 +815,7 @@
 							<string>buttonPostStatus</string>
 							<string>defaultTweetString</string>
 							<string>editView</string>
-							<string>isSendToFacabookSwitch</string>
+							<string>isSendToFacebookSwitch</string>
 							<string>isSendToTwitterSwitch</string>
 							<string>labelFirstName</string>
 							<string>letterCountLabel</string>
@@ -855,7 +854,7 @@
 							<string>buttonPostStatus</string>
 							<string>defaultTweetString</string>
 							<string>editView</string>
-							<string>isSendToFacabookSwitch</string>
+							<string>isSendToFacebookSwitch</string>
 							<string>isSendToTwitterSwitch</string>
 							<string>labelFirstName</string>
 							<string>letterCountLabel</string>
@@ -895,7 +894,7 @@
 								<string key="candidateClassName">UITextView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">isSendToFacabookSwitch</string>
+								<string key="name">isSendToFacebookSwitch</string>
 								<string key="candidateClassName">UISwitch</string>
 							</object>
 							<object class="IBToOneOutletInfo">

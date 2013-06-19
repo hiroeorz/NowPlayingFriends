@@ -39,7 +39,7 @@
 @synthesize inReplyToStatusId;
 @synthesize indicator;
 @synthesize indicatorBase;
-@synthesize isSendToFacabookSwitch;
+@synthesize isSendToFacebookSwitch;
 @synthesize isSendToTwitterSwitch;
 @synthesize letterCountLabel;
 @synthesize musicPlayer;
@@ -62,6 +62,7 @@
 
   [addAlbumArtworkButton release];
   [editView release];
+  [facebookLoginView release];
   [inReplyToStatusId release];
   [indicator release];
   [indicatorBase release];
@@ -71,7 +72,7 @@
   [sourceString release];
   [twitterClient release];
   [snsSelectViewFacebook release];
-  [isSendToFacabookSwitch release];
+  [isSendToFacebookSwitch release];
   [isSendToTwitterSwitch release];
   [youtubeSearchResult release];
 
@@ -99,6 +100,7 @@
   self.snsSelectViewFacebook = nil;
 
   /* Facebook */
+  [facebookLoginView release]; facebookLoginView = nil;
   [super viewDidUnload];
 }
 
@@ -124,6 +126,7 @@
   loginview.delegate = self;
   [self.snsSelectViewFacebook addSubview:loginview];
   [loginview sizeToFit];
+  facebookLoginView = loginview;
 }
 
 - (void)viewDidLoad {
@@ -171,7 +174,7 @@
 
 - (void)setSelectSNSSwitch {
 
-  isSendToFacabookSwitch.on = self.appDelegate.fb_post_preference;
+  isSendToFacebookSwitch.on = self.appDelegate.fb_post_preference;
   isSendToTwitterSwitch.on = self.appDelegate.tw_post_preference;
 }
 
@@ -186,8 +189,7 @@
 
 - (void)addITunesStoreSearchLink:(NSString *)linkUrl {
 
-  [self performSelectorInBackground:@selector(stopIndicatoWithThread)
-  	withObject:nil];
+  [self stopIndicator];
 
   if (linkUrl != nil) {
     editView.text = [[[NSString alloc] 
@@ -214,8 +216,7 @@
 
 - (void)addYouTubeLink:(NSArray *)searchResults {
 
-  [self performSelectorInBackground:@selector(stopIndicatoWithThread)
-  	withObject:nil];
+  [self stopIndicator];
 
   NSString *linkUrl = nil;
 
@@ -273,7 +274,7 @@
 
   if (sending == NO && kMaxTweetLength >= [editView.text length]) {
 
-    if (isSendToTwitterSwitch.on || isSendToFacabookSwitch.on) {
+    if (isSendToTwitterSwitch.on || isSendToFacebookSwitch.on) {
       sending = YES;
       musicPlayer.sending = YES;
       editView.backgroundColor = [UIColor colorWithRed: 0.6f green:0.6f blue:0.6f alpha:0.9];
@@ -288,7 +289,7 @@
 		      withArtwork:addAlbumArtwork
 			 delegate:self];
     } else {
-      if (isSendToFacabookSwitch.on) { [self postFBStatusUpdate:editView.text]; }
+      if (isSendToFacebookSwitch.on) { [self postFBStatusUpdate:editView.text]; }
     }
   }
 }
@@ -469,11 +470,11 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
   NSLog(@"data: %@", dataString);
   [dataString release];
 
-  if (isSendToFacabookSwitch.on) {
+  if (isSendToFacebookSwitch.on) {
     [self postFBStatusUpdate:editView.text];
   } else {
     addAlbumArtwork = NO;
-    [self performSelectorInBackground:@selector(stopIndicatoWithThread) withObject:nil];
+    [self stopIndicator];
     [self dismissModalViewControllerAnimated:YES];
   }
 }
@@ -486,9 +487,7 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
   musicPlayer.sent = YES;
   addAlbumArtwork = NO;
 
-  [self performSelectorInBackground:@selector(stopIndicatoWithThread)
-  	withObject:nil];
-
+  [self stopIndicator];
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   [self dismissModalViewControllerAnimated:YES];
 }
@@ -501,6 +500,7 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
   [self stopIndicator];
+  NSLog("!WARNING! duplicate method SendTweetViewController stopIndicatorWithThread!");
   [pool release];
 }
 
@@ -553,7 +553,7 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 
   NSLog(@"loginViewShowingLoggedInUser");
   isFacebookLoggedIn = YES;
-  isSendToFacabookSwitch.enabled = YES;
+  isSendToFacebookSwitch.enabled = YES;
 }
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
@@ -565,10 +565,10 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
 
   NSLog(@"loginViewShowingLoggedOutUser");
-  NSLog(@"switch: %@", isSendToFacabookSwitch);
+  NSLog(@"switch: %@", isSendToFacebookSwitch);
   isFacebookLoggedIn = NO;
-  isSendToFacabookSwitch.on = NO;
-  isSendToFacabookSwitch.enabled = NO;
+  isSendToFacebookSwitch.on = NO;
+  isSendToFacebookSwitch.enabled = NO;
 }
 
 - (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
@@ -608,7 +608,7 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 
   [facebookClient postMessage:message 
 		     callback:^{
-      [self performSelectorInBackground:@selector(stopIndicatoWithThread) withObject:nil];
+      [self stopIndicator];
       [self dismissModalViewControllerAnimated:YES];
     }];  
 }

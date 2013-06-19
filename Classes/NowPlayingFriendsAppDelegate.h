@@ -28,6 +28,7 @@
 #define kSelectYouTubeTypeSelectFromList 1
 #define kSelectYouTubeTypeConfirmation 2
 
+#define kIgnoreString CFSTR("';,/!?:@&=+$#()")
 
 @class MusicPlayerViewController;
 
