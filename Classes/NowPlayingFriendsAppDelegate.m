@@ -511,7 +511,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 		     bundle:nil];
 
   navController = [self navigationWithViewController:viewController
-			title:@"Twutter Authentication"  
+			title:@"Twitter Authentication"  
 			imageName:@"30-key.png"];
 
   [controllers addObject:navController];

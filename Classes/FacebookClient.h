@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <FacebookSDK/FacebookSDK.h>
 
-#define kFBPictureSizeHeight 170
-#define kFBPictureSizeWidth 170
+#define kFBPictureSizeHeight 512.0f
+#define kFBPictureSizeWidth 512.0f
 
 @class NowPlayingFriendsAppDelegate;
 
