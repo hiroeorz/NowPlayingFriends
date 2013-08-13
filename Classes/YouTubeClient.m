@@ -59,7 +59,7 @@
   self.delegate = aDelegate;
   self.action = aAction;
 
-  NSString *parameter = [[[NSString alloc] initWithFormat:@"%@,%@",
+  NSString *parameter = [[[NSString alloc] initWithFormat:@"%@+%@",
 					   title, artist] autorelease];
   NSString *url = [[[NSString alloc] initWithFormat:kYouTubeSearchURL, count] 
 		    autorelease];
@@ -79,7 +79,7 @@
   self.action = aAction;
 
   NSString *parameter = [params stringByReplacingOccurrencesOfString:@" "
-							 withString:@","];
+							 withString:@"+"];
   NSString *url = [[[NSString alloc] initWithFormat:kYouTubeSearchURL, count] 
 		    autorelease];
   [self startWithRequestString:url parameter:parameter];
@@ -93,7 +93,7 @@
   self.xmlData = [NSMutableData data];
   
   NSString *replaced = 
-    [aParameter stringByReplacingOccurrencesOfString:@" " withString:@","];
+    [aParameter stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 
   CFStringRef ignoreString = kIgnoreString;
   
@@ -103,13 +103,11 @@
 							NULL,
 							ignoreString,
 							kCFStringEncodingUTF8);
+
   NSMutableString *bodyString = 
     [NSMutableString stringWithFormat:@"%@category=%@&v=2",
 		     urlString, paramsString];
 
-  [paramsString release];
-
-  //NSLog(@"url: %@", bodyString);
   NSURLRequest *request = [NSURLRequest 
 			    requestWithURL:[NSURL URLWithString:bodyString]];
   
