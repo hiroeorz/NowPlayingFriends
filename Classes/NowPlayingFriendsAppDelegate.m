@@ -195,9 +195,11 @@
  */
 - (void)fixHeightForAfteriPhone5View:(UIView *)aView {
 
+  /* no use since 2014/5
   CGRect frame = aView.frame;
   frame.size.height = frame.size.height + [self windowHeightFixVal];
   aView.frame = frame;
+  */
 }
 
 /**

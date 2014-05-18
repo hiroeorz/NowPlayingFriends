@@ -21,7 +21,7 @@
 #define setTweetEditField(aEditView, kXPosition, kWidth, kHeight)  \
                           CGRect frame;	      \
                           frame.origin.x = kXPosition; \
-                          frame.origin.y = 5; \
+                          frame.origin.y = 75; \
                           frame.size.width = kWidth; \
                           frame.size.height = kHeight; \
                           aEditView.backgroundColor = [UIColor whiteColor]; \

@@ -273,7 +273,7 @@
   NSLog(@"displaySubview called.");
   subControlTouchCount ++;
   [UIView animateWithDuration:0.3
-		   animations:^{subControlView.alpha = 0.8;}];
+		   animations:^{subControlView.alpha = 0.90;}];
 }
 
 /**

@@ -143,6 +143,7 @@
 		54D260AB123A3989004023A6 /* Next_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260A9123A3989004023A6 /* Next_mini.png */; };
 		54D260AC123A3989004023A6 /* Previous_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260AA123A3989004023A6 /* Previous_mini.png */; };
 		54D2F41414B4ADAB00BF8792 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D2F41314B4ADAB00BF8792 /* CoreLocation.framework */; };
+		54E35CF818603D6200BD4303 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E35CF718603D6200BD4303 /* FacebookSDK.framework */; };
 		54E51E19151EF91300223252 /* red_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E51E18151EF91300223252 /* red_button.png */; };
 		54E76C63146581B8006612B6 /* MusicPlayerViewController+AutoTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E76C5E146581B8006612B6 /* MusicPlayerViewController+AutoTweet.m */; };
 		54E76C64146581B8006612B6 /* MusicPlayerViewController+Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E76C61146581B8006612B6 /* MusicPlayerViewController+Notification.m */; };
@@ -157,8 +158,6 @@
 		54F04C6C163B6E7900755E1C /* 30-key.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F04C6B163B6E7900755E1C /* 30-key.png */; };
 		54F0BCBE12A5CEAE00986791 /* atMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F0BCBD12A5CEAE00986791 /* atMark.png */; };
 		54F2D06612DDC3FA006C8C77 /* TwitterFriendsGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F2D06512DDC3FA006C8C77 /* TwitterFriendsGetter.m */; };
-		54FFEA39172CF47700EDCB6F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FFEA38172CF47700EDCB6F /* FacebookSDK.framework */; };
-		54FFEA3B172CF4F000EDCB6F /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 54FFEA3A172CF4F000EDCB6F /* FacebookSDKResources.bundle */; };
 		54FFEA3D172CF56C00EDCB6F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FFEA3C172CF56C00EDCB6F /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		54FFEA3F172CF57A00EDCB6F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FFEA3E172CF57A00EDCB6F /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		54FFEA41172CF59B00EDCB6F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FFEA40172CF59B00EDCB6F /* libsqlite3.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -403,6 +402,7 @@
 		54D260A9123A3989004023A6 /* Next_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Next_mini.png; path = icons/mediaIcons005/Next_mini.png; sourceTree = "<group>"; };
 		54D260AA123A3989004023A6 /* Previous_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Previous_mini.png; path = icons/mediaIcons005/Previous_mini.png; sourceTree = "<group>"; };
 		54D2F41314B4ADAB00BF8792 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		54E35CF718603D6200BD4303 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		54E51E18151EF91300223252 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
 		54E76C5E146581B8006612B6 /* MusicPlayerViewController+AutoTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MusicPlayerViewController+AutoTweet.m"; sourceTree = "<group>"; };
 		54E76C5F146581B8006612B6 /* MusicPlayerViewController+Local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MusicPlayerViewController+Local.h"; sourceTree = "<group>"; };
@@ -420,8 +420,6 @@
 		54F0BCBD12A5CEAE00986791 /* atMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atMark.png; sourceTree = "<group>"; };
 		54F2D06412DDC3FA006C8C77 /* TwitterFriendsGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterFriendsGetter.h; sourceTree = "<group>"; };
 		54F2D06512DDC3FA006C8C77 /* TwitterFriendsGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterFriendsGetter.m; sourceTree = "<group>"; };
-		54FFEA38172CF47700EDCB6F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "../facebook-ios-sdk/build/FacebookSDK.framework"; sourceTree = "<group>"; };
-		54FFEA3A172CF4F000EDCB6F /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = "../facebook-ios-sdk/build/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle"; sourceTree = "<group>"; };
 		54FFEA3C172CF56C00EDCB6F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		54FFEA3E172CF57A00EDCB6F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		54FFEA40172CF59B00EDCB6F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -441,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54FFEA43172CF5B300EDCB6F /* Social.framework in Frameworks */,
+				54E35CF818603D6200BD4303 /* FacebookSDK.framework in Frameworks */,
 				5455D1BE131124F5005BA507 /* Security.framework in Frameworks */,
 				54FFEA41172CF59B00EDCB6F /* libsqlite3.dylib in Frameworks */,
 				54FFEA3F172CF57A00EDCB6F /* Accounts.framework in Frameworks */,
@@ -459,7 +458,6 @@
 				5455CFF3131116CC005BA507 /* CFNetwork.framework in Frameworks */,
 				5455CFF6131116E6005BA507 /* SystemConfiguration.framework in Frameworks */,
 				5455D1C113112509005BA507 /* MobileCoreServices.framework in Frameworks */,
-				54FFEA39172CF47700EDCB6F /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,12 +618,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				54E35CF718603D6200BD4303 /* FacebookSDK.framework */,
 				54FFEA42172CF5B300EDCB6F /* Social.framework */,
 				54FFEA40172CF59B00EDCB6F /* libsqlite3.dylib */,
 				54FFEA3E172CF57A00EDCB6F /* Accounts.framework */,
 				54FFEA3C172CF56C00EDCB6F /* AdSupport.framework */,
-				54FFEA3A172CF4F000EDCB6F /* FacebookSDKResources.bundle */,
-				54FFEA38172CF47700EDCB6F /* FacebookSDK.framework */,
 				54D2F41314B4ADAB00BF8792 /* CoreLocation.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -983,7 +980,6 @@
 				54E51E19151EF91300223252 /* red_button.png in Resources */,
 				54F04C6C163B6E7900755E1C /* 30-key.png in Resources */,
 				54CB18CB163B79D1005641D8 /* Default-568h@2x.png in Resources */,
-				54FFEA3B172CF4F000EDCB6F /* FacebookSDKResources.bundle in Resources */,
 				54FFEA48172CFBF500EDCB6F /* FBAuthViewController.xib in Resources */,
 				54FFEA4C172D39C500EDCB6F /* twitter-bird-dark-bgs.png in Resources */,
 			);
@@ -1095,7 +1091,8 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../facebook-ios-sdk/build\"",
+					"\\\"$(SRCROOT)/../facebook-ios-sdk/build\\\"",
+					/Users/shin/Documents/FacebookSDK,
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1103,7 +1100,7 @@
 				GCC_PREFIX_HEADER = NowPlayingFriends_Prefix.pch;
 				GCC_VERSION = "";
 				"GCC_VERSION[arch=*]" = "";
-				HEADER_SEARCH_PATHS = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2/**";
+				HEADER_SEARCH_PATHS = "$(SDK_DIR)/usr/include/libxml2";
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2/**";
@@ -1126,12 +1123,13 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../facebook-ios-sdk/build\"",
+					"\\\"$(SRCROOT)/../facebook-ios-sdk/build\\\"",
+					/Users/shin/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlayingFriends_Prefix.pch;
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2/**";
+				HEADER_SEARCH_PATHS = "$(SDK_DIR)/usr/include/libxml2";
 				"HEADER_SEARCH_PATHS[arch=*]" = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2/**";
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -1173,12 +1171,13 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../facebook-ios-sdk/build\"",
+					"\\\"$(SRCROOT)/../facebook-ios-sdk/build\\\"",
+					/Users/shin/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlayingFriends_Prefix.pch;
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2/**";
+				HEADER_SEARCH_PATHS = "$(SDK_DIR)/usr/include/libxml2 ";
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2/**";
