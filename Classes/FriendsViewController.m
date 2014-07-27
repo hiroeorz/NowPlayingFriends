@@ -366,15 +366,14 @@
 
   self.beforeTimeline = timeline;
   NSInteger addCount = [self refreshTimeline];
-  NSInteger newOffset = [self newOffset:addCount];
   
   [self shurinkTimeline];
   [self queuingLineOverFlowSize];
 
   if (activateFlag && ![timeline isEqualToArray:beforeTimeline]) {
     [self performSelectorOnMainThread:@selector(reloadTableDataOnMainThread:)
-	  withObject:[NSNumber numberWithInteger:newOffset]
-	  waitUntilDone:NO];    
+			   withObject:[NSNumber numberWithInteger:0] //オフセットは未使用
+			waitUntilDone:NO];    
   }
 
   [pool release];
@@ -382,8 +381,10 @@
 
 /**
  * @brief テーブルを更新する。更新後も更新前に表示していた位置を表示する。
+ *
+ * newOffsetNumberは現在未使用です。必ず0を受け取ります。
  */
-- (void)reloadTableDataOnMainThread:(NSNumber *)newOffsetNumber {
+- (void)reloadTableDataOnMainThread:(NSNumber *)_newOffsetNumber {
 
   @synchronized(timeline) {
     friendsTableView.dataSource = self;
@@ -391,9 +392,6 @@
 
     [friendsTableView reloadData];
     self.navigationController.tabBarItem.badgeValue = nil;
-
-    friendsTableView.contentOffset = 
-      CGPointMake(0.0f, [newOffsetNumber floatValue]);
   }
 }
 
@@ -541,26 +539,6 @@
 - (NSString *)username:(NSDictionary *)data {
 
   return [self.appDelegate username:data];
-}
-
-- (NSInteger)newOffset:(NSInteger)addCount {
-
-  NSInteger totalOffset = 0;
-
-  if ([timeline count] != addCount) {
-    CGPoint offset = friendsTableView.contentOffset;
-    totalOffset = offset.y;
-
-    for (NSInteger i = 0; i < addCount; i++) {
-      NSInteger cellViewHeight = kTimelineTableRowHeight;
-      NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-      
-      cellViewHeight = cellViewHeight + [self lineOverFlowSize:[indexPath row]];
-      totalOffset = totalOffset + cellViewHeight;
-    }
-  }
-
-  return totalOffset;
 }
 
 - (CGFloat)lineHeightValue:(NSInteger)row {
