@@ -189,7 +189,6 @@
   self.navigationItem.rightBarButtonItem = 
     [self.appDelegate editButton:@selector(openEditView) target:self];
 
-
   if ([twitterClient oAuthTokenExist] &&
       [musicPlayer playbackState] != MPMusicPlaybackStatePlaying) {
     [self performSelectorInBackground:@selector(refreshProfileImages)
@@ -212,17 +211,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 
+  NSLog(@"viewWillAppear");
   updateAfterSafetyTime = NO;
   
   if (albumLists == nil) { self.albumLists = [self.appDelegate albums];}
   if (playLists == nil) { self.playLists = [self.appDelegate playLists];}
 
   [autoTweetSwitch setOn:self.appDelegate.autotweet_preference animated:NO];
-
-  UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
-  accel.delegate = self;
-  accel.updateInterval = kAccelerationUpdateInterval;
-
   [super viewWillAppear:animated];
 }
 
@@ -382,8 +377,12 @@
  */
 - (UITextField *)songTitleField {
 
+  //  UITextField *songTitleField = [[UITextField alloc] 
+  //				initWithFrame:CGRectMake(0.0f, 3.0f,
+  //							 200.0f, 30.0f)];
+
   UITextField *songTitleField = [[UITextField alloc] 
-				initWithFrame:CGRectMake(0.0f, 3.0f,
+				initWithFrame:CGRectMake(0.0f, -4.0f,
 							 200.0f, 30.0f)];
   songTitleField.backgroundColor = nil;
   songTitleField.textColor = [UIColor darkGrayColor];
@@ -400,7 +399,7 @@
 - (UITextField *)artistNameField {
 
   UITextField *artistNameField = [[UITextField alloc] 
-				initWithFrame:CGRectMake(0.0f, 19.0f,
+				initWithFrame:CGRectMake(0.0f, 13.0f,
 							 200.0f, 30.0f)];
   artistNameField.backgroundColor = nil;
   artistNameField.textColor = [UIColor grayColor];
@@ -587,11 +586,12 @@
   }
 
   [self.view addSubview:listView];
+
   [UIView commitAnimations];
 
   self.navigationItem.leftBarButtonItem = 
-    [self.appDelegate playerButton:@selector(changeToSongview) 
-	 target:self];    
+    [self.appDelegate listButton:@selector(changeToSongview)
+			  target:self];
 }
 
 - (void)changeToSongsListview {
@@ -607,9 +607,9 @@
   [UIView commitAnimations];
 
 
-  songListController.navigationItem.rightBarButtonItem = 
-    [self.appDelegate playerButton:@selector(changeToSongview) 
-	 target:songListController];
+  self.navigationItem.leftBarButtonItem = 
+    [self.appDelegate listButton:@selector(changeToSongview)
+			  target:songListController];
 
   songListController.navigationItem.leftBarButtonItem = nil;
 }

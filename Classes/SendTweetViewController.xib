@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SendTweetViewController">
             <connections>
-                <outlet property="addAlbumArtworkButton" destination="23" id="25"/>
+                <outlet property="addAlbumArtworkButton" destination="Dxf-gu-Oil" id="yfm-ui-fgG"/>
                 <outlet property="isSendToFacebookSwitch" destination="27" id="44"/>
                 <outlet property="isSendToTwitterSwitch" destination="31" id="40"/>
                 <outlet property="letterCountLabel" destination="7" id="8"/>
@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="7">
-                    <rect key="frame" x="281" y="134" width="37" height="21"/>
+                    <rect key="frame" x="276" y="227" width="37" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -87,14 +87,18 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="23">
-                    <rect key="frame" x="280" y="118" width="33" height="33"/>
+                    <rect key="frame" x="279" y="110" width="33" height="33"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                    <state key="normal" image="68-paperclip.png">
+                    <state key="normal" image="68-paperclip.png"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Dxf-gu-Oil">
+                    <rect key="frame" x="277" y="106" width="40" height="39"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="toggleAddAlbumArtworkFlag:" destination="-1" eventType="touchUpInside" id="26"/>
+                        <action selector="toggleAddAlbumArtworkFlag:" destination="-1" eventType="touchUpInside" id="LaA-Ly-EFj"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" id="29">

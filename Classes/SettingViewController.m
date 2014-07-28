@@ -140,7 +140,7 @@ titleForHeaderInSection:(NSInteger)section {
     [cell autorelease];
     
     UITextView *aTextView = [[[UITextView alloc] init] autorelease];
-    setTweetEditField(aTextView, 20.0f, 270.0f, 90.0f);
+    setTemplateEditField(aTextView, 20.0f, 10.0f, 270.0f, 80.0f);
     aTextView.delegate = self;
     self.templateField = aTextView;
     [cell addSubview: aTextView];

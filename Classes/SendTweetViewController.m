@@ -500,7 +500,7 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
   [self stopIndicator];
-  NSLog("!WARNING! duplicate method SendTweetViewController stopIndicatorWithThread!");
+  NSLog(@"!WARNING! duplicate method SendTweetViewController stopIndicatorWithThread!");
   [pool release];
 }
 

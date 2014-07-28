@@ -158,10 +158,10 @@
   NSString *params = nil;
 
   if (sinceId == nil) {
-    params = [[NSString alloc] initWithFormat:@"?count=%d", aCount];
+    params = [[NSString alloc] initWithFormat:@"?count=%d", (int)aCount];
   } else {
     params = [[NSString alloc] initWithFormat:@"?since_id=%@&count=%d", 
-			       sinceId, aCount];
+			       sinceId, (int)aCount];
   }
 
   NSString *urlString = [[[NSString alloc] 
@@ -179,10 +179,10 @@
   NSString *params = nil;
 
   if (sinceId == nil) {
-    params = [[NSString alloc] initWithFormat:@"?count=%d", aCount];
+    params = [[NSString alloc] initWithFormat:@"?count=%d", (int)aCount];
   } else {
-    params = [[NSString alloc] initWithFormat:@"?since_id=%@&count=%d", 
-			       sinceId, aCount];
+    params = [[NSString alloc] initWithFormat:@"?since_id=%@&count=%d",
+			       sinceId, (int)aCount];
   }
 
   NSString *urlString = [[[NSString alloc] 
@@ -202,10 +202,10 @@
   NSString *params = nil;
 
   if (sinceId == nil) {
-    params = [[NSString alloc] initWithFormat:@"?count=%d", aCount];
+    params = [[NSString alloc] initWithFormat:@"?count=%d", (int)aCount];
   } else {
     params = [[NSString alloc] initWithFormat:@"?since_id=%@&count=%d", 
-			       sinceId, aCount];
+			       sinceId, (int)aCount];
   }
 
   NSString *urlString = [[[NSString alloc] initWithFormat:kMenthonsTimelineURL,
@@ -275,7 +275,7 @@
   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
   NSString *eachObject = nil;
-  va_list argumentList = nil;
+  va_list argumentList;
   NSMutableString *urlString = nil;
   NSString *encodedString = nil;
 

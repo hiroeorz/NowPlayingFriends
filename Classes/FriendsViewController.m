@@ -170,7 +170,7 @@
       if (timeline == nil) {
 	NSArray *newTimeline = [client getMentionsTimeLineSince:nil];
 	self.timeline = newTimeline;
-	NSLog(@"set Mentions timeline (count: %d)", [timeline count]);
+	NSLog(@"set Mentions timeline (count: %d)", (int)[timeline count]);
 	
       } else {
 	NSNumber *lastId = [self lastTweetId];
@@ -181,12 +181,12 @@
 	  NSLog(@"id:%@", [obj objectForKey:@"id"]);
 	}
 	
-	NSLog(@"newCount: %d", [newTimeline count]);
+	NSLog(@"newCount: %d", (int)[newTimeline count]);
 	
 	NSString *countStr = nil;
 	if ([newTimeline count] > 0) {
 	  countStr = 
-	    [[NSString alloc] initWithFormat:@"%d", [newTimeline count]];
+	    [[NSString alloc] initWithFormat:@"%d", (int)[newTimeline count]];
 	}
 	
 	[self performSelectorOnMainThread:@selector(setBadgeValueOnMainThread:)
@@ -234,7 +234,7 @@
     NSArray *newTimeline = 
       [timeline subarrayWithRange:NSMakeRange(0, kMaxTableCellRow)];
     
-    NSLog(@"table data shulinked because too big:%d", [timeline count]);
+    NSLog(@"table data shulinked because too big:%d", (int)[timeline count]);
     self.timeline = newTimeline;
   }
 }
@@ -251,7 +251,7 @@
     if ([timeline count] == 0) {
       self.timeline = newTimeline;
       addRowCount = [newTimeline count];
-      NSLog(@"new Time line count: %d", [timeline count]);
+      NSLog(@"new Time line count: %d", (int)[timeline count]);
 
     } else {
       NSDictionary *firstItem = [timeline objectAtIndex:0];
@@ -281,7 +281,7 @@
 
   }
 
-  NSLog(@"timeline count: %d", [timeline count]);
+  NSLog(@"timeline count: %d", (int)[timeline count]);
   return addRowCount;
 }
 
@@ -326,7 +326,7 @@
 
 
   while (true) {
-    NSLog(@"now cellRow: %d", cellRow);
+    NSLog(@"now cellRow: %d", (int)cellRow);
 
     if (cellRow <= kTableUpdateMaxScrollRow) {
       [self refreshTable];
@@ -365,8 +365,8 @@
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
   self.beforeTimeline = timeline;
-  NSInteger addCount = [self refreshTimeline];
-  
+  [self refreshTimeline];
+
   [self shurinkTimeline];
   [self queuingLineOverFlowSize];
 
@@ -400,7 +400,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section {
-  
+  NSLog(@"timeline: %@", timeline);
   return [timeline count];
 }
 
@@ -502,16 +502,16 @@
   NSString *passedString = nil;
 
   if (intervalSec < 60) {
-    passedString = [[NSString alloc] initWithFormat:@"%ds", intervalSec];
+    passedString = [[NSString alloc] initWithFormat:@"%ds", (int)intervalSec];
   } else if (intervalSec >= 60 && intervalSec < (60 * 60)) {
-    passedString = [[NSString alloc] initWithFormat:@"%dm", (intervalSec / 60)];
+    passedString = [[NSString alloc] initWithFormat:@"%dm", (int)(intervalSec / 60)];
   } else if (intervalSec >= (60 * 60) && intervalSec < (60 * 60 * 24)) {
-    passedString = [[NSString alloc] initWithFormat:@"%dh", (intervalSec / (60 * 60))];
+    passedString = [[NSString alloc] initWithFormat:@"%dh", (int)(intervalSec / (60 * 60))];
   } else if (intervalSec >= (60 * 60 * 24) && 
 	     intervalSec < (60 * 60 * 24 * 30)){
-    passedString = [[NSString alloc] initWithFormat:@"%dd", (intervalSec / (60 * 60 * 24))];    
+    passedString = [[NSString alloc] initWithFormat:@"%dd", (int)(intervalSec / (60 * 60 * 24))];
   } else {
-    passedString = [[NSString alloc] initWithFormat:@"%dmo", (intervalSec / (60 * 60 * 24 * 30))];    
+    passedString = [[NSString alloc] initWithFormat:@"%dmo", (int)(intervalSec / (60 * 60 * 24 * 30))];
 
   }
   return [passedString autorelease];

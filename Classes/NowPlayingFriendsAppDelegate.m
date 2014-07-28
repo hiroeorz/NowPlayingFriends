@@ -195,11 +195,7 @@
  */
 - (void)fixHeightForAfteriPhone5View:(UIView *)aView {
 
-  /* no use since 2014/5
-  CGRect frame = aView.frame;
-  frame.size.height = frame.size.height + [self windowHeightFixVal];
-  aView.frame = frame;
-  */
+  /* no use since 2014/5 */
 }
 
 /**
@@ -1130,7 +1126,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   NSString *dateString = [data objectForKey:@"created_at"];
   NSDate *date = [NSDate dateWithNaturalLanguageString:dateString];
-
+    /*
+    NSLog(@"created_at: %@", dateString);
+  NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+  [formatter setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"];
+  NSDate *date = [formatter dateFromString:dateString];
+    NSLog(@"date: %@", date);
+     */
   return date;
 }
 
@@ -1454,7 +1456,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   UIBarButtonItem *button = 
     [[UIBarButtonItem alloc] initWithImage:resized
-			     style:UIBarButtonItemStyleBordered
+			     style:UIBarButtonItemStylePlain
 			     target:target
 			     action:selector];
 
