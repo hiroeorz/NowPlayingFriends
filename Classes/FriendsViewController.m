@@ -550,10 +550,11 @@
    
   CGSize bounds = CGSizeMake(320, 1000);
   UIFont *font = [UIFont systemFontOfSize:17];
-  CGSize size = [bodyText sizeWithFont:font
-			  constrainedToSize:bounds
-			  lineBreakMode:UILineBreakModeTailTruncation];
-
+  CGRect textRect = [bodyText boundingRectWithSize:bounds
+                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                    attributes:@{NSFontAttributeName:font}
+                                       context:nil];
+  CGSize size = textRect.size;
   return size.height + 3.0f;
 }
 
@@ -644,7 +645,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	 title:@"Tweet"  imageName:nil];
   [viewController release];
 
-  [self presentModalViewController:navController animated:YES];
+  [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (NSNumber *)lastTweetId {

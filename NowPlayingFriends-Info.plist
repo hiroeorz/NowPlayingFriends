@@ -8,11 +8,10 @@
 	<string>Friends</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string>icon.png</string>
-		<string>friends2_114_114.png</string>
-	</array>
+	<key>CFBundleIcons</key>
+	<dict/>
+	<key>CFBundleIcons~ipad</key>
+	<dict/>
 	<key>CFBundleIdentifier</key>
 	<string>com.HiroeOrz17.NowPlayingFriends</string>
 	<key>CFBundleInfoDictionaryVersion</key>

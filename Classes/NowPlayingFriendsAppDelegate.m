@@ -412,10 +412,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [self createDirectory:kProfileImageDirectory];
   [self createDirectory:kYouTubeThumbnailDirectory];  
   [self setupMusicPlayer];
-
-  [UIApplication sharedApplication].statusBarStyle = 
-    UIStatusBarStyleBlackOpaque;
-  
+ 
   self.tabBarController = [[UITabBarController alloc] init];
 
   NSMutableArray *controllers = [[NSMutableArray alloc] init];
@@ -1125,14 +1122,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (NSDate *)tweetDate:(NSDictionary *)data {
 
   NSString *dateString = [data objectForKey:@"created_at"];
-  NSDate *date = [NSDate dateWithNaturalLanguageString:dateString];
-    /*
-    NSLog(@"created_at: %@", dateString);
-  NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-  [formatter setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"];
-  NSDate *date = [formatter dateFromString:dateString];
-    NSLog(@"date: %@", date);
-     */
+  NSDateFormatter *inputFormat = [[NSDateFormatter alloc] init];
+  [inputFormat setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+  [inputFormat setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"];
+  NSDate *date = [inputFormat dateFromString:dateString];
+  [inputFormat release];
   return date;
 }
 

@@ -56,10 +56,7 @@
  * @brief プレイヤーの音量が変化したときに呼ばれる。
  */
 - (void)handle_VolumeChanged:(id)notification {
-  
-  if (volumeSlider.value != musicPlayer.volume) {
-    volumeSlider.value = musicPlayer.volume;
-  }
+  /* 未使用 */
 }
 
 /**

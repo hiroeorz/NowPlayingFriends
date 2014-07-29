@@ -256,7 +256,7 @@
 - (void)closeEditView {
 
   sending = NO;
-  [self dismissModalViewControllerAnimated:YES];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)sendTweet {
@@ -373,7 +373,7 @@
 	     title:nil  imageName:nil];
       [viewController release];
       
-      [self presentModalViewController:navController animated:YES];
+      [self presentViewController:navController animated:YES completion:nil];
     }
     break;
 
@@ -384,7 +384,7 @@
       
       viewController.tweetViewController = self;
       
-      [self presentModalViewController:viewController animated:YES];
+      [self presentViewController:viewController animated:YES completion:nil];
       [viewController release];
     }
     break;
@@ -416,7 +416,7 @@
 	 title:@"Friends"  imageName:nil];
   [viewController release];
 
-  [self presentModalViewController:navController animated:YES];
+  [self presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark -
@@ -475,7 +475,7 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
   } else {
     addAlbumArtwork = NO;
     [self stopIndicator];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
   }
 }
 
@@ -489,7 +489,7 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
 
   [self stopIndicator];
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-  [self dismissModalViewControllerAnimated:YES];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -609,7 +609,7 @@ shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
   [facebookClient postMessage:message 
 		     callback:^{
       [self stopIndicator];
-      [self dismissModalViewControllerAnimated:YES];
+      [self dismissViewControllerAnimated:YES completion:nil];
     }];  
 }
 

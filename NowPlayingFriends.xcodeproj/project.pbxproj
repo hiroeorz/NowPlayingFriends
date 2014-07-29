@@ -143,6 +143,7 @@
 		54D260AB123A3989004023A6 /* Next_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260A9123A3989004023A6 /* Next_mini.png */; };
 		54D260AC123A3989004023A6 /* Previous_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D260AA123A3989004023A6 /* Previous_mini.png */; };
 		54D2F41414B4ADAB00BF8792 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D2F41314B4ADAB00BF8792 /* CoreLocation.framework */; };
+		54E1E56419872B0000D93EB7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54E1E56319872AFF00D93EB7 /* Images.xcassets */; };
 		54E35CF818603D6200BD4303 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E35CF718603D6200BD4303 /* FacebookSDK.framework */; };
 		54E51E19151EF91300223252 /* red_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E51E18151EF91300223252 /* red_button.png */; };
 		54E76C63146581B8006612B6 /* MusicPlayerViewController+AutoTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E76C5E146581B8006612B6 /* MusicPlayerViewController+AutoTweet.m */; };
@@ -402,6 +403,7 @@
 		54D260A9123A3989004023A6 /* Next_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Next_mini.png; path = icons/mediaIcons005/Next_mini.png; sourceTree = "<group>"; };
 		54D260AA123A3989004023A6 /* Previous_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Previous_mini.png; path = icons/mediaIcons005/Previous_mini.png; sourceTree = "<group>"; };
 		54D2F41314B4ADAB00BF8792 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		54E1E56319872AFF00D93EB7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = NowPlayingFriends/Images.xcassets; sourceTree = "<group>"; };
 		54E35CF718603D6200BD4303 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		54E51E18151EF91300223252 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
 		54E76C5E146581B8006612B6 /* MusicPlayerViewController+AutoTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MusicPlayerViewController+AutoTweet.m"; sourceTree = "<group>"; };
@@ -585,6 +587,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				54E1E56319872AFF00D93EB7 /* Images.xcassets */,
 				54CB18CC163B8427005641D8 /* other */,
 				54E51E17151EF91300223252 /* buttonImages */,
 				549EFEAE1300383A00908AB6 /* SettingSelectYouTubeLinkView.xib */,
@@ -936,6 +939,7 @@
 				5480C3B6121FA14D00F6E1C6 /* 112-group.png in Resources */,
 				5480C3C2121FA2BC00F6E1C6 /* 65-note.png in Resources */,
 				5480C3C5121FA33900F6E1C6 /* 09-chat2.png in Resources */,
+				54E1E56419872B0000D93EB7 /* Images.xcassets in Resources */,
 				5480C3C8121FA3A400F6E1C6 /* 120-headphones.png in Resources */,
 				5480C4CD1220E4C700F6E1C6 /* AlbumSongsViewController.xib in Resources */,
 				5480C58612212FF600F6E1C6 /* PlayListSongsViewController.xib in Resources */,
@@ -1086,6 +1090,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -1102,7 +1108,7 @@
 				"GCC_VERSION[arch=*]" = "";
 				HEADER_SEARCH_PATHS = "$(SDK_DIR)/usr/include/libxml2";
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2/**";
 				No_Use = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
@@ -1118,6 +1124,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
@@ -1132,7 +1140,7 @@
 				HEADER_SEARCH_PATHS = "$(SDK_DIR)/usr/include/libxml2";
 				"HEADER_SEARCH_PATHS[arch=*]" = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2/**";
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2/**";
 				No_Use = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
@@ -1169,6 +1177,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1181,7 +1191,7 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "$(SDK_DIR)/usr/include/libxml2 ";
 				INFOPLIST_FILE = "NowPlayingFriends-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/usr/include/libxml2/**";
 				No_Use = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";

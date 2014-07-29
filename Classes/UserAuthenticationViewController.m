@@ -134,7 +134,7 @@
 
     [twitterClient saveFriends];
 
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
   } else {
     UIAlertView *alert = [[UIAlertView alloc] 
 			   initWithTitle:@"Authentication failed"

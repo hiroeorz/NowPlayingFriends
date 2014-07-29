@@ -138,7 +138,7 @@
 #pragma IBAction Methods
 
 - (IBAction)cancel:(id)sender {
-  [self dismissModalViewControllerAnimated:YES];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark -
@@ -221,7 +221,7 @@ titleForHeaderInSection:(NSInteger)section {
   self.selectedName = [namesArray objectAtIndex:[indexPath row]];
 
   [self addRecentFriendToFile:selectedName];
-  [self dismissModalViewControllerAnimated:YES];
+  [self dismissViewControllerAnimated:YES completion:nil];
 
   return indexPath;
 }

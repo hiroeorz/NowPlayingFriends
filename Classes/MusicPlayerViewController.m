@@ -377,17 +377,13 @@
  */
 - (UITextField *)songTitleField {
 
-  //  UITextField *songTitleField = [[UITextField alloc] 
-  //				initWithFrame:CGRectMake(0.0f, 3.0f,
-  //							 200.0f, 30.0f)];
-
   UITextField *songTitleField = [[UITextField alloc] 
 				initWithFrame:CGRectMake(0.0f, -4.0f,
 							 200.0f, 30.0f)];
   songTitleField.backgroundColor = nil;
   songTitleField.textColor = [UIColor darkGrayColor];
   songTitleField.font = [UIFont boldSystemFontOfSize:14.0f];
-  songTitleField.textAlignment = UITextAlignmentCenter;
+  songTitleField.textAlignment = NSTextAlignmentCenter;
   songTitleField.text = [self.appDelegate nowPlayingTitle];
   songTitleField.enabled = NO;
   return [songTitleField autorelease];
@@ -404,7 +400,7 @@
   artistNameField.backgroundColor = nil;
   artistNameField.textColor = [UIColor grayColor];
   artistNameField.font = [UIFont boldSystemFontOfSize:12.0f];
-  artistNameField.textAlignment = UITextAlignmentCenter;
+  artistNameField.textAlignment = NSTextAlignmentCenter;
   artistNameField.text = [self.appDelegate nowPlayingArtistName];
   artistNameField.enabled = NO;
   return [artistNameField autorelease];
@@ -443,7 +439,7 @@
   viewController.leftButtonItem = 
     [self.appDelegate cancelButton:@selector(close) target:viewController];
 
-  [self presentModalViewController:navController animated:YES];
+  [self presentViewController:navController animated:YES completion:nil];
   [viewController release];
 }
 
@@ -570,7 +566,7 @@
 	 title:@"Tweet"  imageName:nil];
   [viewController release];
 
-  [self presentModalViewController:navController animated:YES];
+  [self presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark -
@@ -586,7 +582,6 @@
   }
 
   [self.view addSubview:listView];
-
   [UIView commitAnimations];
 
   self.navigationItem.leftBarButtonItem = 
@@ -605,7 +600,6 @@
 
   [self.view addSubview:listView];
   [UIView commitAnimations];
-
 
   self.navigationItem.leftBarButtonItem = 
     [self.appDelegate listButton:@selector(changeToSongview)
@@ -710,7 +704,6 @@
     [modeArray release];
 
     segmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment;
-    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     segmentedControl.frame = CGRectMake(5, 5, 310, 
 					kModeSelectTableRowHeight - 10);
     segmentedControl.momentary = NO;

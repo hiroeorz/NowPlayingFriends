@@ -76,7 +76,7 @@
 	 title:@"Tweet"  imageName:nil];
   [viewController release];
 
-  [self presentModalViewController:navController animated:YES];
+  [self presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark -
@@ -112,7 +112,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 #pragma mark -
 
 - (void)close {
-  [self dismissModalViewControllerAnimated:YES];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

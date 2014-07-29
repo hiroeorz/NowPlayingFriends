@@ -68,13 +68,13 @@
 #pragma IBAction Methods
 
 - (IBAction)cancel:(id)sender {
-  [self dismissModalViewControllerAnimated:YES];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)selectTopOfRanking:(id)sender {
 
   YouTubeClient *youtube = [[[YouTubeClient alloc] init] autorelease];
-  [self dismissModalViewControllerAnimated:YES];
+  [self dismissViewControllerAnimated:YES completion:nil];
   [tweetViewController startIndicator];
 
   [youtube searchWithTitle:[self.appDelegate nowPlayingTitle] 
@@ -87,7 +87,7 @@
 - (IBAction)openSelectView:(id)sender {
 
   openSelectViewFlag = YES;
-  [self dismissModalViewControllerAnimated:YES];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)openSelectViewAfterClose {
@@ -102,7 +102,7 @@
     [self.appDelegate navigationWithViewController:viewController
 	 title:nil  imageName:nil];
   [viewController release];
-  [tweetViewController presentModalViewController:navController animated:YES];
+  [tweetViewController presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark -
