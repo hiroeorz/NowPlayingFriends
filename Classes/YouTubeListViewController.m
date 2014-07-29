@@ -241,7 +241,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   self.selectedMovie = movie;
   movieSelected = YES;
 
-  [self dismissModalViewControllerAnimated:YES];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark -

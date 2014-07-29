@@ -254,15 +254,6 @@
 	withObject:nil];
 }
 
-- (IBAction)touchSubControllerDisplayButton:(id)sender {
-
-  if (subControlView.alpha > 0.0) {
-    [self removeDisplaySubview];
-  } else {
-    [self displaySubview];
-  }
-}
-
 - (void)displaySubview {
 
   NSLog(@"displaySubview called.");
@@ -574,6 +565,7 @@
 
 - (void)changeToListview {
 
+  NSLog(@"changeToListview");
   [self.appDelegate setAnimationWithView:self.view
        animationType:UIViewAnimationTransitionFlipFromLeft];
 
@@ -581,7 +573,10 @@
     [songView removeFromSuperview];
   }
 
+  /* self.viewの一番下に最初から乗せるようにしたのでaddSubviewは現在必要ありません。
   [self.view addSubview:listView];
+  */
+
   [UIView commitAnimations];
 
   self.navigationItem.leftBarButtonItem = 
@@ -591,6 +586,7 @@
 
 - (void)changeToSongsListview {
 
+  NSLog(@"changeToSongsListview");
   [self.appDelegate setAnimationWithView:songListController.view
        animationType:UIViewAnimationTransitionFlipFromLeft];
 
@@ -598,7 +594,10 @@
     [songView removeFromSuperview];
   }
 
+  /* self.viewの一番下に最初から乗せるようにしたのでaddSubviewは現在必要ありません。
   [self.view addSubview:listView];
+  */
+
   [UIView commitAnimations];
 
   self.navigationItem.leftBarButtonItem = 
@@ -613,10 +612,11 @@
   [self.appDelegate setAnimationWithView:self.view
        animationType:UIViewAnimationTransitionFlipFromRight];
 
+  /* self.viewの一番下に最初から乗せるようにしたのでaddSubviewは現在必要ありません。
   if (listView.superview != nil) {
     [listView removeFromSuperview];
   }
-
+  */
   
   [self.view addSubview:songView];
   [UIView commitAnimations];

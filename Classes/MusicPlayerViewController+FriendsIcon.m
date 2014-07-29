@@ -153,7 +153,7 @@
   NSInteger i = 0;
   NSInteger x = 0;
   NSInteger xRange = kProfileImageSize;
-  NSInteger y = albumImageView.frame.size.height + 32.0f;
+  NSInteger y = albumImageView.frame.size.height + 107.0f;
   
   for (NSDictionary *data in timeline)  {
     if (cancelFlag) { break; }
