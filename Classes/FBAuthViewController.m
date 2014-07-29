@@ -91,7 +91,7 @@
                             user:(id<FBGraphUser>)user {
 
   self.labelFirstName.text = [NSString stringWithFormat:@"Logged in with %@", user.first_name];
-  self.profilePic.profileID = user.id;
+  self.profilePic.profileID = [user objectForKey:@"id"];
   self.loggedInUser = user;
 }
 
