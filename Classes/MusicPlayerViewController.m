@@ -7,10 +7,10 @@
 //
 
 #import "MusicPlayerViewController+Local.h"
-#import "MusicPlayerViewController+Settings.m"
-#import "MusicPlayerViewController+Notification.m"
-#import "MusicPlayerViewController+AutoTweet.m"
-#import "MusicPlayerViewController+FriendsIcon.m"
+// #import "MusicPlayerViewController+Settings.m"
+// #import "MusicPlayerViewController+Notification.m"
+// #import "MusicPlayerViewController+AutoTweet.m"
+// #import "MusicPlayerViewController+FriendsIcon.m"
 
 
 @implementation MusicPlayerViewController
@@ -222,10 +222,11 @@
 
   [autoTweetSwitch setOn:self.appDelegate.autotweet_preference animated:NO];
   [super viewWillAppear:animated];
+    NSLog(@"viewWillAppear");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-
+    NSLog(@"viewDidAppear");
   [super viewDidAppear:animated];
   [self setViewTitleAndMusicArtwork];
 
@@ -237,6 +238,7 @@
   if (self.appDelegate.get_twitterusers_preference) {
     [self refreshProfileImagesIfChanged];
   }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -331,11 +333,14 @@
   UITextField *artistNameField = [self artistNameField];
   [titleView addSubview:artistNameField];
 
+
   [titleView addTarget:self
 		action:@selector(openSelectSongViewFromNowPlayingAlbum)
        forControlEvents:UIControlEventTouchUpInside];
 
-  self.navigationItem.titleView = titleView;
+
+  // cpu100
+  // self.navigationItem.titleView = titleView;
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
 
