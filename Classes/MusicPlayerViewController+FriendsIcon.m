@@ -62,7 +62,7 @@
   NSString *tags = [self.appDelegate nowPlayingTagsString];
   NSArray *newTimeline = nil;
   
-  NSLog(@"INDEX: %d", refreshTypeSegmentedControl.selectedSegmentIndex);
+  NSLog(@"INDEX: %ld", refreshTypeSegmentedControl.selectedSegmentIndex);
 
   if (cancelFlag) { NSLog(@"Stopping refresh timeline because cacelFlag=YES");
     [client release];

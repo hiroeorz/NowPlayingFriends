@@ -51,6 +51,24 @@
 				 realm:(const NSString *)aRealm callback:(const NSString *)aCallback
 			  delegate:(NSObject <OATokenManagerDelegate> *)aDelegate {
 
+  if ((self = [super init])) {
+    consumer = [aConsumer retain];
+    acToken = nil;
+    reqToken = nil;
+    initialToken = [aToken retain];
+    authorizedTokenKey = nil;
+    oauthBase = [base copy];
+    realm = [aRealm copy];
+    callback = [aCallback copy];
+    delegate = aDelegate;
+    calls = [[NSMutableArray alloc] init];
+    selectors = [[NSMutableArray alloc] init];
+    delegates = [[NSMutableDictionary alloc] init];
+    isDispatching = NO;
+  }
+  
+  return self;
+  /*
 	[super init];
 	consumer = [aConsumer retain];
 	acToken = nil;
@@ -67,6 +85,7 @@
 	isDispatching = NO;
 
 	return self;
+   */
 }
 
 - (void)dealloc {
@@ -86,7 +105,8 @@
 
 // The application got a new authorized
 // request token and is notifying us
-- (void)authorizedToken:(const NSString *)aKey
+- (void)authorizedToken:(NSString *const)aKey
+//- (void)authorizedToken:(const NSString *)aKey
 {
 	if (reqToken && [aKey isEqualToString:reqToken.key]) {
 		[self exchangeToken];

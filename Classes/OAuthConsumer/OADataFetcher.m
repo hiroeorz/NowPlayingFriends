@@ -30,9 +30,15 @@
 @implementation OADataFetcher
 
 - (id)init {
+  if ((self = [super init])) {
+    responseData = [[NSMutableData alloc] init];
+  }
+  return self;
+  /*
 	[super init];
 	responseData = [[NSMutableData alloc] init];
 	return self;
+   */
 }
 
 - (void)dealloc {
@@ -45,7 +51,6 @@
 
 /* Protocol for async URL loading */
 - (void)connection:(NSURLConnection *)aConnection didReceiveResponse:(NSURLResponse *)aResponse {
-  NSLog(@"didReceiveResponse");
 
 	[response release];
 	response = [aResponse retain];
@@ -53,7 +58,6 @@
 }
 	
 - (void)connection:(NSURLConnection *)aConnection didFailWithError:(NSError *)error {
-  NSLog(@"didFail");
 	OAServiceTicket *ticket = [[OAServiceTicket alloc] initWithRequest:request
 															  response:response
 																  data:responseData
@@ -63,12 +67,11 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-  NSLog(@"didReciebved");
+
 	[responseData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-  NSLog(@"didFinishLoading");
 
 	OAServiceTicket *ticket = [[OAServiceTicket alloc] initWithRequest:request
 															  response:response
@@ -91,7 +94,6 @@
   [request prepare];
 
   connection = [[NSURLConnection alloc] initWithRequest:aRequest delegate:self];
-  NSLog(@"connection:%@", connection);
 }
 
 @end

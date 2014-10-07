@@ -43,12 +43,45 @@
 			token:(OAToken *)aToken
             realm:(NSString *)aRealm
 signatureProvider:(id<OASignatureProviding, NSObject>)aProvider {
-    [super initWithURL:aUrl
-           cachePolicy:NSURLRequestReloadIgnoringCacheData
-       timeoutInterval:10.0];
+  
+  if ((self = [super initWithURL:aUrl
+                     cachePolicy:NSURLRequestReloadIgnoringCacheData
+                 timeoutInterval:120.0])) {
     
     consumer = [aConsumer retain];
     
+    // empty token for Unauthorized Request Token transaction
+    if (aToken == nil) {
+      token = [[OAToken alloc] init];
+    } else {
+      token = [aToken retain];
+    }
+    
+    if (aRealm == nil) {
+      realm = @"";
+    } else {
+      realm = [aRealm copy];
+    }
+    
+    // default to HMAC-SHA1
+    if (aProvider == nil) {
+      signatureProvider = [[OAHMAC_SHA1SignatureProvider alloc] init];
+    } else {
+      signatureProvider = [aProvider retain];
+    }
+    
+    [self _generateTimestamp];
+    [self _generateNonce];
+  }
+  
+  return self;
+  /*
+    [super initWithURL:aUrl
+           cachePolicy:NSURLRequestReloadIgnoringCacheData
+       timeoutInterval:120.0];
+   
+    consumer = [aConsumer retain];
+   
     // empty token for Unauthorized Request Token transaction
     if (aToken == nil) {
         token = [[OAToken alloc] init];
@@ -73,6 +106,7 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider {
     [self _generateNonce];
     
     return self;
+   */
 }
 
 // Setting a timestamp and nonce to known
@@ -84,6 +118,18 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider {
 signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
             nonce:(NSString *)aNonce
         timestamp:(NSString *)aTimestamp {
+  
+  if ((self = [self initWithURL:aUrl
+                       consumer:aConsumer
+                          token:aToken
+                          realm:aRealm
+              signatureProvider:aProvider])) {
+    nonce = [aNonce copy];
+    timestamp = [aTimestamp copy];
+  }
+  
+  return self;
+  /*
     [self initWithURL:aUrl
              consumer:aConsumer
                 token:aToken
@@ -94,6 +140,7 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
     timestamp = [aTimestamp copy];
     
     return self;
+   */
 }
 
 - (void)prepare {
@@ -128,14 +175,23 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
 }
 
 - (void)_generateTimestamp {
-    timestamp = [[NSString stringWithFormat:@"%d", time(NULL)] retain];
+  timestamp = [[NSString stringWithFormat:@"%ld", time(NULL)] retain];
+//    timestamp = [[NSString stringWithFormat:@"%d", time(NULL)] retain];
 }
 
 - (void)_generateNonce {
+  CFUUIDRef theUUID = CFUUIDCreate(NULL);
+  CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+  [NSMakeCollectable(theUUID) autorelease];
+  if (nonce) {
+    CFRelease(nonce);
+  }
+  nonce = (NSString *)string;  /*
     CFUUIDRef theUUID = CFUUIDCreate(NULL);
     CFStringRef string = CFUUIDCreateString(NULL, theUUID);
     NSMakeCollectable(theUUID);
     nonce = (NSString *)string;
+   */
 }
 
 - (NSString *)_signatureBaseString {

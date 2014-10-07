@@ -77,7 +77,6 @@
 	zStream.next_in = bytes;
 	zStream.avail_in = (unsigned int)length;
 	zStream.avail_out = 0;
-	NSError *theError = nil;
 	
 	NSInteger bytesProcessedAlready = zStream.total_out;
 	while (zStream.avail_in != 0) {
@@ -86,7 +85,7 @@
 			[outputData increaseLengthBy:halfLength];
 		}
 		
-		zStream.next_out = [outputData mutableBytes] + zStream.total_out-bytesProcessedAlready;
+		zStream.next_out = (Bytef*)[outputData mutableBytes] + zStream.total_out-bytesProcessedAlready;
 		zStream.avail_out = (unsigned int)([outputData length] - (zStream.total_out-bytesProcessedAlready));
 		
 		status = inflate(&zStream, Z_NO_FLUSH);
@@ -101,13 +100,6 @@
 		}
 	}
 	
-	if (theError) {
-		if (err) {
-			*err = theError;
-		}
-		return nil;
-	}
-
 	// Set real length
 	[outputData setLength: zStream.total_out-bytesProcessedAlready];
 	return outputData;
@@ -166,7 +158,8 @@
 		readLength = [inputStream read:inputData maxLength:DATA_CHUNK_SIZE]; 
 		
 		// Make sure nothing went wrong
-		if ([inputStream streamStatus] == NSStreamEventErrorOccurred) {
+//		if ([inputStream streamStatus] == NSStreamEventErrorOccurred) {
+    if ([inputStream streamStatus] == NSStreamStatusError) {
 			if (err) {
 				*err = [NSError errorWithDomain:NetworkRequestErrorDomain code:ASICompressionError userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Decompression of %@ failed because we were unable to read from the source data file",sourcePath],NSLocalizedDescriptionKey,[inputStream streamError],NSUnderlyingErrorKey,nil]];
 			}
@@ -189,12 +182,13 @@
 		}
 		
 		// Write the inflated data out to the destination file
-		[outputStream write:[outputData bytes] maxLength:[outputData length]];
+		[outputStream write:(Bytef*)[outputData bytes] maxLength:[outputData length]];
 		
 		// Make sure nothing went wrong
-		if ([inputStream streamStatus] == NSStreamEventErrorOccurred) {
+//		if ([inputStream streamStatus] == NSStreamEventErrorOccurred) {
+    if ([inputStream streamStatus] == NSStreamStatusError) {
 			if (err) {
-				*err = [NSError errorWithDomain:NetworkRequestErrorDomain code:ASICompressionError userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Decompression of %@ failed because we were unable to write to the destination data file at &@",sourcePath,destinationPath],NSLocalizedDescriptionKey,[outputStream streamError],NSUnderlyingErrorKey,nil]];
+				*err = [NSError errorWithDomain:NetworkRequestErrorDomain code:ASICompressionError userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Decompression of %@ failed because we were unable to write to the destination data file at %@",sourcePath,destinationPath],NSLocalizedDescriptionKey,[outputStream streamError],NSUnderlyingErrorKey,nil]];
             }
 			[decompressor closeStream];
 			return NO;
@@ -219,7 +213,7 @@
 
 + (NSError *)inflateErrorWithCode:(int)code
 {
-	return [NSError errorWithDomain:NetworkRequestErrorDomain code:ASICompressionError userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Decompression of data failed with code %hi",code],NSLocalizedDescriptionKey,nil]];
+	return [NSError errorWithDomain:NetworkRequestErrorDomain code:ASICompressionError userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Decompression of data failed with code %d",code],NSLocalizedDescriptionKey,nil]];
 }
 
 @synthesize streamReady;

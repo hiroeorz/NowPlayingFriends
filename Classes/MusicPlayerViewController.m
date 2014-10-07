@@ -128,7 +128,7 @@
 }
 
 - (void)didReceiveMemoryWarning {
-  
+
   [super didReceiveMemoryWarning];
 }
 
@@ -157,7 +157,11 @@
 
 - (void)viewDidLoad {
 
-  [super viewDidLoad];
+    
+  NSLog(@"MusicPlayerViewController view did load...");
+    return;
+    [super viewDidLoad];
+
 
   /* iPhone5用に必要に応じて一を下にずらす */
   [self.appDelegate fixHeightForAfteriPhone5View:songView];
@@ -207,11 +211,14 @@
   } else { /* それ以外 */
     refreshTypeSegmentedControl.selectedSegmentIndex = kRefreshTypeAll;
   }
+    
+  NSLog(@"view did load complete.");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 
   NSLog(@"viewWillAppear");
+    return;
   updateAfterSafetyTime = NO;
   
   if (albumLists == nil) { self.albumLists = [self.appDelegate albums];}
@@ -222,7 +229,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-
+    return;
   [super viewDidAppear:animated];
   [self setViewTitleAndMusicArtwork];
 
@@ -430,7 +437,7 @@
   viewController.leftButtonItem = 
     [self.appDelegate cancelButton:@selector(close) target:viewController];
 
-  [self presentViewController:navController animated:YES completion:nil];
+  [self.view.window.rootViewController presentViewController:navController animated:YES completion:nil];
   [viewController release];
 }
 
@@ -557,7 +564,7 @@
 	 title:@"Tweet"  imageName:nil];
   [viewController release];
 
-  [self presentViewController:navController animated:YES completion:nil];
+  [self.view.window.rootViewController presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark -

@@ -55,17 +55,34 @@
 - (id)initWithKey:(NSString *)aKey secret:(NSString *)aSecret session:(NSString *)aSession
 		 duration:(NSNumber *)aDuration attributes:(NSDictionary *)theAttributes created:(NSDate *)creation
 		renewable:(BOOL)renew {
+  
+  if ((self = [super init])) {
+    self.key = aKey;
+    self.secret = aSecret;
+    self.session = aSession;
+    self.duration = aDuration;
+    self.attributes =  (NSMutableDictionary *)theAttributes;
+    created = [creation retain];
+    renewable = renew;
+    forRenewal = NO;
+  }
+  
+  return self;
+  
+  /*
 	[super init];
 	self.key = aKey;
 	self.secret = aSecret;
 	self.session = aSession;
 	self.duration = aDuration;
-	self.attributes = theAttributes;
+//	self.attributes = theAttributes;
+  self.attributes = (NSMutableDictionary *)theAttributes;
 	created = [creation retain];
 	renewable = renew;
 	forRenewal = NO;
 
 	return self;
+   */
 }
 
 - (id)initWithHTTPResponseBody:(const NSString *)body {
@@ -104,6 +121,24 @@
 }
 
 - (id)initWithUserDefaultsUsingServiceProviderName:(const NSString *)provider prefix:(const NSString *)prefix {
+  
+  if ((self = [super init])) {
+    self.key = [OAToken loadSetting:@"key" provider:provider prefix:prefix];
+    self.secret = [OAToken loadSetting:@"secret" provider:provider prefix:prefix];
+    self.session = [OAToken loadSetting:@"session" provider:provider prefix:prefix];
+    self.duration = [OAToken loadSetting:@"duration" provider:provider prefix:prefix];
+    self.attributes = [OAToken loadSetting:@"attributes" provider:provider prefix:prefix];
+    created = [OAToken loadSetting:@"created" provider:provider prefix:prefix];
+    renewable = [[OAToken loadSetting:@"renewable" provider:provider prefix:prefix] boolValue];
+    
+    if (![self isValid]) {
+      [self autorelease];
+      return nil;
+    }
+  }
+  
+  return self;
+  /*
 	[super init];
 	self.key = [OAToken loadSetting:@"key" provider:provider prefix:prefix];
 	self.secret = [OAToken loadSetting:@"secret" provider:provider prefix:prefix];
@@ -119,6 +154,7 @@
 	}
 	
 	return self;
+   */
 }
 
 #pragma mark dealloc
@@ -176,12 +212,15 @@
 	[attributes setObject: aAttribute forKey: aKey];
 }
 
-- (void)setAttributes:(NSDictionary *)theAttributes {
+
+//- (void)setAttributes:(NSDictionary *)theAttributes {
+/*
+- (void)setAttributes:(NSMutableDictionary *)theAttributes {
 	[attributes release];
 	attributes = [[NSMutableDictionary alloc] initWithDictionary:theAttributes];
 	
 }
-
+*/
 - (BOOL)hasAttributes {
 	return (attributes && [attributes count] > 0);
 }
@@ -207,7 +246,8 @@
 
 - (void)setAttributesWithString:(NSString *)theAttributes
 {
-	self.attributes = [[self class] attributesWithString:theAttributes];
+  self.attributes = (NSMutableDictionary *)[[self class] attributesWithString:theAttributes];
+//	self.attributes = [[self class] attributesWithString:theAttributes];
 }
 
 - (NSDictionary *)parameters

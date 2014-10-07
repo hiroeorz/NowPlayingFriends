@@ -161,7 +161,7 @@
 
 - (void)setupMusicPlayer {
 
-  self.musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
+  self.musicPlayer = [MPMusicPlayerController systemMusicPlayer];
 }
 
 - (NSString *)nowPlayingTagsString {
@@ -420,7 +420,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   UINavigationController *navController;
   NSString *username = [client username];
 
-  /* Music Player */
+  // Music Player
   viewController = [[MusicPlayerViewController alloc] 
 		     initWithNibName:@"MusicPlayerViewController" bundle:nil];
 
@@ -431,7 +431,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [controllers addObject:navController];
   [viewController release];
 
-  /* Song */
+  // Song
   viewController = [[SongFriendsViewController alloc] 
 		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];
 
@@ -441,7 +441,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [controllers addObject:navController];
   [viewController release];
 
-  /* Artist */
+  // Artist
   viewController = [[ArtistFriendsViewController alloc] 
 		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];
 
@@ -451,7 +451,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [controllers addObject:navController];
   [viewController release];
 
-  /* MentionsTimeline */
+  // MentionsTimeline
   viewController = [[MentionsTimelineViewController alloc] 
 		     initWithNibName:@"NowPlayingViewControllers"
 		     bundle:nil];
@@ -459,15 +459,15 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   navController = [self navigationWithViewController:viewController
 			title:@"Mentions"  
 			imageName:@"atMark.png"];
-  
+
   [controllers addObject:navController];
 
-  [viewController /* 自分宛の@があったらタブに赤いバッジを表示するルーチン */
+  [viewController // 自分宛の@があったらタブに赤いバッジを表示するルーチン
     performSelectorInBackground:@selector(updateNewItemCountToBadge)
     withObject:nil];
   [viewController release];
-  
-  /* Homeimeline */
+
+  // Homeimeline
   viewController = [[HomeTimelineViewController alloc] 
 		     initWithNibName:@"NowPlayingViewControllers"
 		     bundle:nil];
@@ -478,8 +478,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
   [controllers addObject:navController];
   [viewController release];
-  
-  /* SelfTimeline */
+
+  //SelfTimeline
   viewController = [[UserTimelineViewController alloc] 
 		     initWithUserName:username];
   
@@ -490,7 +490,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [controllers addObject:navController];
   [viewController release];
 
-  /* Now */
+  // Now
   viewController = [[NowPlayingViewController alloc] 
 		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];
 
@@ -500,7 +500,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [controllers addObject:navController];
   [viewController release];
 
-  /* UserAuth */
+  // UserAuth
   viewController = [[UserAuthenticationViewController alloc] 
 		     initWithNibName:@"UserAuthenticationViewController" 
 		     bundle:nil];
@@ -512,7 +512,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [controllers addObject:navController];
   [viewController release];
 
-  /* Facebook UserAuth */
+  // Facebook UserAuth
   viewController = [[FBAuthViewController alloc] 
 		     initWithNibName:@"FBAuthViewController" 
 		     bundle:nil];
@@ -525,7 +525,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [viewController release];
 
 
-  /* SettingViewController */
+  // SettingViewController
   viewController = [[SettingViewController alloc] 
 		     initWithNibName:@"SettingViewController" 
 		     bundle:nil];
@@ -548,8 +548,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [controllers release];
   [client release];
   [window makeKeyAndVisible];
-  [window addSubview:tabBarController.view];
-
+  //[window addSubview:tabBarController.view];
+  [window setRootViewController:tabBarController];
+    
   return YES;
 }
 
@@ -1072,7 +1073,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 /**
  * @brief 認証がすんでいるか確認して、すんでいない場合は認証画面を表示する。
  */
-- (void)checkAuthenticateWithController:(id)viewController {
+- (void)checkAuthenticateWithController:(MusicPlayerViewController *)viewController {
 
   TwitterClient *client = [[TwitterClient alloc] init];
 
@@ -1085,8 +1086,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
       authenticateViewController.musicPlayerViewController = viewController;
     }
 
-    [viewController presentModalViewController:authenticateViewController 
-		    animated:YES];
+    NSLog(@"Authentication required!");
+    [viewController.view.window.rootViewController presentViewController:authenticateViewController
+                                                                animated:YES completion:nil];
     [authenticateViewController autorelease];
   }
 
@@ -1407,7 +1409,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   UIImage *image = [UIImage imageNamed:@"list-white.png"];
   UIBarButtonItem *button = 
     [[UIBarButtonItem alloc] initWithImage:image
-			     style:UIBarButtonItemStyleBordered
+			     style:UIButtonTypeSystem
 			     target:target
 			     action:selector];
   return [button autorelease];

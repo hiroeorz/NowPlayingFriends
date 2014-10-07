@@ -9,7 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "TwitterClient+ConsumerKey.h"
 #import "TwitterClient+TwitpicAPIKey.h"
-#import "OAuthConsumer/OAServiceTicket.h"
+// #import "OAuthConsumer/OAServiceTicket.h"
+
+#import "OAuthConsumer/OAConsumer.h"
+#import "OAuthConsumer/OAMutableURLRequest.h"
+#import "OAuthConsumer/OARequestParameter.h"
+#import "OAuthConsumer/OADataFetcher.h"
 
 
 #define kOAuthAccetokenFileName @"access_token.plist"

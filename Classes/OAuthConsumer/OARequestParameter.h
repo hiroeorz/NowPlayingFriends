@@ -36,6 +36,7 @@
 @property(copy, readwrite) NSString *name;
 @property(copy, readwrite) NSString *value;
 
++ (id)requestParameterWithName:(NSString *)aName value:(NSString *)aValue;
 - (id)initWithName:(NSString *)aName value:(NSString *)aValue;
 - (NSString *)URLEncodedName;
 - (NSString *)URLEncodedValue;

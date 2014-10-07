@@ -43,6 +43,7 @@
 
 @dynamic appDelegate;
 @synthesize twitpicClient;
+OADataFetcher *fetcher;
 
 - (void)dealloc {
   [twitpicClient release];
@@ -262,7 +263,8 @@
 
   [request setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
 
-  OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+  if (fetcher != nil) { [fetcher release]; }
+  fetcher = [[OADataFetcher alloc] init];
   [fetcher fetchDataWithRequest:request
 	   delegate:aDelegate
 	   didFinishSelector:@selector(ticket:didFinishWithData:)
@@ -351,8 +353,8 @@
 - (id)authenticatedRequest:(NSURL *)url {
 
   if (![self oAuthTokenExist]) {
-    NSMutableURLRequest *notAuthencticatedRequest = 
-      [NSMutableURLRequest requestWithURL:url];
+    OAMutableURLRequest *notAuthencticatedRequest =
+      [OAMutableURLRequest requestWithURL:url];
 
     return notAuthencticatedRequest;
   }
@@ -436,7 +438,7 @@
     [self authenticatedRequest:[NSURL URLWithString:urlString]];
   [request setHTTPMethod:@"GET"];
   [request prepare];
-
+    
   NSURLResponse *response;
   NSError *error;
   NSData *data = [NSURLConnection sendSynchronousRequest:request
@@ -477,35 +479,26 @@
 
   OAConsumer *consumer = [[OAConsumer alloc] initWithKey:kConsumerKey
 					     secret:kConsumerSecret];
-  OAMutableURLRequest 
-    *request = [[OAMutableURLRequest alloc] initWithURL:url
-					    consumer:consumer
-					    token:nil
-					    realm:nil
-					    signatureProvider:nil];
-
+    
+  OAMutableURLRequest *request =
+    [[OAMutableURLRequest alloc] initWithURL:url
+                                    consumer:consumer
+                                       token:nil
+                                       realm:@"https://api.twitter.com"
+                           signatureProvider:nil];
+    
   [request setHTTPShouldHandleCookies:NO];
   [consumer release];
 
   // 新たに付加するパラメータ
-  NSMutableArray *xAuthParameters = [NSMutableArray arrayWithCapacity:3];
-  [xAuthParameters addObject:[OARequestParameter 
-			       requestParameter:@"x_auth_mode" 
-			       value:@"client_auth"]];
-
-  [xAuthParameters addObject:[OARequestParameter 
-			       requestParameter:@"x_auth_username" 
-			       value:username]];
-
-  [xAuthParameters addObject:[OARequestParameter 
-			       requestParameter:@"x_auth_password" 
-			       value:password]];
-
   // 順番が大事！
   [request setHTTPMethod:@"POST"];
-  [request setParameters:xAuthParameters];
+    
+  NSString *xAuthParams = [NSString stringWithFormat:@"x_auth_mode=client_auth&x_auth_username=%@&x_auth_password=%@", username, password];
+  [request setHTTPBody:[xAuthParams dataUsingEncoding:NSUTF8StringEncoding]];
 
-  OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+  if (fetcher != nil) { [fetcher release]; }
+  fetcher = [[OADataFetcher alloc] init];
   
   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
   [fetcher fetchDataWithRequest:request
