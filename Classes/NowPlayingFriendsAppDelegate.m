@@ -420,17 +420,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   UINavigationController *navController;
   NSString *username = [client username];
 
-  // Music Player
-  viewController = [[MusicPlayerViewController alloc] 
-		     initWithNibName:@"MusicPlayerViewController" bundle:nil];
-
-  navController = [self navigationWithViewController:viewController
-			title:@"Player" imageName:@"65-note.png"];
-
-  self.musicPlayerViewController = (MusicPlayerViewController *)viewController;
-  [controllers addObject:navController];
-  [viewController release];
-
   // Song
   viewController = [[SongFriendsViewController alloc] 
 		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];
@@ -441,6 +430,17 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [controllers addObject:navController];
   [viewController release];
 
+    // Music Player
+    viewController = [[MusicPlayerViewController alloc]
+                      initWithNibName:@"MusicPlayerViewController" bundle:nil];
+    
+    navController = [self navigationWithViewController:viewController
+                                                 title:@"Player" imageName:@"65-note.png"];
+    
+    self.musicPlayerViewController = (MusicPlayerViewController *)viewController;
+    [controllers addObject:navController];
+    [viewController release];
+    
   // Artist
   viewController = [[ArtistFriendsViewController alloc] 
 		     initWithNibName:@"NowPlayingViewControllers" bundle:nil];

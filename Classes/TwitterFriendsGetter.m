@@ -118,6 +118,7 @@
 
   if (trycount > 0) {
     trycount--;
+    NSLog(@"getting friends count trycout: %d", trycount);
     TwitterClient *client = [[[TwitterClient alloc] init] autorelease];
     [client saveFriendsWithCursor:nextCursor];
     [self autorelease];

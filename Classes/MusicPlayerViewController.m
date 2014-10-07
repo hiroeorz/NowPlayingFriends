@@ -128,7 +128,7 @@
 }
 
 - (void)didReceiveMemoryWarning {
-
+  
   [super didReceiveMemoryWarning];
 }
 
@@ -157,11 +157,8 @@
 
 - (void)viewDidLoad {
 
-    
-  NSLog(@"MusicPlayerViewController view did load...");
-    return;
-    [super viewDidLoad];
-
+    NSLog(@"MusicPlayerViewController view did load...");
+  [super viewDidLoad];
 
   /* iPhone5用に必要に応じて一を下にずらす */
   [self.appDelegate fixHeightForAfteriPhone5View:songView];
@@ -218,7 +215,6 @@
 - (void)viewWillAppear:(BOOL)animated {
 
   NSLog(@"viewWillAppear");
-    return;
   updateAfterSafetyTime = NO;
   
   if (albumLists == nil) { self.albumLists = [self.appDelegate albums];}
@@ -229,7 +225,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    return;
+
   [super viewDidAppear:animated];
   [self setViewTitleAndMusicArtwork];
 
