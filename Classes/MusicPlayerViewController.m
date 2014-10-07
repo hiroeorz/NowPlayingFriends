@@ -7,10 +7,10 @@
 //
 
 #import "MusicPlayerViewController+Local.h"
-// #import "MusicPlayerViewController+Settings.m"
-// #import "MusicPlayerViewController+Notification.m"
-// #import "MusicPlayerViewController+AutoTweet.m"
-// #import "MusicPlayerViewController+FriendsIcon.m"
+#import "MusicPlayerViewController+Settings.m"
+#import "MusicPlayerViewController+Notification.m"
+#import "MusicPlayerViewController+AutoTweet.m"
+#import "MusicPlayerViewController+FriendsIcon.m"
 
 
 @implementation MusicPlayerViewController
@@ -333,14 +333,13 @@
   UITextField *artistNameField = [self artistNameField];
   [titleView addSubview:artistNameField];
 
-
   [titleView addTarget:self
 		action:@selector(openSelectSongViewFromNowPlayingAlbum)
        forControlEvents:UIControlEventTouchUpInside];
 
 
   // cpu100
-  // self.navigationItem.titleView = titleView;
+  //self.navigationItem.titleView = titleView;
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
 
@@ -577,14 +576,7 @@
   [self.appDelegate setAnimationWithView:self.view
        animationType:UIViewAnimationTransitionFlipFromLeft];
 
-  if (songView.superview != nil) {
-    [songView removeFromSuperview];
-  }
-
-  /* self.viewの一番下に最初から乗せるようにしたのでaddSubviewは現在必要ありません。
-  [self.view addSubview:listView];
-  */
-
+  [self.view bringSubviewToFront:listView];
   [UIView commitAnimations];
 
   self.navigationItem.leftBarButtonItem = 
@@ -620,13 +612,7 @@
   [self.appDelegate setAnimationWithView:self.view
        animationType:UIViewAnimationTransitionFlipFromRight];
 
-  /* self.viewの一番下に最初から乗せるようにしたのでaddSubviewは現在必要ありません。
-  if (listView.superview != nil) {
-    [listView removeFromSuperview];
-  }
-  */
-  
-  [self.view addSubview:songView];
+  [self.view bringSubviewToFront:songView];
   [UIView commitAnimations];
 
   self.navigationItem.leftBarButtonItem = 

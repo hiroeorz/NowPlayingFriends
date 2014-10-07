@@ -1087,10 +1087,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     if ([viewController isKindOfClass:[MusicPlayerViewController class]]) {
       authenticateViewController.musicPlayerViewController = viewController;
     }
-      
-    [viewController.view.window.rootViewController presentModalViewController:authenticateViewController
-		    animated:YES];
 
+    [viewController presentViewController: authenticateViewController animated:YES completion:nil];
     [authenticateViewController autorelease];
   }
 
