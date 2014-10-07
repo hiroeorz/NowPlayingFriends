@@ -194,12 +194,9 @@
   [self.appDelegate setHalfCurlAnimationWithController:self
        frontView:songView
        curlUp:YES];
-  
-  if (songView.superview != nil) {
-    [songView removeFromSuperview];
-  }
 
   [self.baseView addSubview:settingView];
+  [self.view bringSubviewToFront:settingView];
   [UIView commitAnimations];
 }
 
