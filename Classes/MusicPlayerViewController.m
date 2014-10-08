@@ -325,7 +325,7 @@
  */
 - (void)setViewTitleAndMusicArtwork {
 
-  UIControl *titleView = [self songTitleViewControl];
+  UIButton *titleView = [self songTitleViewControl];
 
   UITextField *songTitleField = [self songTitleField];
   [titleView addSubview:songTitleField];
@@ -337,9 +337,8 @@
 		action:@selector(openSelectSongViewFromNowPlayingAlbum)
        forControlEvents:UIControlEventTouchUpInside];
 
-
   // cpu100
-  //self.navigationItem.titleView = titleView;
+  self.navigationItem.titleView = titleView;
 
   MPMediaItem *currentItem = [musicPlayer nowPlayingItem];
 
@@ -361,12 +360,15 @@
 /**
  * @brief ナビゲーションバーに曲名とアーティスト名を表示するコントロールを返す。
  */
-- (UIControl *)songTitleViewControl {
+- (UIButton *)songTitleViewControl {
 
-  UIButton *newButton = [UIButton buttonWithType:110];
-  newButton.frame = CGRectMake(0.0f, 4.0f, 200.0f, 36.0f);
+  UIButton *newButton = [UIButton buttonWithType:UIButtonTypeSystem];
+  newButton.frame = CGRectMake(0.0f, 4.0f, 200.0f, 26.0f);
   [newButton setTitle:@"" forState:UIControlStateNormal];
-  [newButton setValue:[UIColor blackColor] forKey:@"tintColor"];
+  [newButton setBackgroundColor:[UIColor grayColor]];
+  [newButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+  newButton.layer.cornerRadius = 5;
+  newButton.clipsToBounds = true;
   return newButton;
 }
 

@@ -38,7 +38,7 @@
 - (void)openEditView;
 - (void)changeToListview;
 - (void)changeToSongview;
-- (UIControl *)songTitleViewControl;
+- (UIButton *)songTitleViewControl;
 - (UITextField *)songTitleField;
 - (UITextField *)artistNameField;
 - (NowPlayingFriendsAppDelegate *)appDelegate;
