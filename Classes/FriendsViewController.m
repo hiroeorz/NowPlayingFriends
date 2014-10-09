@@ -47,7 +47,7 @@
 @synthesize friendsTableView;
 @synthesize lineOverFlowQueue;
 @synthesize myUserName;
-@synthesize newTimelineQueue;
+@synthesize myTimelineQueue;
 @synthesize noArtWorkMini;
 @synthesize timeline;
 
@@ -60,7 +60,7 @@
   [friendsTableView release];
   [lineOverFlowQueue release];
   [myUserName release];
-  [newTimelineQueue release];
+  [myTimelineQueue release];
   [noArtWorkMini release];
   [timeline release];
   [super dealloc];
@@ -72,7 +72,7 @@
   self.friendsTableView = nil;
   self.lineOverFlowQueue = nil;
   self.myUserName = nil;
-  self.newTimelineQueue = nil;
+  self.myTimelineQueue = nil;
   self.noArtWorkMini = nil;
   self.timeline = nil;
   [super viewDidUnload];
@@ -177,7 +177,7 @@
 	NSArray *newTimeline = [client getMentionsTimeLineSince:lastId];
 	
 	for (NSDictionary *obj in newTimeline) {
-	  self.newTimelineQueue = newTimeline;
+	  self.myTimelineQueue = newTimeline;
 	  NSLog(@"id:%@", [obj objectForKey:@"id"]);
 	}
 	

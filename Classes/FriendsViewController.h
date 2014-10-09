@@ -22,7 +22,7 @@
 
   BOOL changed;
   BOOL firstFlag;
-  NSArray *newTimelineQueue;
+  NSArray *myTimelineQueue;
   NSArray *timeline;
   NSMutableArray *lineOverFlowQueue;
   NSString *myUserName;
@@ -39,7 +39,7 @@
 @property (nonatomic, retain)  UIImage *noArtWorkMini;
 @property (nonatomic, retain) IBOutlet UITableView *friendsTableView;
 @property (nonatomic, retain) NSArray *beforeTimeline;
-@property (nonatomic, retain) NSArray *newTimelineQueue;
+@property (nonatomic, retain) NSArray *myTimelineQueue;
 @property (nonatomic, retain) NSArray *timeline;
 @property (nonatomic, retain) NSMutableArray *lineOverFlowQueue;
 @property (nonatomic, retain) NSString *myUserName;

@@ -139,6 +139,7 @@
 
 
 - (IBAction)touchSubControl:(id)sender;
+- (IBAction)touchSubControllerDisplayButton:(id)sender;
 - (void)displaySubview;
 - (void)setViewTitleAndMusicArtwork;
 - (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;

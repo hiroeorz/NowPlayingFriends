@@ -84,9 +84,11 @@
 
 - (IBAction)changeVolume:(id)sender {
 
+    /* no use.
   if (musicPlayer.volume != volumeSlider.value) {
     musicPlayer.volume = volumeSlider.value;
   }
+     */
 }
 
 /*

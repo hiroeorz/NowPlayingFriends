@@ -259,6 +259,15 @@
 	withObject:nil];
 }
 
+- (IBAction)touchSubControllerDisplayButton:(id)sender {
+    
+  if (subControlView.alpha > 0.0) {
+    [self removeDisplaySubview];
+  } else {
+    [self displaySubview];
+  }
+}
+
 - (void)displaySubview {
 
   NSLog(@"displaySubview called.");
@@ -363,7 +372,7 @@
 - (UIButton *)songTitleViewControl {
 
   UIButton *newButton = [UIButton buttonWithType:UIButtonTypeSystem];
-  newButton.frame = CGRectMake(0.0f, 4.0f, 200.0f, 26.0f);
+  newButton.frame = CGRectMake(0.0f, 4.0f, 200.0f, 36.0f);
   [newButton setTitle:@"" forState:UIControlStateNormal];
   [newButton setBackgroundColor:[UIColor grayColor]];
   [newButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -381,7 +390,7 @@
 				initWithFrame:CGRectMake(0.0f, -4.0f,
 							 200.0f, 30.0f)];
   songTitleField.backgroundColor = nil;
-  songTitleField.textColor = [UIColor darkGrayColor];
+  songTitleField.textColor = [UIColor whiteColor];
   songTitleField.font = [UIFont boldSystemFontOfSize:14.0f];
   songTitleField.textAlignment = NSTextAlignmentCenter;
   songTitleField.text = [self.appDelegate nowPlayingTitle];
@@ -395,10 +404,10 @@
 - (UITextField *)artistNameField {
 
   UITextField *artistNameField = [[UITextField alloc] 
-				initWithFrame:CGRectMake(0.0f, 13.0f,
+				initWithFrame:CGRectMake(0.0f, 12.0f,
 							 200.0f, 30.0f)];
   artistNameField.backgroundColor = nil;
-  artistNameField.textColor = [UIColor grayColor];
+  artistNameField.textColor = [UIColor whiteColor];
   artistNameField.font = [UIFont boldSystemFontOfSize:12.0f];
   artistNameField.textAlignment = NSTextAlignmentCenter;
   artistNameField.text = [self.appDelegate nowPlayingArtistName];

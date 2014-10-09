@@ -14,7 +14,6 @@
 #import "ITunesStore.h"
 #import "MentionsTimelineViewController.h"
 #import "MusicPlayerViewController.h"
-#import "MusicPlayer2ViewController.h"
 #import "NowPlayingViewController.h"
 #import "SettingViewController.h"
 #import "SongFriendsViewController.h"
@@ -1409,7 +1408,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   UIImage *image = [UIImage imageNamed:@"list-white.png"];
   UIBarButtonItem *button = 
     [[UIBarButtonItem alloc] initWithImage:image
-			     style:UIBarButtonItemStyleBordered
+			     style:UIBarButtonItemStylePlain
 			     target:target
 			     action:selector];
   return [button autorelease];
